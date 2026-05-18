@@ -1,0 +1,80 @@
+aircraft: Beech Airliner 99
+
+icao: BE99
+iata:
+
+mtow: 7600
+mlw: 5100
+oew:
+mfc:
+vmo:
+mmo:
+ceiling: 26000
+
+icao_wtc: light
+eu_wtc: light
+faa_wtc: light
+parking_area_m2: 258
+
+pax:
+  max: 17
+  high:
+  low: 8
+
+fuselage:
+  length: 13.6
+  height: 4.4
+  width:
+
+wing:
+  area:
+  span: 14
+  mac:
+  sweep:
+  t/c:
+
+flaps:
+  type:
+  area:
+  bf/b:
+  lambda_f:
+  cf/c:
+  Sf/S:
+
+drag:
+  cd0:
+  k:
+  e:
+  gears:
+
+kinematic:
+  takeoff_distance_m: 1000
+  takeoff_v2: 115
+  climb_to_fl50_ias: 145
+  climb_to_fl50_vs: 1000
+  climb_to_fl150_ias: 200
+  climb_to_fl150_vs: 1000
+  climb_to_fl240_ias: 200
+  climb_to_fl240_vs: 1000
+  mach_climb_mach:
+  mach_climb_vs:
+  cruise_mach:
+  cruise_range_nm: 1600
+  cruise_tas: 240
+  descent_to_fl240_mach:
+  descent_to_fl240_vs:
+  descent_to_fl100_ias: 240
+  descent_to_fl100_vs: 800
+  approach_ias: 150
+  approach_vs: 800
+  landing_distance_m: 900
+  landing_ias: 110
+
+engine:
+  type: turboprop
+  mount: front wing leading mounted
+  number: 2
+  default: 2 x 680 SHP PWC PT6A -28
+  options:
+    - 2 x 680 SHP PWC PT6A -28
+    - 2 x 715 SHP PWC PT6A -36

@@ -1,0 +1,80 @@
+aircraft: DeHavilland Canada DHC8-100
+
+icao: DH8A
+iata: DH8
+
+mtow: 15600
+mlw: 15400
+oew:
+mfc:
+vmo:
+mmo:
+ceiling: 25000
+
+icao_wtc: medium
+eu_wtc: lower medium
+faa_wtc:
+parking_area_m2: 688
+
+pax:
+  max: 37
+  high:
+  low:
+
+fuselage:
+  length: 22.3
+  height: 7.5
+  width:
+
+wing:
+  area:
+  span: 25.9
+  mac:
+  sweep:
+  t/c:
+
+flaps:
+  type:
+  area:
+  bf/b:
+  lambda_f:
+  cf/c:
+  Sf/S:
+
+drag:
+  cd0:
+  k:
+  e:
+  gears:
+
+kinematic:
+  takeoff_distance_m: 900
+  takeoff_v2: 100
+  climb_to_fl50_ias: 130
+  climb_to_fl50_vs: 1800
+  climb_to_fl150_ias: 200
+  climb_to_fl150_vs: 1500
+  climb_to_fl240_ias: 200
+  climb_to_fl240_vs: 1000
+  mach_climb_mach:
+  mach_climb_vs:
+  cruise_mach:
+  cruise_range_nm: 1000
+  cruise_tas: 250
+  descent_to_fl240_mach:
+  descent_to_fl240_vs:
+  descent_to_fl100_ias: 250
+  descent_to_fl100_vs: 1500
+  approach_ias: 250
+  approach_vs: 1500
+  landing_distance_m: 900
+  landing_ias: 100
+
+engine:
+  type: turboprop
+  mount: front wing leading mounted
+  number: 2
+  default: 2 x 2,000 SHP P&W 120A turboprops with 4 blade propellers
+  options:
+    - 2 x 2,000 SHP P&W 120A turboprops with 4 blade propellers
+    - 2 x 2,150 SHP P&W 121A turboprops with 4 blade propellers

@@ -1,0 +1,79 @@
+aircraft: Lockheed 130 Hercules
+
+icao: C130
+iata: LOH
+
+mtow: 70310
+mlw: 59000
+oew:
+mfc:
+vmo:
+mmo:
+ceiling: 30000
+
+icao_wtc: medium
+eu_wtc: upper medium
+faa_wtc: medium
+parking_area_m2: 1361
+
+pax:
+  max: 92
+  high:
+  low:
+
+fuselage:
+  length: 29.8
+  height:
+  width:
+
+wing:
+  area:
+  span: 40.4
+  mac:
+  sweep:
+  t/c:
+
+flaps:
+  type:
+  area:
+  bf/b:
+  lambda_f:
+  cf/c:
+  Sf/S:
+
+drag:
+  cd0:
+  k:
+  e:
+  gears:
+
+kinematic:
+  takeoff_distance_m: 1100
+  takeoff_v2: 120
+  climb_to_fl50_ias: 140
+  climb_to_fl50_vs: 1500
+  climb_to_fl150_ias: 180
+  climb_to_fl150_vs: 1000
+  climb_to_fl240_ias: 180
+  climb_to_fl240_vs: 1000
+  mach_climb_mach:
+  mach_climb_vs:
+  cruise_mach: 0.57
+  cruise_range_nm: 2700
+  cruise_tas: 290
+  descent_to_fl240_mach:
+  descent_to_fl240_vs:
+  descent_to_fl100_ias: 250
+  descent_to_fl100_vs: 1500
+  approach_ias: 150
+  approach_vs: 1500
+  landing_distance_m: 800
+  landing_ias: 130
+
+engine:
+  type: turboprop
+  mount: wing leading mounted
+  number: 4
+  default: 4 x 4.508 SHP Allison T56-A15 turboprops with 4 blade propellers
+  options:
+    - 4 x 4.508 SHP Allison T56-A15 turboprops with 4 blade propellers

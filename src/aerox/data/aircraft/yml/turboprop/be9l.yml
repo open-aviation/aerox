@@ -1,0 +1,82 @@
+aircraft: Beech King Air 90
+
+icao: BE9L
+iata:
+
+mtow: 4800
+mlw: 4400
+oew:
+mfc:
+vmo:
+mmo:
+ceiling: 29000
+
+icao_wtc: light
+eu_wtc: light
+faa_wtc: light
+parking_area_m2: 227
+
+pax:
+  max: 4
+  high:
+  low:
+
+fuselage:
+  length: 10.82
+  height: 4.36
+  width:
+
+wing:
+  area:
+  span: 15.33
+  mac:
+  sweep:
+  t/c:
+
+flaps:
+  type:
+  area:
+  bf/b:
+  lambda_f:
+  cf/c:
+  Sf/S:
+
+drag:
+  cd0:
+  k:
+  e:
+  gears:
+
+kinematic:
+  takeoff_distance_m: 700
+  takeoff_v2: 100
+  climb_to_fl50_ias: 130
+  climb_to_fl50_vs: 1500
+  climb_to_fl150_ias: 200
+  climb_to_fl150_vs: 1000
+  climb_to_fl240_ias: 200
+  climb_to_fl240_vs: 1000
+  mach_climb_mach:
+  mach_climb_vs:
+  cruise_mach: 0.39
+  cruise_range_nm: 1150
+  cruise_tas: 220
+  descent_to_fl240_mach:
+  descent_to_fl240_vs:
+  descent_to_fl100_ias: 240
+  descent_to_fl100_vs: 1000
+  approach_ias: 130
+  approach_vs: 1000
+  landing_distance_m: 380
+  landing_ias: 105
+
+engine:
+  type: turboprop
+  mount: front wing leading mounted
+  number: 2
+  default: P&W PT6A -6
+  options:
+    - P&W PT6A -6
+    - P&W PT6A -20
+    - P&W PT6A -21
+    - P&W PT6A -34

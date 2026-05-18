@@ -1,0 +1,79 @@
+aircraft: C-130J Super Hercules ; Lockheed
+
+icao: C30J
+iata:
+
+mtow: 70300
+mlw: 59000
+oew:
+mfc:
+vmo:
+mmo:
+ceiling: 33000
+
+icao_wtc: medium
+eu_wtc: upper medium
+faa_wtc: medium
+parking_area_m2: 1561
+
+pax:
+  max: 128
+  high: 92
+  low: 2
+
+fuselage:
+  length: 34.38144
+  height: 11.82624
+  width:
+
+wing:
+  area:
+  span: 40.41648
+  mac:
+  sweep:
+  t/c:
+
+flaps:
+  type:
+  area:
+  bf/b:
+  lambda_f:
+  cf/c:
+  Sf/S:
+
+drag:
+  cd0:
+  k:
+  e:
+  gears:
+
+kinematic:
+  takeoff_distance_m: 950
+  takeoff_v2: 120
+  climb_to_fl50_ias: 150
+  climb_to_fl50_vs: 2000
+  climb_to_fl150_ias: 300
+  climb_to_fl150_vs: 1500
+  climb_to_fl240_ias: 300
+  climb_to_fl240_vs: 1000
+  mach_climb_mach:
+  mach_climb_vs:
+  cruise_mach: 0.58
+  cruise_range_nm: 2835
+  cruise_tas: 330
+  descent_to_fl240_mach:
+  descent_to_fl240_vs:
+  descent_to_fl100_ias: 250
+  descent_to_fl100_vs: 1500
+  approach_ias: 220
+  approach_vs: 1500
+  landing_distance_m: 430
+  landing_ias: 130
+
+engine:
+  type: turboprop
+  mount: wing leading mounted
+  number: 4
+  default: 4 x 4.591 SHP Allison 2100 D3 turboprops with 6 blade propellers
+  options:
+    - 4 x 4.591 SHP Allison 2100 D3 turboprops with 6 blade propellers

@@ -1,0 +1,79 @@
+aircraft: Socata TBM-850
+
+icao: TBM8
+iata:
+
+mtow: 3353
+mlw: 3200
+oew:
+mfc:
+vmo:
+mmo:
+ceiling: 31000
+
+icao_wtc: light
+eu_wtc: light
+faa_wtc: light
+parking_area_m2: 191
+
+pax:
+  max: 7
+  high:
+  low:
+
+fuselage:
+  length: 10.4
+  height: 4.2
+  width:
+
+wing:
+  area:
+  span: 12.2
+  mac:
+  sweep:
+  t/c:
+
+flaps:
+  type:
+  area:
+  bf/b:
+  lambda_f:
+  cf/c:
+  Sf/S:
+
+drag:
+  cd0:
+  k:
+  e:
+  gears:
+
+kinematic:
+  takeoff_distance_m: 870
+  takeoff_v2: 110
+  climb_to_fl50_ias: 160
+  climb_to_fl50_vs: 2400
+  climb_to_fl150_ias: 180
+  climb_to_fl150_vs: 1500
+  climb_to_fl240_ias: 180
+  climb_to_fl240_vs: 1100
+  mach_climb_mach: 0.66
+  mach_climb_vs: 1000
+  cruise_mach: 0.67
+  cruise_range_nm: 1520
+  cruise_tas: 300
+  descent_to_fl240_mach: 0.67
+  descent_to_fl240_vs: 1000
+  descent_to_fl100_ias: 170
+  descent_to_fl100_vs: 1500
+  approach_ias: 160
+  approach_vs: 800
+  landing_distance_m: 750
+  landing_ias: 95
+
+engine:
+  type: turboprop
+  mount: nose mounted
+  number: 1
+  default: P&W PT6A-66D engine flat rated at 850 shp (634 kW)
+  options:
+    - P&W PT6A-66D engine flat rated at 850 shp (634 kW)

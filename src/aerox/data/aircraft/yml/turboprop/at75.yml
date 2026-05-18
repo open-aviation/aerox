@@ -1,0 +1,79 @@
+aircraft: ATR 72-500
+
+icao: AT75
+iata: AT7
+
+mtow: 23000
+mlw:
+oew:
+mfc:
+vmo:
+mmo:
+ceiling: 25000
+
+icao_wtc: medium
+eu_wtc: lower medium
+faa_wtc:
+parking_area_m2:
+
+pax:
+  max: 78
+  high:
+  low: 68
+
+fuselage:
+  length: 27.17
+  height:
+  width:
+
+wing:
+  area:
+  span: 27.05
+  mac:
+  sweep:
+  t/c:
+
+flaps:
+  type:
+  area:
+  bf/b:
+  lambda_f:
+  cf/c:
+  Sf/S:
+
+engine:
+  type: turboprop
+  mount: front wing leading mounted
+  number: 2
+  default: 2 x 2500 SHP PWC PW127F turboprops with 6 blade propellers
+  options:
+    - 2 x 2500 SHP PWC PW127F turboprops with 6 blade propellers
+
+drag:
+  cd0:
+  k:
+  e:
+  gears:
+
+kinematic:
+  takeoff_distance_m: 1367
+  takeoff_v2: 110
+  climb_to_fl50_ias: 140
+  climb_to_fl50_vs: 1350
+  climb_to_fl150_ias: 210
+  climb_to_fl150_vs: 1000
+  climb_to_fl240_ias: 210
+  climb_to_fl240_vs: 800
+  mach_climb_mach:
+  mach_climb_vs:
+  cruise_mach:
+  cruise_range_nm: 825
+  cruise_tas: 280
+  descent_to_fl240_mach:
+  descent_to_fl240_vs:
+  descent_to_fl100_ias: 275
+  descent_to_fl100_vs: 1500
+  approach_ias: 200
+  approach_vs: 1500
+  landing_distance_m: 1100
+  landing_ias: 120

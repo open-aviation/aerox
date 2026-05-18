@@ -1,0 +1,80 @@
+aircraft: Shorts 360
+
+icao: SH36
+iata: SH6
+
+mtow: 12300
+mlw: 12000
+oew:
+mfc:
+vmo:
+mmo:
+ceiling: 22000
+
+icao_wtc: medium
+eu_wtc: light
+faa_wtc:
+parking_area_m2: 597
+
+pax:
+  max: 36
+  high:
+  low:
+
+fuselage:
+  length: 21.6
+  height: 7.3
+  width:
+
+wing:
+  area:
+  span: 22.8
+  mac:
+  sweep:
+  t/c:
+
+flaps:
+  type:
+  area:
+  bf/b:
+  lambda_f:
+  cf/c:
+  Sf/S:
+
+drag:
+  cd0:
+  k:
+  e:
+  gears:
+
+kinematic:
+  takeoff_distance_m: 1300
+  takeoff_v2: 110
+  climb_to_fl50_ias: 140
+  climb_to_fl50_vs: 1000
+  climb_to_fl150_ias: 170
+  climb_to_fl150_vs: 500
+  climb_to_fl240_ias: 170
+  climb_to_fl240_vs: 500
+  mach_climb_mach:
+  mach_climb_vs:
+  cruise_mach:
+  cruise_range_nm: 1000
+  cruise_tas: 210
+  descent_to_fl240_mach:
+  descent_to_fl240_vs:
+  descent_to_fl100_ias: 180
+  descent_to_fl100_vs: 800
+  approach_ias: 180
+  approach_vs: 800
+  landing_distance_m: 1100
+  landing_ias: 100
+
+engine:
+  type: turboprop
+  mount: front wing leading mounted
+  number: 2
+  default: P&W PT6A-65R turboprops
+  options:
+    - P&W PT6A-65R turboprops
+    - P&W PT6A-67R turboprops

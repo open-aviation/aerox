@@ -1,0 +1,79 @@
+aircraft: ATR 42-500
+
+icao: AT45
+iata: AT5
+
+mtow: 18600
+mlw:
+oew:
+mfc:
+vmo:
+mmo:
+ceiling: 26000
+
+icao_wtc: medium
+eu_wtc: lower medium
+faa_wtc:
+parking_area_m2:
+
+pax:
+  max: 50
+  high:
+  low: 42
+
+fuselage:
+  length: 22.7
+  height:
+  width:
+
+wing:
+  area:
+  span: 24.6
+  mac:
+  sweep:
+  t/c:
+
+flaps:
+  type:
+  area:
+  bf/b:
+  lambda_f:
+  cf/c:
+  Sf/S:
+
+engine:
+  type: turboprop
+  mount: front wing leading mounted
+  number: 2
+  default: 2 x 2500 SHP PWC PW127 turboprops with 6 blade propellers
+  options:
+    - 2 x 2500 SHP PWC PW127 turboprops with 6 blade propellers
+
+drag:
+  cd0:
+  k:
+  e:
+  gears:
+
+kinematic:
+  takeoff_distance_m: 1000
+  takeoff_v2: 110
+  climb_to_fl50_ias: 140
+  climb_to_fl50_vs: 1500
+  climb_to_fl150_ias: 220
+  climb_to_fl150_vs: 1500
+  climb_to_fl240_ias: 220
+  climb_to_fl240_vs: 1000
+  mach_climb_mach:
+  mach_climb_vs:
+  cruise_mach:
+  cruise_range_nm: 1000
+  cruise_tas: 300
+  descent_to_fl240_mach:
+  descent_to_fl240_vs:
+  descent_to_fl100_ias: 230
+  descent_to_fl100_vs: 1500
+  approach_ias: 200
+  approach_vs: 1500
+  landing_distance_m: 1000
+  landing_ias: 110

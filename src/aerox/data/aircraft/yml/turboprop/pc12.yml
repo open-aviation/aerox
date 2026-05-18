@@ -1,0 +1,79 @@
+aircraft: Pilatus PC-12
+
+icao: PC12
+iata:
+
+mtow: 4700
+mlw: 4500
+oew:
+mfc:
+vmo: 270
+mmo:
+ceiling: 30000
+
+icao_wtc: light
+eu_wtc: light
+faa_wtc: light
+parking_area_m2: 307
+
+pax:
+  max: 9
+  high: 6
+  low: 4
+
+fuselage:
+  length: 14.41704
+  height:
+  width:
+
+wing:
+  area:
+  span: 16.24584
+  mac:
+  sweep:
+  t/c:
+
+flaps:
+  type:
+  area:
+  bf/b:
+  lambda_f:
+  cf/c:
+  Sf/S:
+
+drag:
+  cd0:
+  k:
+  e:
+  gears:
+
+kinematic:
+  takeoff_distance_m: 600
+  takeoff_v2: 110
+  climb_to_fl50_ias: 130
+  climb_to_fl50_vs: 1700
+  climb_to_fl150_ias: 130
+  climb_to_fl150_vs: 1000
+  climb_to_fl240_ias: 130
+  climb_to_fl240_vs: 700
+  mach_climb_mach:
+  mach_climb_vs:
+  cruise_mach:
+  cruise_range_nm: 2000
+  cruise_tas: 270
+  descent_to_fl240_mach:
+  descent_to_fl240_vs:
+  descent_to_fl100_ias: 210
+  descent_to_fl100_vs: 1500
+  approach_ias: 180
+  approach_vs: 1500
+  landing_distance_m: 550
+  landing_ias: 85
+
+engine:
+  type: turboprop
+  mount: nose mounted
+  number: 1
+  default: 1 x 1.200 SHP P&W PT6A-67B turboprop with 4 bladed Hartzell propeller
+  options:
+    - 1 x 1.200 SHP P&W PT6A-67B turboprop with 4 bladed Hartzell propeller

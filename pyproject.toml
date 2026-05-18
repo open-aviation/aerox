@@ -1,0 +1,37 @@
+[project]
+name = "aerox"
+version = "0.1.0"
+description = "Aircraft performance data library"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "flask>=3.1.2",
+    "numpy>=2.3.5",
+    "pyyaml>=6.0.3",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.1.0",
+    "matplotlib>=3.10.7",
+    "pytest>=9.0.1",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+aerox = [
+    "data/aircraft/yml/*/*.yml",
+]
+
+[tool.pytest.ini_options]
+norecursedirs = [
+    "old",
+    ".venv",
+    "docs",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
