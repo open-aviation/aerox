@@ -99,6 +99,295 @@ FIELD ceiling
   Source: aerox_legacy_aircraft_database
 END FIELD
 
+WING AND TAIL GEOMETRY
+
+FIELD wing.area
+  Value: 226
+  Unit: m2
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.span
+  Value: 39.878
+  Unit: m
+  Status: calculated-from-published-inputs
+  Source: usaf_kc135_fact_sheet
+  Source URL: https://www.af.mil/About-Us/Fact-Sheets/Display/Article/977523/kc-135-stratotanker/
+  Document title: KC-135 Stratotanker
+  Revision date: 2025-04
+  Page or section: General Characteristics, Wingspan
+  Formula: m = (12*ft + in)*0.0254
+  Inputs: 130 ft 10 in; page also prints 39.88 m
+  Applicability: KC-135R/T fact-sheet fleet configuration
+  Uncertainty: Exact unit conversion; agrees with printed metric to 0.002 m
+  Previous value: 39.88 m
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Government-published, not civil certified or manufacturer-published.
+END FIELD
+
+FIELD wing.mac
+  Value: 6.2
+  Unit: m
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.sweep
+  Value: 35
+  Unit: deg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.t/c
+  Value: 0.11
+  Unit: nondimensional
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_kc135_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD wing.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_kc135_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD wing.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_kc135_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD wing.aspect_ratio
+  Value: 7.036526
+  Unit: nondimensional
+  Status: legacy-unverified
+  Source: usaf_kc135_fact_sheet | aerox_legacy_aircraft_database
+  Formula: span^2 / area
+  Inputs: span=39.878 m; area=226 m2
+  Previous value: 7.037232 nondimensional
+  Correction reason: Recalculated after a cited wing span or area correction.
+END FIELD
+
+FIELD wing.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_kc135_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD horizontal_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_kc135_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD horizontal_tail.span
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_kc135_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD horizontal_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_kc135_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD horizontal_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_kc135_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD horizontal_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_kc135_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD horizontal_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_kc135_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD horizontal_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_kc135_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD horizontal_tail.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_kc135_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD horizontal_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_kc135_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD horizontal_tail.elevator_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_kc135_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD vertical_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_kc135_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD vertical_tail.height
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_kc135_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD vertical_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_kc135_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD vertical_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_kc135_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD vertical_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_kc135_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD vertical_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_kc135_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD vertical_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_kc135_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD vertical_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_kc135_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD vertical_tail.rudder_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_kc135_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

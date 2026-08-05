@@ -99,6 +99,316 @@ FIELD ceiling
   Source: aerox_legacy_aircraft_database
 END FIELD
 
+WING AND TAIL GEOMETRY
+
+FIELD wing.area
+  Value: 25.96
+  Unit: m2
+  Status: manufacturer-published
+  Source: textron_cessna_caravan_specs_accessed_2026_08_05
+  Source URL: https://cessna.txtav.com/en/turboprop/caravan
+  Document title: Cessna Caravan
+  Revision date: 2026-08-05
+  Page or section: Specifications, Caravan Dimensions
+  Inputs: 25.96 m2 published wing area
+  Applicability: Current production Caravan landplane; page shows same wing values for amphibian
+  Uncertainty: Published to 0.01 m2
+  Notes: Source also gives 279 sq ft.
+END FIELD
+
+FIELD wing.span
+  Value: 15.9
+  Unit: m
+  Status: manufacturer-published
+  Source: textron_cessna_caravan_specs_accessed_2026_08_05
+  Source URL: https://cessna.txtav.com/en/turboprop/caravan
+  Document title: Cessna Caravan
+  Revision date: 2026-08-05
+  Page or section: Specifications, Caravan Dimensions
+  Inputs: 15.9 m published metric dimension
+  Applicability: Current production Caravan landplane; page shows same wing values for amphibian
+  Uncertainty: Published to 0.1 m
+  Notes: The page also gives 52 ft 1 in.
+END FIELD
+
+FIELD wing.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
+FIELD wing.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
+FIELD wing.t/c
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
+FIELD wing.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
+FIELD wing.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
+FIELD wing.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
+FIELD wing.aspect_ratio
+  Value: 9.738444
+  Unit: nondimensional
+  Status: calculated-from-published-inputs
+  Source: textron_cessna_caravan_specs_accessed_2026_08_05
+  Source URL: https://cessna.txtav.com/en/turboprop/caravan
+  Document title: Cessna Caravan
+  Revision date: 2026-08-05
+  Page or section: Derived from Caravan Dimensions
+  Formula: span^2 / area
+  Inputs: span=15.9 m; area=25.96 m2
+  Applicability: Current production Caravan landplane
+  Uncertainty: Span rounding implies approximately +/-0.07
+  Previous value: 9.7384 nondimensional
+  Correction reason: Recalculated after a cited wing span or area correction.
+  Notes: Derived, not Cessna-tabulated.
+END FIELD
+
+FIELD wing.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
+FIELD horizontal_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
+FIELD horizontal_tail.span
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
+FIELD horizontal_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
+FIELD horizontal_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
+FIELD horizontal_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
+FIELD horizontal_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
+FIELD horizontal_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
+FIELD horizontal_tail.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
+FIELD horizontal_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
+FIELD horizontal_tail.elevator_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
+FIELD vertical_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
+FIELD vertical_tail.height
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
+FIELD vertical_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
+FIELD vertical_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
+FIELD vertical_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
+FIELD vertical_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
+FIELD vertical_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
+FIELD vertical_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
+FIELD vertical_tail.rudder_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_cessna_caravan_specs_accessed_2026_08_05
+  Search record: FAA TCDS A37CE and current Textron Caravan product page searched; landplane and amphibian share the cited current-product wing geometry.
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

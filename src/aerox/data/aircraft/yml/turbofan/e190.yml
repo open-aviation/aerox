@@ -34,6 +34,32 @@ wing:
   mac: 3.5
   sweep: 23
   t/c: 0.11
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  aspect_ratio: 8.917172
+  dihedral: null
+horizontal_tail:
+  area: 26.0
+  span: 12.08
+  mac: null
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  sweep: null
+  dihedral: null
+  arm: null
+  elevator_area_ratio: null
+vertical_tail:
+  area: 16.2
+  height: null
+  mac: null
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  sweep: null
+  arm: null
+  rudder_area_ratio: null
 flaps:
   type: double-slotted
   area: null

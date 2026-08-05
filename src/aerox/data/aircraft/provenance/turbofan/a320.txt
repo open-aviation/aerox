@@ -100,6 +100,426 @@ FIELD ceiling
   Source: aerox_legacy_aircraft_database
 END FIELD
 
+WING AND TAIL GEOMETRY
+
+FIELD wing.area
+  Value: 122.0
+  Unit: m2
+  Status: certified-published
+  Source: easa_a064_issue_62
+  Source URL: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa064-airbus-a318-a319-a320-a321-single-aisle
+  Document title: EASA Type Certificate Data Sheet EASA.A.064, Issue 62
+  Revision date: 2026-06-26
+  Page or section: A320 series reference geometry
+  Inputs: 122 m2 published reference area
+  Applicability: A320-214 reference wing
+  Uncertainty: Published value; installed modifications remain aircraft-specific
+  Notes: Use as the reference area, not a wetted or exposed area.
+END FIELD
+
+FIELD wing.span
+  Value: 34.1
+  Unit: m
+  Status: certified-published
+  Source: easa_a064_issue_62
+  Source URL: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa064-airbus-a318-a319-a320-a321-single-aisle
+  Document title: EASA Type Certificate Data Sheet EASA.A.064, Issue 62
+  Revision date: 2026-06-26
+  Page or section: A320 principal dimensions
+  Inputs: 34.10 m published span
+  Applicability: A320-214 with wing-tip fences
+  Uncertainty: Published value; installed modifications remain aircraft-specific
+  Notes: Airbus ACAP independently gives the same span.
+END FIELD
+
+FIELD wing.mac
+  Value: 4.1935
+  Unit: m
+  Status: certified-published
+  Source: easa_a064_issue_62
+  Source URL: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa064-airbus-a318-a319-a320-a321-single-aisle
+  Document title: EASA Type Certificate Data Sheet EASA.A.064, Issue 62
+  Revision date: 2026-06-26
+  Page or section: A320 reference geometry
+  Inputs: 4.1935 m published mean aerodynamic chord
+  Applicability: A320-214 reference wing
+  Uncertainty: Published value
+END FIELD
+
+FIELD wing.sweep
+  Value: 25
+  Unit: deg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.t/c
+  Value: 0.12
+  Unit: nondimensional
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a064_issue_62 | airbus_a320_autocad_wtf_2012_05 | airbus_a320_acap_2026_07
+END FIELD
+
+FIELD wing.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a064_issue_62 | airbus_a320_autocad_wtf_2012_05 | airbus_a320_acap_2026_07
+END FIELD
+
+FIELD wing.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a064_issue_62 | airbus_a320_autocad_wtf_2012_05 | airbus_a320_acap_2026_07
+END FIELD
+
+FIELD wing.aspect_ratio
+  Value: 9.53123
+  Unit: nondimensional
+  Status: calculated-from-published-inputs
+  Source: easa_a064_issue_62
+  Source URL: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa064-airbus-a318-a319-a320-a321-single-aisle
+  Document title: EASA Type Certificate Data Sheet EASA.A.064, Issue 62
+  Revision date: 2026-06-26
+  Page or section: A320 reference geometry
+  Formula: span^2 / area
+  Inputs: span=34.1 m; area=122.0 m2
+  Applicability: A320-214 wing-tip-fence reference geometry
+  Uncertainty: Input rounding gives approximately +/-0.01
+  Notes: Derived only from the cited published inputs.
+END FIELD
+
+FIELD wing.dihedral
+  Value: 5.287074
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: airbus_a320_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A320_WTF-May-2012.zip
+  Document title: Airbus A320 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: Front-view vector entities C277/C374/C39D; docs/modeling/a320-cad-geometry-measurements.csv
+  Formula: atan2(vertical rise,horizontal run)
+  Inputs: C277 endpoints (63195.914,44044.715) and (53260.473,43258.777) mm plus lower-contour checks
+  Applicability: A320-200 wing-tip-fence exposed wing; not sharklet geometry
+  Uncertainty: 4.2871 to 6.2871 deg engineering bound
+  Notes: Airbus states the planning drawing is accurate within 0.10 m; value is an engineering prior, not certified geometry.
+END FIELD
+
+FIELD horizontal_tail.area
+  Value: 30.843428
+  Unit: m2
+  Status: inferred-with-uncertainty
+  Source: airbus_a320_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A320_WTF-May-2012.zip
+  Document title: Airbus A320 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: Top-view tail leading/trailing-edge vector entities; docs/modeling/a320-cad-geometry-measurements.csv
+  Formula: S = b*(c_root+c_tip)/2
+  Inputs: b=12.45 m; c_root=3.7268917 m; c_tip=1.2278758 m
+  Applicability: Gross straight-edge trapezoid extrapolated to aircraft centerline; includes fixed tail and elevator planform
+  Uncertainty: 29.3013 to 32.3856 m2 engineering bound
+  Notes: Rounded tips and centerline extrapolation are model-form approximations.
+END FIELD
+
+FIELD horizontal_tail.span
+  Value: 12.45
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: airbus_a320_acap_2026_07
+  Source URL: https://mediaassets.airbus.com/pm_38_916_916266-iujedqawwy.pdf?fileName=aca32001-jul-2026-2.pdf
+  Document title: A320 Aircraft Characteristics - Airport and Maintenance Planning, Revision 46
+  Revision date: 2026-07-01
+  Page or section: 2-2-0 Figure 991-004-A01, Wing Tip Fence, sheet 1/page 2
+  Inputs: 12.45 m drawing dimension
+  Applicability: A320-200 horizontal-stabilizer overall span
+  Uncertainty: Drawing dimension; planning publication
+END FIELD
+
+FIELD horizontal_tail.mac
+  Value: 2.687454
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: airbus_a320_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A320_WTF-May-2012.zip
+  Document title: Airbus A320 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: Derived from CAD-measured trapezoid
+  Formula: MAC = (2/3)*c_root*(1+lambda+lambda^2)/(1+lambda)
+  Inputs: c_root=3.7268917 m; lambda=0.3294638
+  Applicability: Gross straight-edge horizontal-tail trapezoid
+  Uncertainty: 2.53745 to 2.83745 m engineering bound
+  Notes: Inputs are inferred drawing measurements.
+END FIELD
+
+FIELD horizontal_tail.root_chord
+  Value: 3.726892
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: airbus_a320_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A320_WTF-May-2012.zip
+  Document title: Airbus A320 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: Top-view entities 5653/31F and 55DF/55E2
+  Formula: centerline intersection of straight leading- and trailing-edge extensions
+  Inputs: Published vector endpoints listed in docs/modeling/a320-cad-geometry-measurements.csv
+  Applicability: Gross centerline-reference root chord
+  Uncertainty: 3.5769 to 3.8769 m engineering bound
+  Notes: Not a manufacturer-tabulated chord.
+END FIELD
+
+FIELD horizontal_tail.tip_chord
+  Value: 1.227876
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: airbus_a320_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A320_WTF-May-2012.zip
+  Document title: Airbus A320 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: Top-view entities 5653/31F and 55DF/55E2
+  Formula: trailing-edge station minus leading-edge station at published span tip
+  Inputs: Published vector endpoints; b=12.45 m
+  Applicability: Straight-edge reference tip chord, excluding rounded-tip model detail
+  Uncertainty: 1.0779 to 1.3779 m engineering bound
+  Notes: Not a manufacturer-tabulated chord.
+END FIELD
+
+FIELD horizontal_tail.taper_ratio
+  Value: 0.329464
+  Unit: nondimensional
+  Status: inferred-with-uncertainty
+  Source: airbus_a320_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A320_WTF-May-2012.zip
+  Document title: Airbus A320 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: Derived from CAD-measured reference chords
+  Formula: tip_chord / root_chord
+  Inputs: tip_chord=1.227876 m; root_chord=3.726892 m
+  Applicability: Gross straight-edge horizontal-tail trapezoid
+  Uncertainty: 0.22946 to 0.42946 engineering bound
+  Notes: Inputs are inferred drawing measurements.
+END FIELD
+
+FIELD horizontal_tail.sweep
+  Value: 27.945112
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: airbus_a320_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A320_WTF-May-2012.zip
+  Document title: Airbus A320 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: Top-view tail vector entities
+  Formula: atan2(quarter-chord longitudinal offset, semispan)
+  Inputs: b=12.45 m; derived c_root=3.7268917 m; c_tip=1.2278758 m; vector leading-edge offsets
+  Applicability: Gross straight-edge quarter-chord sweep
+  Uncertainty: 26.9451 to 28.9451 deg engineering bound
+  Notes: Not a certified sweep definition.
+END FIELD
+
+FIELD horizontal_tail.dihedral
+  Value: 6.28171
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: airbus_a320_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A320_WTF-May-2012.zip
+  Document title: Airbus A320 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: Front-view horizontal-tail entities B96F/B978
+  Formula: atan2(vertical rise,horizontal run)
+  Inputs: B96F and B978 endpoints in docs/modeling/a320-cad-geometry-measurements.csv
+  Applicability: Exposed horizontal-tail front-view reference
+  Uncertainty: 6.1317 to 6.4317 deg engineering bound
+  Notes: Drawing projection and surface thickness introduce model-form uncertainty.
+END FIELD
+
+FIELD horizontal_tail.arm
+  Value: 17.46996
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: airbus_a320_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A320_WTF-May-2012.zip
+  Document title: Airbus A320 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: Top-view derived aerodynamic-center stations
+  Formula: x_tail_ac - [x_LEMAC + 0.265*MAC]
+  Inputs: x_tail_ac=33.90760 m from nose; x_LEMAC=15.32636 m; MAC=4.1935 m; planning CG=26.5% MAC
+  Applicability: Moment arm to Airbus planning-reference CG, not actual or certified flight CG
+  Uncertainty: 16.7200 to 18.2200 m engineering bound
+  Notes: For stability priors only; actual loading CG must replace the planning CG.
+END FIELD
+
+FIELD horizontal_tail.elevator_area_ratio
+  Value: 0.480561
+  Unit: nondimensional
+  Status: inferred-with-uncertainty
+  Source: airbus_a320_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A320_WTF-May-2012.zip
+  Document title: Airbus A320 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: Top-view elevator hinge entities 5006/501A and tail planform vectors
+  Formula: S_elevator/S_horizontal_tail
+  Inputs: S_elevator=14.82214 m2; S_horizontal_tail=30.84343 m2
+  Applicability: Visible elevator planform relative to gross trapezoidal horizontal tail
+  Uncertainty: 0.44056 to 0.52056 engineering bound
+  Notes: Physical surface ratio only; does not encode fly-by-wire control law.
+END FIELD
+
+FIELD vertical_tail.area
+  Value: 21.514182
+  Unit: m2
+  Status: inferred-with-uncertainty
+  Source: airbus_a320_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A320_WTF-May-2012.zip
+  Document title: Airbus A320 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: Side-view fin leading/trailing-edge vector entities
+  Formula: S = h*(c_root+c_tip)/2
+  Inputs: h=5.87 m; c_root=5.4303358 m; c_tip=1.8998796 m
+  Applicability: Gross straight-edge fin trapezoid referenced to horizontal-stabilizer drawing line
+  Uncertainty: 20.4385 to 22.5899 m2 engineering bound
+  Notes: Rounded tip and root-fairing treatment are model-form approximations.
+END FIELD
+
+FIELD vertical_tail.height
+  Value: 5.87
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: airbus_a320_acap_2026_07
+  Source URL: https://mediaassets.airbus.com/pm_38_916_916266-iujedqawwy.pdf?fileName=aca32001-jul-2026-2.pdf
+  Document title: A320 Aircraft Characteristics - Airport and Maintenance Planning, Revision 46
+  Revision date: 2026-07-01
+  Page or section: 2-2-0 Figure 991-004-A01, Wing Tip Fence, sheet 1/page 2
+  Inputs: 5.87 m drawing dimension
+  Applicability: Height above the horizontal-stabilizer drawing reference; not vertical-tail span
+  Uncertainty: Drawing dimension; planning publication
+  Notes: Physical definition must be retained.
+END FIELD
+
+FIELD vertical_tail.mac
+  Value: 3.948504
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: airbus_a320_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A320_WTF-May-2012.zip
+  Document title: Airbus A320 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: Derived from CAD-measured trapezoid
+  Formula: MAC = (2/3)*c_root*(1+lambda+lambda^2)/(1+lambda)
+  Inputs: c_root=5.4303358 m; lambda=0.3498641
+  Applicability: Gross straight-edge fin trapezoid
+  Uncertainty: 3.79850 to 4.09850 m engineering bound
+  Notes: Inputs are inferred drawing measurements.
+END FIELD
+
+FIELD vertical_tail.root_chord
+  Value: 5.430336
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: airbus_a320_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A320_WTF-May-2012.zip
+  Document title: Airbus A320 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: Side-view entities A553/A5DA
+  Formula: root-reference intersection of straight leading/trailing edges
+  Inputs: A553 and A5DA endpoints in docs/modeling/a320-cad-geometry-measurements.csv
+  Applicability: Gross fin root chord at stated drawing reference
+  Uncertainty: 5.2803 to 5.5803 m engineering bound
+  Notes: Not a manufacturer-tabulated chord.
+END FIELD
+
+FIELD vertical_tail.tip_chord
+  Value: 1.89988
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: airbus_a320_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A320_WTF-May-2012.zip
+  Document title: Airbus A320 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: Side-view entities A553/A5DA
+  Formula: trailing-edge station minus leading-edge station at reference height
+  Inputs: A553 and A5DA endpoints; h=5.87 m
+  Applicability: Straight-edge reference tip chord, excluding rounded-tip model detail
+  Uncertainty: 1.7499 to 2.0499 m engineering bound
+  Notes: Not a manufacturer-tabulated chord.
+END FIELD
+
+FIELD vertical_tail.taper_ratio
+  Value: 0.349864
+  Unit: nondimensional
+  Status: inferred-with-uncertainty
+  Source: airbus_a320_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A320_WTF-May-2012.zip
+  Document title: Airbus A320 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: Derived from CAD-measured reference chords
+  Formula: tip_chord / root_chord
+  Inputs: tip_chord=1.89988 m; root_chord=5.430336 m
+  Applicability: Gross straight-edge fin trapezoid
+  Uncertainty: 0.24986 to 0.44986 engineering bound
+  Notes: Inputs are inferred drawing measurements.
+END FIELD
+
+FIELD vertical_tail.sweep
+  Value: 35.004001
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: airbus_a320_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A320_WTF-May-2012.zip
+  Document title: Airbus A320 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: Side-view fin vector entities
+  Formula: atan2(quarter-chord longitudinal offset, reference height)
+  Inputs: h=5.87 m; c_root=5.4303358 m; c_tip=1.8998796 m; vector leading-edge offsets
+  Applicability: Gross straight-edge quarter-chord sweep
+  Uncertainty: 34.0040 to 36.0040 deg engineering bound
+  Notes: Not a certified sweep definition.
+END FIELD
+
+FIELD vertical_tail.arm
+  Value: 15.547072
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: airbus_a320_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A320_WTF-May-2012.zip
+  Document title: Airbus A320 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: Side-view derived aerodynamic-center stations
+  Formula: x_fin_ac - [x_LEMAC + 0.265*MAC]
+  Inputs: x_fin_ac=31.98471 m from nose; x_LEMAC=15.32636 m; MAC=4.1935 m; planning CG=26.5% MAC
+  Applicability: Moment arm to Airbus planning-reference CG, not actual or certified flight CG
+  Uncertainty: 14.7971 to 16.2971 m engineering bound
+  Notes: For stability priors only; actual loading CG must replace the planning CG.
+END FIELD
+
+FIELD vertical_tail.rudder_area_ratio
+  Value: 0.299983
+  Unit: nondimensional
+  Status: inferred-with-uncertainty
+  Source: airbus_a320_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A320_WTF-May-2012.zip
+  Document title: Airbus A320 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: Side-view rudder hinge entity A5B8 and fin planform vectors
+  Formula: S_rudder/S_vertical_tail
+  Inputs: S_rudder=6.453884 m2; S_vertical_tail=21.514182 m2
+  Applicability: Visible rudder planform relative to gross trapezoidal fin
+  Uncertainty: 0.25998 to 0.33998 engineering bound
+  Notes: Physical surface ratio only; does not encode yaw-control law.
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

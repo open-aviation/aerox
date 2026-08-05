@@ -52,11 +52,16 @@ class Fuselage:
 class Wing:
     """Wing configuration."""
 
-    area: Optional[int] = None  # Changed to int (e.g., 124 m²)
+    area: Optional[float] = None
     span: Optional[float] = None
     mac: Optional[float] = None
-    sweep: Optional[int] = None  # Changed to int (e.g., 25 degrees)
+    sweep: Optional[float] = None
     t_c: Optional[float] = field(default=None, metadata={"yaml_key": "t/c"})
+    root_chord: Optional[float] = None
+    tip_chord: Optional[float] = None
+    taper_ratio: Optional[float] = None
+    aspect_ratio: Optional[float] = None
+    dihedral: Optional[float] = None
 
 
 @dataclass
@@ -66,7 +71,7 @@ class Certification:
     model: Optional[str] = None
     authority: Optional[str] = None
     type_certificate: Optional[str] = None
-    issue: Optional[int] = None
+    issue: Optional[str] = None
     issue_date: Optional[str] = None
     type_design_definition: Optional[str] = None
     source_id: Optional[str] = None
@@ -76,10 +81,10 @@ class Certification:
 class CertifiedMassLimits:
     """Maximum certified mass limits in kilograms for a named model."""
 
-    mtow: Optional[int] = None
-    mlw: Optional[int] = None
-    mzfw: Optional[int] = None
-    minimum_weight: Optional[int] = None
+    mtow: Optional[float] = None
+    mlw: Optional[float] = None
+    mzfw: Optional[float] = None
+    minimum_weight: Optional[float] = None
     applicability: Optional[str] = None
     source_id: Optional[str] = None
 
@@ -106,10 +111,14 @@ class Tail:
     span: Optional[float] = None
     height: Optional[float] = None
     mac: Optional[float] = None
+    root_chord: Optional[float] = None
+    tip_chord: Optional[float] = None
+    taper_ratio: Optional[float] = None
     sweep: Optional[float] = None
+    dihedral: Optional[float] = None
     arm: Optional[float] = None
-    status: Optional[str] = None
-    source_id: Optional[str] = None
+    elevator_area_ratio: Optional[float] = None
+    rudder_area_ratio: Optional[float] = None
 
 
 @dataclass
@@ -268,19 +277,19 @@ class Aircraft:
     iata: Optional[str] = None
 
     # Weight limits (kg)
-    mtow: Optional[int] = None
-    mlw: Optional[int] = None
-    mzfw: Optional[int] = None
-    minimum_weight: Optional[int] = None
-    oew: Optional[int] = None
-    mfc: Optional[int] = None
+    mtow: Optional[float] = None
+    mlw: Optional[float] = None
+    mzfw: Optional[float] = None
+    minimum_weight: Optional[float] = None
+    oew: Optional[float] = None
+    mfc: Optional[float] = None
 
     # Speed limits
-    vmo: Optional[int] = None
+    vmo: Optional[float] = None
     mmo: Optional[float] = None
 
     # Altitude limit
-    ceiling: Optional[int] = None
+    ceiling: Optional[float] = None
 
     # Wake turbulence categories
     icao_wtc: Optional[str] = None
@@ -288,7 +297,7 @@ class Aircraft:
     faa_wtc: Optional[str] = None
 
     # Parking
-    parking_area_m2: Optional[int] = None  # Changed to int (e.g., 1519 m²)
+    parking_area_m2: Optional[float] = None
 
     # Complex structures
     pax: Optional[Pax] = None
@@ -326,6 +335,16 @@ def _load_nested_dataclass(data: Optional[Dict], cls):
     converted_data = {}
     for key, value in data.items():
         field_name = field_map.get(key, key.replace("-", "_").replace("/", "_"))
+        if cls is Certification and field_name == "issue" and value is not None:
+            value = str(value)
+        if (
+            cls is Certification
+            and field_name == "issue_date"
+            and value is not None
+            and not isinstance(value, str)
+            and hasattr(value, "isoformat")
+        ):
+            value = value.isoformat()
         converted_data[field_name] = value
 
     return cls(**converted_data)

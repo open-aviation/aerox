@@ -98,6 +98,309 @@ FIELD ceiling
   Source: aerox_legacy_aircraft_database
 END FIELD
 
+WING AND TAIL GEOMETRY
+
+FIELD wing.area
+  Value: 18.18
+  Unit: m2
+  Status: certified-published
+  Source: easa_sf50_a615
+  Source URL: https://www.easa.europa.eu/en/downloads/24242/en
+  Document title: EASA.IM.A.615 Cirrus Design SF50 Type-Certificate Data Sheet
+  Revision date: 2026-06-01
+  Page or section: Issue 06, III.3, p. 7
+  Applicability: SF50 certified model; commercial generation/modification applicability unresolved
+  Uncertainty: Source rounded to 0.01 m2
+  Previous value: 17 m2
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Source label is Wing Area.
+END FIELD
+
+FIELD wing.span
+  Value: 11.67
+  Unit: m
+  Status: certified-published
+  Source: easa_sf50_a615
+  Source URL: https://www.easa.europa.eu/en/downloads/24242/en
+  Document title: EASA.IM.A.615 Cirrus Design SF50 Type-Certificate Data Sheet
+  Revision date: 2026-06-01
+  Page or section: Issue 06, III.3, p. 7
+  Applicability: SF50 certified model; commercial generation/modification applicability unresolved
+  Uncertainty: Source rounded to 0.01 m
+  Previous value: 11.8 m
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Current G3 brochure publishes 11.8 m; preserve that conflict until its certified modification applicability is identified.
+END FIELD
+
+FIELD wing.mac
+  Value: 1.5
+  Unit: m
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.sweep
+  Value: 0
+  Unit: deg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.t/c
+  Value: 0.15
+  Unit: nondimensional
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_sf50_a615
+  Search record: reviewed EASA.IM.A.615 Issue 06 and the current Cirrus G3 brochure. The TCDS values are recorded as certified type-design evidence; the G3 brochure's 11.8 m span is retained as an applicability conflict in notes rather than silently replacing 11.67 m.
+END FIELD
+
+FIELD wing.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_sf50_a615
+  Search record: reviewed EASA.IM.A.615 Issue 06 and the current Cirrus G3 brochure. The TCDS values are recorded as certified type-design evidence; the G3 brochure's 11.8 m span is retained as an applicability conflict in notes rather than silently replacing 11.67 m.
+END FIELD
+
+FIELD wing.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_sf50_a615
+  Search record: reviewed EASA.IM.A.615 Issue 06 and the current Cirrus G3 brochure. The TCDS values are recorded as certified type-design evidence; the G3 brochure's 11.8 m span is retained as an applicability conflict in notes rather than silently replacing 11.67 m.
+END FIELD
+
+FIELD wing.aspect_ratio
+  Value: 7.491139
+  Unit: nondimensional
+  Status: calculated-from-published-inputs
+  Source: easa_sf50_a615
+  Source URL: https://www.easa.europa.eu/en/downloads/24242/en
+  Document title: EASA.IM.A.615 Cirrus Design SF50 Type-Certificate Data Sheet
+  Revision date: 2026-06-01
+  Page or section: Issue 06, III.3, p. 7
+  Formula: span^2 / area
+  Inputs: span=11.67 m; area=18.18 m2
+  Applicability: SF50 certified model; commercial generation/modification applicability unresolved
+  Uncertainty: Approximately 0.02 from rounded inputs
+  Previous value: 8.190588 nondimensional
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Calculated from TCDS dimensions; not a separately certified published ratio.
+END FIELD
+
+FIELD wing.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_sf50_a615
+  Search record: reviewed EASA.IM.A.615 Issue 06 and the current Cirrus G3 brochure. The TCDS values are recorded as certified type-design evidence; the G3 brochure's 11.8 m span is retained as an applicability conflict in notes rather than silently replacing 11.67 m.
+END FIELD
+
+FIELD horizontal_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_sf50_a615
+  Search record: reviewed EASA.IM.A.615 Issue 06 and the current Cirrus G3 brochure. The TCDS values are recorded as certified type-design evidence; the G3 brochure's 11.8 m span is retained as an applicability conflict in notes rather than silently replacing 11.67 m.
+END FIELD
+
+FIELD horizontal_tail.span
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_sf50_a615
+  Search record: reviewed EASA.IM.A.615 Issue 06 and the current Cirrus G3 brochure. The TCDS values are recorded as certified type-design evidence; the G3 brochure's 11.8 m span is retained as an applicability conflict in notes rather than silently replacing 11.67 m.
+END FIELD
+
+FIELD horizontal_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_sf50_a615
+  Search record: reviewed EASA.IM.A.615 Issue 06 and the current Cirrus G3 brochure. The TCDS values are recorded as certified type-design evidence; the G3 brochure's 11.8 m span is retained as an applicability conflict in notes rather than silently replacing 11.67 m.
+END FIELD
+
+FIELD horizontal_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_sf50_a615
+  Search record: reviewed EASA.IM.A.615 Issue 06 and the current Cirrus G3 brochure. The TCDS values are recorded as certified type-design evidence; the G3 brochure's 11.8 m span is retained as an applicability conflict in notes rather than silently replacing 11.67 m.
+END FIELD
+
+FIELD horizontal_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_sf50_a615
+  Search record: reviewed EASA.IM.A.615 Issue 06 and the current Cirrus G3 brochure. The TCDS values are recorded as certified type-design evidence; the G3 brochure's 11.8 m span is retained as an applicability conflict in notes rather than silently replacing 11.67 m.
+END FIELD
+
+FIELD horizontal_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_sf50_a615
+  Search record: reviewed EASA.IM.A.615 Issue 06 and the current Cirrus G3 brochure. The TCDS values are recorded as certified type-design evidence; the G3 brochure's 11.8 m span is retained as an applicability conflict in notes rather than silently replacing 11.67 m.
+END FIELD
+
+FIELD horizontal_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_sf50_a615
+  Search record: reviewed EASA.IM.A.615 Issue 06 and the current Cirrus G3 brochure. The TCDS values are recorded as certified type-design evidence; the G3 brochure's 11.8 m span is retained as an applicability conflict in notes rather than silently replacing 11.67 m.
+END FIELD
+
+FIELD horizontal_tail.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_sf50_a615
+  Search record: reviewed EASA.IM.A.615 Issue 06 and the current Cirrus G3 brochure. The TCDS values are recorded as certified type-design evidence; the G3 brochure's 11.8 m span is retained as an applicability conflict in notes rather than silently replacing 11.67 m.
+END FIELD
+
+FIELD horizontal_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_sf50_a615
+  Search record: reviewed EASA.IM.A.615 Issue 06 and the current Cirrus G3 brochure. The TCDS values are recorded as certified type-design evidence; the G3 brochure's 11.8 m span is retained as an applicability conflict in notes rather than silently replacing 11.67 m.
+END FIELD
+
+FIELD horizontal_tail.elevator_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_sf50_a615
+  Search record: reviewed EASA.IM.A.615 Issue 06 and the current Cirrus G3 brochure. The TCDS values are recorded as certified type-design evidence; the G3 brochure's 11.8 m span is retained as an applicability conflict in notes rather than silently replacing 11.67 m.
+END FIELD
+
+FIELD vertical_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_sf50_a615
+  Search record: reviewed EASA.IM.A.615 Issue 06 and the current Cirrus G3 brochure. The TCDS values are recorded as certified type-design evidence; the G3 brochure's 11.8 m span is retained as an applicability conflict in notes rather than silently replacing 11.67 m.
+END FIELD
+
+FIELD vertical_tail.height
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_sf50_a615
+  Search record: reviewed EASA.IM.A.615 Issue 06 and the current Cirrus G3 brochure. The TCDS values are recorded as certified type-design evidence; the G3 brochure's 11.8 m span is retained as an applicability conflict in notes rather than silently replacing 11.67 m.
+END FIELD
+
+FIELD vertical_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_sf50_a615
+  Search record: reviewed EASA.IM.A.615 Issue 06 and the current Cirrus G3 brochure. The TCDS values are recorded as certified type-design evidence; the G3 brochure's 11.8 m span is retained as an applicability conflict in notes rather than silently replacing 11.67 m.
+END FIELD
+
+FIELD vertical_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_sf50_a615
+  Search record: reviewed EASA.IM.A.615 Issue 06 and the current Cirrus G3 brochure. The TCDS values are recorded as certified type-design evidence; the G3 brochure's 11.8 m span is retained as an applicability conflict in notes rather than silently replacing 11.67 m.
+END FIELD
+
+FIELD vertical_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_sf50_a615
+  Search record: reviewed EASA.IM.A.615 Issue 06 and the current Cirrus G3 brochure. The TCDS values are recorded as certified type-design evidence; the G3 brochure's 11.8 m span is retained as an applicability conflict in notes rather than silently replacing 11.67 m.
+END FIELD
+
+FIELD vertical_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_sf50_a615
+  Search record: reviewed EASA.IM.A.615 Issue 06 and the current Cirrus G3 brochure. The TCDS values are recorded as certified type-design evidence; the G3 brochure's 11.8 m span is retained as an applicability conflict in notes rather than silently replacing 11.67 m.
+END FIELD
+
+FIELD vertical_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_sf50_a615
+  Search record: reviewed EASA.IM.A.615 Issue 06 and the current Cirrus G3 brochure. The TCDS values are recorded as certified type-design evidence; the G3 brochure's 11.8 m span is retained as an applicability conflict in notes rather than silently replacing 11.67 m.
+END FIELD
+
+FIELD vertical_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_sf50_a615
+  Search record: reviewed EASA.IM.A.615 Issue 06 and the current Cirrus G3 brochure. The TCDS values are recorded as certified type-design evidence; the G3 brochure's 11.8 m span is retained as an applicability conflict in notes rather than silently replacing 11.67 m.
+END FIELD
+
+FIELD vertical_tail.rudder_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_sf50_a615
+  Search record: reviewed EASA.IM.A.615 Issue 06 and the current Cirrus G3 brochure. The TCDS values are recorded as certified type-design evidence; the G3 brochure's 11.8 m span is retained as an applicability conflict in notes rather than silently replacing 11.67 m.
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

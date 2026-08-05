@@ -6,7 +6,7 @@ certification:
   authority: EASA
   type_certificate: EASA.A.064
   issue: '62'
-  issue_date: 2026-06-26
+  issue_date: '2026-06-26'
 mtow: 59000
 mlw: 57500
 mzfw: null
@@ -34,6 +34,32 @@ wing:
   mac: 4.19
   sweep: 25
   t/c: 0.12
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  aspect_ratio: 9.53123
+  dihedral: null
+horizontal_tail:
+  area: null
+  span: 12.45
+  mac: null
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  sweep: null
+  dihedral: null
+  arm: null
+  elevator_area_ratio: null
+vertical_tail:
+  area: null
+  height: null
+  mac: null
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  sweep: null
+  arm: null
+  rudder_area_ratio: null
 flaps:
   type: single-slotted
   area: 21.1

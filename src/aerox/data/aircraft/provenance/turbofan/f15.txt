@@ -102,6 +102,344 @@ FIELD ceiling
   Source: aerox_legacy_aircraft_database
 END FIELD
 
+WING AND TAIL GEOMETRY
+
+FIELD wing.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Applicability: NASA test F-15 number 8; clean/prototype research configuration described on report pages 4-5
+  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
+  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Notes: NASA TM-72861 describes F-15 airplane number 8, a reconfigured test prototype; the bundled F-15 model is unresolved.
+END FIELD
+
+FIELD wing.span
+  Value: 13.0
+  Unit: m
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+  Applicability: NASA test F-15 number 8; source says wingtips were raked as in production configuration
+  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05
+  Notes: The legacy family-level span is retained; the more precise NASA value belongs to F-15 airplane number 8.
+END FIELD
+
+FIELD wing.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Applicability: NASA test F-15 number 8
+  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
+  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Notes: NASA TM-72861 describes F-15 airplane number 8, not an exact bundled production model.
+END FIELD
+
+FIELD wing.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Applicability: F-15 reference trapezoid used by the NASA dimensional table
+  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
+  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Notes: Derived quarter-chord sweep applies only to the NASA test airframe evidence definition.
+END FIELD
+
+FIELD wing.t/c
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_f15_fact_sheet | nasa_tm_72861_f15_precision_controllability_1979_05
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD wing.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Applicability: F-15 reference trapezoid used by the NASA dimensional table
+  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
+  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Notes: Derived reference-trapezoid value applies only to the NASA test airframe evidence definition.
+END FIELD
+
+FIELD wing.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Applicability: F-15 reference trapezoid used by the NASA dimensional table
+  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
+  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Notes: Derived reference-trapezoid value applies only to the NASA test airframe evidence definition.
+END FIELD
+
+FIELD wing.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Applicability: NASA test F-15 number 8
+  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
+  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Notes: NASA TM-72861 describes F-15 airplane number 8, not an exact bundled production model.
+END FIELD
+
+FIELD wing.aspect_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Applicability: NASA test F-15 number 8
+  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
+  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Notes: NASA TM-72861 describes F-15 airplane number 8, not an exact bundled production model.
+END FIELD
+
+FIELD wing.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Applicability: NASA test F-15 number 8
+  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
+  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Notes: NASA TM-72861 describes F-15 airplane number 8, not an exact bundled production model.
+END FIELD
+
+FIELD horizontal_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Applicability: Twin all-moving horizontal stabilators on NASA test F-15 number 8
+  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
+  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Notes: NASA test-airframe stabilator area cannot be combined with its full span and exposed-panel chords as one compact trapezoid.
+END FIELD
+
+FIELD horizontal_tail.span
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Applicability: Twin all-moving horizontal stabilators on NASA test F-15 number 8
+  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
+  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Notes: NASA test-airframe full stabilator span includes the fuselage gap and is not combinable with exposed-panel chords.
+END FIELD
+
+FIELD horizontal_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Applicability: Exposed trapezoidal stabilator panel
+  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
+  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Notes: Derived exposed-panel MAC applies only to a specific NASA test airframe.
+END FIELD
+
+FIELD horizontal_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Applicability: Each exposed stabilator panel on NASA test F-15 number 8
+  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
+  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Notes: NASA value is an exposed-panel chord for a specific test airframe.
+END FIELD
+
+FIELD horizontal_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Applicability: Each stabilator panel on NASA test F-15 number 8
+  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
+  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Notes: NASA value is an exposed-panel chord for a specific test airframe.
+END FIELD
+
+FIELD horizontal_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Applicability: Each exposed stabilator panel on NASA test F-15 number 8
+  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
+  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Notes: NASA value is an exposed-panel ratio for a specific test airframe.
+END FIELD
+
+FIELD horizontal_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_f15_fact_sheet | nasa_tm_72861_f15_precision_controllability_1979_05
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD horizontal_tail.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Applicability: Twin all-moving horizontal stabilators on NASA test F-15 number 8
+  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
+  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Notes: NASA value applies only to a specific test airframe.
+END FIELD
+
+FIELD horizontal_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_f15_fact_sheet | nasa_tm_72861_f15_precision_controllability_1979_05
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD horizontal_tail.elevator_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_f15_fact_sheet | nasa_tm_72861_f15_precision_controllability_1979_05
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD vertical_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Applicability: Twin vertical stabilizers, total planform area
+  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
+  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Notes: NASA area is the total for two fins, while its height and chord dimensions are per fin; the compact schema has no fin-count qualifier.
+END FIELD
+
+FIELD vertical_tail.height
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Applicability: Each fin's exposed height/span from its root reference
+  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
+  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Notes: NASA dimension is per fin on a specific test airframe and cannot be combined with the total twin-fin area in the compact schema.
+END FIELD
+
+FIELD vertical_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Applicability: Each exposed trapezoidal fin panel
+  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
+  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Notes: Derived value is a per-fin MAC for a specific NASA test airframe.
+END FIELD
+
+FIELD vertical_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Applicability: Each exposed fin on NASA test F-15 number 8
+  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
+  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Notes: NASA value is a per-fin exposed chord for a specific test airframe.
+END FIELD
+
+FIELD vertical_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Applicability: Each fin on NASA test F-15 number 8
+  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
+  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Notes: NASA value is a per-fin chord for a specific test airframe.
+END FIELD
+
+FIELD vertical_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Applicability: Each exposed fin on NASA test F-15 number 8
+  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
+  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Notes: NASA value is a per-fin ratio for a specific test airframe.
+END FIELD
+
+FIELD vertical_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Applicability: Each exposed trapezoidal fin panel
+  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
+  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Notes: Derived value is a per-fin quarter-chord sweep for a specific NASA test airframe.
+END FIELD
+
+FIELD vertical_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: usaf_f15_fact_sheet | nasa_tm_72861_f15_precision_controllability_1979_05
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+END FIELD
+
+FIELD vertical_tail.rudder_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Applicability: Twin rudders relative to twin-fin total area on NASA test F-15 number 8
+  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
+  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
+  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Notes: NASA ratio applies to the twin-fin/twin-rudder test-airframe geometry and is not generic F-15 data.
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

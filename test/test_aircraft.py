@@ -30,6 +30,8 @@ def test_load_aircraft_from_dict_with_nested_sections():
             "pax": {"max": 72},
             "fuselage": {"length": 27.2},
             "wing": {"span": 27.1, "t/c": 0.12},
+            "horizontal_tail": {"span": 7.5, "area": 12.4},
+            "vertical_tail": {"height": 3.2, "area": 8.1},
             "engine": {
                 "type": "turboprop",
                 "mount": "front wing leading mounted",
@@ -46,11 +48,15 @@ def test_load_aircraft_from_dict_with_nested_sections():
     assert isinstance(aircraft.pax, Pax)
     assert isinstance(aircraft.fuselage, Fuselage)
     assert isinstance(aircraft.wing, Wing)
+    assert isinstance(aircraft.horizontal_tail, Tail)
+    assert isinstance(aircraft.vertical_tail, Tail)
     assert isinstance(aircraft.engine, Engine)
     assert isinstance(aircraft.drag, Drag)
     assert isinstance(aircraft.kinematic, Kinematic)
     assert aircraft.icao == "AT72"
     assert aircraft.wing.t_c == 0.12
+    assert aircraft.horizontal_tail.span == 7.5
+    assert aircraft.vertical_tail.height == 3.2
     assert aircraft.kinematic.takeoff_distance_m == 1500
 
 
@@ -93,8 +99,12 @@ def test_load_a320_certified_and_higher_order_data():
     assert aircraft.certified_mass_limits.mzfw == 62500
     assert aircraft.certified_mass_limits.minimum_weight == 37230
     assert aircraft.geometry is None
-    assert aircraft.horizontal_tail is None
-    assert aircraft.vertical_tail is None
+    assert isinstance(aircraft.horizontal_tail, Tail)
+    assert aircraft.horizontal_tail.area == pytest.approx(30.843428)
+    assert aircraft.horizontal_tail.elevator_area_ratio == pytest.approx(0.480561)
+    assert isinstance(aircraft.vertical_tail, Tail)
+    assert aircraft.vertical_tail.area == pytest.approx(21.514182)
+    assert aircraft.vertical_tail.rudder_area_ratio == pytest.approx(0.299983)
     assert aircraft.aileron is None
     assert aircraft.mass_properties is None
     assert (
@@ -163,3 +173,20 @@ data_provenance:
         "easa_a064_issue_62"
     ]
     assert saved["wing"]["mac"] == 4.1935
+
+
+def test_web_editor_form_parser_preserves_decimal_geometry():
+    from tools.web_editor import parse_form_data
+
+    parsed = parse_form_data(
+        {
+            "wing__area": "112.3",
+            "wing__sweep": "25.75",
+            "horizontal_tail__area": "30.843428",
+            "vertical_tail__height": "5.87",
+        }
+    )
+    assert parsed["wing"]["area"] == 112.3
+    assert parsed["wing"]["sweep"] == 25.75
+    assert parsed["horizontal_tail"]["area"] == 30.843428
+    assert parsed["vertical_tail"]["height"] == 5.87

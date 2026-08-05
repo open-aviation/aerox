@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+import math
 from pathlib import Path
 from typing import Any, Mapping
 
@@ -50,6 +51,34 @@ SIMPLE_TEMPLATE: dict[str, Any] = {
         "mac": None,
         "sweep": None,
         "t/c": None,
+        "root_chord": None,
+        "tip_chord": None,
+        "taper_ratio": None,
+        "aspect_ratio": None,
+        "dihedral": None,
+    },
+    "horizontal_tail": {
+        "area": None,
+        "span": None,
+        "mac": None,
+        "root_chord": None,
+        "tip_chord": None,
+        "taper_ratio": None,
+        "sweep": None,
+        "dihedral": None,
+        "arm": None,
+        "elevator_area_ratio": None,
+    },
+    "vertical_tail": {
+        "area": None,
+        "height": None,
+        "mac": None,
+        "root_chord": None,
+        "tip_chord": None,
+        "taper_ratio": None,
+        "sweep": None,
+        "arm": None,
+        "rudder_area_ratio": None,
     },
     "flaps": {
         "type": None,
@@ -148,6 +177,25 @@ def _ordered_like_template(data: Mapping[str, Any], template: Mapping[str, Any])
     return result
 
 
+def _derive_geometry(document: dict[str, Any]) -> None:
+    """Fill only definition-safe ratios from values stored in the same record."""
+
+    wing = document["wing"]
+    if wing["aspect_ratio"] is None and wing["span"] is not None and wing["area"] is not None:
+        wing["aspect_ratio"] = round(float(wing["span"]) ** 2 / float(wing["area"]), 6)
+
+    for section_name in ("wing", "horizontal_tail", "vertical_tail"):
+        section = document[section_name]
+        if (
+            section["taper_ratio"] is None
+            and section["root_chord"] is not None
+            and section["tip_chord"] is not None
+        ):
+            section["taper_ratio"] = round(
+                float(section["tip_chord"]) / float(section["root_chord"]), 6
+            )
+
+
 def simple_from_canonical(data: Mapping[str, Any]) -> dict[str, Any]:
     options = _get(data, "propulsion.certified_engine_options") or []
     result = copy.deepcopy(SIMPLE_TEMPLATE)
@@ -194,6 +242,34 @@ def simple_from_canonical(data: Mapping[str, Any]) -> dict[str, Any]:
         "mac": _get(data, "wing.mean_aerodynamic_chord"),
         "sweep": _get(data, "wing.quarter_chord_sweep"),
         "t/c": _get(data, "wing.thickness_to_chord_ratio"),
+        "root_chord": _get(data, "wing.root_chord"),
+        "tip_chord": _get(data, "wing.tip_chord"),
+        "taper_ratio": _get(data, "wing.taper_ratio"),
+        "aspect_ratio": _get(data, "wing.aspect_ratio"),
+        "dihedral": _get(data, "wing.dihedral"),
+    }
+    result["horizontal_tail"] = {
+        "area": _get(data, "horizontal_tail.area"),
+        "span": _get(data, "horizontal_tail.span"),
+        "mac": _get(data, "horizontal_tail.mean_aerodynamic_chord"),
+        "root_chord": _get(data, "horizontal_tail.root_chord"),
+        "tip_chord": _get(data, "horizontal_tail.tip_chord"),
+        "taper_ratio": _get(data, "horizontal_tail.taper_ratio"),
+        "sweep": _get(data, "horizontal_tail.quarter_chord_sweep"),
+        "dihedral": _get(data, "horizontal_tail.dihedral"),
+        "arm": _get(data, "horizontal_tail.aerodynamic_moment_arm"),
+        "elevator_area_ratio": _get(data, "flight_controls.elevator.area_ratio"),
+    }
+    result["vertical_tail"] = {
+        "area": _get(data, "vertical_tail.area"),
+        "height": _first(_get(data, "vertical_tail.height"), _get(data, "vertical_tail.span")),
+        "mac": _get(data, "vertical_tail.mean_aerodynamic_chord"),
+        "root_chord": _get(data, "vertical_tail.root_chord"),
+        "tip_chord": _get(data, "vertical_tail.tip_chord"),
+        "taper_ratio": _get(data, "vertical_tail.taper_ratio"),
+        "sweep": _get(data, "vertical_tail.quarter_chord_sweep"),
+        "arm": _get(data, "vertical_tail.aerodynamic_moment_arm"),
+        "rudder_area_ratio": _get(data, "flight_controls.rudder.area_ratio"),
     }
     flap = _get(data, "flight_controls.flaps") or {}
     result["flaps"] = {
@@ -345,6 +421,79 @@ def validate_simple(document: Any) -> list[str]:
     walk(document, SIMPLE_TEMPLATE, "")
     if document.get("icao") in {None, "", "unknown"}:
         issues.append("icao: missing ICAO code")
+    certification = document.get("certification", {})
+    if isinstance(certification, Mapping):
+        if certification.get("issue") is not None and not isinstance(
+            certification["issue"], str
+        ):
+            issues.append("certification.issue: expected string or null")
+        if certification.get("issue_date") is not None and not isinstance(
+            certification["issue_date"], str
+        ):
+            issues.append("certification.issue_date: expected ISO-date string or null")
+
+    geometry_fields = {
+        "wing": SIMPLE_TEMPLATE["wing"],
+        "horizontal_tail": SIMPLE_TEMPLATE["horizontal_tail"],
+        "vertical_tail": SIMPLE_TEMPLATE["vertical_tail"],
+    }
+    for section_name, fields in geometry_fields.items():
+        section = document.get(section_name, {})
+        if not isinstance(section, Mapping):
+            continue
+        for field_name in fields:
+            value = section.get(field_name)
+            path = f"{section_name}.{field_name}"
+            if value is not None and (
+                isinstance(value, bool) or not isinstance(value, (int, float))
+            ):
+                issues.append(f"{path}: expected number or null")
+                continue
+            if isinstance(value, (int, float)) and not math.isfinite(float(value)):
+                issues.append(f"{path}: expected finite number")
+
+        for field_name in (
+            "area", "span", "height", "mac", "root_chord", "tip_chord",
+            "taper_ratio", "aspect_ratio", "arm", "elevator_area_ratio",
+            "rudder_area_ratio", "t/c",
+        ):
+            value = section.get(field_name)
+            if isinstance(value, (int, float)) and value <= 0:
+                issues.append(f"{section_name}.{field_name}: expected positive value")
+
+        for field_name in ("t/c", "elevator_area_ratio", "rudder_area_ratio"):
+            value = section.get(field_name)
+            if isinstance(value, (int, float)) and not 0 < float(value) <= 1:
+                issues.append(f"{section_name}.{field_name}: expected ratio in (0, 1]")
+        taper = section.get("taper_ratio")
+        if isinstance(taper, (int, float)) and not 0 < float(taper) <= 2:
+            issues.append(f"{section_name}.taper_ratio: implausible planform ratio")
+        aspect = section.get("aspect_ratio")
+        if isinstance(aspect, (int, float)) and not 1 < float(aspect) < 100:
+            issues.append(f"{section_name}.aspect_ratio: implausible aspect ratio")
+        for field_name in ("sweep", "dihedral"):
+            value = section.get(field_name)
+            if isinstance(value, (int, float)) and not -90 < float(value) < 90:
+                issues.append(f"{section_name}.{field_name}: angle must be in (-90, 90) deg")
+
+    wing = document.get("wing", {})
+    if isinstance(wing, Mapping):
+        if all(wing.get(field) is not None for field in ("span", "area", "aspect_ratio")):
+            expected = float(wing["span"]) ** 2 / float(wing["area"])
+            if not math.isclose(float(wing["aspect_ratio"]), expected, rel_tol=2e-6):
+                issues.append("wing.aspect_ratio: does not match span^2 / area")
+
+    for section_name in ("wing", "horizontal_tail", "vertical_tail"):
+        section = document.get(section_name, {})
+        if isinstance(section, Mapping) and all(
+            section.get(field) is not None
+            for field in ("root_chord", "tip_chord", "taper_ratio")
+        ):
+            expected = float(section["tip_chord"]) / float(section["root_chord"])
+            if not math.isclose(float(section["taper_ratio"]), expected, rel_tol=3e-6):
+                issues.append(
+                    f"{section_name}.taper_ratio: does not match tip_chord / root_chord"
+                )
     return issues
 
 
@@ -355,6 +504,10 @@ def normalize_bundle(document: Mapping[str, Any], sidecar_text: str) -> tuple[di
     else:
         simple = _ordered_like_template(document, SIMPLE_TEMPLATE)
         sidecar = sidecar_text
+    issue_date = simple["certification"]["issue_date"]
+    if issue_date is not None and not isinstance(issue_date, str) and hasattr(issue_date, "isoformat"):
+        simple["certification"]["issue_date"] = issue_date.isoformat()
+    _derive_geometry(simple)
     return simple, sidecar
 
 

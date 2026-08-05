@@ -98,6 +98,318 @@ FIELD ceiling
   Source: aerox_legacy_aircraft_database
 END FIELD
 
+WING AND TAIL GEOMETRY
+
+FIELD wing.area
+  Value: 48.96
+  Unit: m2
+  Status: certified-published
+  Source: easa_c750_a097
+  Source URL: https://www.easa.europa.eu/en/downloads/7335/en
+  Document title: EASA.IM.A.097 Cessna 750 Type-Certificate Data Sheet
+  Revision date: 2016-01-07
+  Page or section: Issue 03, III.4, p. 7
+  Applicability: Cessna model 750
+  Uncertainty: Source rounded to 0.01 m2
+  Previous value: 49 m2
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Source label is Wing Area.
+END FIELD
+
+FIELD wing.span
+  Value: 19.39
+  Unit: m
+  Status: certified-published
+  Source: easa_c750_a097
+  Source URL: https://www.easa.europa.eu/en/downloads/7335/en
+  Document title: EASA.IM.A.097 Cessna 750 Type-Certificate Data Sheet
+  Revision date: 2016-01-07
+  Page or section: Issue 03, III.4, p. 7
+  Applicability: Cessna model 750
+  Uncertainty: Source rounded to 0.01 m
+  Previous value: 19.5 m
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Exact certified-model dimension.
+END FIELD
+
+FIELD wing.mac
+  Value: 3.012
+  Unit: m
+  Status: certified-published
+  Source: easa_c750_a097
+  Source URL: https://www.easa.europa.eu/en/downloads/7335/en
+  Document title: EASA.IM.A.097 Cessna 750 Type-Certificate Data Sheet
+  Revision date: 2016-01-07
+  Page or section: Issue 03, III.16, p. 11
+  Applicability: Cessna model 750
+  Uncertainty: Source rounded to 0.001 m
+  Previous value: 2.8 m
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Leading edge of MAC is also published at frame station 9.845 m.
+END FIELD
+
+FIELD wing.sweep
+  Value: 37
+  Unit: deg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.t/c
+  Value: 0.1
+  Unit: nondimensional
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c750_a097
+  Search record: reviewed EASA.IM.A.097 Issue 03; exact certified-model wing geometry is inventoried below.
+END FIELD
+
+FIELD wing.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c750_a097
+  Search record: reviewed EASA.IM.A.097 Issue 03; exact certified-model wing geometry is inventoried below.
+END FIELD
+
+FIELD wing.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c750_a097
+  Search record: reviewed EASA.IM.A.097 Issue 03; exact certified-model wing geometry is inventoried below.
+END FIELD
+
+FIELD wing.aspect_ratio
+  Value: 7.679169
+  Unit: nondimensional
+  Status: calculated-from-published-inputs
+  Source: easa_c750_a097
+  Source URL: https://www.easa.europa.eu/en/downloads/7335/en
+  Document title: EASA.IM.A.097 Cessna 750 Type-Certificate Data Sheet
+  Revision date: 2016-01-07
+  Page or section: Issue 03, III.4 and III.16
+  Formula: span^2 / area
+  Inputs: span=19.39 m; area=48.96 m2
+  Applicability: Cessna model 750
+  Uncertainty: Approximately 0.01 from rounded inputs
+  Previous value: 7.760204 nondimensional
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Calculated from TCDS dimensions; not a separately certified published ratio.
+END FIELD
+
+FIELD wing.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c750_a097
+  Search record: reviewed EASA.IM.A.097 Issue 03; exact certified-model wing geometry is inventoried below.
+END FIELD
+
+FIELD horizontal_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c750_a097
+  Search record: reviewed EASA.IM.A.097 Issue 03; exact certified-model wing geometry is inventoried below.
+END FIELD
+
+FIELD horizontal_tail.span
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c750_a097
+  Search record: reviewed EASA.IM.A.097 Issue 03; exact certified-model wing geometry is inventoried below.
+END FIELD
+
+FIELD horizontal_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c750_a097
+  Search record: reviewed EASA.IM.A.097 Issue 03; exact certified-model wing geometry is inventoried below.
+END FIELD
+
+FIELD horizontal_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c750_a097
+  Search record: reviewed EASA.IM.A.097 Issue 03; exact certified-model wing geometry is inventoried below.
+END FIELD
+
+FIELD horizontal_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c750_a097
+  Search record: reviewed EASA.IM.A.097 Issue 03; exact certified-model wing geometry is inventoried below.
+END FIELD
+
+FIELD horizontal_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c750_a097
+  Search record: reviewed EASA.IM.A.097 Issue 03; exact certified-model wing geometry is inventoried below.
+END FIELD
+
+FIELD horizontal_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c750_a097
+  Search record: reviewed EASA.IM.A.097 Issue 03; exact certified-model wing geometry is inventoried below.
+END FIELD
+
+FIELD horizontal_tail.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c750_a097
+  Search record: reviewed EASA.IM.A.097 Issue 03; exact certified-model wing geometry is inventoried below.
+END FIELD
+
+FIELD horizontal_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c750_a097
+  Search record: reviewed EASA.IM.A.097 Issue 03; exact certified-model wing geometry is inventoried below.
+END FIELD
+
+FIELD horizontal_tail.elevator_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c750_a097
+  Search record: reviewed EASA.IM.A.097 Issue 03; exact certified-model wing geometry is inventoried below.
+END FIELD
+
+FIELD vertical_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c750_a097
+  Search record: reviewed EASA.IM.A.097 Issue 03; exact certified-model wing geometry is inventoried below.
+END FIELD
+
+FIELD vertical_tail.height
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c750_a097
+  Search record: reviewed EASA.IM.A.097 Issue 03; exact certified-model wing geometry is inventoried below.
+END FIELD
+
+FIELD vertical_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c750_a097
+  Search record: reviewed EASA.IM.A.097 Issue 03; exact certified-model wing geometry is inventoried below.
+END FIELD
+
+FIELD vertical_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c750_a097
+  Search record: reviewed EASA.IM.A.097 Issue 03; exact certified-model wing geometry is inventoried below.
+END FIELD
+
+FIELD vertical_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c750_a097
+  Search record: reviewed EASA.IM.A.097 Issue 03; exact certified-model wing geometry is inventoried below.
+END FIELD
+
+FIELD vertical_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c750_a097
+  Search record: reviewed EASA.IM.A.097 Issue 03; exact certified-model wing geometry is inventoried below.
+END FIELD
+
+FIELD vertical_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c750_a097
+  Search record: reviewed EASA.IM.A.097 Issue 03; exact certified-model wing geometry is inventoried below.
+END FIELD
+
+FIELD vertical_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c750_a097
+  Search record: reviewed EASA.IM.A.097 Issue 03; exact certified-model wing geometry is inventoried below.
+END FIELD
+
+FIELD vertical_tail.rudder_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c750_a097
+  Search record: reviewed EASA.IM.A.097 Issue 03; exact certified-model wing geometry is inventoried below.
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

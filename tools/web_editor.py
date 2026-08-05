@@ -67,17 +67,17 @@ FIELD_SCHEMA = {
         "aircraft": {"type": str},
         "icao": {"type": str},
         "iata": {"type": str},
-        "mtow": {"type": int},
-        "mlw": {"type": int},
-        "oew": {"type": int},
-        "mfc": {"type": int},
-        "vmo": {"type": int},
+        "mtow": {"type": float},
+        "mlw": {"type": float},
+        "oew": {"type": float},
+        "mfc": {"type": float},
+        "vmo": {"type": float},
         "mmo": {"type": float},
-        "ceiling": {"type": int},
+        "ceiling": {"type": float},
         "icao_wtc": {"type": str},
         "eu_wtc": {"type": str},
         "faa_wtc": {"type": str},
-        "parking_area_m2": {"type": int},
+        "parking_area_m2": {"type": float},
     },
     "nested": {
         "pax": {
@@ -89,13 +89,57 @@ FIELD_SCHEMA = {
             "types": {"length": float, "height": float, "width": float},
         },
         "wing": {
-            "fields": ["area", "span", "mac", "sweep", "t/c"],
+            "fields": [
+                "area", "span", "mac", "sweep", "t/c", "root_chord",
+                "tip_chord", "taper_ratio", "aspect_ratio", "dihedral",
+            ],
             "types": {
-                "area": int,
+                "area": float,
                 "span": float,
                 "mac": float,
-                "sweep": int,
+                "sweep": float,
                 "t/c": float,
+                "root_chord": float,
+                "tip_chord": float,
+                "taper_ratio": float,
+                "aspect_ratio": float,
+                "dihedral": float,
+            },
+        },
+        "horizontal_tail": {
+            "fields": [
+                "area", "span", "mac", "root_chord", "tip_chord",
+                "taper_ratio", "sweep", "dihedral", "arm",
+                "elevator_area_ratio",
+            ],
+            "types": {
+                "area": float,
+                "span": float,
+                "mac": float,
+                "root_chord": float,
+                "tip_chord": float,
+                "taper_ratio": float,
+                "sweep": float,
+                "dihedral": float,
+                "arm": float,
+                "elevator_area_ratio": float,
+            },
+        },
+        "vertical_tail": {
+            "fields": [
+                "area", "height", "mac", "root_chord", "tip_chord",
+                "taper_ratio", "sweep", "arm", "rudder_area_ratio",
+            ],
+            "types": {
+                "area": float,
+                "height": float,
+                "mac": float,
+                "root_chord": float,
+                "tip_chord": float,
+                "taper_ratio": float,
+                "sweep": float,
+                "arm": float,
+                "rudder_area_ratio": float,
             },
         },
         "flaps": {
@@ -563,28 +607,28 @@ HTML_TEMPLATE = """
                         <div class="field">
                             <label>MTOW</label>
                             <div class="input-group">
-                                <input type="number" name="mtow" value="{{ data.mtow or '' }}">
+                                <input type="number" step="any" name="mtow" value="{{ data.mtow or '' }}">
                                 <span class="input-append">kg</span>
                             </div>
                         </div>
                         <div class="field">
                             <label>MLW</label>
                             <div class="input-group">
-                                <input type="number" name="mlw" value="{{ data.mlw or '' }}">
+                                <input type="number" step="any" name="mlw" value="{{ data.mlw or '' }}">
                                 <span class="input-append">kg</span>
                             </div>
                         </div>
                         <div class="field">
                             <label>OEW</label>
                             <div class="input-group">
-                                <input type="number" name="oew" value="{{ data.oew or '' }}">
+                                <input type="number" step="any" name="oew" value="{{ data.oew or '' }}">
                                 <span class="input-append">kg</span>
                             </div>
                         </div>
                         <div class="field">
                             <label>MFC</label>
                             <div class="input-group">
-                                <input type="number" name="mfc" value="{{ data.mfc or '' }}">
+                                <input type="number" step="any" name="mfc" value="{{ data.mfc or '' }}">
                                 <span class="input-append">L</span>
                             </div>
                         </div>
@@ -595,7 +639,7 @@ HTML_TEMPLATE = """
                         <div class="field">
                             <label>VMO</label>
                             <div class="input-group">
-                                <input type="number" name="vmo" value="{{ data.vmo or '' }}">
+                                <input type="number" step="any" name="vmo" value="{{ data.vmo or '' }}">
                                 <span class="input-append">kts</span>
                             </div>
                         </div>
@@ -609,7 +653,7 @@ HTML_TEMPLATE = """
                         <div class="field">
                             <label>Ceiling</label>
                             <div class="input-group">
-                                <input type="number" name="ceiling" value="{{ data.ceiling or '' }}">
+                                <input type="number" step="any" name="ceiling" value="{{ data.ceiling or '' }}">
                                 <span class="input-append">ft</span>
                             </div>
                         </div>
@@ -647,7 +691,7 @@ HTML_TEMPLATE = """
                         <div class="field">
                             <label>Parking Area</label>
                             <div class="input-group">
-                                <input type="number" name="parking_area_m2" value="{{ data.parking_area_m2 or '' }}">
+                                <input type="number" step="any" name="parking_area_m2" value="{{ data.parking_area_m2 or '' }}">
                                 <span class="input-append">m²</span>
                             </div>
                         </div>
@@ -702,28 +746,28 @@ HTML_TEMPLATE = """
                         <div class="field">
                             <label>Area</label>
                             <div class="input-group">
-                                <input type="number" step="0.01" name="wing__area" value="{{ data.wing.area if data.wing and data.wing.area else '' }}">
+                                <input type="number" step="any" name="wing__area" value="{{ data.wing.area if data.wing and data.wing.area else '' }}">
                                 <span class="input-append">m²</span>
                             </div>
                         </div>
                         <div class="field">
                             <label>Span</label>
                             <div class="input-group">
-                                <input type="number" step="0.01" name="wing__span" value="{{ data.wing.span if data.wing and data.wing.span else '' }}">
+                                <input type="number" step="any" name="wing__span" value="{{ data.wing.span if data.wing and data.wing.span else '' }}">
                                 <span class="input-append">m</span>
                             </div>
                         </div>
                         <div class="field">
                             <label>MAC</label>
                             <div class="input-group">
-                                <input type="number" step="0.01" name="wing__mac" value="{{ data.wing.mac if data.wing and data.wing.mac else '' }}">
+                                <input type="number" step="any" name="wing__mac" value="{{ data.wing.mac if data.wing and data.wing.mac else '' }}">
                                 <span class="input-append">m</span>
                             </div>
                         </div>
                         <div class="field">
                             <label>Sweep</label>
                             <div class="input-group">
-                                <input type="number" step="0.01" name="wing__sweep" value="{{ data.wing.sweep if data.wing and data.wing.sweep is not none else '' }}">
+                                <input type="number" step="any" name="wing__sweep" value="{{ data.wing.sweep if data.wing and data.wing.sweep is not none else '' }}">
                                 <span class="input-append">°</span>
                             </div>
                         </div>
@@ -731,6 +775,63 @@ HTML_TEMPLATE = """
                             <label>t/c</label>
                             <input type="number" step="0.001" name="wing__t/c" value="{% if data.wing and 't/c' in data.wing and data.wing['t/c'] != None %}{{ '{:.3f}'.format(data.wing['t/c']) }}{% endif %}">
                         </div>
+                        {% for field, label, unit in [
+                            ('root_chord', 'Root chord', 'm'),
+                            ('tip_chord', 'Tip chord', 'm'),
+                            ('taper_ratio', 'Taper ratio', ''),
+                            ('aspect_ratio', 'Aspect ratio', ''),
+                            ('dihedral', 'Dihedral', '°')
+                        ] %}
+                        <div class="field">
+                            <label>{{ label }}</label>
+                            <div class="input-group">
+                                <input type="number" step="any" name="wing__{{ field }}" value="{{ data.wing[field] if data.wing and data.wing[field] is not none else '' }}">
+                                {% if unit %}<span class="input-append">{{ unit }}</span>{% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fa-solid fa-plane"></i> Horizontal Tail</h3>
+                        {% for field, label, unit in [
+                            ('area', 'Area', 'm²'), ('span', 'Span', 'm'),
+                            ('mac', 'MAC', 'm'), ('root_chord', 'Root chord', 'm'),
+                            ('tip_chord', 'Tip chord', 'm'),
+                            ('taper_ratio', 'Taper ratio', ''),
+                            ('sweep', 'Quarter-chord sweep', '°'),
+                            ('dihedral', 'Dihedral', '°'), ('arm', 'Moment arm', 'm'),
+                            ('elevator_area_ratio', 'Elevator area ratio', '')
+                        ] %}
+                        <div class="field">
+                            <label>{{ label }}</label>
+                            <div class="input-group">
+                                <input type="number" step="any" name="horizontal_tail__{{ field }}" value="{{ data.horizontal_tail[field] if data.horizontal_tail and data.horizontal_tail[field] is not none else '' }}">
+                                {% if unit %}<span class="input-append">{{ unit }}</span>{% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fa-solid fa-plane-up"></i> Vertical Tail</h3>
+                        {% for field, label, unit in [
+                            ('area', 'Area', 'm²'), ('height', 'Reference height', 'm'),
+                            ('mac', 'MAC', 'm'), ('root_chord', 'Root chord', 'm'),
+                            ('tip_chord', 'Tip chord', 'm'),
+                            ('taper_ratio', 'Taper ratio', ''),
+                            ('sweep', 'Quarter-chord sweep', '°'),
+                            ('arm', 'Moment arm', 'm'),
+                            ('rudder_area_ratio', 'Rudder area ratio', '')
+                        ] %}
+                        <div class="field">
+                            <label>{{ label }}</label>
+                            <div class="input-group">
+                                <input type="number" step="any" name="vertical_tail__{{ field }}" value="{{ data.vertical_tail[field] if data.vertical_tail and data.vertical_tail[field] is not none else '' }}">
+                                {% if unit %}<span class="input-append">{{ unit }}</span>{% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
                     </div>
                     
                     <div class="form-section">
@@ -1318,127 +1419,93 @@ def format_value(value, field_name=None):
 
 
 def save_aircraft_data(icao, data, engine_type=None):
-    """Save aircraft data to YAML file with proper formatting.
+    """Update editable parameters without reordering or rounding the YAML."""
 
-    This function follows the exact structure defined in normalize_yaml_structure.py
-    to ensure consistency across all YAML files.
-    """
-    # Find existing file or use provided engine_type
     if engine_type:
         yaml_file = YAML_BASE_DIR / engine_type / f"{icao.lower()}.yml"
     else:
         yaml_file, _ = find_aircraft_file(icao)
         if not yaml_file:
-            # Default to turbofan if new file
             yaml_file = YAML_BASE_DIR / DEFAULT_ENGINE_TYPE / f"{icao.lower()}.yml"
 
     editable_fields = set(FIELD_SCHEMA["simple"]) | set(FIELD_SCHEMA["nested"])
-    preserved_data = {}
     if yaml_file.exists():
         with open(yaml_file, "r", encoding="utf-8") as stream:
             existing_data = yaml.safe_load(stream) or {}
-        preserved_data = {
-            key: value
-            for key, value in existing_data.items()
-            if key not in editable_fields
+    else:
+        existing_data = {}
+
+    merged = dict(existing_data)
+    for field_name in editable_fields:
+        if field_name in data:
+            merged[field_name] = data[field_name]
+
+    sidecar_path = (
+        YAML_BASE_DIR.parent
+        / "provenance"
+        / yaml_file.parent.name
+        / f"{yaml_file.stem}.txt"
+    )
+    rendered_sidecar = None
+    if all(
+        section in merged for section in ("wing", "horizontal_tail", "vertical_tail")
+    ):
+        try:
+            from update_aircraft_geometry import (
+                GEOMETRY_UNITS,
+                derive_geometry,
+                render_geometry_section,
+            )
+            from migrate_aircraft_data import parse_old_provenance, validate_simple
+        except ModuleNotFoundError:  # package-style import used by tests
+            from tools.update_aircraft_geometry import (
+                GEOMETRY_UNITS,
+                derive_geometry,
+                render_geometry_section,
+            )
+            from tools.migrate_aircraft_data import parse_old_provenance, validate_simple
+
+        old_sidecar = (
+            sidecar_path.read_text(encoding="utf-8") if sidecar_path.exists() else ""
+        )
+        metadata = {
+            key: dict(value)
+            for key, value in parse_old_provenance(old_sidecar).get("fields", {}).items()
+            if key in GEOMETRY_UNITS
         }
+        for path, unit in GEOMETRY_UNITS.items():
+            section, field_name = path.split(".", 1)
+            previous = (existing_data.get(section) or {}).get(field_name)
+            replacement = (merged.get(section) or {}).get(field_name)
+            if replacement != previous:
+                record = {
+                    "status": "legacy-unverified",
+                    "source": "aerox_web_editor_manual_entry",
+                    "notes": "Value entered manually through the Aerox web editor; source qualification is required.",
+                }
+                if previous is not None:
+                    record["previous_value"] = f"{previous} {unit}"
+                    record["correction_reason"] = "Manual web-editor change."
+                metadata[path] = record
+        derive_geometry(merged, metadata)
+        issues = validate_simple(merged)
+        if issues:
+            raise ValueError("Invalid aircraft data: " + "; ".join(issues))
+        if old_sidecar:
+            rendered_sidecar = render_geometry_section(merged, old_sidecar, metadata)
 
-    lines = []
-
-    # 1. Aircraft name
-    value = data.get("aircraft")
-    if value is not None:
-        lines.append(f"aircraft: {value}")
-    else:
-        lines.append("aircraft:")
-    lines.append("")
-
-    # 2. ICAO
-    value = data.get("icao")
-    if value is not None:
-        lines.append(f"icao: {value}")
-    else:
-        lines.append("icao:")
-
-    # 3. IATA
-    value = data.get("iata")
-    if value is not None and value != "":
-        lines.append(f"iata: {value}")
-    else:
-        lines.append("iata:")
-    lines.append("")
-
-    # 4-10. Weight and performance limits (in exact order)
-    for field_name in ["mtow", "mlw", "oew", "mfc", "vmo", "mmo", "ceiling"]:
-        value = data.get(field_name)
-        if value is not None:
-            formatted_value = format_value(value, field_name)
-            lines.append(f"{field_name}: {formatted_value}")
-        else:
-            lines.append(f"{field_name}:")
-    lines.append("")
-
-    # 11-14. Wake turbulence categories and parking (in exact order)
-    for field_name in ["icao_wtc", "eu_wtc", "faa_wtc", "parking_area_m2"]:
-        value = data.get(field_name)
-        if value is not None:
-            formatted_value = format_value(value, field_name)
-            lines.append(f"{field_name}: {formatted_value}")
-        else:
-            lines.append(f"{field_name}:")
-    lines.append("")
-
-    # Helper function to write nested sections with all fields (including nulls)
-    def write_nested_section(section_name: str, section_data, field_order: list):
-        """Write a nested section with all fields in specified order."""
-        lines.append(f"{section_name}:")
-
-        if not section_data or all(section_data.get(f) is None for f in field_order):
-            # Write all fields as null
-            for field_name in field_order:
-                lines.append(f"  {field_name}:")
-        else:
-            # Write all fields in order, with their values or null
-            for field_name in field_order:
-                value = section_data.get(field_name)
-
-                if isinstance(value, list):
-                    if value:  # Non-empty list
-                        lines.append(f"  {field_name}:")
-                        for item in value:
-                            lines.append(f"    - {item}")
-                    else:  # Empty list
-                        lines.append(f"  {field_name}:")
-                elif value is not None and value != "":
-                    # Format the value appropriately
-                    formatted_value = format_value(value, field_name)
-                    if formatted_value is not None:
-                        lines.append(f"  {field_name}: {formatted_value}")
-                    else:
-                        lines.append(f"  {field_name}:")
-                else:
-                    lines.append(f"  {field_name}:")
-
-        lines.append("")
-
-    # Write all nested sections using schema
-    for section_name, config in FIELD_SCHEMA["nested"].items():
-        write_nested_section(section_name, data.get(section_name), config["fields"])
-
-    # Write to file (remove trailing empty line)
-    content = "\n".join(lines)
-    if content.endswith("\n\n"):
-        content = content[:-1]
-
-    # The editor does not yet expose certification, higher-order geometry, or
-    # provenance fields. Preserve all non-editable top-level sections verbatim
-    # in meaning so editing a legacy field cannot silently discard them.
-    if preserved_data:
-        preserved_yaml = yaml.safe_dump(preserved_data, sort_keys=False).rstrip()
-        content = f"{content.rstrip()}\n\n{preserved_yaml}\n"
-
+    yaml_file.parent.mkdir(parents=True, exist_ok=True)
     with open(yaml_file, "w", encoding="utf-8") as f:
-        f.write(content)
+        yaml.safe_dump(
+            merged,
+            f,
+            sort_keys=False,
+            allow_unicode=True,
+            default_flow_style=False,
+            width=1000,
+        )
+    if rendered_sidecar is not None:
+        sidecar_path.write_text(rendered_sidecar, encoding="utf-8")
 
 
 def get_aircraft_list(engine_type=None):
@@ -1529,13 +1596,9 @@ def parse_form_data(form):
                 has_data = True
                 target_type = config["types"].get(field, str)
 
-                # Special handling for wing area and sweep (convert float to int)
-                if section == "wing" and field in ["area", "sweep"]:
-                    section_data[field] = int(float(value))
-                else:
-                    section_data[field] = safe_convert(
-                        value, target_type, f"{section}.{field}"
-                    )
+                section_data[field] = safe_convert(
+                    value, target_type, f"{section}.{field}"
+                )
             else:
                 section_data[field] = None
 

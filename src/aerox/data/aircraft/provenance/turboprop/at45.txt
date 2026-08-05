@@ -101,6 +101,316 @@ FIELD ceiling
   Source: aerox_legacy_aircraft_database
 END FIELD
 
+WING AND TAIL GEOMETRY
+
+FIELD wing.area
+  Value: 54.5
+  Unit: m2
+  Status: manufacturer-published-planning
+  Source: atr_42_500_datasheet
+  Source URL: https://www.atr-aircraft.com/wp-content/uploads/2020/07/42-500.pdf
+  Document title: ATR 42-500
+  Revision date: 2020-06-16
+  Page or section: General arrangement, PDF page 1 / printed page 8
+  Inputs: 54.5 m2 published wing area
+  Applicability: ATR 42-500 only
+  Uncertainty: Published to 0.1 m2
+  Notes: Source labels the value WING AREA.
+END FIELD
+
+FIELD wing.span
+  Value: 24.57
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: atr_42_500_datasheet
+  Source URL: https://www.atr-aircraft.com/wp-content/uploads/2020/07/42-500.pdf
+  Document title: ATR 42-500
+  Revision date: 2020-06-16
+  Page or section: General arrangement, PDF page 1 / printed page 8
+  Inputs: 24.57 m drawing dimension
+  Applicability: ATR 42-500 only
+  Uncertainty: Drawing/specification publication
+  Previous value: 24.6 m
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Exact brochure-model applicability.
+END FIELD
+
+FIELD wing.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
+FIELD wing.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
+FIELD wing.t/c
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
+FIELD wing.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
+FIELD wing.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
+FIELD wing.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
+FIELD wing.aspect_ratio
+  Value: 11.076787
+  Unit: nondimensional
+  Status: calculated-from-published-inputs
+  Source: atr_42_500_datasheet
+  Source URL: https://www.atr-aircraft.com/wp-content/uploads/2020/07/42-500.pdf
+  Document title: ATR 42-500
+  Revision date: 2020-06-16
+  Page or section: Derived from general arrangement
+  Formula: span^2 / area
+  Inputs: span=24.57 m; area=54.5 m2
+  Applicability: ATR 42-500 only
+  Uncertainty: Input rounding implies approximately +/-0.03
+  Notes: Derived, not ATR-tabulated.
+END FIELD
+
+FIELD wing.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
+FIELD horizontal_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
+FIELD horizontal_tail.span
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
+FIELD horizontal_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
+FIELD horizontal_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
+FIELD horizontal_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
+FIELD horizontal_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
+FIELD horizontal_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
+FIELD horizontal_tail.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
+FIELD horizontal_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
+FIELD horizontal_tail.elevator_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
+FIELD vertical_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
+FIELD vertical_tail.height
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
+FIELD vertical_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
+FIELD vertical_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
+FIELD vertical_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
+FIELD vertical_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
+FIELD vertical_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
+FIELD vertical_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
+FIELD vertical_tail.rudder_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a084_issue_14 | atr_42_500_datasheet
+  Search record: EASA TCDS EASA.A.084 and direct ATR model brochures searched. TCDS defers geometry to approved manuals; brochure values are retained by exact brochure model. No exact ATR 42-400 planform source was located for AT44.
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

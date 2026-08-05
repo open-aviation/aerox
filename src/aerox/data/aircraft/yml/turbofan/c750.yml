@@ -6,7 +6,7 @@ certification:
   authority: FAA validated by EASA
   type_certificate: T00009WI / EASA.IM.A.097
   issue: EASA Issue 03
-  issue_date: 2016-01-07
+  issue_date: '2016-01-07'
 mtow: 16193
 mlw: 14400
 mzfw: null
@@ -29,11 +29,37 @@ fuselage:
   height: 1.7
   width: 1.7
 wing:
-  area: 49
-  span: 19.5
-  mac: 2.8
+  area: 48.96
+  span: 19.39
+  mac: 3.012
   sweep: 37
   t/c: 0.1
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  aspect_ratio: 7.679169
+  dihedral: null
+horizontal_tail:
+  area: null
+  span: null
+  mac: null
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  sweep: null
+  dihedral: null
+  arm: null
+  elevator_area_ratio: null
+vertical_tail:
+  area: null
+  height: null
+  mac: null
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  sweep: null
+  arm: null
+  rudder_area_ratio: null
 flaps:
   type: single-slotted
   area: null

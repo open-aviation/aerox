@@ -100,6 +100,322 @@ FIELD ceiling
   Source: aerox_legacy_aircraft_database
 END FIELD
 
+WING AND TAIL GEOMETRY
+
+FIELD wing.area
+  Value: 63.1
+  Unit: m2
+  Status: certified-published
+  Source: easa_ima191_dhc8_issue16_2023_02_03
+  Source URL: https://www.easa.europa.eu/en/downloads/7257/en
+  Document title: EASA Type-Certificate Data Sheet EASA.IM.A.191, DHC-8, Issue 16
+  Revision date: 2023-02-03
+  Page or section: Series 400, III.4 Dimensions, TCDS page 29
+  Inputs: 63.1 m2 certified wing area
+  Applicability: DHC-8-401 and DHC-8-402
+  Uncertainty: Published to 0.1 m2
+  Notes: Exact series applicability.
+END FIELD
+
+FIELD wing.span
+  Value: 28.4
+  Unit: m
+  Status: certified-published
+  Source: easa_ima191_dhc8_issue16_2023_02_03
+  Source URL: https://www.easa.europa.eu/en/downloads/7257/en
+  Document title: EASA Type-Certificate Data Sheet EASA.IM.A.191, DHC-8, Issue 16
+  Revision date: 2023-02-03
+  Page or section: Series 400, III.4 Dimensions, TCDS page 29
+  Inputs: 28.4 m certified dimension
+  Applicability: DHC-8-401 and DHC-8-402
+  Uncertainty: Published to 0.1 m
+  Notes: Exact series applicability.
+END FIELD
+
+FIELD wing.mac
+  Value: 2.4006048
+  Unit: m
+  Status: calculated-from-published-inputs
+  Source: easa_ima191_dhc8_issue16_2023_02_03
+  Source URL: https://www.easa.europa.eu/en/downloads/7257/en
+  Document title: EASA Type-Certificate Data Sheet EASA.IM.A.191, DHC-8, Issue 16
+  Revision date: 2023-02-03
+  Page or section: Series 400, III.16 Mean Aerodynamic Chord, TCDS page 31
+  Formula: m = in*0.0254
+  Inputs: 94.512 in
+  Applicability: DHC-8-401 and DHC-8-402
+  Uncertainty: Exact unit conversion of value published to 0.001 in
+  Notes: Certified input; normalized value is converted without premature rounding.
+END FIELD
+
+FIELD wing.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: bombardier_dhc8_400_apm_r4 | easa_ima191_dhc8_issue16_2023_02_03
+  Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
+END FIELD
+
+FIELD wing.t/c
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: bombardier_dhc8_400_apm_r4 | easa_ima191_dhc8_issue16_2023_02_03
+  Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
+END FIELD
+
+FIELD wing.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: bombardier_dhc8_400_apm_r4 | easa_ima191_dhc8_issue16_2023_02_03
+  Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
+END FIELD
+
+FIELD wing.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: bombardier_dhc8_400_apm_r4 | easa_ima191_dhc8_issue16_2023_02_03
+  Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
+END FIELD
+
+FIELD wing.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: bombardier_dhc8_400_apm_r4 | easa_ima191_dhc8_issue16_2023_02_03
+  Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
+END FIELD
+
+FIELD wing.aspect_ratio
+  Value: 12.78225
+  Unit: nondimensional
+  Status: calculated-from-published-inputs
+  Source: easa_ima191_dhc8_issue16_2023_02_03
+  Source URL: https://www.easa.europa.eu/en/downloads/7257/en
+  Document title: EASA Type-Certificate Data Sheet EASA.IM.A.191, DHC-8, Issue 16
+  Revision date: 2023-02-03
+  Page or section: Derived from Series 400 III.4 Dimensions
+  Formula: span^2 / area
+  Inputs: span=28.4 m; area=63.1 m2
+  Applicability: DHC-8-401 and DHC-8-402
+  Uncertainty: Input rounding implies approximately +/-0.10
+  Previous value: 12.7823 nondimensional
+  Correction reason: Recalculated after a cited wing span or area correction.
+  Notes: Derived, not EASA-tabulated.
+END FIELD
+
+FIELD wing.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: bombardier_dhc8_400_apm_r4 | easa_ima191_dhc8_issue16_2023_02_03
+  Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
+END FIELD
+
+FIELD horizontal_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: bombardier_dhc8_400_apm_r4 | easa_ima191_dhc8_issue16_2023_02_03
+  Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
+END FIELD
+
+FIELD horizontal_tail.span
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: bombardier_dhc8_400_apm_r4 | easa_ima191_dhc8_issue16_2023_02_03
+  Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
+END FIELD
+
+FIELD horizontal_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: bombardier_dhc8_400_apm_r4 | easa_ima191_dhc8_issue16_2023_02_03
+  Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
+END FIELD
+
+FIELD horizontal_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: bombardier_dhc8_400_apm_r4 | easa_ima191_dhc8_issue16_2023_02_03
+  Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
+END FIELD
+
+FIELD horizontal_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: bombardier_dhc8_400_apm_r4 | easa_ima191_dhc8_issue16_2023_02_03
+  Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
+END FIELD
+
+FIELD horizontal_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: bombardier_dhc8_400_apm_r4 | easa_ima191_dhc8_issue16_2023_02_03
+  Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
+END FIELD
+
+FIELD horizontal_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: bombardier_dhc8_400_apm_r4 | easa_ima191_dhc8_issue16_2023_02_03
+  Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
+END FIELD
+
+FIELD horizontal_tail.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: bombardier_dhc8_400_apm_r4 | easa_ima191_dhc8_issue16_2023_02_03
+  Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
+END FIELD
+
+FIELD horizontal_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: bombardier_dhc8_400_apm_r4 | easa_ima191_dhc8_issue16_2023_02_03
+  Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
+END FIELD
+
+FIELD horizontal_tail.elevator_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: bombardier_dhc8_400_apm_r4 | easa_ima191_dhc8_issue16_2023_02_03
+  Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
+END FIELD
+
+FIELD vertical_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: bombardier_dhc8_400_apm_r4 | easa_ima191_dhc8_issue16_2023_02_03
+  Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
+END FIELD
+
+FIELD vertical_tail.height
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: bombardier_dhc8_400_apm_r4 | easa_ima191_dhc8_issue16_2023_02_03
+  Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
+END FIELD
+
+FIELD vertical_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: bombardier_dhc8_400_apm_r4 | easa_ima191_dhc8_issue16_2023_02_03
+  Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
+END FIELD
+
+FIELD vertical_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: bombardier_dhc8_400_apm_r4 | easa_ima191_dhc8_issue16_2023_02_03
+  Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
+END FIELD
+
+FIELD vertical_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: bombardier_dhc8_400_apm_r4 | easa_ima191_dhc8_issue16_2023_02_03
+  Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
+END FIELD
+
+FIELD vertical_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: bombardier_dhc8_400_apm_r4 | easa_ima191_dhc8_issue16_2023_02_03
+  Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
+END FIELD
+
+FIELD vertical_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: bombardier_dhc8_400_apm_r4 | easa_ima191_dhc8_issue16_2023_02_03
+  Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
+END FIELD
+
+FIELD vertical_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: bombardier_dhc8_400_apm_r4 | easa_ima191_dhc8_issue16_2023_02_03
+  Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
+END FIELD
+
+FIELD vertical_tail.rudder_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: bombardier_dhc8_400_apm_r4 | easa_ima191_dhc8_issue16_2023_02_03
+  Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

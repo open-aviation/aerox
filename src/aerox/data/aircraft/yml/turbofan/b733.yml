@@ -6,7 +6,7 @@ certification:
   authority: EASA
   type_certificate: EASA.IM.A.120
   issue: '29'
-  issue_date: 2025-12-16
+  issue_date: '2025-12-16'
 mtow: 56700
 mlw: 52500
 mzfw: null
@@ -30,10 +30,36 @@ fuselage:
   width: 3.73
 wing:
   area: 102
-  span: 28.9
+  span: 28.88
   mac: 3.73
   sweep: 25
   t/c: 0.129
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  aspect_ratio: 8.177004
+  dihedral: null
+horizontal_tail:
+  area: null
+  span: 12.7
+  mac: null
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  sweep: null
+  dihedral: null
+  arm: null
+  elevator_area_ratio: null
+vertical_tail:
+  area: null
+  height: null
+  mac: null
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  sweep: null
+  arm: null
+  rudder_area_ratio: null
 flaps:
   type: triple-slotted
   area: 27

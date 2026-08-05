@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import copy
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -14,6 +16,7 @@ from tools.migrate_aircraft_data import (
     normalize_bundle,
     validate_simple,
 )
+from tools.update_aircraft_geometry import GEOMETRY_UNITS
 
 ROOT = Path("src/aerox/data/aircraft/yml")
 SOURCE_ROOT = Path("src/aerox/data/aircraft/provenance")
@@ -38,18 +41,34 @@ def test_all_aircraft_use_the_original_compact_parameter_layout(records):
         assert "data_quality" not in document
 
 
-def test_only_small_certification_extension_was_added(records):
+def test_only_compact_certification_and_geometry_extensions_were_added(records):
     original_sections = {
         "aircraft", "icao", "iata", "mtow", "mlw", "oew", "mfc", "vmo",
         "mmo", "ceiling", "icao_wtc", "eu_wtc", "faa_wtc",
         "parking_area_m2", "pax", "fuselage", "wing", "flaps", "engine",
         "drag", "kinematic",
     }
-    additions = {"certification", "mzfw", "minimum_weight"}
+    additions = {
+        "certification", "mzfw", "minimum_weight", "horizontal_tail",
+        "vertical_tail",
+    }
     for _, document in records:
         assert set(document) == original_sections | additions
         assert list(document["certification"]) == [
             "model", "authority", "type_certificate", "issue", "issue_date"
+        ]
+        assert list(document["wing"]) == [
+            "area", "span", "mac", "sweep", "t/c", "root_chord",
+            "tip_chord", "taper_ratio", "aspect_ratio", "dihedral",
+        ]
+        assert list(document["horizontal_tail"]) == [
+            "area", "span", "mac", "root_chord", "tip_chord",
+            "taper_ratio", "sweep", "dihedral", "arm",
+            "elevator_area_ratio",
+        ]
+        assert list(document["vertical_tail"]) == [
+            "area", "height", "mac", "root_chord", "tip_chord",
+            "taper_ratio", "sweep", "arm", "rudder_area_ratio",
         ]
 
 
@@ -63,7 +82,43 @@ def test_every_aircraft_has_one_short_plain_text_source_note(records):
         text = path.read_text(encoding="utf-8")
         assert text.startswith("AEROX AIRCRAFT SOURCE NOTES\n")
         assert "{\"" not in text
-        assert len(text.splitlines()) < 150
+        assert len(text.splitlines()) < 600
+
+
+def test_every_geometry_field_has_matching_plain_text_provenance(records):
+    ledger = yaml.safe_load(
+        Path("docs/modeling/sources.yml").read_text(encoding="utf-8")
+    )
+    source_ids = {source["id"] for source in ledger["sources"]}
+    allowed_statuses = {
+        "certified-published",
+        "manufacturer-published",
+        "manufacturer-published-planning",
+        "calculated-from-published-inputs",
+        "inferred-with-uncertainty",
+        "legacy-unverified",
+        "unresolved",
+    }
+    for path, document in records:
+        notes = parse_source_notes(
+            (SOURCE_ROOT / path.parent.name / f"{path.stem}.txt").read_text(
+                encoding="utf-8"
+            )
+        )
+        for field, unit in GEOMETRY_UNITS.items():
+            record = notes["fields"][field]
+            section, name = field.split(".", 1)
+            value = document[section][name]
+            assert record["unit"] == unit, (path, field)
+            assert record["status"] in allowed_statuses, (path, field)
+            if value is None:
+                assert record["value"] == "null", (path, field)
+                assert record["reason_unavailable"], (path, field)
+            else:
+                assert float(record["value"]) == pytest.approx(value), (path, field)
+                sources = [item.strip() for item in record["source"].split("|")]
+                assert sources and sources != ["-"], (path, field)
+                assert set(sources) <= source_ids, (path, field)
 
 
 def test_every_aircraft_loads_through_public_api(records):
@@ -72,6 +127,13 @@ def test_every_aircraft_loads_through_public_api(records):
         assert aircraft.icao == document["icao"] == path.stem.upper()
         assert aircraft.certified_mass_limits.mtow == document["mtow"]
         assert aircraft.certified_mass_limits.mzfw == document["mzfw"]
+        assert document["certification"]["issue"] is None or isinstance(
+            document["certification"]["issue"], str
+        )
+        assert document["certification"]["issue_date"] is None or isinstance(
+            document["certification"]["issue_date"], str
+        )
+        assert aircraft.certification.issue_date == document["certification"]["issue_date"]
 
 
 def test_compact_migration_is_idempotent(records):
@@ -82,6 +144,50 @@ def test_compact_migration_is_idempotent(records):
         assert normalized == document
         assert normalized_sidecar == sidecar
         assert dump_document(normalized) == path.read_text(encoding="utf-8")
+
+
+def test_geometry_updater_is_idempotent_without_research_input():
+    result = subprocess.run(
+        [sys.executable, "tools/update_aircraft_geometry.py", "--check"],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0, result.stderr
+    assert "changed=0" in result.stdout
+
+
+def test_geometry_updater_is_idempotent_with_all_research_inputs():
+    command = [sys.executable, "tools/update_aircraft_geometry.py"]
+    for path in (
+        "docs/modeling/geometry-research-airbus-boeing.tsv",
+        "docs/modeling/geometry-research-regional-business.tsv",
+        "docs/modeling/geometry-research-ga-turboprop-military.tsv",
+    ):
+        command.extend(["--research", path])
+    result = subprocess.run(
+        [*command, "--check"], check=False, capture_output=True, text=True
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "research_values=272" in result.stdout
+    assert "changed=0" in result.stdout
+
+
+def test_variant_mismatched_geometry_remains_evidence_only():
+    f15 = load_aircraft("F15")
+    assert f15.wing.span == 13.0
+    assert f15.wing.area is None
+    assert f15.horizontal_tail.area is None
+    assert f15.vertical_tail.area is None
+
+    notes = parse_source_notes(
+        (SOURCE_ROOT / "turbofan/f15.txt").read_text(encoding="utf-8")
+    )
+    record = notes["fields"]["vertical_tail.area"]
+    assert record["status"] == "unresolved"
+    assert record["source"] == "-"
+    assert "nasa_tm_72861" in record["searched_source"]
+    assert "two fins" in record["notes"]
 
 
 def test_a320_keeps_tcds_values_and_plain_text_sources():
@@ -111,6 +217,24 @@ def test_basic_mass_relationships_are_reported_without_automatic_changes(records
     assert {icao for icao, _ in warnings} == {"be33", "be36", "c182", "c310", "c402", "p28r"}
 
 
+def test_derived_geometry_matches_documented_formulas(records):
+    for path, document in records:
+        wing = document["wing"]
+        if wing["aspect_ratio"] is not None:
+            assert wing["area"] is not None, path
+            assert wing["span"] is not None, path
+            expected = wing["span"] ** 2 / wing["area"]
+            assert wing["aspect_ratio"] == pytest.approx(expected, rel=1e-6), path
+
+        for name in ("wing", "horizontal_tail", "vertical_tail"):
+            section = document[name]
+            if section["taper_ratio"] is not None:
+                assert section["root_chord"] is not None, path
+                assert section["tip_chord"] is not None, path
+                expected = section["tip_chord"] / section["root_chord"]
+                assert section["taper_ratio"] == pytest.approx(expected, rel=2e-6), path
+
+
 def test_web_editor_preserves_compact_certification_fields(
     records, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ):
@@ -124,9 +248,42 @@ def test_web_editor_preserves_compact_certification_fields(
 
     edited = copy.deepcopy(document)
     edited["wing"]["mac"] = 4.1936
+    edited["horizontal_tail"]["area"] = 30.843429
     web_editor.save_aircraft_data("A320", edited, "turbofan")
     saved = yaml.safe_load(target.read_text(encoding="utf-8"))
     assert saved["wing"]["mac"] == 4.1936
+    assert saved["horizontal_tail"]["area"] == 30.843429
     assert saved["certification"] == document["certification"]
     assert saved["mzfw"] == document["mzfw"]
     assert saved["minimum_weight"] == document["minimum_weight"]
+
+
+def test_web_editor_updates_geometry_provenance_and_derived_values(
+    records, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    from tools import web_editor
+
+    source_path, document = next(item for item in records if item[0].stem == "a320")
+    yaml_root = tmp_path / "aircraft/yml"
+    target = yaml_root / "turbofan/a320.yml"
+    target.parent.mkdir(parents=True)
+    target.write_text(source_path.read_text(encoding="utf-8"), encoding="utf-8")
+    sidecar = tmp_path / "aircraft/provenance/turbofan/a320.txt"
+    sidecar.parent.mkdir(parents=True)
+    sidecar.write_text(
+        (SOURCE_ROOT / "turbofan/a320.txt").read_text(encoding="utf-8"),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(web_editor, "YAML_BASE_DIR", yaml_root)
+
+    edited = copy.deepcopy(document)
+    edited["wing"]["span"] = 34.2
+    web_editor.save_aircraft_data("A320", edited, "turbofan")
+
+    saved = yaml.safe_load(target.read_text(encoding="utf-8"))
+    assert saved["wing"]["aspect_ratio"] == pytest.approx(34.2**2 / 122, rel=1e-6)
+    notes = parse_source_notes(sidecar.read_text(encoding="utf-8"))
+    assert notes["fields"]["wing.span"]["value"] == "34.2"
+    assert notes["fields"]["wing.span"]["source"] == "aerox_web_editor_manual_entry"
+    assert notes["fields"]["wing.aspect_ratio"]["inputs"] == "span=34.2 m; area=122.0 m2"
+    assert notes["fields"]["wing.aspect_ratio"]["status"] == "legacy-unverified"

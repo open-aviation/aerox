@@ -98,6 +98,320 @@ FIELD ceiling
   Source: aerox_legacy_aircraft_database
 END FIELD
 
+WING AND TAIL GEOMETRY
+
+FIELD wing.area
+  Value: 22.3
+  Unit: m2
+  Status: certified-published
+  Source: easa_c525_a078
+  Source URL: https://www.easa.europa.eu/en/downloads/7368/en
+  Document title: EASA.IM.A.078 525 (Citation Jet) Type-Certificate Data Sheet
+  Revision date: 2026-05-07
+  Page or section: Issue 19, model 525, section A.III.4, pp. 8-9
+  Applicability: Model 525 serial 0800 and on
+  Uncertainty: Source rounded to 0.01 m2
+  Previous value: 22 m2
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Source label is Wing Area.
+END FIELD
+
+FIELD wing.span
+  Value: 14.33
+  Unit: m
+  Status: certified-published
+  Source: easa_c525_a078
+  Source URL: https://www.easa.europa.eu/en/downloads/7368/en
+  Document title: EASA.IM.A.078 525 (Citation Jet) Type-Certificate Data Sheet
+  Revision date: 2026-05-07
+  Page or section: Issue 19, model 525, section A.III.4, pp. 8-9
+  Applicability: Model 525 serial 0800 and on; commercial M2 generation/modification still requires serial confirmation
+  Uncertainty: Source rounded to 0.01 m
+  Previous value: 14.39 m
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Current M2 Gen3 manufacturer material reports 14.39 m; wingtip/modification effectivity must be resolved before replacement.
+END FIELD
+
+FIELD wing.mac
+  Value: 1.754556
+  Unit: m
+  Status: certified-published
+  Source: easa_c525_a078
+  Source URL: https://www.easa.europa.eu/en/downloads/7368/en
+  Document title: EASA.IM.A.078 525 (Citation Jet) Type-Certificate Data Sheet
+  Revision date: 2026-05-07
+  Page or section: Issue 19, model 525, section A.III.14, p. 13
+  Formula: 69.077 in * 0.0254 m/in
+  Inputs: MAC=69.077 in
+  Applicability: Model 525 serial 0800 and on
+  Uncertainty: Source resolution 0.001 in; exact unit conversion
+  Previous value: 1.6 m
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Leading edge of MAC is also published at fuselage station 228.745 in.
+END FIELD
+
+FIELD wing.sweep
+  Value: 0
+  Unit: deg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.t/c
+  Value: 0.12
+  Unit: nondimensional
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c525_a078
+  Search record: reviewed EASA.IM.A.078 Issue 19 and current Textron product pages; EASA serial/model geometry is inventoried below, while differing current Gen3 spans remain modification-specific comparisons only.
+END FIELD
+
+FIELD wing.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c525_a078
+  Search record: reviewed EASA.IM.A.078 Issue 19 and current Textron product pages; EASA serial/model geometry is inventoried below, while differing current Gen3 spans remain modification-specific comparisons only.
+END FIELD
+
+FIELD wing.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c525_a078
+  Search record: reviewed EASA.IM.A.078 Issue 19 and current Textron product pages; EASA serial/model geometry is inventoried below, while differing current Gen3 spans remain modification-specific comparisons only.
+END FIELD
+
+FIELD wing.aspect_ratio
+  Value: 9.208471
+  Unit: nondimensional
+  Status: calculated-from-published-inputs
+  Source: easa_c525_a078
+  Source URL: https://www.easa.europa.eu/en/downloads/7368/en
+  Document title: EASA.IM.A.078 525 (Citation Jet) Type-Certificate Data Sheet
+  Revision date: 2026-05-07
+  Page or section: Issue 19, model 525, sections A.III.4 and A.III.14
+  Formula: span^2 / area
+  Inputs: span=14.33 m; area=22.3 m2
+  Applicability: Model 525 serial 0800 and on
+  Uncertainty: Approximately 0.02 from rounded inputs
+  Previous value: 9.412368 nondimensional
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Calculated from TCDS dimensions; not a separately certified published ratio.
+END FIELD
+
+FIELD wing.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c525_a078
+  Search record: reviewed EASA.IM.A.078 Issue 19 and current Textron product pages; EASA serial/model geometry is inventoried below, while differing current Gen3 spans remain modification-specific comparisons only.
+END FIELD
+
+FIELD horizontal_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c525_a078
+  Search record: reviewed EASA.IM.A.078 Issue 19 and current Textron product pages; EASA serial/model geometry is inventoried below, while differing current Gen3 spans remain modification-specific comparisons only.
+END FIELD
+
+FIELD horizontal_tail.span
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c525_a078
+  Search record: reviewed EASA.IM.A.078 Issue 19 and current Textron product pages; EASA serial/model geometry is inventoried below, while differing current Gen3 spans remain modification-specific comparisons only.
+END FIELD
+
+FIELD horizontal_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c525_a078
+  Search record: reviewed EASA.IM.A.078 Issue 19 and current Textron product pages; EASA serial/model geometry is inventoried below, while differing current Gen3 spans remain modification-specific comparisons only.
+END FIELD
+
+FIELD horizontal_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c525_a078
+  Search record: reviewed EASA.IM.A.078 Issue 19 and current Textron product pages; EASA serial/model geometry is inventoried below, while differing current Gen3 spans remain modification-specific comparisons only.
+END FIELD
+
+FIELD horizontal_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c525_a078
+  Search record: reviewed EASA.IM.A.078 Issue 19 and current Textron product pages; EASA serial/model geometry is inventoried below, while differing current Gen3 spans remain modification-specific comparisons only.
+END FIELD
+
+FIELD horizontal_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c525_a078
+  Search record: reviewed EASA.IM.A.078 Issue 19 and current Textron product pages; EASA serial/model geometry is inventoried below, while differing current Gen3 spans remain modification-specific comparisons only.
+END FIELD
+
+FIELD horizontal_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c525_a078
+  Search record: reviewed EASA.IM.A.078 Issue 19 and current Textron product pages; EASA serial/model geometry is inventoried below, while differing current Gen3 spans remain modification-specific comparisons only.
+END FIELD
+
+FIELD horizontal_tail.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c525_a078
+  Search record: reviewed EASA.IM.A.078 Issue 19 and current Textron product pages; EASA serial/model geometry is inventoried below, while differing current Gen3 spans remain modification-specific comparisons only.
+END FIELD
+
+FIELD horizontal_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c525_a078
+  Search record: reviewed EASA.IM.A.078 Issue 19 and current Textron product pages; EASA serial/model geometry is inventoried below, while differing current Gen3 spans remain modification-specific comparisons only.
+END FIELD
+
+FIELD horizontal_tail.elevator_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c525_a078
+  Search record: reviewed EASA.IM.A.078 Issue 19 and current Textron product pages; EASA serial/model geometry is inventoried below, while differing current Gen3 spans remain modification-specific comparisons only.
+END FIELD
+
+FIELD vertical_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c525_a078
+  Search record: reviewed EASA.IM.A.078 Issue 19 and current Textron product pages; EASA serial/model geometry is inventoried below, while differing current Gen3 spans remain modification-specific comparisons only.
+END FIELD
+
+FIELD vertical_tail.height
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c525_a078
+  Search record: reviewed EASA.IM.A.078 Issue 19 and current Textron product pages; EASA serial/model geometry is inventoried below, while differing current Gen3 spans remain modification-specific comparisons only.
+END FIELD
+
+FIELD vertical_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c525_a078
+  Search record: reviewed EASA.IM.A.078 Issue 19 and current Textron product pages; EASA serial/model geometry is inventoried below, while differing current Gen3 spans remain modification-specific comparisons only.
+END FIELD
+
+FIELD vertical_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c525_a078
+  Search record: reviewed EASA.IM.A.078 Issue 19 and current Textron product pages; EASA serial/model geometry is inventoried below, while differing current Gen3 spans remain modification-specific comparisons only.
+END FIELD
+
+FIELD vertical_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c525_a078
+  Search record: reviewed EASA.IM.A.078 Issue 19 and current Textron product pages; EASA serial/model geometry is inventoried below, while differing current Gen3 spans remain modification-specific comparisons only.
+END FIELD
+
+FIELD vertical_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c525_a078
+  Search record: reviewed EASA.IM.A.078 Issue 19 and current Textron product pages; EASA serial/model geometry is inventoried below, while differing current Gen3 spans remain modification-specific comparisons only.
+END FIELD
+
+FIELD vertical_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c525_a078
+  Search record: reviewed EASA.IM.A.078 Issue 19 and current Textron product pages; EASA serial/model geometry is inventoried below, while differing current Gen3 spans remain modification-specific comparisons only.
+END FIELD
+
+FIELD vertical_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c525_a078
+  Search record: reviewed EASA.IM.A.078 Issue 19 and current Textron product pages; EASA serial/model geometry is inventoried below, while differing current Gen3 spans remain modification-specific comparisons only.
+END FIELD
+
+FIELD vertical_tail.rudder_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_c525_a078
+  Search record: reviewed EASA.IM.A.078 Issue 19 and current Textron product pages; EASA serial/model geometry is inventoried below, while differing current Gen3 spans remain modification-specific comparisons only.
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

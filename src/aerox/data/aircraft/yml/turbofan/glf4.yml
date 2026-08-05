@@ -6,7 +6,7 @@ certification:
   authority: FAA validated by EASA
   type_certificate: EASA.IM.A.070; FAA identifier per model TCDS
   issue: EASA Issue 12 at review
-  issue_date: 2026-03-30
+  issue_date: '2026-03-30'
 mtow: 33200
 mlw: 29900
 mzfw: null
@@ -31,9 +31,35 @@ fuselage:
 wing:
   area: 86
   span: 23.71
-  mac: 3.8
+  mac: 4.2
   sweep: 27
   t/c: 0.1
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  aspect_ratio: 6.536792
+  dihedral: null
+horizontal_tail:
+  area: null
+  span: null
+  mac: null
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  sweep: null
+  dihedral: null
+  arm: null
+  elevator_area_ratio: null
+vertical_tail:
+  area: null
+  height: null
+  mac: null
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  sweep: null
+  arm: null
+  rudder_area_ratio: null
 flaps:
   type: single-slotted
   area: null

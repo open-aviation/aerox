@@ -98,6 +98,297 @@ FIELD ceiling
   Source: aerox_legacy_aircraft_database
 END FIELD
 
+WING AND TAIL GEOMETRY
+
+FIELD wing.area
+  Value: 48
+  Unit: m2
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.span
+  Value: 21.23
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: bombardier_crj200_apm_csp_a020_r8
+  Source URL: https://customer.aero.bombardier.com/webd/BAG/CustSite/BRAD/RACSDocument.nsf/51aae8b2b3bfdf6685256c300045ff31/ec63f8639ff3ab9d85257c1500635bd8/%24FILE/ATT1ES4H.pdf/CRJ200APMR8.pdf
+  Document title: CRJ100/200/440 Airport Planning Manual CSP A-020
+  Revision date: 2016-01-10
+  Page or section: 00-02-01 Figure 2, p. 5
+  Applicability: All aircraft covered by the metric general-dimensions figure
+  Uncertainty: Drawing dimension rounded to 0.01 m
+  Previous value: 21.21 m
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Dimension is the overall wingtip-to-wingtip span shown in front view.
+END FIELD
+
+FIELD wing.mac
+  Value: 2.4
+  Unit: m
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.sweep
+  Value: 24
+  Unit: deg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.t/c
+  Value: 0.11
+  Unit: nondimensional
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: tcca_a276_crj_oe_r5_2024 | bombardier_crj200_apm_csp_a020_r8
+  Search record: reviewed Bombardier CSP A-020 R8, B-020 R15 and C-020 R11. CRJ900 span is withheld because the APM publishes 23.24 m and 24.85 m for different serial configurations and the bundled record does not resolve that effectivity.
+END FIELD
+
+FIELD wing.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: tcca_a276_crj_oe_r5_2024 | bombardier_crj200_apm_csp_a020_r8
+  Search record: reviewed Bombardier CSP A-020 R8, B-020 R15 and C-020 R11. CRJ900 span is withheld because the APM publishes 23.24 m and 24.85 m for different serial configurations and the bundled record does not resolve that effectivity.
+END FIELD
+
+FIELD wing.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: tcca_a276_crj_oe_r5_2024 | bombardier_crj200_apm_csp_a020_r8
+  Search record: reviewed Bombardier CSP A-020 R8, B-020 R15 and C-020 R11. CRJ900 span is withheld because the APM publishes 23.24 m and 24.85 m for different serial configurations and the bundled record does not resolve that effectivity.
+END FIELD
+
+FIELD wing.aspect_ratio
+  Value: 9.389852
+  Unit: nondimensional
+  Status: legacy-unverified
+  Source: bombardier_crj200_apm_csp_a020_r8 | aerox_legacy_aircraft_database
+  Formula: span^2 / area
+  Inputs: span=21.23 m; area=48 m2
+  Previous value: 9.372169 nondimensional
+  Correction reason: Recalculated after a cited wing span or area correction.
+END FIELD
+
+FIELD wing.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: tcca_a276_crj_oe_r5_2024 | bombardier_crj200_apm_csp_a020_r8
+  Search record: reviewed Bombardier CSP A-020 R8, B-020 R15 and C-020 R11. CRJ900 span is withheld because the APM publishes 23.24 m and 24.85 m for different serial configurations and the bundled record does not resolve that effectivity.
+END FIELD
+
+FIELD horizontal_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: tcca_a276_crj_oe_r5_2024 | bombardier_crj200_apm_csp_a020_r8
+  Search record: reviewed Bombardier CSP A-020 R8, B-020 R15 and C-020 R11. CRJ900 span is withheld because the APM publishes 23.24 m and 24.85 m for different serial configurations and the bundled record does not resolve that effectivity.
+END FIELD
+
+FIELD horizontal_tail.span
+  Value: 6.2
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: bombardier_crj200_apm_csp_a020_r8
+  Source URL: https://customer.aero.bombardier.com/webd/BAG/CustSite/BRAD/RACSDocument.nsf/51aae8b2b3bfdf6685256c300045ff31/ec63f8639ff3ab9d85257c1500635bd8/%24FILE/ATT1ES4H.pdf/CRJ200APMR8.pdf
+  Document title: CRJ100/200/440 Airport Planning Manual CSP A-020
+  Revision date: 2016-01-10
+  Page or section: 00-02-01 Figure 2, p. 5
+  Applicability: All aircraft covered by the metric general-dimensions figure
+  Uncertainty: Drawing dimension rounded to 0.01 m
+  Notes: Dimension is the overall horizontal-tail tip-to-tip width shown in plan view.
+END FIELD
+
+FIELD horizontal_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: tcca_a276_crj_oe_r5_2024 | bombardier_crj200_apm_csp_a020_r8
+  Search record: reviewed Bombardier CSP A-020 R8, B-020 R15 and C-020 R11. CRJ900 span is withheld because the APM publishes 23.24 m and 24.85 m for different serial configurations and the bundled record does not resolve that effectivity.
+END FIELD
+
+FIELD horizontal_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: tcca_a276_crj_oe_r5_2024 | bombardier_crj200_apm_csp_a020_r8
+  Search record: reviewed Bombardier CSP A-020 R8, B-020 R15 and C-020 R11. CRJ900 span is withheld because the APM publishes 23.24 m and 24.85 m for different serial configurations and the bundled record does not resolve that effectivity.
+END FIELD
+
+FIELD horizontal_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: tcca_a276_crj_oe_r5_2024 | bombardier_crj200_apm_csp_a020_r8
+  Search record: reviewed Bombardier CSP A-020 R8, B-020 R15 and C-020 R11. CRJ900 span is withheld because the APM publishes 23.24 m and 24.85 m for different serial configurations and the bundled record does not resolve that effectivity.
+END FIELD
+
+FIELD horizontal_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: tcca_a276_crj_oe_r5_2024 | bombardier_crj200_apm_csp_a020_r8
+  Search record: reviewed Bombardier CSP A-020 R8, B-020 R15 and C-020 R11. CRJ900 span is withheld because the APM publishes 23.24 m and 24.85 m for different serial configurations and the bundled record does not resolve that effectivity.
+END FIELD
+
+FIELD horizontal_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: tcca_a276_crj_oe_r5_2024 | bombardier_crj200_apm_csp_a020_r8
+  Search record: reviewed Bombardier CSP A-020 R8, B-020 R15 and C-020 R11. CRJ900 span is withheld because the APM publishes 23.24 m and 24.85 m for different serial configurations and the bundled record does not resolve that effectivity.
+END FIELD
+
+FIELD horizontal_tail.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: tcca_a276_crj_oe_r5_2024 | bombardier_crj200_apm_csp_a020_r8
+  Search record: reviewed Bombardier CSP A-020 R8, B-020 R15 and C-020 R11. CRJ900 span is withheld because the APM publishes 23.24 m and 24.85 m for different serial configurations and the bundled record does not resolve that effectivity.
+END FIELD
+
+FIELD horizontal_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: tcca_a276_crj_oe_r5_2024 | bombardier_crj200_apm_csp_a020_r8
+  Search record: reviewed Bombardier CSP A-020 R8, B-020 R15 and C-020 R11. CRJ900 span is withheld because the APM publishes 23.24 m and 24.85 m for different serial configurations and the bundled record does not resolve that effectivity.
+END FIELD
+
+FIELD horizontal_tail.elevator_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: tcca_a276_crj_oe_r5_2024 | bombardier_crj200_apm_csp_a020_r8
+  Search record: reviewed Bombardier CSP A-020 R8, B-020 R15 and C-020 R11. CRJ900 span is withheld because the APM publishes 23.24 m and 24.85 m for different serial configurations and the bundled record does not resolve that effectivity.
+END FIELD
+
+FIELD vertical_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: tcca_a276_crj_oe_r5_2024 | bombardier_crj200_apm_csp_a020_r8
+  Search record: reviewed Bombardier CSP A-020 R8, B-020 R15 and C-020 R11. CRJ900 span is withheld because the APM publishes 23.24 m and 24.85 m for different serial configurations and the bundled record does not resolve that effectivity.
+END FIELD
+
+FIELD vertical_tail.height
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: tcca_a276_crj_oe_r5_2024 | bombardier_crj200_apm_csp_a020_r8
+  Search record: reviewed Bombardier CSP A-020 R8, B-020 R15 and C-020 R11. CRJ900 span is withheld because the APM publishes 23.24 m and 24.85 m for different serial configurations and the bundled record does not resolve that effectivity.
+END FIELD
+
+FIELD vertical_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: tcca_a276_crj_oe_r5_2024 | bombardier_crj200_apm_csp_a020_r8
+  Search record: reviewed Bombardier CSP A-020 R8, B-020 R15 and C-020 R11. CRJ900 span is withheld because the APM publishes 23.24 m and 24.85 m for different serial configurations and the bundled record does not resolve that effectivity.
+END FIELD
+
+FIELD vertical_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: tcca_a276_crj_oe_r5_2024 | bombardier_crj200_apm_csp_a020_r8
+  Search record: reviewed Bombardier CSP A-020 R8, B-020 R15 and C-020 R11. CRJ900 span is withheld because the APM publishes 23.24 m and 24.85 m for different serial configurations and the bundled record does not resolve that effectivity.
+END FIELD
+
+FIELD vertical_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: tcca_a276_crj_oe_r5_2024 | bombardier_crj200_apm_csp_a020_r8
+  Search record: reviewed Bombardier CSP A-020 R8, B-020 R15 and C-020 R11. CRJ900 span is withheld because the APM publishes 23.24 m and 24.85 m for different serial configurations and the bundled record does not resolve that effectivity.
+END FIELD
+
+FIELD vertical_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: tcca_a276_crj_oe_r5_2024 | bombardier_crj200_apm_csp_a020_r8
+  Search record: reviewed Bombardier CSP A-020 R8, B-020 R15 and C-020 R11. CRJ900 span is withheld because the APM publishes 23.24 m and 24.85 m for different serial configurations and the bundled record does not resolve that effectivity.
+END FIELD
+
+FIELD vertical_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: tcca_a276_crj_oe_r5_2024 | bombardier_crj200_apm_csp_a020_r8
+  Search record: reviewed Bombardier CSP A-020 R8, B-020 R15 and C-020 R11. CRJ900 span is withheld because the APM publishes 23.24 m and 24.85 m for different serial configurations and the bundled record does not resolve that effectivity.
+END FIELD
+
+FIELD vertical_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: tcca_a276_crj_oe_r5_2024 | bombardier_crj200_apm_csp_a020_r8
+  Search record: reviewed Bombardier CSP A-020 R8, B-020 R15 and C-020 R11. CRJ900 span is withheld because the APM publishes 23.24 m and 24.85 m for different serial configurations and the bundled record does not resolve that effectivity.
+END FIELD
+
+FIELD vertical_tail.rudder_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: tcca_a276_crj_oe_r5_2024 | bombardier_crj200_apm_csp_a020_r8
+  Search record: reviewed Bombardier CSP A-020 R8, B-020 R15 and C-020 R11. CRJ900 span is withheld because the APM publishes 23.24 m and 24.85 m for different serial configurations and the bundled record does not resolve that effectivity.
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

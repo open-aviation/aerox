@@ -98,6 +98,318 @@ FIELD ceiling
   Source: aerox_legacy_aircraft_database
 END FIELD
 
+WING AND TAIL GEOMETRY
+
+FIELD wing.area
+  Value: 16.4
+  Unit: m2
+  Status: certified-published
+  Source: easa_honda_ha420_a352
+  Source URL: https://www.easa.europa.eu/en/downloads/20876/en
+  Document title: EASA.IM.A.352 Honda Aircraft HA-420 Type-Certificate Data Sheet
+  Revision date: 2023-06-05
+  Page or section: Issue 09, III.3, p. 6
+  Applicability: HA-420 certified model
+  Uncertainty: Source rounded to 0.01 m2
+  Previous value: 12 m2
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Source label is Wing Area.
+END FIELD
+
+FIELD wing.span
+  Value: 12.12
+  Unit: m
+  Status: certified-published
+  Source: easa_honda_ha420_a352
+  Source URL: https://www.easa.europa.eu/en/downloads/20876/en
+  Document title: EASA.IM.A.352 Honda Aircraft HA-420 Type-Certificate Data Sheet
+  Revision date: 2023-06-05
+  Page or section: Issue 09, III.3, p. 6
+  Applicability: HA-420 certified model
+  Uncertainty: Source rounded to 0.01 m
+  Previous value: 12.15 m
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Commercial Base/Elite/Elite II weight distinctions do not change this published type-design dimension.
+END FIELD
+
+FIELD wing.mac
+  Value: 1.52
+  Unit: m
+  Status: certified-published
+  Source: easa_honda_ha420_a352
+  Source URL: https://www.easa.europa.eu/en/downloads/20876/en
+  Document title: EASA.IM.A.352 Honda Aircraft HA-420 Type-Certificate Data Sheet
+  Revision date: 2023-06-05
+  Page or section: Issue 09, III.13, p. 8
+  Applicability: HA-420 certified model
+  Uncertainty: Source rounded to 0.01 m
+  Previous value: 1.1 m
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Leading edge of MAC is also published 5.90 m aft of datum.
+END FIELD
+
+FIELD wing.sweep
+  Value: 15
+  Unit: deg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.t/c
+  Value: 0.12
+  Unit: nondimensional
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_honda_ha420_a352
+  Search record: reviewed EASA.IM.A.352 Issue 09 and the HondaJet Elite II product material; the certified HA-420 values are inventoried below.
+END FIELD
+
+FIELD wing.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_honda_ha420_a352
+  Search record: reviewed EASA.IM.A.352 Issue 09 and the HondaJet Elite II product material; the certified HA-420 values are inventoried below.
+END FIELD
+
+FIELD wing.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_honda_ha420_a352
+  Search record: reviewed EASA.IM.A.352 Issue 09 and the HondaJet Elite II product material; the certified HA-420 values are inventoried below.
+END FIELD
+
+FIELD wing.aspect_ratio
+  Value: 8.956976
+  Unit: nondimensional
+  Status: calculated-from-published-inputs
+  Source: easa_honda_ha420_a352
+  Source URL: https://www.easa.europa.eu/en/downloads/20876/en
+  Document title: EASA.IM.A.352 Honda Aircraft HA-420 Type-Certificate Data Sheet
+  Revision date: 2023-06-05
+  Page or section: Issue 09, III.3 and III.13
+  Formula: span^2 / area
+  Inputs: span=12.12 m; area=16.4 m2
+  Applicability: HA-420 certified model
+  Uncertainty: Approximately 0.02 from rounded inputs
+  Previous value: 12.301875 nondimensional
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Calculated from TCDS dimensions; not a separately certified published ratio.
+END FIELD
+
+FIELD wing.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_honda_ha420_a352
+  Search record: reviewed EASA.IM.A.352 Issue 09 and the HondaJet Elite II product material; the certified HA-420 values are inventoried below.
+END FIELD
+
+FIELD horizontal_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_honda_ha420_a352
+  Search record: reviewed EASA.IM.A.352 Issue 09 and the HondaJet Elite II product material; the certified HA-420 values are inventoried below.
+END FIELD
+
+FIELD horizontal_tail.span
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_honda_ha420_a352
+  Search record: reviewed EASA.IM.A.352 Issue 09 and the HondaJet Elite II product material; the certified HA-420 values are inventoried below.
+END FIELD
+
+FIELD horizontal_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_honda_ha420_a352
+  Search record: reviewed EASA.IM.A.352 Issue 09 and the HondaJet Elite II product material; the certified HA-420 values are inventoried below.
+END FIELD
+
+FIELD horizontal_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_honda_ha420_a352
+  Search record: reviewed EASA.IM.A.352 Issue 09 and the HondaJet Elite II product material; the certified HA-420 values are inventoried below.
+END FIELD
+
+FIELD horizontal_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_honda_ha420_a352
+  Search record: reviewed EASA.IM.A.352 Issue 09 and the HondaJet Elite II product material; the certified HA-420 values are inventoried below.
+END FIELD
+
+FIELD horizontal_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_honda_ha420_a352
+  Search record: reviewed EASA.IM.A.352 Issue 09 and the HondaJet Elite II product material; the certified HA-420 values are inventoried below.
+END FIELD
+
+FIELD horizontal_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_honda_ha420_a352
+  Search record: reviewed EASA.IM.A.352 Issue 09 and the HondaJet Elite II product material; the certified HA-420 values are inventoried below.
+END FIELD
+
+FIELD horizontal_tail.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_honda_ha420_a352
+  Search record: reviewed EASA.IM.A.352 Issue 09 and the HondaJet Elite II product material; the certified HA-420 values are inventoried below.
+END FIELD
+
+FIELD horizontal_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_honda_ha420_a352
+  Search record: reviewed EASA.IM.A.352 Issue 09 and the HondaJet Elite II product material; the certified HA-420 values are inventoried below.
+END FIELD
+
+FIELD horizontal_tail.elevator_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_honda_ha420_a352
+  Search record: reviewed EASA.IM.A.352 Issue 09 and the HondaJet Elite II product material; the certified HA-420 values are inventoried below.
+END FIELD
+
+FIELD vertical_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_honda_ha420_a352
+  Search record: reviewed EASA.IM.A.352 Issue 09 and the HondaJet Elite II product material; the certified HA-420 values are inventoried below.
+END FIELD
+
+FIELD vertical_tail.height
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_honda_ha420_a352
+  Search record: reviewed EASA.IM.A.352 Issue 09 and the HondaJet Elite II product material; the certified HA-420 values are inventoried below.
+END FIELD
+
+FIELD vertical_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_honda_ha420_a352
+  Search record: reviewed EASA.IM.A.352 Issue 09 and the HondaJet Elite II product material; the certified HA-420 values are inventoried below.
+END FIELD
+
+FIELD vertical_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_honda_ha420_a352
+  Search record: reviewed EASA.IM.A.352 Issue 09 and the HondaJet Elite II product material; the certified HA-420 values are inventoried below.
+END FIELD
+
+FIELD vertical_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_honda_ha420_a352
+  Search record: reviewed EASA.IM.A.352 Issue 09 and the HondaJet Elite II product material; the certified HA-420 values are inventoried below.
+END FIELD
+
+FIELD vertical_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_honda_ha420_a352
+  Search record: reviewed EASA.IM.A.352 Issue 09 and the HondaJet Elite II product material; the certified HA-420 values are inventoried below.
+END FIELD
+
+FIELD vertical_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_honda_ha420_a352
+  Search record: reviewed EASA.IM.A.352 Issue 09 and the HondaJet Elite II product material; the certified HA-420 values are inventoried below.
+END FIELD
+
+FIELD vertical_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_honda_ha420_a352
+  Search record: reviewed EASA.IM.A.352 Issue 09 and the HondaJet Elite II product material; the certified HA-420 values are inventoried below.
+END FIELD
+
+FIELD vertical_tail.rudder_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_honda_ha420_a352
+  Search record: reviewed EASA.IM.A.352 Issue 09 and the HondaJet Elite II product material; the certified HA-420 values are inventoried below.
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

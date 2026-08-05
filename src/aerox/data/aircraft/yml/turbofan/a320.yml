@@ -6,7 +6,7 @@ certification:
   authority: EASA
   type_certificate: EASA.A.064
   issue: '62'
-  issue_date: 2026-06-26
+  issue_date: '2026-06-26'
 mtow: 78000
 mlw: 66000
 mzfw: 62500
@@ -29,11 +29,37 @@ fuselage:
   height: 4.14
   width: 3.95
 wing:
-  area: 122
+  area: 122.0
   span: 34.1
   mac: 4.1935
   sweep: 25
   t/c: 0.12
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  aspect_ratio: 9.53123
+  dihedral: 5.287074
+horizontal_tail:
+  area: 30.843428
+  span: 12.45
+  mac: 2.687454
+  root_chord: 3.726892
+  tip_chord: 1.227876
+  taper_ratio: 0.329464
+  sweep: 27.945112
+  dihedral: 6.28171
+  arm: 17.46996
+  elevator_area_ratio: 0.480561
+vertical_tail:
+  area: 21.514182
+  height: 5.87
+  mac: 3.948504
+  root_chord: 5.430336
+  tip_chord: 1.89988
+  taper_ratio: 0.349864
+  sweep: 35.004001
+  arm: 15.547072
+  rudder_area_ratio: 0.299983
 flaps:
   type: single-slotted
   area: 21.1

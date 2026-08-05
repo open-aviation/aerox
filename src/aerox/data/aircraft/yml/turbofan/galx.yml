@@ -6,7 +6,7 @@ certification:
   authority: FAA validated by EASA
   type_certificate: A6IL / EASA.IM.A.013
   issue: EASA Issue 05
-  issue_date: 2025-05-26
+  issue_date: '2025-05-26'
 mtow: 16200
 mlw: 13600
 mzfw: null
@@ -30,10 +30,36 @@ fuselage:
   width: 2.16
 wing:
   area: 37
-  span: 17.7
+  span: 17.71
   mac: 2.3
   sweep: 25
   t/c: 0.11
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  aspect_ratio: 8.476868
+  dihedral: null
+horizontal_tail:
+  area: null
+  span: null
+  mac: null
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  sweep: null
+  dihedral: null
+  arm: null
+  elevator_area_ratio: null
+vertical_tail:
+  area: null
+  height: null
+  mac: null
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  sweep: null
+  arm: null
+  rudder_area_ratio: null
 flaps:
   type: single-slotted
   area: null

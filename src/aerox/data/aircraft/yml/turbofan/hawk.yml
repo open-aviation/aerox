@@ -30,10 +30,36 @@ fuselage:
   width: 0.9
 wing:
   area: 16
-  span: 9.39
+  span: 9.398
   mac: 1.9
   sweep: 28
   t/c: 0.1
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  aspect_ratio: 5.52015
+  dihedral: null
+horizontal_tail:
+  area: null
+  span: null
+  mac: null
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  sweep: null
+  dihedral: null
+  arm: null
+  elevator_area_ratio: null
+vertical_tail:
+  area: null
+  height: null
+  mac: null
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  sweep: null
+  arm: null
+  rudder_area_ratio: null
 flaps:
   type: single-slotted
   area: null

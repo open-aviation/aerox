@@ -98,6 +98,295 @@ FIELD ceiling
   Source: aerox_legacy_aircraft_database
 END FIELD
 
+WING AND TAIL GEOMETRY
+
+FIELD wing.area
+  Value: 28.0
+  Unit: m2
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+  Applicability: King Air 360 product configuration only
+  Searched source: textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Notes: Candidate is the current King Air 360; the bundled record is a King Air 350 with PT6A-60A engines.
+END FIELD
+
+FIELD wing.span
+  Value: 17.7
+  Unit: m
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+  Applicability: King Air 360 product configuration only; B350 code/model scope requires confirmation
+  Searched source: textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Notes: Candidate is the current King Air 360; the bundled record is a King Air 350 with PT6A-60A engines.
+END FIELD
+
+FIELD wing.mac
+  Value: 1.78
+  Unit: m
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.sweep
+  Value: 0
+  Unit: deg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.t/c
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
+END FIELD
+
+FIELD wing.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
+END FIELD
+
+FIELD wing.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
+END FIELD
+
+FIELD wing.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
+END FIELD
+
+FIELD wing.aspect_ratio
+  Value: 11.188929
+  Unit: nondimensional
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+  Formula: span^2 / area
+  Inputs: span=17.7 m; area=28.0 m2
+  Applicability: Bundled record; calculated from restored legacy values.
+  Searched source: textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
+  Notes: Candidate ratio is derived from King Air 360 inputs and is not adopted for the King Air 350 record.
+END FIELD
+
+FIELD wing.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
+END FIELD
+
+FIELD horizontal_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
+END FIELD
+
+FIELD horizontal_tail.span
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
+END FIELD
+
+FIELD horizontal_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
+END FIELD
+
+FIELD horizontal_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
+END FIELD
+
+FIELD horizontal_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
+END FIELD
+
+FIELD horizontal_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
+END FIELD
+
+FIELD horizontal_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
+END FIELD
+
+FIELD horizontal_tail.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
+END FIELD
+
+FIELD horizontal_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
+END FIELD
+
+FIELD horizontal_tail.elevator_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
+END FIELD
+
+FIELD vertical_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
+END FIELD
+
+FIELD vertical_tail.height
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
+END FIELD
+
+FIELD vertical_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
+END FIELD
+
+FIELD vertical_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
+END FIELD
+
+FIELD vertical_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
+END FIELD
+
+FIELD vertical_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
+END FIELD
+
+FIELD vertical_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
+END FIELD
+
+FIELD vertical_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
+END FIELD
+
+FIELD vertical_tail.rudder_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: nz_caa_type_acceptance_index | textron_beechcraft_king_air_360_specs_accessed_2026_08_05
+  Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

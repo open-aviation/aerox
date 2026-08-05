@@ -98,6 +98,271 @@ FIELD ceiling
   Source: aerox_legacy_aircraft_database
 END FIELD
 
+WING AND TAIL GEOMETRY
+
+FIELD wing.area
+  Value: 427
+  Unit: m2
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.span
+  Value: 64.8
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: boeing_777_lr_er_f_acap_rev_g_2024_12
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/777-200LR-300ER-F_Rev_G.pdf
+  Document title: 777-200LR/300ER/777F Airplane Characteristics for Airport Planning, D6-58329-2 Revision G
+  Revision date: 2024-12-01
+  Page or section: Section 2.2.2, page 2-4
+  Inputs: 212 ft 7 in (64.80 m)
+  Applicability: 777-300ER external wing span
+  Uncertainty: Published rounded conversion
+END FIELD
+
+FIELD wing.mac
+  Value: 8.75
+  Unit: m
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.sweep
+  Value: 31
+  Unit: deg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.t/c
+  Value: 0.1
+  Unit: nondimensional
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+END FIELD
+
+FIELD wing.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+END FIELD
+
+FIELD wing.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+END FIELD
+
+FIELD wing.aspect_ratio
+  Value: 9.833817
+  Unit: nondimensional
+  Status: legacy-unverified
+  Source: boeing_777_lr_er_f_acap_rev_g_2024_12 | aerox_legacy_aircraft_database
+  Formula: span^2 / area
+  Inputs: span=64.8 m; area=427 m2
+END FIELD
+
+FIELD wing.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+END FIELD
+
+FIELD horizontal_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+END FIELD
+
+FIELD horizontal_tail.span
+  Value: 21.53
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: boeing_777_lr_er_f_acap_rev_g_2024_12
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/777-200LR-300ER-F_Rev_G.pdf
+  Document title: 777-200LR/300ER/777F Airplane Characteristics for Airport Planning, D6-58329-2 Revision G
+  Revision date: 2024-12-01
+  Page or section: Section 2.2.2, page 2-4
+  Inputs: 70 ft 8 in (21.53 m)
+  Applicability: 777-300ER horizontal-tail overall span
+  Uncertainty: Published rounded conversion
+END FIELD
+
+FIELD horizontal_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+END FIELD
+
+FIELD horizontal_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+END FIELD
+
+FIELD horizontal_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+END FIELD
+
+FIELD horizontal_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+END FIELD
+
+FIELD horizontal_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+END FIELD
+
+FIELD horizontal_tail.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+END FIELD
+
+FIELD horizontal_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+END FIELD
+
+FIELD horizontal_tail.elevator_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+END FIELD
+
+FIELD vertical_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+END FIELD
+
+FIELD vertical_tail.height
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+END FIELD
+
+FIELD vertical_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+END FIELD
+
+FIELD vertical_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+END FIELD
+
+FIELD vertical_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+END FIELD
+
+FIELD vertical_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+END FIELD
+
+FIELD vertical_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+END FIELD
+
+FIELD vertical_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+END FIELD
+
+FIELD vertical_tail.rudder_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

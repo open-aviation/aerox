@@ -98,6 +98,316 @@ FIELD ceiling
   Source: aerox_legacy_aircraft_database
 END FIELD
 
+WING AND TAIL GEOMETRY
+
+FIELD wing.area
+  Value: 30.91
+  Unit: m2
+  Status: certified-published
+  Source: easa_pc24_a594
+  Source URL: https://www.easa.europa.eu/en/downloads/44366/en
+  Document title: EASA.A.594 PC-24 Type-Certificate Data Sheet
+  Revision date: 2023-10-13
+  Page or section: Issue 08, III.3, p. 6
+  Applicability: PC-24 certified model
+  Uncertainty: Source rounded to 0.01 m2
+  Previous value: 30 m2
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Source label is Total Wing Area.
+END FIELD
+
+FIELD wing.span
+  Value: 17.0
+  Unit: m
+  Status: certified-published
+  Source: easa_pc24_a594
+  Source URL: https://www.easa.europa.eu/en/downloads/44366/en
+  Document title: EASA.A.594 PC-24 Type-Certificate Data Sheet
+  Revision date: 2023-10-13
+  Page or section: Issue 08, III.3, p. 6
+  Applicability: PC-24 certified model
+  Uncertainty: Source rounded to 0.001 m
+  Notes: Source label is Main Wing Span.
+END FIELD
+
+FIELD wing.mac
+  Value: 1.997
+  Unit: m
+  Status: certified-published
+  Source: easa_pc24_a594
+  Source URL: https://www.easa.europa.eu/en/downloads/44366/en
+  Document title: EASA.A.594 PC-24 Type-Certificate Data Sheet
+  Revision date: 2023-10-13
+  Page or section: Issue 08, III.13, p. 9
+  Applicability: PC-24 certified model
+  Uncertainty: Source rounded to 0.001 m
+  Previous value: 2 m
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Directly published mean aerodynamic chord.
+END FIELD
+
+FIELD wing.sweep
+  Value: 15
+  Unit: deg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.t/c
+  Value: 0.12
+  Unit: nondimensional
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_pc24_a594
+  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+END FIELD
+
+FIELD wing.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_pc24_a594
+  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+END FIELD
+
+FIELD wing.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_pc24_a594
+  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+END FIELD
+
+FIELD wing.aspect_ratio
+  Value: 9.349725
+  Unit: nondimensional
+  Status: calculated-from-published-inputs
+  Source: easa_pc24_a594
+  Source URL: https://www.easa.europa.eu/en/downloads/44366/en
+  Document title: EASA.A.594 PC-24 Type-Certificate Data Sheet
+  Revision date: 2023-10-13
+  Page or section: Issue 08, III.3 and III.13
+  Formula: span^2 / area
+  Inputs: span=17.0 m; area=30.91 m2
+  Applicability: PC-24 certified model
+  Uncertainty: Approximately 0.01 from rounded inputs
+  Previous value: 9.633333 nondimensional
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Calculated from the TCDS total-area definition; not separately published.
+END FIELD
+
+FIELD wing.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_pc24_a594
+  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+END FIELD
+
+FIELD horizontal_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_pc24_a594
+  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+END FIELD
+
+FIELD horizontal_tail.span
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_pc24_a594
+  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+END FIELD
+
+FIELD horizontal_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_pc24_a594
+  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+END FIELD
+
+FIELD horizontal_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_pc24_a594
+  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+END FIELD
+
+FIELD horizontal_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_pc24_a594
+  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+END FIELD
+
+FIELD horizontal_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_pc24_a594
+  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+END FIELD
+
+FIELD horizontal_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_pc24_a594
+  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+END FIELD
+
+FIELD horizontal_tail.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_pc24_a594
+  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+END FIELD
+
+FIELD horizontal_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_pc24_a594
+  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+END FIELD
+
+FIELD horizontal_tail.elevator_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_pc24_a594
+  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+END FIELD
+
+FIELD vertical_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_pc24_a594
+  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+END FIELD
+
+FIELD vertical_tail.height
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_pc24_a594
+  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+END FIELD
+
+FIELD vertical_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_pc24_a594
+  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+END FIELD
+
+FIELD vertical_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_pc24_a594
+  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+END FIELD
+
+FIELD vertical_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_pc24_a594
+  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+END FIELD
+
+FIELD vertical_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_pc24_a594
+  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+END FIELD
+
+FIELD vertical_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_pc24_a594
+  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+END FIELD
+
+FIELD vertical_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_pc24_a594
+  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+END FIELD
+
+FIELD vertical_tail.rudder_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_pc24_a594
+  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

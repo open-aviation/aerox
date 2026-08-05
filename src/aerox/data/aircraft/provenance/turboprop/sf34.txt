@@ -100,6 +100,305 @@ FIELD ceiling
   Source: aerox_legacy_aircraft_database
 END FIELD
 
+WING AND TAIL GEOMETRY
+
+FIELD wing.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD wing.span
+  Value: 21.44
+  Unit: m
+  Status: manufacturer-published
+  Source: saab_340_product_page_accessed_2026_08_05
+  Source URL: https://www.saab.com/products/saab-340
+  Document title: Saab 340B
+  Revision date: 2026-08-05
+  Page or section: Aircraft data, Measurements
+  Inputs: 21.44 m published metric dimension
+  Applicability: Saab 340A and 340B/Bplus standard wing tips
+  Uncertainty: Published to 0.01 m
+  Previous value: 21.4 m
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Selected to match the bundled 21.4 m baseline. Official Saab material separately publishes 22.75 m for 340B/Bplus with Extended Wing-tips (support brochure: serial 361 and up); that modified configuration is not collapsed into this key.
+END FIELD
+
+FIELD wing.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD wing.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD wing.t/c
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD wing.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD wing.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD wing.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD wing.aspect_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD wing.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD horizontal_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD horizontal_tail.span
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD horizontal_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD horizontal_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD horizontal_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD horizontal_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD horizontal_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD horizontal_tail.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD horizontal_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD horizontal_tail.elevator_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD vertical_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD vertical_tail.height
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD vertical_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD vertical_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD vertical_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD vertical_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD vertical_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD vertical_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
+FIELD vertical_tail.rudder_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a068_saab340_i26_2023 | saab_340_product_page_accessed_2026_08_05
+  Search record: EASA TCDS EASA.A.068 and Saab's official 340 page/support brochure searched; standard and extended-wing-tip spans remain separate.
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

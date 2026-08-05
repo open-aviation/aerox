@@ -98,6 +98,274 @@ FIELD ceiling
   Source: aerox_legacy_aircraft_database
 END FIELD
 
+WING AND TAIL GEOMETRY
+
+FIELD wing.area
+  Value: 102
+  Unit: m2
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.span
+  Value: 28.88
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: boeing_737_classic_acap_rev_e_2023_11
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/737CL_REV_E.pdf
+  Document title: 737-100 through 737-500 Airplane Characteristics for Airport Planning, D6-58325-6 Revision E
+  Revision date: 2023-11-01
+  Page or section: Section 2.2.3, page 2-12
+  Inputs: 94 ft 9 in (28.88 m)
+  Applicability: 737-300 without winglets
+  Uncertainty: Published rounded conversion
+  Previous value: 28.9 m
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Winglet modifications require a separate row and applicability.
+END FIELD
+
+FIELD wing.mac
+  Value: 3.73
+  Unit: m
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.sweep
+  Value: 25
+  Unit: deg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.t/c
+  Value: 0.129
+  Unit: nondimensional
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_29 | boeing_737_classic_acap_rev_e_2023_11
+END FIELD
+
+FIELD wing.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_29 | boeing_737_classic_acap_rev_e_2023_11
+END FIELD
+
+FIELD wing.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_29 | boeing_737_classic_acap_rev_e_2023_11
+END FIELD
+
+FIELD wing.aspect_ratio
+  Value: 8.177004
+  Unit: nondimensional
+  Status: legacy-unverified
+  Source: boeing_737_classic_acap_rev_e_2023_11 | aerox_legacy_aircraft_database
+  Formula: span^2 / area
+  Inputs: span=28.88 m; area=102 m2
+END FIELD
+
+FIELD wing.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_29 | boeing_737_classic_acap_rev_e_2023_11
+END FIELD
+
+FIELD horizontal_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_29 | boeing_737_classic_acap_rev_e_2023_11
+END FIELD
+
+FIELD horizontal_tail.span
+  Value: 12.7
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: boeing_737_classic_acap_rev_e_2023_11
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/737CL_REV_E.pdf
+  Document title: 737-100 through 737-500 Airplane Characteristics for Airport Planning, D6-58325-6 Revision E
+  Revision date: 2023-11-01
+  Page or section: Section 2.2.3, page 2-12
+  Inputs: 41 ft 8 in (12.70 m)
+  Applicability: 737-300 horizontal-tail overall span
+  Uncertainty: Published rounded conversion
+END FIELD
+
+FIELD horizontal_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_29 | boeing_737_classic_acap_rev_e_2023_11
+END FIELD
+
+FIELD horizontal_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_29 | boeing_737_classic_acap_rev_e_2023_11
+END FIELD
+
+FIELD horizontal_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_29 | boeing_737_classic_acap_rev_e_2023_11
+END FIELD
+
+FIELD horizontal_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_29 | boeing_737_classic_acap_rev_e_2023_11
+END FIELD
+
+FIELD horizontal_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_29 | boeing_737_classic_acap_rev_e_2023_11
+END FIELD
+
+FIELD horizontal_tail.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_29 | boeing_737_classic_acap_rev_e_2023_11
+END FIELD
+
+FIELD horizontal_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_29 | boeing_737_classic_acap_rev_e_2023_11
+END FIELD
+
+FIELD horizontal_tail.elevator_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_29 | boeing_737_classic_acap_rev_e_2023_11
+END FIELD
+
+FIELD vertical_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_29 | boeing_737_classic_acap_rev_e_2023_11
+END FIELD
+
+FIELD vertical_tail.height
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_29 | boeing_737_classic_acap_rev_e_2023_11
+END FIELD
+
+FIELD vertical_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_29 | boeing_737_classic_acap_rev_e_2023_11
+END FIELD
+
+FIELD vertical_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_29 | boeing_737_classic_acap_rev_e_2023_11
+END FIELD
+
+FIELD vertical_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_29 | boeing_737_classic_acap_rev_e_2023_11
+END FIELD
+
+FIELD vertical_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_29 | boeing_737_classic_acap_rev_e_2023_11
+END FIELD
+
+FIELD vertical_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_29 | boeing_737_classic_acap_rev_e_2023_11
+END FIELD
+
+FIELD vertical_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_29 | boeing_737_classic_acap_rev_e_2023_11
+END FIELD
+
+FIELD vertical_tail.rudder_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_29 | boeing_737_classic_acap_rev_e_2023_11
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

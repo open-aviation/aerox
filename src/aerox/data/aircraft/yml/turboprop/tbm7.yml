@@ -6,7 +6,7 @@ certification:
   authority: EASA
   type_certificate: EASA.A.010
   issue: Issue 07
-  issue_date: 2009-03-25
+  issue_date: '2009-03-25'
 mtow: 3000
 mlw: 2800
 mzfw: null
@@ -34,6 +34,32 @@ wing:
   mac: null
   sweep: null
   t/c: null
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  aspect_ratio: 8.932356
+  dihedral: null
+horizontal_tail:
+  area: null
+  span: null
+  mac: null
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  sweep: null
+  dihedral: null
+  arm: null
+  elevator_area_ratio: null
+vertical_tail:
+  area: null
+  height: null
+  mac: null
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  sweep: null
+  arm: null
+  rudder_area_ratio: null
 flaps:
   type: null
   area: null

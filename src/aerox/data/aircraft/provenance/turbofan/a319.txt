@@ -98,6 +98,274 @@ FIELD ceiling
   Source: aerox_legacy_aircraft_database
 END FIELD
 
+WING AND TAIL GEOMETRY
+
+FIELD wing.area
+  Value: 122
+  Unit: m2
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.span
+  Value: 34.1
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: airbus_a319_acap_2026_07
+  Source URL: https://mediaassets.airbus.com/pm_38_916_916263-0hxcf0237y.pdf?fileName=aca31901-jul-2026-2.pdf
+  Document title: A319 Aircraft Characteristics - Airport and Maintenance Planning, Revision 30
+  Revision date: 2026-07-01
+  Page or section: 2-2-0 Figure 991-002-A01, Wing Tip Fence, sheet 1/page 2
+  Inputs: 34.10 m drawing dimension
+  Applicability: A319-100 with wing-tip fences
+  Uncertainty: Drawing dimension; planning publication
+  Previous value: 33.91 m
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Do not substitute the 35.80 m sharklet span without identifying the modification.
+END FIELD
+
+FIELD wing.mac
+  Value: 4.29
+  Unit: m
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.sweep
+  Value: 25
+  Unit: deg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.t/c
+  Value: 0.12
+  Unit: nondimensional
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a064_issue_62 | airbus_a319_acap_2026_07
+END FIELD
+
+FIELD wing.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a064_issue_62 | airbus_a319_acap_2026_07
+END FIELD
+
+FIELD wing.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a064_issue_62 | airbus_a319_acap_2026_07
+END FIELD
+
+FIELD wing.aspect_ratio
+  Value: 9.53123
+  Unit: nondimensional
+  Status: legacy-unverified
+  Source: airbus_a319_acap_2026_07 | aerox_legacy_aircraft_database
+  Formula: span^2 / area
+  Inputs: span=34.1 m; area=122 m2
+END FIELD
+
+FIELD wing.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a064_issue_62 | airbus_a319_acap_2026_07
+END FIELD
+
+FIELD horizontal_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a064_issue_62 | airbus_a319_acap_2026_07
+END FIELD
+
+FIELD horizontal_tail.span
+  Value: 12.45
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: airbus_a319_acap_2026_07
+  Source URL: https://mediaassets.airbus.com/pm_38_916_916263-0hxcf0237y.pdf?fileName=aca31901-jul-2026-2.pdf
+  Document title: A319 Aircraft Characteristics - Airport and Maintenance Planning, Revision 30
+  Revision date: 2026-07-01
+  Page or section: 2-2-0 Figure 991-002-A01, Wing Tip Fence, sheet 1/page 2
+  Inputs: 12.45 m drawing dimension
+  Applicability: A319-100 horizontal-stabilizer overall span
+  Uncertainty: Drawing dimension; planning publication
+END FIELD
+
+FIELD horizontal_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a064_issue_62 | airbus_a319_acap_2026_07
+END FIELD
+
+FIELD horizontal_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a064_issue_62 | airbus_a319_acap_2026_07
+END FIELD
+
+FIELD horizontal_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a064_issue_62 | airbus_a319_acap_2026_07
+END FIELD
+
+FIELD horizontal_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a064_issue_62 | airbus_a319_acap_2026_07
+END FIELD
+
+FIELD horizontal_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a064_issue_62 | airbus_a319_acap_2026_07
+END FIELD
+
+FIELD horizontal_tail.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a064_issue_62 | airbus_a319_acap_2026_07
+END FIELD
+
+FIELD horizontal_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a064_issue_62 | airbus_a319_acap_2026_07
+END FIELD
+
+FIELD horizontal_tail.elevator_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a064_issue_62 | airbus_a319_acap_2026_07
+END FIELD
+
+FIELD vertical_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a064_issue_62 | airbus_a319_acap_2026_07
+END FIELD
+
+FIELD vertical_tail.height
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a064_issue_62 | airbus_a319_acap_2026_07
+END FIELD
+
+FIELD vertical_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a064_issue_62 | airbus_a319_acap_2026_07
+END FIELD
+
+FIELD vertical_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a064_issue_62 | airbus_a319_acap_2026_07
+END FIELD
+
+FIELD vertical_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a064_issue_62 | airbus_a319_acap_2026_07
+END FIELD
+
+FIELD vertical_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a064_issue_62 | airbus_a319_acap_2026_07
+END FIELD
+
+FIELD vertical_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a064_issue_62 | airbus_a319_acap_2026_07
+END FIELD
+
+FIELD vertical_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a064_issue_62 | airbus_a319_acap_2026_07
+END FIELD
+
+FIELD vertical_tail.rudder_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a064_issue_62 | airbus_a319_acap_2026_07
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

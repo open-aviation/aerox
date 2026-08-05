@@ -98,6 +98,275 @@ FIELD ceiling
   Source: aerox_legacy_aircraft_database
 END FIELD
 
+WING AND TAIL GEOMETRY
+
+FIELD wing.area
+  Value: 338
+  Unit: m2
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.span
+  Value: 51.8
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: boeing_md11_acap_rev_f_2011_05
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/MD11.pdf
+  Document title: MD-11 Airplane Characteristics for Airport Planning, MDC-K0388 Revision F
+  Revision date: 2011-05-01
+  Page or section: Section 2.2, page 2-4
+  Inputs: 169 ft 11 in (51.80 m) nominal unloaded
+  Applicability: MD-11 nominal unloaded configuration
+  Uncertainty: Published rounded conversion; maximum fueled span is 51.97 m
+  Previous value: 51.7 m
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: The selected scalar is nominal unloaded; retain 51.97 m as the explicitly load-dependent maximum.
+END FIELD
+
+FIELD wing.mac
+  Value: 7.68
+  Unit: m
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.sweep
+  Value: 35
+  Unit: deg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.t/c
+  Value: 0.094
+  Unit: nondimensional
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+END FIELD
+
+FIELD wing.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+END FIELD
+
+FIELD wing.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+END FIELD
+
+FIELD wing.aspect_ratio
+  Value: 7.93858
+  Unit: nondimensional
+  Status: legacy-unverified
+  Source: boeing_md11_acap_rev_f_2011_05 | aerox_legacy_aircraft_database
+  Formula: span^2 / area
+  Inputs: span=51.8 m; area=338 m2
+END FIELD
+
+FIELD wing.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+END FIELD
+
+FIELD horizontal_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+END FIELD
+
+FIELD horizontal_tail.span
+  Value: 18.0
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: boeing_md11_acap_rev_f_2011_05
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/MD11.pdf
+  Document title: MD-11 Airplane Characteristics for Airport Planning, MDC-K0388 Revision F
+  Revision date: 2011-05-01
+  Page or section: Section 2.2, page 2-4
+  Inputs: 59 ft 1 in (18.0 m)
+  Applicability: MD-11 horizontal-tail overall span
+  Uncertainty: Published rounded conversion
+  Notes: Passenger, freighter, and convertible applicability should remain explicit.
+END FIELD
+
+FIELD horizontal_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+END FIELD
+
+FIELD horizontal_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+END FIELD
+
+FIELD horizontal_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+END FIELD
+
+FIELD horizontal_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+END FIELD
+
+FIELD horizontal_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+END FIELD
+
+FIELD horizontal_tail.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+END FIELD
+
+FIELD horizontal_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+END FIELD
+
+FIELD horizontal_tail.elevator_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+END FIELD
+
+FIELD vertical_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+END FIELD
+
+FIELD vertical_tail.height
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+END FIELD
+
+FIELD vertical_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+END FIELD
+
+FIELD vertical_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+END FIELD
+
+FIELD vertical_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+END FIELD
+
+FIELD vertical_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+END FIELD
+
+FIELD vertical_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+END FIELD
+
+FIELD vertical_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+END FIELD
+
+FIELD vertical_tail.rudder_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

@@ -100,6 +100,272 @@ FIELD ceiling
   Source: aerox_legacy_aircraft_database
 END FIELD
 
+WING AND TAIL GEOMETRY
+
+FIELD wing.area
+  Value: 377
+  Unit: m2
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.span
+  Value: 60.12
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: boeing_787_acap_rev_q_2025_10
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/787_ACAP_Rev_Q.pdf
+  Document title: 787-8/-9/-10 Airplane Characteristics for Airport Planning, D6-58333 Revision Q
+  Revision date: 2025-10-01
+  Page or section: Section 2.2.1, page 2-5
+  Inputs: 197 ft 3 in (60.12 m)
+  Applicability: 787-8 external wing span
+  Uncertainty: Published rounded conversion
+  Notes: BBJ/VIP modification is not silently included.
+END FIELD
+
+FIELD wing.mac
+  Value: 6.27
+  Unit: m
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.sweep
+  Value: 32
+  Unit: deg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.t/c
+  Value: 0.094
+  Unit: nondimensional
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD wing.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10
+END FIELD
+
+FIELD wing.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10
+END FIELD
+
+FIELD wing.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10
+END FIELD
+
+FIELD wing.aspect_ratio
+  Value: 9.587306
+  Unit: nondimensional
+  Status: legacy-unverified
+  Source: boeing_787_acap_rev_q_2025_10 | aerox_legacy_aircraft_database
+  Formula: span^2 / area
+  Inputs: span=60.12 m; area=377 m2
+END FIELD
+
+FIELD wing.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10
+END FIELD
+
+FIELD horizontal_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10
+END FIELD
+
+FIELD horizontal_tail.span
+  Value: 19.81
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: boeing_787_acap_rev_q_2025_10
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/787_ACAP_Rev_Q.pdf
+  Document title: 787-8/-9/-10 Airplane Characteristics for Airport Planning, D6-58333 Revision Q
+  Revision date: 2025-10-01
+  Page or section: Section 2.2.1, page 2-5
+  Inputs: 65 ft 0 in (19.81 m)
+  Applicability: 787-8 horizontal-tail overall span
+  Uncertainty: Published rounded conversion
+END FIELD
+
+FIELD horizontal_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10
+END FIELD
+
+FIELD horizontal_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10
+END FIELD
+
+FIELD horizontal_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10
+END FIELD
+
+FIELD horizontal_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10
+END FIELD
+
+FIELD horizontal_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10
+END FIELD
+
+FIELD horizontal_tail.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10
+END FIELD
+
+FIELD horizontal_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10
+END FIELD
+
+FIELD horizontal_tail.elevator_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10
+END FIELD
+
+FIELD vertical_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10
+END FIELD
+
+FIELD vertical_tail.height
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10
+END FIELD
+
+FIELD vertical_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10
+END FIELD
+
+FIELD vertical_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10
+END FIELD
+
+FIELD vertical_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10
+END FIELD
+
+FIELD vertical_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10
+END FIELD
+
+FIELD vertical_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10
+END FIELD
+
+FIELD vertical_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10
+END FIELD
+
+FIELD vertical_tail.rudder_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
