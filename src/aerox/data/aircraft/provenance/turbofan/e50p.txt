@@ -1,0 +1,103 @@
+AEROX AIRCRAFT SOURCE NOTES
+Aircraft: Embraer 500 Phenom 100
+ICAO: E50P
+Last reviewed: 2026-08-05
+Source ledger: docs/modeling/sources.yml
+
+CERTIFICATION SCOPE
+  Model or family: EMB-500, commercial generation unresolved
+  Authority: Agencia Nacional de Aviacao Civil
+  Type certificate: EMB-500 certificate; exact current ANAC identifier not resolved in this batch
+  Applicability: Phenom 100/100E/100EV/100EX generation and weight option unresolved.
+
+TYPE-CERTIFICATE AND LIMIT PARAMETERS
+
+FIELD certification.model
+  Value: EMB-500, commercial generation unresolved
+  Status: certified-published
+  Source: anac_ct_transfer_portaria_7380_2022
+  Applicability: Phenom 100/100E/100EV/100EX generation and weight option unresolved.
+END FIELD
+
+FIELD certification.authority
+  Value: Agencia Nacional de Aviacao Civil
+  Status: certified-published
+  Source: anac_ct_transfer_portaria_7380_2022
+  Applicability: Phenom 100/100E/100EV/100EX generation and weight option unresolved.
+END FIELD
+
+FIELD certification.type_certificate
+  Value: EMB-500 certificate; exact current ANAC identifier not resolved in this batch
+  Status: certified-published
+  Source: anac_ct_transfer_portaria_7380_2022
+  Applicability: Phenom 100/100E/100EV/100EX generation and weight option unresolved.
+END FIELD
+
+FIELD certification.issue
+  Value: null
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD certification.issue_date
+  Value: null
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD mtow
+  Value: 4750
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mlw
+  Value: 4400
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mzfw
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD minimum_weight
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD vmo
+  Value: 260
+  Unit: kt
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mmo
+  Value: 0.72
+  Unit: Mach
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD ceiling
+  Value: 41000
+  Unit: ft
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+LEGACY PARAMETERS
+  Parameters not listed above retain the original Aerox database values.
+  Unless a source is named above, those values remain legacy-unverified.

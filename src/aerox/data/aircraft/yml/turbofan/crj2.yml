@@ -1,0 +1,77 @@
+aircraft: Canadair CRJ-200
+icao: CRJ2
+iata: CRJ
+certification:
+  model: CL-600-2B19
+  authority: Transport Canada Civil Aviation
+  type_certificate: A-276
+  issue: Issue 7 referenced by the operational evaluation
+  issue_date: '2022-12-22'
+mtow: 21523
+mlw: 20300
+mzfw: null
+minimum_weight: null
+oew: 13835
+mfc: 8081
+vmo: 315
+mmo: 0.81
+ceiling: 41000
+icao_wtc: medium
+eu_wtc: lower medium
+faa_wtc: medium
+parking_area_m2: 678
+pax:
+  max: 50
+  high: 50
+  low: 44
+fuselage:
+  length: 26.8
+  height: 2.69
+  width: 2.69
+wing:
+  area: 48
+  span: 21.21
+  mac: 2.4
+  sweep: 24
+  t/c: 0.11
+flaps:
+  type: double-slotted
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: turbofan
+  mount: rear fuselage
+  number: 2
+  default: CF34-3B
+  options:
+  - CF34-3B
+drag:
+  cd0: 0.02714
+  k: 0.04266
+  e: 0.79611
+  gears: 0.0168
+kinematic:
+  takeoff_distance_m: 1527
+  takeoff_v2: 135
+  climb_to_fl50_ias: 165
+  climb_to_fl50_vs: 3000
+  climb_to_fl150_ias: 250
+  climb_to_fl150_vs: 2500
+  climb_to_fl240_ias: 250
+  climb_to_fl240_vs: 1500
+  mach_climb_mach: 0.68
+  mach_climb_vs: 1000
+  cruise_mach: 0.74
+  cruise_range_nm: 1000
+  cruise_tas: 420
+  descent_to_fl240_mach: 0.7
+  descent_to_fl240_vs: 1000
+  descent_to_fl100_ias: 250
+  descent_to_fl100_vs: 3000
+  approach_ias: 250
+  approach_vs: 1500
+  landing_distance_m: 1423
+  landing_ias: 140

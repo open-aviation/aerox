@@ -1,0 +1,77 @@
+aircraft: Bombardier BD-700 Global Express
+icao: GLEX
+iata: CCX
+certification:
+  model: BD-700-1A10
+  authority: Transport Canada Civil Aviation
+  type_certificate: A-177
+  issue: current revision not retrieved
+  issue_date: null
+mtow: 45100
+mlw: 35700
+mzfw: null
+minimum_weight: null
+oew: 23690
+mfc: 25538
+vmo: 340
+mmo: 0.89
+ceiling: 51000
+icao_wtc: medium
+eu_wtc: lower medium
+faa_wtc: medium
+parking_area_m2: 1009
+pax:
+  max: 19
+  high: 13
+  low: null
+fuselage:
+  length: 30.3
+  height: 1.88
+  width: 2.49
+wing:
+  area: 95
+  span: 28.6
+  mac: 3.6
+  sweep: 35
+  t/c: 0.1
+flaps:
+  type: single-slotted
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: turbofan
+  mount: rear fuselage
+  number: 2
+  default: BR700-710C4-11
+  options:
+  - BR700-710C4-11
+drag:
+  cd0: 0.01811
+  k: 0.04582
+  e: 0.80688
+  gears: 0.01517
+kinematic:
+  takeoff_distance_m: 1870
+  takeoff_v2: 120
+  climb_to_fl50_ias: 150
+  climb_to_fl50_vs: 4000
+  climb_to_fl150_ias: 300
+  climb_to_fl150_vs: 3000
+  climb_to_fl240_ias: 300
+  climb_to_fl240_vs: 3000
+  mach_climb_mach: 0.75
+  mach_climb_vs: 1500
+  cruise_mach: 0.85
+  cruise_range_nm: 6300
+  cruise_tas: 490
+  descent_to_fl240_mach: 0.83
+  descent_to_fl240_vs: 1500
+  descent_to_fl100_ias: 300
+  descent_to_fl100_vs: 2000
+  approach_ias: 250
+  approach_vs: 1500
+  landing_distance_m: 814
+  landing_ias: 125

@@ -1,0 +1,103 @@
+AEROX AIRCRAFT SOURCE NOTES
+Aircraft: BAe HS 125/700-800/Hawker 800
+ICAO: H25B
+Last reviewed: 2026-08-05
+Source ledger: docs/modeling/sources.yml
+
+CERTIFICATION SCOPE
+  Model or family: -
+  Authority: Federal Aviation Administration
+  Type certificate: A3EU
+  Applicability: Severe; bundled label spans numerous models, engines, weights and manufacturers.
+
+TYPE-CERTIFICATE AND LIMIT PARAMETERS
+
+FIELD certification.model
+  Value: null
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD certification.authority
+  Value: Federal Aviation Administration
+  Status: certified-published
+  Source: tcca_type_designators_42140
+  Applicability: Severe; bundled label spans numerous models, engines, weights and manufacturers.
+END FIELD
+
+FIELD certification.type_certificate
+  Value: A3EU
+  Status: certified-published
+  Source: tcca_type_designators_42140
+  Applicability: Severe; bundled label spans numerous models, engines, weights and manufacturers.
+END FIELD
+
+FIELD certification.issue
+  Value: Current revision not retrieved
+  Status: certified-published
+  Source: tcca_type_designators_42140
+  Applicability: Severe; bundled label spans numerous models, engines, weights and manufacturers.
+END FIELD
+
+FIELD certification.issue_date
+  Value: null
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD mtow
+  Value: 12700
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mlw
+  Value: 10600
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mzfw
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD minimum_weight
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD vmo
+  Value: 320
+  Unit: kt
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mmo
+  Value: 0.8
+  Unit: Mach
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD ceiling
+  Value: 41000
+  Unit: ft
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+LEGACY PARAMETERS
+  Parameters not listed above retain the original Aerox database values.
+  Unless a source is named above, those values remain legacy-unverified.

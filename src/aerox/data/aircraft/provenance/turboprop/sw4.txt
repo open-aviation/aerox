@@ -1,0 +1,105 @@
+AEROX AIRCRAFT SOURCE NOTES
+Aircraft: Swearingen SA-227AT Merlin 4
+ICAO: SW4
+Last reviewed: 2026-08-05
+Source ledger: docs/modeling/sources.yml
+
+CERTIFICATION SCOPE
+  Model or family: SA227-AT Merlin IVC
+  Authority: Federal Aviation Administration
+  Type certificate: A5SW
+  Applicability: Exact approved weight and engine configuration unresolved; do not substitute Metro SA227-AC/BC/CC/DC variants.
+
+TYPE-CERTIFICATE AND LIMIT PARAMETERS
+
+FIELD certification.model
+  Value: SA227-AT Merlin IVC
+  Status: certified-published
+  Source: faa_sa227_aging_airplane_rule_table
+  Applicability: Exact approved weight and engine configuration unresolved; do not substitute Metro SA227-AC/BC/CC/DC variants.
+END FIELD
+
+FIELD certification.authority
+  Value: Federal Aviation Administration
+  Status: certified-published
+  Source: faa_sa227_aging_airplane_rule_table
+  Applicability: Exact approved weight and engine configuration unresolved; do not substitute Metro SA227-AC/BC/CC/DC variants.
+END FIELD
+
+FIELD certification.type_certificate
+  Value: A5SW
+  Status: certified-published
+  Source: faa_sa227_aging_airplane_rule_table
+  Applicability: Exact approved weight and engine configuration unresolved; do not substitute Metro SA227-AC/BC/CC/DC variants.
+END FIELD
+
+FIELD certification.issue
+  Value: Current revision not retrieved
+  Status: certified-published
+  Source: faa_sa227_aging_airplane_rule_table
+  Applicability: Exact approved weight and engine configuration unresolved; do not substitute Metro SA227-AC/BC/CC/DC variants.
+END FIELD
+
+FIELD certification.issue_date
+  Value: null
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD mtow
+  Value: 7300
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mlw
+  Value: 7100
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mzfw
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD minimum_weight
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD vmo
+  Value: null
+  Unit: kt
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD mmo
+  Value: null
+  Unit: Mach
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD ceiling
+  Value: 25000
+  Unit: ft
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+LEGACY PARAMETERS
+  Parameters not listed above retain the original Aerox database values.
+  Unless a source is named above, those values remain legacy-unverified.

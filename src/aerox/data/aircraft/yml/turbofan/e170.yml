@@ -1,0 +1,78 @@
+aircraft: Embraer 170
+icao: E170
+iata: E70
+certification:
+  model: ERJ 170-100
+  authority: Agencia Nacional de Aviacao Civil
+  type_certificate: CT2003T05
+  issue: null
+  issue_date: null
+mtow: 38600
+mlw: 33300
+mzfw: null
+minimum_weight: null
+oew: 21140
+mfc: 9335
+vmo: 320
+mmo: 0.82
+ceiling: 41000
+icao_wtc: medium
+eu_wtc: lower medium
+faa_wtc: medium
+parking_area_m2: 913
+pax:
+  max: 80
+  high: 72
+  low: 60
+fuselage:
+  length: 29.9
+  height: 3.35
+  width: 3.01
+wing:
+  area: 72.72
+  span: 26.0
+  mac: 3.19
+  sweep: 23
+  t/c: 0.11
+flaps:
+  type: double-slotted
+  area: null
+  bf/b: null
+  lambda_f: 0.9
+  cf/c: 0.15
+  Sf/S: 0.15
+engine:
+  type: turbofan
+  mount: wing
+  number: 2
+  default: CF34-8E5
+  options:
+  - CF34-8E5
+  - CF34-8E6
+drag:
+  cd0: 0.0245
+  k: 0.0426
+  e: 0.79588
+  gears: 0.01771
+kinematic:
+  takeoff_distance_m: 1644
+  takeoff_v2: 138
+  climb_to_fl50_ias: 190
+  climb_to_fl50_vs: 3400
+  climb_to_fl150_ias: 300
+  climb_to_fl150_vs: 2800
+  climb_to_fl240_ias: 300
+  climb_to_fl240_vs: 2200
+  mach_climb_mach: 0.75
+  mach_climb_vs: 1600
+  cruise_mach: 0.78
+  cruise_range_nm: 2100
+  cruise_tas: 460
+  descent_to_fl240_mach: 0.76
+  descent_to_fl240_vs: 2300
+  descent_to_fl100_ias: 300
+  descent_to_fl100_vs: 2600
+  approach_ias: 250
+  approach_vs: 2000
+  landing_distance_m: 1274
+  landing_ias: 130

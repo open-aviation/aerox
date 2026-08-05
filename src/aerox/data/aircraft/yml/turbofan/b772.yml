@@ -1,0 +1,85 @@
+aircraft: Boeing 777-200
+icao: B772
+iata: 777 / 772
+certification:
+  model: 777-200
+  authority: EASA
+  type_certificate: EASA.IM.A.003
+  issue: '20.0'
+  issue_date: 2026-05-13
+mtow: 297600
+mlw: 213200
+mzfw: null
+minimum_weight: null
+oew: 138000
+mfc: 171000
+vmo: 330
+mmo: 0.89
+ceiling: 43000
+icao_wtc: heavy
+eu_wtc: upper heavy
+faa_wtc: heavy
+parking_area_m2: 4175
+pax:
+  max: 440
+  high: 320
+  low: 300
+fuselage:
+  length: 63.73
+  height: 6.2
+  width: 6.2
+wing:
+  area: 427
+  span: 60.93
+  mac: 8.75
+  sweep: 31
+  t/c: 0.1
+flaps:
+  type: double-slotted
+  area: 67.13
+  bf/b: 0.76
+  lambda_f: 0.9
+  cf/c: 0.17
+  Sf/S: 0.16
+engine:
+  type: turbofan
+  mount: wing
+  number: 2
+  default: PW4084
+  options:
+  - PW4074
+  - GE90-75B
+  - Trent 875
+  - PW4077
+  - GE90-76B
+  - Trent 877
+  - PW4084
+  - GE90-85B
+  - Trent 884
+drag:
+  cd0: 0.01723
+  k: 0.04544
+  e: 0.80567
+  gears: 0.01484
+kinematic:
+  takeoff_distance_m: 2900
+  takeoff_v2: 170
+  climb_to_fl50_ias: 200
+  climb_to_fl50_vs: 3000
+  climb_to_fl150_ias: 300
+  climb_to_fl150_vs: 2500
+  climb_to_fl240_ias: 300
+  climb_to_fl240_vs: 2000
+  mach_climb_mach: 0.83
+  mach_climb_vs: 1500
+  cruise_mach: 0.84
+  cruise_range_nm: 5210
+  cruise_tas: 480
+  descent_to_fl240_mach: 0.75
+  descent_to_fl240_vs: 800
+  descent_to_fl100_ias: 300
+  descent_to_fl100_vs: 3000
+  approach_ias: 250
+  approach_vs: 1500
+  landing_distance_m: 1700
+  landing_ias: 140

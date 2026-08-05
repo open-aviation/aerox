@@ -19,11 +19,19 @@ from dataclasses import fields
 from functools import lru_cache
 from pathlib import Path
 
-# Import drag calculation functions from dragcoef.py
-import dragcoef
+# Import drag calculation functions in both script and package-test contexts.
+try:
+    import dragcoef
+except ModuleNotFoundError:  # pragma: no cover - exercised by package-style import
+    from tools import dragcoef
 import numpy as np
 import yaml
 from flask import Flask, jsonify, redirect, render_template_string, request, url_for
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+SRC_ROOT = PROJECT_ROOT / "src"
+if str(SRC_ROOT) not in sys.path:
+    sys.path.insert(0, str(SRC_ROOT))
 
 app = Flask(__name__)
 YAML_BASE_DIR = (
@@ -1265,7 +1273,8 @@ def load_aircraft_data(icao):
         return None, None
 
     with open(yaml_file, "r") as f:
-        return yaml.safe_load(f), engine_type
+        document = yaml.safe_load(f)
+    return document, engine_type
 
 
 def format_value(value, field_name=None):
@@ -1289,6 +1298,9 @@ def format_value(value, field_name=None):
         # For t/c ratio, always use 3 decimal places
         if field_name == "t/c":
             return f"{value:.3f}"
+        # Preserve certification-grade mean-aerodynamic-chord precision.
+        if field_name == "mac":
+            return round(value, 4)
         # For drag coefficients, use 5 decimal precision
         if field_name in ["cd0", "k", "e", "gears"]:
             return round(value, 5)
@@ -1319,6 +1331,17 @@ def save_aircraft_data(icao, data, engine_type=None):
         if not yaml_file:
             # Default to turbofan if new file
             yaml_file = YAML_BASE_DIR / DEFAULT_ENGINE_TYPE / f"{icao.lower()}.yml"
+
+    editable_fields = set(FIELD_SCHEMA["simple"]) | set(FIELD_SCHEMA["nested"])
+    preserved_data = {}
+    if yaml_file.exists():
+        with open(yaml_file, "r", encoding="utf-8") as stream:
+            existing_data = yaml.safe_load(stream) or {}
+        preserved_data = {
+            key: value
+            for key, value in existing_data.items()
+            if key not in editable_fields
+        }
 
     lines = []
 
@@ -1406,6 +1429,13 @@ def save_aircraft_data(icao, data, engine_type=None):
     content = "\n".join(lines)
     if content.endswith("\n\n"):
         content = content[:-1]
+
+    # The editor does not yet expose certification, higher-order geometry, or
+    # provenance fields. Preserve all non-editable top-level sections verbatim
+    # in meaning so editing a legacy field cannot silently discard them.
+    if preserved_data:
+        preserved_yaml = yaml.safe_dump(preserved_data, sort_keys=False).rstrip()
+        content = f"{content.rstrip()}\n\n{preserved_yaml}\n"
 
     with open(yaml_file, "w", encoding="utf-8") as f:
         f.write(content)

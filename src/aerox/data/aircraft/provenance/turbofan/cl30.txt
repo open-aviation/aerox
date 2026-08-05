@@ -1,0 +1,103 @@
+AEROX AIRCRAFT SOURCE NOTES
+Aircraft: Bombardier (Canadair) Challenger 300
+ICAO: CL30
+Last reviewed: 2026-08-05
+Source ledger: docs/modeling/sources.yml
+
+CERTIFICATION SCOPE
+  Model or family: BD-100-1A10 Challenger 300 configuration
+  Authority: Transport Canada Civil Aviation
+  Type certificate: A-234
+  Applicability: Weight option, engine installation and production configuration unresolved.
+
+TYPE-CERTIFICATE AND LIMIT PARAMETERS
+
+FIELD certification.model
+  Value: BD-100-1A10 Challenger 300 configuration
+  Status: certified-published
+  Source: tcca_a234_cl30_oe
+  Applicability: Weight option, engine installation and production configuration unresolved.
+END FIELD
+
+FIELD certification.authority
+  Value: Transport Canada Civil Aviation
+  Status: certified-published
+  Source: tcca_a234_cl30_oe
+  Applicability: Weight option, engine installation and production configuration unresolved.
+END FIELD
+
+FIELD certification.type_certificate
+  Value: A-234
+  Status: certified-published
+  Source: tcca_a234_cl30_oe
+  Applicability: Weight option, engine installation and production configuration unresolved.
+END FIELD
+
+FIELD certification.issue
+  Value: null
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD certification.issue_date
+  Value: null
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD mtow
+  Value: 17622
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mlw
+  Value: 15300
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mzfw
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD minimum_weight
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD vmo
+  Value: 320
+  Unit: kt
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mmo
+  Value: 0.83
+  Unit: Mach
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD ceiling
+  Value: 45000
+  Unit: ft
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+LEGACY PARAMETERS
+  Parameters not listed above retain the original Aerox database values.
+  Unless a source is named above, those values remain legacy-unverified.

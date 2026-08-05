@@ -1,0 +1,77 @@
+aircraft: Cessna Skylane 182
+icao: C182
+iata: null
+certification:
+  model: null
+  authority: FAA
+  type_certificate: 3A13
+  issue: current revision unresolved
+  issue_date: null
+mtow: 1270
+mlw: 1300
+mzfw: null
+minimum_weight: null
+oew: null
+mfc: null
+vmo: null
+mmo: null
+ceiling: 18000
+icao_wtc: light
+eu_wtc: light
+faa_wtc: light
+parking_area_m2: 145
+pax:
+  max: 4
+  high: null
+  low: null
+fuselage:
+  length: 8.6
+  height: 2.8
+  width: null
+wing:
+  area: null
+  span: 11
+  mac: null
+  sweep: null
+  t/c: null
+flaps:
+  type: null
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: piston
+  mount: nose mounted
+  number: 1
+  default: 230 Hp Lycoming IO-540-AB1A5 piston engine with 2 blade propeller
+  options:
+  - 230 Hp Lycoming IO-540-AB1A5 piston engine with 2 blade propeller
+drag:
+  cd0: null
+  k: null
+  e: null
+  gears: null
+kinematic:
+  takeoff_distance_m: 200
+  takeoff_v2: 65
+  climb_to_fl50_ias: 80
+  climb_to_fl50_vs: 500
+  climb_to_fl150_ias: 85
+  climb_to_fl150_vs: 250
+  climb_to_fl240_ias: 85
+  climb_to_fl240_vs: 250
+  mach_climb_mach: null
+  mach_climb_vs: null
+  cruise_mach: null
+  cruise_range_nm: 550
+  cruise_tas: 140
+  descent_to_fl240_mach: null
+  descent_to_fl240_vs: null
+  descent_to_fl100_ias: 140
+  descent_to_fl100_vs: 500
+  approach_ias: 110
+  approach_vs: 500
+  landing_distance_m: 411
+  landing_ias: 65

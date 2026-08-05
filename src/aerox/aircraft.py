@@ -9,13 +9,13 @@ Usage:
 
     # Get all available aircraft ICAO codes
     icao_codes = get_available_aircraft()
-    print(f"Total aircraft: {len(icao_codes)}")  # 139
+    print(f"Total aircraft: {len(icao_codes)}")  # 144
 
     # Load a specific aircraft from YAML
     aircraft = load_aircraft("A320")
 
     # Access properties
-    print(aircraft.mtow)  # 73900
+    print(aircraft.mtow)  # 78000
     print(aircraft.wing.span)  # 34.1
     print(aircraft.kinematic.cruise_mach)  # 0.79
 """
@@ -25,7 +25,6 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 import yaml
-
 
 AIRCRAFT_DATA_DIR = Path(__file__).parent / "data" / "aircraft" / "yml"
 ENGINE_TYPE_DIRS = ("turbofan", "turboprop", "piston")
@@ -58,6 +57,90 @@ class Wing:
     mac: Optional[float] = None
     sweep: Optional[int] = None  # Changed to int (e.g., 25 degrees)
     t_c: Optional[float] = field(default=None, metadata={"yaml_key": "t/c"})
+
+
+@dataclass
+class Certification:
+    """Aircraft-model certification identity and source reference."""
+
+    model: Optional[str] = None
+    authority: Optional[str] = None
+    type_certificate: Optional[str] = None
+    issue: Optional[int] = None
+    issue_date: Optional[str] = None
+    type_design_definition: Optional[str] = None
+    source_id: Optional[str] = None
+
+
+@dataclass
+class CertifiedMassLimits:
+    """Maximum certified mass limits in kilograms for a named model."""
+
+    mtow: Optional[int] = None
+    mlw: Optional[int] = None
+    mzfw: Optional[int] = None
+    minimum_weight: Optional[int] = None
+    applicability: Optional[str] = None
+    source_id: Optional[str] = None
+
+
+@dataclass
+class ReferenceGeometry:
+    """Published reference dimensions in metres not covered by wing/fuselage."""
+
+    overall_height: Optional[float] = None
+    modified_wing_span: Optional[float] = None
+    modified_wing_span_applicability: Optional[str] = None
+    engine_axis_spacing: Optional[float] = None
+    main_landing_gear_track: Optional[float] = None
+    nose_to_main_landing_gear: Optional[float] = None
+    datum_forward_of_nose: Optional[float] = None
+    source_id: Optional[str] = None
+
+
+@dataclass
+class Tail:
+    """Tail geometry in metres, square metres, and degrees where applicable."""
+
+    area: Optional[float] = None
+    span: Optional[float] = None
+    height: Optional[float] = None
+    mac: Optional[float] = None
+    sweep: Optional[float] = None
+    arm: Optional[float] = None
+    status: Optional[str] = None
+    source_id: Optional[str] = None
+
+
+@dataclass
+class ControlSurface:
+    """Control-surface geometry; span stations and ratios are nondimensional."""
+
+    span_limits: Optional[List[float]] = None
+    chord_ratio: Optional[float] = None
+    deflection_limit: Optional[float] = None
+    status: Optional[str] = None
+    source_id: Optional[str] = None
+
+
+@dataclass
+class MassProperties:
+    """Reference CG and rigid-body inertias for higher-order simulation.
+
+    CG locations are fractions of mean aerodynamic chord. Inertias use kg m².
+    A reference CG is not an operational CG measurement or a certified range.
+    """
+
+    reference_cg_mac: Optional[float] = None
+    cg_forward_mac: Optional[float] = None
+    cg_aft_mac: Optional[float] = None
+    reference_mass: Optional[float] = None
+    ixx: Optional[float] = None
+    iyy: Optional[float] = None
+    izz: Optional[float] = None
+    ixz: Optional[float] = None
+    status: Optional[str] = None
+    source_id: Optional[str] = None
 
 
 @dataclass
@@ -164,6 +247,15 @@ class Aircraft:
         pax: Passenger configuration
         fuselage: Fuselage dimensions
         wing: Wing configuration
+        certification: Aircraft-model certification record
+        certified_mass_limits: Model-level certified mass limits
+        geometry: Additional published reference dimensions
+        horizontal_tail: Horizontal-tail geometry
+        vertical_tail: Vertical-tail geometry
+        aileron: Aileron geometry and limits
+        rudder: Rudder geometry and limits
+        mass_properties: CG and inertia data for higher-order simulation
+        data_provenance: Per-field source and confidence metadata
         flaps: Flap configuration
         engine: Engine configuration
         drag: Drag coefficients
@@ -178,6 +270,8 @@ class Aircraft:
     # Weight limits (kg)
     mtow: Optional[int] = None
     mlw: Optional[int] = None
+    mzfw: Optional[int] = None
+    minimum_weight: Optional[int] = None
     oew: Optional[int] = None
     mfc: Optional[int] = None
 
@@ -200,10 +294,19 @@ class Aircraft:
     pax: Optional[Pax] = None
     fuselage: Optional[Fuselage] = None
     wing: Optional[Wing] = None
+    certification: Optional[Certification] = None
+    certified_mass_limits: Optional[CertifiedMassLimits] = None
+    geometry: Optional[ReferenceGeometry] = None
+    horizontal_tail: Optional[Tail] = None
+    vertical_tail: Optional[Tail] = None
+    aileron: Optional[ControlSurface] = None
+    rudder: Optional[ControlSurface] = None
+    mass_properties: Optional[MassProperties] = None
     flaps: Optional[Flaps] = None
     engine: Optional[Engine] = None
     drag: Optional[Drag] = None
     kinematic: Optional[Kinematic] = None
+    data_provenance: Dict[str, Any] = field(default_factory=dict)
 
 
 def _load_nested_dataclass(data: Optional[Dict], cls):
@@ -242,7 +345,37 @@ def _load_kinematic(data: Optional[Dict]) -> Optional[Kinematic]:
     return Kinematic(**kinematic_dict)
 
 
-def load_aircraft_from_dict(data: Dict[str, Any]) -> Aircraft:
+def parse_source_notes(text: str) -> Dict[str, Any]:
+    """Parse the compact, human-readable source note sidecar."""
+
+    result: Dict[str, Any] = {"header": {}, "fields": {}}
+    current: Optional[Dict[str, str]] = None
+    for line in text.splitlines():
+        if line.startswith("Aircraft: "):
+            result["header"]["aircraft"] = line.removeprefix("Aircraft: ")
+        elif line.startswith("ICAO: "):
+            result["header"]["icao"] = line.removeprefix("ICAO: ")
+        elif line.startswith("Last reviewed: "):
+            result["header"]["last_reviewed"] = line.removeprefix("Last reviewed: ")
+        elif line.startswith("FIELD "):
+            current = {}
+            result["fields"][line.removeprefix("FIELD ")] = current
+        elif line == "END FIELD":
+            current = None
+        elif current is not None and line.startswith("  ") and ": " in line:
+            key, value = line.strip().split(": ", 1)
+            current[key.lower().replace(" ", "_")] = value
+    return result
+
+
+def _source_ids(provenance: Dict[str, Any], path: str) -> List[str]:
+    value = provenance.get("fields", {}).get(path, {}).get("source")
+    return [] if not value or value == "-" else [part.strip() for part in value.split(" | ")]
+
+
+def load_aircraft_from_dict(
+    data: Dict[str, Any], provenance: Optional[Dict[str, Any]] = None
+) -> Aircraft:
     """
     Load an Aircraft object from a dictionary (typically from YAML).
 
@@ -252,14 +385,47 @@ def load_aircraft_from_dict(data: Dict[str, Any]) -> Aircraft:
     Returns:
         Aircraft: Populated aircraft data class
     """
-    # Extract nested structures
+    provenance = provenance or {"header": {}, "fields": {}}
     pax = _load_nested_dataclass(data.get("pax"), Pax)
     fuselage = _load_nested_dataclass(data.get("fuselage"), Fuselage)
     wing = _load_nested_dataclass(data.get("wing"), Wing)
+    certification = _load_nested_dataclass(data.get("certification"), Certification)
+    certified_mass_limits = _load_nested_dataclass(
+        data.get("certified_mass_limits"), CertifiedMassLimits
+    )
+    if certified_mass_limits is None:
+        mtow_sources = _source_ids(provenance, "mtow")
+        certified_mass_limits = CertifiedMassLimits(
+            mtow=data.get("mtow"),
+            mlw=data.get("mlw"),
+            mzfw=data.get("mzfw"),
+            minimum_weight=data.get("minimum_weight"),
+            applicability=provenance.get("fields", {}).get("mtow", {}).get("applicability"),
+            source_id=mtow_sources[0] if mtow_sources else None,
+        )
+    geometry = _load_nested_dataclass(data.get("geometry"), ReferenceGeometry)
+    horizontal_tail = _load_nested_dataclass(data.get("horizontal_tail"), Tail)
+    vertical_tail = _load_nested_dataclass(data.get("vertical_tail"), Tail)
+    aileron = _load_nested_dataclass(data.get("aileron"), ControlSurface)
+    rudder = _load_nested_dataclass(data.get("rudder"), ControlSurface)
+    mass_properties = _load_nested_dataclass(
+        data.get("mass_properties"), MassProperties
+    )
     flaps = _load_nested_dataclass(data.get("flaps"), Flaps)
     engine = _load_nested_dataclass(data.get("engine"), Engine)
     drag = _load_nested_dataclass(data.get("drag"), Drag)
     kinematic = _load_kinematic(data.get("kinematic"))
+    if certification is not None and certification.source_id is None:
+        certification_sources = _source_ids(
+            provenance, "certification.type_certificate"
+        )
+        certification.source_id = certification_sources[0] if certification_sources else None
+    field_sources = dict(data.get("data_provenance", {}).get("field_sources", {}))
+    field_sources.update({
+        path: _source_ids(provenance, path)
+        for path in provenance.get("fields", {})
+        if _source_ids(provenance, path)
+    })
 
     # Extract top-level fields
     aircraft = Aircraft(
@@ -268,6 +434,8 @@ def load_aircraft_from_dict(data: Dict[str, Any]) -> Aircraft:
         iata=data.get("iata"),
         mtow=data.get("mtow"),
         mlw=data.get("mlw"),
+        mzfw=data.get("mzfw"),
+        minimum_weight=data.get("minimum_weight"),
         oew=data.get("oew"),
         mfc=data.get("mfc"),
         vmo=data.get("vmo"),
@@ -280,10 +448,23 @@ def load_aircraft_from_dict(data: Dict[str, Any]) -> Aircraft:
         pax=pax,
         fuselage=fuselage,
         wing=wing,
+        certification=certification,
+        certified_mass_limits=certified_mass_limits,
+        geometry=geometry,
+        horizontal_tail=horizontal_tail,
+        vertical_tail=vertical_tail,
+        aileron=aileron,
+        rudder=rudder,
+        mass_properties=mass_properties,
         flaps=flaps,
         engine=engine,
         drag=drag,
         kinematic=kinematic,
+        data_provenance={
+            **data.get("data_provenance", {}),
+            "field_sources": field_sources,
+            "sidecar": provenance,
+        },
     )
 
     return aircraft
@@ -331,7 +512,7 @@ def load_aircraft(icao: str, data_dir: Optional[Path] = None) -> Aircraft:
     Example:
         >>> aircraft = load_aircraft("A320")
         >>> print(aircraft.mtow)
-        73900
+        78000
         >>> print(aircraft.wing.span)
         34.1
     """
@@ -343,7 +524,12 @@ def load_aircraft(icao: str, data_dir: Optional[Path] = None) -> Aircraft:
     with open(yaml_file, "r", encoding="utf-8") as f:
         data = yaml.safe_load(f)
 
-    return load_aircraft_from_dict(data)
+    provenance = None
+    sidecar = Path(data_dir).parent / "provenance" / yaml_file.parent.name / f"{yaml_file.stem}.txt"
+    if sidecar.exists():
+        provenance = parse_source_notes(sidecar.read_text(encoding="utf-8"))
+
+    return load_aircraft_from_dict(data, provenance)
 
 
 def get_available_aircraft(data_dir: Optional[Path] = None) -> List[str]:
@@ -359,7 +545,7 @@ def get_available_aircraft(data_dir: Optional[Path] = None) -> List[str]:
     Example:
         >>> icao_codes = get_available_aircraft()
         >>> print(len(icao_codes))
-        139
+        144
         >>> print("A320" in icao_codes)
         True
     """

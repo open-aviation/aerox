@@ -1,0 +1,77 @@
+aircraft: Piper PA-32R Lance/ Saratoga SP
+icao: P32R
+iata: null
+certification:
+  model: null
+  authority: FAA
+  type_certificate: A3SO
+  issue: current revision unresolved
+  issue_date: null
+mtow: 1640
+mlw: 1600
+mzfw: null
+minimum_weight: null
+oew: null
+mfc: null
+vmo: null
+mmo: null
+ceiling: 20000
+icao_wtc: light
+eu_wtc: light
+faa_wtc: light
+parking_area_m2: 140
+pax:
+  max: 6
+  high: null
+  low: null
+fuselage:
+  length: 8.6
+  height: 2.6
+  width: null
+wing:
+  area: null
+  span: 11
+  mac: null
+  sweep: null
+  t/c: null
+flaps:
+  type: null
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: piston
+  mount: nose mounted
+  number: 1
+  default: 300 HP Lycoming IO-540-K1G5 piston engine with 2 or 3 blade propeller
+  options:
+  - 300 HP Lycoming IO-540-K1G5 piston engine with 2 or 3 blade propeller
+drag:
+  cd0: null
+  k: null
+  e: null
+  gears: null
+kinematic:
+  takeoff_distance_m: 500
+  takeoff_v2: 75
+  climb_to_fl50_ias: 105
+  climb_to_fl50_vs: 1000
+  climb_to_fl150_ias: 130
+  climb_to_fl150_vs: 600
+  climb_to_fl240_ias: 130
+  climb_to_fl240_vs: null
+  mach_climb_mach: null
+  mach_climb_vs: null
+  cruise_mach: null
+  cruise_range_nm: 800
+  cruise_tas: 160
+  descent_to_fl240_mach: null
+  descent_to_fl240_vs: null
+  descent_to_fl100_ias: 160
+  descent_to_fl100_vs: 500
+  approach_ias: 160
+  approach_vs: 500
+  landing_distance_m: 550
+  landing_ias: 75

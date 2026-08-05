@@ -1,14 +1,21 @@
 from pathlib import Path
 
 import pytest
+import yaml
 
 from aerox import Aircraft, get_available_aircraft, load_aircraft
 from aerox.aircraft import (
+    Certification,
+    CertifiedMassLimits,
+    ControlSurface,
     Drag,
     Engine,
     Fuselage,
     Kinematic,
+    MassProperties,
     Pax,
+    ReferenceGeometry,
+    Tail,
     Wing,
     load_aircraft_from_dict,
 )
@@ -68,6 +75,34 @@ def test_load_aircraft_finds_turboprop_yaml_by_icao():
     assert aircraft.kinematic.cruise_range_nm == 1500
 
 
+def test_load_a320_certified_and_higher_order_data():
+    aircraft = load_aircraft("A320")
+
+    assert aircraft.aircraft == "Airbus A320-214"
+    assert aircraft.mtow == 78000
+    assert aircraft.wing is not None
+    assert aircraft.wing.span == 34.10
+    assert aircraft.wing.mac == 4.1935
+
+    assert isinstance(aircraft.certification, Certification)
+    assert aircraft.certification.model == "A320-214"
+    assert aircraft.certification.type_certificate == "EASA.A.064"
+    assert aircraft.certification.source_id == "easa_a064_issue_62"
+
+    assert isinstance(aircraft.certified_mass_limits, CertifiedMassLimits)
+    assert aircraft.certified_mass_limits.mzfw == 62500
+    assert aircraft.certified_mass_limits.minimum_weight == 37230
+    assert aircraft.geometry is None
+    assert aircraft.horizontal_tail is None
+    assert aircraft.vertical_tail is None
+    assert aircraft.aileron is None
+    assert aircraft.mass_properties is None
+    assert (
+        aircraft.data_provenance["field_sources"]["mtow"]
+        == ["easa_a064_issue_62"]
+    )
+
+
 def test_load_aircraft_raises_for_unknown_icao():
     with pytest.raises(FileNotFoundError):
         load_aircraft("NOPE")
@@ -85,3 +120,46 @@ def test_custom_data_dir_can_use_flat_or_nested_layout(tmp_path: Path):
     assert load_aircraft("TEST", data_dir=tmp_path).mtow == 123
     assert load_aircraft("NEST", data_dir=tmp_path).mtow == 456
     assert get_available_aircraft(data_dir=tmp_path) == ["NEST"]
+
+
+def test_web_editor_preserves_noneditable_certification_sections(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    monkeypatch.syspath_prepend(str(Path("tools").resolve()))
+    import web_editor
+
+    target_dir = tmp_path / "turbofan"
+    target_dir.mkdir()
+    target = target_dir / "a320.yml"
+    target.write_text(
+        """aircraft: Airbus A320-214
+icao: A320
+mtow: 78000
+wing:
+  area: 122
+  span: 34.1
+  mac: 4.1935
+certification:
+  model: A320-214
+  type_certificate: EASA.A.064
+data_provenance:
+  field_sources:
+    wing.mac: [easa_a064_issue_62]
+"""
+    )
+    editable = {
+        "aircraft": "Airbus A320-214",
+        "icao": "A320",
+        "mtow": 78000,
+        "wing": {"area": 122, "span": 34.1, "mac": 4.1935},
+    }
+    monkeypatch.setattr(web_editor, "YAML_BASE_DIR", tmp_path)
+
+    web_editor.save_aircraft_data("A320", editable, "turbofan")
+
+    saved = yaml.safe_load(target.read_text())
+    assert saved["certification"]["type_certificate"] == "EASA.A.064"
+    assert saved["data_provenance"]["field_sources"]["wing.mac"] == [
+        "easa_a064_issue_62"
+    ]
+    assert saved["wing"]["mac"] == 4.1935

@@ -1,0 +1,80 @@
+aircraft: Diamond Star DA40
+icao: DA40
+iata: null
+certification:
+  model: null
+  authority: EASA
+  type_certificate: EASA.IM.A.022
+  issue: Issue 24 at review
+  issue_date: null
+mtow: 1300
+mlw: 1100
+mzfw: null
+minimum_weight: null
+oew: null
+mfc: null
+vmo: null
+mmo: null
+ceiling: 16000
+icao_wtc: light
+eu_wtc: light
+faa_wtc: light
+parking_area_m2: 143
+pax:
+  max: 4
+  high: null
+  low: null
+fuselage:
+  length: 8.06
+  height: 1.97
+  width: null
+wing:
+  area: null
+  span: 11.63
+  mac: null
+  sweep: null
+  t/c: null
+flaps:
+  type: null
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: piston
+  mount: nose mounted
+  number: 1
+  default: Fixed pitch Textron Lycoming O-360-A4M (180HP)F
+  options:
+  - Fixed pitch Textron Lycoming O-360-A4M (180HP)F
+  - constants speed propellor Textron Lycoming IO-360 M1A
+  - constant speed FADEC controlled Thielert "Centurion" 135 hp (101 kW) diesel engine
+  - Austro Engine AE 300 turbocharged common-rail injected 2.0 liter diesel engine with 168 HP and EECU single lever control system
+drag:
+  cd0: null
+  k: null
+  e: null
+  gears: null
+kinematic:
+  takeoff_distance_m: 305
+  takeoff_v2: 73
+  climb_to_fl50_ias: 130
+  climb_to_fl50_vs: 700
+  climb_to_fl150_ias: 130
+  climb_to_fl150_vs: 500
+  climb_to_fl240_ias: 130
+  climb_to_fl240_vs: null
+  mach_climb_mach: null
+  mach_climb_vs: null
+  cruise_mach: null
+  cruise_range_nm: 830
+  cruise_tas: 130
+  descent_to_fl240_mach: null
+  descent_to_fl240_vs: 800
+  descent_to_fl100_ias: 150
+  descent_to_fl100_vs: 800
+  approach_ias: 120
+  approach_vs: 550
+  landing_distance_m: 700
+  landing_ias: 80

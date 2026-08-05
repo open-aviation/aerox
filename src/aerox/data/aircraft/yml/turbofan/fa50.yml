@@ -1,0 +1,77 @@
+aircraft: Dassault Falcon/Mystère 50
+icao: FA50
+iata: DF3
+certification:
+  model: Mystere Falcon 50
+  authority: EASA
+  type_certificate: EASA.A.062
+  issue: Issue 09 at review
+  issue_date: null
+mtow: 18500
+mlw: 16200
+mzfw: null
+minimum_weight: null
+oew: 9150
+mfc: 7600
+vmo: 320
+mmo: 0.86
+ceiling: 49000
+icao_wtc: medium
+eu_wtc: lower medium
+faa_wtc: medium
+parking_area_m2: 439
+pax:
+  max: 12
+  high: null
+  low: null
+fuselage:
+  length: 18.52
+  height: 1.85
+  width: 2.35
+wing:
+  area: 46
+  span: 18.86
+  mac: 2.6
+  sweep: 32
+  t/c: 0.1
+flaps:
+  type: single-slotted
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: turbofan
+  mount: both sides of rear fuselage and fin-integrated
+  number: 3
+  default: TFE731-3
+  options:
+  - TFE731-3
+drag:
+  cd0: 0.02132
+  k: 0.05022
+  e: 0.81964
+  gears: 0.01556
+kinematic:
+  takeoff_distance_m: 1400
+  takeoff_v2: 120
+  climb_to_fl50_ias: 150
+  climb_to_fl50_vs: 3000
+  climb_to_fl150_ias: 290
+  climb_to_fl150_vs: 2000
+  climb_to_fl240_ias: 290
+  climb_to_fl240_vs: 2000
+  mach_climb_mach: 0.72
+  mach_climb_vs: 1500
+  cruise_mach: 0.82
+  cruise_range_nm: 3500
+  cruise_tas: 480
+  descent_to_fl240_mach: 0.8
+  descent_to_fl240_vs: 1000
+  descent_to_fl100_ias: 290
+  descent_to_fl100_vs: 3000
+  approach_ias: 250
+  approach_vs: 1500
+  landing_distance_m: 1100
+  landing_ias: 130

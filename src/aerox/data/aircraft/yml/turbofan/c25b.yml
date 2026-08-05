@@ -1,0 +1,77 @@
+aircraft: Cessna Citation CJ3
+icao: C25B
+iata: CNJ
+certification:
+  model: 525B
+  authority: FAA validated by EASA
+  type_certificate: A1WI / EASA.IM.A.078
+  issue: EASA Issue 19 at review
+  issue_date: null
+mtow: 6291
+mlw: 5800
+mzfw: null
+minimum_weight: null
+oew: 3750
+mfc: 2670
+vmo: 262
+mmo: 0.74
+ceiling: 45000
+icao_wtc: light
+eu_wtc: light
+faa_wtc: light
+parking_area_m2: 330
+pax:
+  max: 8
+  high: null
+  low: null
+fuselage:
+  length: 15.59
+  height: 1.5
+  width: 1.5
+wing:
+  area: 27
+  span: 16.13
+  mac: 1.9
+  sweep: 0
+  t/c: 0.12
+flaps:
+  type: single-slotted
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: turbofan
+  mount: both sides of rear fuselage
+  number: 2
+  default: Williams FJ44-3A
+  options:
+  - Williams FJ44-3A
+drag:
+  cd0: 0.02255
+  k: 0.04168
+  e: 0.79245
+  gears: 0.01137
+kinematic:
+  takeoff_distance_m: 969
+  takeoff_v2: 110
+  climb_to_fl50_ias: 150
+  climb_to_fl50_vs: 3500
+  climb_to_fl150_ias: 222
+  climb_to_fl150_vs: 3500
+  climb_to_fl240_ias: 222
+  climb_to_fl240_vs: 2500
+  mach_climb_mach: 0.56
+  mach_climb_vs: 1000
+  cruise_mach: 0.73
+  cruise_range_nm: 2040
+  cruise_tas: 415
+  descent_to_fl240_mach: 0.56
+  descent_to_fl240_vs: 2000
+  descent_to_fl100_ias: 270
+  descent_to_fl100_vs: 2000
+  approach_ias: 200
+  approach_vs: 1500
+  landing_distance_m: 844
+  landing_ias: 108

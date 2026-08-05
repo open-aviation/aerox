@@ -1,0 +1,76 @@
+aircraft: Cirrus SR-22 Turbo
+icao: S22T
+iata: null
+certification:
+  model: SR22T
+  authority: FAA validated by EASA
+  type_certificate: A00009CH / EASA.IM.A.007
+  issue: EASA Issue 19 at review
+  issue_date: null
+mtow: 1600
+mlw: 1600
+mzfw: null
+minimum_weight: null
+oew: null
+mfc: null
+vmo: null
+mmo: null
+ceiling: null
+icao_wtc: light
+eu_wtc: null
+faa_wtc: null
+parking_area_m2: 139
+pax:
+  max: null
+  high: null
+  low: null
+fuselage:
+  length: 7.9248
+  height: 2.7127200000000005
+  width: null
+wing:
+  area: null
+  span: 11.67384
+  mac: null
+  sweep: null
+  t/c: null
+flaps:
+  type: null
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: piston
+  mount: null
+  number: 1
+  default: null
+  options: null
+drag:
+  cd0: null
+  k: null
+  e: null
+  gears: null
+kinematic:
+  takeoff_distance_m: null
+  takeoff_v2: null
+  climb_to_fl50_ias: null
+  climb_to_fl50_vs: null
+  climb_to_fl150_ias: null
+  climb_to_fl150_vs: null
+  climb_to_fl240_ias: null
+  climb_to_fl240_vs: null
+  mach_climb_mach: null
+  mach_climb_vs: null
+  cruise_mach: null
+  cruise_range_nm: null
+  cruise_tas: null
+  descent_to_fl240_mach: null
+  descent_to_fl240_vs: null
+  descent_to_fl100_ias: null
+  descent_to_fl100_vs: null
+  approach_ias: 77
+  approach_vs: null
+  landing_distance_m: null
+  landing_ias: null

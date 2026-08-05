@@ -1,0 +1,103 @@
+AEROX AIRCRAFT SOURCE NOTES
+Aircraft: Gulfstream IV/G400
+ICAO: GLF4
+Last reviewed: 2026-08-05
+Source ledger: docs/modeling/sources.yml
+
+CERTIFICATION SCOPE
+  Model or family: -
+  Authority: FAA validated by EASA
+  Type certificate: EASA.IM.A.070; FAA identifier per model TCDS
+  Applicability: Repository explicitly combines GIV and G400 marketing/configuration scope; GIV-X and serial modifications need mapping.
+
+TYPE-CERTIFICATE AND LIMIT PARAMETERS
+
+FIELD certification.model
+  Value: null
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD certification.authority
+  Value: FAA validated by EASA
+  Status: certified-published
+  Source: easa_gulfstream_gii_gv_a070
+  Applicability: Repository explicitly combines GIV and G400 marketing/configuration scope; GIV-X and serial modifications need mapping.
+END FIELD
+
+FIELD certification.type_certificate
+  Value: EASA.IM.A.070; FAA identifier per model TCDS
+  Status: certified-published
+  Source: easa_gulfstream_gii_gv_a070
+  Applicability: Repository explicitly combines GIV and G400 marketing/configuration scope; GIV-X and serial modifications need mapping.
+END FIELD
+
+FIELD certification.issue
+  Value: EASA Issue 12 at review
+  Status: certified-published
+  Source: easa_gulfstream_gii_gv_a070
+  Applicability: Repository explicitly combines GIV and G400 marketing/configuration scope; GIV-X and serial modifications need mapping.
+END FIELD
+
+FIELD certification.issue_date
+  Value: 2026-03-30
+  Status: certified-published
+  Source: easa_gulfstream_gii_gv_a070
+  Applicability: Repository explicitly combines GIV and G400 marketing/configuration scope; GIV-X and serial modifications need mapping.
+END FIELD
+
+FIELD mtow
+  Value: 33200
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mlw
+  Value: 29900
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mzfw
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD minimum_weight
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD vmo
+  Value: 340
+  Unit: kt
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mmo
+  Value: 0.88
+  Unit: Mach
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD ceiling
+  Value: 45000
+  Unit: ft
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+LEGACY PARAMETERS
+  Parameters not listed above retain the original Aerox database values.
+  Unless a source is named above, those values remain legacy-unverified.

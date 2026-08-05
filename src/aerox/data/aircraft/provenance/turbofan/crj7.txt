@@ -1,0 +1,105 @@
+AEROX AIRCRAFT SOURCE NOTES
+Aircraft: Canadair CRJ-700
+ICAO: CRJ7
+Last reviewed: 2026-08-05
+Source ledger: docs/modeling/sources.yml
+
+CERTIFICATION SCOPE
+  Model or family: CL-600-2C10
+  Authority: Transport Canada Civil Aviation
+  Type certificate: A-276
+  Applicability: Later approved weight options may require additional applicability, but the cited planning row is internally consistent.
+
+TYPE-CERTIFICATE AND LIMIT PARAMETERS
+
+FIELD certification.model
+  Value: CL-600-2C10
+  Status: certified-published
+  Source: tcca_a276_crj_oe_r5_2024
+  Applicability: Later approved weight options may require additional applicability, but the cited planning row is internally consistent.
+END FIELD
+
+FIELD certification.authority
+  Value: Transport Canada Civil Aviation
+  Status: certified-published
+  Source: tcca_a276_crj_oe_r5_2024
+  Applicability: Later approved weight options may require additional applicability, but the cited planning row is internally consistent.
+END FIELD
+
+FIELD certification.type_certificate
+  Value: A-276
+  Status: certified-published
+  Source: tcca_a276_crj_oe_r5_2024
+  Applicability: Later approved weight options may require additional applicability, but the cited planning row is internally consistent.
+END FIELD
+
+FIELD certification.issue
+  Value: Issue 7 referenced by the operational evaluation
+  Status: certified-published
+  Source: tcca_a276_crj_oe_r5_2024
+  Applicability: Later approved weight options may require additional applicability, but the cited planning row is internally consistent.
+END FIELD
+
+FIELD certification.issue_date
+  Value: 2022-12-22
+  Status: certified-published
+  Source: tcca_a276_crj_oe_r5_2024
+  Applicability: Later approved weight options may require additional applicability, but the cited planning row is internally consistent.
+END FIELD
+
+FIELD mtow
+  Value: 32999
+  Unit: kg
+  Status: manufacturer-published-planning
+  Source: bombardier_crj700_apm_csp_b020_r15
+  Applicability: CL-600-2C10 cited planning configuration
+END FIELD
+
+FIELD mlw
+  Value: 30390
+  Unit: kg
+  Status: manufacturer-published-planning
+  Source: bombardier_crj700_apm_csp_b020_r15
+  Applicability: CL-600-2C10 cited planning configuration
+END FIELD
+
+FIELD mzfw
+  Value: 28259
+  Unit: kg
+  Status: manufacturer-published-planning
+  Source: bombardier_crj700_apm_csp_b020_r15
+  Applicability: CL-600-2C10 cited planning configuration
+END FIELD
+
+FIELD minimum_weight
+  Value: 19051
+  Unit: kg
+  Status: manufacturer-published-planning
+  Source: bombardier_crj700_apm_csp_b020_r15
+  Applicability: CL-600-2C10 cited planning configuration
+END FIELD
+
+FIELD vmo
+  Value: 315
+  Unit: kt
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mmo
+  Value: 0.85
+  Unit: Mach
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD ceiling
+  Value: 41000
+  Unit: ft
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+LEGACY PARAMETERS
+  Parameters not listed above retain the original Aerox database values.
+  Unless a source is named above, those values remain legacy-unverified.

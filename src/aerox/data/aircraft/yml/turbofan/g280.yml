@@ -1,0 +1,77 @@
+aircraft: Gulfstream G280
+icao: G280
+iata: null
+certification:
+  model: Gulfstream G280
+  authority: FAA validated by EASA
+  type_certificate: EASA.IM.A.348; FAA identifier to confirm from current TCDS
+  issue: current revision unresolved
+  issue_date: null
+mtow: 17962
+mlw: 14800
+mzfw: null
+minimum_weight: null
+oew: 11100
+mfc: 6600
+vmo: 320
+mmo: 0.85
+ceiling: 45000
+icao_wtc: medium
+eu_wtc: lower medium
+faa_wtc: medium
+parking_area_m2: 487
+pax:
+  max: 10
+  high: null
+  low: null
+fuselage:
+  length: 20.37
+  height: 1.88
+  width: 2.16
+wing:
+  area: 47
+  span: 19.2
+  mac: 2.6
+  sweep: 27
+  t/c: 0.11
+flaps:
+  type: single-slotted
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: turbofan
+  mount: rear fuselage
+  number: 2
+  default: HTF7250G
+  options:
+  - HTF7250G
+drag:
+  cd0: 0.02138
+  k: 0.04961
+  e: 0.81801
+  gears: 0.01488
+kinematic:
+  takeoff_distance_m: 1448
+  takeoff_v2: 135
+  climb_to_fl50_ias: 230
+  climb_to_fl50_vs: 5500
+  climb_to_fl150_ias: 280
+  climb_to_fl150_vs: 3500
+  climb_to_fl240_ias: 280
+  climb_to_fl240_vs: 2500
+  mach_climb_mach: 0.83
+  mach_climb_vs: 3000
+  cruise_mach: 0.83
+  cruise_range_nm: 3600
+  cruise_tas: 472
+  descent_to_fl240_mach: 0.83
+  descent_to_fl240_vs: 2800
+  descent_to_fl100_ias: 250
+  descent_to_fl100_vs: 2100
+  approach_ias: 230
+  approach_vs: 1800
+  landing_distance_m: 950
+  landing_ias: 134

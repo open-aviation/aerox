@@ -1,0 +1,77 @@
+aircraft: Airbus A220-300
+icao: BCS3
+iata: '223'
+certification:
+  model: BD-500-1A11
+  authority: Transport Canada Civil Aviation
+  type_certificate: A-236
+  issue: null
+  issue_date: null
+mtow: 70896
+mlw: 61008
+mzfw: 58060
+minimum_weight: 36287
+oew: 37200
+mfc: 21500
+vmo: 340
+mmo: 0.82
+ceiling: 41000
+icao_wtc: medium
+eu_wtc: lower medium
+faa_wtc: medium
+parking_area_m2: 1534
+pax:
+  max: 160
+  high: 150
+  low: 120
+fuselage:
+  length: 38.71
+  height: 3.5
+  width: 3.5
+wing:
+  area: 112.3
+  span: 35.1
+  mac: 3.6
+  sweep: 25
+  t/c: 0.11
+flaps:
+  type: single-slotted
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: turbofan
+  mount: underwing
+  number: 2
+  default: PW1500G
+  options:
+  - PW1500G
+drag:
+  cd0: 0.0226
+  k: 0.03738
+  e: 0.77405
+  gears: 0.01835
+kinematic:
+  takeoff_distance_m: 1890
+  takeoff_v2: 165
+  climb_to_fl50_ias: 175
+  climb_to_fl50_vs: 3100
+  climb_to_fl150_ias: 280
+  climb_to_fl150_vs: 2600
+  climb_to_fl240_ias: 280
+  climb_to_fl240_vs: 1800
+  mach_climb_mach: 0.76
+  mach_climb_vs: 1500
+  cruise_mach: 0.78
+  cruise_range_nm: 3350
+  cruise_tas: 445
+  descent_to_fl240_mach: 0.77
+  descent_to_fl240_vs: 1500
+  descent_to_fl100_ias: 250
+  descent_to_fl100_vs: 2200
+  approach_ias: 210
+  approach_vs: 1700
+  landing_distance_m: 1448
+  landing_ias: 140

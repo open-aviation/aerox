@@ -1,0 +1,79 @@
+aircraft: Boeing 757-300
+icao: B753
+iata: '753'
+certification:
+  model: 757-300
+  authority: EASA
+  type_certificate: EASA.IM.A.205
+  issue: '06'
+  issue_date: 2024-11-06
+mtow: 123600
+mlw: 101600
+mzfw: null
+minimum_weight: null
+oew: 64460
+mfc: 43500
+vmo: 350
+mmo: 0.86
+ceiling: 41000
+icao_wtc: medium
+eu_wtc: lower heavy
+faa_wtc: medium
+parking_area_m2: 2300
+pax:
+  max: 295
+  high: 279
+  low: 243
+fuselage:
+  length: 54.5
+  height: 4.1
+  width: 3.76
+wing:
+  area: 185
+  span: 38.1
+  mac: 5.64
+  sweep: 25
+  t/c: null
+flaps:
+  type: double-slotted
+  area: 30.4
+  bf/b: 0.76
+  lambda_f: 0.9
+  cf/c: 0.19
+  Sf/S: 0.17
+engine:
+  type: turbofan
+  mount: underwing
+  number: 2
+  default: PW2040
+  options:
+  - PW2037
+  - PW2040
+  - RB211-535E4B
+drag:
+  cd0: 0.02061
+  k: 0.0496
+  e: 0.81796
+  gears: 0.01719
+kinematic:
+  takeoff_distance_m: 2600
+  takeoff_v2: 145
+  climb_to_fl50_ias: 175
+  climb_to_fl50_vs: 3000
+  climb_to_fl150_ias: 270
+  climb_to_fl150_vs: 3000
+  climb_to_fl240_ias: 270
+  climb_to_fl240_vs: 2500
+  mach_climb_mach: 0.8
+  mach_climb_vs: 1000
+  cruise_mach: 0.8
+  cruise_range_nm: 3395
+  cruise_tas: 490
+  descent_to_fl240_mach: 0.8
+  descent_to_fl240_vs: 1000
+  descent_to_fl100_ias: 270
+  descent_to_fl100_vs: 3500
+  approach_ias: 230
+  approach_vs: 1500
+  landing_distance_m: 1800
+  landing_ias: 143

@@ -23,6 +23,7 @@ where = ["src"]
 [tool.setuptools.package-data]
 aerox = [
     "data/aircraft/yml/*/*.yml",
+    "data/aircraft/provenance/*/*.txt",
 ]
 
 [tool.pytest.ini_options]

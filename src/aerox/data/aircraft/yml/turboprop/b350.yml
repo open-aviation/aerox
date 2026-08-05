@@ -1,60 +1,58 @@
 aircraft: Beech Super King Air 350
-
 icao: B350
-iata:
-
+iata: null
+certification:
+  model: null
+  authority: FAA validated by EASA
+  type_certificate: A24CE / EASA.IM.A.277
+  issue: EASA Issue 22 at review
+  issue_date: null
 mtow: 6800
 mlw: 6800
+mzfw: null
+minimum_weight: null
 oew: 4300
 mfc: 2000
 vmo: 260
 mmo: 0.58
 ceiling: 35000
-
 icao_wtc: light
 eu_wtc: light
-faa_wtc:
+faa_wtc: null
 parking_area_m2: 326
-
 pax:
   max: 13
-  high:
+  high: null
   low: 8
-
 fuselage:
   length: 14.2
   height: 1.5
   width: 1.5
-
 wing:
   area: 28
   span: 17.7
   mac: 1.78
   sweep: 0
-  t/c:
-
+  t/c: null
 flaps:
-  type:
-  area:
-  bf/b:
-  lambda_f:
-  cf/c:
-  Sf/S:
-
+  type: null
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
 engine:
   type: turboprop
   mount: wing
   number: 2
   default: PT6A-60A
   options:
-    - PT6A-60A
-
+  - PT6A-60A
 drag:
   cd0: 0.02167
   k: 0.03687
   e: 0.77157
-  gears:
-
+  gears: null
 kinematic:
   takeoff_distance_m: 1000
   takeoff_v2: 120
@@ -64,13 +62,13 @@ kinematic:
   climb_to_fl150_vs: 1500
   climb_to_fl240_ias: 230
   climb_to_fl240_vs: 1000
-  mach_climb_mach:
-  mach_climb_vs:
+  mach_climb_mach: null
+  mach_climb_vs: null
   cruise_mach: 0.47
   cruise_range_nm: 1800
   cruise_tas: 300
-  descent_to_fl240_mach:
-  descent_to_fl240_vs:
+  descent_to_fl240_mach: null
+  descent_to_fl240_vs: null
   descent_to_fl100_ias: 280
   descent_to_fl100_vs: 1500
   approach_ias: 250

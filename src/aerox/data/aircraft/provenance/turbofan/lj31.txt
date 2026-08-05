@@ -1,0 +1,103 @@
+AEROX AIRCRAFT SOURCE NOTES
+Aircraft: Bombardier Learjet 31
+ICAO: LJ31
+Last reviewed: 2026-08-05
+Source ledger: docs/modeling/sources.yml
+
+CERTIFICATION SCOPE
+  Model or family: -
+  Authority: Federal Aviation Administration
+  Type certificate: A10CE
+  Applicability: Exact certified model and approved weight configuration unresolved.
+
+TYPE-CERTIFICATE AND LIMIT PARAMETERS
+
+FIELD certification.model
+  Value: null
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD certification.authority
+  Value: Federal Aviation Administration
+  Status: certified-published
+  Source: faa_a10ce_r68_2024_historical
+  Applicability: Exact certified model and approved weight configuration unresolved.
+END FIELD
+
+FIELD certification.type_certificate
+  Value: A10CE
+  Status: certified-published
+  Source: faa_a10ce_r68_2024_historical
+  Applicability: Exact certified model and approved weight configuration unresolved.
+END FIELD
+
+FIELD certification.issue
+  Value: Latest current revision not retrieved; Revision 68 found but marked historical
+  Status: certified-published
+  Source: faa_a10ce_r68_2024_historical
+  Applicability: Exact certified model and approved weight configuration unresolved.
+END FIELD
+
+FIELD certification.issue_date
+  Value: null
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD mtow
+  Value: 7030
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mlw
+  Value: 6900
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mzfw
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD minimum_weight
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD vmo
+  Value: 300
+  Unit: kt
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mmo
+  Value: 0.81
+  Unit: Mach
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD ceiling
+  Value: 51000
+  Unit: ft
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+LEGACY PARAMETERS
+  Parameters not listed above retain the original Aerox database values.
+  Unless a source is named above, those values remain legacy-unverified.

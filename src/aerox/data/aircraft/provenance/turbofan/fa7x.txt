@@ -1,0 +1,103 @@
+AEROX AIRCRAFT SOURCE NOTES
+Aircraft: Dassault Falcon 7X
+ICAO: FA7X
+Last reviewed: 2026-08-05
+Source ledger: docs/modeling/sources.yml
+
+CERTIFICATION SCOPE
+  Model or family: Falcon 7X
+  Authority: EASA
+  Type certificate: EASA.A.155
+  Applicability: Serial and modification state remain unresolved; Falcon 8X modification M1000 is excluded.
+
+TYPE-CERTIFICATE AND LIMIT PARAMETERS
+
+FIELD certification.model
+  Value: Falcon 7X
+  Status: certified-published
+  Source: easa_falcon_7x_a155
+  Applicability: Serial and modification state remain unresolved; Falcon 8X modification M1000 is excluded.
+END FIELD
+
+FIELD certification.authority
+  Value: EASA
+  Status: certified-published
+  Source: easa_falcon_7x_a155
+  Applicability: Serial and modification state remain unresolved; Falcon 8X modification M1000 is excluded.
+END FIELD
+
+FIELD certification.type_certificate
+  Value: EASA.A.155
+  Status: certified-published
+  Source: easa_falcon_7x_a155
+  Applicability: Serial and modification state remain unresolved; Falcon 8X modification M1000 is excluded.
+END FIELD
+
+FIELD certification.issue
+  Value: Issue 17 at review
+  Status: certified-published
+  Source: easa_falcon_7x_a155
+  Applicability: Serial and modification state remain unresolved; Falcon 8X modification M1000 is excluded.
+END FIELD
+
+FIELD certification.issue_date
+  Value: null
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD mtow
+  Value: 31800
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mlw
+  Value: 28300
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mzfw
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD minimum_weight
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD vmo
+  Value: 350
+  Unit: kt
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mmo
+  Value: 0.9
+  Unit: Mach
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD ceiling
+  Value: 51000
+  Unit: ft
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+LEGACY PARAMETERS
+  Parameters not listed above retain the original Aerox database values.
+  Unless a source is named above, those values remain legacy-unverified.

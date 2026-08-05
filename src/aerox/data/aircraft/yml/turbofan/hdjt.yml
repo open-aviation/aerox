@@ -1,0 +1,77 @@
+aircraft: HONDA HA-420 HondaJet
+icao: HDJT
+iata: HHJ
+certification:
+  model: HA-420
+  authority: FAA validated by EASA
+  type_certificate: A00018AT / EASA.IM.A.352
+  issue: EASA Issue 09 at review
+  issue_date: null
+mtow: 4519
+mlw: 4500
+mzfw: null
+minimum_weight: null
+oew: 3058
+mfc: 1113
+vmo: 320
+mmo: 0.72
+ceiling: 43000
+icao_wtc: light
+eu_wtc: light
+faa_wtc: light
+parking_area_m2: 214
+pax:
+  max: 6
+  high: null
+  low: null
+fuselage:
+  length: 12.71
+  height: 1.47
+  width: 1.52
+wing:
+  area: 12
+  span: 12.15
+  mac: 1.1
+  sweep: 15
+  t/c: 0.12
+flaps:
+  type: single-slotted
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: turbofan
+  mount: over wing mounted
+  number: 2
+  default: GE Honda HF-120 turbofan
+  options:
+  - GE Honda HF-120 turbofan
+drag:
+  cd0: 0.0329
+  k: 0.03417
+  e: 0.75727
+  gears: 0.01973
+kinematic:
+  takeoff_distance_m: 1128
+  takeoff_v2: 120
+  climb_to_fl50_ias: 160
+  climb_to_fl50_vs: 3500
+  climb_to_fl150_ias: 210
+  climb_to_fl150_vs: 3000
+  climb_to_fl240_ias: 210
+  climb_to_fl240_vs: 2500
+  mach_climb_mach: 0.57
+  mach_climb_vs: 1500
+  cruise_mach: 0.72
+  cruise_range_nm: 1547
+  cruise_tas: 410
+  descent_to_fl240_mach: 0.72
+  descent_to_fl240_vs: 2000
+  descent_to_fl100_ias: 270
+  descent_to_fl100_vs: 2000
+  approach_ias: 160
+  approach_vs: 1500
+  landing_distance_m: 829
+  landing_ias: 112

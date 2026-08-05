@@ -1,52 +1,58 @@
 aircraft: Socata TBM-700/700A
-
 icao: TBM7
-iata:
-
+iata: null
+certification:
+  model: null
+  authority: EASA
+  type_certificate: EASA.A.010
+  issue: Issue 07
+  issue_date: 2009-03-25
 mtow: 3000
 mlw: 2800
-oew:
-mfc:
-vmo:
-mmo:
+mzfw: null
+minimum_weight: null
+oew: null
+mfc: null
+vmo: 270
+mmo: null
 ceiling: 30000
-
 icao_wtc: light
 eu_wtc: light
 faa_wtc: light
 parking_area_m2: 191
-
 pax:
-  max: 7
-  high:
-  low:
-
+  max: 5
+  high: null
+  low: null
 fuselage:
-  length: 10.63752
+  length: 10.645
   height: 4.35864
-  width:
-
+  width: null
 wing:
-  area:
-  span: 12.67968
-  mac:
-  sweep:
-  t/c:
-
+  area: 18.0
+  span: 12.68
+  mac: null
+  sweep: null
+  t/c: null
 flaps:
-  type:
-  area:
-  bf/b:
-  lambda_f:
-  cf/c:
-  Sf/S:
-
+  type: null
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: turboprop
+  mount: nose mounted
+  number: 1
+  default: P&W PT6A-64 700 SHP
+  options:
+  - PT6A-64
 drag:
-  cd0:
-  k:
-  e:
-  gears:
-
+  cd0: null
+  k: null
+  e: null
+  gears: null
 kinematic:
   takeoff_distance_m: 650
   takeoff_v2: 85
@@ -56,24 +62,16 @@ kinematic:
   climb_to_fl150_vs: 1000
   climb_to_fl240_ias: 200
   climb_to_fl240_vs: 1000
-  mach_climb_mach:
-  mach_climb_vs:
+  mach_climb_mach: null
+  mach_climb_vs: null
   cruise_mach: 0.46
   cruise_range_nm: 900
   cruise_tas: 290
-  descent_to_fl240_mach:
-  descent_to_fl240_vs:
+  descent_to_fl240_mach: null
+  descent_to_fl240_vs: null
   descent_to_fl100_ias: 240
   descent_to_fl100_vs: 1500
   approach_ias: 240
   approach_vs: 1500
   landing_distance_m: 500
   landing_ias: 80
-
-engine:
-  type: turboprop
-  mount: nose mounted
-  number: 1
-  default: P&W PT6A-64 700 SHP
-  options:
-    - P&W PT6A-64 700 SHP

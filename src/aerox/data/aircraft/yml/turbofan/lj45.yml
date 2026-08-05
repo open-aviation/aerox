@@ -1,0 +1,77 @@
+aircraft: Bombardier Learjet 45
+icao: LJ45
+iata: null
+certification:
+  model: Learjet Model 45, Learjet 45 commercial configuration
+  authority: European Union Aviation Safety Agency
+  type_certificate: EASA.IM.A.020
+  issue: Issue 17
+  issue_date: null
+mtow: 9230
+mlw: 8700
+mzfw: null
+minimum_weight: null
+oew: 5760
+mfc: 3000
+vmo: 300
+mmo: 0.81
+ceiling: 45000
+icao_wtc: medium
+eu_wtc: light
+faa_wtc: medium
+parking_area_m2: 338
+pax:
+  max: 9
+  high: 8
+  low: null
+fuselage:
+  length: 17.6
+  height: 1.52
+  width: 1.57
+wing:
+  area: 28
+  span: 14.6
+  mac: 2.1
+  sweep: 13
+  t/c: 0.09
+flaps:
+  type: single-slotted
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: turbofan
+  mount: rear fuselage
+  number: 2
+  default: TFE731-2-2B
+  options:
+  - TFE731-2-2B
+drag:
+  cd0: 0.02322
+  k: 0.0509
+  e: 0.82141
+  gears: 0.01481
+kinematic:
+  takeoff_distance_m: 1325
+  takeoff_v2: 140
+  climb_to_fl50_ias: 170
+  climb_to_fl50_vs: 4000
+  climb_to_fl150_ias: 290
+  climb_to_fl150_vs: 3000
+  climb_to_fl240_ias: 290
+  climb_to_fl240_vs: 3000
+  mach_climb_mach: 0.72
+  mach_climb_vs: 2000
+  cruise_mach: 0.77
+  cruise_range_nm: 2100
+  cruise_tas: 450
+  descent_to_fl240_mach: 0.76
+  descent_to_fl240_vs: 1000
+  descent_to_fl100_ias: 290
+  descent_to_fl100_vs: 4000
+  approach_ias: 250
+  approach_vs: 1500
+  landing_distance_m: 810
+  landing_ias: 140

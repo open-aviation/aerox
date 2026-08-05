@@ -1,60 +1,58 @@
 aircraft: Saab SF 340
-
 icao: SF34
 iata: SF3
-
+certification:
+  model: null
+  authority: European Union Aviation Safety Agency
+  type_certificate: EASA.A.068
+  issue: Issue 26
+  issue_date: '2023-12-20'
 mtow: 12900
 mlw: 12300
-oew:
-mfc:
-vmo:
-mmo:
+mzfw: null
+minimum_weight: null
+oew: null
+mfc: null
+vmo: null
+mmo: null
 ceiling: 25000
-
 icao_wtc: medium
 eu_wtc: light
-faa_wtc:
+faa_wtc: null
 parking_area_m2: 548
-
 pax:
   max: 34
-  high:
-  low:
-
+  high: null
+  low: null
 fuselage:
   length: 19.7
-  height:
-  width:
-
+  height: null
+  width: null
 wing:
-  area:
+  area: null
   span: 21.4
-  mac:
-  sweep:
-  t/c:
-
+  mac: null
+  sweep: null
+  t/c: null
 flaps:
-  type:
-  area:
-  bf/b:
-  lambda_f:
-  cf/c:
-  Sf/S:
-
+  type: null
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
 engine:
   type: turboprop
   mount: front wing leading mounted
   number: 2
   default: GE CT75A2 turboprops with 4 blade propellers
   options:
-    - GE CT75A2 turboprops with 4 blade propellers
-
+  - GE CT75A2 turboprops with 4 blade propellers
 drag:
-  cd0:
-  k:
-  e:
-  gears:
-
+  cd0: null
+  k: null
+  e: null
+  gears: null
 kinematic:
   takeoff_distance_m: 1300
   takeoff_v2: 110
@@ -64,13 +62,13 @@ kinematic:
   climb_to_fl150_vs: 1000
   climb_to_fl240_ias: 210
   climb_to_fl240_vs: 700
-  mach_climb_mach:
-  mach_climb_vs:
+  mach_climb_mach: null
+  mach_climb_vs: null
   cruise_mach: 0.45
   cruise_range_nm: 930
   cruise_tas: 250
-  descent_to_fl240_mach:
-  descent_to_fl240_vs:
+  descent_to_fl240_mach: null
+  descent_to_fl240_vs: null
   descent_to_fl100_ias: 280
   descent_to_fl100_vs: 1500
   approach_ias: 250

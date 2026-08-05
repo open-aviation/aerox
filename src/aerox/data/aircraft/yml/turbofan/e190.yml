@@ -1,0 +1,77 @@
+aircraft: Embraer 190
+icao: E190
+iata: null
+certification:
+  model: ERJ 190-100
+  authority: Agencia Nacional de Aviacao Civil
+  type_certificate: CT2005T13
+  issue: null
+  issue_date: null
+mtow: 45995
+mlw: 43000
+mzfw: null
+minimum_weight: null
+oew: 27837
+mfc: 16250
+vmo: 320
+mmo: 0.82
+ceiling: 41000
+icao_wtc: medium
+eu_wtc: lower medium
+faa_wtc: medium
+parking_area_m2: 1200
+pax:
+  max: 114
+  high: 114
+  low: 94
+fuselage:
+  length: 36.24
+  height: 3.35
+  width: 3.01
+wing:
+  area: 92.5
+  span: 28.72
+  mac: 3.5
+  sweep: 23
+  t/c: 0.11
+flaps:
+  type: double-slotted
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: turbofan
+  mount: wing
+  number: 2
+  default: CF34-10E5
+  options:
+  - CF34-10E5
+drag:
+  cd0: 0.02318
+  k: 0.04433
+  e: 0.802
+  gears: 0.01591
+kinematic:
+  takeoff_distance_m: 2056
+  takeoff_v2: 138
+  climb_to_fl50_ias: 190
+  climb_to_fl50_vs: 3400
+  climb_to_fl150_ias: 300
+  climb_to_fl150_vs: 2800
+  climb_to_fl240_ias: 300
+  climb_to_fl240_vs: 2200
+  mach_climb_mach: 0.75
+  mach_climb_vs: 1800
+  cruise_mach: 0.78
+  cruise_range_nm: 2400
+  cruise_tas: 460
+  descent_to_fl240_mach: 0.75
+  descent_to_fl240_vs: 2100
+  descent_to_fl100_ias: 250
+  descent_to_fl100_vs: 2200
+  approach_ias: 230
+  approach_vs: 1600
+  landing_distance_m: 1323
+  landing_ias: 131

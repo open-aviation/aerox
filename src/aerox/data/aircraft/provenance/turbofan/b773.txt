@@ -1,0 +1,103 @@
+AEROX AIRCRAFT SOURCE NOTES
+Aircraft: Boeing 777-300
+ICAO: B773
+Last reviewed: 2026-08-05
+Source ledger: docs/modeling/sources.yml
+
+CERTIFICATION SCOPE
+  Model or family: 777-300
+  Authority: EASA
+  Type certificate: EASA.IM.A.003
+  Applicability: Engine and weight variant remain unresolved.
+
+TYPE-CERTIFICATE AND LIMIT PARAMETERS
+
+FIELD certification.model
+  Value: 777-300
+  Status: certified-published
+  Source: easa_ima003_issue_20
+  Applicability: Engine and weight variant remain unresolved.
+END FIELD
+
+FIELD certification.authority
+  Value: EASA
+  Status: certified-published
+  Source: easa_ima003_issue_20
+  Applicability: Engine and weight variant remain unresolved.
+END FIELD
+
+FIELD certification.type_certificate
+  Value: EASA.IM.A.003
+  Status: certified-published
+  Source: easa_ima003_issue_20
+  Applicability: Engine and weight variant remain unresolved.
+END FIELD
+
+FIELD certification.issue
+  Value: 20.0
+  Status: certified-published
+  Source: easa_ima003_issue_20
+  Applicability: Engine and weight variant remain unresolved.
+END FIELD
+
+FIELD certification.issue_date
+  Value: 2026-05-13
+  Status: certified-published
+  Source: easa_ima003_issue_20
+  Applicability: Engine and weight variant remain unresolved.
+END FIELD
+
+FIELD mtow
+  Value: 299370
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mlw
+  Value: 237600
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mzfw
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD minimum_weight
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD vmo
+  Value: 330
+  Unit: kt
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mmo
+  Value: 0.89
+  Unit: Mach
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD ceiling
+  Value: 43000
+  Unit: ft
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+LEGACY PARAMETERS
+  Parameters not listed above retain the original Aerox database values.
+  Unless a source is named above, those values remain legacy-unverified.

@@ -1,0 +1,105 @@
+AEROX AIRCRAFT SOURCE NOTES
+Aircraft: Mooney M-20C Ranger
+ICAO: M20P
+Last reviewed: 2026-08-05
+Source ledger: docs/modeling/sources.yml
+
+CERTIFICATION SCOPE
+  Model or family: M20C
+  Authority: FAA
+  Type certificate: 2A3
+  Applicability: The repository name selects M20C, while ICAO M20P covers a broader piston M20 family; serial and model year remain unresolved.
+
+TYPE-CERTIFICATE AND LIMIT PARAMETERS
+
+FIELD certification.model
+  Value: M20C
+  Status: certified-published
+  Source: nz_caa_mooney_m20_r3
+  Applicability: The repository name selects M20C, while ICAO M20P covers a broader piston M20 family; serial and model year remain unresolved.
+END FIELD
+
+FIELD certification.authority
+  Value: FAA
+  Status: certified-published
+  Source: nz_caa_mooney_m20_r3
+  Applicability: The repository name selects M20C, while ICAO M20P covers a broader piston M20 family; serial and model year remain unresolved.
+END FIELD
+
+FIELD certification.type_certificate
+  Value: 2A3
+  Status: certified-published
+  Source: nz_caa_mooney_m20_r3
+  Applicability: The repository name selects M20C, while ICAO M20P covers a broader piston M20 family; serial and model year remain unresolved.
+END FIELD
+
+FIELD certification.issue
+  Value: current revision unresolved
+  Status: certified-published
+  Source: nz_caa_mooney_m20_r3
+  Applicability: The repository name selects M20C, while ICAO M20P covers a broader piston M20 family; serial and model year remain unresolved.
+END FIELD
+
+FIELD certification.issue_date
+  Value: null
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD mtow
+  Value: 1500
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mlw
+  Value: 1500
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mzfw
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD minimum_weight
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD vmo
+  Value: null
+  Unit: kt
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD mmo
+  Value: null
+  Unit: Mach
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD ceiling
+  Value: 25000
+  Unit: ft
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+LEGACY PARAMETERS
+  Parameters not listed above retain the original Aerox database values.
+  Unless a source is named above, those values remain legacy-unverified.

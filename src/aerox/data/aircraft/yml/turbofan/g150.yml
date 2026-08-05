@@ -1,0 +1,77 @@
+aircraft: Gulfstream G150
+icao: G150
+iata: null
+certification:
+  model: Gulfstream G150
+  authority: FAA validated by EASA
+  type_certificate: EASA.IM.A.228; FAA identifier to confirm from current TCDS
+  issue: current revision unresolved
+  issue_date: null
+mtow: 11800
+mlw: 9800
+mzfw: null
+minimum_weight: null
+oew: 6300
+mfc: 4000
+vmo: 330
+mmo: 0.85
+ceiling: 45000
+icao_wtc: medium
+eu_wtc: light
+faa_wtc: medium
+parking_area_m2: 376
+pax:
+  max: 8
+  high: null
+  low: null
+fuselage:
+  length: 17.31
+  height: 1.75
+  width: 1.75
+wing:
+  area: 29
+  span: 16.95
+  mac: 1.9
+  sweep: 28
+  t/c: 0.11
+flaps:
+  type: single-slotted
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: turbofan
+  mount: rear fuselage
+  number: 2
+  default: TFE731-3
+  options:
+  - TFE731-3
+drag:
+  cd0: 0.02425
+  k: 0.04074
+  e: 0.78873
+  gears: 0.01735
+kinematic:
+  takeoff_distance_m: 1524
+  takeoff_v2: 115
+  climb_to_fl50_ias: 220
+  climb_to_fl50_vs: 3300
+  climb_to_fl150_ias: 300
+  climb_to_fl150_vs: 2800
+  climb_to_fl240_ias: 300
+  climb_to_fl240_vs: 2500
+  mach_climb_mach: 0.79
+  mach_climb_vs: 2000
+  cruise_mach: 0.8
+  cruise_range_nm: 3000
+  cruise_tas: 460
+  descent_to_fl240_mach: 0.8
+  descent_to_fl240_vs: 2600
+  descent_to_fl100_ias: 240
+  descent_to_fl100_vs: 2400
+  approach_ias: 200
+  approach_vs: 1500
+  landing_distance_m: 878
+  landing_ias: 130

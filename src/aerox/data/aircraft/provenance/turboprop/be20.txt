@@ -1,0 +1,105 @@
+AEROX AIRCRAFT SOURCE NOTES
+Aircraft: Beech 200 Super King
+ICAO: BE20
+Last reviewed: 2026-08-05
+Source ledger: docs/modeling/sources.yml
+
+CERTIFICATION SCOPE
+  Model or family: -
+  Authority: FAA validated by EASA
+  Type certificate: A24CE / EASA.IM.A.277
+  Applicability: Exact certified model, military derivative, engine, and weight variant are unresolved.
+
+TYPE-CERTIFICATE AND LIMIT PARAMETERS
+
+FIELD certification.model
+  Value: null
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD certification.authority
+  Value: FAA validated by EASA
+  Status: certified-published
+  Source: nz_caa_type_acceptance_index
+  Applicability: Exact certified model, military derivative, engine, and weight variant are unresolved.
+END FIELD
+
+FIELD certification.type_certificate
+  Value: A24CE / EASA.IM.A.277
+  Status: certified-published
+  Source: nz_caa_type_acceptance_index
+  Applicability: Exact certified model, military derivative, engine, and weight variant are unresolved.
+END FIELD
+
+FIELD certification.issue
+  Value: EASA Issue 22 at review
+  Status: certified-published
+  Source: nz_caa_type_acceptance_index
+  Applicability: Exact certified model, military derivative, engine, and weight variant are unresolved.
+END FIELD
+
+FIELD certification.issue_date
+  Value: null
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD mtow
+  Value: 5700
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mlw
+  Value: 5700
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mzfw
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD minimum_weight
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD vmo
+  Value: null
+  Unit: kt
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD mmo
+  Value: null
+  Unit: Mach
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD ceiling
+  Value: 35000
+  Unit: ft
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+LEGACY PARAMETERS
+  Parameters not listed above retain the original Aerox database values.
+  Unless a source is named above, those values remain legacy-unverified.

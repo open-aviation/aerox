@@ -1,0 +1,105 @@
+AEROX AIRCRAFT SOURCE NOTES
+Aircraft: Shorts 360
+ICAO: SH36
+Last reviewed: 2026-08-05
+Source ledger: docs/modeling/sources.yml
+
+CERTIFICATION SCOPE
+  Model or family: SD3-60
+  Authority: European Union Aviation Safety Agency
+  Type certificate: EASA.IM.A.665
+  Applicability: Base versus Mod A8096 mass configuration and engine/propeller modifications remain.
+
+TYPE-CERTIFICATE AND LIMIT PARAMETERS
+
+FIELD certification.model
+  Value: SD3-60
+  Status: certified-published
+  Source: easa_ima665_sd3_i1_2019
+  Applicability: Base versus Mod A8096 mass configuration and engine/propeller modifications remain.
+END FIELD
+
+FIELD certification.authority
+  Value: European Union Aviation Safety Agency
+  Status: certified-published
+  Source: easa_ima665_sd3_i1_2019
+  Applicability: Base versus Mod A8096 mass configuration and engine/propeller modifications remain.
+END FIELD
+
+FIELD certification.type_certificate
+  Value: EASA.IM.A.665
+  Status: certified-published
+  Source: easa_ima665_sd3_i1_2019
+  Applicability: Base versus Mod A8096 mass configuration and engine/propeller modifications remain.
+END FIELD
+
+FIELD certification.issue
+  Value: Issue 1
+  Status: certified-published
+  Source: easa_ima665_sd3_i1_2019
+  Applicability: Base versus Mod A8096 mass configuration and engine/propeller modifications remain.
+END FIELD
+
+FIELD certification.issue_date
+  Value: 2019-06-28
+  Status: certified-published
+  Source: easa_ima665_sd3_i1_2019
+  Applicability: Base versus Mod A8096 mass configuration and engine/propeller modifications remain.
+END FIELD
+
+FIELD mtow
+  Value: 12300
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mlw
+  Value: 12000
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mzfw
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD minimum_weight
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD vmo
+  Value: 196
+  Unit: kt
+  Status: certified-published
+  Source: easa_ima665_sd3_i1_2019
+  Applicability: SD3-60
+END FIELD
+
+FIELD mmo
+  Value: null
+  Unit: Mach
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD ceiling
+  Value: 22000
+  Unit: ft
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+LEGACY PARAMETERS
+  Parameters not listed above retain the original Aerox database values.
+  Unless a source is named above, those values remain legacy-unverified.

@@ -1,61 +1,59 @@
 aircraft: Beech 1900/C-12J
-
 icao: B190
-iata: BE1/BEH/BES
-
+iata: BE1 / BEH / BES
+certification:
+  model: null
+  authority: FAA
+  type_certificate: A24CE
+  issue: current revision unresolved
+  issue_date: null
 mtow: 7690
 mlw: 7300
+mzfw: null
+minimum_weight: null
 oew: 4900
 mfc: 2500
 vmo: 250
 mmo: 0.48
 ceiling: 25000
-
 icao_wtc: medium
 eu_wtc: light
 faa_wtc: medium
 parking_area_m2: 396
-
 pax:
-  max: 18
-  high:
-  low:
-
+  max: 19
+  high: null
+  low: null
 fuselage:
   length: 17.6
   height: 1.4
   width: 1.4
-
 wing:
   area: 28
   span: 17.7
   mac: 1.66
   sweep: 0
   t/c: 0.015
-
 flaps:
-  type:
-  area:
-  bf/b:
-  lambda_f:
-  cf/c:
-  Sf/S:
-
+  type: null
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
 engine:
   type: turboprop
   mount: wing
   number: 2
   default: PT6A-65B
   options:
-    - PT6A-65B
-    - PT6A-67D
-
+  - PT6A-65B
+  - PT6A-67D
 drag:
   cd0: 0.02248
   k: 0.03687
   e: 0.77157
-  gears:
-
+  gears: null
 kinematic:
   takeoff_distance_m: 1150
   takeoff_v2: 110
@@ -65,13 +63,13 @@ kinematic:
   climb_to_fl150_vs: 1200
   climb_to_fl240_ias: 210
   climb_to_fl240_vs: 1200
-  mach_climb_mach:
-  mach_climb_vs:
-  cruise_mach:
+  mach_climb_mach: null
+  mach_climb_vs: null
+  cruise_mach: null
   cruise_range_nm: 1500
   cruise_tas: 270
-  descent_to_fl240_mach:
-  descent_to_fl240_vs:
+  descent_to_fl240_mach: null
+  descent_to_fl240_vs: null
   descent_to_fl100_ias: 250
   descent_to_fl100_vs: 1500
   approach_ias: 250

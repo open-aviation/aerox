@@ -1,52 +1,58 @@
 aircraft: Piper Malibu Meridian
-
 icao: P46T
-iata:
-
+iata: null
+certification:
+  model: null
+  authority: FAA
+  type_certificate: A25SO
+  issue: current revision unresolved
+  issue_date: null
 mtow: 2300
 mlw: 2200
-oew:
-mfc:
-vmo:
-mmo:
+mzfw: null
+minimum_weight: null
+oew: null
+mfc: null
+vmo: null
+mmo: null
 ceiling: 30000
-
 icao_wtc: light
 eu_wtc: light
 faa_wtc: light
 parking_area_m2: 170
-
 pax:
   max: 6
-  high:
-  low:
-
+  high: null
+  low: null
 fuselage:
   length: 9.02208
   height: 3.44424
-  width:
-
+  width: null
 wing:
-  area:
+  area: null
   span: 13.1064
-  mac:
-  sweep:
-  t/c:
-
+  mac: null
+  sweep: null
+  t/c: null
 flaps:
-  type:
-  area:
-  bf/b:
-  lambda_f:
-  cf/c:
-  Sf/S:
-
+  type: null
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: turboprop
+  mount: nose mounted
+  number: 1
+  default: P&W PT6A-42A turboprop with Hartzell 3 blade constant speed propeller
+  options:
+  - P&W PT6A-42A turboprop with Hartzell 3 blade constant speed propeller
 drag:
-  cd0:
-  k:
-  e:
-  gears:
-
+  cd0: null
+  k: null
+  e: null
+  gears: null
 kinematic:
   takeoff_distance_m: 460
   takeoff_v2: 80
@@ -56,24 +62,16 @@ kinematic:
   climb_to_fl150_vs: 1000
   climb_to_fl240_ias: 170
   climb_to_fl240_vs: 800
-  mach_climb_mach:
-  mach_climb_vs:
+  mach_climb_mach: null
+  mach_climb_vs: null
   cruise_mach: 0.41
   cruise_range_nm: 1000
   cruise_tas: 220
-  descent_to_fl240_mach:
-  descent_to_fl240_vs:
+  descent_to_fl240_mach: null
+  descent_to_fl240_vs: null
   descent_to_fl100_ias: 230
   descent_to_fl100_vs: 1500
   approach_ias: 200
   approach_vs: 1500
   landing_distance_m: 450
   landing_ias: 75
-
-engine:
-  type: turboprop
-  mount: nose mounted
-  number: 1
-  default: P&W PT6A-42A turboprop with Hartzell 3 blade constant speed propeller
-  options:
-    - P&W PT6A-42A turboprop with Hartzell 3 blade constant speed propeller

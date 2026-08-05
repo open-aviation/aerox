@@ -1,0 +1,77 @@
+aircraft: Cessna III/VI/VII
+icao: C650
+iata: null
+certification:
+  model: '650'
+  authority: FAA
+  type_certificate: A9NM
+  issue: current revision unresolved
+  issue_date: null
+mtow: 14060
+mlw: 7700
+mzfw: null
+minimum_weight: null
+oew: 5357
+mfc: 4940
+vmo: 320
+mmo: 0.83
+ceiling: 51000
+icao_wtc: medium
+eu_wtc: light
+faa_wtc: medium
+parking_area_m2: 357
+pax:
+  max: 9
+  high: null
+  low: null
+fuselage:
+  length: 16.92
+  height: 1.7
+  width: 1.7
+wing:
+  area: 29
+  span: 16.31
+  mac: 2
+  sweep: 35
+  t/c: 0.11
+flaps:
+  type: single-slotted
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: turbofan
+  mount: both sides of rear fuselage
+  number: 2
+  default: TFE731-3
+  options:
+  - TFE731-3
+drag:
+  cd0: 0.02367
+  k: 0.04344
+  e: 0.7989
+  gears: 0.0199
+kinematic:
+  takeoff_distance_m: 1600
+  takeoff_v2: 125
+  climb_to_fl50_ias: 155
+  climb_to_fl50_vs: 4000
+  climb_to_fl150_ias: 300
+  climb_to_fl150_vs: 3000
+  climb_to_fl240_ias: 300
+  climb_to_fl240_vs: 3000
+  mach_climb_mach: 0.75
+  mach_climb_vs: 1500
+  cruise_mach: 0.8
+  cruise_range_nm: 2200
+  cruise_tas: 470
+  descent_to_fl240_mach: 0.75
+  descent_to_fl240_vs: 1000
+  descent_to_fl100_ias: 300
+  descent_to_fl100_vs: 4000
+  approach_ias: 250
+  approach_vs: 1500
+  landing_distance_m: 900
+  landing_ias: 130

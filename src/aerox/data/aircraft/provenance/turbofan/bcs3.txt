@@ -1,0 +1,105 @@
+AEROX AIRCRAFT SOURCE NOTES
+Aircraft: Airbus A220-300
+ICAO: BCS3
+Last reviewed: 2026-08-05
+Source ledger: docs/modeling/sources.yml
+
+CERTIFICATION SCOPE
+  Model or family: BD-500-1A11
+  Authority: Transport Canada Civil Aviation
+  Type certificate: A-236
+  Applicability: Low; individual approved weight and engine options still require applicability.
+
+TYPE-CERTIFICATE AND LIMIT PARAMETERS
+
+FIELD certification.model
+  Value: BD-500-1A11
+  Status: certified-published
+  Source: tcca_a236_bd500_oe_r3_2024
+  Applicability: Low; individual approved weight and engine options still require applicability.
+END FIELD
+
+FIELD certification.authority
+  Value: Transport Canada Civil Aviation
+  Status: certified-published
+  Source: tcca_a236_bd500_oe_r3_2024
+  Applicability: Low; individual approved weight and engine options still require applicability.
+END FIELD
+
+FIELD certification.type_certificate
+  Value: A-236
+  Status: certified-published
+  Source: tcca_a236_bd500_oe_r3_2024
+  Applicability: Low; individual approved weight and engine options still require applicability.
+END FIELD
+
+FIELD certification.issue
+  Value: null
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD certification.issue_date
+  Value: null
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD mtow
+  Value: 70896
+  Unit: kg
+  Status: manufacturer-published-planning
+  Source: airbus_a220_300_app_i031_2023
+  Applicability: BD-500-1A11 planning configuration
+END FIELD
+
+FIELD mlw
+  Value: 61008
+  Unit: kg
+  Status: manufacturer-published-planning
+  Source: airbus_a220_300_app_i031_2023
+  Applicability: BD-500-1A11 planning configuration
+END FIELD
+
+FIELD mzfw
+  Value: 58060
+  Unit: kg
+  Status: manufacturer-published-planning
+  Source: airbus_a220_300_app_i031_2023
+  Applicability: BD-500-1A11 planning configuration
+END FIELD
+
+FIELD minimum_weight
+  Value: 36287
+  Unit: kg
+  Status: manufacturer-published-planning
+  Source: airbus_a220_300_app_i031_2023
+  Applicability: BD-500-1A11 planning configuration
+END FIELD
+
+FIELD vmo
+  Value: 340
+  Unit: kt
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mmo
+  Value: 0.82
+  Unit: Mach
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD ceiling
+  Value: 41000
+  Unit: ft
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+LEGACY PARAMETERS
+  Parameters not listed above retain the original Aerox database values.
+  Unless a source is named above, those values remain legacy-unverified.

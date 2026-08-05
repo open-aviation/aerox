@@ -1,0 +1,80 @@
+aircraft: Airbus A300-600
+icao: A306
+iata: AB6
+certification:
+  model: null
+  authority: EASA
+  type_certificate: EASA.A.172
+  issue: 08
+  issue_date: 2026-02-01
+mtow: 170500
+mlw: 138000
+mzfw: null
+minimum_weight: null
+oew: 88900
+mfc: 27100
+vmo: 335
+mmo: 0.82
+ceiling: 37000
+icao_wtc: heavy
+eu_wtc: lower heavy
+faa_wtc: heavy
+parking_area_m2: 2663
+pax:
+  max: 375
+  high: 266
+  low: 228
+fuselage:
+  length: 53.3
+  height: 5.64
+  width: 5.64
+wing:
+  area: 260
+  span: 44.84
+  mac: 6.44
+  sweep: 28
+  t/c: 0.105
+flaps:
+  type: null
+  area: 47.3
+  bf/b: 0.8
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: turbofan
+  mount: underwing
+  number: 2
+  default: CF6-80C2A5
+  options:
+  - CF6-80C2A3
+  - CF6-80C2A5
+  - CF6-80C2A5F
+  - PW4158
+drag:
+  cd0: 0.02028
+  k: 0.05022
+  e: 0.81963
+  gears: 0.01574
+kinematic:
+  takeoff_distance_m: 2240
+  takeoff_v2: 160
+  climb_to_fl50_ias: 190
+  climb_to_fl50_vs: 3000
+  climb_to_fl150_ias: 290
+  climb_to_fl150_vs: 3200
+  climb_to_fl240_ias: 290
+  climb_to_fl240_vs: 2500
+  mach_climb_mach: 0.78
+  mach_climb_vs: 800
+  cruise_mach: 0.79
+  cruise_range_nm: 4150
+  cruise_tas: 470
+  descent_to_fl240_mach: 0.78
+  descent_to_fl240_vs: 1000
+  descent_to_fl100_ias: 290
+  descent_to_fl100_vs: 2000
+  approach_ias: 240
+  approach_vs: 1500
+  landing_distance_m: 1532
+  landing_ias: 139

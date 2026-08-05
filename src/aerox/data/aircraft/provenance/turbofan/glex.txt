@@ -1,0 +1,103 @@
+AEROX AIRCRAFT SOURCE NOTES
+Aircraft: Bombardier BD-700 Global Express
+ICAO: GLEX
+Last reviewed: 2026-08-05
+Source ledger: docs/modeling/sources.yml
+
+CERTIFICATION SCOPE
+  Model or family: BD-700-1A10
+  Authority: Transport Canada Civil Aviation
+  Type certificate: A-177
+  Applicability: Global Express/XRS/Global 6000 marketing evolution, avionics, serial, engine rating, and weight configuration remain unresolved.
+
+TYPE-CERTIFICATE AND LIMIT PARAMETERS
+
+FIELD certification.model
+  Value: BD-700-1A10
+  Status: certified-published
+  Source: tc_bd700_operational_evaluation
+  Applicability: Global Express/XRS/Global 6000 marketing evolution, avionics, serial, engine rating, and weight configuration remain unresolved.
+END FIELD
+
+FIELD certification.authority
+  Value: Transport Canada Civil Aviation
+  Status: certified-published
+  Source: tc_bd700_operational_evaluation
+  Applicability: Global Express/XRS/Global 6000 marketing evolution, avionics, serial, engine rating, and weight configuration remain unresolved.
+END FIELD
+
+FIELD certification.type_certificate
+  Value: A-177
+  Status: certified-published
+  Source: tc_bd700_operational_evaluation
+  Applicability: Global Express/XRS/Global 6000 marketing evolution, avionics, serial, engine rating, and weight configuration remain unresolved.
+END FIELD
+
+FIELD certification.issue
+  Value: current revision not retrieved
+  Status: certified-published
+  Source: tc_bd700_operational_evaluation
+  Applicability: Global Express/XRS/Global 6000 marketing evolution, avionics, serial, engine rating, and weight configuration remain unresolved.
+END FIELD
+
+FIELD certification.issue_date
+  Value: null
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD mtow
+  Value: 45100
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mlw
+  Value: 35700
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mzfw
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD minimum_weight
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD vmo
+  Value: 340
+  Unit: kt
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mmo
+  Value: 0.89
+  Unit: Mach
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD ceiling
+  Value: 51000
+  Unit: ft
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+LEGACY PARAMETERS
+  Parameters not listed above retain the original Aerox database values.
+  Unless a source is named above, those values remain legacy-unverified.

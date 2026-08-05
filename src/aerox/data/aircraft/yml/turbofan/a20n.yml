@@ -1,0 +1,82 @@
+aircraft: Airbus A320 Neo
+icao: A20N
+iata: 32N
+certification:
+  model: null
+  authority: EASA
+  type_certificate: EASA.A.064
+  issue: '62'
+  issue_date: 2026-06-26
+mtow: 79000
+mlw: 67400
+mzfw: null
+minimum_weight: null
+oew: 44300
+mfc: 29700
+vmo: 350
+mmo: 0.82
+ceiling: 39000
+icao_wtc: medium
+eu_wtc: upper medium
+faa_wtc: medium
+parking_area_m2: 1520
+pax:
+  max: 194
+  high: 180
+  low: 150
+fuselage:
+  length: 37.57
+  height: 4.14
+  width: 3.95
+wing:
+  area: 124
+  span: 35.8
+  mac: 4.29
+  sweep: 25
+  t/c: 0.119
+flaps:
+  type: single-slotted
+  area: 21.1
+  bf/b: 0.78
+  lambda_f: 0.9
+  cf/c: 0.18
+  Sf/S: 0.17
+engine:
+  type: turbofan
+  mount: wing
+  number: 2
+  default: PW1127G-JM
+  options:
+  - PW1127G-JM
+  - PW1124G1-JM
+  - PW1129G-JM
+  - LEAP-1A26
+  - LEAP-1A24
+  - LEAP-1A29
+drag:
+  cd0: 0.02244
+  k: 0.03934
+  e: 0.7829
+  gears: 0.01805
+kinematic:
+  takeoff_distance_m: 1951
+  takeoff_v2: 145
+  climb_to_fl50_ias: 175
+  climb_to_fl50_vs: 2200
+  climb_to_fl150_ias: 290
+  climb_to_fl150_vs: 2000
+  climb_to_fl240_ias: 290
+  climb_to_fl240_vs: 1500
+  mach_climb_mach: 0.78
+  mach_climb_vs: 1000
+  cruise_mach: 0.78
+  cruise_range_nm: 3500
+  cruise_tas: 450
+  descent_to_fl240_mach: 0.78
+  descent_to_fl240_vs: 1000
+  descent_to_fl100_ias: 290
+  descent_to_fl100_vs: 3000
+  approach_ias: 250
+  approach_vs: 1500
+  landing_distance_m: 1650
+  landing_ias: 135

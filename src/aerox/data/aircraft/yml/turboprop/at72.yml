@@ -1,61 +1,59 @@
 aircraft: ATR 72
-
 icao: AT72
-iata:
-
+iata: null
+certification:
+  model: null
+  authority: EASA
+  type_certificate: EASA.A.084
+  issue: '14'
+  issue_date: 2026-02-23
 mtow: 21500
-mlw:
-oew:
-mfc:
-vmo:
-mmo:
+mlw: null
+mzfw: null
+minimum_weight: null
+oew: null
+mfc: null
+vmo: null
+mmo: null
 ceiling: 25000
-
 icao_wtc: medium
 eu_wtc: lower medium
-faa_wtc:
-parking_area_m2:
-
+faa_wtc: null
+parking_area_m2: null
 pax:
   max: 72
-  high:
-  low:
-
+  high: null
+  low: null
 fuselage:
   length: 27.2
-  height:
-  width:
-
+  height: null
+  width: null
 wing:
-  area:
+  area: null
   span: 27.1
-  mac:
-  sweep:
-  t/c:
-
+  mac: null
+  sweep: null
+  t/c: null
 flaps:
-  type:
-  area:
-  bf/b:
-  lambda_f:
-  cf/c:
-  Sf/S:
-
+  type: null
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
 engine:
   type: turboprop
   mount: front wing leading mounted
   number: 2
   default: 2 x 2160 SHP PWC PW124B turboprops with 4 blade propellers
   options:
-    - 2 x 2160 SHP PWC PW124B turboprops with 4 blade propellers
-    - 2 x 2500 SHP PWC PW127E turboprops with 6 blade propellers
-
+  - 2 x 2160 SHP PWC PW124B turboprops with 4 blade propellers
+  - 2 x 2500 SHP PWC PW127E turboprops with 6 blade propellers
 drag:
-  cd0:
-  k:
-  e:
-  gears:
-
+  cd0: null
+  k: null
+  e: null
+  gears: null
 kinematic:
   takeoff_distance_m: 1500
   takeoff_v2: 110
@@ -65,13 +63,13 @@ kinematic:
   climb_to_fl150_vs: 1000
   climb_to_fl240_ias: 210
   climb_to_fl240_vs: 1000
-  mach_climb_mach:
-  mach_climb_vs:
-  cruise_mach:
+  mach_climb_mach: null
+  mach_climb_vs: null
+  cruise_mach: null
   cruise_range_nm: 1500
   cruise_tas: 275
-  descent_to_fl240_mach:
-  descent_to_fl240_vs:
+  descent_to_fl240_mach: null
+  descent_to_fl240_vs: null
   descent_to_fl100_ias: 260
   descent_to_fl100_vs: 1500
   approach_ias: 200

@@ -1,0 +1,80 @@
+aircraft: Boeing 737 MAX 9
+icao: B39M
+iata: 7M9
+certification:
+  model: 737-9
+  authority: EASA
+  type_certificate: EASA.IM.A.120
+  issue: '29'
+  issue_date: 2025-12-16
+mtow: 88300
+mlw: 74300
+mzfw: null
+minimum_weight: null
+oew: 45000
+mfc: 26000
+vmo: 340
+mmo: 0.82
+ceiling: 41000
+icao_wtc: medium
+eu_wtc: upper medium
+faa_wtc: medium
+parking_area_m2: 1701
+pax:
+  max: 220
+  high: 193
+  low: 178
+fuselage:
+  length: 42.16
+  height: 3.73
+  width: 3.73
+wing:
+  area: 124
+  span: 35.9
+  mac: 4.17
+  sweep: 25
+  t/c: 0.12
+flaps:
+  type: double-slotted
+  area: 38
+  bf/b: 0.6
+  lambda_f: 0.9
+  cf/c: 0.15
+  Sf/S: 0.15
+engine:
+  type: turbofan
+  mount: wing
+  number: 2
+  default: LEAP-1B28BBJ1
+  options:
+  - LEAP-1B27
+  - LEAP-1B28
+  - LEAP-1B28B1
+  - LEAP-1B28BBJ1
+drag:
+  cd0: 0.02268
+  k: 0.03916
+  e: 0.78213
+  gears: 0.01969
+kinematic:
+  takeoff_distance_m: 2600
+  takeoff_v2: 149
+  climb_to_fl50_ias: 165
+  climb_to_fl50_vs: 2300
+  climb_to_fl150_ias: 290
+  climb_to_fl150_vs: 2000
+  climb_to_fl240_ias: 290
+  climb_to_fl240_vs: 1800
+  mach_climb_mach: 0.78
+  mach_climb_vs: 1400
+  cruise_mach: 0.79
+  cruise_range_nm: 3550
+  cruise_tas: 453
+  descent_to_fl240_mach: 0.78
+  descent_to_fl240_vs: 1000
+  descent_to_fl100_ias: 290
+  descent_to_fl100_vs: 3500
+  approach_ias: 250
+  approach_vs: 1500
+  landing_distance_m: 1700
+  landing_ias: 150

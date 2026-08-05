@@ -1,0 +1,78 @@
+aircraft: Boeing 767-400
+icao: B764
+iata: '764'
+certification:
+  model: 767-400ER
+  authority: EASA
+  type_certificate: EASA.IM.A.035
+  issue: '11'
+  issue_date: 2025-02-04
+mtow: 204120
+mlw: 158800
+mzfw: null
+minimum_weight: null
+oew: 103000
+mfc: 71700
+vmo: 360
+mmo: 0.86
+ceiling: 45000
+icao_wtc: heavy
+eu_wtc: lower heavy
+faa_wtc: heavy
+parking_area_m2: 3457
+pax:
+  max: 375
+  high: 300
+  low: 245
+fuselage:
+  length: 61.4
+  height: 5.03
+  width: 5.03
+wing:
+  area: 283
+  span: 47.6
+  mac: 6.98
+  sweep: 31
+  t/c: 0.115
+flaps:
+  type: double-slotted
+  area: 43.3
+  bf/b: 0.69
+  lambda_f: null
+  cf/c: null
+  Sf/S: 0.15
+engine:
+  type: turbofan
+  mount: underwing
+  number: 2
+  default: PW4062
+  options:
+  - PW4062
+  - CF6-80C2B8F
+drag:
+  cd0: 0.01935
+  k: 0.04875
+  e: 0.81562
+  gears: 0.01666
+kinematic:
+  takeoff_distance_m: 2900
+  takeoff_v2: 160
+  climb_to_fl50_ias: 190
+  climb_to_fl50_vs: 2500
+  climb_to_fl150_ias: 290
+  climb_to_fl150_vs: 2200
+  climb_to_fl240_ias: 290
+  climb_to_fl240_vs: 1800
+  mach_climb_mach: 0.72
+  mach_climb_vs: 1000
+  cruise_mach: 0.8
+  cruise_range_nm: 5645
+  cruise_tas: 460
+  descent_to_fl240_mach: 0.72
+  descent_to_fl240_vs: 1000
+  descent_to_fl100_ias: 290
+  descent_to_fl100_vs: 3000
+  approach_ias: 230
+  approach_vs: 1500
+  landing_distance_m: 1800
+  landing_ias: 150

@@ -1,0 +1,103 @@
+AEROX AIRCRAFT SOURCE NOTES
+Aircraft: Boeing 737 MAX 8
+ICAO: B38M
+Last reviewed: 2026-08-05
+Source ledger: docs/modeling/sources.yml
+
+CERTIFICATION SCOPE
+  Model or family: 737-8
+  Authority: EASA
+  Type certificate: EASA.IM.A.120
+  Applicability: Do not silently include the separately listed 737-8200.
+
+TYPE-CERTIFICATE AND LIMIT PARAMETERS
+
+FIELD certification.model
+  Value: 737-8
+  Status: certified-published
+  Source: easa_ima120_issue_29
+  Applicability: Do not silently include the separately listed 737-8200.
+END FIELD
+
+FIELD certification.authority
+  Value: EASA
+  Status: certified-published
+  Source: easa_ima120_issue_29
+  Applicability: Do not silently include the separately listed 737-8200.
+END FIELD
+
+FIELD certification.type_certificate
+  Value: EASA.IM.A.120
+  Status: certified-published
+  Source: easa_ima120_issue_29
+  Applicability: Do not silently include the separately listed 737-8200.
+END FIELD
+
+FIELD certification.issue
+  Value: 29
+  Status: certified-published
+  Source: easa_ima120_issue_29
+  Applicability: Do not silently include the separately listed 737-8200.
+END FIELD
+
+FIELD certification.issue_date
+  Value: 2025-12-16
+  Status: certified-published
+  Source: easa_ima120_issue_29
+  Applicability: Do not silently include the separately listed 737-8200.
+END FIELD
+
+FIELD mtow
+  Value: 82600
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mlw
+  Value: 69300
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mzfw
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD minimum_weight
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD vmo
+  Value: 340
+  Unit: kt
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mmo
+  Value: 0.82
+  Unit: Mach
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD ceiling
+  Value: 41000
+  Unit: ft
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+LEGACY PARAMETERS
+  Parameters not listed above retain the original Aerox database values.
+  Unless a source is named above, those values remain legacy-unverified.

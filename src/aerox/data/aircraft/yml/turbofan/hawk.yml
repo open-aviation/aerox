@@ -1,0 +1,77 @@
+aircraft: BAe T-45 Goshawk
+icao: HAWK
+iata: null
+certification:
+  model: T-45C
+  authority: United States Navy
+  type_certificate: null
+  issue: Not applicable; military operator fact file
+  issue_date: '2021-10-08'
+mtow: 6075
+mlw: 5500
+mzfw: null
+minimum_weight: null
+oew: 4263
+mfc: 1625
+vmo: 500
+mmo: 0.88
+ceiling: 42000
+icao_wtc: medium
+eu_wtc: light
+faa_wtc: medium
+parking_area_m2: 168
+pax:
+  max: 2
+  high: null
+  low: null
+fuselage:
+  length: 11.98
+  height: 4.27
+  width: 0.9
+wing:
+  area: 16
+  span: 9.39
+  mac: 1.9
+  sweep: 28
+  t/c: 0.1
+flaps:
+  type: single-slotted
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: turbofan
+  mount: in fuselage
+  number: 1
+  default: F405-RR-401
+  options:
+  - F405-RR-401
+drag:
+  cd0: 0.03726
+  k: 0.06765
+  e: 0.85383
+  gears: 0.01942
+kinematic:
+  takeoff_distance_m: 700
+  takeoff_v2: 115
+  climb_to_fl50_ias: 145
+  climb_to_fl50_vs: 9300
+  climb_to_fl150_ias: 300
+  climb_to_fl150_vs: 7000
+  climb_to_fl240_ias: 300
+  climb_to_fl240_vs: 5000
+  mach_climb_mach: 0.72
+  mach_climb_vs: 3000
+  cruise_mach: 0.75
+  cruise_range_nm: 1300
+  cruise_tas: 420
+  descent_to_fl240_mach: 0.76
+  descent_to_fl240_vs: 8000
+  descent_to_fl100_ias: 350
+  descent_to_fl100_vs: 7000
+  approach_ias: 250
+  approach_vs: 1500
+  landing_distance_m: 600
+  landing_ias: 125

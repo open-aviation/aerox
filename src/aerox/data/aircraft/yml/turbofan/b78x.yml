@@ -1,0 +1,79 @@
+aircraft: Boeing 787-10 Dreamliner
+icao: B78X
+iata: '781'
+certification:
+  model: 787-10
+  authority: EASA
+  type_certificate: EASA.IM.A.115
+  issue: '30'
+  issue_date: 2025-12-17
+mtow: 254011
+mlw: 201800
+mzfw: null
+minimum_weight: null
+oew: 135500
+mfc: 126430
+vmo: 350
+mmo: 0.89
+ceiling: 41000
+icao_wtc: heavy
+eu_wtc: upper heavy
+faa_wtc: heavy
+parking_area_m2: 4412
+pax:
+  max: 440
+  high: 440
+  low: 336
+fuselage:
+  length: 68.3
+  height: 5.77
+  width: 5.77
+wing:
+  area: 377
+  span: 60.12
+  mac: 6.27
+  sweep: 32
+  t/c: 0.094
+flaps:
+  type: single-slotted
+  area: 56.55
+  bf/b: 0.75
+  lambda_f: 0.9
+  cf/c: 0.15
+  Sf/S: 0.15
+engine:
+  type: turbofan
+  mount: underwing
+  number: 2
+  default: GEnx-1B75
+  options:
+  - GEnx-1B75
+  - GEnx-1B74
+  - Trent 1000-J2
+drag:
+  cd0: 0.01914
+  k: 0.04186
+  e: 0.79312
+  gears: 0.01485
+kinematic:
+  takeoff_distance_m: 2800
+  takeoff_v2: 180
+  climb_to_fl50_ias: 190
+  climb_to_fl50_vs: 2700
+  climb_to_fl150_ias: 290
+  climb_to_fl150_vs: 2000
+  climb_to_fl240_ias: 290
+  climb_to_fl240_vs: 1500
+  mach_climb_mach: 0.84
+  mach_climb_vs: 1000
+  cruise_mach: 0.86
+  cruise_range_nm: 6430
+  cruise_tas: 488
+  descent_to_fl240_mach: 0.85
+  descent_to_fl240_vs: 2500
+  descent_to_fl100_ias: 300
+  descent_to_fl100_vs: 2500
+  approach_ias: 240
+  approach_vs: 1500
+  landing_distance_m: 1520
+  landing_ias: 150

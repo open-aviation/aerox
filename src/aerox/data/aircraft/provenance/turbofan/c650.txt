@@ -1,0 +1,103 @@
+AEROX AIRCRAFT SOURCE NOTES
+Aircraft: Cessna III/VI/VII
+ICAO: C650
+Last reviewed: 2026-08-05
+Source ledger: docs/modeling/sources.yml
+
+CERTIFICATION SCOPE
+  Model or family: 650
+  Authority: FAA
+  Type certificate: A9NM
+  Applicability: Citation III, VI, VII, engine, serial, and weight configurations differ.
+
+TYPE-CERTIFICATE AND LIMIT PARAMETERS
+
+FIELD certification.model
+  Value: 650
+  Status: certified-published
+  Source: faa_drs_tcds_model_search
+  Applicability: Citation III, VI, VII, engine, serial, and weight configurations differ.
+END FIELD
+
+FIELD certification.authority
+  Value: FAA
+  Status: certified-published
+  Source: faa_drs_tcds_model_search
+  Applicability: Citation III, VI, VII, engine, serial, and weight configurations differ.
+END FIELD
+
+FIELD certification.type_certificate
+  Value: A9NM
+  Status: certified-published
+  Source: faa_drs_tcds_model_search
+  Applicability: Citation III, VI, VII, engine, serial, and weight configurations differ.
+END FIELD
+
+FIELD certification.issue
+  Value: current revision unresolved
+  Status: certified-published
+  Source: faa_drs_tcds_model_search
+  Applicability: Citation III, VI, VII, engine, serial, and weight configurations differ.
+END FIELD
+
+FIELD certification.issue_date
+  Value: null
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD mtow
+  Value: 14060
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mlw
+  Value: 7700
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mzfw
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD minimum_weight
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD vmo
+  Value: 320
+  Unit: kt
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mmo
+  Value: 0.83
+  Unit: Mach
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD ceiling
+  Value: 51000
+  Unit: ft
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+LEGACY PARAMETERS
+  Parameters not listed above retain the original Aerox database values.
+  Unless a source is named above, those values remain legacy-unverified.

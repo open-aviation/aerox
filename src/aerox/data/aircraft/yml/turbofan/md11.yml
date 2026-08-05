@@ -1,0 +1,78 @@
+aircraft: Boeing (Douglas) MD 11
+icao: MD11
+iata: M11 / M1F / M1M
+certification:
+  model: null
+  authority: EASA
+  type_certificate: EASA.IM.A.210
+  issue: '2'
+  issue_date: 2024-11-14
+mtow: 285990
+mlw: 195000
+mzfw: null
+minimum_weight: null
+oew: 125872
+mfc: 146155
+vmo: 320
+mmo: 0.87
+ceiling: 41000
+icao_wtc: heavy
+eu_wtc: lower heavy
+faa_wtc: heavy
+parking_area_m2: 3474
+pax:
+  max: 410
+  high: 323
+  low: 285
+fuselage:
+  length: 61.2
+  height: 6.02
+  width: 6.02
+wing:
+  area: 338
+  span: 51.7
+  mac: 7.68
+  sweep: 35
+  t/c: 0.094
+flaps:
+  type: double-slotted
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: turbofan
+  mount: underwing mounted and fin-integrated
+  number: 3
+  default: CF6-80C2D1F
+  options:
+  - CF6-80C2D1F
+  - PW4460
+drag:
+  cd0: 0.01908
+  k: 0.04926
+  e: 0.81706
+  gears: 0.01817
+kinematic:
+  takeoff_distance_m: 3100
+  takeoff_v2: 160
+  climb_to_fl50_ias: 190
+  climb_to_fl50_vs: 2000
+  climb_to_fl150_ias: 300
+  climb_to_fl150_vs: 2200
+  climb_to_fl240_ias: 300
+  climb_to_fl240_vs: 1800
+  mach_climb_mach: 0.8
+  mach_climb_vs: 1000
+  cruise_mach: 0.83
+  cruise_range_nm: 7100
+  cruise_tas: 500
+  descent_to_fl240_mach: 0.83
+  descent_to_fl240_vs: 1000
+  descent_to_fl100_ias: 300
+  descent_to_fl100_vs: 3000
+  approach_ias: 250
+  approach_vs: 1500
+  landing_distance_m: 2100
+  landing_ias: 159

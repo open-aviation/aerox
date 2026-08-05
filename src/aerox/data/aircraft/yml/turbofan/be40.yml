@@ -1,0 +1,77 @@
+aircraft: Raytheon/Beech Beechjet 400/T-1 Jayhawk
+icao: BE40
+iata: null
+certification:
+  model: null
+  authority: Federal Aviation Administration
+  type_certificate: A16SW
+  issue: Current revision not retrieved
+  issue_date: null
+mtow: 7300
+mlw: 7100
+mzfw: null
+minimum_weight: null
+oew: 5000
+mfc: 2775
+vmo: 320
+mmo: 0.78
+ceiling: 45000
+icao_wtc: medium
+eu_wtc: light
+faa_wtc: medium
+parking_area_m2: 265
+pax:
+  max: 8
+  high: null
+  low: null
+fuselage:
+  length: 14.76
+  height: 1.6
+  width: 1.6
+wing:
+  area: 22
+  span: 13.36
+  mac: 1.7
+  sweep: 20
+  t/c: 0.12
+flaps:
+  type: null
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: turbofan
+  mount: both sides of rear fuselage
+  number: 2
+  default: JT15D-5
+  options:
+  - JT15D-5
+drag:
+  cd0: 0.02537
+  k: 0.0482
+  e: 0.81406
+  gears: 0.01568
+kinematic:
+  takeoff_distance_m: 1200
+  takeoff_v2: 130
+  climb_to_fl50_ias: 160
+  climb_to_fl50_vs: 3000
+  climb_to_fl150_ias: 290
+  climb_to_fl150_vs: 2500
+  climb_to_fl240_ias: 290
+  climb_to_fl240_vs: 2000
+  mach_climb_mach: 0.74
+  mach_climb_vs: 1000
+  cruise_mach: 0.8
+  cruise_range_nm: 1500
+  cruise_tas: 420
+  descent_to_fl240_mach: 0.72
+  descent_to_fl240_vs: 1000
+  descent_to_fl100_ias: 290
+  descent_to_fl100_vs: 2000
+  approach_ias: 200
+  approach_vs: 1500
+  landing_distance_m: 1100
+  landing_ias: 120

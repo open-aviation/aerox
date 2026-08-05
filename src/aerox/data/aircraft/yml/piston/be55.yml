@@ -1,0 +1,77 @@
+aircraft: Beech Baron 55
+icao: BE55
+iata: null
+certification:
+  model: null
+  authority: FAA
+  type_certificate: 3A16
+  issue: current revision unresolved
+  issue_date: null
+mtow: 2300
+mlw: 2300
+mzfw: null
+minimum_weight: null
+oew: null
+mfc: null
+vmo: null
+mmo: null
+ceiling: 20000
+icao_wtc: light
+eu_wtc: light
+faa_wtc: null
+parking_area_m2: 147
+pax:
+  max: 4
+  high: 4
+  low: 3
+fuselage:
+  length: 8.5344
+  height: 2.92608
+  width: null
+wing:
+  area: null
+  span: 11.52144
+  mac: null
+  sweep: null
+  t/c: null
+flaps:
+  type: null
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: piston
+  mount: front wing leading mounted
+  number: 2
+  default: 260 HP Continental IO-470-L piston engine with two blade propellers
+  options:
+  - 260 HP Continental IO-470-L piston engine with two blade propellers
+drag:
+  cd0: null
+  k: null
+  e: null
+  gears: null
+kinematic:
+  takeoff_distance_m: 450
+  takeoff_v2: 95
+  climb_to_fl50_ias: 125
+  climb_to_fl50_vs: 1500
+  climb_to_fl150_ias: 140
+  climb_to_fl150_vs: 800
+  climb_to_fl240_ias: 140
+  climb_to_fl240_vs: 800
+  mach_climb_mach: null
+  mach_climb_vs: null
+  cruise_mach: null
+  cruise_range_nm: 900
+  cruise_tas: 180
+  descent_to_fl240_mach: null
+  descent_to_fl240_vs: null
+  descent_to_fl100_ias: 180
+  descent_to_fl100_vs: 800
+  approach_ias: 160
+  approach_vs: 500
+  landing_distance_m: 450
+  landing_ias: 95

@@ -1,0 +1,80 @@
+aircraft: Airbus A340-300
+icao: A343
+iata: 340 / 343
+certification:
+  model: null
+  authority: EASA
+  type_certificate: EASA.A.015
+  issue: '28'
+  issue_date: 2026-01-15
+mtow: 275000
+mlw: 190000
+mzfw: null
+minimum_weight: null
+oew: 130000
+mfc: 148000
+vmo: 330
+mmo: 0.86
+ceiling: 41000
+icao_wtc: heavy
+eu_wtc: upper heavy
+faa_wtc: heavy
+parking_area_m2: 4131
+pax:
+  max: 335
+  high: 295
+  low: 250
+fuselage:
+  length: 62.47
+  height: 5.64
+  width: 5.64
+wing:
+  area: 363
+  span: 58
+  mac: 7.26
+  sweep: 29
+  t/c: 0.11
+flaps:
+  type: double-slotted
+  area: null
+  bf/b: 0.67
+  lambda_f: 0.9
+  cf/c: 0.15
+  Sf/S: 0.15
+engine:
+  type: turbofan
+  mount: wing
+  number: 4
+  default: CFM56-5C4/P
+  options:
+  - CFM56-5C2
+  - CFM56-5C3
+  - CFM56-5C4
+  - CFM56-5C4/P
+drag:
+  cd0: 0.01816
+  k: 0.04307
+  e: 0.79758
+  gears: 0.01641
+kinematic:
+  takeoff_distance_m: 2765
+  takeoff_v2: 145
+  climb_to_fl50_ias: 175
+  climb_to_fl50_vs: 1400
+  climb_to_fl150_ias: 290
+  climb_to_fl150_vs: 1500
+  climb_to_fl240_ias: 290
+  climb_to_fl240_vs: 1000
+  mach_climb_mach: 0.8
+  mach_climb_vs: 700
+  cruise_mach: 0.82
+  cruise_range_nm: 7200
+  cruise_tas: 490
+  descent_to_fl240_mach: 0.81
+  descent_to_fl240_vs: 1000
+  descent_to_fl100_ias: 290
+  descent_to_fl100_vs: 2000
+  approach_ias: 250
+  approach_vs: 1500
+  landing_distance_m: 1830
+  landing_ias: 150

@@ -1,0 +1,77 @@
+aircraft: IAI 1126 Galaxy/Gulfstream G200
+icao: GALX
+iata: null
+certification:
+  model: null
+  authority: FAA validated by EASA
+  type_certificate: A6IL / EASA.IM.A.013
+  issue: EASA Issue 05
+  issue_date: 2025-05-26
+mtow: 16200
+mlw: 13600
+mzfw: null
+minimum_weight: null
+oew: 9100
+mfc: 5400
+vmo: 320
+mmo: 0.85
+ceiling: 45000
+icao_wtc: medium
+eu_wtc: lower medium
+faa_wtc: medium
+parking_area_m2: 425
+pax:
+  max: 19
+  high: 10
+  low: null
+fuselage:
+  length: 19
+  height: 1.88
+  width: 2.16
+wing:
+  area: 37
+  span: 17.7
+  mac: 2.3
+  sweep: 25
+  t/c: 0.11
+flaps:
+  type: single-slotted
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: turbofan
+  mount: rear fuselage
+  number: 2
+  default: PW306A
+  options:
+  - PW306A
+drag:
+  cd0: 0.02357
+  k: 0.04647
+  e: 0.80893
+  gears: 0.01743
+kinematic:
+  takeoff_distance_m: 1800
+  takeoff_v2: 125
+  climb_to_fl50_ias: 155
+  climb_to_fl50_vs: 3500
+  climb_to_fl150_ias: 290
+  climb_to_fl150_vs: 3000
+  climb_to_fl240_ias: 290
+  climb_to_fl240_vs: 3000
+  mach_climb_mach: 0.72
+  mach_climb_vs: 2000
+  cruise_mach: 0.81
+  cruise_range_nm: 3300
+  cruise_tas: 470
+  descent_to_fl240_mach: 0.72
+  descent_to_fl240_vs: 1000
+  descent_to_fl100_ias: 290
+  descent_to_fl100_vs: 4000
+  approach_ias: 250
+  approach_vs: 1500
+  landing_distance_m: 1050
+  landing_ias: 130

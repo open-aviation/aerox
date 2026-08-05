@@ -1,52 +1,59 @@
 aircraft: Cessna 208 Caravan 1
-
 icao: C208
-iata:
-
+iata: null
+certification:
+  model: '208'
+  authority: FAA
+  type_certificate: A37CE
+  issue: current revision unresolved
+  issue_date: null
 mtow: 3629
 mlw: 3500
-oew:
-mfc:
+mzfw: null
+minimum_weight: null
+oew: null
+mfc: null
 vmo: 175
-mmo:
+mmo: null
 ceiling: 26000
-
 icao_wtc: light
 eu_wtc: light
 faa_wtc: light
 parking_area_m2: 246
-
 pax:
   max: 14
-  high:
+  high: null
   low: 9
-
 fuselage:
   length: 11.5
-  height:
-  width:
-
+  height: null
+  width: null
 wing:
-  area:
+  area: null
   span: 15.9
-  mac:
-  sweep:
-  t/c:
-
+  mac: null
+  sweep: null
+  t/c: null
 flaps:
-  type:
-  area:
-  bf/b:
-  lambda_f:
-  cf/c:
-  Sf/S:
-
+  type: null
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: turboprop
+  mount: nose mounted
+  number: 1
+  default: 1 x 600 SHP PWC PT6A-114 turboprop with 3 blade propeller
+  options:
+  - 1 x 600 SHP PWC PT6A-114 turboprop with 3 blade propeller
+  - 1 x 675 SHP PWC PT6A-114A turboprop with 3 blade propeller
 drag:
-  cd0:
-  k:
-  e:
-  gears:
-
+  cd0: null
+  k: null
+  e: null
+  gears: null
 kinematic:
   takeoff_distance_m: 500
   takeoff_v2: 85
@@ -56,25 +63,16 @@ kinematic:
   climb_to_fl150_vs: 500
   climb_to_fl240_ias: 130
   climb_to_fl240_vs: 500
-  mach_climb_mach:
-  mach_climb_vs:
-  cruise_mach:
+  mach_climb_mach: null
+  mach_climb_vs: null
+  cruise_mach: null
   cruise_range_nm: 1000
   cruise_tas: 160
-  descent_to_fl240_mach:
-  descent_to_fl240_vs:
+  descent_to_fl240_mach: null
+  descent_to_fl240_vs: null
   descent_to_fl100_ias: 160
   descent_to_fl100_vs: 500
   approach_ias: 120
   approach_vs: 500
   landing_distance_m: 450
   landing_ias: 75
-
-engine:
-  type: turboprop
-  mount: nose mounted
-  number: 1
-  default: 1 x 600 SHP PWC PT6A-114 turboprop with 3 blade propeller
-  options:
-    - 1 x 600 SHP PWC PT6A-114 turboprop with 3 blade propeller
-    - 1 x 675 SHP PWC PT6A-114A turboprop with 3 blade propeller

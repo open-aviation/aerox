@@ -1,0 +1,77 @@
+aircraft: Airbus A350-900
+icao: A359
+iata: '359'
+certification:
+  model: A350-941
+  authority: EASA
+  type_certificate: EASA.A.151
+  issue: '33'
+  issue_date: 2026-07-01
+mtow: 280000
+mlw: 207000
+mzfw: null
+minimum_weight: null
+oew: 135000
+mfc: 166000
+vmo: 340
+mmo: 0.89
+ceiling: 43000
+icao_wtc: heavy
+eu_wtc: upper heavy
+faa_wtc: heavy
+parking_area_m2: 4632
+pax:
+  max: 475
+  high: 360
+  low: 310
+fuselage:
+  length: 66.9
+  height: 5.96
+  width: 5.96
+wing:
+  area: 442
+  span: 64.8
+  mac: 6.83
+  sweep: 32
+  t/c: 0.123
+flaps:
+  type: double-slotted
+  area: 61.88
+  bf/b: null
+  lambda_f: 0.9
+  cf/c: 0.15
+  Sf/S: 0.15
+engine:
+  type: turbofan
+  mount: wing
+  number: 2
+  default: Trent XWB-84
+  options:
+  - Trent XWB-84
+drag:
+  cd0: 0.01767
+  k: 0.04218
+  e: 0.79433
+  gears: 0.01367
+kinematic:
+  takeoff_distance_m: 888
+  takeoff_v2: 150
+  climb_to_fl50_ias: 220
+  climb_to_fl50_vs: 3000
+  climb_to_fl150_ias: 300
+  climb_to_fl150_vs: 2300
+  climb_to_fl240_ias: 300
+  climb_to_fl240_vs: 1600
+  mach_climb_mach: 0.82
+  mach_climb_vs: 1400
+  cruise_mach: 0.85
+  cruise_range_nm: 8100
+  cruise_tas: 490
+  descent_to_fl240_mach: 0.85
+  descent_to_fl240_vs: 1500
+  descent_to_fl100_ias: 250
+  descent_to_fl100_vs: 3000
+  approach_ias: 240
+  approach_vs: 1500
+  landing_distance_m: 888
+  landing_ias: 140

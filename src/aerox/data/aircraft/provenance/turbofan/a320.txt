@@ -1,0 +1,105 @@
+AEROX AIRCRAFT SOURCE NOTES
+Aircraft: Airbus A320-214
+ICAO: A320
+Last reviewed: 2026-08-05
+Source ledger: docs/modeling/sources.yml
+
+CERTIFICATION SCOPE
+  Model or family: A320-214
+  Authority: EASA
+  Type certificate: EASA.A.064
+  Applicability: Weight variant and installed modifications remain aircraft-specific.
+
+TYPE-CERTIFICATE AND LIMIT PARAMETERS
+
+FIELD certification.model
+  Value: A320-214
+  Status: certified-published
+  Source: easa_a064_issue_62
+  Applicability: Weight variant and installed modifications remain aircraft-specific.
+END FIELD
+
+FIELD certification.authority
+  Value: EASA
+  Status: certified-published
+  Source: easa_a064_issue_62
+  Applicability: Weight variant and installed modifications remain aircraft-specific.
+END FIELD
+
+FIELD certification.type_certificate
+  Value: EASA.A.064
+  Status: certified-published
+  Source: easa_a064_issue_62
+  Applicability: Weight variant and installed modifications remain aircraft-specific.
+END FIELD
+
+FIELD certification.issue
+  Value: 62
+  Status: certified-published
+  Source: easa_a064_issue_62
+  Applicability: Weight variant and installed modifications remain aircraft-specific.
+END FIELD
+
+FIELD certification.issue_date
+  Value: 2026-06-26
+  Status: certified-published
+  Source: easa_a064_issue_62
+  Applicability: Weight variant and installed modifications remain aircraft-specific.
+END FIELD
+
+FIELD mtow
+  Value: 78000
+  Unit: kg
+  Status: certified-published
+  Source: easa_a064_issue_62
+  Applicability: A320-214/-232/-233 maximum listed value; AFM weight variant controls the individual aircraft
+END FIELD
+
+FIELD mlw
+  Value: 66000
+  Unit: kg
+  Status: certified-published
+  Source: easa_a064_issue_62
+  Applicability: A320-214/-232/-233 maximum listed value; AFM weight variant controls the individual aircraft
+END FIELD
+
+FIELD mzfw
+  Value: 62500
+  Unit: kg
+  Status: certified-published
+  Source: easa_a064_issue_62
+  Applicability: A320-214/-232/-233 maximum listed value; AFM weight variant controls the individual aircraft
+END FIELD
+
+FIELD minimum_weight
+  Value: 37230
+  Unit: kg
+  Status: certified-published
+  Source: easa_a064_issue_62
+  Applicability: Airbus A320-214 unless the datum notes broader A320 applicability
+END FIELD
+
+FIELD vmo
+  Value: 350
+  Unit: kt
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mmo
+  Value: 0.82
+  Unit: Mach
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD ceiling
+  Value: 39000
+  Unit: ft
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+LEGACY PARAMETERS
+  Parameters not listed above retain the original Aerox database values.
+  Unless a source is named above, those values remain legacy-unverified.

@@ -1,0 +1,106 @@
+AEROX AIRCRAFT SOURCE NOTES
+Aircraft: ATR 72
+ICAO: AT72
+Last reviewed: 2026-08-05
+Source ledger: docs/modeling/sources.yml
+
+CERTIFICATION SCOPE
+  Model or family: -
+  Authority: EASA
+  Type certificate: EASA.A.084
+  Applicability: The record is a family proxy spanning several certified models, engines, and commercial series.
+
+TYPE-CERTIFICATE AND LIMIT PARAMETERS
+
+FIELD certification.model
+  Value: null
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD certification.authority
+  Value: EASA
+  Status: certified-published
+  Source: easa_a084_issue_14
+  Applicability: The record is a family proxy spanning several certified models, engines, and commercial series.
+END FIELD
+
+FIELD certification.type_certificate
+  Value: EASA.A.084
+  Status: certified-published
+  Source: easa_a084_issue_14
+  Applicability: The record is a family proxy spanning several certified models, engines, and commercial series.
+END FIELD
+
+FIELD certification.issue
+  Value: 14
+  Status: certified-published
+  Source: easa_a084_issue_14
+  Applicability: The record is a family proxy spanning several certified models, engines, and commercial series.
+END FIELD
+
+FIELD certification.issue_date
+  Value: 2026-02-23
+  Status: certified-published
+  Source: easa_a084_issue_14
+  Applicability: The record is a family proxy spanning several certified models, engines, and commercial series.
+END FIELD
+
+FIELD mtow
+  Value: 21500
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mlw
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD mzfw
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD minimum_weight
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD vmo
+  Value: null
+  Unit: kt
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD mmo
+  Value: null
+  Unit: Mach
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD ceiling
+  Value: 25000
+  Unit: ft
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+LEGACY PARAMETERS
+  Parameters not listed above retain the original Aerox database values.
+  Unless a source is named above, those values remain legacy-unverified.

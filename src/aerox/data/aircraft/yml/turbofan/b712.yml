@@ -1,0 +1,78 @@
+aircraft: Boeing 717-200
+icao: B712
+iata: '717'
+certification:
+  model: 717-200
+  authority: EASA
+  type_certificate: EASA.IM.A.211
+  issue: '3.0'
+  issue_date: 2025-07-04
+mtow: 52000
+mlw: 46000
+mzfw: null
+minimum_weight: null
+oew: 32000
+mfc: 16000
+vmo: 340
+mmo: 0.76
+ceiling: 37000
+icao_wtc: medium
+eu_wtc: lower medium
+faa_wtc: medium
+parking_area_m2: 1238
+pax:
+  max: 120
+  high: 117
+  low: 106
+fuselage:
+  length: 37.8
+  height: 3.6
+  width: 3.6
+wing:
+  area: 102
+  span: 28.5
+  mac: 3.88
+  sweep: 25
+  t/c: 0.116
+flaps:
+  type: double-slotted
+  area: 27.9
+  bf/b: 0.65
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: turbofan
+  mount: rear
+  number: 2
+  default: BR700-715A1-30
+  options:
+  - BR700-715A1-30
+  - BR700-715C1-30
+drag:
+  cd0: 0.02366
+  k: 0.04897
+  e: 0.81625
+  gears: 0.0158
+kinematic:
+  takeoff_distance_m: 2100
+  takeoff_v2: 130
+  climb_to_fl50_ias: 165
+  climb_to_fl50_vs: 3000
+  climb_to_fl150_ias: 270
+  climb_to_fl150_vs: 3000
+  climb_to_fl240_ias: 270
+  climb_to_fl240_vs: 3000
+  mach_climb_mach: 0.72
+  mach_climb_vs: 1500
+  cruise_mach: 0.76
+  cruise_range_nm: 2060
+  cruise_tas: 435
+  descent_to_fl240_mach: 0.72
+  descent_to_fl240_vs: 800
+  descent_to_fl100_ias: 290
+  descent_to_fl100_vs: 3500
+  approach_ias: 210
+  approach_vs: 1500
+  landing_distance_m: 1600
+  landing_ias: 139

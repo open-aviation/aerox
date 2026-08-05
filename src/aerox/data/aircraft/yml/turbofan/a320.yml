@@ -1,0 +1,84 @@
+aircraft: Airbus A320-214
+icao: A320
+iata: 320 / 32S
+certification:
+  model: A320-214
+  authority: EASA
+  type_certificate: EASA.A.064
+  issue: '62'
+  issue_date: 2026-06-26
+mtow: 78000
+mlw: 66000
+mzfw: 62500
+minimum_weight: 37230
+oew: 42600
+mfc: 24210
+vmo: 350
+mmo: 0.82
+ceiling: 39000
+icao_wtc: medium
+eu_wtc: upper medium
+faa_wtc: medium
+parking_area_m2: 1519
+pax:
+  max: 180
+  high: 170
+  low: 140
+fuselage:
+  length: 37.57
+  height: 4.14
+  width: 3.95
+wing:
+  area: 122
+  span: 34.1
+  mac: 4.1935
+  sweep: 25
+  t/c: 0.12
+flaps:
+  type: single-slotted
+  area: 21.1
+  bf/b: 0.78
+  lambda_f: 0.9
+  cf/c: 0.18
+  Sf/S: 0.17
+engine:
+  type: turbofan
+  mount: wing
+  number: 2
+  default: CFM56-5B4
+  options:
+  - CFM56-5-A1
+  - CFM56-5A3
+  - CFM56-5B4
+  - CFM56-5B5
+  - CFM56-5B6
+  - V2500-A1
+  - V2527-A5
+  - V2527E-A5
+drag:
+  cd0: 0.02263
+  k: 0.04246
+  e: 0.79537
+  gears: 0.01741
+kinematic:
+  takeoff_distance_m: 2190
+  takeoff_v2: 145
+  climb_to_fl50_ias: 175
+  climb_to_fl50_vs: 2500
+  climb_to_fl150_ias: 290
+  climb_to_fl150_vs: 2000
+  climb_to_fl240_ias: 290
+  climb_to_fl240_vs: 1400
+  mach_climb_mach: 0.78
+  mach_climb_vs: 1000
+  cruise_mach: 0.79
+  cruise_range_nm: 2700
+  cruise_tas: 450
+  descent_to_fl240_mach: 0.78
+  descent_to_fl240_vs: 1000
+  descent_to_fl100_ias: 290
+  descent_to_fl100_vs: 3500
+  approach_ias: 250
+  approach_vs: 1500
+  landing_distance_m: 1440
+  landing_ias: 137

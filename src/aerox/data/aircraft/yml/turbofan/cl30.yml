@@ -1,0 +1,77 @@
+aircraft: Bombardier (Canadair) Challenger 300
+icao: CL30
+iata: null
+certification:
+  model: BD-100-1A10 Challenger 300 configuration
+  authority: Transport Canada Civil Aviation
+  type_certificate: A-234
+  issue: null
+  issue_date: null
+mtow: 17622
+mlw: 15300
+mzfw: null
+minimum_weight: null
+oew: 10659
+mfc: 8023
+vmo: 320
+mmo: 0.83
+ceiling: 45000
+icao_wtc: medium
+eu_wtc: lower medium
+faa_wtc: medium
+parking_area_m2: 506
+pax:
+  max: 16
+  high: 10
+  low: null
+fuselage:
+  length: 20.9
+  height: 1.83
+  width: 2.19
+wing:
+  area: 48
+  span: 18.4
+  mac: 2.8
+  sweep: 30
+  t/c: 0.11
+flaps:
+  type: single-slotted
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: turbofan
+  mount: both sides of rear fuselage
+  number: 2
+  default: HTF7000
+  options:
+  - HTF7000
+drag:
+  cd0: 0.02118
+  k: 0.05439
+  e: 0.8298
+  gears: 0.01436
+kinematic:
+  takeoff_distance_m: 1466
+  takeoff_v2: 140
+  climb_to_fl50_ias: 160
+  climb_to_fl50_vs: 4500
+  climb_to_fl150_ias: 260
+  climb_to_fl150_vs: 2500
+  climb_to_fl240_ias: 260
+  climb_to_fl240_vs: 2200
+  mach_climb_mach: 0.79
+  mach_climb_vs: 2500
+  cruise_mach: 0.81
+  cruise_range_nm: 3065
+  cruise_tas: 470
+  descent_to_fl240_mach: 0.8
+  descent_to_fl240_vs: 1500
+  descent_to_fl100_ias: 250
+  descent_to_fl100_vs: 2500
+  approach_ias: 200
+  approach_vs: 1500
+  landing_distance_m: 792
+  landing_ias: 125

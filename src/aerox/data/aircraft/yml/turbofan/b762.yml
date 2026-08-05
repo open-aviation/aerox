@@ -1,0 +1,78 @@
+aircraft: Boeing 767-200
+icao: B762
+iata: 767 / 762 / 76F / 76X
+certification:
+  model: 767-200
+  authority: EASA
+  type_certificate: EASA.IM.A.035
+  issue: '11'
+  issue_date: 2025-02-04
+mtow: 179170
+mlw: 117900
+mzfw: null
+minimum_weight: null
+oew: 80500
+mfc: 50600
+vmo: 360
+mmo: 0.86
+ceiling: 45000
+icao_wtc: heavy
+eu_wtc: lower heavy
+faa_wtc: heavy
+parking_area_m2: 2533
+pax:
+  max: 255
+  high: 224
+  low: 181
+fuselage:
+  length: 48.5
+  height: 5.03
+  width: 4.72
+wing:
+  area: 283
+  span: 47.6
+  mac: 6.98
+  sweep: 31
+  t/c: 0.115
+flaps:
+  type: double-slotted
+  area: 36.9
+  bf/b: 0.75
+  lambda_f: null
+  cf/c: null
+  Sf/S: 0.13
+engine:
+  type: turbofan
+  mount: underwing
+  number: 2
+  default: PW4062
+  options:
+  - PW4062
+  - CF6-80C2B7F
+drag:
+  cd0: 0.01727
+  k: 0.04875
+  e: 0.81562
+  gears: 0.01504
+kinematic:
+  takeoff_distance_m: 2700
+  takeoff_v2: 160
+  climb_to_fl50_ias: 190
+  climb_to_fl50_vs: 2000
+  climb_to_fl150_ias: 290
+  climb_to_fl150_vs: 2500
+  climb_to_fl240_ias: 290
+  climb_to_fl240_vs: 1400
+  mach_climb_mach: 0.78
+  mach_climb_vs: 1500
+  cruise_mach: 0.8
+  cruise_range_nm: 6600
+  cruise_tas: 470
+  descent_to_fl240_mach: 0.78
+  descent_to_fl240_vs: 2000
+  descent_to_fl100_ias: 290
+  descent_to_fl100_vs: 1600
+  approach_ias: 250
+  approach_vs: 1500
+  landing_distance_m: 1500
+  landing_ias: 135

@@ -1,0 +1,104 @@
+AEROX AIRCRAFT SOURCE NOTES
+Aircraft: BAe T-45 Goshawk
+ICAO: HAWK
+Last reviewed: 2026-08-05
+Source ledger: docs/modeling/sources.yml
+
+CERTIFICATION SCOPE
+  Model or family: T-45C
+  Authority: United States Navy
+  Type certificate: -
+  Applicability: Low for the current Navy configuration; older Navy history material conflicts and is not adopted.
+
+TYPE-CERTIFICATE AND LIMIT PARAMETERS
+
+FIELD certification.model
+  Value: T-45C
+  Status: manufacturer-published
+  Source: usn_t45_fact_file_2021
+  Applicability: Low for the current Navy configuration; older Navy history material conflicts and is not adopted.
+END FIELD
+
+FIELD certification.authority
+  Value: United States Navy
+  Status: manufacturer-published
+  Source: usn_t45_fact_file_2021
+  Applicability: Low for the current Navy configuration; older Navy history material conflicts and is not adopted.
+END FIELD
+
+FIELD certification.type_certificate
+  Value: null
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD certification.issue
+  Value: Not applicable; military operator fact file
+  Status: manufacturer-published
+  Source: usn_t45_fact_file_2021
+  Applicability: Low for the current Navy configuration; older Navy history material conflicts and is not adopted.
+END FIELD
+
+FIELD certification.issue_date
+  Value: 2021-10-08
+  Status: manufacturer-published
+  Source: usn_t45_fact_file_2021
+  Applicability: Low for the current Navy configuration; older Navy history material conflicts and is not adopted.
+END FIELD
+
+FIELD mtow
+  Value: 6075
+  Unit: kg
+  Status: manufacturer-published
+  Source: usn_t45_fact_file_2021
+  Applicability: Current T-45C fleet configuration
+END FIELD
+
+FIELD mlw
+  Value: 5500
+  Unit: kg
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mzfw
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD minimum_weight
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+END FIELD
+
+FIELD vmo
+  Value: 500
+  Unit: kt
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD mmo
+  Value: 0.88
+  Unit: Mach
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+FIELD ceiling
+  Value: 42000
+  Unit: ft
+  Status: legacy-unverified
+  Source: aerox_legacy_aircraft_database
+END FIELD
+
+LEGACY PARAMETERS
+  Parameters not listed above retain the original Aerox database values.
+  Unless a source is named above, those values remain legacy-unverified.

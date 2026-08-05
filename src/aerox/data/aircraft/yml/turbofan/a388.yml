@@ -1,0 +1,79 @@
+aircraft: Airbus A380-800
+icao: A388
+iata: 380 / 38F
+certification:
+  model: null
+  authority: EASA
+  type_certificate: EASA.A.110
+  issue: '17'
+  issue_date: 2026-08-05
+mtow: 560000
+mlw: 386000
+mzfw: null
+minimum_weight: null
+oew: 277000
+mfc: 320000
+vmo: 340
+mmo: 0.89
+ceiling: 43000
+icao_wtc: super
+eu_wtc: super heavy
+faa_wtc: super
+parking_area_m2: 6148
+pax:
+  max: 853
+  high: 620
+  low: 410
+fuselage:
+  length: 72.72
+  height: 8.41
+  width: 7.14
+wing:
+  area: 845
+  span: 79.75
+  mac: 12.3
+  sweep: 33
+  t/c: 0.08
+flaps:
+  type: single-slotted
+  area: null
+  bf/b: null
+  lambda_f: 0.9
+  cf/c: 0.15
+  Sf/S: 0.15
+engine:
+  type: turbofan
+  mount: wing
+  number: 4
+  default: GP7270
+  options:
+  - Trent 970-84
+  - Trent 972-84
+  - GP7270
+drag:
+  cd0: 0.01397
+  k: 0.05141
+  e: 0.82269
+  gears: 0.01232
+kinematic:
+  takeoff_distance_m: 2970
+  takeoff_v2: 150
+  climb_to_fl50_ias: 190
+  climb_to_fl50_vs: 1500
+  climb_to_fl150_ias: 320
+  climb_to_fl150_vs: 2500
+  climb_to_fl240_ias: 320
+  climb_to_fl240_vs: 1300
+  mach_climb_mach: 0.83
+  mach_climb_vs: 1000
+  cruise_mach: 0.85
+  cruise_range_nm: 8000
+  cruise_tas: 520
+  descent_to_fl240_mach: 0.83
+  descent_to_fl240_vs: 1000
+  descent_to_fl100_ias: 300
+  descent_to_fl100_vs: 2000
+  approach_ias: 250
+  approach_vs: 1000
+  landing_distance_m: 2010
+  landing_ias: 140

@@ -1,0 +1,82 @@
+aircraft: Boeing 787-8 BBJ/Dreamliner
+icao: B788
+iata: '788'
+certification:
+  model: 787-8
+  authority: EASA
+  type_certificate: EASA.IM.A.115
+  issue: '30'
+  issue_date: 2025-12-17
+mtow: 228000
+mlw: 172000
+mzfw: null
+minimum_weight: null
+oew: 119000
+mfc: 126200
+vmo: null
+mmo: 0.89
+ceiling: 43000
+icao_wtc: heavy
+eu_wtc: upper heavy
+faa_wtc: heavy
+parking_area_m2: 3679
+pax:
+  max: 380
+  high: 250
+  low: 220
+fuselage:
+  length: 56.72
+  height: 5.94
+  width: 5.77
+wing:
+  area: 377
+  span: 60.12
+  mac: 6.27
+  sweep: 32
+  t/c: 0.094
+flaps:
+  type: single-slotted
+  area: 56.55
+  bf/b: 0.75
+  lambda_f: 0.9
+  cf/c: 0.15
+  Sf/S: 0.15
+engine:
+  type: turbofan
+  mount: wing
+  number: 2
+  default: Trent 1000-E2
+  options:
+  - GEnx-1B70
+  - GEnx-1B67
+  - GEnx-1B64
+  - Trent 1000-E2
+  - Trent 1000-C2
+  - Trent 1000-A2
+drag:
+  cd0: 0.01783
+  k: 0.04186
+  e: 0.79312
+  gears: 0.01364
+kinematic:
+  takeoff_distance_m: 2820
+  takeoff_v2: 165
+  climb_to_fl50_ias: 190
+  climb_to_fl50_vs: 2700
+  climb_to_fl150_ias: 290
+  climb_to_fl150_vs: 2000
+  climb_to_fl240_ias: 290
+  climb_to_fl240_vs: 1500
+  mach_climb_mach: 0.79
+  mach_climb_vs: 1500
+  cruise_mach: 0.85
+  cruise_range_nm: 8000
+  cruise_tas: 470
+  descent_to_fl240_mach: 0.84
+  descent_to_fl240_vs: 2600
+  descent_to_fl100_ias: 300
+  descent_to_fl100_vs: 2800
+  approach_ias: 240
+  approach_vs: 1500
+  landing_distance_m: 1520
+  landing_ias: 140

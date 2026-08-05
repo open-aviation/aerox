@@ -1,0 +1,77 @@
+aircraft: Cirrus Vision SF50
+icao: SF50
+iata: null
+certification:
+  model: SF50
+  authority: FAA validated by EASA
+  type_certificate: A00018CH / EASA.IM.A.615
+  issue: EASA Issue 06 at review
+  issue_date: null
+mtow: 2700
+mlw: 2540
+mzfw: null
+minimum_weight: null
+oew: 1690
+mfc: 625
+vmo: 250
+mmo: 0.53
+ceiling: 28000
+icao_wtc: light
+eu_wtc: light
+faa_wtc: light
+parking_area_m2: 161
+pax:
+  max: 6
+  high: null
+  low: null
+fuselage:
+  length: 9.36
+  height: 1.24
+  width: 1.52
+wing:
+  area: 17
+  span: 11.8
+  mac: 1.5
+  sweep: 0
+  t/c: 0.15
+flaps:
+  type: single-slotted
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: turbofan
+  mount: aft fuselage
+  number: 1
+  default: Williams FJ33-5A
+  options:
+  - Williams FJ33-5A
+drag:
+  cd0: 0.02321
+  k: 0.04781
+  e: 0.81293
+  gears: 0.0093
+kinematic:
+  takeoff_distance_m: null
+  takeoff_v2: null
+  climb_to_fl50_ias: null
+  climb_to_fl50_vs: null
+  climb_to_fl150_ias: null
+  climb_to_fl150_vs: null
+  climb_to_fl240_ias: null
+  climb_to_fl240_vs: null
+  mach_climb_mach: null
+  mach_climb_vs: null
+  cruise_mach: null
+  cruise_range_nm: null
+  cruise_tas: null
+  descent_to_fl240_mach: null
+  descent_to_fl240_vs: null
+  descent_to_fl100_ias: null
+  descent_to_fl100_vs: null
+  approach_ias: 87
+  approach_vs: null
+  landing_distance_m: null
+  landing_ias: null

@@ -1,0 +1,77 @@
+aircraft: Cirrus SR-20
+icao: SR20
+iata: null
+certification:
+  model: SR20
+  authority: FAA validated by EASA
+  type_certificate: A00009CH / EASA.IM.A.007
+  issue: EASA Issue 19 at review
+  issue_date: null
+mtow: 1361
+mlw: 1300
+mzfw: null
+minimum_weight: null
+oew: null
+mfc: null
+vmo: null
+mmo: null
+ceiling: 17500
+icao_wtc: light
+eu_wtc: light
+faa_wtc: light
+parking_area_m2: 139
+pax:
+  max: 4
+  high: 3
+  low: 1
+fuselage:
+  length: 7.92
+  height: 2.7
+  width: null
+wing:
+  area: null
+  span: 11.68
+  mac: null
+  sweep: null
+  t/c: null
+flaps:
+  type: null
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: piston
+  mount: nose mounted
+  number: 1
+  default: Continental IO-360-ES, 200 hp (149 kW)
+  options:
+  - Continental IO-360-ES, 200 hp (149 kW)
+drag:
+  cd0: null
+  k: null
+  e: null
+  gears: null
+kinematic:
+  takeoff_distance_m: 451
+  takeoff_v2: null
+  climb_to_fl50_ias: 85
+  climb_to_fl50_vs: 830
+  climb_to_fl150_ias: 80
+  climb_to_fl150_vs: 500
+  climb_to_fl240_ias: 80
+  climb_to_fl240_vs: null
+  mach_climb_mach: null
+  mach_climb_vs: null
+  cruise_mach: null
+  cruise_range_nm: 785
+  cruise_tas: 155
+  descent_to_fl240_mach: null
+  descent_to_fl240_vs: null
+  descent_to_fl100_ias: 140
+  descent_to_fl100_vs: 1000
+  approach_ias: 90
+  approach_vs: 1000
+  landing_distance_m: 260
+  landing_ias: 65
