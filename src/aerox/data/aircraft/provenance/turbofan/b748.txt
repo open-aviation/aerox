@@ -149,7 +149,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
 END FIELD
 
 FIELD wing.tip_chord
@@ -158,7 +158,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
 END FIELD
 
 FIELD wing.taper_ratio
@@ -167,7 +167,7 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
 END FIELD
 
 FIELD wing.aspect_ratio
@@ -185,16 +185,23 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
 END FIELD
 
 FIELD horizontal_tail.area
-  Value: null
+  Value: 135.331039
   Unit: m2
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01
+  Status: inferred-with-uncertainty
+  Source: boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view | boeing_747_8_acap_rev_e_2026_01
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7478p.zip
+  Document title: Boeing 747-8 passenger/freighter CAD and ACAP Revision E
+  Revision date: 2026-01-01
+  Page or section: Reviewed top-view edges
+  Formula: span*(root+tip)/2
+  Inputs: span=21.99 m; root=9.846725 m; tip=2.461692 m
+  Applicability: 747-8 and 747-8F projected equivalent tail trapezoid
+  Uncertainty: +/-3.30 m2
+  Notes: Equivalent projected area; not certified.
 END FIELD
 
 FIELD horizontal_tail.span
@@ -212,48 +219,77 @@ FIELD horizontal_tail.span
 END FIELD
 
 FIELD horizontal_tail.mac
-  Value: null
+  Value: 6.89271
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01
+  Status: inferred-with-uncertainty
+  Source: boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view | boeing_747_8_acap_rev_e_2026_01
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7478p.zip
+  Document title: Boeing 747-8 passenger/freighter CAD and ACAP Revision E
+  Revision date: 2026-01-01
+  Page or section: Reviewed top-view edges
+  Formula: (2/3)*root*(1+taper+taper^2)/(1+taper)
+  Inputs: root=9.846725 m; tip=2.461692 m
+  Applicability: 747-8 and 747-8F projected equivalent tail trapezoid
+  Uncertainty: +/-0.15 m
+  Notes: Equivalent trapezoid MAC; not certified.
 END FIELD
 
 FIELD horizontal_tail.root_chord
-  Value: null
+  Value: 9.846725
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01
+  Status: inferred-with-uncertainty
+  Source: boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view | boeing_747_8_acap_rev_e_2026_01
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7478p.zip
+  Document title: Boeing 747-8 passenger/freighter CAD and ACAP Revision E
+  Revision date: 2026-01-01
+  Page or section: CAD LE CCBE/38A1; TE CCC4/38A7; ACAP section 2.2.2
+  Formula: principal edges evaluated at symmetry centre
+  Inputs: published span=21.99 m; independently identical passenger/freighter geometry
+  Applicability: 747-8 and 747-8F projected equivalent horizontal-tail geometry
+  Uncertainty: +/-0.15 m
+  Notes: Planning geometry; not certified.
 END FIELD
 
 FIELD horizontal_tail.tip_chord
-  Value: null
+  Value: 2.461692
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01
+  Status: inferred-with-uncertainty
+  Source: boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view | boeing_747_8_acap_rev_e_2026_01
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7478p.zip
+  Document title: Boeing 747-8 passenger/freighter CAD and ACAP Revision E
+  Revision date: 2026-01-01
+  Page or section: CAD LE CCBE/38A1; TE CCC4/38A7; ACAP section 2.2.2
+  Formula: principal edges evaluated at published semispan
+  Inputs: published span=21.99 m; independently identical passenger/freighter geometry
+  Applicability: 747-8 and 747-8F projected equivalent horizontal-tail geometry
+  Uncertainty: +/-0.15 m
+  Notes: Planning geometry; not certified.
 END FIELD
 
 FIELD horizontal_tail.taper_ratio
-  Value: null
+  Value: 0.250001
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01
+  Status: inferred-with-uncertainty
+  Source: boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view | boeing_747_8_acap_rev_e_2026_01
+  Formula: tip_chord / root_chord
+  Inputs: tip_chord=2.461692 m; root_chord=9.846725 m
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
 END FIELD
 
 FIELD horizontal_tail.sweep
-  Value: null
+  Value: 37.707397
   Unit: deg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01
+  Status: inferred-with-uncertainty
+  Source: boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view | boeing_747_8_acap_rev_e_2026_01
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7478p.zip
+  Document title: Boeing 747-8 passenger/freighter CAD and ACAP Revision E
+  Revision date: 2026-01-01
+  Page or section: Reviewed top-view edges
+  Formula: atan2(quarter-chord longitudinal offset,span/2)
+  Inputs: reviewed independent passenger/freighter edges
+  Applicability: 747-8 and 747-8F projected equivalent tail trapezoid
+  Uncertainty: +/-1 deg
+  Notes: Planning geometry; not certified.
 END FIELD
 
 FIELD horizontal_tail.dihedral
@@ -262,7 +298,7 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -271,16 +307,22 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
-  Value: null
+  Value: 0.275834
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01
+  Status: inferred-with-uncertainty
+  Source: boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7478p.zip
+  Document title: Boeing 747-8 passenger/freighter CAD drawings
+  Page or section: CAD hinges CCC3/38A6
+  Formula: projected elevator equivalent area / projected tail equivalent area
+  Inputs: reviewed outer edges and hinge lines
+  Applicability: 747-8 and 747-8F visible projected elevator geometry
+  Uncertainty: +/-0.04
+  Notes: Physical geometry only; not aerodynamic effectiveness.
 END FIELD
 
 FIELD vertical_tail.area
@@ -289,7 +331,7 @@ FIELD vertical_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
 END FIELD
 
 FIELD vertical_tail.height
@@ -298,7 +340,7 @@ FIELD vertical_tail.height
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
 END FIELD
 
 FIELD vertical_tail.mac
@@ -307,7 +349,7 @@ FIELD vertical_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
 END FIELD
 
 FIELD vertical_tail.root_chord
@@ -316,7 +358,7 @@ FIELD vertical_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
 END FIELD
 
 FIELD vertical_tail.tip_chord
@@ -325,7 +367,7 @@ FIELD vertical_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
 END FIELD
 
 FIELD vertical_tail.taper_ratio
@@ -334,7 +376,7 @@ FIELD vertical_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
 END FIELD
 
 FIELD vertical_tail.sweep
@@ -343,7 +385,7 @@ FIELD vertical_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
 END FIELD
 
 FIELD vertical_tail.arm
@@ -352,7 +394,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
 END FIELD
 
 FIELD vertical_tail.rudder_area_ratio
@@ -361,7 +403,7 @@ FIELD vertical_tail.rudder_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
 END FIELD
 
 LEGACY PARAMETERS

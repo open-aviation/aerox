@@ -149,7 +149,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_200lr_cad_3view | boeing_777_freighter_cad_3view
 END FIELD
 
 FIELD wing.tip_chord
@@ -158,7 +158,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_200lr_cad_3view | boeing_777_freighter_cad_3view
 END FIELD
 
 FIELD wing.taper_ratio
@@ -167,7 +167,7 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_200lr_cad_3view | boeing_777_freighter_cad_3view
 END FIELD
 
 FIELD wing.aspect_ratio
@@ -185,16 +185,23 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_200lr_cad_3view | boeing_777_freighter_cad_3view
 END FIELD
 
 FIELD horizontal_tail.area
-  Value: null
+  Value: 102.579373
   Unit: m2
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Status: inferred-with-uncertainty
+  Source: boeing_777_200lr_cad_3view | boeing_777_freighter_cad_3view | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7772lr.zip
+  Document title: Boeing 777-200LR and 777F CAD plus ACAP Revision G
+  Revision date: 2024-12-01
+  Page or section: Reviewed top-view edges
+  Formula: span*(root+tip)/2
+  Inputs: span=21.53 m; root=7.129453 m; tip=2.399518 m
+  Applicability: Bundled B77L passenger/freighter projected equivalent tail trapezoid
+  Uncertainty: +/-3.23 m2
+  Notes: Equivalent projected area; not certified.
 END FIELD
 
 FIELD horizontal_tail.span
@@ -212,48 +219,77 @@ FIELD horizontal_tail.span
 END FIELD
 
 FIELD horizontal_tail.mac
-  Value: null
+  Value: 5.155788
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Status: inferred-with-uncertainty
+  Source: boeing_777_200lr_cad_3view | boeing_777_freighter_cad_3view | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7772lr.zip
+  Document title: Boeing 777-200LR and 777F CAD plus ACAP Revision G
+  Revision date: 2024-12-01
+  Page or section: Reviewed top-view edges
+  Formula: (2/3)*root*(1+taper+taper^2)/(1+taper)
+  Inputs: root=7.129453 m; tip=2.399518 m
+  Applicability: Bundled B77L passenger/freighter projected equivalent tail trapezoid
+  Uncertainty: +/-0.15 m
+  Notes: Equivalent trapezoid MAC; not certified.
 END FIELD
 
 FIELD horizontal_tail.root_chord
-  Value: null
+  Value: 7.129453
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Status: inferred-with-uncertainty
+  Source: boeing_777_200lr_cad_3view | boeing_777_freighter_cad_3view | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7772lr.zip
+  Document title: Boeing 777-200LR and 777F CAD plus ACAP Revision G
+  Revision date: 2024-12-01
+  Page or section: LR polygon DE; freighter 3DCC..3DD5/85D; ACAP section 2.2.1
+  Formula: principal edges evaluated at symmetry centre
+  Inputs: published span=21.53 m; freighter independent comparison
+  Applicability: Bundled B77L passenger/freighter scope; common projected tail reference
+  Uncertainty: +/-0.15 m
+  Notes: Passenger LR value adopted; freighter agrees within planning-drawing uncertainty.
 END FIELD
 
 FIELD horizontal_tail.tip_chord
-  Value: null
+  Value: 2.399518
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Status: inferred-with-uncertainty
+  Source: boeing_777_200lr_cad_3view | boeing_777_freighter_cad_3view | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7772lr.zip
+  Document title: Boeing 777-200LR and 777F CAD plus ACAP Revision G
+  Revision date: 2024-12-01
+  Page or section: LR polygon DE; freighter 3DCC..3DD5/85D; ACAP section 2.2.1
+  Formula: principal edges evaluated at published semispan
+  Inputs: published span=21.53 m; freighter independent comparison
+  Applicability: Bundled B77L passenger/freighter scope; common projected tail reference
+  Uncertainty: +/-0.15 m
+  Notes: Passenger LR value adopted; freighter agrees within planning-drawing uncertainty.
 END FIELD
 
 FIELD horizontal_tail.taper_ratio
-  Value: null
+  Value: 0.336564
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Status: inferred-with-uncertainty
+  Source: boeing_777_200lr_cad_3view | boeing_777_freighter_cad_3view | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Formula: tip_chord / root_chord
+  Inputs: tip_chord=2.399518 m; root_chord=7.129453 m
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_200lr_cad_3view | boeing_777_freighter_cad_3view
 END FIELD
 
 FIELD horizontal_tail.sweep
-  Value: null
+  Value: 35.248186
   Unit: deg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Status: inferred-with-uncertainty
+  Source: boeing_777_200lr_cad_3view | boeing_777_freighter_cad_3view | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7772lr.zip
+  Document title: Boeing 777-200LR and 777F CAD plus ACAP Revision G
+  Revision date: 2024-12-01
+  Page or section: Reviewed top-view edges
+  Formula: atan2(quarter-chord longitudinal offset,span/2)
+  Inputs: reviewed passenger edges; freighter independent comparison
+  Applicability: Bundled B77L passenger/freighter projected equivalent tail trapezoid
+  Uncertainty: +/-1 deg
+  Notes: Planning geometry; not certified.
 END FIELD
 
 FIELD horizontal_tail.dihedral
@@ -262,7 +298,7 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_200lr_cad_3view | boeing_777_freighter_cad_3view
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -271,16 +307,22 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_200lr_cad_3view | boeing_777_freighter_cad_3view
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
-  Value: null
+  Value: 0.291375
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Status: inferred-with-uncertainty
+  Source: boeing_777_200lr_cad_3view
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7772lr.zip
+  Document title: Boeing 777-200LR 3-view CAD drawing
+  Page or section: CAD elevator polygon 2B
+  Formula: projected elevator equivalent area / projected tail equivalent area
+  Inputs: reviewed passenger LR outer and hinge edges
+  Applicability: 777-200LR visible projected elevator geometry
+  Uncertainty: +/-0.04
+  Notes: Physical passenger-LR geometry only; freighter hinge ratio was not adopted.
 END FIELD
 
 FIELD vertical_tail.area
@@ -289,7 +331,7 @@ FIELD vertical_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_200lr_cad_3view | boeing_777_freighter_cad_3view
 END FIELD
 
 FIELD vertical_tail.height
@@ -298,7 +340,7 @@ FIELD vertical_tail.height
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_200lr_cad_3view | boeing_777_freighter_cad_3view
 END FIELD
 
 FIELD vertical_tail.mac
@@ -307,7 +349,7 @@ FIELD vertical_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_200lr_cad_3view | boeing_777_freighter_cad_3view
 END FIELD
 
 FIELD vertical_tail.root_chord
@@ -316,7 +358,7 @@ FIELD vertical_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_200lr_cad_3view | boeing_777_freighter_cad_3view
 END FIELD
 
 FIELD vertical_tail.tip_chord
@@ -325,7 +367,7 @@ FIELD vertical_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_200lr_cad_3view | boeing_777_freighter_cad_3view
 END FIELD
 
 FIELD vertical_tail.taper_ratio
@@ -334,7 +376,7 @@ FIELD vertical_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_200lr_cad_3view | boeing_777_freighter_cad_3view
 END FIELD
 
 FIELD vertical_tail.sweep
@@ -343,7 +385,7 @@ FIELD vertical_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_200lr_cad_3view | boeing_777_freighter_cad_3view
 END FIELD
 
 FIELD vertical_tail.arm
@@ -352,7 +394,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_200lr_cad_3view | boeing_777_freighter_cad_3view
 END FIELD
 
 FIELD vertical_tail.rudder_area_ratio
@@ -361,7 +403,7 @@ FIELD vertical_tail.rudder_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_200lr_cad_3view | boeing_777_freighter_cad_3view
 END FIELD
 
 LEGACY PARAMETERS

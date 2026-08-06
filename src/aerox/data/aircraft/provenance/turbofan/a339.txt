@@ -125,10 +125,20 @@ FIELD wing.span
 END FIELD
 
 FIELD wing.mac
-  Value: 7.26
+  Value: 7.27
   Unit: m
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a004_issue_69
+  Source URL: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa004-airbus-a330
+  Document title: EASA Type Certificate Data Sheet EASA.A.004, Issue 69
+  Revision date: 2025-12-19
+  Page or section: A330-941 series, TCDS page 92
+  Inputs: 7.270 m published mean aerodynamic chord
+  Applicability: A330-941 certified reference geometry
+  Uncertainty: published exact value
+  Previous value: 7.26 m
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Corrects the 7.26 m legacy value.
 END FIELD
 
 FIELD wing.sweep
@@ -151,7 +161,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12
+  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_900_autocad_2016_08
 END FIELD
 
 FIELD wing.tip_chord
@@ -160,7 +170,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12
+  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_900_autocad_2016_08
 END FIELD
 
 FIELD wing.taper_ratio
@@ -169,7 +179,7 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12
+  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_900_autocad_2016_08
 END FIELD
 
 FIELD wing.aspect_ratio
@@ -187,16 +197,23 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12
+  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_900_autocad_2016_08
 END FIELD
 
 FIELD horizontal_tail.area
-  Value: null
+  Value: 71.41978
   Unit: m2
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12
+  Status: inferred-with-uncertainty
+  Source: airbus_a330_900_autocad_2016_08
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A330-900-Aug-2016.zip
+  Document title: Airbus A330-900 preliminary AutoCAD drawing
+  Revision date: 2016-08
+  Page or section: Reviewed top-view edges
+  Formula: span*(root+tip)/2
+  Inputs: span=19.4 m; root=5.343980 m; tip=2.018890 m
+  Applicability: A330-900 preliminary projected equivalent tail trapezoid
+  Uncertainty: +/-5 percent
+  Notes: Equivalent projected area from a preliminary planning drawing.
 END FIELD
 
 FIELD horizontal_tail.span
@@ -214,48 +231,77 @@ FIELD horizontal_tail.span
 END FIELD
 
 FIELD horizontal_tail.mac
-  Value: null
+  Value: 3.9317
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12
+  Status: inferred-with-uncertainty
+  Source: airbus_a330_900_autocad_2016_08
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A330-900-Aug-2016.zip
+  Document title: Airbus A330-900 preliminary AutoCAD drawing
+  Revision date: 2016-08
+  Page or section: Reviewed top-view edges
+  Formula: (2/3)*root*(1+taper+taper^2)/(1+taper)
+  Inputs: root=5.343980 m; tip=2.018890 m
+  Applicability: A330-900 preliminary projected equivalent tail trapezoid
+  Uncertainty: +/-0.15 m
+  Notes: Equivalent trapezoid MAC; not certified.
 END FIELD
 
 FIELD horizontal_tail.root_chord
-  Value: null
+  Value: 5.34398
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12
+  Status: inferred-with-uncertainty
+  Source: airbus_a330_900_autocad_2016_08
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A330-900-Aug-2016.zip
+  Document title: Airbus A330-900 preliminary AutoCAD drawing
+  Revision date: 2016-08
+  Page or section: CAD LE 2642/263F; TE 2640/263E
+  Formula: reviewed edges evaluated at symmetry centre
+  Inputs: span=19.4 m
+  Applicability: A330-900 preliminary projected equivalent tail trapezoid
+  Uncertainty: +/-0.15 m
+  Notes: Drawing is explicitly preliminary; not certified.
 END FIELD
 
 FIELD horizontal_tail.tip_chord
-  Value: null
+  Value: 2.01889
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12
+  Status: inferred-with-uncertainty
+  Source: airbus_a330_900_autocad_2016_08
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A330-900-Aug-2016.zip
+  Document title: Airbus A330-900 preliminary AutoCAD drawing
+  Revision date: 2016-08
+  Page or section: CAD LE 2642/263F; TE 2640/263E
+  Formula: reviewed edges evaluated at published semispan
+  Inputs: span=19.4 m
+  Applicability: A330-900 preliminary projected equivalent tail trapezoid
+  Uncertainty: +/-0.15 m
+  Notes: Drawing is explicitly preliminary; not certified.
 END FIELD
 
 FIELD horizontal_tail.taper_ratio
-  Value: null
+  Value: 0.377788
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12
+  Status: inferred-with-uncertainty
+  Source: airbus_a330_900_autocad_2016_08
+  Formula: tip_chord / root_chord
+  Inputs: tip_chord=2.01889 m; root_chord=5.34398 m
+  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_900_autocad_2016_08
 END FIELD
 
 FIELD horizontal_tail.sweep
-  Value: null
+  Value: 30.0053
   Unit: deg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12
+  Status: inferred-with-uncertainty
+  Source: airbus_a330_900_autocad_2016_08
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A330-900-Aug-2016.zip
+  Document title: Airbus A330-900 preliminary AutoCAD drawing
+  Revision date: 2016-08
+  Page or section: Reviewed top-view edges
+  Formula: atan2(quarter-chord longitudinal offset,span/2)
+  Inputs: reviewed mirrored edges
+  Applicability: A330-900 preliminary projected equivalent tail trapezoid
+  Uncertainty: +/-1 deg
+  Notes: Drawing is explicitly preliminary; not certified.
 END FIELD
 
 FIELD horizontal_tail.dihedral
@@ -264,7 +310,7 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12
+  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_900_autocad_2016_08
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -273,16 +319,23 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12
+  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_900_autocad_2016_08
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
-  Value: null
+  Value: 0.29988
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12
+  Status: inferred-with-uncertainty
+  Source: airbus_a330_900_autocad_2016_08
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A330-900-Aug-2016.zip
+  Document title: Airbus A330-900 preliminary AutoCAD drawing
+  Revision date: 2016-08
+  Page or section: CAD hinge 264B/264A
+  Formula: projected elevator equivalent area / projected tail equivalent area
+  Inputs: reviewed hinge and outer edges
+  Applicability: A330-900 visible projected elevator geometry
+  Uncertainty: +/-0.04
+  Notes: Physical geometry only; preliminary drawing.
 END FIELD
 
 FIELD vertical_tail.area
@@ -291,7 +344,7 @@ FIELD vertical_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12
+  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_900_autocad_2016_08
 END FIELD
 
 FIELD vertical_tail.height
@@ -315,7 +368,7 @@ FIELD vertical_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12
+  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_900_autocad_2016_08
 END FIELD
 
 FIELD vertical_tail.root_chord
@@ -324,7 +377,7 @@ FIELD vertical_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12
+  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_900_autocad_2016_08
 END FIELD
 
 FIELD vertical_tail.tip_chord
@@ -333,7 +386,7 @@ FIELD vertical_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12
+  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_900_autocad_2016_08
 END FIELD
 
 FIELD vertical_tail.taper_ratio
@@ -342,7 +395,7 @@ FIELD vertical_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12
+  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_900_autocad_2016_08
 END FIELD
 
 FIELD vertical_tail.sweep
@@ -351,7 +404,7 @@ FIELD vertical_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12
+  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_900_autocad_2016_08
 END FIELD
 
 FIELD vertical_tail.arm
@@ -360,7 +413,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12
+  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_900_autocad_2016_08
 END FIELD
 
 FIELD vertical_tail.rudder_area_ratio
@@ -369,7 +422,7 @@ FIELD vertical_tail.rudder_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12
+  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_900_autocad_2016_08
 END FIELD
 
 LEGACY PARAMETERS

@@ -41,13 +41,13 @@ wing:
   aspect_ratio: 10.15942
   dihedral: null
 horizontal_tail:
-  area: null
+  area: 32.91354
   span: 14.35
-  mac: null
-  root_chord: null
-  tip_chord: null
-  taper_ratio: null
-  sweep: null
+  mac: 2.640343
+  root_chord: 3.838202
+  tip_chord: 0.749051
+  taper_ratio: 0.195157
+  sweep: 30.19329
   dihedral: null
   arm: null
   elevator_area_ratio: null

@@ -149,7 +149,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12
+  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12 | airbus_a300_600_autocad_2012_05
 END FIELD
 
 FIELD wing.tip_chord
@@ -158,7 +158,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12
+  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12 | airbus_a300_600_autocad_2012_05
 END FIELD
 
 FIELD wing.taper_ratio
@@ -167,7 +167,7 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12
+  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12 | airbus_a300_600_autocad_2012_05
 END FIELD
 
 FIELD wing.aspect_ratio
@@ -185,70 +185,113 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12
+  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12 | airbus_a300_600_autocad_2012_05
 END FIELD
 
 FIELD horizontal_tail.area
-  Value: null
+  Value: 64.00087
   Unit: m2
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12
+  Status: inferred-with-uncertainty
+  Source: airbus_a300_600_autocad_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A300-600-May-2012.zip
+  Document title: Airbus A300-600 AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: Reviewed top-view edges
+  Formula: span*(root+tip)/2
+  Inputs: span=16.261602 m; root=5.471552 m; tip=2.399858 m
+  Applicability: A300-600 gross projected equivalent horizontal-tail trapezoid
+  Uncertainty: +/-5 percent
+  Notes: Equivalent projected area; not a certified reference area.
 END FIELD
 
 FIELD horizontal_tail.span
-  Value: null
+  Value: 16.261602
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12
+  Status: inferred-with-uncertainty
+  Source: airbus_a300_600_autocad_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A300-600-May-2012.zip
+  Document title: Airbus A300-600 AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: CAD tail extrema; wing span closure
+  Formula: 2*max lateral tail extent after symmetry reduction
+  Inputs: raw tail extrema and wing span scale anchor
+  Applicability: A300-600 projected horizontal-tail span
+  Uncertainty: +/-0.10 m
+  Notes: CAD-measured planning geometry; not certified.
 END FIELD
 
 FIELD horizontal_tail.mac
-  Value: null
+  Value: 4.135485
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12
+  Status: inferred-with-uncertainty
+  Source: airbus_a300_600_autocad_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A300-600-May-2012.zip
+  Document title: Airbus A300-600 AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: Reviewed top-view edges
+  Formula: (2/3)*root*(1+taper+taper^2)/(1+taper)
+  Inputs: root=5.471552 m; tip=2.399858 m
+  Applicability: A300-600 gross projected equivalent horizontal-tail trapezoid
+  Uncertainty: +/-0.15 m
+  Notes: Equivalent trapezoid MAC; not certified.
 END FIELD
 
 FIELD horizontal_tail.root_chord
-  Value: null
+  Value: 5.471552
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12
+  Status: inferred-with-uncertainty
+  Source: airbus_a300_600_autocad_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A300-600-May-2012.zip
+  Document title: Airbus A300-600 AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: CAD LE 23FC/29A4; TE 2427/29BC
+  Formula: principal-edge fits evaluated at symmetry centre
+  Inputs: span=16.261602 m; reviewed mirrored edges
+  Applicability: A300-600 gross projected equivalent horizontal-tail trapezoid
+  Uncertainty: +/-0.15 m
+  Notes: Planning geometry; not certified.
 END FIELD
 
 FIELD horizontal_tail.tip_chord
-  Value: null
+  Value: 2.399858
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12
+  Status: inferred-with-uncertainty
+  Source: airbus_a300_600_autocad_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A300-600-May-2012.zip
+  Document title: Airbus A300-600 AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: CAD LE 23FC/29A4; TE 2427/29BC
+  Formula: principal-edge fits evaluated at CAD semispan
+  Inputs: span=16.261602 m; reviewed mirrored edges
+  Applicability: A300-600 gross projected equivalent horizontal-tail trapezoid
+  Uncertainty: +/-0.15 m
+  Notes: Planning geometry; not certified.
 END FIELD
 
 FIELD horizontal_tail.taper_ratio
-  Value: null
+  Value: 0.438606
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12
+  Status: inferred-with-uncertainty
+  Source: airbus_a300_600_autocad_2012_05
+  Formula: tip_chord / root_chord
+  Inputs: tip_chord=2.399858 m; root_chord=5.471552 m
+  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12 | airbus_a300_600_autocad_2012_05
 END FIELD
 
 FIELD horizontal_tail.sweep
-  Value: null
+  Value: 32.999838
   Unit: deg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12
+  Status: inferred-with-uncertainty
+  Source: airbus_a300_600_autocad_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A300-600-May-2012.zip
+  Document title: Airbus A300-600 AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: Reviewed top-view edges
+  Formula: atan2(quarter-chord longitudinal offset,span/2)
+  Inputs: reviewed mirrored principal-edge fits
+  Applicability: A300-600 gross projected equivalent horizontal-tail trapezoid
+  Uncertainty: +/-1 deg
+  Notes: Equivalent quarter-chord sweep; not certified.
 END FIELD
 
 FIELD horizontal_tail.dihedral
@@ -257,7 +300,7 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12
+  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12 | airbus_a300_600_autocad_2012_05
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -266,7 +309,7 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12
+  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12 | airbus_a300_600_autocad_2012_05
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
@@ -275,7 +318,7 @@ FIELD horizontal_tail.elevator_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12
+  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12 | airbus_a300_600_autocad_2012_05
 END FIELD
 
 FIELD vertical_tail.area
@@ -284,7 +327,7 @@ FIELD vertical_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12
+  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12 | airbus_a300_600_autocad_2012_05
 END FIELD
 
 FIELD vertical_tail.height
@@ -293,7 +336,7 @@ FIELD vertical_tail.height
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12
+  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12 | airbus_a300_600_autocad_2012_05
 END FIELD
 
 FIELD vertical_tail.mac
@@ -302,7 +345,7 @@ FIELD vertical_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12
+  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12 | airbus_a300_600_autocad_2012_05
 END FIELD
 
 FIELD vertical_tail.root_chord
@@ -311,7 +354,7 @@ FIELD vertical_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12
+  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12 | airbus_a300_600_autocad_2012_05
 END FIELD
 
 FIELD vertical_tail.tip_chord
@@ -320,7 +363,7 @@ FIELD vertical_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12
+  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12 | airbus_a300_600_autocad_2012_05
 END FIELD
 
 FIELD vertical_tail.taper_ratio
@@ -329,7 +372,7 @@ FIELD vertical_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12
+  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12 | airbus_a300_600_autocad_2012_05
 END FIELD
 
 FIELD vertical_tail.sweep
@@ -338,7 +381,7 @@ FIELD vertical_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12
+  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12 | airbus_a300_600_autocad_2012_05
 END FIELD
 
 FIELD vertical_tail.arm
@@ -347,7 +390,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12
+  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12 | airbus_a300_600_autocad_2012_05
 END FIELD
 
 FIELD vertical_tail.rudder_area_ratio
@@ -356,7 +399,7 @@ FIELD vertical_tail.rudder_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12
+  Searched source: easa_a172_issue_08 | airbus_a300_600_acap_rev13_2009_12 | airbus_a300_600_autocad_2012_05
 END FIELD
 
 LEGACY PARAMETERS

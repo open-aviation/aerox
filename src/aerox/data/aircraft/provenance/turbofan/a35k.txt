@@ -320,19 +320,19 @@ FIELD horizontal_tail.arm
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
-  Value: 0.310309
+  Value: null
   Unit: nondimensional
-  Status: inferred-with-uncertainty
+  Status: unresolved
   Source: airbus_a350_1000_autocad_2016_04
   Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus-A350-1000-Apr-2016.zip
   Document title: Airbus A350-1000 AutoCAD 3-view aircraft drawing
   Revision date: 2016-04
-  Page or section: CAD handles 1678;167D;15A4; elevator gross area ratio
-  Formula: span*(elevator_root+elevator_tip)/2 divided by horizontal-tail area
-  Inputs: exact entity endpoints recorded in the Airbus CAD measurement inventory
+  Page or section: CAD handles 1678;167D;15A4
+  Inputs: CAD elevator outline and gross CAD tail trapezoid retained in the evidence inventory
   Applicability: A350-1000 physical-surface geometry only; not control-law effectiveness
-  Uncertainty: engineering bound +/-0.04
-  Notes: Official Airbus airport-planning vector drawing; exact endpoints are retained in docs/modeling/airbus-cad-geometry-measurements.csv; not certified.
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04
+  Notes: The prior 0.310309 ratio used the superseded 85.707556 m2 CAD gross-trapezoid denominator and is not compatible with the adopted 82 m2 Airbus published surface area; leave null until a common physical-area definition is extracted.
 END FIELD
 
 FIELD vertical_tail.area

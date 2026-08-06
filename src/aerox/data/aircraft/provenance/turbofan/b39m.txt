@@ -150,7 +150,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07
+  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
 END FIELD
 
 FIELD wing.tip_chord
@@ -159,7 +159,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07
+  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
 END FIELD
 
 FIELD wing.taper_ratio
@@ -168,7 +168,7 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07
+  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
 END FIELD
 
 FIELD wing.aspect_ratio
@@ -186,16 +186,23 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07
+  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
 END FIELD
 
 FIELD horizontal_tail.area
-  Value: null
+  Value: 32.91354
   Unit: m2
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07
+  Status: inferred-with-uncertainty
+  Source: boeing_737_max9_cad_3view | boeing_737_max_acap_rev_k_2025_07
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/737_max9.zip
+  Document title: Boeing 737-9 CAD and 737 MAX ACAP Revision K
+  Revision date: 2025-07-01
+  Page or section: Reviewed top-view edges
+  Formula: span*(root+tip)/2
+  Inputs: span=14.35 m; root=3.838202 m; tip=0.749051 m
+  Applicability: 737-9 projected equivalent horizontal-tail trapezoid
+  Uncertainty: +/-2.15 m2
+  Notes: Agrees with independently NASA-corroborated B738 reference geometry.
 END FIELD
 
 FIELD horizontal_tail.span
@@ -213,48 +220,77 @@ FIELD horizontal_tail.span
 END FIELD
 
 FIELD horizontal_tail.mac
-  Value: null
+  Value: 2.640343
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07
+  Status: inferred-with-uncertainty
+  Source: boeing_737_max9_cad_3view | boeing_737_max_acap_rev_k_2025_07
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/737_max9.zip
+  Document title: Boeing 737-9 CAD and 737 MAX ACAP Revision K
+  Revision date: 2025-07-01
+  Page or section: Reviewed top-view edges
+  Formula: (2/3)*root*(1+taper+taper^2)/(1+taper)
+  Inputs: root=3.838202 m; tip=0.749051 m
+  Applicability: 737-9 projected equivalent horizontal-tail trapezoid
+  Uncertainty: +/-0.15 m
+  Notes: Equivalent trapezoid MAC; not certified.
 END FIELD
 
 FIELD horizontal_tail.root_chord
-  Value: null
+  Value: 3.838202
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07
+  Status: inferred-with-uncertainty
+  Source: boeing_737_max9_cad_3view | boeing_737_max_acap_rev_k_2025_07
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/737_max9.zip
+  Document title: Boeing 737-9 CAD and 737 MAX ACAP Revision K
+  Revision date: 2025-07-01
+  Page or section: Top-view block 19EEB; ACAP section 2.2.3
+  Formula: principal-edge regression evaluated at symmetry centre
+  Inputs: span=14.35 m; reviewed exact-model outline
+  Applicability: 737-9 projected equivalent horizontal-tail trapezoid
+  Uncertainty: +/-0.15 m
+  Notes: Exact-model planning geometry; not certified.
 END FIELD
 
 FIELD horizontal_tail.tip_chord
-  Value: null
+  Value: 0.749051
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07
+  Status: inferred-with-uncertainty
+  Source: boeing_737_max9_cad_3view | boeing_737_max_acap_rev_k_2025_07
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/737_max9.zip
+  Document title: Boeing 737-9 CAD and 737 MAX ACAP Revision K
+  Revision date: 2025-07-01
+  Page or section: Top-view block 19EEB; ACAP section 2.2.3
+  Formula: principal-edge regression evaluated at published semispan
+  Inputs: span=14.35 m; reviewed exact-model outline
+  Applicability: 737-9 projected equivalent horizontal-tail trapezoid
+  Uncertainty: +/-0.15 m
+  Notes: Exact-model planning geometry; not certified.
 END FIELD
 
 FIELD horizontal_tail.taper_ratio
-  Value: null
+  Value: 0.195157
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07
+  Status: inferred-with-uncertainty
+  Source: boeing_737_max9_cad_3view | boeing_737_max_acap_rev_k_2025_07
+  Formula: tip_chord / root_chord
+  Inputs: tip_chord=0.749051 m; root_chord=3.838202 m
+  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
 END FIELD
 
 FIELD horizontal_tail.sweep
-  Value: null
+  Value: 30.19329
   Unit: deg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07
+  Status: inferred-with-uncertainty
+  Source: boeing_737_max9_cad_3view | boeing_737_max_acap_rev_k_2025_07
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/737_max9.zip
+  Document title: Boeing 737-9 CAD and 737 MAX ACAP Revision K
+  Revision date: 2025-07-01
+  Page or section: Reviewed top-view edges
+  Formula: atan2(quarter-chord longitudinal offset,span/2)
+  Inputs: reviewed exact-model principal edges
+  Applicability: 737-9 projected equivalent horizontal-tail trapezoid
+  Uncertainty: +/-1 deg
+  Notes: Planning geometry; not certified.
 END FIELD
 
 FIELD horizontal_tail.dihedral
@@ -263,7 +299,7 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07
+  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -272,7 +308,7 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07
+  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
@@ -281,7 +317,7 @@ FIELD horizontal_tail.elevator_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07
+  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
 END FIELD
 
 FIELD vertical_tail.area
@@ -290,7 +326,7 @@ FIELD vertical_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07
+  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
 END FIELD
 
 FIELD vertical_tail.height
@@ -299,7 +335,7 @@ FIELD vertical_tail.height
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07
+  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
 END FIELD
 
 FIELD vertical_tail.mac
@@ -308,7 +344,7 @@ FIELD vertical_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07
+  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
 END FIELD
 
 FIELD vertical_tail.root_chord
@@ -317,7 +353,7 @@ FIELD vertical_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07
+  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
 END FIELD
 
 FIELD vertical_tail.tip_chord
@@ -326,7 +362,7 @@ FIELD vertical_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07
+  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
 END FIELD
 
 FIELD vertical_tail.taper_ratio
@@ -335,7 +371,7 @@ FIELD vertical_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07
+  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
 END FIELD
 
 FIELD vertical_tail.sweep
@@ -344,7 +380,7 @@ FIELD vertical_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07
+  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
 END FIELD
 
 FIELD vertical_tail.arm
@@ -353,7 +389,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07
+  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
 END FIELD
 
 FIELD vertical_tail.rudder_area_ratio
@@ -362,7 +398,7 @@ FIELD vertical_tail.rudder_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07
+  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
 END FIELD
 
 LEGACY PARAMETERS

@@ -38,7 +38,7 @@ fuselage:
 wing:
   area: 124
   span: 35.8
-  mac: 4.29
+  mac: 4.1935
   sweep: 25
   t/c: 0.119
   root_chord: null

@@ -27,13 +27,18 @@ FILES = sorted(ROOT.glob("*/*.yml"))
 RESEARCH_FILES = (
     Path("docs/modeling/geometry-research-airbus-boeing.tsv"),
     Path("docs/modeling/geometry-research-airbus-tail-batch.tsv"),
+    Path("docs/modeling/geometry-research-cad-batch-2.tsv"),
+    Path("docs/modeling/geometry-research-cad-batch-3.tsv"),
+    Path("docs/modeling/geometry-research-cad-batch-4.tsv"),
     Path("docs/modeling/geometry-research-regional-business.tsv"),
     Path("docs/modeling/geometry-research-ga-turboprop-military.tsv"),
 )
 CAD_MEASUREMENT_FILES = (
     Path("docs/modeling/airbus-cad-geometry-measurements.csv"),
     Path("docs/modeling/airbus-cad-tail-direct-extraction.csv"),
+    Path("docs/modeling/airbus-cad-tail-batch-2.csv"),
     Path("docs/modeling/boeing-cad-geometry-measurements.csv"),
+    Path("docs/modeling/boeing-cad-tail-direct-extraction.csv"),
 )
 
 
@@ -282,6 +287,55 @@ def test_cad_measurement_inventories_use_stable_ledger_source_ids():
             rows = list(csv.DictReader(stream))
         assert rows, path
         assert all(row["source_id"] in source_ids for row in rows), path
+
+
+def test_cad_archive_inventory_covers_every_stored_manufacturer_drawing():
+    path = Path("docs/modeling/cad-archive-inventory.csv")
+    with path.open(encoding="utf-8", newline="") as stream:
+        rows = list(csv.DictReader(stream))
+    assert len(rows) == 50
+    assert len({row["archive_id"] for row in rows}) == 50
+    assert all(row["stored_status"] == "original-archive-and-drawing-present" for row in rows)
+    assert all(row["semantic_extraction_status"] in {
+        "reviewed-and-adopted", "reviewed-evidence-only",
+        "reviewed-blocked-no-parameter",
+        "stored-not-semantically-extracted",
+    } for row in rows)
+    # Every archive has an explicit semantic review, including blocked ones.
+    assert not any(
+        row["semantic_extraction_status"] == "stored-not-semantically-extracted"
+        for row in rows
+    )
+    assert all(row["source_id"] for row in rows)
+
+
+def test_cad_evidence_inventory_preserves_unmapped_and_rejected_observations():
+    path = Path("docs/modeling/cad-evidence-inventory.csv")
+    with path.open(encoding="utf-8", newline="") as stream:
+        rows = list(csv.DictReader(stream))
+    assert len(rows) >= 200
+    assert any(not row["canonical_path"] for row in rows)
+    assert any(row["adoption_status"] == "rejected" for row in rows)
+    assert any(row["entity_handles"] for row in rows)
+
+
+def test_cad_inventory_generator_is_idempotent():
+    before = {
+        path: path.read_bytes()
+        for path in (
+            Path("docs/modeling/cad-archive-inventory.csv"),
+            Path("docs/modeling/cad-evidence-inventory.csv"),
+        )
+    }
+    result = subprocess.run(
+        [sys.executable, "tools/generate_cad_evidence_inventory.py"],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "archives=50" in result.stdout
+    assert all(path.read_bytes() == content for path, content in before.items())
 
 
 def test_direct_airbus_dwg_json_extractor_preserves_reviewed_geometry():

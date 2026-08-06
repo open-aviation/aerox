@@ -51,7 +51,7 @@ horizontal_tail:
   sweep: 34.127238
   dihedral: null
   arm: null
-  elevator_area_ratio: 0.310309
+  elevator_area_ratio: null
 vertical_tail:
   area: null
   height: 9.42

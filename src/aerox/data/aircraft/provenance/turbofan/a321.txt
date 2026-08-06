@@ -125,10 +125,20 @@ FIELD wing.span
 END FIELD
 
 FIELD wing.mac
-  Value: 4.29
+  Value: 4.1935
   Unit: m
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a064_issue_62
+  Source URL: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa064-airbus-a318-a319-a320-a321-single-aisle
+  Document title: EASA Type Certificate Data Sheet EASA.A.064, Issue 62
+  Revision date: 2026-06-26
+  Page or section: A321 series, TCDS page 103
+  Inputs: 4.1935 m published mean aerodynamic chord
+  Applicability: A321 series certified reference geometry
+  Uncertainty: published exact value
+  Previous value: 4.29 m
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Corrects the 4.29 m legacy value.
 END FIELD
 
 FIELD wing.sweep

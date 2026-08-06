@@ -149,7 +149,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12
+  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05
 END FIELD
 
 FIELD wing.tip_chord
@@ -158,7 +158,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12
+  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05
 END FIELD
 
 FIELD wing.taper_ratio
@@ -167,7 +167,7 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12
+  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05
 END FIELD
 
 FIELD wing.aspect_ratio
@@ -185,16 +185,23 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12
+  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05
 END FIELD
 
 FIELD horizontal_tail.area
-  Value: null
+  Value: 205.07289
   Unit: m2
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12
+  Status: inferred-with-uncertainty
+  Source: airbus_a380_800_autocad_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A380-800-May-2012.zip
+  Document title: Airbus A380-800 AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: Reviewed top-view edges
+  Formula: span*(root+tip)/2
+  Inputs: span=30.37 m; root=9.782360 m; tip=3.722610 m
+  Applicability: A380-800 projected equivalent horizontal-tail trapezoid
+  Uncertainty: +/-5 percent
+  Notes: Equivalent projected area; not certified.
 END FIELD
 
 FIELD horizontal_tail.span
@@ -212,48 +219,77 @@ FIELD horizontal_tail.span
 END FIELD
 
 FIELD horizontal_tail.mac
-  Value: null
+  Value: 7.20566
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12
+  Status: inferred-with-uncertainty
+  Source: airbus_a380_800_autocad_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A380-800-May-2012.zip
+  Document title: Airbus A380-800 AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: Reviewed top-view edges
+  Formula: (2/3)*root*(1+taper+taper^2)/(1+taper)
+  Inputs: root=9.782360 m; tip=3.722610 m
+  Applicability: A380-800 projected equivalent horizontal-tail trapezoid
+  Uncertainty: +/-0.15 m
+  Notes: Equivalent trapezoid MAC; not certified.
 END FIELD
 
 FIELD horizontal_tail.root_chord
-  Value: null
+  Value: 9.78236
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12
+  Status: inferred-with-uncertainty
+  Source: airbus_a380_800_autocad_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A380-800-May-2012.zip
+  Document title: Airbus A380-800 AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: CAD LE 569/FD84; TE C829+C832/F9FD+FA09
+  Formula: reviewed edges evaluated at symmetry centre
+  Inputs: span=30.37 m; published span used because INSUNITS is inconsistent
+  Applicability: A380-800 projected equivalent horizontal-tail trapezoid
+  Uncertainty: +/-0.15 m
+  Notes: Planning geometry; not certified.
 END FIELD
 
 FIELD horizontal_tail.tip_chord
-  Value: null
+  Value: 3.72261
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12
+  Status: inferred-with-uncertainty
+  Source: airbus_a380_800_autocad_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A380-800-May-2012.zip
+  Document title: Airbus A380-800 AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: CAD LE 569/FD84; TE C829+C832/F9FD+FA09
+  Formula: reviewed edges evaluated at published semispan
+  Inputs: span=30.37 m
+  Applicability: A380-800 projected equivalent horizontal-tail trapezoid
+  Uncertainty: +/-0.15 m
+  Notes: Planning geometry; not certified.
 END FIELD
 
 FIELD horizontal_tail.taper_ratio
-  Value: null
+  Value: 0.380543
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12
+  Status: inferred-with-uncertainty
+  Source: airbus_a380_800_autocad_2012_05
+  Formula: tip_chord / root_chord
+  Inputs: tip_chord=3.72261 m; root_chord=9.78236 m
+  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05
 END FIELD
 
 FIELD horizontal_tail.sweep
-  Value: null
+  Value: 24.80238
   Unit: deg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12
+  Status: inferred-with-uncertainty
+  Source: airbus_a380_800_autocad_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A380-800-May-2012.zip
+  Document title: Airbus A380-800 AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: Reviewed top-view edges
+  Formula: atan2(quarter-chord longitudinal offset,span/2)
+  Inputs: reviewed mirrored principal-edge fits
+  Applicability: A380-800 projected equivalent horizontal-tail trapezoid
+  Uncertainty: +/-1 deg
+  Notes: Planning geometry; not certified.
 END FIELD
 
 FIELD horizontal_tail.dihedral
@@ -262,7 +298,7 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12
+  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -271,7 +307,7 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12
+  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
@@ -280,7 +316,7 @@ FIELD horizontal_tail.elevator_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12
+  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05
 END FIELD
 
 FIELD vertical_tail.area
@@ -289,7 +325,7 @@ FIELD vertical_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12
+  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05
 END FIELD
 
 FIELD vertical_tail.height
@@ -313,7 +349,7 @@ FIELD vertical_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12
+  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05
 END FIELD
 
 FIELD vertical_tail.root_chord
@@ -322,7 +358,7 @@ FIELD vertical_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12
+  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05
 END FIELD
 
 FIELD vertical_tail.tip_chord
@@ -331,7 +367,7 @@ FIELD vertical_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12
+  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05
 END FIELD
 
 FIELD vertical_tail.taper_ratio
@@ -340,7 +376,7 @@ FIELD vertical_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12
+  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05
 END FIELD
 
 FIELD vertical_tail.sweep
@@ -349,7 +385,7 @@ FIELD vertical_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12
+  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05
 END FIELD
 
 FIELD vertical_tail.arm
@@ -358,7 +394,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12
+  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05
 END FIELD
 
 FIELD vertical_tail.rudder_area_ratio
@@ -367,7 +403,7 @@ FIELD vertical_tail.rudder_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12
+  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05
 END FIELD
 
 LEGACY PARAMETERS

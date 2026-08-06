@@ -151,7 +151,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11
+  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11 | boeing_717_cad_3view
 END FIELD
 
 FIELD wing.tip_chord
@@ -160,7 +160,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11
+  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11 | boeing_717_cad_3view
 END FIELD
 
 FIELD wing.taper_ratio
@@ -169,7 +169,7 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11
+  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11 | boeing_717_cad_3view
 END FIELD
 
 FIELD wing.aspect_ratio
@@ -187,16 +187,23 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11
+  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11 | boeing_717_cad_3view
 END FIELD
 
 FIELD horizontal_tail.area
-  Value: null
+  Value: 25.950887
   Unit: m2
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11
+  Status: inferred-with-uncertainty
+  Source: boeing_717_cad_3view | boeing_717_acap_rev_b_2014_11
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/717.zip
+  Document title: Boeing 717 3-view CAD drawing and 717 ACAP Revision B
+  Revision date: 2014-11-01
+  Page or section: CAD handles LE E34/E62; TE E61/E3C; ACAP section 2.2
+  Formula: span*(root_chord+tip_chord)/2
+  Inputs: span=11.20 m; root=3.411643 m; tip=1.222444 m
+  Applicability: 717-200 gross projected equivalent horizontal-tail trapezoid
+  Uncertainty: +/-1.68 m2
+  Notes: Manufacturer planning geometry; not certified.
 END FIELD
 
 FIELD horizontal_tail.span
@@ -214,48 +221,77 @@ FIELD horizontal_tail.span
 END FIELD
 
 FIELD horizontal_tail.mac
-  Value: null
+  Value: 2.489411
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11
+  Status: inferred-with-uncertainty
+  Source: boeing_717_cad_3view | boeing_717_acap_rev_b_2014_11
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/717.zip
+  Document title: Boeing 717 3-view CAD drawing and 717 ACAP Revision B
+  Revision date: 2014-11-01
+  Page or section: CAD handles LE E34/E62; TE E61/E3C; ACAP section 2.2
+  Formula: (2/3)*root*(1+taper+taper^2)/(1+taper)
+  Inputs: root=3.411643 m; tip=1.222444 m
+  Applicability: 717-200 gross projected equivalent horizontal-tail trapezoid
+  Uncertainty: +/-0.15 m
+  Notes: Manufacturer planning geometry; not certified.
 END FIELD
 
 FIELD horizontal_tail.root_chord
-  Value: null
+  Value: 3.411643
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11
+  Status: inferred-with-uncertainty
+  Source: boeing_717_cad_3view | boeing_717_acap_rev_b_2014_11
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/717.zip
+  Document title: Boeing 717 3-view CAD drawing and 717 ACAP Revision B
+  Revision date: 2014-11-01
+  Page or section: CAD handles LE E34/E62; TE E61/E3C; ACAP section 2.2
+  Formula: straight trailing-edge minus leading-edge extrapolation at symmetry centre
+  Inputs: published span=11.20 m; mirrored edge fits
+  Applicability: 717-200 gross projected equivalent horizontal-tail trapezoid
+  Uncertainty: root/tip/MAC +/-0.15 m; area +/-1.68 m2; sweep +/-1 deg
+  Notes: Manufacturer planning geometry; not certified.
 END FIELD
 
 FIELD horizontal_tail.tip_chord
-  Value: null
+  Value: 1.222444
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11
+  Status: inferred-with-uncertainty
+  Source: boeing_717_cad_3view | boeing_717_acap_rev_b_2014_11
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/717.zip
+  Document title: Boeing 717 3-view CAD drawing and 717 ACAP Revision B
+  Revision date: 2014-11-01
+  Page or section: CAD handles LE E34/E62; TE E61/E3C; ACAP section 2.2
+  Formula: straight trailing-edge minus leading-edge at published semispan
+  Inputs: published span=11.20 m; mirrored edge fits
+  Applicability: 717-200 gross projected equivalent horizontal-tail trapezoid
+  Uncertainty: root/tip/MAC +/-0.15 m; area +/-1.68 m2; sweep +/-1 deg
+  Notes: Manufacturer planning geometry; not certified.
 END FIELD
 
 FIELD horizontal_tail.taper_ratio
-  Value: null
+  Value: 0.358315
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11
+  Status: inferred-with-uncertainty
+  Source: boeing_717_cad_3view | boeing_717_acap_rev_b_2014_11
+  Formula: tip_chord / root_chord
+  Inputs: tip_chord=1.222444 m; root_chord=3.411643 m
+  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11 | boeing_717_cad_3view
 END FIELD
 
 FIELD horizontal_tail.sweep
-  Value: null
+  Value: 31.718006
   Unit: deg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11
+  Status: inferred-with-uncertainty
+  Source: boeing_717_cad_3view | boeing_717_acap_rev_b_2014_11
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/717.zip
+  Document title: Boeing 717 3-view CAD drawing and 717 ACAP Revision B
+  Revision date: 2014-11-01
+  Page or section: CAD handles LE E34/E62; TE E61/E3C; ACAP section 2.2
+  Formula: atan2(quarter-chord longitudinal offset,span/2)
+  Inputs: reviewed mirrored CAD edges
+  Applicability: 717-200 gross projected equivalent horizontal-tail trapezoid
+  Uncertainty: +/-1 deg
+  Notes: Manufacturer planning geometry; not certified.
 END FIELD
 
 FIELD horizontal_tail.dihedral
@@ -264,7 +300,7 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11
+  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11 | boeing_717_cad_3view
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -273,16 +309,22 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11
+  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11 | boeing_717_cad_3view
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
-  Value: null
+  Value: 0.408313
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11
+  Status: inferred-with-uncertainty
+  Source: boeing_717_cad_3view
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/717.zip
+  Document title: Boeing 717 3-view CAD drawing
+  Page or section: CAD hinge handles E68/E4F/E49/E5F/E60 and E50/E40/E5B/E48/E73
+  Formula: projected elevator trapezoid area / projected horizontal-tail trapezoid area
+  Inputs: reviewed tail edges and segmented elevator hinge fit
+  Applicability: 717-200 visible projected elevator geometry
+  Uncertainty: +/-0.04
+  Notes: Physical geometry only; not aerodynamic effectiveness or control-law authority.
 END FIELD
 
 FIELD vertical_tail.area
@@ -291,7 +333,7 @@ FIELD vertical_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11
+  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11 | boeing_717_cad_3view
 END FIELD
 
 FIELD vertical_tail.height
@@ -300,7 +342,7 @@ FIELD vertical_tail.height
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11
+  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11 | boeing_717_cad_3view
 END FIELD
 
 FIELD vertical_tail.mac
@@ -309,7 +351,7 @@ FIELD vertical_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11
+  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11 | boeing_717_cad_3view
 END FIELD
 
 FIELD vertical_tail.root_chord
@@ -318,7 +360,7 @@ FIELD vertical_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11
+  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11 | boeing_717_cad_3view
 END FIELD
 
 FIELD vertical_tail.tip_chord
@@ -327,7 +369,7 @@ FIELD vertical_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11
+  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11 | boeing_717_cad_3view
 END FIELD
 
 FIELD vertical_tail.taper_ratio
@@ -336,7 +378,7 @@ FIELD vertical_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11
+  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11 | boeing_717_cad_3view
 END FIELD
 
 FIELD vertical_tail.sweep
@@ -345,7 +387,7 @@ FIELD vertical_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11
+  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11 | boeing_717_cad_3view
 END FIELD
 
 FIELD vertical_tail.arm
@@ -354,7 +396,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11
+  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11 | boeing_717_cad_3view
 END FIELD
 
 FIELD vertical_tail.rudder_area_ratio
@@ -363,7 +405,7 @@ FIELD vertical_tail.rudder_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11
+  Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11 | boeing_717_cad_3view
 END FIELD
 
 LEGACY PARAMETERS
