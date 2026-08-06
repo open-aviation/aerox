@@ -151,7 +151,8 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04
+  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04 | airbus_a350_900_autocad_2012_05
+  Search record: Reviewed exact-model Airbus vector drawings against the 9.42 m tail-reference-plane height in the current A350 ACAP; the A350-1000 fin remains piecewise in the evidence inventory.
 END FIELD
 
 FIELD wing.tip_chord
@@ -160,7 +161,8 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04
+  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04 | airbus_a350_900_autocad_2012_05
+  Search record: Reviewed exact-model Airbus vector drawings against the 9.42 m tail-reference-plane height in the current A350 ACAP; the A350-1000 fin remains piecewise in the evidence inventory.
 END FIELD
 
 FIELD wing.taper_ratio
@@ -169,7 +171,8 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04
+  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04 | airbus_a350_900_autocad_2012_05
+  Search record: Reviewed exact-model Airbus vector drawings against the 9.42 m tail-reference-plane height in the current A350 ACAP; the A350-1000 fin remains piecewise in the evidence inventory.
 END FIELD
 
 FIELD wing.aspect_ratio
@@ -187,7 +190,8 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04
+  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04 | airbus_a350_900_autocad_2012_05
+  Search record: Reviewed exact-model Airbus vector drawings against the 9.42 m tail-reference-plane height in the current A350 ACAP; the A350-1000 fin remains piecewise in the evidence inventory.
 END FIELD
 
 FIELD horizontal_tail.area
@@ -299,7 +303,8 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04
+  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04 | airbus_a350_900_autocad_2012_05
+  Search record: Reviewed exact-model Airbus vector drawings against the 9.42 m tail-reference-plane height in the current A350 ACAP; the A350-1000 fin remains piecewise in the evidence inventory.
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -308,7 +313,8 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04
+  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04 | airbus_a350_900_autocad_2012_05
+  Search record: Reviewed exact-model Airbus vector drawings against the 9.42 m tail-reference-plane height in the current A350 ACAP; the A350-1000 fin remains piecewise in the evidence inventory.
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
@@ -317,16 +323,24 @@ FIELD horizontal_tail.elevator_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04
+  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04 | airbus_a350_900_autocad_2012_05
+  Search record: Reviewed exact-model Airbus vector drawings against the 9.42 m tail-reference-plane height in the current A350 ACAP; the A350-1000 fin remains piecewise in the evidence inventory.
 END FIELD
 
 FIELD vertical_tail.area
-  Value: null
+  Value: 51.153139
   Unit: m2
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04
+  Status: inferred-with-uncertainty
+  Source: airbus_a350_900_autocad_2012_05 | airbus_a350_acap_2026_07
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A350-900-May-2012.zip
+  Document title: Airbus A350-900 early AutoCAD drawing and A350 ACAP Revision 17
+  Revision date: CAD 2012-05; ACAP 2026-07
+  Page or section: Reviewed curved side-view edges
+  Formula: H*(equivalent root_chord+equivalent tip_chord)/2
+  Inputs: H=9.42 m; root=7.934969 m; tip=2.925570 m
+  Applicability: A350-900 early curved-edge equivalent projected fin
+  Uncertainty: +/-7 percent
+  Notes: Projected equivalent area; not a certified reference area.
 END FIELD
 
 FIELD vertical_tail.height
@@ -345,48 +359,78 @@ FIELD vertical_tail.height
 END FIELD
 
 FIELD vertical_tail.mac
-  Value: null
+  Value: 5.815365
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04
+  Status: inferred-with-uncertainty
+  Source: airbus_a350_900_autocad_2012_05 | airbus_a350_acap_2026_07
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A350-900-May-2012.zip
+  Document title: Airbus A350-900 early AutoCAD drawing and A350 ACAP Revision 17
+  Revision date: CAD 2012-05; ACAP 2026-07
+  Page or section: Reviewed curved side-view edges
+  Formula: (2/3)*root*(1+taper+taper^2)/(1+taper)
+  Inputs: root=7.934969 m; tip=2.925570 m
+  Applicability: A350-900 early equivalent exposed-fin trapezoid
+  Uncertainty: +/-0.20 m
+  Notes: Equivalent geometric MAC; not an aerodynamic-centre determination.
 END FIELD
 
 FIELD vertical_tail.root_chord
-  Value: null
+  Value: 7.934969
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04
+  Status: inferred-with-uncertainty
+  Source: airbus_a350_900_autocad_2012_05 | airbus_a350_acap_2026_07
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A350-900-May-2012.zip
+  Document title: Airbus A350-900 early AutoCAD drawing and A350 ACAP Revision 17
+  Revision date: CAD 2012-05; ACAP 2026-07
+  Page or section: CAD LE 5FD3 and TE 60E1; ACAP 2-2-0 Figure 991-001-C01
+  Formula: least-squares edge fits evaluated at the published root plane
+  Inputs: ztip=15205.513107 mm; root plane=ztip-9.42 m
+  Applicability: A350-900 early curved-edge equivalent projected fin
+  Uncertainty: +/-0.20 m
+  Notes: Bounded engineering prior from an early planning drawing.
 END FIELD
 
 FIELD vertical_tail.tip_chord
-  Value: null
+  Value: 2.92557
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04
+  Status: inferred-with-uncertainty
+  Source: airbus_a350_900_autocad_2012_05 | airbus_a350_acap_2026_07
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A350-900-May-2012.zip
+  Document title: Airbus A350-900 early AutoCAD drawing and A350 ACAP Revision 17
+  Revision date: CAD 2012-05; ACAP 2026-07
+  Page or section: CAD LE 5FD3 and TE 60E1; ACAP 2-2-0 Figure 991-001-C01
+  Formula: least-squares edge fits evaluated at the published tip plane
+  Inputs: ztip=15205.513107 mm
+  Applicability: A350-900 early curved-edge equivalent projected fin
+  Uncertainty: +/-0.20 m
+  Notes: Bounded engineering prior from an early planning drawing.
 END FIELD
 
 FIELD vertical_tail.taper_ratio
-  Value: null
+  Value: 0.368693
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04
+  Status: inferred-with-uncertainty
+  Source: airbus_a350_900_autocad_2012_05 | airbus_a350_acap_2026_07
+  Formula: tip_chord / root_chord
+  Inputs: tip_chord=2.92557 m; root_chord=7.934969 m
+  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04 | airbus_a350_900_autocad_2012_05
+  Search record: Reviewed exact-model Airbus vector drawings against the 9.42 m tail-reference-plane height in the current A350 ACAP; the A350-1000 fin remains piecewise in the evidence inventory.
 END FIELD
 
 FIELD vertical_tail.sweep
-  Value: null
+  Value: 40.689427
   Unit: deg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04
+  Status: inferred-with-uncertainty
+  Source: airbus_a350_900_autocad_2012_05 | airbus_a350_acap_2026_07
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A350-900-May-2012.zip
+  Document title: Airbus A350-900 early AutoCAD drawing and A350 ACAP Revision 17
+  Revision date: CAD 2012-05; ACAP 2026-07
+  Page or section: CAD LE 5FD3 and TE 60E1
+  Formula: atan2(equivalent quarter-chord longitudinal offset,height)
+  Inputs: least-squares edge fits over H=9.42 m
+  Applicability: A350-900 early equivalent exposed-fin quarter-chord line
+  Uncertainty: +/-1.5 deg
+  Notes: Planning-drawing sweep; not certified.
 END FIELD
 
 FIELD vertical_tail.arm
@@ -395,16 +439,24 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04
+  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04 | airbus_a350_900_autocad_2012_05
+  Search record: Reviewed exact-model Airbus vector drawings against the 9.42 m tail-reference-plane height in the current A350 ACAP; the A350-1000 fin remains piecewise in the evidence inventory.
 END FIELD
 
 FIELD vertical_tail.rudder_area_ratio
-  Value: null
+  Value: 0.340347
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04
+  Status: inferred-with-uncertainty
+  Source: airbus_a350_900_autocad_2012_05 | airbus_a350_acap_2026_07
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A350-900-May-2012.zip
+  Document title: Airbus A350-900 early AutoCAD drawing and A350 ACAP Revision 17
+  Revision date: CAD 2012-05; ACAP 2026-07
+  Page or section: CAD TE 60E1 and rudder hinge 60A9
+  Formula: integral of TE minus hinge / projected fin area
+  Inputs: reviewed curved edge and hinge entities over H=9.42 m
+  Applicability: A350-900 early visible projected rudder geometry
+  Uncertainty: +/-0.05
+  Notes: Physical area ratio only; not control effectiveness.
 END FIELD
 
 LEGACY PARAMETERS

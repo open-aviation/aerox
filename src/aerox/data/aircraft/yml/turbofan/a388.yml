@@ -57,15 +57,15 @@ horizontal_tail:
   arm: null
   elevator_area_ratio: null
 vertical_tail:
-  area: null
+  area: 122.231579
   height: 14.59
-  mac: null
-  root_chord: null
-  tip_chord: null
-  taper_ratio: null
-  sweep: null
+  mac: 8.915932
+  root_chord: 12.055525
+  tip_chord: 4.700003
+  taper_ratio: 0.389863
+  sweep: 40.001106
   arm: null
-  rudder_area_ratio: null
+  rudder_area_ratio: 0.35
 flaps:
   type: single-slotted
   area: null

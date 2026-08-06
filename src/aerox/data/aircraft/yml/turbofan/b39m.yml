@@ -48,17 +48,17 @@ horizontal_tail:
   tip_chord: 0.749051
   taper_ratio: 0.195157
   sweep: 30.19329
-  dihedral: null
+  dihedral: 7.68776
   arm: null
   elevator_area_ratio: null
 vertical_tail:
-  area: null
-  height: null
-  mac: null
-  root_chord: null
-  tip_chord: null
-  taper_ratio: null
-  sweep: null
+  area: 26.941558
+  height: 7.248011
+  mac: 4.128337
+  root_chord: 5.858559
+  tip_chord: 1.575634
+  taper_ratio: 0.268946
+  sweep: 35.000024
   arm: null
   rudder_area_ratio: null
 flaps:

@@ -151,6 +151,7 @@ FIELD wing.root_chord
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
+  Search record: Reviewed all four exact-model Boeing 737 MAX CAD drawings; the visible crown-to-tip fin is common, while no unambiguous rudder hinge was identified.
 END FIELD
 
 FIELD wing.tip_chord
@@ -160,6 +161,7 @@ FIELD wing.tip_chord
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
+  Search record: Reviewed all four exact-model Boeing 737 MAX CAD drawings; the visible crown-to-tip fin is common, while no unambiguous rudder hinge was identified.
 END FIELD
 
 FIELD wing.taper_ratio
@@ -169,6 +171,7 @@ FIELD wing.taper_ratio
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
+  Search record: Reviewed all four exact-model Boeing 737 MAX CAD drawings; the visible crown-to-tip fin is common, while no unambiguous rudder hinge was identified.
 END FIELD
 
 FIELD wing.aspect_ratio
@@ -187,6 +190,7 @@ FIELD wing.dihedral
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
+  Search record: Reviewed all four exact-model Boeing 737 MAX CAD drawings; the visible crown-to-tip fin is common, while no unambiguous rudder hinge was identified.
 END FIELD
 
 FIELD horizontal_tail.area
@@ -294,12 +298,19 @@ FIELD horizontal_tail.sweep
 END FIELD
 
 FIELD horizontal_tail.dihedral
-  Value: null
+  Value: 7.68776
   Unit: deg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
+  Status: inferred-with-uncertainty
+  Source: boeing_737_max9_cad_3view
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/737_max9.zip
+  Document title: Boeing 737-9 three-view CAD drawing
+  Revision date: current at access
+  Page or section: Front block 19324 inserted by 193FF
+  Formula: atan(mean(upper and lower principal-edge slopes))
+  Inputs: exact-model rigid-geometry corroboration of independently fitted 737-8
+  Applicability: 737-9 projected H-tail mid-surface reference line
+  Uncertainty: +/-0.75 deg
+  Notes: Positive tip-up; drawing-derived convention, not a published structural dihedral.
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -309,6 +320,7 @@ FIELD horizontal_tail.arm
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
+  Search record: Reviewed all four exact-model Boeing 737 MAX CAD drawings; the visible crown-to-tip fin is common, while no unambiguous rudder hinge was identified.
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
@@ -318,69 +330,114 @@ FIELD horizontal_tail.elevator_area_ratio
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
+  Search record: Reviewed all four exact-model Boeing 737 MAX CAD drawings; the visible crown-to-tip fin is common, while no unambiguous rudder hinge was identified.
 END FIELD
 
 FIELD vertical_tail.area
-  Value: null
+  Value: 26.941558
   Unit: m2
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
+  Status: inferred-with-uncertainty
+  Source: boeing_737_max9_cad_3view | boeing_737_max_acap_rev_k_2025_07
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/737_max9.zip
+  Document title: Boeing 737-9 CAD and 737 MAX ACAP Revision K
+  Revision date: CAD current at access; ACAP 2025-07
+  Page or section: Reviewed common side-view outline
+  Formula: height*(root_chord+tip_chord)/2
+  Inputs: height=7.248011 m; root=5.858559 m; tip=1.575634 m
+  Applicability: 737-9 equivalent exposed-fin trapezoid
+  Uncertainty: +/-1.1 m2
+  Notes: Projected area; not a certified reference area.
 END FIELD
 
 FIELD vertical_tail.height
-  Value: null
+  Value: 7.248011
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
+  Status: inferred-with-uncertainty
+  Source: boeing_737_max9_cad_3view | boeing_737_max_acap_rev_k_2025_07
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/737_max9.zip
+  Document title: Boeing 737-9 CAD and 737 MAX ACAP Revision K
+  Revision date: CAD current at access; ACAP 2025-07
+  Page or section: Side block 19D70; outer spline 1A271
+  Formula: rigid exact-model geometry matched to independently scaled 737-7/-8
+  Inputs: common outline agrees with 737-7/-8
+  Applicability: 737-9 visible fuselage-crown intersection to fin tip
+  Uncertainty: +/-0.10 m
+  Notes: Exposed planning geometry; not certified.
 END FIELD
 
 FIELD vertical_tail.mac
-  Value: null
+  Value: 4.128337
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
+  Status: inferred-with-uncertainty
+  Source: boeing_737_max9_cad_3view | boeing_737_max_acap_rev_k_2025_07
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/737_max9.zip
+  Document title: Boeing 737-9 CAD and 737 MAX ACAP Revision K
+  Revision date: CAD current at access; ACAP 2025-07
+  Page or section: Reviewed common side-view outline
+  Formula: (2/3)*root*(1+taper+taper^2)/(1+taper)
+  Inputs: root=5.858559 m; tip=1.575634 m
+  Applicability: 737-9 equivalent exposed-fin trapezoid
+  Uncertainty: +/-0.15 m
+  Notes: Geometric MAC.
 END FIELD
 
 FIELD vertical_tail.root_chord
-  Value: null
+  Value: 5.858559
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
+  Status: inferred-with-uncertainty
+  Source: boeing_737_max9_cad_3view | boeing_737_max_acap_rev_k_2025_07
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/737_max9.zip
+  Document title: Boeing 737-9 CAD and 737 MAX ACAP Revision K
+  Revision date: CAD current at access; ACAP 2025-07
+  Page or section: Side block 19D70; outer spline 1A271
+  Formula: rigid exact-model geometry matched to independently fitted 737-7/-8
+  Inputs: common outline agrees with 737-7/-8
+  Applicability: 737-9 exposed fin
+  Uncertainty: +/-0.15 m
+  Notes: Visible-crown equivalent root chord.
 END FIELD
 
 FIELD vertical_tail.tip_chord
-  Value: null
+  Value: 1.575634
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
+  Status: inferred-with-uncertainty
+  Source: boeing_737_max9_cad_3view | boeing_737_max_acap_rev_k_2025_07
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/737_max9.zip
+  Document title: Boeing 737-9 CAD and 737 MAX ACAP Revision K
+  Revision date: CAD current at access; ACAP 2025-07
+  Page or section: Side block 19D70; outer spline 1A271
+  Formula: rigid exact-model geometry matched to independently fitted 737-7/-8
+  Inputs: common outline agrees with 737-7/-8
+  Applicability: 737-9 exposed fin
+  Uncertainty: +/-0.15 m
+  Notes: Equivalent tip chord.
 END FIELD
 
 FIELD vertical_tail.taper_ratio
-  Value: null
+  Value: 0.268946
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
+  Status: inferred-with-uncertainty
+  Source: boeing_737_max9_cad_3view | boeing_737_max_acap_rev_k_2025_07
+  Formula: tip_chord / root_chord
+  Inputs: tip_chord=1.575634 m; root_chord=5.858559 m
   Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
+  Search record: Reviewed all four exact-model Boeing 737 MAX CAD drawings; the visible crown-to-tip fin is common, while no unambiguous rudder hinge was identified.
 END FIELD
 
 FIELD vertical_tail.sweep
-  Value: null
+  Value: 35.000024
   Unit: deg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
+  Status: inferred-with-uncertainty
+  Source: boeing_737_max9_cad_3view | boeing_737_max_acap_rev_k_2025_07
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/737_max9.zip
+  Document title: Boeing 737-9 CAD and 737 MAX ACAP Revision K
+  Revision date: CAD current at access; ACAP 2025-07
+  Page or section: Reviewed common side-view outline
+  Formula: atan2(quarter-chord longitudinal offset,height)
+  Inputs: common rigid principal-edge geometry
+  Applicability: 737-9 exposed-fin quarter-chord line
+  Uncertainty: +/-1 deg
+  Notes: Planning-drawing sweep; not certified.
 END FIELD
 
 FIELD vertical_tail.arm
@@ -390,6 +447,7 @@ FIELD vertical_tail.arm
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
+  Search record: Reviewed all four exact-model Boeing 737 MAX CAD drawings; the visible crown-to-tip fin is common, while no unambiguous rudder hinge was identified.
 END FIELD
 
 FIELD vertical_tail.rudder_area_ratio
@@ -399,6 +457,7 @@ FIELD vertical_tail.rudder_area_ratio
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
+  Search record: Reviewed all four exact-model Boeing 737 MAX CAD drawings; the visible crown-to-tip fin is common, while no unambiguous rudder hinge was identified.
 END FIELD
 
 LEGACY PARAMETERS

@@ -28,6 +28,7 @@ RESEARCH_FILES = (
     DOCS / "geometry-research-cad-batch-2.tsv",
     DOCS / "geometry-research-cad-batch-3.tsv",
     DOCS / "geometry-research-cad-batch-4.tsv",
+    DOCS / "geometry-research-cad-batch-5.tsv",
     DOCS / "geometry-research-regional-business.tsv",
     DOCS / "geometry-research-ga-turboprop-military.tsv",
 )
@@ -38,8 +39,11 @@ WIDE_INPUTS = (
     DOCS / "airbus-cad-tail-batch-2.csv",
     DOCS / "boeing-cad-geometry-measurements.csv",
     DOCS / "boeing-cad-tail-direct-extraction.csv",
+    DOCS / "airbus-cad-vertical-tail-batch-3.csv",
+    DOCS / "boeing-cad-vertical-tail-batch-3.csv",
 )
 REVIEW_INPUT = DOCS / "cad-archive-review-observations.csv"
+SECONDARY_INPUT = DOCS / "manufacturer-geometry-secondary-evidence.csv"
 
 ARCHIVE_COLUMNS = (
     "archive_id",
@@ -92,6 +96,7 @@ EVIDENCE_COLUMNS = (
 )
 
 WIDE_FIELDS = {
+    "height_m": ("projected vertical-tail height", "vertical_tail.height", "m"),
     "span_m": ("horizontal-tail overall span", "horizontal_tail.span", "m"),
     "root_chord_m": ("equivalent root chord", "horizontal_tail.root_chord", "m"),
     "tip_chord_m": ("equivalent tip chord", "horizontal_tail.tip_chord", "m"),
@@ -111,6 +116,23 @@ WIDE_FIELDS = {
         "visible projected elevator area ratio",
         "horizontal_tail.elevator_area_ratio",
         "nondimensional",
+    ),
+    "rudder_area_ratio": (
+        "visible projected rudder area ratio",
+        "vertical_tail.rudder_area_ratio",
+        "nondimensional",
+    ),
+    "break_height_m": ("piecewise-planform break height", "", "m"),
+    "break_chord_m": ("piecewise-planform break chord", "", "m"),
+    "lower_quarter_chord_sweep_deg": (
+        "lower-panel quarter-chord sweep",
+        "",
+        "deg",
+    ),
+    "upper_quarter_chord_sweep_deg": (
+        "upper-panel quarter-chord sweep",
+        "",
+        "deg",
     ),
     "symmetry_error_mm": ("bilateral symmetry residual", "", "mm"),
     "published_span_minus_straight_endpoints_mm": (
@@ -252,9 +274,16 @@ def long_evidence(records: dict[str, dict[str, object]]) -> list[dict[str, str]]
                     if "rejected" in row.get("notes", "").lower()
                     else "candidate"
                 )
+                surface = row.get("surface", "horizontal_tail")
                 for field, (label, canonical, unit) in WIDE_FIELDS.items():
                     if not row.get(field):
                         continue
+                    if surface == "vertical_tail" and canonical.startswith(
+                        "horizontal_tail."
+                    ):
+                        canonical = canonical.replace(
+                            "horizontal_tail.", "vertical_tail.", 1
+                        )
                     output.append(
                         {
                             "record_id": f"{path.stem}-{row_index:03d}-{field}",
@@ -272,7 +301,7 @@ def long_evidence(records: dict[str, dict[str, object]]) -> list[dict[str, str]]
                             "source_id": source_id,
                             "target_icao": row["icao"],
                             "configuration": row.get("configuration", ""),
-                            "view": "top",
+                            "view": row.get("view", "top"),
                             "entity_type": "LINE/POLYLINE/SPLINE",
                             "entity_handles": handles,
                             "source_parameter_name": label,
@@ -324,6 +353,43 @@ def long_evidence(records: dict[str, dict[str, object]]) -> list[dict[str, str]]
                     else "",
                     "reviewed_date": "2026-08-06",
                     "notes": row["notes"],
+                }
+            )
+    with SECONDARY_INPUT.open(encoding="utf-8", newline="") as stream:
+        for row in csv.DictReader(stream):
+            output.append(
+                {
+                    "record_id": row["record_id"],
+                    "record_type": row["category"],
+                    "archive_id": (
+                        canonical_archive_id(row["archive"])
+                        if row["archive"]
+                        else ""
+                    ),
+                    "source_id": row["source_id"],
+                    "target_icao": row["icao"],
+                    "configuration": row["configuration"],
+                    "view": row["view"],
+                    "entity_type": row["entity_type"],
+                    "entity_handles": row["entity_handles"],
+                    "source_parameter_name": row["source_parameter_name"],
+                    "physical_definition": row["physical_definition"],
+                    "normalized_value": row["normalized_value"],
+                    "normalized_unit": row["normalized_unit"],
+                    "canonical_path": row["canonical_path"],
+                    "value_status": row["value_status"],
+                    "extraction_method": row["extraction_method"],
+                    "input_record_ids": row["input_values"],
+                    "formula": row["formula"],
+                    "uncertainty": row["uncertainty"],
+                    "applicability": row["applicability"],
+                    "adoption_status": row["adoption_status"],
+                    "rejection_reason": row["rejection_reason"],
+                    "reviewed_date": row["reviewed_date"],
+                    "notes": (
+                        f"Original: {row['original_value']} {row['original_unit']}. "
+                        f"{row['notes']}"
+                    ).strip(),
                 }
             )
     return output

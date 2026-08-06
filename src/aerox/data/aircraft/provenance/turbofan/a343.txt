@@ -162,6 +162,7 @@ FIELD wing.root_chord
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_a015_issue_28 | airbus_a340_200_300_acap_2025_12 | airbus_a340_300_autocad_2012_05
+  Search record: Reviewed the exact-model Airbus vector drawing against the 8.3 m tail-reference-plane height in the current A340 ACAP.
 END FIELD
 
 FIELD wing.tip_chord
@@ -171,6 +172,7 @@ FIELD wing.tip_chord
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_a015_issue_28 | airbus_a340_200_300_acap_2025_12 | airbus_a340_300_autocad_2012_05
+  Search record: Reviewed the exact-model Airbus vector drawing against the 8.3 m tail-reference-plane height in the current A340 ACAP.
 END FIELD
 
 FIELD wing.taper_ratio
@@ -180,6 +182,7 @@ FIELD wing.taper_ratio
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_a015_issue_28 | airbus_a340_200_300_acap_2025_12 | airbus_a340_300_autocad_2012_05
+  Search record: Reviewed the exact-model Airbus vector drawing against the 8.3 m tail-reference-plane height in the current A340 ACAP.
 END FIELD
 
 FIELD wing.aspect_ratio
@@ -198,6 +201,7 @@ FIELD wing.dihedral
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_a015_issue_28 | airbus_a340_200_300_acap_2025_12 | airbus_a340_300_autocad_2012_05
+  Search record: Reviewed the exact-model Airbus vector drawing against the 8.3 m tail-reference-plane height in the current A340 ACAP.
 END FIELD
 
 FIELD horizontal_tail.area
@@ -311,6 +315,7 @@ FIELD horizontal_tail.dihedral
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_a015_issue_28 | airbus_a340_200_300_acap_2025_12 | airbus_a340_300_autocad_2012_05
+  Search record: Reviewed the exact-model Airbus vector drawing against the 8.3 m tail-reference-plane height in the current A340 ACAP.
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -320,6 +325,7 @@ FIELD horizontal_tail.arm
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_a015_issue_28 | airbus_a340_200_300_acap_2025_12 | airbus_a340_300_autocad_2012_05
+  Search record: Reviewed the exact-model Airbus vector drawing against the 8.3 m tail-reference-plane height in the current A340 ACAP.
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
@@ -339,12 +345,19 @@ FIELD horizontal_tail.elevator_area_ratio
 END FIELD
 
 FIELD vertical_tail.area
-  Value: null
+  Value: 45.174056
   Unit: m2
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a015_issue_28 | airbus_a340_200_300_acap_2025_12 | airbus_a340_300_autocad_2012_05
+  Status: inferred-with-uncertainty
+  Source: airbus_a340_300_autocad_2012_05 | airbus_a340_200_300_acap_2025_12
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A340-300-May-2012.zip
+  Document title: Airbus A340-300 AutoCAD drawing and A340 ACAP Revision 33
+  Revision date: CAD 2012-05; ACAP 2025-12
+  Page or section: Reviewed side-view principal edges
+  Formula: H*(root_chord+tip_chord)/2
+  Inputs: H=8.3 m; root=7.775631 m; tip=3.109683 m
+  Applicability: A340-300 equivalent exposed-fin trapezoid
+  Uncertainty: +/-5 percent
+  Notes: Projected equivalent area; not a certified reference area.
 END FIELD
 
 FIELD vertical_tail.height
@@ -363,48 +376,78 @@ FIELD vertical_tail.height
 END FIELD
 
 FIELD vertical_tail.mac
-  Value: null
+  Value: 5.775997
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a015_issue_28 | airbus_a340_200_300_acap_2025_12 | airbus_a340_300_autocad_2012_05
+  Status: inferred-with-uncertainty
+  Source: airbus_a340_300_autocad_2012_05 | airbus_a340_200_300_acap_2025_12
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A340-300-May-2012.zip
+  Document title: Airbus A340-300 AutoCAD drawing and A340 ACAP Revision 33
+  Revision date: CAD 2012-05; ACAP 2025-12
+  Page or section: Reviewed side-view principal edges
+  Formula: (2/3)*root*(1+taper+taper^2)/(1+taper)
+  Inputs: root=7.775631 m; tip=3.109683 m
+  Applicability: A340-300 equivalent exposed-fin trapezoid
+  Uncertainty: +/-0.15 m
+  Notes: Geometric MAC; not an aerodynamic-centre determination.
 END FIELD
 
 FIELD vertical_tail.root_chord
-  Value: null
+  Value: 7.775631
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a015_issue_28 | airbus_a340_200_300_acap_2025_12 | airbus_a340_300_autocad_2012_05
+  Status: inferred-with-uncertainty
+  Source: airbus_a340_300_autocad_2012_05 | airbus_a340_200_300_acap_2025_12
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A340-300-May-2012.zip
+  Document title: Airbus A340-300 AutoCAD drawing and A340 ACAP Revision 33
+  Revision date: CAD 2012-05; ACAP 2025-12
+  Page or section: CAD LE 63C4 and TE 6772; ACAP 2-2-0 Figure 991-007-A01
+  Formula: TE minus LE evaluated at the published root plane
+  Inputs: ztip=8659.743164 mm; root plane=ztip-8.3 m
+  Applicability: A340-300 baseline external projected fin
+  Uncertainty: +/-0.15 m
+  Notes: Equivalent exposed-fin root chord; planning geometry, not certified.
 END FIELD
 
 FIELD vertical_tail.tip_chord
-  Value: null
+  Value: 3.109683
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a015_issue_28 | airbus_a340_200_300_acap_2025_12 | airbus_a340_300_autocad_2012_05
+  Status: inferred-with-uncertainty
+  Source: airbus_a340_300_autocad_2012_05 | airbus_a340_200_300_acap_2025_12
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A340-300-May-2012.zip
+  Document title: Airbus A340-300 AutoCAD drawing and A340 ACAP Revision 33
+  Revision date: CAD 2012-05; ACAP 2025-12
+  Page or section: CAD LE 63C4 and TE 6772; ACAP 2-2-0 Figure 991-007-A01
+  Formula: TE minus LE evaluated at the published tip plane
+  Inputs: ztip=8659.743164 mm
+  Applicability: A340-300 baseline external projected fin
+  Uncertainty: +/-0.15 m
+  Notes: Equivalent exposed-fin tip chord; planning geometry, not certified.
 END FIELD
 
 FIELD vertical_tail.taper_ratio
-  Value: null
+  Value: 0.399927
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
+  Status: inferred-with-uncertainty
+  Source: airbus_a340_300_autocad_2012_05 | airbus_a340_200_300_acap_2025_12
+  Formula: tip_chord / root_chord
+  Inputs: tip_chord=3.109683 m; root_chord=7.775631 m
   Searched source: easa_a015_issue_28 | airbus_a340_200_300_acap_2025_12 | airbus_a340_300_autocad_2012_05
+  Search record: Reviewed the exact-model Airbus vector drawing against the 8.3 m tail-reference-plane height in the current A340 ACAP.
 END FIELD
 
 FIELD vertical_tail.sweep
-  Value: null
+  Value: 39.986373
   Unit: deg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a015_issue_28 | airbus_a340_200_300_acap_2025_12 | airbus_a340_300_autocad_2012_05
+  Status: inferred-with-uncertainty
+  Source: airbus_a340_300_autocad_2012_05 | airbus_a340_200_300_acap_2025_12
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A340-300-May-2012.zip
+  Document title: Airbus A340-300 AutoCAD drawing and A340 ACAP Revision 33
+  Revision date: CAD 2012-05; ACAP 2025-12
+  Page or section: CAD LE 63C4 and TE 6772
+  Formula: atan2(quarter-chord longitudinal offset,height)
+  Inputs: reviewed linear LE and TE fits over H=8.3 m
+  Applicability: A340-300 equivalent exposed-fin quarter-chord line
+  Uncertainty: +/-1 deg
+  Notes: Planning-drawing sweep; not certified.
 END FIELD
 
 FIELD vertical_tail.arm
@@ -414,15 +457,23 @@ FIELD vertical_tail.arm
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_a015_issue_28 | airbus_a340_200_300_acap_2025_12 | airbus_a340_300_autocad_2012_05
+  Search record: Reviewed the exact-model Airbus vector drawing against the 8.3 m tail-reference-plane height in the current A340 ACAP.
 END FIELD
 
 FIELD vertical_tail.rudder_area_ratio
-  Value: null
+  Value: 0.273902
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a015_issue_28 | airbus_a340_200_300_acap_2025_12 | airbus_a340_300_autocad_2012_05
+  Status: inferred-with-uncertainty
+  Source: airbus_a340_300_autocad_2012_05 | airbus_a340_200_300_acap_2025_12
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A340-300-May-2012.zip
+  Document title: Airbus A340-300 AutoCAD drawing and A340 ACAP Revision 33
+  Revision date: CAD 2012-05; ACAP 2025-12
+  Page or section: CAD TE 6772 and rudder hinge 5ABA
+  Formula: projected rudder trapezoid area / projected fin area
+  Inputs: reviewed TE and hinge over H=8.3 m
+  Applicability: A340-300 visible projected rudder geometry
+  Uncertainty: +/-0.04
+  Notes: Physical area ratio only; not control effectiveness.
 END FIELD
 
 LEGACY PARAMETERS

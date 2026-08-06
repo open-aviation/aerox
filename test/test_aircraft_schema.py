@@ -30,6 +30,7 @@ RESEARCH_FILES = (
     Path("docs/modeling/geometry-research-cad-batch-2.tsv"),
     Path("docs/modeling/geometry-research-cad-batch-3.tsv"),
     Path("docs/modeling/geometry-research-cad-batch-4.tsv"),
+    Path("docs/modeling/geometry-research-cad-batch-5.tsv"),
     Path("docs/modeling/geometry-research-regional-business.tsv"),
     Path("docs/modeling/geometry-research-ga-turboprop-military.tsv"),
 )
@@ -39,6 +40,8 @@ CAD_MEASUREMENT_FILES = (
     Path("docs/modeling/airbus-cad-tail-batch-2.csv"),
     Path("docs/modeling/boeing-cad-geometry-measurements.csv"),
     Path("docs/modeling/boeing-cad-tail-direct-extraction.csv"),
+    Path("docs/modeling/airbus-cad-vertical-tail-batch-3.csv"),
+    Path("docs/modeling/boeing-cad-vertical-tail-batch-3.csv"),
 )
 
 
@@ -317,6 +320,28 @@ def test_cad_evidence_inventory_preserves_unmapped_and_rejected_observations():
     assert any(not row["canonical_path"] for row in rows)
     assert any(row["adoption_status"] == "rejected" for row in rows)
     assert any(row["entity_handles"] for row in rows)
+    assert sum(row["record_type"] == "landing-gear" for row in rows) >= 26
+    assert sum(row["record_type"] == "piecewise-wing-outline" for row in rows) >= 15
+    assert any(row["record_type"] == "control-outline" for row in rows)
+    assert any(
+        row["canonical_path"] == "future.wing.dihedral_segments"
+        and row["target_icao"] == "A35K"
+        for row in rows
+    )
+
+
+def test_secondary_geometry_evidence_uses_stable_source_ids():
+    ledger = yaml.safe_load(
+        Path("docs/modeling/sources.yml").read_text(encoding="utf-8")
+    )
+    source_ids = {source["id"] for source in ledger["sources"]}
+    with Path("docs/modeling/manufacturer-geometry-secondary-evidence.csv").open(
+        encoding="utf-8", newline=""
+    ) as stream:
+        rows = list(csv.DictReader(stream))
+    assert len(rows) >= 47
+    assert all(row["source_id"] in source_ids for row in rows)
+    assert all(row["adoption_status"] for row in rows)
 
 
 def test_cad_inventory_generator_is_idempotent():
@@ -408,6 +433,39 @@ def test_a350_common_tail_uses_published_area_and_consistent_derived_geometry():
     assert area["previous_value"] == "85.707556 m2"
 
 
+def test_piecewise_a350_1000_vertical_tail_keeps_its_break_definition():
+    tail = load_aircraft("A35K").vertical_tail
+    root = 7.833290
+    break_chord = 5.685628
+    tip = 3.046001
+    lower_height = 4.399900
+    upper_height = 9.42 - lower_height
+    area = (
+        lower_height * (root + break_chord) / 2
+        + upper_height * (break_chord + tip) / 2
+    )
+    chord_squared_integral = (
+        lower_height * (root**2 + root * break_chord + break_chord**2) / 3
+        + upper_height * (break_chord**2 + break_chord * tip + tip**2) / 3
+    )
+    assert tail.area == pytest.approx(area, rel=1e-6)
+    assert tail.mac == pytest.approx(chord_squared_integral / area, rel=1e-6)
+    assert tail.sweep is None
+
+
+def test_new_vertical_tail_and_dihedral_priors_are_scoped():
+    a333 = load_aircraft("A333")
+    assert a333.vertical_tail.area == pytest.approx(45.174072)
+    assert a333.vertical_tail.rudder_area_ratio == pytest.approx(0.268905)
+
+    for code in ("B37M", "B38M", "B39M", "B3XM"):
+        aircraft = load_aircraft(code)
+        assert aircraft.vertical_tail.height == pytest.approx(7.248011)
+        assert aircraft.vertical_tail.area == pytest.approx(26.941558)
+        assert aircraft.horizontal_tail.dihedral == pytest.approx(7.68776)
+        assert aircraft.vertical_tail.rudder_area_ratio is None
+
+
 def test_variant_mismatched_geometry_remains_evidence_only():
     f15 = load_aircraft("F15")
     assert f15.wing.span == 13.0
@@ -454,6 +512,11 @@ def test_basic_mass_relationships_are_reported_without_automatic_changes(records
 
 def test_derived_geometry_matches_documented_formulas(records):
     for path, document in records:
+        notes = parse_source_notes(
+            (SOURCE_ROOT / path.parent.name / f"{path.stem}.txt").read_text(
+                encoding="utf-8"
+            )
+        )
         wing = document["wing"]
         if wing["aspect_ratio"] is not None:
             assert wing["area"] is not None, path
@@ -474,7 +537,8 @@ def test_derived_geometry_matches_documented_formulas(records):
                 for field in ("area", "root_chord", "tip_chord")
             ):
                 dimension = section["span" if name == "horizontal_tail" else "height"]
-                if dimension is not None:
+                formula = notes["fields"][f"{name}.area"].get("formula", "")
+                if dimension is not None and "piecewise" not in formula:
                     expected_area = dimension * (
                         section["root_chord"] + section["tip_chord"]
                     ) / 2
@@ -486,6 +550,9 @@ def test_derived_geometry_matches_documented_formulas(records):
                 assert section["root_chord"] is not None, path
                 assert section["taper_ratio"] is not None, path
                 taper = section["taper_ratio"]
+                formula = notes["fields"][f"{name}.mac"].get("formula", "")
+                if "piecewise" in formula:
+                    continue
                 expected_mac = (
                     (2 / 3)
                     * section["root_chord"]
