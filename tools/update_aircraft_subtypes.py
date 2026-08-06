@@ -106,7 +106,7 @@ def group_mappings(rows: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]
         engines.extend(engine for engine in row["engines"] if engine not in engines)
     return {
         icao: [
-            {"subtype": subtype, "engines": engines}
+            {subtype: engines[0] if len(engines) == 1 else engines}
             for subtype, engines in subtypes.items()
         ]
         for icao, subtypes in grouped.items()
@@ -136,8 +136,10 @@ def render_provenance(old_text: str, rows: list[dict[str, Any]], mapping: Any) -
     ]
     lines.append("  Mappings:")
     for item in mapping:
-        lines.append(f"    {item['subtype']}:")
-        lines.extend(f"      - {engine}" for engine in item["engines"])
+        subtype, engines = next(iter(item.items()))
+        engines = [engines] if isinstance(engines, str) else engines
+        lines.append(f"    {subtype}:")
+        lines.extend(f"      - {engine}" for engine in engines)
     lines.extend(["END FIELD", ""])
     rendered = f"{base}\n\n" + "\n".join(lines)
     rendered = rendered.replace("Last reviewed: 2026-08-05", f"Last reviewed: {REVIEW_DATE}")

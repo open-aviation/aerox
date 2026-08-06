@@ -2,18 +2,10 @@ aircraft: Airbus A318
 icao: A318
 iata: 318 / 32S
 subtypes:
-- subtype: A318-111
-  engines:
-  - CFM56-5B8/P
-- subtype: A318-112
-  engines:
-  - CFM56-5B9/P
-- subtype: A318-121
-  engines:
-  - PW6122A
-- subtype: A318-122
-  engines:
-  - PW6124A
+- A318-111: CFM56-5B8/P
+- A318-112: CFM56-5B9/P
+- A318-121: PW6122A
+- A318-122: PW6124A
 certification:
   model: null
   authority: EASA

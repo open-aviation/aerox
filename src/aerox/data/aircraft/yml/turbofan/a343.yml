@@ -2,16 +2,13 @@ aircraft: Airbus A340-300
 icao: A343
 iata: 340 / 343
 subtypes:
-- subtype: A340-311
-  engines:
+- A340-311:
   - CFM56-5C2
   - CFM56-5C2/P
-- subtype: A340-312
-  engines:
+- A340-312:
   - CFM56-5C3
   - CFM56-5C3/P
-- subtype: A340-313
-  engines:
+- A340-313:
   - CFM56-5C4
   - CFM56-5C4/P
 certification:

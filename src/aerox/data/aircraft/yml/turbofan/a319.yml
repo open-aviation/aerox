@@ -2,35 +2,22 @@ aircraft: Airbus A319
 icao: A319
 iata: '319'
 subtypes:
-- subtype: A319-111
-  engines:
+- A319-111:
   - CFM56-5B5/P
   - CFM56-5B5/3
-- subtype: A319-112
-  engines:
+- A319-112:
   - CFM56-5B6/P
   - CFM56-5B6/2
   - CFM56-5B6/2P
   - CFM56-5B6/3
-- subtype: A319-113
-  engines:
-  - CFM56-5A4
-- subtype: A319-114
-  engines:
-  - CFM56-5A5
-- subtype: A319-115
-  engines:
+- A319-113: CFM56-5A4
+- A319-114: CFM56-5A5
+- A319-115:
   - CFM56-5B7/P
   - CFM56-5B7/3
-- subtype: A319-131
-  engines:
-  - V2522-A5
-- subtype: A319-132
-  engines:
-  - V2524-A5
-- subtype: A319-133
-  engines:
-  - V2527M-A5
+- A319-131: V2522-A5
+- A319-132: V2524-A5
+- A319-133: V2527M-A5
 certification:
   model: null
   authority: EASA

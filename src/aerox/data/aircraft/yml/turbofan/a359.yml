@@ -2,8 +2,7 @@ aircraft: Airbus A350-900
 icao: A359
 iata: '359'
 subtypes:
-- subtype: A350-941
-  engines:
+- A350-941:
   - Trent XWB-84
   - Trent XWB-75
   - Trent XWB-84EP

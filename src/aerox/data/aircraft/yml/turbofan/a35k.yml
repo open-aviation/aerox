@@ -2,9 +2,7 @@ aircraft: Airbus A350-1000 XWB
 icao: A35K
 iata: '351'
 subtypes:
-- subtype: A350-1041
-  engines:
-  - Trent XWB-97
+- A350-1041: Trent XWB-97
 certification:
   model: A350-1041
   authority: EASA

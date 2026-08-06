@@ -101,14 +101,16 @@ def test_subtypes_use_exact_uniform_structure_edb_codes_and_provenance(records):
         if mapping is None:
             continue
         mapped_aircraft += 1
-        assert len({item["subtype"] for item in mapping}) == len(mapping), path
+        assert all(isinstance(item, dict) and len(item) == 1 for item in mapping)
+        assert len({next(iter(item)) for item in mapping}) == len(mapping), path
         for item in mapping:
-            assert list(item) == ["subtype", "engines"], (path, item)
-            assert isinstance(item["subtype"], str) and item["subtype"].strip()
-            assert isinstance(item["engines"], list) and item["engines"]
-            assert len(set(item["engines"])) == len(item["engines"])
-            assert all(isinstance(engine, str) and engine.strip() for engine in item["engines"])
-            assert set(item["engines"]) <= edb_engines
+            subtype, engines = next(iter(item.items()))
+            assert isinstance(subtype, str) and subtype.strip()
+            engines = [engines] if isinstance(engines, str) else engines
+            assert isinstance(engines, list) and engines
+            assert len(set(engines)) == len(engines)
+            assert all(isinstance(engine, str) and engine.strip() for engine in engines)
+            assert set(engines) <= edb_engines
 
         notes = parse_source_notes(
             (SOURCE_ROOT / path.parent.name / f"{path.stem}.txt").read_text(

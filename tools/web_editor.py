@@ -903,7 +903,7 @@ HTML_TEMPLATE = """
                         </div>
                         <div class="field textarea-field">
                             <label>Certified subtypes <small style="font-weight: normal; color: #999;">(subtype | ICAO EEDB engine; engine)</small></label>
-                            <textarea name="subtypes" rows="10" readonly>{% if data.subtypes %}{% for item in data.subtypes %}{{ item.subtype }} | {{ item.engines | join('; ') }}{% if not loop.last %}\n{% endif %}{% endfor %}{% endif %}</textarea>
+                            <textarea name="subtypes" rows="10" readonly>{% if data.subtypes %}{% for item in data.subtypes %}{% for subtype, engines in item.items() %}{{ subtype }} | {% if engines is string %}{{ engines }}{% else %}{{ engines | join('; ') }}{% endif %}{% endfor %}{% if not loop.last %}\n{% endif %}{% endfor %}{% endif %}</textarea>
                         </div>
                     </div>
                     
@@ -1371,7 +1371,7 @@ def safe_convert(value, target_type, field_name=None):
                         raise ValueError(
                             "Subtype rows need a subtype and at least one engine"
                         )
-                    rows.append({"subtype": subtype, "engines": engines})
+                    rows.append({subtype: engines[0] if len(engines) == 1 else engines})
                 return rows or None
             # For list types (like engine options)
             if isinstance(value, list):

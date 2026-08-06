@@ -2,31 +2,16 @@ aircraft: Airbus A320-214
 icao: A320
 iata: 320 / 32S
 subtypes:
-- subtype: A320-211
-  engines:
-  - CFM56-5-A1
-- subtype: A320-212
-  engines:
-  - CFM56-5A3
-- subtype: A320-214
-  engines:
+- A320-211: CFM56-5-A1
+- A320-212: CFM56-5A3
+- A320-214:
   - CFM56-5B4
   - CFM56-5B4/2
-- subtype: A320-215
-  engines:
-  - CFM56-5B5/P
-- subtype: A320-216
-  engines:
-  - CFM56-5B6/P
-- subtype: A320-231
-  engines:
-  - V2500-A1
-- subtype: A320-232
-  engines:
-  - V2527-A5
-- subtype: A320-233
-  engines:
-  - V2527E-A5
+- A320-215: CFM56-5B5/P
+- A320-216: CFM56-5B6/P
+- A320-231: V2500-A1
+- A320-232: V2527-A5
+- A320-233: V2527E-A5
 certification:
   model: A320-214
   authority: EASA

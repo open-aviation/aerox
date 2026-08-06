@@ -2,24 +2,12 @@ aircraft: Airbus A320 Neo
 icao: A20N
 iata: 32N
 subtypes:
-- subtype: A320-251N
-  engines:
-  - LEAP-1A26/26E1
-- subtype: A320-252N
-  engines:
-  - LEAP-1A24/24E1/23
-- subtype: A320-253N
-  engines:
-  - LEAP-1A29
-- subtype: A320-271N
-  engines:
-  - PW1127G-JM
-- subtype: A320-272N
-  engines:
-  - PW1124G1-JM
-- subtype: A320-273N
-  engines:
-  - PW1129G-JM
+- A320-251N: LEAP-1A26/26E1
+- A320-252N: LEAP-1A24/24E1/23
+- A320-253N: LEAP-1A29
+- A320-271N: PW1127G-JM
+- A320-272N: PW1124G1-JM
+- A320-273N: PW1129G-JM
 certification:
   model: null
   authority: EASA

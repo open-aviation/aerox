@@ -2,8 +2,7 @@ aircraft: Airbus A220-100
 icao: BCS1
 iata: '221'
 subtypes:
-- subtype: BD-500-1A10
-  engines:
+- BD-500-1A10:
   - PW1524G
   - PW1521G
   - PW1519G

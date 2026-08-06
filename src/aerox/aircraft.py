@@ -374,10 +374,13 @@ def _load_subtypes(data: Any) -> Optional[List[AircraftSubtype]]:
 
     if data is None:
         return None
-    return [
-        AircraftSubtype(subtype=row["subtype"], engines=list(row["engines"]))
-        for row in data
-    ]
+    result = []
+    for row in data:
+        subtype, engines = next(iter(row.items()))
+        if isinstance(engines, str):
+            engines = [engines]
+        result.append(AircraftSubtype(subtype=subtype, engines=list(engines)))
+    return result
 
 
 def _load_kinematic(data: Optional[Dict]) -> Optional[Kinematic]:

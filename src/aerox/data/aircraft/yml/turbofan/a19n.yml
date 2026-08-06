@@ -2,18 +2,10 @@ aircraft: Airbus A319 Neo
 icao: A19N
 iata: 31N
 subtypes:
-- subtype: A319-151N
-  engines:
-  - LEAP-1A24/24E1/23
-- subtype: A319-153N
-  engines:
-  - LEAP-1A26/26E1
-- subtype: A319-171N
-  engines:
-  - PW1124G-JM
-- subtype: A319-173N
-  engines:
-  - PW1127G1-JM
+- A319-151N: LEAP-1A24/24E1/23
+- A319-153N: LEAP-1A26/26E1
+- A319-171N: PW1124G-JM
+- A319-173N: PW1127G1-JM
 certification:
   model: null
   authority: EASA

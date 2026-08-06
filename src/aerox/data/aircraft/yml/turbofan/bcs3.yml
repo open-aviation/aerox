@@ -2,8 +2,7 @@ aircraft: Airbus A220-300
 icao: BCS3
 iata: '223'
 subtypes:
-- subtype: BD-500-1A11
-  engines:
+- BD-500-1A11:
   - PW1521G
   - PW1524G
 certification:

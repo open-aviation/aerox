@@ -2,16 +2,11 @@ aircraft: Airbus A380-800
 icao: A388
 iata: 380 / 38F
 subtypes:
-- subtype: A380-841
-  engines:
-  - Trent 970-84
-- subtype: A380-842
-  engines:
+- A380-841: Trent 970-84
+- A380-842:
   - Trent 972-84
   - Trent 972E-84
-- subtype: A380-861
-  engines:
-  - GP7270
+- A380-861: GP7270
 certification:
   model: null
   authority: EASA

@@ -178,6 +178,30 @@ def _ordered_like_template(data: Mapping[str, Any], template: Mapping[str, Any])
     return result
 
 
+def _compact_subtypes(value: Any) -> Any:
+    """Normalize subtype mappings to one compact mapping per list item."""
+
+    if value is None or not isinstance(value, list):
+        return value
+    compact: list[Any] = []
+    for item in value:
+        if not isinstance(item, Mapping):
+            compact.append(copy.deepcopy(item))
+            continue
+        if list(item) == ["subtype", "engines"]:
+            subtype = item.get("subtype")
+            engines = item.get("engines")
+        elif len(item) == 1:
+            subtype, engines = next(iter(item.items()))
+        else:
+            compact.append(copy.deepcopy(item))
+            continue
+        if isinstance(engines, list) and len(engines) == 1:
+            engines = engines[0]
+        compact.append({subtype: copy.deepcopy(engines)})
+    return compact
+
+
 def _derive_geometry(document: dict[str, Any]) -> None:
     """Fill only definition-safe ratios from values stored in the same record."""
 
@@ -205,9 +229,11 @@ def simple_from_canonical(data: Mapping[str, Any]) -> dict[str, Any]:
             "aircraft": _get(data, "identification.name"),
             "icao": _get(data, "identification.icao_code"),
             "iata": " / ".join(_get(data, "identification.iata_codes") or []) or None,
-            "subtypes": _first(
-                _get(data, "identification.subtypes"),
-                _get(data, "propulsion.subtypes"),
+            "subtypes": _compact_subtypes(
+                _first(
+                    _get(data, "identification.subtypes"),
+                    _get(data, "propulsion.subtypes"),
+                )
             ),
             "mtow": _get(data, "mass_limits.maximum_takeoff_mass"),
             "mlw": _get(data, "mass_limits.maximum_landing_mass"),
@@ -447,25 +473,28 @@ def validate_simple(document: Any) -> list[str]:
             seen_subtypes: set[str] = set()
             for index, item in enumerate(subtypes):
                 item_path = f"subtypes[{index}]"
-                if not isinstance(item, Mapping):
-                    issues.append(f"{item_path}: expected mapping")
+                if not isinstance(item, Mapping) or len(item) != 1:
+                    issues.append(f"{item_path}: expected one subtype-to-engine mapping")
                     continue
-                if list(item) != ["subtype", "engines"]:
-                    issues.append(f"{item_path}: fields/order must be subtype, engines")
-                subtype = item.get("subtype")
-                engines = item.get("engines")
+                subtype, engines = next(iter(item.items()))
                 if not isinstance(subtype, str) or not subtype.strip():
-                    issues.append(f"{item_path}.subtype: expected non-empty string")
+                    issues.append(f"{item_path}: expected non-empty subtype key")
                 elif subtype in seen_subtypes:
-                    issues.append(f"{item_path}.subtype: duplicate subtype {subtype!r}")
+                    issues.append(f"{item_path}: duplicate subtype {subtype!r}")
                 else:
                     seen_subtypes.add(subtype)
-                if not isinstance(engines, list) or not engines:
-                    issues.append(f"{item_path}.engines: expected non-empty list")
-                elif any(not isinstance(value, str) or not value.strip() for value in engines):
-                    issues.append(f"{item_path}.engines: expected non-empty strings")
-                elif len(engines) != len(set(engines)):
-                    issues.append(f"{item_path}.engines: duplicate engine designation")
+                if isinstance(engines, str):
+                    if not engines.strip():
+                        issues.append(f"{item_path}: expected non-empty engine string")
+                elif isinstance(engines, list):
+                    if len(engines) < 2:
+                        issues.append(f"{item_path}: use a scalar for one engine")
+                    elif any(not isinstance(value, str) or not value.strip() for value in engines):
+                        issues.append(f"{item_path}: expected non-empty engine strings")
+                    elif len(engines) != len(set(engines)):
+                        issues.append(f"{item_path}: duplicate engine designation")
+                else:
+                    issues.append(f"{item_path}: expected an engine string or list")
 
     geometry_fields = {
         "wing": SIMPLE_TEMPLATE["wing"],
@@ -538,6 +567,7 @@ def normalize_bundle(document: Mapping[str, Any], sidecar_text: str) -> tuple[di
         sidecar = render_source_notes(simple, document, sidecar_text)
     else:
         simple = _ordered_like_template(document, SIMPLE_TEMPLATE)
+        simple["subtypes"] = _compact_subtypes(simple["subtypes"])
         sidecar = sidecar_text
     issue_date = simple["certification"]["issue_date"]
     if issue_date is not None and not isinstance(issue_date, str) and hasattr(issue_date, "isoformat"):

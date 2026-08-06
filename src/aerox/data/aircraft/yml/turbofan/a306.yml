@@ -2,39 +2,21 @@ aircraft: Airbus A300-600
 icao: A306
 iata: AB6
 subtypes:
-- subtype: A300 B4-601
-  engines:
-  - CF6-80C2A1
-- subtype: A300 B4-603
-  engines:
-  - CF6-80C2A3
-- subtype: A300 B4-620
-  engines:
-  - JT9D-7R4H1
-- subtype: A300 B4-622
-  engines:
-  - PW4158
-- subtype: A300 C4-620
-  engines:
-  - JT9D-7R4H1
-- subtype: A300 B4-605R
-  engines:
+- A300 B4-601: CF6-80C2A1
+- A300 B4-603: CF6-80C2A3
+- A300 B4-620: JT9D-7R4H1
+- A300 B4-622: PW4158
+- A300 C4-620: JT9D-7R4H1
+- A300 B4-605R:
   - CF6-80C2A5
   - CF6-80C2A3
   - CF6-80C2A5F
-- subtype: A300 B4-622R
-  engines:
-  - PW4158
-- subtype: A300 F4-605R
-  engines:
+- A300 B4-622R: PW4158
+- A300 F4-605R:
   - CF6-80C2A5
   - CF6-80C2A5F
-- subtype: A300 F4-622R
-  engines:
-  - PW4158
-- subtype: A300 C4-605R Variant F
-  engines:
-  - CF6-80C2A5
+- A300 F4-622R: PW4158
+- A300 C4-605R Variant F: CF6-80C2A5
 certification:
   model: null
   authority: EASA

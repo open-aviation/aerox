@@ -29,7 +29,7 @@ def test_load_aircraft_from_dict_with_nested_sections():
             "icao": "AT72",
             "mtow": 21500,
             "subtypes": [
-                {"subtype": "ATR 72-212A", "engines": ["PW127M"]}
+                {"ATR 72-212A": "PW127M"}
             ],
             "pax": {"max": 72},
             "fuselage": {"length": 27.2},
@@ -198,9 +198,7 @@ def test_web_editor_preserves_root_subtypes_during_partial_engine_edit(
     target = target_dir / "a320.yml"
     target.write_text(
         """subtypes:
-  - subtype: A320-214
-    engines:
-    - CFM56-5B4
+  - A320-214: CFM56-5B4
 engine:
   type: turbofan
   mount: wing
@@ -218,7 +216,7 @@ engine:
 
     saved = yaml.safe_load(target.read_text())
     assert saved["subtypes"] == [
-        {"subtype": "A320-214", "engines": ["CFM56-5B4"]}
+        {"A320-214": "CFM56-5B4"}
     ]
 
 
@@ -252,9 +250,6 @@ def test_web_editor_form_parser_round_trips_subtypes():
         }
     )
     assert parsed["subtypes"] == [
-        {
-            "subtype": "A320-214",
-            "engines": ["CFM56-5B4", "CFM56-5B4/2"],
-        },
-        {"subtype": "A320-232", "engines": ["V2527-A5"]},
+        {"A320-214": ["CFM56-5B4", "CFM56-5B4/2"]},
+        {"A320-232": "V2527-A5"},
     ]

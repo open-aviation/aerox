@@ -2,9 +2,7 @@ aircraft: Airbus A330-900
 icao: A339
 iata: '339'
 subtypes:
-- subtype: A330-941
-  engines:
-  - Trent7000-72
+- A330-941: Trent7000-72
 certification:
   model: A330-941
   authority: EASA
