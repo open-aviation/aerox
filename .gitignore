@@ -122,3 +122,12 @@ ENV/
 !src/aerox/data/aircraft/provenance/turbofan/*.txt
 !src/aerox/data/aircraft/provenance/turboprop/
 !src/aerox/data/aircraft/provenance/turboprop/*.txt
+
+# Keep external manufacturer CAD binaries local, but version their download
+# manifest and archive checksums so the collection can be reproduced/audited.
+!data/
+data/*
+!data/cad/
+data/cad/*
+!data/cad/SOURCES.txt
+!data/cad/SHA256SUMS.txt

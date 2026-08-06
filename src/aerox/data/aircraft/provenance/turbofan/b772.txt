@@ -148,7 +148,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12 | boeing_777_200_cad_3view
 END FIELD
 
 FIELD wing.tip_chord
@@ -157,7 +157,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12 | boeing_777_200_cad_3view
 END FIELD
 
 FIELD wing.taper_ratio
@@ -166,7 +166,7 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12 | boeing_777_200_cad_3view
 END FIELD
 
 FIELD wing.aspect_ratio
@@ -184,16 +184,22 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12 | boeing_777_200_cad_3view
 END FIELD
 
 FIELD horizontal_tail.area
-  Value: null
+  Value: 102.569666
   Unit: m2
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12
+  Status: inferred-with-uncertainty
+  Source: boeing_777_200_cad_3view
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7772.zip
+  Document title: Boeing 777-200 3-view CAD drawing
+  Page or section: CAD handles LE 168C; TE 168F; tip 168D/168E
+  Formula: span * (root_chord + tip_chord) / 2
+  Inputs: span=21.526500 m; root=7.129297 m; tip=2.400322 m
+  Applicability: Gross centerline-reference straight-edge horizontal stabilizer; rounded tip excluded
+  Uncertainty: root/tip/MAC +/-0.15 m; area +/-3.23 m2; sweep +/-1 deg
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/modeling/boeing-cad-geometry-measurements.csv; Printed span converts to 21.5265 m and rounds to current YAML 21.53 m; not certified.
 END FIELD
 
 FIELD horizontal_tail.span
@@ -211,48 +217,73 @@ FIELD horizontal_tail.span
 END FIELD
 
 FIELD horizontal_tail.mac
-  Value: null
+  Value: 5.155927
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12
+  Status: inferred-with-uncertainty
+  Source: boeing_777_200_cad_3view
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7772.zip
+  Document title: Boeing 777-200 3-view CAD drawing
+  Page or section: CAD handles LE 168C; TE 168F; tip 168D/168E
+  Formula: (2/3) * root_chord * (1 + taper + taper^2) / (1 + taper)
+  Inputs: span=21.526500 m; root=7.129297 m; tip=2.400322 m
+  Applicability: Gross centerline-reference straight-edge horizontal stabilizer; rounded tip excluded
+  Uncertainty: root/tip/MAC +/-0.15 m; area +/-3.23 m2; sweep +/-1 deg
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/modeling/boeing-cad-geometry-measurements.csv; Printed span converts to 21.5265 m and rounds to current YAML 21.53 m; not certified.
 END FIELD
 
 FIELD horizontal_tail.root_chord
-  Value: null
+  Value: 7.129297
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12
+  Status: inferred-with-uncertainty
+  Source: boeing_777_200_cad_3view
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7772.zip
+  Document title: Boeing 777-200 3-view CAD drawing
+  Page or section: CAD handles LE 168C; TE 168F; tip 168D/168E
+  Formula: straight trailing-edge minus leading-edge extrapolation at the aircraft centerline
+  Inputs: span=21.526500 m; root=7.129297 m; tip=2.400322 m
+  Applicability: Gross centerline-reference straight-edge horizontal stabilizer; rounded tip excluded
+  Uncertainty: root/tip/MAC +/-0.15 m; area +/-3.23 m2; sweep +/-1 deg
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/modeling/boeing-cad-geometry-measurements.csv; Printed span converts to 21.5265 m and rounds to current YAML 21.53 m; not certified.
 END FIELD
 
 FIELD horizontal_tail.tip_chord
-  Value: null
+  Value: 2.400322
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12
+  Status: inferred-with-uncertainty
+  Source: boeing_777_200_cad_3view
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7772.zip
+  Document title: Boeing 777-200 3-view CAD drawing
+  Page or section: CAD handles LE 168C; TE 168F; tip 168D/168E
+  Formula: straight trailing-edge minus leading-edge extrapolation at the published semispan
+  Inputs: span=21.526500 m; root=7.129297 m; tip=2.400322 m
+  Applicability: Gross centerline-reference straight-edge horizontal stabilizer; rounded tip excluded
+  Uncertainty: root/tip/MAC +/-0.15 m; area +/-3.23 m2; sweep +/-1 deg
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/modeling/boeing-cad-geometry-measurements.csv; Printed span converts to 21.5265 m and rounds to current YAML 21.53 m; not certified.
 END FIELD
 
 FIELD horizontal_tail.taper_ratio
-  Value: null
+  Value: 0.336684
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12
+  Status: inferred-with-uncertainty
+  Source: boeing_777_200_cad_3view
+  Formula: tip_chord / root_chord
+  Inputs: tip_chord=2.400322 m; root_chord=7.129297 m
+  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12 | boeing_777_200_cad_3view
 END FIELD
 
 FIELD horizontal_tail.sweep
-  Value: null
+  Value: 35.247805
   Unit: deg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12
+  Status: inferred-with-uncertainty
+  Source: boeing_777_200_cad_3view
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7772.zip
+  Document title: Boeing 777-200 3-view CAD drawing
+  Page or section: CAD handles LE 168C; TE 168F; tip 168D/168E
+  Formula: atan2(quarter_chord_tip - quarter_chord_root, span / 2)
+  Inputs: span=21.526500 m; root=7.129297 m; tip=2.400322 m
+  Applicability: Gross centerline-reference straight-edge horizontal stabilizer; rounded tip excluded
+  Uncertainty: root/tip/MAC +/-0.15 m; area +/-3.23 m2; sweep +/-1 deg
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/modeling/boeing-cad-geometry-measurements.csv; Printed span converts to 21.5265 m and rounds to current YAML 21.53 m; not certified.
 END FIELD
 
 FIELD horizontal_tail.dihedral
@@ -261,7 +292,7 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12 | boeing_777_200_cad_3view
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -270,7 +301,7 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12 | boeing_777_200_cad_3view
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
@@ -279,7 +310,7 @@ FIELD horizontal_tail.elevator_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12 | boeing_777_200_cad_3view
 END FIELD
 
 FIELD vertical_tail.area
@@ -288,7 +319,7 @@ FIELD vertical_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12 | boeing_777_200_cad_3view
 END FIELD
 
 FIELD vertical_tail.height
@@ -297,7 +328,7 @@ FIELD vertical_tail.height
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12 | boeing_777_200_cad_3view
 END FIELD
 
 FIELD vertical_tail.mac
@@ -306,7 +337,7 @@ FIELD vertical_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12 | boeing_777_200_cad_3view
 END FIELD
 
 FIELD vertical_tail.root_chord
@@ -315,7 +346,7 @@ FIELD vertical_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12 | boeing_777_200_cad_3view
 END FIELD
 
 FIELD vertical_tail.tip_chord
@@ -324,7 +355,7 @@ FIELD vertical_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12 | boeing_777_200_cad_3view
 END FIELD
 
 FIELD vertical_tail.taper_ratio
@@ -333,7 +364,7 @@ FIELD vertical_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12 | boeing_777_200_cad_3view
 END FIELD
 
 FIELD vertical_tail.sweep
@@ -342,7 +373,7 @@ FIELD vertical_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12 | boeing_777_200_cad_3view
 END FIELD
 
 FIELD vertical_tail.arm
@@ -351,7 +382,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12 | boeing_777_200_cad_3view
 END FIELD
 
 FIELD vertical_tail.rudder_area_ratio
@@ -360,7 +391,7 @@ FIELD vertical_tail.rudder_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12
+  Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12 | boeing_777_200_cad_3view
 END FIELD
 
 LEGACY PARAMETERS

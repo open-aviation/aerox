@@ -41,7 +41,7 @@ wing:
   dihedral: null
 horizontal_tail:
   area: null
-  span: null
+  span: 6.8
   mac: null
   root_chord: null
   tip_chord: null

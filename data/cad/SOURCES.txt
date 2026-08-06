@@ -1,0 +1,153 @@
+Aerox local manufacturer CAD source collection
+==============================================
+
+Last checked and downloaded: 2026-08-06
+
+Purpose
+-------
+This directory stores the original manufacturer ZIP archives and their
+extracted CAD drawings used to research wing, tail, control-surface, and
+overall-aircraft geometry for the bundled Aerox aircraft records.
+
+Directory layout
+----------------
+airbus/archives/   Original Airbus ZIP downloads
+airbus/drawings/   Extracted Airbus DWG files, grouped by archive name
+boeing/archives/   Original Boeing ZIP downloads
+boeing/drawings/   Extracted Boeing DXF/DWG files, grouped by archive name
+SHA256SUMS.txt     Checksums of all original archives
+
+Verify the original downloads from this directory with:
+
+  sha256sum -c SHA256SUMS.txt
+
+The collection contains 50 archives and 50 extracted CAD files:
+
+  Airbus: 18 archives covering 17 bundled aircraft records
+  Boeing: 32 archives covering 25 bundled aircraft records
+
+The archive count exceeds the aircraft count because configuration-specific
+alternatives are intentionally preserved. Examples include baseline/winglet
+737 drawings, passenger/freighter 747-8 drawings, and both A330-200 vertical
+tail configurations. A source drawing must not be applied to a YAML record
+until its model and modification applicability have been resolved.
+
+Source status and limitations
+-----------------------------
+Airbus landing page:
+https://www.aircraft.airbus.com/en/customer-care/fleet-wide-care/airport-operations-and-aircraft-characteristics/autocad-3-view-aircraft-drawings
+
+Airbus states that these three-view drawings are for airport-planning purposes
+and accurate to within 10 centimetres.
+
+Boeing landing page:
+https://www.boeing.com/commercial/airports/3-view
+
+Boeing states that these plan, side, and front views are for airport-planning
+purposes and should be accurate within plus or minus 6 inches. Boeing also
+instructs users to reconcile them with the dimensions in the applicable
+Airplane Characteristics for Airport Planning document.
+
+These are manufacturer-published planning drawings, not type-design drawings
+and not certification findings. A dimension explicitly printed in a drawing
+may be recorded as manufacturer-published-planning. Geometry measured from a
+CAD entity must be recorded as inferred-with-uncertainty. Values calculated
+from measured planform inputs must retain the input measurements, formula, and
+uncertainty. Do not label drawing-derived values as certified.
+
+The manufacturers' copyright and reuse terms apply. The repository's broad
+data/ ignore rule deliberately keeps this local external-source collection out
+of Git until redistribution rights and repository-size policy are reviewed.
+
+Airbus downloads and Aerox applicability
+-----------------------------------------
+Relative archive path | Bundled ICAO applicability | Direct official URL
+
+airbus/archives/Airbus_A300-600-May-2012.zip | A306 | https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A300-600-May-2012.zip
+airbus/archives/Airbus_A318_WTF-May-2012.zip | A318 | https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A318_WTF-May-2012.zip
+airbus/archives/Airbus_A319_WTF-May-2012.zip | A319 | https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A319_WTF-May-2012.zip
+airbus/archives/A319_sharklet-001-Jul-2014.zip | A319; A19N geometry candidate only | https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/A319_sharklet-001-Jul-2014.zip
+airbus/archives/Airbus_A320_WTF-May-2012.zip | A320 | https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A320_WTF-May-2012.zip
+airbus/archives/A320_sharklet-001-Jul-2014_1.zip | A320; A20N geometry candidate only | https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/A320_sharklet-001-Jul-2014%20%281%29.zip
+airbus/archives/Airbus_A321_WTF-May-2012.zip | A321 | https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A321_WTF-May-2012.zip
+airbus/archives/A321_sharklet-001-Jul-2014.zip | A321; A21N geometry candidate only | https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/A321_sharklet-001-Jul-2014.zip
+airbus/archives/Airbus_A330_200_VTP88-May-2012.zip | A332, VTP88 only | https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A330_200_VTP88-May-2012.zip
+airbus/archives/Airbus_A330_200_VTP93-May-2012.zip | A332, VTP93 only | https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A330_200_VTP93-May-2012.zip
+airbus/archives/Airbus_A330_300-May-2012.zip | A333 | https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A330_300-May-2012.zip
+airbus/archives/Airbus_A330-900-Aug-2016.zip | A339 | https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A330-900-Aug-2016.zip
+airbus/archives/Airbus_A340-300-May-2012.zip | A343 | https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A340-300-May-2012.zip
+airbus/archives/Airbus_A350-900-May-2012.zip | A359 | https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A350-900-May-2012.zip
+airbus/archives/Airbus-A350-1000-Apr-2016.zip | A35K | https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus-A350-1000-Apr-2016.zip
+airbus/archives/Airbus_A380-800-May-2012.zip | A388 | https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A380-800-May-2012.zip
+airbus/archives/A220_100_AutoCAD_Drawing.zip | BCS1 | https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-12/A220_100_AutoCAD%20Drawing.zip
+airbus/archives/A220_300_AutoCAD_Drawing.zip | BCS3 | https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-12/A220_300_AutoCAD%20Drawing.zip
+
+The Airbus Sharklet archives are not explicitly labelled as NEO drawings.
+They may support common outer-mould-line geometry only after comparison with
+the current A319neo/A320neo/A321neo Aircraft Characteristics publications.
+They must not be used as evidence for NEO engine or nacelle geometry.
+
+Boeing downloads and Aerox applicability
+-----------------------------------------
+All direct URLs below share this official base:
+https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/
+
+Relative archive path | Bundled ICAO applicability | Direct official URL
+
+boeing/archives/717.zip | B712 | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/717.zip
+boeing/archives/7373.zip | B733 | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7373.zip
+boeing/archives/7374.zip | B734 | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7374.zip
+boeing/archives/7377.zip | B737 baseline | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7377.zip
+boeing/archives/7377w.zip | B737 with winglets | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7377w.zip
+boeing/archives/7378.zip | B738 baseline | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7378.zip
+boeing/archives/7378w.zip | B738 with winglets | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7378w.zip
+boeing/archives/7379.zip | B739 baseline | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7379.zip
+boeing/archives/7379w.zip | B739 with winglets | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7379w.zip
+boeing/archives/737_max7.zip | B37M | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/737_max7.zip
+boeing/archives/737_max8.zip | B38M | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/737_max8.zip
+boeing/archives/737_max9.zip | B39M | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/737_max9.zip
+boeing/archives/737_max10.zip | B3XM | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/737_max10.zip
+boeing/archives/7474.zip | B744 | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7474.zip
+boeing/archives/7478p.zip | B748 passenger | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7478p.zip
+boeing/archives/7478f.zip | B748 freighter | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7478f.zip
+boeing/archives/7572.zip | B752 baseline | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7572.zip
+boeing/archives/7572w.zip | B752 with winglets | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7572w.zip
+boeing/archives/7573.zip | B753 | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7573.zip
+boeing/archives/7672.zip | B762 | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7672.zip
+boeing/archives/7673.zip | B763 baseline | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7673.zip
+boeing/archives/7673w.zip | B763 with winglets | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7673w.zip
+boeing/archives/7674.zip | B764 | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7674.zip
+boeing/archives/7772.zip | B772 | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7772.zip
+boeing/archives/7772lr.zip | B77L passenger/LR candidate | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7772lr.zip
+boeing/archives/777f.zip | B77L freighter candidate | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/777f.zip
+boeing/archives/7773.zip | B773 | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7773.zip
+boeing/archives/7773er.zip | B77W | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7773er.zip
+boeing/archives/7878.zip | B788 | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7878.zip
+boeing/archives/7879.zip | B789 | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7879.zip
+boeing/archives/78710.zip | B78X | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/78710.zip
+boeing/archives/md11.zip | MD11 | https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/md11.zip
+
+The bundled B77L record currently combines 777-200LR and freighter semantics.
+The stored 7772lr.zip is directly applicable only to the passenger 777-200LR,
+while 777f.zip is the separate freighter drawing. Both are retained until the
+exact scope of the bundled record has been resolved.
+
+Other Airbus CAD archives visible on the official page
+-------------------------------------------------------
+The Airbus digital-asset base path is not a browsable directory. The current
+official AutoCAD page lists 24 downloadable packages. Eighteen are retained
+above because they map to bundled Aerox aircraft. The six currently published
+packages without a bundled record are:
+
+A310-300 | https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A310-300-May-2012.zip
+A330-200F | https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A330_200F-May-2012.zip
+A330-800 | https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A330-800-Aug-2016.zip
+A340-200 | https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A340-200-May-2012.zip
+A340-500 | https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A340-500-May-2012.zip
+A340-600 | https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A340-600-May-2012.zip
+
+No additional official Airbus CAD packages were found through the current
+download page or indexed searches of the asset host. The same asset tree does
+contain many non-CAD Airbus documents, especially current Aircraft
+Characteristics PDFs; their authoritative index is:
+https://www.aircraft.airbus.com/en/customer-care/fleet-wide-care/airport-operations-and-aircraft-characteristics/aircraft-characteristics

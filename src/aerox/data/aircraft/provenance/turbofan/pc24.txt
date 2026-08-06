@@ -166,8 +166,8 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_pc24_a594
-  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+  Searched source: easa_pc24_a594 | pilatus_pc24_gsg_02484_i2r4
+  Search record: reviewed EASA.A.594 Issue 08, Pilatus Ground Servicing Guide 02484 Issue 002 Revision 04, and current Pilatus product material; certified wing geometry and the manufacturer-published horizontal-tail span are inventoried below.
 END FIELD
 
 FIELD wing.tip_chord
@@ -176,8 +176,8 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_pc24_a594
-  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+  Searched source: easa_pc24_a594 | pilatus_pc24_gsg_02484_i2r4
+  Search record: reviewed EASA.A.594 Issue 08, Pilatus Ground Servicing Guide 02484 Issue 002 Revision 04, and current Pilatus product material; certified wing geometry and the manufacturer-published horizontal-tail span are inventoried below.
 END FIELD
 
 FIELD wing.taper_ratio
@@ -186,8 +186,8 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_pc24_a594
-  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+  Searched source: easa_pc24_a594 | pilatus_pc24_gsg_02484_i2r4
+  Search record: reviewed EASA.A.594 Issue 08, Pilatus Ground Servicing Guide 02484 Issue 002 Revision 04, and current Pilatus product material; certified wing geometry and the manufacturer-published horizontal-tail span are inventoried below.
 END FIELD
 
 FIELD wing.aspect_ratio
@@ -214,8 +214,8 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_pc24_a594
-  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+  Searched source: easa_pc24_a594 | pilatus_pc24_gsg_02484_i2r4
+  Search record: reviewed EASA.A.594 Issue 08, Pilatus Ground Servicing Guide 02484 Issue 002 Revision 04, and current Pilatus product material; certified wing geometry and the manufacturer-published horizontal-tail span are inventoried below.
 END FIELD
 
 FIELD horizontal_tail.area
@@ -224,18 +224,22 @@ FIELD horizontal_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_pc24_a594
-  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+  Searched source: easa_pc24_a594 | pilatus_pc24_gsg_02484_i2r4
+  Search record: reviewed EASA.A.594 Issue 08, Pilatus Ground Servicing Guide 02484 Issue 002 Revision 04, and current Pilatus product material; certified wing geometry and the manufacturer-published horizontal-tail span are inventoried below.
 END FIELD
 
 FIELD horizontal_tail.span
-  Value: null
+  Value: 6.8
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_pc24_a594
-  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+  Status: manufacturer-published-planning
+  Source: pilatus_pc24_gsg_02484_i2r4
+  Source URL: https://www.pilatus-aircraft.com/assets/files/Technical-Publications/Ground-Servicing-Guide_PC-24.pdf
+  Document title: PC-24 Ground Servicing Guide, document 02484
+  Revision date: 2025-02-27
+  Page or section: Figure 0-1-1, page 0-1-3; figure issue date 2023-01-31
+  Applicability: PC-24 configuration shown in manufacturer servicing guide
+  Uncertainty: Source rounded to 0.01 m
+  Notes: The drawing labels the full horizontal-tail width as 22 ft 4.5 in (6.8 m); the guide states that it is not authority approved.
 END FIELD
 
 FIELD horizontal_tail.mac
@@ -244,8 +248,8 @@ FIELD horizontal_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_pc24_a594
-  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+  Searched source: easa_pc24_a594 | pilatus_pc24_gsg_02484_i2r4
+  Search record: reviewed EASA.A.594 Issue 08, Pilatus Ground Servicing Guide 02484 Issue 002 Revision 04, and current Pilatus product material; certified wing geometry and the manufacturer-published horizontal-tail span are inventoried below.
 END FIELD
 
 FIELD horizontal_tail.root_chord
@@ -254,8 +258,8 @@ FIELD horizontal_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_pc24_a594
-  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+  Searched source: easa_pc24_a594 | pilatus_pc24_gsg_02484_i2r4
+  Search record: reviewed EASA.A.594 Issue 08, Pilatus Ground Servicing Guide 02484 Issue 002 Revision 04, and current Pilatus product material; certified wing geometry and the manufacturer-published horizontal-tail span are inventoried below.
 END FIELD
 
 FIELD horizontal_tail.tip_chord
@@ -264,8 +268,8 @@ FIELD horizontal_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_pc24_a594
-  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+  Searched source: easa_pc24_a594 | pilatus_pc24_gsg_02484_i2r4
+  Search record: reviewed EASA.A.594 Issue 08, Pilatus Ground Servicing Guide 02484 Issue 002 Revision 04, and current Pilatus product material; certified wing geometry and the manufacturer-published horizontal-tail span are inventoried below.
 END FIELD
 
 FIELD horizontal_tail.taper_ratio
@@ -274,8 +278,8 @@ FIELD horizontal_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_pc24_a594
-  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+  Searched source: easa_pc24_a594 | pilatus_pc24_gsg_02484_i2r4
+  Search record: reviewed EASA.A.594 Issue 08, Pilatus Ground Servicing Guide 02484 Issue 002 Revision 04, and current Pilatus product material; certified wing geometry and the manufacturer-published horizontal-tail span are inventoried below.
 END FIELD
 
 FIELD horizontal_tail.sweep
@@ -284,8 +288,8 @@ FIELD horizontal_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_pc24_a594
-  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+  Searched source: easa_pc24_a594 | pilatus_pc24_gsg_02484_i2r4
+  Search record: reviewed EASA.A.594 Issue 08, Pilatus Ground Servicing Guide 02484 Issue 002 Revision 04, and current Pilatus product material; certified wing geometry and the manufacturer-published horizontal-tail span are inventoried below.
 END FIELD
 
 FIELD horizontal_tail.dihedral
@@ -294,8 +298,8 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_pc24_a594
-  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+  Searched source: easa_pc24_a594 | pilatus_pc24_gsg_02484_i2r4
+  Search record: reviewed EASA.A.594 Issue 08, Pilatus Ground Servicing Guide 02484 Issue 002 Revision 04, and current Pilatus product material; certified wing geometry and the manufacturer-published horizontal-tail span are inventoried below.
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -304,8 +308,8 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_pc24_a594
-  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+  Searched source: easa_pc24_a594 | pilatus_pc24_gsg_02484_i2r4
+  Search record: reviewed EASA.A.594 Issue 08, Pilatus Ground Servicing Guide 02484 Issue 002 Revision 04, and current Pilatus product material; certified wing geometry and the manufacturer-published horizontal-tail span are inventoried below.
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
@@ -314,8 +318,8 @@ FIELD horizontal_tail.elevator_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_pc24_a594
-  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+  Searched source: easa_pc24_a594 | pilatus_pc24_gsg_02484_i2r4
+  Search record: reviewed EASA.A.594 Issue 08, Pilatus Ground Servicing Guide 02484 Issue 002 Revision 04, and current Pilatus product material; certified wing geometry and the manufacturer-published horizontal-tail span are inventoried below.
 END FIELD
 
 FIELD vertical_tail.area
@@ -324,8 +328,8 @@ FIELD vertical_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_pc24_a594
-  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+  Searched source: easa_pc24_a594 | pilatus_pc24_gsg_02484_i2r4
+  Search record: reviewed EASA.A.594 Issue 08, Pilatus Ground Servicing Guide 02484 Issue 002 Revision 04, and current Pilatus product material; certified wing geometry and the manufacturer-published horizontal-tail span are inventoried below.
 END FIELD
 
 FIELD vertical_tail.height
@@ -334,8 +338,8 @@ FIELD vertical_tail.height
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_pc24_a594
-  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+  Searched source: easa_pc24_a594 | pilatus_pc24_gsg_02484_i2r4
+  Search record: reviewed EASA.A.594 Issue 08, Pilatus Ground Servicing Guide 02484 Issue 002 Revision 04, and current Pilatus product material; certified wing geometry and the manufacturer-published horizontal-tail span are inventoried below.
 END FIELD
 
 FIELD vertical_tail.mac
@@ -344,8 +348,8 @@ FIELD vertical_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_pc24_a594
-  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+  Searched source: easa_pc24_a594 | pilatus_pc24_gsg_02484_i2r4
+  Search record: reviewed EASA.A.594 Issue 08, Pilatus Ground Servicing Guide 02484 Issue 002 Revision 04, and current Pilatus product material; certified wing geometry and the manufacturer-published horizontal-tail span are inventoried below.
 END FIELD
 
 FIELD vertical_tail.root_chord
@@ -354,8 +358,8 @@ FIELD vertical_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_pc24_a594
-  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+  Searched source: easa_pc24_a594 | pilatus_pc24_gsg_02484_i2r4
+  Search record: reviewed EASA.A.594 Issue 08, Pilatus Ground Servicing Guide 02484 Issue 002 Revision 04, and current Pilatus product material; certified wing geometry and the manufacturer-published horizontal-tail span are inventoried below.
 END FIELD
 
 FIELD vertical_tail.tip_chord
@@ -364,8 +368,8 @@ FIELD vertical_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_pc24_a594
-  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+  Searched source: easa_pc24_a594 | pilatus_pc24_gsg_02484_i2r4
+  Search record: reviewed EASA.A.594 Issue 08, Pilatus Ground Servicing Guide 02484 Issue 002 Revision 04, and current Pilatus product material; certified wing geometry and the manufacturer-published horizontal-tail span are inventoried below.
 END FIELD
 
 FIELD vertical_tail.taper_ratio
@@ -374,8 +378,8 @@ FIELD vertical_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_pc24_a594
-  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+  Searched source: easa_pc24_a594 | pilatus_pc24_gsg_02484_i2r4
+  Search record: reviewed EASA.A.594 Issue 08, Pilatus Ground Servicing Guide 02484 Issue 002 Revision 04, and current Pilatus product material; certified wing geometry and the manufacturer-published horizontal-tail span are inventoried below.
 END FIELD
 
 FIELD vertical_tail.sweep
@@ -384,8 +388,8 @@ FIELD vertical_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_pc24_a594
-  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+  Searched source: easa_pc24_a594 | pilatus_pc24_gsg_02484_i2r4
+  Search record: reviewed EASA.A.594 Issue 08, Pilatus Ground Servicing Guide 02484 Issue 002 Revision 04, and current Pilatus product material; certified wing geometry and the manufacturer-published horizontal-tail span are inventoried below.
 END FIELD
 
 FIELD vertical_tail.arm
@@ -394,8 +398,8 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_pc24_a594
-  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+  Searched source: easa_pc24_a594 | pilatus_pc24_gsg_02484_i2r4
+  Search record: reviewed EASA.A.594 Issue 08, Pilatus Ground Servicing Guide 02484 Issue 002 Revision 04, and current Pilatus product material; certified wing geometry and the manufacturer-published horizontal-tail span are inventoried below.
 END FIELD
 
 FIELD vertical_tail.rudder_area_ratio
@@ -404,8 +408,8 @@ FIELD vertical_tail.rudder_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_pc24_a594
-  Search record: reviewed EASA.A.594 Issue 08 and current Pilatus brochures; exact certified PC-24 geometry is inventoried below.
+  Searched source: easa_pc24_a594 | pilatus_pc24_gsg_02484_i2r4
+  Search record: reviewed EASA.A.594 Issue 08, Pilatus Ground Servicing Guide 02484 Issue 002 Revision 04, and current Pilatus product material; certified wing geometry and the manufacturer-published horizontal-tail span are inventoried below.
 END FIELD
 
 LEGACY PARAMETERS

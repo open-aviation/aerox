@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import copy
+import csv
 import subprocess
 import sys
 from pathlib import Path
@@ -21,6 +22,15 @@ from tools.update_aircraft_geometry import GEOMETRY_UNITS
 ROOT = Path("src/aerox/data/aircraft/yml")
 SOURCE_ROOT = Path("src/aerox/data/aircraft/provenance")
 FILES = sorted(ROOT.glob("*/*.yml"))
+RESEARCH_FILES = (
+    Path("docs/modeling/geometry-research-airbus-boeing.tsv"),
+    Path("docs/modeling/geometry-research-regional-business.tsv"),
+    Path("docs/modeling/geometry-research-ga-turboprop-military.tsv"),
+)
+CAD_MEASUREMENT_FILES = (
+    Path("docs/modeling/airbus-cad-geometry-measurements.csv"),
+    Path("docs/modeling/boeing-cad-geometry-measurements.csv"),
+)
 
 
 @pytest.fixture(scope="module")
@@ -159,18 +169,44 @@ def test_geometry_updater_is_idempotent_without_research_input():
 
 def test_geometry_updater_is_idempotent_with_all_research_inputs():
     command = [sys.executable, "tools/update_aircraft_geometry.py"]
-    for path in (
-        "docs/modeling/geometry-research-airbus-boeing.tsv",
-        "docs/modeling/geometry-research-regional-business.tsv",
-        "docs/modeling/geometry-research-ga-turboprop-military.tsv",
-    ):
+    for path in RESEARCH_FILES:
         command.extend(["--research", path])
     result = subprocess.run(
         [*command, "--check"], check=False, capture_output=True, text=True
     )
     assert result.returncode == 0, result.stdout + result.stderr
-    assert "research_values=272" in result.stdout
+    expected_rows = sum(
+        sum(1 for line in path.read_text(encoding="utf-8").splitlines()
+            if line.strip() and not line.startswith("#")) - 1
+        for path in RESEARCH_FILES
+    )
+    assert expected_rows >= 273
+    assert f"research_values={expected_rows}" in result.stdout
     assert "changed=0" in result.stdout
+
+
+def test_pc24_manufacturer_tail_span_is_adopted_with_exact_provenance():
+    pc24 = load_aircraft("PC24")
+    assert pc24.horizontal_tail.span == pytest.approx(6.8)
+    notes = parse_source_notes(
+        (SOURCE_ROOT / "turbofan/pc24.txt").read_text(encoding="utf-8")
+    )
+    record = notes["fields"]["horizontal_tail.span"]
+    assert record["status"] == "manufacturer-published-planning"
+    assert record["source"] == "pilatus_pc24_gsg_02484_i2r4"
+    assert "Figure 0-1-1" in record["page_or_section"]
+
+
+def test_cad_measurement_inventories_use_stable_ledger_source_ids():
+    ledger = yaml.safe_load(
+        Path("docs/modeling/sources.yml").read_text(encoding="utf-8")
+    )
+    source_ids = {source["id"] for source in ledger["sources"]}
+    for path in CAD_MEASUREMENT_FILES:
+        with path.open(encoding="utf-8", newline="") as stream:
+            rows = list(csv.DictReader(stream))
+        assert rows, path
+        assert all(row["source_id"] in source_ids for row in rows), path
 
 
 def test_variant_mismatched_geometry_remains_evidence_only():
@@ -233,6 +269,31 @@ def test_derived_geometry_matches_documented_formulas(records):
                 assert section["tip_chord"] is not None, path
                 expected = section["tip_chord"] / section["root_chord"]
                 assert section["taper_ratio"] == pytest.approx(expected, rel=2e-6), path
+
+            if name != "wing" and all(
+                section[field] is not None
+                for field in ("area", "root_chord", "tip_chord")
+            ):
+                dimension = section["span" if name == "horizontal_tail" else "height"]
+                if dimension is not None:
+                    expected_area = dimension * (
+                        section["root_chord"] + section["tip_chord"]
+                    ) / 2
+                    assert section["area"] == pytest.approx(
+                        expected_area, rel=2e-4
+                    ), path
+
+            if name != "wing" and section["mac"] is not None:
+                assert section["root_chord"] is not None, path
+                assert section["taper_ratio"] is not None, path
+                taper = section["taper_ratio"]
+                expected_mac = (
+                    (2 / 3)
+                    * section["root_chord"]
+                    * (1 + taper + taper**2)
+                    / (1 + taper)
+                )
+                assert section["mac"] == pytest.approx(expected_mac, rel=5e-5), path
 
 
 def test_web_editor_preserves_compact_certification_fields(
