@@ -368,42 +368,39 @@ LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
 
-MODEL AND ENGINE APPLICABILITY
+SUBTYPE AND ENGINE DATABANK APPLICABILITY
 
-FIELD engine.model_engine_options
-  Value: 12 certified model mapping(s)
+FIELD subtypes
+  Value: 11 unique certified subtype mapping(s)
   Status: certified-published
-  Source: easa_a064_issue_62
+  Source: easa_a064_issue_62 | icao_eedb_issue_32
   Page or section: Section 2 III.5; PDF p.93 | Section 2 III.5; PDF pp.93-95
-  Applicability: Model-level approved installations; the individual airframe record is required to identify the engine actually installed.
-  Evidence inventory: docs/modeling/airbus-model-engine-mapping-draft.tsv
+  Applicability: Certified subtype applicability with query identifiers normalized to ICAO EEDB Issue 32.
+  Evidence inventory: docs/modeling/airbus-subtype-engine-mapping.tsv
+  Engine table: src/aerox/data/engines/engines.csv
   Mappings:
     A321-251N:
-      - CFMI LEAP-1A32
+      - LEAP-1A35A/35AX/33/33X/33B2/33B2X/32/32X/30
     A321-251NX:
-      - CFMI LEAP-1A32
+      - LEAP-1A35A/35AX/33/33X/33B2/33B2X/32/32X/30
     A321-252N:
-      - CFMI LEAP-1A30
+      - LEAP-1A35A/35AX/33/33X/33B2/33B2X/32/32X/30
     A321-252NX:
-      - CFMI LEAP-1A30
+      - LEAP-1A35A/35AX/33/33X/33B2/33B2X/32/32X/30
     A321-253N:
-      - CFMI LEAP-1A33
+      - LEAP-1A35A/35AX/33/33X/33B2/33B2X/32/32X/30
     A321-253NX:
-      - CFMI LEAP-1A33
+      - LEAP-1A35A/35AX/33/33X/33B2/33B2X/32/32X/30
     A321-271N:
-      - IAE PW1133G-JM
-      - IAE PW1133GA-JM
+      - PW1133G-JM
+      - PW1133GA-JM
     A321-271NX:
-      - IAE PW1133G-JM
-      - IAE PW1133GA-JM
+      - PW1133G-JM
+      - PW1133GA-JM
     A321-272N:
-      - IAE PW1130G-JM
+      - PW1130G-JM
     A321-272NX:
-      - IAE PW1130G-JM
+      - PW1130G-JM
     A321-253NY:
-      - CFMI LEAP-1A33X
-      - CFMI LEAP-1A33B2X
-    A321-271NY:
-      - IAE PW1133GR-JM
-      - IAE PW1133GAR-JM
+      - LEAP-1A35A/35AX/33/33X/33B2/33B2X/32/32X/30
 END FIELD

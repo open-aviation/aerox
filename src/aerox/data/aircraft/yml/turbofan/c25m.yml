@@ -1,6 +1,7 @@
 aircraft: Cessna Citation M2
 icao: C25M
 iata: CNJ
+subtypes: null
 certification:
   model: '525'
   authority: FAA validated by EASA
@@ -74,7 +75,6 @@ engine:
   default: Williams FJ44-1AP-21
   options:
   - Williams FJ44-1AP-21
-  model_engine_options: null
 drag:
   cd0: 0.02364
   k: 0.04251

@@ -1,6 +1,7 @@
 aircraft: Boeing 777-200
 icao: B772
 iata: 777 / 772
+subtypes: null
 certification:
   model: 777-200
   authority: EASA
@@ -82,23 +83,6 @@ engine:
   - PW4084
   - GE90-85B
   - Trent 884
-  model_engine_options:
-  - model: 777-200
-    engines:
-    - PW4077
-    - PW4084
-    - PW4090
-    - PW4090-3
-    - GE90-76B
-    - GE90-85B
-    - GE90-90B
-    - GE90-94B
-    - Trent 875
-    - Trent 877
-    - Trent 884
-    - Trent 892
-    - Trent 892B
-    - Trent 895
 drag:
   cd0: 0.01723
   k: 0.04544

@@ -1,6 +1,7 @@
 aircraft: Dassault Falcon 900
 icao: F900
 iata: null
+subtypes: null
 certification:
   model: null
   authority: EASA
@@ -74,7 +75,6 @@ engine:
   default: TFE731-5BR
   options:
   - TFE731-5BR
-  model_engine_options: null
 drag:
   cd0: 0.02124
   k: 0.05097

@@ -1,6 +1,7 @@
 aircraft: Lockheed F-16 Fighting Falcon
 icao: F16
 iata: null
+subtypes: null
 certification:
   model: null
   authority: United States Department of Defense
@@ -73,7 +74,6 @@ engine:
   number: 1
   default: F100-PW-100
   options: null
-  model_engine_options: null
 drag:
   cd0: null
   k: null

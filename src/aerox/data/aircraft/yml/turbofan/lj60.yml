@@ -1,6 +1,7 @@
 aircraft: Bombardier Learjet 60
 icao: LJ60
 iata: LRJ
+subtypes: null
 certification:
   model: Learjet Model 60
   authority: European Union Aviation Safety Agency
@@ -74,7 +75,6 @@ engine:
   default: PW306A
   options:
   - PW306A
-  model_engine_options: null
 drag:
   cd0: 0.02617
   k: 0.05353

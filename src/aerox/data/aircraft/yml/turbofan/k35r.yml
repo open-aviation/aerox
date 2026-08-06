@@ -1,6 +1,7 @@
 aircraft: Boeing KC-135 Stratotanker
 icao: K35R
 iata: null
+subtypes: null
 certification:
   model: null
   authority: United States Department of Defense
@@ -74,7 +75,6 @@ engine:
   default: CFMI CFM - F108 turbofan
   options:
   - CFM56/F108
-  model_engine_options: null
 drag:
   cd0: 0.01624
   k: 0.05452

@@ -1,6 +1,7 @@
 aircraft: Swearingen SA-227AT Merlin 4
 icao: SW4
 iata: null
+subtypes: null
 certification:
   model: SA227-AT Merlin IVC
   authority: Federal Aviation Administration
@@ -74,7 +75,6 @@ engine:
   default: Garrett TPE331-12
   options:
   - Garrett TPE331-12
-  model_engine_options: null
 drag:
   cd0: null
   k: null

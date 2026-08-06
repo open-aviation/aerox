@@ -1,0 +1,40 @@
+AEROX ENGINE DATA SOURCES
+
+ICAO Engine Emissions Databank
+  File: icao-edb-issue-32.xlsx
+  Issue: 32
+  Publication date: 2026-03-20
+  Downloaded: 2026-08-06
+  Official page:
+    https://www.easa.europa.eu/en/domains/environment/icao-aircraft-engine-emissions-databank
+  Direct download:
+    https://www.easa.europa.eu/en/downloads/131424/en
+  Host: European Union Aviation Safety Agency on behalf of ICAO
+  Scope: Production turbojet and turbofan engines regulated by ICAO Annex 16,
+    Volume II, generally engines with rated static thrust above 26.7 kN.
+  Important limitation: Absence from this database does not mean an engine
+    designation is invalid. Smaller business-jet engines, most turboprops,
+    piston engines, and several military designations are outside its scope.
+  Redistribution: Preserve the official attribution and verify EASA/ICAO terms
+    before redistributing the original workbook outside this repository.
+
+OpenAP-derived processing
+  Script: generate_engine_data.py
+  Upstream script copied and adapted from:
+    ../openap/scripts/gen_engine_data_v27.py
+  Upstream repository:
+    https://github.com/junzis/openap
+  Cruise supplement copied from:
+    ../openap/scripts/input/engine_cruise_performance.csv
+  Generated table: engines.csv
+  Changes from upstream:
+    - Updated the source from ICAO EEDB v27/v28B to Issue 32.
+    - Selects spreadsheet columns by published name rather than position.
+    - Preserves OpenAP's engine-identifier cleaning behavior.
+    - Keeps the OpenAP cruise-performance supplement as an optional left join.
+    - Adds a deterministic --check mode.
+
+Aircraft subtype mappings
+  Only engine identifiers present in generated engines.csv may appear in a
+  non-null aircraft subtypes mapping. The aircraft TCDS establishes subtype
+  applicability; the ICAO EEDB establishes the query identifier spelling.

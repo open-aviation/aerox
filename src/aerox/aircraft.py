@@ -165,10 +165,10 @@ class Flaps:
 
 
 @dataclass
-class ModelEngineOption:
-    """Approved engines for one exact certified aircraft model designation."""
+class AircraftSubtype:
+    """Queryable ICAO EEDB engine identifiers for one certified subtype."""
 
-    model: str
+    subtype: str
     engines: List[str] = field(default_factory=list)
 
 
@@ -181,17 +181,6 @@ class Engine:
     number: Optional[int] = None
     default: Optional[str] = None
     options: List[str] = field(default_factory=list)
-    model_engine_options: Optional[List[ModelEngineOption]] = None
-
-    def engines_for_model(self, model: str) -> List[str]:
-        """Return approved engines recorded for an exact certified model."""
-
-        if self.model_engine_options is None:
-            return []
-        for option in self.model_engine_options:
-            if option.model == model:
-                return list(option.engines)
-        return []
 
 
 @dataclass
@@ -294,6 +283,7 @@ class Aircraft:
     aircraft: Optional[str] = None
     icao: Optional[str] = None
     iata: Optional[str] = None
+    subtypes: Optional[List[AircraftSubtype]] = None
 
     # Weight limits (kg)
     mtow: Optional[float] = None
@@ -336,6 +326,16 @@ class Aircraft:
     kinematic: Optional[Kinematic] = None
     data_provenance: Dict[str, Any] = field(default_factory=dict)
 
+    def engines_for_subtype(self, subtype: str) -> List[str]:
+        """Return ICAO EEDB query identifiers for an exact subtype."""
+
+        if self.subtypes is None:
+            return []
+        for item in self.subtypes:
+            if item.subtype == subtype:
+                return list(item.engines)
+        return []
+
 
 def _load_nested_dataclass(data: Optional[Dict], cls):
     """Helper to load nested dataclass from dictionary."""
@@ -369,19 +369,15 @@ def _load_nested_dataclass(data: Optional[Dict], cls):
     return cls(**converted_data)
 
 
-def _load_engine(data: Optional[Dict[str, Any]]) -> Optional[Engine]:
-    """Load engine data, including typed model-to-engine applicability rows."""
+def _load_subtypes(data: Any) -> Optional[List[AircraftSubtype]]:
+    """Load the optional root-level subtype-to-engine mapping."""
 
     if data is None:
         return None
-    converted = dict(data)
-    rows = converted.get("model_engine_options")
-    if rows is not None:
-        converted["model_engine_options"] = [
-            ModelEngineOption(model=row["model"], engines=list(row["engines"]))
-            for row in rows
-        ]
-    return Engine(**converted)
+    return [
+        AircraftSubtype(subtype=row["subtype"], engines=list(row["engines"]))
+        for row in data
+    ]
 
 
 def _load_kinematic(data: Optional[Dict]) -> Optional[Kinematic]:
@@ -465,7 +461,7 @@ def load_aircraft_from_dict(
         data.get("mass_properties"), MassProperties
     )
     flaps = _load_nested_dataclass(data.get("flaps"), Flaps)
-    engine = _load_engine(data.get("engine"))
+    engine = _load_nested_dataclass(data.get("engine"), Engine)
     drag = _load_nested_dataclass(data.get("drag"), Drag)
     kinematic = _load_kinematic(data.get("kinematic"))
     if certification is not None and certification.source_id is None:
@@ -485,6 +481,7 @@ def load_aircraft_from_dict(
         aircraft=data.get("aircraft"),
         icao=data.get("icao"),
         iata=data.get("iata"),
+        subtypes=_load_subtypes(data.get("subtypes")),
         mtow=data.get("mtow"),
         mlw=data.get("mlw"),
         mzfw=data.get("mzfw"),

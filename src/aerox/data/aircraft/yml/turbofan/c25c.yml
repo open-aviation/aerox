@@ -1,6 +1,7 @@
 aircraft: Cessna Citation CJ4
 icao: C25C
 iata: CNJ
+subtypes: null
 certification:
   model: 525C
   authority: FAA validated by EASA
@@ -74,7 +75,6 @@ engine:
   default: Williams FJ44-4A
   options:
   - Williams FJ44-4A
-  model_engine_options: null
 drag:
   cd0: 0.02173
   k: 0.04879

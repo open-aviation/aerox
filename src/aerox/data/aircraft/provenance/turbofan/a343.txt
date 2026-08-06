@@ -370,33 +370,24 @@ LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
 
-MODEL AND ENGINE APPLICABILITY
+SUBTYPE AND ENGINE DATABANK APPLICABILITY
 
-FIELD engine.model_engine_options
-  Value: 3 certified model mapping(s)
+FIELD subtypes
+  Value: 3 unique certified subtype mapping(s)
   Status: certified-published
-  Source: easa_a015_issue_28
+  Source: easa_a015_issue_28 | icao_eedb_issue_32
   Page or section: A340-300 III.5.1; PDF p.32
-  Applicability: Model-level approved installations; the individual airframe record is required to identify the engine actually installed.
-  Evidence inventory: docs/modeling/airbus-model-engine-mapping-draft.tsv
+  Applicability: Certified subtype applicability with query identifiers normalized to ICAO EEDB Issue 32.
+  Evidence inventory: docs/modeling/airbus-subtype-engine-mapping.tsv
+  Engine table: src/aerox/data/engines/engines.csv
   Mappings:
     A340-311:
-      - CFM International CFM56-5C2
-      - CFM56-5C2/4
-      - CFM56-5C2/F
-      - CFM56-5C2/F4
-      - CFM56-5C2/G
-      - CFM56-5C2/G4
+      - CFM56-5C2
       - CFM56-5C2/P
     A340-312:
-      - CFM International CFM56-5C3/F
-      - CFM56-5C3/F4
-      - CFM56-5C3/G
-      - CFM56-5C3/G4
+      - CFM56-5C3
       - CFM56-5C3/P
     A340-313:
-      - CFM International CFM56-5C4
-      - CFM56-5C4/1
+      - CFM56-5C4
       - CFM56-5C4/P
-      - CFM56-5C4/1P
 END FIELD

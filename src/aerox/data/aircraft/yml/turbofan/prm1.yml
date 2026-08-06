@@ -1,6 +1,7 @@
 aircraft: Raytheon Premier 1/390 Premier 1
 icao: PRM1
 iata: null
+subtypes: null
 certification:
   model: '390'
   authority: FAA
@@ -74,7 +75,6 @@ engine:
   default: Williams / Rolls-Royce FJ44-2A
   options:
   - Williams / Rolls-Royce FJ44-2A
-  model_engine_options: null
 drag:
   cd0: 0.02399
   k: 0.04881

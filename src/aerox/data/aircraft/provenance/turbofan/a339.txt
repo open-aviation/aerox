@@ -370,16 +370,17 @@ LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
 
-MODEL AND ENGINE APPLICABILITY
+SUBTYPE AND ENGINE DATABANK APPLICABILITY
 
-FIELD engine.model_engine_options
-  Value: 1 certified model mapping(s)
+FIELD subtypes
+  Value: 1 unique certified subtype mapping(s)
   Status: certified-published
-  Source: easa_a004_issue_69
+  Source: easa_a004_issue_69 | icao_eedb_issue_32
   Page or section: A330-900 III.5.1; PDF p.89
-  Applicability: Model-level approved installations; the individual airframe record is required to identify the engine actually installed.
-  Evidence inventory: docs/modeling/airbus-model-engine-mapping-draft.tsv
+  Applicability: Certified subtype applicability with query identifiers normalized to ICAO EEDB Issue 32.
+  Evidence inventory: docs/modeling/airbus-subtype-engine-mapping.tsv
+  Engine table: src/aerox/data/engines/engines.csv
   Mappings:
     A330-941:
-      - Rolls Royce Trent 7000-72
+      - Trent7000-72
 END FIELD

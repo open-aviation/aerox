@@ -1,6 +1,7 @@
 aircraft: Beech Bonanza 36
 icao: BE36
 iata: null
+subtypes: null
 certification:
   model: null
   authority: FAA
@@ -75,7 +76,6 @@ engine:
   options:
   - 300 HP Continental IO-550-B piston
   - 300 HP Continental TIO-520-UB turbocharged piston
-  model_engine_options: null
 drag:
   cd0: null
   k: null

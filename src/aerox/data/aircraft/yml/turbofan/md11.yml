@@ -1,6 +1,7 @@
 aircraft: Boeing (Douglas) MD 11
 icao: MD11
 iata: M11 / M1F / M1M
+subtypes: null
 certification:
   model: null
   authority: EASA
@@ -75,17 +76,6 @@ engine:
   options:
   - CF6-80C2D1F
   - PW4460
-  model_engine_options:
-  - model: MD-11
-    engines:
-    - CF6-80C2D1F
-    - PW4460
-    - PW4462
-  - model: MD-11F
-    engines:
-    - CF6-80C2D1F
-    - PW4460
-    - PW4462
 drag:
   cd0: 0.01908
   k: 0.04926

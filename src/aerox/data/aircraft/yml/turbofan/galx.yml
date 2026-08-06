@@ -1,6 +1,7 @@
 aircraft: IAI 1126 Galaxy/Gulfstream G200
 icao: GALX
 iata: null
+subtypes: null
 certification:
   model: null
   authority: FAA validated by EASA
@@ -74,7 +75,6 @@ engine:
   default: PW306A
   options:
   - PW306A
-  model_engine_options: null
 drag:
   cd0: 0.02357
   k: 0.04647

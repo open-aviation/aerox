@@ -1,6 +1,7 @@
 aircraft: ATR 72-500
 icao: AT75
 iata: AT7
+subtypes: null
 certification:
   model: ATR-72-212A
   authority: EASA
@@ -74,7 +75,6 @@ engine:
   default: 2 x 2500 SHP PWC PW127F turboprops with 6 blade propellers
   options:
   - 2 x 2500 SHP PWC PW127F turboprops with 6 blade propellers
-  model_engine_options: null
 drag:
   cd0: null
   k: null

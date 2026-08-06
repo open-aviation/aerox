@@ -1,6 +1,7 @@
 aircraft: Embraer 190
 icao: E190
 iata: null
+subtypes: null
 certification:
   model: ERJ 190-100
   authority: Agencia Nacional de Aviacao Civil
@@ -74,7 +75,6 @@ engine:
   default: CF34-10E5
   options:
   - CF34-10E5
-  model_engine_options: null
 drag:
   cd0: 0.02318
   k: 0.04433

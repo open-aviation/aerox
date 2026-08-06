@@ -1,6 +1,7 @@
 aircraft: Pilatus PC-24
 icao: PC24
 iata: null
+subtypes: null
 certification:
   model: PC-24
   authority: EASA
@@ -74,7 +75,6 @@ engine:
   default: Williams FJ44-4A
   options:
   - Williams FJ44-4A
-  model_engine_options: null
 drag:
   cd0: 0.02261
   k: 0.04169

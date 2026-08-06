@@ -1,6 +1,7 @@
 aircraft: DeHavilland Canada 8/DHC8-400
 icao: DH8D
 iata: DH4
+subtypes: null
 certification:
   model: DHC-8-400 series
   authority: Transport Canada Civil Aviation
@@ -74,7 +75,6 @@ engine:
   default: PW150A
   options:
   - P&W PW150A turboprop
-  model_engine_options: null
 drag:
   cd0: null
   k: null

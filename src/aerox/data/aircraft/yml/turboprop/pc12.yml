@@ -1,6 +1,7 @@
 aircraft: Pilatus PC-12
 icao: PC12
 iata: null
+subtypes: null
 certification:
   model: null
   authority: EASA
@@ -74,7 +75,6 @@ engine:
   default: 1 x 1.200 SHP P&W PT6A-67B turboprop with 4 bladed Hartzell propeller
   options:
   - 1 x 1.200 SHP P&W PT6A-67B turboprop with 4 bladed Hartzell propeller
-  model_engine_options: null
 drag:
   cd0: null
   k: null

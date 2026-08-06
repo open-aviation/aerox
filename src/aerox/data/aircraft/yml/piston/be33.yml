@@ -1,6 +1,7 @@
 aircraft: Beech Bonanza 33
 icao: BE33
 iata: BEC
+subtypes: null
 certification:
   model: null
   authority: FAA
@@ -74,7 +75,6 @@ engine:
   default: 225 HP Continental IO-470-K piston engine with two blade propeller
   options:
   - 225 HP Continental IO-470-K piston engine with two blade propeller
-  model_engine_options: null
 drag:
   cd0: null
   k: null

@@ -413,16 +413,17 @@ LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
 
-MODEL AND ENGINE APPLICABILITY
+SUBTYPE AND ENGINE DATABANK APPLICABILITY
 
-FIELD engine.model_engine_options
-  Value: 1 certified model mapping(s)
+FIELD subtypes
+  Value: 1 unique certified subtype mapping(s)
   Status: certified-published
-  Source: easa_a151_issue_33
+  Source: easa_a151_issue_33 | icao_eedb_issue_32
   Page or section: A350-1000 III.1.2; PDF p.26
-  Applicability: Model-level approved installations; the individual airframe record is required to identify the engine actually installed.
-  Evidence inventory: docs/modeling/airbus-model-engine-mapping-draft.tsv
+  Applicability: Certified subtype applicability with query identifiers normalized to ICAO EEDB Issue 32.
+  Evidence inventory: docs/modeling/airbus-subtype-engine-mapping.tsv
+  Engine table: src/aerox/data/engines/engines.csv
   Mappings:
     A350-1041:
-      - Rolls Royce Trent XWB-97
+      - Trent XWB-97
 END FIELD

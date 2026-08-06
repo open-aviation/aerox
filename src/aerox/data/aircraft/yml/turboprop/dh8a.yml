@@ -1,6 +1,7 @@
 aircraft: DeHavilland Canada DHC8-100
 icao: DH8A
 iata: DH8
+subtypes: null
 certification:
   model: null
   authority: Transport Canada Civil Aviation
@@ -75,7 +76,6 @@ engine:
   options:
   - 2 x 2,000 SHP P&W 120A turboprops with 4 blade propellers
   - 2 x 2,150 SHP P&W 121A turboprops with 4 blade propellers
-  model_engine_options: null
 drag:
   cd0: null
   k: null

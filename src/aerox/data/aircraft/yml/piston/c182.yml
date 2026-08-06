@@ -1,6 +1,7 @@
 aircraft: Cessna Skylane 182
 icao: C182
 iata: null
+subtypes: null
 certification:
   model: null
   authority: FAA
@@ -74,7 +75,6 @@ engine:
   default: 230 Hp Lycoming IO-540-AB1A5 piston engine with 2 blade propeller
   options:
   - 230 Hp Lycoming IO-540-AB1A5 piston engine with 2 blade propeller
-  model_engine_options: null
 drag:
   cd0: null
   k: null

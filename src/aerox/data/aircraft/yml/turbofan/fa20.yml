@@ -1,6 +1,7 @@
 aircraft: Dassault Falcon/Mystère 20
 icao: FA20
 iata: null
+subtypes: null
 certification:
   model: null
   authority: DGAC France / EASA continuing-airworthiness oversight
@@ -75,7 +76,6 @@ engine:
   options:
   - GE CF700-2D-2 turbofan
   - Garrett ATF3-6A-4C turbofan
-  model_engine_options: null
 drag:
   cd0: 0.02165
   k: 0.05858

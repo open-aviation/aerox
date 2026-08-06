@@ -1,6 +1,7 @@
 aircraft: Lockheed 130 Hercules
 icao: C130
 iata: LOH
+subtypes: null
 certification:
   model: null
   authority: United States Department of Defense
@@ -75,7 +76,6 @@ engine:
   options:
   - T56-A-15
   - AE2100D3
-  model_engine_options: null
 drag:
   cd0: null
   k: null

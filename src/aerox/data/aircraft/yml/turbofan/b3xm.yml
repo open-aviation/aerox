@@ -1,6 +1,7 @@
 aircraft: Boeing 737 MAX 10
 icao: B3XM
 iata: 7MX
+subtypes: null
 certification:
   model: null
   authority: null
@@ -74,7 +75,6 @@ engine:
   default: LEAP-1B
   options:
   - LEAP-1B
-  model_engine_options: null
 drag:
   cd0: 0.02279
   k: 0.0399

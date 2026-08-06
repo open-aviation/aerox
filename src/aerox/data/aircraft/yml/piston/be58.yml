@@ -1,6 +1,7 @@
 aircraft: Beech 58 Baron
 icao: BE58
 iata: null
+subtypes: null
 certification:
   model: null
   authority: FAA
@@ -75,7 +76,6 @@ engine:
   options:
   - 2 x 300 HP Continental IO 550-C piston engines
   - 2 x 325 HP Continental TSIO 520-W3 turbocharged piston engines
-  model_engine_options: null
 drag:
   cd0: null
   k: null

@@ -1,6 +1,7 @@
 aircraft: HONDA HA-420 HondaJet
 icao: HDJT
 iata: HHJ
+subtypes: null
 certification:
   model: HA-420
   authority: FAA validated by EASA
@@ -74,7 +75,6 @@ engine:
   default: GE Honda HF-120 turbofan
   options:
   - GE Honda HF-120 turbofan
-  model_engine_options: null
 drag:
   cd0: 0.0329
   k: 0.03417

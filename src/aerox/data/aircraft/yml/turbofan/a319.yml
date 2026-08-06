@@ -1,6 +1,36 @@
 aircraft: Airbus A319
 icao: A319
 iata: '319'
+subtypes:
+- subtype: A319-111
+  engines:
+  - CFM56-5B5/P
+  - CFM56-5B5/3
+- subtype: A319-112
+  engines:
+  - CFM56-5B6/P
+  - CFM56-5B6/2
+  - CFM56-5B6/2P
+  - CFM56-5B6/3
+- subtype: A319-113
+  engines:
+  - CFM56-5A4
+- subtype: A319-114
+  engines:
+  - CFM56-5A5
+- subtype: A319-115
+  engines:
+  - CFM56-5B7/P
+  - CFM56-5B7/3
+- subtype: A319-131
+  engines:
+  - V2522-A5
+- subtype: A319-132
+  engines:
+  - V2524-A5
+- subtype: A319-133
+  engines:
+  - V2527M-A5
 certification:
   model: null
   authority: EASA
@@ -81,34 +111,6 @@ engine:
   - V2522-A5
   - V2524-A5
   - V2527M-A5
-  model_engine_options:
-  - model: A319-111
-    engines:
-    - CFMI CFM 56-5B5
-  - model: A319-112
-    engines:
-    - CFMI CFM 56-5B6
-    - CFMI CFM 56-5B6/2
-  - model: A319-113
-    engines:
-    - CFMI CFM 56-5A4
-    - CFMI CFM 56-5A4/F
-  - model: A319-114
-    engines:
-    - CFMI CFM 56-5A5
-    - CFMI CFM 56-5A5/F
-  - model: A319-115
-    engines:
-    - CFMI CFM 56-5B7
-  - model: A319-131
-    engines:
-    - IAE V2522-A5
-  - model: A319-132
-    engines:
-    - IAE V2524-A5
-  - model: A319-133
-    engines:
-    - IAE V2527M-A5
 drag:
   cd0: 0.02167
   k: 0.04246

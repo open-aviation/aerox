@@ -1,6 +1,7 @@
 aircraft: Bombardier BD-700 Global 5000
 icao: GL5T
 iata: null
+subtypes: null
 certification:
   model: BD-700-1A11
   authority: Transport Canada Civil Aviation
@@ -74,7 +75,6 @@ engine:
   default: BR700-710A2-20
   options:
   - BR700-710A2-20
-  model_engine_options: null
 drag:
   cd0: 0.01862
   k: 0.04283

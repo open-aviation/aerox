@@ -13,7 +13,7 @@ from aerox.aircraft import (
     Fuselage,
     Kinematic,
     MassProperties,
-    ModelEngineOption,
+    AircraftSubtype,
     Pax,
     ReferenceGeometry,
     Tail,
@@ -28,6 +28,9 @@ def test_load_aircraft_from_dict_with_nested_sections():
             "aircraft": "ATR 72",
             "icao": "AT72",
             "mtow": 21500,
+            "subtypes": [
+                {"subtype": "ATR 72-212A", "engines": ["PW127M"]}
+            ],
             "pax": {"max": 72},
             "fuselage": {"length": 27.2},
             "wing": {"span": 27.1, "t/c": 0.12},
@@ -39,9 +42,6 @@ def test_load_aircraft_from_dict_with_nested_sections():
                 "number": 2,
                 "default": "PWC PW124B",
                 "options": ["PWC PW124B"],
-                "model_engine_options": [
-                    {"model": "ATR 72-212A", "engines": ["PW127M"]}
-                ],
             },
             "drag": {"cd0": 0.02, "k": 0.04, "e": 0.8, "gears": 0.01},
             "kinematic": {"takeoff_distance_m": 1500, "cruise_range_nm": 1500},
@@ -55,9 +55,9 @@ def test_load_aircraft_from_dict_with_nested_sections():
     assert isinstance(aircraft.horizontal_tail, Tail)
     assert isinstance(aircraft.vertical_tail, Tail)
     assert isinstance(aircraft.engine, Engine)
-    assert isinstance(aircraft.engine.model_engine_options[0], ModelEngineOption)
-    assert aircraft.engine.engines_for_model("ATR 72-212A") == ["PW127M"]
-    assert aircraft.engine.engines_for_model("ATR 72-600F") == []
+    assert isinstance(aircraft.subtypes[0], AircraftSubtype)
+    assert aircraft.engines_for_subtype("ATR 72-212A") == ["PW127M"]
+    assert aircraft.engines_for_subtype("ATR 72-600F") == []
     assert isinstance(aircraft.drag, Drag)
     assert isinstance(aircraft.kinematic, Kinematic)
     assert aircraft.icao == "AT72"
@@ -114,9 +114,9 @@ def test_load_a320_certified_and_higher_order_data():
     assert aircraft.vertical_tail.rudder_area_ratio == pytest.approx(0.299983)
     assert aircraft.aileron is None
     assert aircraft.mass_properties is None
-    assert aircraft.engine.engines_for_model("A320-214") == [
-        "CFMI CFM 56-5B4",
-        "CFMI CFM 56-5B4/2",
+    assert aircraft.engines_for_subtype("A320-214") == [
+        "CFM56-5B4",
+        "CFM56-5B4/2",
     ]
     assert aircraft.engine.default == "CFM56-5B4"
     assert (
@@ -187,7 +187,7 @@ data_provenance:
     assert saved["wing"]["mac"] == 4.1935
 
 
-def test_web_editor_preserves_partial_engine_model_mapping(
+def test_web_editor_preserves_root_subtypes_during_partial_engine_edit(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ):
     monkeypatch.syspath_prepend(str(Path("tools").resolve()))
@@ -197,17 +197,17 @@ def test_web_editor_preserves_partial_engine_model_mapping(
     target_dir.mkdir()
     target = target_dir / "a320.yml"
     target.write_text(
-        """engine:
+        """subtypes:
+  - subtype: A320-214
+    engines:
+    - CFM56-5B4
+engine:
   type: turbofan
   mount: wing
   number: 2
   default: CFM56-5B4
   options:
   - CFM56-5B4
-  model_engine_options:
-  - model: A320-214
-    engines:
-    - CFMI CFM 56-5B4
 """
     )
     monkeypatch.setattr(web_editor, "YAML_BASE_DIR", tmp_path)
@@ -217,8 +217,8 @@ def test_web_editor_preserves_partial_engine_model_mapping(
     )
 
     saved = yaml.safe_load(target.read_text())
-    assert saved["engine"]["model_engine_options"] == [
-        {"model": "A320-214", "engines": ["CFMI CFM 56-5B4"]}
+    assert saved["subtypes"] == [
+        {"subtype": "A320-214", "engines": ["CFM56-5B4"]}
     ]
 
 
@@ -239,22 +239,22 @@ def test_web_editor_form_parser_preserves_decimal_geometry():
     assert parsed["vertical_tail"]["height"] == 5.87
 
 
-def test_web_editor_form_parser_round_trips_model_engine_options():
+def test_web_editor_form_parser_round_trips_subtypes():
     from tools.web_editor import parse_form_data
 
     parsed = parse_form_data(
         {
             "engine__type": "turbofan",
-            "engine__model_engine_options": (
-                "A320-214 | CFMI CFM 56-5B4; CFMI CFM 56-5B4/2\n"
-                "A320-232 | IAE V2527-A5"
+            "subtypes": (
+                "A320-214 | CFM56-5B4; CFM56-5B4/2\n"
+                "A320-232 | V2527-A5"
             ),
         }
     )
-    assert parsed["engine"]["model_engine_options"] == [
+    assert parsed["subtypes"] == [
         {
-            "model": "A320-214",
-            "engines": ["CFMI CFM 56-5B4", "CFMI CFM 56-5B4/2"],
+            "subtype": "A320-214",
+            "engines": ["CFM56-5B4", "CFM56-5B4/2"],
         },
-        {"model": "A320-232", "engines": ["IAE V2527-A5"]},
+        {"subtype": "A320-232", "engines": ["V2527-A5"]},
     ]

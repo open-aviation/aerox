@@ -1,6 +1,7 @@
 aircraft: Piper Malibu
 icao: PA46
 iata: null
+subtypes: null
 certification:
   model: null
   authority: FAA
@@ -73,7 +74,6 @@ engine:
   number: 1
   default: null
   options: null
-  model_engine_options: null
 drag:
   cd0: null
   k: null

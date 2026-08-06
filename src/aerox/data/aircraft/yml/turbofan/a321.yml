@@ -1,6 +1,34 @@
 aircraft: Airbus A321
 icao: A321
 iata: '321'
+subtypes:
+- subtype: A321-111
+  engines:
+  - CFM56-5B1
+  - CFM56-5B1/2
+- subtype: A321-112
+  engines:
+  - CFM56-5B2
+- subtype: A321-131
+  engines:
+  - V2530-A5
+- subtype: A321-211
+  engines:
+  - CFM56-5B3/P
+  - CFM56-5B3/2P
+- subtype: A321-212
+  engines:
+  - CFM56-5B1
+  - CFM56-5B1/2
+- subtype: A321-213
+  engines:
+  - CFM56-5B2
+- subtype: A321-231
+  engines:
+  - V2533-A5
+- subtype: A321-232
+  engines:
+  - V2530-A5
 certification:
   model: null
   authority: EASA
@@ -78,34 +106,6 @@ engine:
   - V2530-A5
   - CFM56-5B3
   - V2533-A5
-  model_engine_options:
-  - model: A321-111
-    engines:
-    - CFMI CFM 56-5B1
-    - CFMI CFM 56-5B1/2
-  - model: A321-112
-    engines:
-    - CFMI CFM 56-5B2
-  - model: A321-131
-    engines:
-    - IAE V2530-A5
-  - model: A321-211
-    engines:
-    - CFMI CFM 56-5B3/P
-    - CFMI CFM 56-5B3/2P
-  - model: A321-212
-    engines:
-    - CFMI CFM 56-5B1
-    - CFMI CFM 56-5B1/2
-  - model: A321-213
-    engines:
-    - CFMI CFM 56-5B2
-  - model: A321-231
-    engines:
-    - IAE V2533-A5
-  - model: A321-232
-    engines:
-    - IAE V2530-A5
 drag:
   cd0: 0.02443
   k: 0.04246

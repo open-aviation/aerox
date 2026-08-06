@@ -1,6 +1,7 @@
 aircraft: Boeing 757-200
 icao: B752
 iata: 757 / 752 / 75F / 75M
+subtypes: null
 certification:
   model: null
   authority: EASA
@@ -77,20 +78,6 @@ engine:
   - RB211-535E4
   - PW2040
   - RB211-535E4B
-  model_engine_options:
-  - model: 757-200
-    engines:
-    - RB211-535C-37
-    - RB211-535E4-37
-    - RB211-535E4-B-37
-    - PW2037
-    - PW2040
-  - model: 757-200PF
-    engines:
-    - RB211-535E4-37
-    - RB211-535E4-B-37
-    - PW2037
-    - PW2040
 drag:
   cd0: 0.01979
   k: 0.0496

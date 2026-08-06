@@ -366,19 +366,3 @@ END FIELD
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
-
-MODEL AND ENGINE APPLICABILITY
-
-FIELD engine.model_engine_options
-  Value: 1 certified model mapping(s)
-  Status: certified-published
-  Source: easa_ima115_issue_30
-  Page or section: Section 3, III.5, pp. 50-51
-  Applicability: Model-level approved installations; the individual airframe record is required to identify the engine actually installed.
-  Evidence inventory: docs/modeling/boeing-model-engine-mapping-draft.tsv
-  Mappings:
-    787-10:
-      - Trent 1000-J3
-      - GEnx-1B76/P2
-      - GEnx-1B76A/P2
-END FIELD

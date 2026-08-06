@@ -1,6 +1,7 @@
 aircraft: Boeing 717-200
 icao: B712
 iata: '717'
+subtypes: null
 certification:
   model: 717-200
   authority: EASA
@@ -75,11 +76,6 @@ engine:
   options:
   - BR700-715A1-30
   - BR700-715C1-30
-  model_engine_options:
-  - model: 717-200
-    engines:
-    - BR700-715A1-30
-    - BR700-715C1-30
 drag:
   cd0: 0.02366
   k: 0.04897

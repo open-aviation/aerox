@@ -1,6 +1,7 @@
 aircraft: Cessna Citation X
 icao: C750
 iata: null
+subtypes: null
 certification:
   model: '750'
   authority: FAA validated by EASA
@@ -74,7 +75,6 @@ engine:
   default: AE3007C
   options:
   - AE3007C
-  model_engine_options: null
 drag:
   cd0: 0.01985
   k: 0.05007

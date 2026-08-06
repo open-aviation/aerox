@@ -1,6 +1,7 @@
 aircraft: Boeing Globemaster 3
 icao: C17
 iata: null
+subtypes: null
 certification:
   model: C-17A
   authority: United States Department of Defense
@@ -74,7 +75,6 @@ engine:
   default: P&W F117-PW-100 (PW2040)
   options:
   - F117-PW-100
-  model_engine_options: null
 drag:
   cd0: 0.01906
   k: 0.0506

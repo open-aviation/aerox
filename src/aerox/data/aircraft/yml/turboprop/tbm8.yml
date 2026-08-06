@@ -1,6 +1,7 @@
 aircraft: Socata TBM-850
 icao: TBM8
 iata: null
+subtypes: null
 certification:
   model: TBM700 N
   authority: EASA
@@ -74,7 +75,6 @@ engine:
   default: P&W PT6A-66D engine flat rated at 850 shp (634 kW)
   options:
   - PT6A-66D
-  model_engine_options: null
 drag:
   cd0: null
   k: null

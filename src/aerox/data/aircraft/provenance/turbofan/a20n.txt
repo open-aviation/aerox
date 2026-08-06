@@ -368,26 +368,27 @@ LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
 
-MODEL AND ENGINE APPLICABILITY
+SUBTYPE AND ENGINE DATABANK APPLICABILITY
 
-FIELD engine.model_engine_options
-  Value: 6 certified model mapping(s)
+FIELD subtypes
+  Value: 6 unique certified subtype mapping(s)
   Status: certified-published
-  Source: easa_a064_issue_62
+  Source: easa_a064_issue_62 | icao_eedb_issue_32
   Page or section: Section 1 III.5; PDF pp.38-40 | Section 1 III.5; PDF p.38
-  Applicability: Model-level approved installations; the individual airframe record is required to identify the engine actually installed.
-  Evidence inventory: docs/modeling/airbus-model-engine-mapping-draft.tsv
+  Applicability: Certified subtype applicability with query identifiers normalized to ICAO EEDB Issue 32.
+  Evidence inventory: docs/modeling/airbus-subtype-engine-mapping.tsv
+  Engine table: src/aerox/data/engines/engines.csv
   Mappings:
     A320-251N:
-      - CFMI LEAP-1A26
+      - LEAP-1A26/26E1
     A320-252N:
-      - CFMI LEAP-1A24
+      - LEAP-1A24/24E1/23
     A320-253N:
-      - CFMI LEAP-1A29
+      - LEAP-1A29
     A320-271N:
-      - IAE PW1127G-JM
+      - PW1127G-JM
     A320-272N:
-      - IAE PW1124G1-JM
+      - PW1124G1-JM
     A320-273N:
-      - IAE PW1129G-JM
+      - PW1129G-JM
 END FIELD

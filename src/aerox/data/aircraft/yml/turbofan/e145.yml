@@ -1,6 +1,7 @@
 aircraft: Embraer ERJ-145
 icao: E145
 iata: EM4 / EMJ
+subtypes: null
 certification:
   model: null
   authority: Agencia Nacional de Aviacao Civil
@@ -75,7 +76,6 @@ engine:
   options:
   - AE3007A1
   - AE3007A
-  model_engine_options: null
 drag:
   cd0: 0.02471
   k: 0.04944

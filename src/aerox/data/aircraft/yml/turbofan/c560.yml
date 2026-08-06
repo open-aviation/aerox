@@ -1,6 +1,7 @@
 aircraft: Cessna Citation V/Ultra/Encore
 icao: C560
 iata: null
+subtypes: null
 certification:
   model: '560'
   authority: FAA validated by EASA
@@ -74,7 +75,6 @@ engine:
   default: JT15D-5
   options:
   - JT15D-5
-  model_engine_options: null
 drag:
   cd0: 0.02034
   k: 0.06316

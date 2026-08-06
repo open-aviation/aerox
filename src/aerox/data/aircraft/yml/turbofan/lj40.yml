@@ -1,6 +1,7 @@
 aircraft: Learjet 40
 icao: LJ40
 iata: null
+subtypes: null
 certification:
   model: Learjet Model 45, Learjet 40 commercial configuration
   authority: European Union Aviation Safety Agency
@@ -74,7 +75,6 @@ engine:
   default: TFE731-2-2B
   options:
   - TFE731-2-2B
-  model_engine_options: null
 drag:
   cd0: 0.02293
   k: 0.05114

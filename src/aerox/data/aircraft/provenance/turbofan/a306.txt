@@ -363,37 +363,38 @@ LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
 
-MODEL AND ENGINE APPLICABILITY
+SUBTYPE AND ENGINE DATABANK APPLICABILITY
 
-FIELD engine.model_engine_options
-  Value: 10 certified model mapping(s)
+FIELD subtypes
+  Value: 10 unique certified subtype mapping(s)
   Status: certified-published
-  Source: easa_a172_issue_08
+  Source: easa_a172_issue_08 | icao_eedb_issue_32
   Page or section: Section 15.2; PDF p.46 | Section 16.2; PDF p.48 | Section 17.2; PDF p.50 | Section 18.2; PDF p.52 | Section 19.2; PDF p.54
-  Applicability: Model-level approved installations; the individual airframe record is required to identify the engine actually installed.
-  Evidence inventory: docs/modeling/airbus-model-engine-mapping-draft.tsv
+  Applicability: Certified subtype applicability with query identifiers normalized to ICAO EEDB Issue 32.
+  Evidence inventory: docs/modeling/airbus-subtype-engine-mapping.tsv
+  Engine table: src/aerox/data/engines/engines.csv
   Mappings:
     A300 B4-601:
-      - GENERAL ELECTRIC CF6-80C2A1
+      - CF6-80C2A1
     A300 B4-603:
-      - GENERAL ELECTRIC CF6-80C2A3
+      - CF6-80C2A3
     A300 B4-620:
-      - PRATT & WHITNEY JT9D-7R4H1
+      - JT9D-7R4H1
     A300 B4-622:
-      - PRATT & WHITNEY PW 4158
+      - PW4158
     A300 C4-620:
-      - PRATT & WHITNEY JT9D-7R4H1
+      - JT9D-7R4H1
     A300 B4-605R:
-      - GENERAL ELECTRIC CF6-80C2A5
-      - GENERAL ELECTRIC CF6-80C2A3
-      - GENERAL ELECTRIC CF6-80C2A5F
+      - CF6-80C2A5
+      - CF6-80C2A3
+      - CF6-80C2A5F
     A300 B4-622R:
-      - PRATT & WHITNEY PW 4158
+      - PW4158
     A300 F4-605R:
-      - GENERAL ELECTRIC CF6-80C2A5
-      - GENERAL ELECTRIC CF6-80C2A5F
+      - CF6-80C2A5
+      - CF6-80C2A5F
     A300 F4-622R:
-      - PRATT & WHITNEY PW 4158
+      - PW4158
     A300 C4-605R Variant F:
-      - GENERAL ELECTRIC CF6-80C2A5
+      - CF6-80C2A5
 END FIELD

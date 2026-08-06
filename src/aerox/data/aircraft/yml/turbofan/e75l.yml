@@ -1,6 +1,7 @@
 aircraft: Embraer E175 long wing
 icao: E75L
 iata: E7W
+subtypes: null
 certification:
   model: ERJ 170-200, long-wing configuration unresolved
   authority: Agencia Nacional de Aviacao Civil
@@ -75,7 +76,6 @@ engine:
   options:
   - CF34-8E5
   - CF34-8E6
-  model_engine_options: null
 drag:
   cd0: 0.0245
   k: 0.0426

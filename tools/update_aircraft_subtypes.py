@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Apply certified aircraft-model to approved-engine mappings to compact YAML.
+"""Apply unique certified subtype-to-ICAO-EEDB mappings to compact YAML.
 
-Research inputs are tab-separated plain-text inventories.  Comment lines may
-precede the header.  Airbus inventories use ``engine(s)`` with semicolon
-separation; Boeing inventories use ``engines`` with pipe separation.
+The input is a tab-separated plain-text inventory.  TCDSs establish aircraft
+subtype applicability; the ICAO Engine Emissions Databank establishes the
+queryable engine identifier spelling.
 """
 
 from __future__ import annotations
@@ -38,10 +38,12 @@ except ModuleNotFoundError:  # package-style import used by tests
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 SOURCE_LEDGER = PROJECT_ROOT / "docs/modeling/sources.yml"
 DEFAULT_RESEARCH = (
-    PROJECT_ROOT / "docs/modeling/airbus-model-engine-mapping-draft.tsv",
-    PROJECT_ROOT / "docs/modeling/boeing-model-engine-mapping-draft.tsv",
+    PROJECT_ROOT / "docs/modeling/airbus-subtype-engine-mapping.tsv",
 )
-SECTION_MARKER = "MODEL AND ENGINE APPLICABILITY\n"
+ENGINE_TABLE = PROJECT_ROOT / "src/aerox/data/engines/engines.csv"
+OLD_SECTION_MARKER = "MODEL AND ENGINE APPLICABILITY\n"
+SECTION_MARKER = "SUBTYPE AND ENGINE DATABANK APPLICABILITY\n"
+EEDB_SOURCE_ID = "icao_eedb_issue_32"
 REVIEW_DATE = "2026-08-06"
 
 
@@ -70,14 +72,14 @@ def load_research(paths: list[Path]) -> list[dict[str, Any]]:
         for line_number, row in enumerate(reader, start=header_index + 2):
             if not row or not (row.get("icao") or "").strip():
                 continue
-            engine_text = row.get("engines", row.get("engine(s)", "")) or ""
+            engine_text = row.get("edb_engine(s)", "") or ""
             source_id = (row.get("source_id") or "").strip()
             if not source_id:
                 raise ValueError(f"{path}:{line_number}: missing source_id")
             result.append(
                 {
                     "icao": row["icao"].strip().upper(),
-                    "model": (row.get("model") or "").strip(),
+                    "subtype": (row.get("subtype") or "").strip(),
                     "engines": _split_engines(engine_text),
                     "source_id": source_id,
                     "page_or_section": (row.get("page_or_section", row.get("page/section", "")) or "").strip(),
@@ -90,55 +92,52 @@ def load_research(paths: list[Path]) -> list[dict[str, Any]]:
     return result
 
 
-def group_mappings(rows: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]] | None]:
-    """Group exact models for each ICAO; all-unresolved records become null."""
+def group_mappings(rows: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
+    """Group exact subtypes for each ICAO in the source document order."""
 
     grouped: OrderedDict[str, OrderedDict[str, list[str]]] = OrderedDict()
     for row in rows:
-        models = grouped.setdefault(row["icao"], OrderedDict())
-        if not row["model"]:
-            raise ValueError(f"{row['input']}:{row['line']}: missing model")
+        subtypes = grouped.setdefault(row["icao"], OrderedDict())
+        if not row["subtype"]:
+            raise ValueError(f"{row['input']}:{row['line']}: missing subtype")
         if not row["engines"]:
-            continue
-        engines = models.setdefault(row["model"], [])
+            raise ValueError(f"{row['input']}:{row['line']}: missing EEDB engine")
+        engines = subtypes.setdefault(row["subtype"], [])
         engines.extend(engine for engine in row["engines"] if engine not in engines)
-    affected = _unique([row["icao"] for row in rows])
     return {
-        icao: (
-            [{"model": model, "engines": engines} for model, engines in grouped.get(icao, {}).items()]
-            or None
-        )
-        for icao in affected
+        icao: [
+            {"subtype": subtype, "engines": engines}
+            for subtype, engines in subtypes.items()
+        ]
+        for icao, subtypes in grouped.items()
     }
 
 
 def render_provenance(old_text: str, rows: list[dict[str, Any]], mapping: Any) -> str:
     """Append a compact human-readable source block, replacing an old block."""
 
-    base = old_text.split(SECTION_MARKER, 1)[0].rstrip()
+    base = old_text.split(OLD_SECTION_MARKER, 1)[0]
+    base = base.split(SECTION_MARKER, 1)[0].rstrip()
+    if not rows:
+        return f"{base}\n"
     sources = _unique([row["source_id"] for row in rows])
     pages = _unique([row["page_or_section"] for row in rows])
     lines = [
-        "MODEL AND ENGINE APPLICABILITY",
+        "SUBTYPE AND ENGINE DATABANK APPLICABILITY",
         "",
-        "FIELD engine.model_engine_options",
-        f"  Value: {'null' if mapping is None else str(len(mapping)) + ' certified model mapping(s)'}",
-        f"  Status: {'unresolved' if mapping is None else 'certified-published'}",
-        f"  Source: {' | '.join(sources)}",
+        "FIELD subtypes",
+        f"  Value: {len(mapping)} unique certified subtype mapping(s)",
+        "  Status: certified-published",
+        f"  Source: {' | '.join([*sources, EEDB_SOURCE_ID])}",
         f"  Page or section: {' | '.join(pages)}",
-        "  Applicability: Model-level approved installations; the individual airframe record is required to identify the engine actually installed.",
+        "  Applicability: Certified subtype applicability with query identifiers normalized to ICAO EEDB Issue 32.",
         "  Evidence inventory: " + " | ".join(_unique([row["input"] for row in rows])),
+        "  Engine table: src/aerox/data/engines/engines.csv",
     ]
-    if mapping is None:
-        lines.append("  Reason unavailable: The reviewed certification issue does not list an approved engine installation for this model.")
-        notes = _unique([row["notes"] for row in rows])
-        if notes:
-            lines.append("  Notes: " + " | ".join(notes))
-    else:
-        lines.append("  Mappings:")
-        for item in mapping:
-            lines.append(f"    {item['model']}:")
-            lines.extend(f"      - {engine}" for engine in item["engines"])
+    lines.append("  Mappings:")
+    for item in mapping:
+        lines.append(f"    {item['subtype']}:")
+        lines.extend(f"      - {engine}" for engine in item["engines"])
     lines.extend(["END FIELD", ""])
     rendered = f"{base}\n\n" + "\n".join(lines)
     rendered = rendered.replace("Last reviewed: 2026-08-05", f"Last reviewed: {REVIEW_DATE}")
@@ -148,6 +147,11 @@ def render_provenance(old_text: str, rows: list[dict[str, Any]], mapping: Any) -
 def source_ids() -> set[str]:
     ledger = yaml.safe_load(SOURCE_LEDGER.read_text(encoding="utf-8"))
     return {record["id"] for record in ledger.get("sources", [])}
+
+
+def edb_engine_ids() -> set[str]:
+    with ENGINE_TABLE.open(encoding="utf-8", newline="") as stream:
+        return {row["name"] for row in csv.DictReader(stream)}
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -164,7 +168,9 @@ def main() -> int:
     inputs = args.research or list(DEFAULT_RESEARCH)
     rows = load_research(inputs)
     mappings = group_mappings(rows)
-    unknown_sources = sorted({row["source_id"] for row in rows} - source_ids())
+    unknown_sources = sorted(
+        ({row["source_id"] for row in rows} | {EEDB_SOURCE_ID}) - source_ids()
+    )
     if unknown_sources:
         raise ValueError(f"research references unknown source IDs: {unknown_sources}")
 
@@ -173,13 +179,18 @@ def main() -> int:
     unknown_aircraft = sorted(set(mappings) - set(by_icao))
     if unknown_aircraft:
         raise ValueError(f"research references unknown aircraft: {unknown_aircraft}")
+    unknown_engines = sorted(
+        {engine for row in rows for engine in row["engines"]} - edb_engine_ids()
+    )
+    if unknown_engines:
+        raise ValueError(f"subtype mappings use non-ICAO-EEDB engines: {unknown_engines}")
 
     changed: list[tuple[Path, str, Path, str]] = []
-    for icao, mapping in mappings.items():
-        path = by_icao[icao]
+    for icao, path in by_icao.items():
+        mapping = mappings.get(icao)
         original = path.read_text(encoding="utf-8")
         document, _ = normalize_bundle(yaml.safe_load(original), "")
-        document["engine"]["model_engine_options"] = mapping
+        document["subtypes"] = mapping
         issues = validate_simple(document)
         if issues:
             raise ValueError(f"{path}: " + "; ".join(issues))
@@ -196,9 +207,9 @@ def main() -> int:
             path.write_text(rendered, encoding="utf-8")
             sidecar_path.write_text(sidecar, encoding="utf-8")
     mode = "write" if args.write else "check"
-    mapped_models = sum(len(mapping or []) for mapping in mappings.values())
+    mapped_subtypes = sum(len(mapping) for mapping in mappings.values())
     print(
-        f"aircraft={len(files)} researched={len(mappings)} mapped_models={mapped_models} "
+        f"aircraft={len(files)} researched={len(mappings)} mapped_subtypes={mapped_subtypes} "
         f"changed={len(changed)} mode={mode}"
     )
     return 1 if args.check and changed else 0

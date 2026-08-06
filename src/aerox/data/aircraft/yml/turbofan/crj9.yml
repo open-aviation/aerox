@@ -1,6 +1,7 @@
 aircraft: Canadair CRJ-900
 icao: CRJ9
 iata: CR9
+subtypes: null
 certification:
   model: CL-600-2D24
   authority: Transport Canada Civil Aviation
@@ -74,7 +75,6 @@ engine:
   default: CF34-8C5
   options:
   - CF34-8C5
-  model_engine_options: null
 drag:
   cd0: 0.02342
   k: 0.04851

@@ -1,6 +1,7 @@
 aircraft: ATR 42-400
 icao: AT44
 iata: null
+subtypes: null
 certification:
   model: ATR-42-400
   authority: EASA
@@ -74,7 +75,6 @@ engine:
   default: PW121A
   options:
   - 2 x 1900 SHP P&W PW121A turboprops with 6 blade propellers
-  model_engine_options: null
 drag:
   cd0: null
   k: null

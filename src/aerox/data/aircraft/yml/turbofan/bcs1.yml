@@ -1,6 +1,12 @@
 aircraft: Airbus A220-100
 icao: BCS1
 iata: '221'
+subtypes:
+- subtype: BD-500-1A10
+  engines:
+  - PW1524G
+  - PW1521G
+  - PW1519G
 certification:
   model: BD-500-1A10
   authority: Transport Canada Civil Aviation
@@ -74,12 +80,6 @@ engine:
   default: PW1500G
   options:
   - PW1500G
-  model_engine_options:
-  - model: BD-500-1A10
-    engines:
-    - Pratt & Whitney PW1524G
-    - Pratt & Whitney PW1521G
-    - Pratt & Whitney PW1519G
 drag:
   cd0: 0.0217
   k: 0.03738

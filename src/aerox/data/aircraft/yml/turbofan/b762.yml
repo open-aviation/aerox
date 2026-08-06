@@ -1,6 +1,7 @@
 aircraft: Boeing 767-200
 icao: B762
 iata: 767 / 762 / 76F / 76X
+subtypes: null
 certification:
   model: 767-200
   authority: EASA
@@ -75,22 +76,6 @@ engine:
   options:
   - PW4062
   - CF6-80C2B7F
-  model_engine_options:
-  - model: 767-200
-    engines:
-    - CF6-80A
-    - CF6-80A2
-    - CF6-80C2B2
-    - CF6-80C2B4
-    - CF6-80C2B4F
-    - CF6-80C2B6F
-    - CF6-80C2B7F
-    - CF6-80C2B2F
-    - JT9D-7R4D
-    - JT9D-7R4E
-    - JT9D-7R4E4
-    - PW4056
-    - PW4060A
 drag:
   cd0: 0.01727
   k: 0.04875

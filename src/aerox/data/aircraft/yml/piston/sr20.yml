@@ -1,6 +1,7 @@
 aircraft: Cirrus SR-20
 icao: SR20
 iata: null
+subtypes: null
 certification:
   model: SR20
   authority: FAA validated by EASA
@@ -74,7 +75,6 @@ engine:
   default: Continental IO-360-ES, 200 hp (149 kW)
   options:
   - Continental IO-360-ES, 200 hp (149 kW)
-  model_engine_options: null
 drag:
   cd0: null
   k: null

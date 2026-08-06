@@ -1,6 +1,7 @@
 aircraft: Beech 200 Super King
 icao: BE20
 iata: BE2
+subtypes: null
 certification:
   model: null
   authority: FAA validated by EASA
@@ -74,7 +75,6 @@ engine:
   default: 2 x 850 SHP P&W PT6A-42 turboprops with 3 blade propellers
   options:
   - 2 x 850 SHP P&W PT6A-42 turboprops with 3 blade propellers
-  model_engine_options: null
 drag:
   cd0: null
   k: null

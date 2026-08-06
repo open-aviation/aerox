@@ -1,6 +1,7 @@
 aircraft: Boeing 737 MAX 9
 icao: B39M
 iata: 7M9
+subtypes: null
 certification:
   model: 737-9
   authority: EASA
@@ -77,13 +78,6 @@ engine:
   - LEAP-1B28
   - LEAP-1B28B1
   - LEAP-1B28BBJ1
-  model_engine_options:
-  - model: 737-9
-    engines:
-    - LEAP-1B27
-    - LEAP-1B28
-    - LEAP-1B28B1
-    - LEAP-1B28BBJ1
 drag:
   cd0: 0.02268
   k: 0.03916

@@ -1,6 +1,7 @@
 aircraft: Canadair CRJ-200
 icao: CRJ2
 iata: CRJ
+subtypes: null
 certification:
   model: CL-600-2B19
   authority: Transport Canada Civil Aviation
@@ -74,7 +75,6 @@ engine:
   default: CF34-3B
   options:
   - CF34-3B
-  model_engine_options: null
 drag:
   cd0: 0.02714
   k: 0.04266

@@ -1,6 +1,11 @@
 aircraft: Airbus A220-300
 icao: BCS3
 iata: '223'
+subtypes:
+- subtype: BD-500-1A11
+  engines:
+  - PW1521G
+  - PW1524G
 certification:
   model: BD-500-1A11
   authority: Transport Canada Civil Aviation
@@ -74,11 +79,6 @@ engine:
   default: PW1500G
   options:
   - PW1500G
-  model_engine_options:
-  - model: BD-500-1A11
-    engines:
-    - Pratt & Whitney PW1521G-3
-    - Pratt & Whitney PW1524G-3
 drag:
   cd0: 0.0226
   k: 0.03738

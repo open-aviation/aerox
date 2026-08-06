@@ -1,6 +1,10 @@
 aircraft: Airbus A330-900
 icao: A339
 iata: '339'
+subtypes:
+- subtype: A330-941
+  engines:
+  - Trent7000-72
 certification:
   model: A330-941
   authority: EASA
@@ -74,10 +78,6 @@ engine:
   default: Trent7000-72
   options:
   - Trent7000-72
-  model_engine_options:
-  - model: A330-941
-    engines:
-    - Rolls Royce Trent 7000-72
 drag:
   cd0: 0.01831
   k: 0.04307

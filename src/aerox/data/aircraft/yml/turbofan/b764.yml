@@ -1,6 +1,7 @@
 aircraft: Boeing 767-400
 icao: B764
 iata: '764'
+subtypes: null
 certification:
   model: 767-400ER
   authority: EASA
@@ -75,10 +76,6 @@ engine:
   options:
   - PW4062
   - CF6-80C2B8F
-  model_engine_options:
-  - model: 767-400ER
-    engines:
-    - CF6-80C2B8F
 drag:
   cd0: 0.01935
   k: 0.04875

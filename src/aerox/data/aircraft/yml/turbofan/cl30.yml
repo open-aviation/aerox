@@ -1,6 +1,7 @@
 aircraft: Bombardier (Canadair) Challenger 300
 icao: CL30
 iata: null
+subtypes: null
 certification:
   model: BD-100-1A10 Challenger 300 configuration
   authority: Transport Canada Civil Aviation
@@ -74,7 +75,6 @@ engine:
   default: HTF7000
   options:
   - HTF7000
-  model_engine_options: null
 drag:
   cd0: 0.02118
   k: 0.05439

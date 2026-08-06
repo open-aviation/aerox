@@ -1,6 +1,7 @@
 aircraft: Cherokee Arrow
 icao: P28R
 iata: null
+subtypes: null
 certification:
   model: null
   authority: FAA
@@ -75,7 +76,6 @@ engine:
   options:
   - 1 x 180 HP Lycoming IO-360-B1E piston engine with two blade propeller
   - 1 x 200 HP Lycoming IO-360-C1C piston engine with three blade propeller
-  model_engine_options: null
 drag:
   cd0: null
   k: null

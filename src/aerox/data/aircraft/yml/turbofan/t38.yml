@@ -1,6 +1,7 @@
 aircraft: Northrop T-38 Talon
 icao: T38
 iata: null
+subtypes: null
 certification:
   model: null
   authority: United States Department of Defense
@@ -74,7 +75,6 @@ engine:
   default: GE J85-GE-5 afterburning turbojets
   options:
   - J85-GE-5
-  model_engine_options: null
 drag:
   cd0: 0.03842
   k: 0.09719

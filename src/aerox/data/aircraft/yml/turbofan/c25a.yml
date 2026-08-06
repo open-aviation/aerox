@@ -1,6 +1,7 @@
 aircraft: Cessna Citation CJ2
 icao: C25A
 iata: CNJ
+subtypes: null
 certification:
   model: 525A
   authority: FAA validated by EASA
@@ -74,7 +75,6 @@ engine:
   default: Williams FJ44-2C
   options:
   - Williams FJ44-2C
-  model_engine_options: null
 drag:
   cd0: 0.02351
   k: 0.04218

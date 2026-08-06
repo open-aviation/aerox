@@ -1,6 +1,7 @@
 aircraft: Canadair CRJ-700
 icao: CRJ7
 iata: CRJ
+subtypes: null
 certification:
   model: CL-600-2C10
   authority: Transport Canada Civil Aviation
@@ -74,7 +75,6 @@ engine:
   default: CF34-8C5
   options:
   - CF34-8C1
-  model_engine_options: null
 drag:
   cd0: 0.02358
   k: 0.05024

@@ -377,17 +377,18 @@ LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
 
-MODEL AND ENGINE APPLICABILITY
+SUBTYPE AND ENGINE DATABANK APPLICABILITY
 
-FIELD engine.model_engine_options
-  Value: 1 certified model mapping(s)
+FIELD subtypes
+  Value: 1 unique certified subtype mapping(s)
   Status: certified-published
-  Source: easa_im_a570_issue_24
+  Source: easa_im_a570_issue_24 | icao_eedb_issue_32
   Page or section: Section 2 III.5; PDF p.20
-  Applicability: Model-level approved installations; the individual airframe record is required to identify the engine actually installed.
-  Evidence inventory: docs/modeling/airbus-model-engine-mapping-draft.tsv
+  Applicability: Certified subtype applicability with query identifiers normalized to ICAO EEDB Issue 32.
+  Evidence inventory: docs/modeling/airbus-subtype-engine-mapping.tsv
+  Engine table: src/aerox/data/engines/engines.csv
   Mappings:
     BD-500-1A11:
-      - Pratt & Whitney PW1521G-3
-      - Pratt & Whitney PW1524G-3
+      - PW1521G
+      - PW1524G
 END FIELD

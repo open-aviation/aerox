@@ -1,6 +1,40 @@
 aircraft: Airbus A300-600
 icao: A306
 iata: AB6
+subtypes:
+- subtype: A300 B4-601
+  engines:
+  - CF6-80C2A1
+- subtype: A300 B4-603
+  engines:
+  - CF6-80C2A3
+- subtype: A300 B4-620
+  engines:
+  - JT9D-7R4H1
+- subtype: A300 B4-622
+  engines:
+  - PW4158
+- subtype: A300 C4-620
+  engines:
+  - JT9D-7R4H1
+- subtype: A300 B4-605R
+  engines:
+  - CF6-80C2A5
+  - CF6-80C2A3
+  - CF6-80C2A5F
+- subtype: A300 B4-622R
+  engines:
+  - PW4158
+- subtype: A300 F4-605R
+  engines:
+  - CF6-80C2A5
+  - CF6-80C2A5F
+- subtype: A300 F4-622R
+  engines:
+  - PW4158
+- subtype: A300 C4-605R Variant F
+  engines:
+  - CF6-80C2A5
 certification:
   model: null
   authority: EASA
@@ -77,40 +111,6 @@ engine:
   - CF6-80C2A5
   - CF6-80C2A5F
   - PW4158
-  model_engine_options:
-  - model: A300 B4-601
-    engines:
-    - GENERAL ELECTRIC CF6-80C2A1
-  - model: A300 B4-603
-    engines:
-    - GENERAL ELECTRIC CF6-80C2A3
-  - model: A300 B4-620
-    engines:
-    - PRATT & WHITNEY JT9D-7R4H1
-  - model: A300 B4-622
-    engines:
-    - PRATT & WHITNEY PW 4158
-  - model: A300 C4-620
-    engines:
-    - PRATT & WHITNEY JT9D-7R4H1
-  - model: A300 B4-605R
-    engines:
-    - GENERAL ELECTRIC CF6-80C2A5
-    - GENERAL ELECTRIC CF6-80C2A3
-    - GENERAL ELECTRIC CF6-80C2A5F
-  - model: A300 B4-622R
-    engines:
-    - PRATT & WHITNEY PW 4158
-  - model: A300 F4-605R
-    engines:
-    - GENERAL ELECTRIC CF6-80C2A5
-    - GENERAL ELECTRIC CF6-80C2A5F
-  - model: A300 F4-622R
-    engines:
-    - PRATT & WHITNEY PW 4158
-  - model: A300 C4-605R Variant F
-    engines:
-    - GENERAL ELECTRIC CF6-80C2A5
 drag:
   cd0: 0.02028
   k: 0.05022

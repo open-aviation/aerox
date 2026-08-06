@@ -1,6 +1,7 @@
 aircraft: Cessna Citation CJ3
 icao: C25B
 iata: CNJ
+subtypes: null
 certification:
   model: 525B
   authority: FAA validated by EASA
@@ -74,7 +75,6 @@ engine:
   default: Williams FJ44-3A
   options:
   - Williams FJ44-3A
-  model_engine_options: null
 drag:
   cd0: 0.02255
   k: 0.04168

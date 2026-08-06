@@ -1,6 +1,7 @@
 aircraft: Boeing 787-10 Dreamliner
 icao: B78X
 iata: '781'
+subtypes: null
 certification:
   model: 787-10
   authority: EASA
@@ -76,12 +77,6 @@ engine:
   - GEnx-1B75
   - GEnx-1B74
   - Trent 1000-J2
-  model_engine_options:
-  - model: 787-10
-    engines:
-    - Trent 1000-J3
-    - GEnx-1B76/P2
-    - GEnx-1B76A/P2
 drag:
   cd0: 0.01914
   k: 0.04186

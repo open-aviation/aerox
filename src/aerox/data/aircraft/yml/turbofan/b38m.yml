@@ -1,6 +1,7 @@
 aircraft: Boeing 737 MAX 8
 icao: B38M
 iata: 7M8
+subtypes: null
 certification:
   model: 737-8
   authority: EASA
@@ -78,20 +79,6 @@ engine:
   - LEAP-1B28
   - LEAP-1B28B1
   - LEAP-1B28B1J1
-  model_engine_options:
-  - model: 737-8
-    engines:
-    - LEAP-1B25
-    - LEAP-1B27
-    - LEAP-1B28
-    - LEAP-1B28B1
-    - LEAP-1B28BBJ1
-  - model: 737-8200
-    engines:
-    - LEAP-1B25
-    - LEAP-1B27
-    - LEAP-1B28
-    - LEAP-1B28B1
 drag:
   cd0: 0.02179
   k: 0.03993

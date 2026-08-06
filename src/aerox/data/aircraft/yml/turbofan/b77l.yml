@@ -1,6 +1,7 @@
 aircraft: Boeing 777-200LRF/LR
 icao: B77L
 iata: 77L
+subtypes: null
 certification:
   model: null
   authority: EASA
@@ -75,15 +76,6 @@ engine:
   options:
   - GE90-110B1
   - GE90-115B
-  model_engine_options:
-  - model: 777-200LR
-    engines:
-    - GE90-110B1
-    - GE90-115B
-  - model: 777F
-    engines:
-    - GE90-110B1
-    - GE90-115B
 drag:
   cd0: 0.01723
   k: 0.04099

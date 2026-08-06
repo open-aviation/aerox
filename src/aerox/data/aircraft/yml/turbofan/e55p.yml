@@ -1,6 +1,7 @@
 aircraft: Embraer Phenom 300
 icao: E55P
 iata: null
+subtypes: null
 certification:
   model: EMB-505, commercial generation unresolved
   authority: Agencia Nacional de Aviacao Civil
@@ -74,7 +75,6 @@ engine:
   default: Pratt & Whitney Canada PW535E turbofan
   options:
   - Pratt & Whitney Canada PW535E turbofan
-  model_engine_options: null
 drag:
   cd0: 0.02265
   k: 0.04266

@@ -1,6 +1,7 @@
 aircraft: Cirrus SR 22
 icao: SR22
 iata: null
+subtypes: null
 certification:
   model: SR22
   authority: FAA validated by EASA
@@ -74,7 +75,6 @@ engine:
   default: Continental IO-550-N Six cylinder horizontally opposed aircraft engine, 310 hp (230 kW)
   options:
   - Continental IO-550-N Six cylinder horizontally opposed aircraft engine, 310 hp (230 kW)
-  model_engine_options: null
 drag:
   cd0: null
   k: null

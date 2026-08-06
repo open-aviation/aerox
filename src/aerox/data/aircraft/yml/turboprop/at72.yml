@@ -1,6 +1,7 @@
 aircraft: ATR 72
 icao: AT72
 iata: null
+subtypes: null
 certification:
   model: null
   authority: EASA
@@ -75,7 +76,6 @@ engine:
   options:
   - 2 x 2160 SHP PWC PW124B turboprops with 4 blade propellers
   - 2 x 2500 SHP PWC PW127E turboprops with 6 blade propellers
-  model_engine_options: null
 drag:
   cd0: null
   k: null

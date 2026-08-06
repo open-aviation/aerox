@@ -1,6 +1,7 @@
 aircraft: Cessna Citation Sovereign
 icao: C680
 iata: null
+subtypes: null
 certification:
   model: '680'
   authority: FAA validated by EASA
@@ -74,7 +75,6 @@ engine:
   default: PW306C
   options:
   - PW306C
-  model_engine_options: null
 drag:
   cd0: 0.01937
   k: 0.05034

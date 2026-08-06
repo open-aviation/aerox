@@ -1,6 +1,7 @@
 aircraft: Beech Super King Air 350
 icao: B350
 iata: null
+subtypes: null
 certification:
   model: null
   authority: FAA validated by EASA
@@ -74,7 +75,6 @@ engine:
   default: PT6A-60A
   options:
   - PT6A-60A
-  model_engine_options: null
 drag:
   cd0: 0.02167
   k: 0.03687

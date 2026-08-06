@@ -1,6 +1,7 @@
 aircraft: Beech Airliner 99
 icao: BE99
 iata: null
+subtypes: null
 certification:
   model: null
   authority: FAA
@@ -75,7 +76,6 @@ engine:
   options:
   - 2 x 680 SHP PWC PT6A -28
   - 2 x 715 SHP PWC PT6A -36
-  model_engine_options: null
 drag:
   cd0: null
   k: null

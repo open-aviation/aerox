@@ -1,6 +1,7 @@
 aircraft: Cessna 340
 icao: C340
 iata: null
+subtypes: null
 certification:
   model: null
   authority: FAA
@@ -75,7 +76,6 @@ engine:
   options:
   - 2 x 285 HP Continental TSIO-520-K piston engines with 3 blade propellers
   - 2 x 310 HP Continental TSIO-520-NB piston engines with 3 blade propellers
-  model_engine_options: null
 drag:
   cd0: null
   k: null

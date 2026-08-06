@@ -1,6 +1,7 @@
 aircraft: Canadair Challenger 600/601/604
 icao: CL60
 iata: null
+subtypes: null
 certification:
   model: null
   authority: Transport Canada Civil Aviation
@@ -74,7 +75,6 @@ engine:
   default: CF34-3A
   options:
   - CF34-3A
-  model_engine_options: null
 drag:
   cd0: 0.02278
   k: 0.04615

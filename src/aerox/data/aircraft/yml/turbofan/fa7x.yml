@@ -1,6 +1,7 @@
 aircraft: Dassault Falcon 7X
 icao: FA7X
 iata: DFL
+subtypes: null
 certification:
   model: Falcon 7X
   authority: EASA
@@ -74,7 +75,6 @@ engine:
   default: PW307A
   options:
   - PW307A
-  model_engine_options: null
 drag:
   cd0: 0.01886
   k: 0.04154

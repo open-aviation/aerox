@@ -1,6 +1,7 @@
 aircraft: Bombardier Challenger 350
 icao: CL35
 iata: null
+subtypes: null
 certification:
   model: BD-100-1A10 Challenger 350 configuration
   authority: Transport Canada Civil Aviation
@@ -74,7 +75,6 @@ engine:
   default: HTF7350
   options:
   - HTF7350
-  model_engine_options: null
 drag:
   cd0: 0.02052
   k: 0.04641

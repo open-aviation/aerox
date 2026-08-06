@@ -1,6 +1,7 @@
 aircraft: Beech 1900/C-12J
 icao: B190
 iata: BE1 / BEH / BES
+subtypes: null
 certification:
   model: null
   authority: FAA
@@ -75,7 +76,6 @@ engine:
   options:
   - PT6A-65B
   - PT6A-67D
-  model_engine_options: null
 drag:
   cd0: 0.02248
   k: 0.03687

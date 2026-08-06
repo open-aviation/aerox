@@ -1,6 +1,42 @@
 aircraft: Airbus A321 Neo
 icao: A21N
 iata: 32Q
+subtypes:
+- subtype: A321-251N
+  engines:
+  - LEAP-1A35A/35AX/33/33X/33B2/33B2X/32/32X/30
+- subtype: A321-251NX
+  engines:
+  - LEAP-1A35A/35AX/33/33X/33B2/33B2X/32/32X/30
+- subtype: A321-252N
+  engines:
+  - LEAP-1A35A/35AX/33/33X/33B2/33B2X/32/32X/30
+- subtype: A321-252NX
+  engines:
+  - LEAP-1A35A/35AX/33/33X/33B2/33B2X/32/32X/30
+- subtype: A321-253N
+  engines:
+  - LEAP-1A35A/35AX/33/33X/33B2/33B2X/32/32X/30
+- subtype: A321-253NX
+  engines:
+  - LEAP-1A35A/35AX/33/33X/33B2/33B2X/32/32X/30
+- subtype: A321-271N
+  engines:
+  - PW1133G-JM
+  - PW1133GA-JM
+- subtype: A321-271NX
+  engines:
+  - PW1133G-JM
+  - PW1133GA-JM
+- subtype: A321-272N
+  engines:
+  - PW1130G-JM
+- subtype: A321-272NX
+  engines:
+  - PW1130G-JM
+- subtype: A321-253NY
+  engines:
+  - LEAP-1A35A/35AX/33/33X/33B2/33B2X/32/32X/30
 certification:
   model: null
   authority: EASA
@@ -78,47 +114,6 @@ engine:
   - LEAP-1A32
   - LEAP-1A30
   - LEAP-1A33
-  model_engine_options:
-  - model: A321-251N
-    engines:
-    - CFMI LEAP-1A32
-  - model: A321-251NX
-    engines:
-    - CFMI LEAP-1A32
-  - model: A321-252N
-    engines:
-    - CFMI LEAP-1A30
-  - model: A321-252NX
-    engines:
-    - CFMI LEAP-1A30
-  - model: A321-253N
-    engines:
-    - CFMI LEAP-1A33
-  - model: A321-253NX
-    engines:
-    - CFMI LEAP-1A33
-  - model: A321-271N
-    engines:
-    - IAE PW1133G-JM
-    - IAE PW1133GA-JM
-  - model: A321-271NX
-    engines:
-    - IAE PW1133G-JM
-    - IAE PW1133GA-JM
-  - model: A321-272N
-    engines:
-    - IAE PW1130G-JM
-  - model: A321-272NX
-    engines:
-    - IAE PW1130G-JM
-  - model: A321-253NY
-    engines:
-    - CFMI LEAP-1A33X
-    - CFMI LEAP-1A33B2X
-  - model: A321-271NY
-    engines:
-    - IAE PW1133GR-JM
-    - IAE PW1133GAR-JM
 drag:
   cd0: 0.0238
   k: 0.04038

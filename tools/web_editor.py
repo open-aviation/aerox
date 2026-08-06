@@ -67,6 +67,7 @@ FIELD_SCHEMA = {
         "aircraft": {"type": str},
         "icao": {"type": str},
         "iata": {"type": str},
+        "subtypes": {"type": list},
         "mtow": {"type": float},
         "mlw": {"type": float},
         "oew": {"type": float},
@@ -154,17 +155,13 @@ FIELD_SCHEMA = {
             },
         },
         "engine": {
-            "fields": [
-                "type", "mount", "number", "default", "options",
-                "model_engine_options",
-            ],
+            "fields": ["type", "mount", "number", "default", "options"],
             "types": {
                 "type": str,
                 "mount": str,
                 "number": int,
                 "default": str,
                 "options": list,
-                "model_engine_options": list,
             },
         },
         "drag": {
@@ -905,8 +902,8 @@ HTML_TEMPLATE = """
                             <textarea name="engine__options" rows="8">{% if data.engine and data.engine.options %}{{ data.engine.options | join('\n') }}{% endif %}</textarea>
                         </div>
                         <div class="field textarea-field">
-                            <label>Certified model / engines <small style="font-weight: normal; color: #999;">(model | engine; engine)</small></label>
-                            <textarea name="engine__model_engine_options" rows="10">{% if data.engine and data.engine.model_engine_options %}{% for item in data.engine.model_engine_options %}{{ item.model }} | {{ item.engines | join('; ') }}{% if not loop.last %}\n{% endif %}{% endfor %}{% endif %}</textarea>
+                            <label>Certified subtypes <small style="font-weight: normal; color: #999;">(subtype | ICAO EEDB engine; engine)</small></label>
+                            <textarea name="subtypes" rows="10" readonly>{% if data.subtypes %}{% for item in data.subtypes %}{{ item.subtype }} | {{ item.engines | join('; ') }}{% if not loop.last %}\n{% endif %}{% endfor %}{% endif %}</textarea>
                         </div>
                     </div>
                     
@@ -1357,7 +1354,7 @@ def safe_convert(value, target_type, field_name=None):
         return None
     try:
         if target_type == list:
-            if field_name == "engine.model_engine_options":
+            if field_name == "subtypes":
                 if isinstance(value, list):
                     return value
                 rows = []
@@ -1366,15 +1363,15 @@ def safe_convert(value, target_type, field_name=None):
                         continue
                     if "|" not in line:
                         raise ValueError(
-                            "Certified model/engine rows must use 'model | engine; engine'"
+                            "Subtype rows must use 'subtype | engine; engine'"
                         )
-                    model, engine_text = (part.strip() for part in line.split("|", 1))
+                    subtype, engine_text = (part.strip() for part in line.split("|", 1))
                     engines = [item.strip() for item in engine_text.split(";") if item.strip()]
-                    if not model or not engines:
+                    if not subtype or not engines:
                         raise ValueError(
-                            "Certified model/engine rows need a model and at least one engine"
+                            "Subtype rows need a subtype and at least one engine"
                         )
-                    rows.append({"model": model, "engines": engines})
+                    rows.append({"subtype": subtype, "engines": engines})
                 return rows or None
             # For list types (like engine options)
             if isinstance(value, list):

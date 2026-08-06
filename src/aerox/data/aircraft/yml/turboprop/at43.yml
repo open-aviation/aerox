@@ -1,6 +1,7 @@
 aircraft: ATR 42-300/320
 icao: AT43
 iata: null
+subtypes: null
 certification:
   model: null
   authority: EASA
@@ -75,7 +76,6 @@ engine:
   options:
   - 2 x 1800 SHP PWC PW120 turboprops with 4 blade propellers
   - 2 x 2100 SHP PWC PW121 turboprops with 4 blade propellers
-  model_engine_options: null
 drag:
   cd0: null
   k: null

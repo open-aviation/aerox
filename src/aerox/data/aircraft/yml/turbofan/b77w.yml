@@ -1,6 +1,7 @@
 aircraft: Boeing 777-300ER
 icao: B77W
 iata: 77W
+subtypes: null
 certification:
   model: 777-300ER
   authority: EASA
@@ -74,10 +75,6 @@ engine:
   default: GE90-115B
   options:
   - GE90-115B
-  model_engine_options:
-  - model: 777-300ER
-    engines:
-    - GE90-115B
 drag:
   cd0: 0.01842
   k: 0.04099

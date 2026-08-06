@@ -1,6 +1,7 @@
 aircraft: Cessna Skyhawk 172/Cutlass
 icao: C172
 iata: null
+subtypes: null
 certification:
   model: null
   authority: FAA
@@ -78,7 +79,6 @@ engine:
   - 1 x 145 HP Continental O-300-C
   - 1 x 160 HP Lycoming O-320-H2AD
   - 1 x 195 HP Continental IO-360-KB piston engine with 2 blade propeller
-  model_engine_options: null
 drag:
   cd0: null
   k: null

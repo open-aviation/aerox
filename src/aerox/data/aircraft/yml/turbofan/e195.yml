@@ -1,6 +1,7 @@
 aircraft: Embraer E195 (LR)
 icao: E195
 iata: E95
+subtypes: null
 certification:
   model: ERJ 190-200 LR
   authority: Agencia Nacional de Aviacao Civil
@@ -74,7 +75,6 @@ engine:
   default: CF34-10E5
   options:
   - CF34-10E5
-  model_engine_options: null
 drag:
   cd0: 0.02374
   k: 0.04433
