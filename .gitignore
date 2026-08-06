@@ -108,6 +108,7 @@ ENV/
 # making the reviewed compact aircraft corpus trackable.
 !src/aerox/data/
 !src/aerox/data/aircraft/
+!src/aerox/data/aircraft/*.csv
 !src/aerox/data/aircraft/yml/
 !src/aerox/data/aircraft/yml/piston/
 !src/aerox/data/aircraft/yml/piston/*.yml
