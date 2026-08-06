@@ -295,12 +295,18 @@ FIELD vertical_tail.area
 END FIELD
 
 FIELD vertical_tail.height
-  Value: null
+  Value: 8.3
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12
+  Status: manufacturer-published-planning
+  Source: airbus_a330_acap_2025_12
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2025-12/AC_A330_20251201.pdf
+  Document title: A330 Aircraft Characteristics - Airport and Maintenance Planning, Revision 34
+  Revision date: 2025-12-01
+  Page or section: 2-2-0 Figure 991-011-A01, A330-900, sheet 1/page 7
+  Inputs: 8.30 m drawing dimension
+  Applicability: Projected height from the horizontal-tail/tail reference plane to fin tip
+  Uncertainty: drawing dimension; planning publication
+  Notes: The height definition is retained explicitly and is not overall aircraft height.
 END FIELD
 
 FIELD vertical_tail.mac

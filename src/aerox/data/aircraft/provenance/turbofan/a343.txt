@@ -295,12 +295,18 @@ FIELD vertical_tail.area
 END FIELD
 
 FIELD vertical_tail.height
-  Value: null
+  Value: 8.3
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a015_issue_28 | airbus_a340_200_300_acap_2025_12
+  Status: manufacturer-published-planning
+  Source: airbus_a340_200_300_acap_2025_12
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2025-12/AC_A340-200-300_20251201.pdf
+  Document title: A340-200/-300 Aircraft Characteristics - Airport and Maintenance Planning, Revision 33
+  Revision date: 2025-12-01
+  Page or section: 2-2-0 Figure 991-007-A01, A340-300, sheet 1/page 2
+  Inputs: 8.3 m drawing dimension
+  Applicability: Projected height from the horizontal-tail/tail reference plane to fin tip
+  Uncertainty: drawing dimension; planning publication
+  Notes: The height definition is retained explicitly and is not overall aircraft height.
 END FIELD
 
 FIELD vertical_tail.mac

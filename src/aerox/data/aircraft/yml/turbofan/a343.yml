@@ -62,7 +62,7 @@ horizontal_tail:
   elevator_area_ratio: null
 vertical_tail:
   area: null
-  height: null
+  height: 8.3
   mac: null
   root_chord: null
   tip_chord: null

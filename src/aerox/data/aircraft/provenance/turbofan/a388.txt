@@ -293,12 +293,18 @@ FIELD vertical_tail.area
 END FIELD
 
 FIELD vertical_tail.height
-  Value: null
+  Value: 14.59
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12
+  Status: manufacturer-published-planning
+  Source: airbus_a380_acap_2025_12
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2025-12/AC_A380_20251201.pdf
+  Document title: A380 Aircraft Characteristics - Airport and Maintenance Planning, Revision 20
+  Revision date: 2025-12-01
+  Page or section: 2-2-0 Figure 991-001-A01, sheet 1/page 2
+  Inputs: 14.59 m drawing dimension
+  Applicability: Projected height from the horizontal-tail/tail reference plane to fin tip
+  Uncertainty: drawing dimension; planning publication
+  Notes: The height definition is retained explicitly and is not overall aircraft height.
 END FIELD
 
 FIELD vertical_tail.mac

@@ -151,7 +151,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023
+  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023 | airbus_a220_acp_i009_2025
 END FIELD
 
 FIELD wing.tip_chord
@@ -160,7 +160,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023
+  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023 | airbus_a220_acp_i009_2025
 END FIELD
 
 FIELD wing.taper_ratio
@@ -169,7 +169,7 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023
+  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023 | airbus_a220_acp_i009_2025
 END FIELD
 
 FIELD wing.aspect_ratio
@@ -187,7 +187,7 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023
+  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023 | airbus_a220_acp_i009_2025
 END FIELD
 
 FIELD horizontal_tail.area
@@ -206,12 +206,18 @@ FIELD horizontal_tail.area
 END FIELD
 
 FIELD horizontal_tail.span
-  Value: null
+  Value: 12.3
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023
+  Status: manufacturer-published-planning
+  Source: airbus_a220_acp_i009_2025
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2025-05/A220-ACP-Issue009-00-24Apr2025.PDF
+  Document title: A220 Aircraft Characteristics Publication, Issue 009
+  Revision date: 2025-04-24
+  Page or section: DM 12AAB, locator table page 4 and figure page 8
+  Inputs: D=482.8 in (12.2631 m), displayed as 12.3 m
+  Applicability: A220-300 horizontal-stabilizer tip-to-tip span
+  Uncertainty: drawing dimension; planning publication
+  Notes: The height definition is retained explicitly and is not overall aircraft height.
 END FIELD
 
 FIELD horizontal_tail.mac
@@ -220,7 +226,7 @@ FIELD horizontal_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023
+  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023 | airbus_a220_acp_i009_2025
 END FIELD
 
 FIELD horizontal_tail.root_chord
@@ -229,7 +235,7 @@ FIELD horizontal_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023
+  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023 | airbus_a220_acp_i009_2025
 END FIELD
 
 FIELD horizontal_tail.tip_chord
@@ -238,7 +244,7 @@ FIELD horizontal_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023
+  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023 | airbus_a220_acp_i009_2025
 END FIELD
 
 FIELD horizontal_tail.taper_ratio
@@ -247,7 +253,7 @@ FIELD horizontal_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023
+  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023 | airbus_a220_acp_i009_2025
 END FIELD
 
 FIELD horizontal_tail.sweep
@@ -256,7 +262,7 @@ FIELD horizontal_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023
+  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023 | airbus_a220_acp_i009_2025
 END FIELD
 
 FIELD horizontal_tail.dihedral
@@ -265,7 +271,7 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023
+  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023 | airbus_a220_acp_i009_2025
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -274,7 +280,7 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023
+  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023 | airbus_a220_acp_i009_2025
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
@@ -283,7 +289,7 @@ FIELD horizontal_tail.elevator_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023
+  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023 | airbus_a220_acp_i009_2025
 END FIELD
 
 FIELD vertical_tail.area
@@ -307,7 +313,7 @@ FIELD vertical_tail.height
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023
+  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023 | airbus_a220_acp_i009_2025
 END FIELD
 
 FIELD vertical_tail.mac
@@ -316,7 +322,7 @@ FIELD vertical_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023
+  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023 | airbus_a220_acp_i009_2025
 END FIELD
 
 FIELD vertical_tail.root_chord
@@ -325,7 +331,7 @@ FIELD vertical_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023
+  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023 | airbus_a220_acp_i009_2025
 END FIELD
 
 FIELD vertical_tail.tip_chord
@@ -334,7 +340,7 @@ FIELD vertical_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023
+  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023 | airbus_a220_acp_i009_2025
 END FIELD
 
 FIELD vertical_tail.taper_ratio
@@ -343,7 +349,7 @@ FIELD vertical_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023
+  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023 | airbus_a220_acp_i009_2025
 END FIELD
 
 FIELD vertical_tail.sweep
@@ -352,7 +358,7 @@ FIELD vertical_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023
+  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023 | airbus_a220_acp_i009_2025
 END FIELD
 
 FIELD vertical_tail.arm
@@ -361,7 +367,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023
+  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023 | airbus_a220_acp_i009_2025
 END FIELD
 
 FIELD vertical_tail.rudder_area_ratio
@@ -370,7 +376,7 @@ FIELD vertical_tail.rudder_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023
+  Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_300_app_i031_2023 | airbus_a220_acp_i009_2025
 END FIELD
 
 LEGACY PARAMETERS

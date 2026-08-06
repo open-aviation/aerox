@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 import csv
+import math
 import subprocess
 import sys
 from pathlib import Path
@@ -11,6 +12,7 @@ import yaml
 
 from aerox import load_aircraft
 from aerox.aircraft import parse_source_notes
+from tools.extract_airbus_cad_tail_geometry import DRAWINGS, extract
 from tools.migrate_aircraft_data import (
     SIMPLE_TEMPLATE,
     dump_document,
@@ -24,11 +26,13 @@ SOURCE_ROOT = Path("src/aerox/data/aircraft/provenance")
 FILES = sorted(ROOT.glob("*/*.yml"))
 RESEARCH_FILES = (
     Path("docs/modeling/geometry-research-airbus-boeing.tsv"),
+    Path("docs/modeling/geometry-research-airbus-tail-batch.tsv"),
     Path("docs/modeling/geometry-research-regional-business.tsv"),
     Path("docs/modeling/geometry-research-ga-turboprop-military.tsv"),
 )
 CAD_MEASUREMENT_FILES = (
     Path("docs/modeling/airbus-cad-geometry-measurements.csv"),
+    Path("docs/modeling/airbus-cad-tail-direct-extraction.csv"),
     Path("docs/modeling/boeing-cad-geometry-measurements.csv"),
 )
 
@@ -278,6 +282,76 @@ def test_cad_measurement_inventories_use_stable_ledger_source_ids():
             rows = list(csv.DictReader(stream))
         assert rows, path
         assert all(row["source_id"] in source_ids for row in rows), path
+
+
+def test_direct_airbus_dwg_json_extractor_preserves_reviewed_geometry():
+    """Exercise the parser without requiring LibreDWG or the ignored CAD files."""
+    drawing = DRAWINGS[0]
+    centre = 10000.0
+    semispan = drawing.span_m * 500
+
+    def entity(handle, start, end):
+        return {
+            "entity": "LINE",
+            "handle": [0, 2, int(handle, 16), int(handle, 16)],
+            "start": [*start, 0.0],
+            "end": [*end, 0.0],
+        }
+
+    # Use the reviewed A318 chord/sweep and elevator values in a translated
+    # synthetic drawing.  The unrelated duplicate object documents why the
+    # extractor indexes LINE entities rather than every LibreDWG object.
+    root, tip = 3.726893933 * 1000, 1.227873751 * 1000
+    sweep = 27.945078238
+    le_root = 20000.0
+    quarter_shift = math.tan(math.radians(sweep)) * semispan
+    le_tip = le_root + quarter_shift - 0.25 * (tip - root)
+    te_root, te_tip = le_root + root, le_tip + tip
+    ratio = drawing.expected_elevator_ratio
+    hinge_root = te_root - ratio * root
+    hinge_tip = te_tip - ratio * tip
+    objects = [{"object": "SCALE", "handle": [0, 2, int(drawing.leading_right, 16), int(drawing.leading_right, 16)]}]
+    for left, right, y_root, y_tip in (
+        (drawing.leading_left, drawing.leading_right, le_root, le_tip),
+        (drawing.trailing_left, drawing.trailing_right, te_root, te_tip),
+        (drawing.hinge_left, drawing.hinge_right, hinge_root, hinge_tip),
+    ):
+        objects.extend([
+            entity(left, (centre - semispan, y_tip), (centre, y_root)),
+            entity(right, (centre, y_root), (centre + semispan, y_tip)),
+        ])
+
+    result = extract({"OBJECTS": objects}, drawing)
+    assert result["root_chord_m"] == pytest.approx(root / 1000)
+    assert result["tip_chord_m"] == pytest.approx(tip / 1000)
+    assert result["quarter_chord_sweep_deg"] == pytest.approx(sweep)
+    assert result["elevator_area_ratio"] == pytest.approx(ratio)
+    assert result["symmetry_error_mm"] == pytest.approx(0)
+
+
+def test_a350_common_tail_uses_published_area_and_consistent_derived_geometry():
+    a359 = load_aircraft("A359")
+    a35k = load_aircraft("A35K")
+    for aircraft in (a359, a35k):
+        tail = aircraft.horizontal_tail
+        assert tail.area == pytest.approx(82.0)
+        assert tail.span == pytest.approx(18.79)
+        assert tail.root_chord == pytest.approx(6.262168)
+        assert tail.tip_chord == pytest.approx(2.465879)
+        assert tail.taper_ratio == pytest.approx(tail.tip_chord / tail.root_chord, rel=2e-6)
+        assert tail.area == pytest.approx(
+            tail.span * (tail.root_chord + tail.tip_chord) / 2,
+            rel=2e-6,
+        )
+        assert aircraft.vertical_tail.height == pytest.approx(9.42)
+
+    notes = parse_source_notes(
+        (SOURCE_ROOT / "turbofan/a35k.txt").read_text(encoding="utf-8")
+    )
+    area = notes["fields"]["horizontal_tail.area"]
+    assert area["status"] == "manufacturer-published"
+    assert area["source"] == "airbus_a350_common_htp_2016_02"
+    assert area["previous_value"] == "85.707556 m2"
 
 
 def test_variant_mismatched_geometry_remains_evidence_only():

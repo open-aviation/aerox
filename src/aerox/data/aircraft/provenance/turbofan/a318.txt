@@ -149,7 +149,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD wing.tip_chord
@@ -158,7 +158,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD wing.taper_ratio
@@ -167,7 +167,7 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD wing.aspect_ratio
@@ -185,16 +185,23 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD horizontal_tail.area
-  Value: null
+  Value: 30.843429
   Unit: m2
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07
+  Status: inferred-with-uncertainty
+  Source: airbus_a318_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A318_WTF-May-2012.zip
+  Document title: Airbus A318 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: LE 63A/80A; TE 63B/80B; hinge 2AC3/2AAD
+  Formula: span*(root_chord+tip_chord)/2
+  Inputs: span=12.45 m; root=3.726894 m; tip=1.227874 m
+  Applicability: A318-100 wing-tip-fence external horizontal tail
+  Uncertainty: engineering bound +/-5 percent
+  Notes: Direct LibreDWG JSON preserves the reviewed entities; values are engineering priors, not certified geometry.
 END FIELD
 
 FIELD horizontal_tail.span
@@ -212,48 +219,77 @@ FIELD horizontal_tail.span
 END FIELD
 
 FIELD horizontal_tail.mac
-  Value: null
+  Value: 2.687454
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07
+  Status: inferred-with-uncertainty
+  Source: airbus_a318_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A318_WTF-May-2012.zip
+  Document title: Airbus A318 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: LE 63A/80A; TE 63B/80B; hinge 2AC3/2AAD
+  Formula: (2/3)*root*(1+taper+taper^2)/(1+taper)
+  Inputs: root=3.726894 m; tip=1.227874 m
+  Applicability: A318-100 wing-tip-fence external horizontal tail
+  Uncertainty: engineering bound +/-0.15 m
+  Notes: Direct LibreDWG JSON preserves the reviewed entities; values are engineering priors, not certified geometry.
 END FIELD
 
 FIELD horizontal_tail.root_chord
-  Value: null
+  Value: 3.726894
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07
+  Status: inferred-with-uncertainty
+  Source: airbus_a318_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A318_WTF-May-2012.zip
+  Document title: Airbus A318 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: LE 63A/80A; TE 63B/80B; hinge 2AC3/2AAD
+  Formula: straight trailing-edge minus leading-edge extrapolation at aircraft centreline
+  Inputs: published span=12.45 m
+  Applicability: A318-100 wing-tip-fence external horizontal tail
+  Uncertainty: engineering bound +/-0.15 m
+  Notes: Direct LibreDWG JSON preserves the reviewed entities; values are engineering priors, not certified geometry.
 END FIELD
 
 FIELD horizontal_tail.tip_chord
-  Value: null
+  Value: 1.227874
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07
+  Status: inferred-with-uncertainty
+  Source: airbus_a318_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A318_WTF-May-2012.zip
+  Document title: Airbus A318 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: LE 63A/80A; TE 63B/80B; hinge 2AC3/2AAD
+  Formula: trailing edge minus leading edge at published semispan station
+  Inputs: published span=12.45 m
+  Applicability: A318-100 wing-tip-fence external horizontal tail
+  Uncertainty: engineering bound +/-0.15 m
+  Notes: Direct LibreDWG JSON preserves the reviewed entities; values are engineering priors, not certified geometry.
 END FIELD
 
 FIELD horizontal_tail.taper_ratio
-  Value: null
+  Value: 0.329463
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07
+  Status: inferred-with-uncertainty
+  Source: airbus_a318_autocad_wtf_2012_05
+  Formula: tip_chord / root_chord
+  Inputs: tip_chord=1.227874 m; root_chord=3.726894 m
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD horizontal_tail.sweep
-  Value: null
+  Value: 27.945078
   Unit: deg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07
+  Status: inferred-with-uncertainty
+  Source: airbus_a318_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A318_WTF-May-2012.zip
+  Document title: Airbus A318 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: LE 63A/80A; TE 63B/80B; hinge 2AC3/2AAD
+  Formula: atan2(quarter-chord longitudinal offset,span/2)
+  Inputs: span=12.45 m; root=3.726894 m; tip=1.227874 m
+  Applicability: A318-100 wing-tip-fence external horizontal tail
+  Uncertainty: engineering bound +/-1 deg
+  Notes: Direct LibreDWG JSON preserves the reviewed entities; values are engineering priors, not certified geometry.
 END FIELD
 
 FIELD horizontal_tail.dihedral
@@ -262,7 +298,7 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -271,16 +307,23 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
-  Value: null
+  Value: 0.485646
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07
+  Status: inferred-with-uncertainty
+  Source: airbus_a318_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A318_WTF-May-2012.zip
+  Document title: Airbus A318 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: LE 63A/80A; TE 63B/80B; hinge 2AC3/2AAD
+  Formula: gross elevator trapezoid area divided by gross tail trapezoid area
+  Inputs: reviewed tail edges and elevator hinge line
+  Applicability: A318-100 wing-tip-fence external horizontal tail
+  Uncertainty: engineering bound +/-0.04
+  Notes: Physical projected surface geometry only; not control-law authority or aerodynamic effectiveness.
 END FIELD
 
 FIELD vertical_tail.area
@@ -289,7 +332,7 @@ FIELD vertical_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD vertical_tail.height
@@ -298,7 +341,7 @@ FIELD vertical_tail.height
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD vertical_tail.mac
@@ -307,7 +350,7 @@ FIELD vertical_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD vertical_tail.root_chord
@@ -316,7 +359,7 @@ FIELD vertical_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD vertical_tail.tip_chord
@@ -325,7 +368,7 @@ FIELD vertical_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD vertical_tail.taper_ratio
@@ -334,7 +377,7 @@ FIELD vertical_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD vertical_tail.sweep
@@ -343,7 +386,7 @@ FIELD vertical_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD vertical_tail.arm
@@ -352,7 +395,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD vertical_tail.rudder_area_ratio
@@ -361,7 +404,7 @@ FIELD vertical_tail.rudder_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 LEGACY PARAMETERS
