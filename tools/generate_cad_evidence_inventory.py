@@ -18,32 +18,33 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 CAD_ROOT = ROOT / "data/cad"
-DOCS = ROOT / "docs/modeling"
-ARCHIVE_OUTPUT = DOCS / "cad-archive-inventory.csv"
-EVIDENCE_OUTPUT = DOCS / "cad-evidence-inventory.csv"
+AIRCRAFT_DOCS = ROOT / "docs/aircraft-data"
+SOURCE_LEDGER = ROOT / "docs/modeling/sources.yml"
+ARCHIVE_OUTPUT = AIRCRAFT_DOCS / "cad-archive-inventory.csv"
+EVIDENCE_OUTPUT = AIRCRAFT_DOCS / "cad-evidence-inventory.csv"
 
 RESEARCH_FILES = (
-    DOCS / "geometry-research-airbus-boeing.tsv",
-    DOCS / "geometry-research-airbus-tail-batch.tsv",
-    DOCS / "geometry-research-cad-batch-2.tsv",
-    DOCS / "geometry-research-cad-batch-3.tsv",
-    DOCS / "geometry-research-cad-batch-4.tsv",
-    DOCS / "geometry-research-cad-batch-5.tsv",
-    DOCS / "geometry-research-regional-business.tsv",
-    DOCS / "geometry-research-ga-turboprop-military.tsv",
+    AIRCRAFT_DOCS / "geometry-research-airbus-boeing.tsv",
+    AIRCRAFT_DOCS / "geometry-research-airbus-tail-batch.tsv",
+    AIRCRAFT_DOCS / "geometry-research-cad-batch-2.tsv",
+    AIRCRAFT_DOCS / "geometry-research-cad-batch-3.tsv",
+    AIRCRAFT_DOCS / "geometry-research-cad-batch-4.tsv",
+    AIRCRAFT_DOCS / "geometry-research-cad-batch-5.tsv",
+    AIRCRAFT_DOCS / "geometry-research-regional-business.tsv",
+    AIRCRAFT_DOCS / "geometry-research-ga-turboprop-military.tsv",
 )
 
-LONG_INPUTS = (DOCS / "airbus-cad-geometry-measurements.csv",)
+LONG_INPUTS = (AIRCRAFT_DOCS / "airbus-cad-geometry-measurements.csv",)
 WIDE_INPUTS = (
-    DOCS / "airbus-cad-tail-direct-extraction.csv",
-    DOCS / "airbus-cad-tail-batch-2.csv",
-    DOCS / "boeing-cad-geometry-measurements.csv",
-    DOCS / "boeing-cad-tail-direct-extraction.csv",
-    DOCS / "airbus-cad-vertical-tail-batch-3.csv",
-    DOCS / "boeing-cad-vertical-tail-batch-3.csv",
+    AIRCRAFT_DOCS / "airbus-cad-tail-direct-extraction.csv",
+    AIRCRAFT_DOCS / "airbus-cad-tail-batch-2.csv",
+    AIRCRAFT_DOCS / "boeing-cad-geometry-measurements.csv",
+    AIRCRAFT_DOCS / "boeing-cad-tail-direct-extraction.csv",
+    AIRCRAFT_DOCS / "airbus-cad-vertical-tail-batch-3.csv",
+    AIRCRAFT_DOCS / "boeing-cad-vertical-tail-batch-3.csv",
 )
-REVIEW_INPUT = DOCS / "cad-archive-review-observations.csv"
-SECONDARY_INPUT = DOCS / "manufacturer-geometry-secondary-evidence.csv"
+REVIEW_INPUT = AIRCRAFT_DOCS / "cad-archive-review-observations.csv"
+SECONDARY_INPUT = AIRCRAFT_DOCS / "manufacturer-geometry-secondary-evidence.csv"
 
 ARCHIVE_COLUMNS = (
     "archive_id",
@@ -158,7 +159,7 @@ def sha256(path: Path) -> str:
 
 
 def source_index() -> tuple[dict[str, dict[str, object]], dict[str, str]]:
-    ledger = yaml.safe_load((DOCS / "sources.yml").read_text(encoding="utf-8"))
+    ledger = yaml.safe_load(SOURCE_LEDGER.read_text(encoding="utf-8"))
     records = {row["id"]: row for row in ledger["sources"]}
     by_archive: dict[str, str] = {}
     for source_id, row in records.items():

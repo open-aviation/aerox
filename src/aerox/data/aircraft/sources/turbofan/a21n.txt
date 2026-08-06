@@ -1,6 +1,6 @@
 AEROX AIRCRAFT SOURCE NOTES
-Aircraft: Airbus A321
-ICAO: A321
+Aircraft: Airbus A321 Neo
+ICAO: A21N
 Last reviewed: 2026-08-06
 Source ledger: docs/modeling/sources.yml
 
@@ -8,7 +8,7 @@ CERTIFICATION SCOPE
   Model or family: -
   Authority: EASA
   Type certificate: EASA.A.064
-  Applicability: The record does not establish the CEO certified model or engine option.
+  Applicability: Standard neo, LR/NX, XLR/NY, engine, and weight-variant scope are unresolved.
 
 TYPE-CERTIFICATE AND LIMIT PARAMETERS
 
@@ -23,32 +23,32 @@ FIELD certification.authority
   Value: EASA
   Status: certified-published
   Source: easa_a064_issue_62
-  Applicability: The record does not establish the CEO certified model or engine option.
+  Applicability: Standard neo, LR/NX, XLR/NY, engine, and weight-variant scope are unresolved.
 END FIELD
 
 FIELD certification.type_certificate
   Value: EASA.A.064
   Status: certified-published
   Source: easa_a064_issue_62
-  Applicability: The record does not establish the CEO certified model or engine option.
+  Applicability: Standard neo, LR/NX, XLR/NY, engine, and weight-variant scope are unresolved.
 END FIELD
 
 FIELD certification.issue
   Value: 62
   Status: certified-published
   Source: easa_a064_issue_62
-  Applicability: The record does not establish the CEO certified model or engine option.
+  Applicability: Standard neo, LR/NX, XLR/NY, engine, and weight-variant scope are unresolved.
 END FIELD
 
 FIELD certification.issue_date
   Value: 2026-06-26
   Status: certified-published
   Source: easa_a064_issue_62
-  Applicability: The record does not establish the CEO certified model or engine option.
+  Applicability: Standard neo, LR/NX, XLR/NY, engine, and weight-variant scope are unresolved.
 END FIELD
 
 FIELD mtow
-  Value: 93500
+  Value: 97000
   Unit: kg
   Status: legacy-unverified
   Source: aerox_legacy_aircraft_database
@@ -92,7 +92,7 @@ FIELD mmo
 END FIELD
 
 FIELD ceiling
-  Value: 41000
+  Value: 39000
   Unit: ft
   Status: legacy-unverified
   Source: aerox_legacy_aircraft_database
@@ -101,27 +101,25 @@ END FIELD
 WING AND TAIL GEOMETRY
 
 FIELD wing.area
-  Value: 122
+  Value: 128
   Unit: m2
   Status: legacy-unverified
   Source: aerox_legacy_aircraft_database
 END FIELD
 
 FIELD wing.span
-  Value: 34.1
+  Value: 35.8
   Unit: m
   Status: manufacturer-published-planning
   Source: airbus_a321_acap_2026_07
   Source URL: https://mediaassets.airbus.com/pm_38_916_916230-7u6neg4lfg.pdf?fileName=aca32101-jul-2026.pdf
   Document title: A321 Aircraft Characteristics - Airport and Maintenance Planning, Revision 35
   Revision date: 2026-07-01
-  Page or section: 2-2-0 Figure 991-005-A01, Wing Tip Fence, sheet 1/page 2
-  Inputs: 34.10 m drawing dimension
-  Applicability: A321-100/-200 with wing-tip fences
+  Page or section: 2-2-0 Figure 991-005-A01, Sharklet, sheet 3/page 4
+  Inputs: 35.80 m drawing dimension
+  Applicability: A321neo/A321-200 sharklet external span
   Uncertainty: Drawing dimension; planning publication
-  Previous value: 33.91 m
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
-  Notes: Do not substitute sharklet geometry without identifying the modification.
+  Notes: LR/XLR geometry should be reviewed separately where modifications affect the reference.
 END FIELD
 
 FIELD wing.mac
@@ -134,11 +132,11 @@ FIELD wing.mac
   Revision date: 2026-06-26
   Page or section: A321 series, TCDS page 103
   Inputs: 4.1935 m published mean aerodynamic chord
-  Applicability: A321 series certified reference geometry
+  Applicability: A321neo certified models within the A321 series
   Uncertainty: published exact value
   Previous value: 4.29 m
   Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
-  Notes: Corrects the 4.29 m legacy value.
+  Notes: Corrects the 4.29 m legacy value; sharklets do not change the TCDS MAC definition.
 END FIELD
 
 FIELD wing.sweep
@@ -149,7 +147,7 @@ FIELD wing.sweep
 END FIELD
 
 FIELD wing.t/c
-  Value: 0.12
+  Value: 0.119
   Unit: nondimensional
   Status: legacy-unverified
   Source: aerox_legacy_aircraft_database
@@ -161,7 +159,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_wtf_2012_05
+  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD wing.tip_chord
@@ -170,7 +168,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_wtf_2012_05
+  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD wing.taper_ratio
@@ -179,16 +177,16 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_wtf_2012_05
+  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD wing.aspect_ratio
-  Value: 9.53123
+  Value: 10.012812
   Unit: nondimensional
   Status: legacy-unverified
   Source: airbus_a321_acap_2026_07 | aerox_legacy_aircraft_database
   Formula: span^2 / area
-  Inputs: span=34.1 m; area=122 m2
+  Inputs: span=35.8 m; area=128 m2
 END FIELD
 
 FIELD wing.dihedral
@@ -197,21 +195,21 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_wtf_2012_05
+  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD horizontal_tail.area
   Value: 30.843419
   Unit: m2
   Status: inferred-with-uncertainty
-  Source: airbus_a321_autocad_wtf_2012_05
-  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A321_WTF-May-2012.zip
-  Document title: Airbus A321 wing-tip-fence AutoCAD 3-view aircraft drawing
-  Revision date: 2012-05
-  Page or section: LE 6EF9/7078; TE 6EFA/7079; hinge 689C/6869
+  Source: airbus_a321_autocad_sharklet_2014_07
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/A321_sharklet-001-Jul-2014.zip
+  Document title: Airbus A321 sharklet AutoCAD 3-view aircraft drawing
+  Revision date: 2014-07
+  Page or section: LE 7382/744D; TE 834D/83B3; hinge 6FFA/6FE5
   Formula: span*(root_chord+tip_chord)/2
   Inputs: span=12.45 m; root=3.726892 m; tip=1.227874 m
-  Applicability: A321-200 wing-tip-fence external horizontal tail
+  Applicability: A21N candidate; current A321neo ACAP independently publishes the same 12.45 m span
   Uncertainty: engineering bound +/-5 percent
   Notes: Direct LibreDWG JSON preserves the reviewed entities; values are engineering priors, not certified geometry.
 END FIELD
@@ -224,9 +222,9 @@ FIELD horizontal_tail.span
   Source URL: https://mediaassets.airbus.com/pm_38_916_916230-7u6neg4lfg.pdf?fileName=aca32101-jul-2026.pdf
   Document title: A321 Aircraft Characteristics - Airport and Maintenance Planning, Revision 35
   Revision date: 2026-07-01
-  Page or section: 2-2-0 Figure 991-005-A01, Wing Tip Fence, sheet 1/page 2
+  Page or section: 2-2-0 Figure 991-005-A01, Sharklet, sheet 3/page 4
   Inputs: 12.45 m drawing dimension
-  Applicability: A321-100/-200 horizontal-stabilizer overall span
+  Applicability: A321neo/A321-200 horizontal-stabilizer overall span
   Uncertainty: Drawing dimension; planning publication
 END FIELD
 
@@ -234,14 +232,14 @@ FIELD horizontal_tail.mac
   Value: 2.687453
   Unit: m
   Status: inferred-with-uncertainty
-  Source: airbus_a321_autocad_wtf_2012_05
-  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A321_WTF-May-2012.zip
-  Document title: Airbus A321 wing-tip-fence AutoCAD 3-view aircraft drawing
-  Revision date: 2012-05
-  Page or section: LE 6EF9/7078; TE 6EFA/7079; hinge 689C/6869
+  Source: airbus_a321_autocad_sharklet_2014_07
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/A321_sharklet-001-Jul-2014.zip
+  Document title: Airbus A321 sharklet AutoCAD 3-view aircraft drawing
+  Revision date: 2014-07
+  Page or section: LE 7382/744D; TE 834D/83B3; hinge 6FFA/6FE5
   Formula: (2/3)*root*(1+taper+taper^2)/(1+taper)
   Inputs: root=3.726892 m; tip=1.227874 m
-  Applicability: A321-200 wing-tip-fence external horizontal tail
+  Applicability: A21N candidate; current A321neo ACAP independently publishes the same 12.45 m span
   Uncertainty: engineering bound +/-0.15 m
   Notes: Direct LibreDWG JSON preserves the reviewed entities; values are engineering priors, not certified geometry.
 END FIELD
@@ -250,14 +248,14 @@ FIELD horizontal_tail.root_chord
   Value: 3.726892
   Unit: m
   Status: inferred-with-uncertainty
-  Source: airbus_a321_autocad_wtf_2012_05
-  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A321_WTF-May-2012.zip
-  Document title: Airbus A321 wing-tip-fence AutoCAD 3-view aircraft drawing
-  Revision date: 2012-05
-  Page or section: LE 6EF9/7078; TE 6EFA/7079; hinge 689C/6869
+  Source: airbus_a321_autocad_sharklet_2014_07
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/A321_sharklet-001-Jul-2014.zip
+  Document title: Airbus A321 sharklet AutoCAD 3-view aircraft drawing
+  Revision date: 2014-07
+  Page or section: LE 7382/744D; TE 834D/83B3; hinge 6FFA/6FE5
   Formula: straight trailing-edge minus leading-edge extrapolation at aircraft centreline
   Inputs: published span=12.45 m
-  Applicability: A321-200 wing-tip-fence external horizontal tail
+  Applicability: A21N candidate; current A321neo ACAP independently publishes the same 12.45 m span
   Uncertainty: engineering bound +/-0.15 m
   Notes: Direct LibreDWG JSON preserves the reviewed entities; values are engineering priors, not certified geometry.
 END FIELD
@@ -266,14 +264,14 @@ FIELD horizontal_tail.tip_chord
   Value: 1.227874
   Unit: m
   Status: inferred-with-uncertainty
-  Source: airbus_a321_autocad_wtf_2012_05
-  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A321_WTF-May-2012.zip
-  Document title: Airbus A321 wing-tip-fence AutoCAD 3-view aircraft drawing
-  Revision date: 2012-05
-  Page or section: LE 6EF9/7078; TE 6EFA/7079; hinge 689C/6869
+  Source: airbus_a321_autocad_sharklet_2014_07
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/A321_sharklet-001-Jul-2014.zip
+  Document title: Airbus A321 sharklet AutoCAD 3-view aircraft drawing
+  Revision date: 2014-07
+  Page or section: LE 7382/744D; TE 834D/83B3; hinge 6FFA/6FE5
   Formula: trailing edge minus leading edge at published semispan station
   Inputs: published span=12.45 m
-  Applicability: A321-200 wing-tip-fence external horizontal tail
+  Applicability: A21N candidate; current A321neo ACAP independently publishes the same 12.45 m span
   Uncertainty: engineering bound +/-0.15 m
   Notes: Direct LibreDWG JSON preserves the reviewed entities; values are engineering priors, not certified geometry.
 END FIELD
@@ -282,24 +280,24 @@ FIELD horizontal_tail.taper_ratio
   Value: 0.329463
   Unit: nondimensional
   Status: inferred-with-uncertainty
-  Source: airbus_a321_autocad_wtf_2012_05
+  Source: airbus_a321_autocad_sharklet_2014_07
   Formula: tip_chord / root_chord
   Inputs: tip_chord=1.227874 m; root_chord=3.726892 m
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_wtf_2012_05
+  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD horizontal_tail.sweep
   Value: 27.945107
   Unit: deg
   Status: inferred-with-uncertainty
-  Source: airbus_a321_autocad_wtf_2012_05
-  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A321_WTF-May-2012.zip
-  Document title: Airbus A321 wing-tip-fence AutoCAD 3-view aircraft drawing
-  Revision date: 2012-05
-  Page or section: LE 6EF9/7078; TE 6EFA/7079; hinge 689C/6869
+  Source: airbus_a321_autocad_sharklet_2014_07
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/A321_sharklet-001-Jul-2014.zip
+  Document title: Airbus A321 sharklet AutoCAD 3-view aircraft drawing
+  Revision date: 2014-07
+  Page or section: LE 7382/744D; TE 834D/83B3; hinge 6FFA/6FE5
   Formula: atan2(quarter-chord longitudinal offset,span/2)
   Inputs: span=12.45 m; root=3.726892 m; tip=1.227874 m
-  Applicability: A321-200 wing-tip-fence external horizontal tail
+  Applicability: A21N candidate; current A321neo ACAP independently publishes the same 12.45 m span
   Uncertainty: engineering bound +/-1 deg
   Notes: Direct LibreDWG JSON preserves the reviewed entities; values are engineering priors, not certified geometry.
 END FIELD
@@ -310,7 +308,7 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_wtf_2012_05
+  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -319,21 +317,21 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_wtf_2012_05
+  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
   Value: 0.480561
   Unit: nondimensional
   Status: inferred-with-uncertainty
-  Source: airbus_a321_autocad_wtf_2012_05
-  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A321_WTF-May-2012.zip
-  Document title: Airbus A321 wing-tip-fence AutoCAD 3-view aircraft drawing
-  Revision date: 2012-05
-  Page or section: LE 6EF9/7078; TE 6EFA/7079; hinge 689C/6869
+  Source: airbus_a321_autocad_sharklet_2014_07
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/A321_sharklet-001-Jul-2014.zip
+  Document title: Airbus A321 sharklet AutoCAD 3-view aircraft drawing
+  Revision date: 2014-07
+  Page or section: LE 7382/744D; TE 834D/83B3; hinge 6FFA/6FE5
   Formula: gross elevator trapezoid area divided by gross tail trapezoid area
   Inputs: reviewed tail edges and elevator hinge line
-  Applicability: A321-200 wing-tip-fence external horizontal tail
+  Applicability: A21N candidate; current A321neo ACAP independently publishes the same 12.45 m span
   Uncertainty: engineering bound +/-0.04
   Notes: Physical projected surface geometry only; not control-law authority or aerodynamic effectiveness.
 END FIELD
@@ -344,7 +342,7 @@ FIELD vertical_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_wtf_2012_05
+  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD vertical_tail.height
@@ -353,7 +351,7 @@ FIELD vertical_tail.height
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_wtf_2012_05
+  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD vertical_tail.mac
@@ -362,7 +360,7 @@ FIELD vertical_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_wtf_2012_05
+  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD vertical_tail.root_chord
@@ -371,7 +369,7 @@ FIELD vertical_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_wtf_2012_05
+  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD vertical_tail.tip_chord
@@ -380,7 +378,7 @@ FIELD vertical_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_wtf_2012_05
+  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD vertical_tail.taper_ratio
@@ -389,7 +387,7 @@ FIELD vertical_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_wtf_2012_05
+  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD vertical_tail.sweep
@@ -398,7 +396,7 @@ FIELD vertical_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_wtf_2012_05
+  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD vertical_tail.arm
@@ -407,7 +405,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_wtf_2012_05
+  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD vertical_tail.rudder_area_ratio
@@ -416,7 +414,7 @@ FIELD vertical_tail.rudder_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_wtf_2012_05
+  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 LEGACY PARAMETERS
@@ -426,31 +424,36 @@ LEGACY PARAMETERS
 SUBTYPE AND ENGINE DATABANK APPLICABILITY
 
 FIELD subtypes
-  Value: 8 unique certified subtype mapping(s)
+  Value: 11 unique certified subtype mapping(s)
   Status: certified-published
   Source: easa_a064_issue_62 | icao_eedb_issue_32
-  Page or section: Section 2 III.5; PDF pp.92-95 | Section 2 III.5; PDF p.92 | Section 2 III.5; PDF p.93
+  Page or section: Section 2 III.5; PDF p.93 | Section 2 III.5; PDF pp.93-95
   Applicability: Certified subtype applicability with query identifiers normalized to ICAO EEDB Issue 32.
-  Evidence inventory: docs/modeling/airbus-subtype-engine-mapping.tsv
+  Evidence inventory: docs/aircraft-data/airbus-subtype-engine-mapping.tsv
   Engine table: src/aerox/data/engines/engines.csv
   Mappings:
-    A321-111:
-      - CFM56-5B1
-      - CFM56-5B1/2
-    A321-112:
-      - CFM56-5B2
-    A321-131:
-      - V2530-A5
-    A321-211:
-      - CFM56-5B3/P
-      - CFM56-5B3/2P
-    A321-212:
-      - CFM56-5B1
-      - CFM56-5B1/2
-    A321-213:
-      - CFM56-5B2
-    A321-231:
-      - V2533-A5
-    A321-232:
-      - V2530-A5
+    A321-251N:
+      - LEAP-1A35A/35AX/33/33X/33B2/33B2X/32/32X/30
+    A321-251NX:
+      - LEAP-1A35A/35AX/33/33X/33B2/33B2X/32/32X/30
+    A321-252N:
+      - LEAP-1A35A/35AX/33/33X/33B2/33B2X/32/32X/30
+    A321-252NX:
+      - LEAP-1A35A/35AX/33/33X/33B2/33B2X/32/32X/30
+    A321-253N:
+      - LEAP-1A35A/35AX/33/33X/33B2/33B2X/32/32X/30
+    A321-253NX:
+      - LEAP-1A35A/35AX/33/33X/33B2/33B2X/32/32X/30
+    A321-271N:
+      - PW1133G-JM
+      - PW1133GA-JM
+    A321-271NX:
+      - PW1133G-JM
+      - PW1133GA-JM
+    A321-272N:
+      - PW1130G-JM
+    A321-272NX:
+      - PW1130G-JM
+    A321-253NY:
+      - LEAP-1A35A/35AX/33/33X/33B2/33B2X/32/32X/30
 END FIELD

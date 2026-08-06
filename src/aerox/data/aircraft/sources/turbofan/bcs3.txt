@@ -391,7 +391,7 @@ FIELD subtypes
   Source: easa_im_a570_issue_24 | icao_eedb_issue_32
   Page or section: Section 2 III.5; PDF p.20
   Applicability: Certified subtype applicability with query identifiers normalized to ICAO EEDB Issue 32.
-  Evidence inventory: docs/modeling/airbus-subtype-engine-mapping.tsv
+  Evidence inventory: docs/aircraft-data/airbus-subtype-engine-mapping.tsv
   Engine table: src/aerox/data/engines/engines.csv
   Mappings:
     BD-500-1A11:

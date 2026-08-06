@@ -470,7 +470,7 @@ FIELD subtypes
   Source: easa_a110_issue_17 | icao_eedb_issue_32
   Page or section: Section 1 III.1.3; PDF p.11 | Section 1 III.2.3; PDF p.12
   Applicability: Certified subtype applicability with query identifiers normalized to ICAO EEDB Issue 32.
-  Evidence inventory: docs/modeling/airbus-subtype-engine-mapping.tsv
+  Evidence inventory: docs/aircraft-data/airbus-subtype-engine-mapping.tsv
   Engine table: src/aerox/data/engines/engines.csv
   Mappings:
     A380-841:

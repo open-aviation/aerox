@@ -1,61 +1,61 @@
 AEROX AIRCRAFT SOURCE NOTES
-Aircraft: Boeing 767-400
-ICAO: B764
+Aircraft: Boeing 767-300
+ICAO: B763
 Last reviewed: 2026-08-06
 Source ledger: docs/modeling/sources.yml
 
 CERTIFICATION SCOPE
-  Model or family: 767-400ER
+  Model or family: -
   Authority: EASA
   Type certificate: EASA.IM.A.035
-  Applicability: Engine and weight variant remain unresolved; current legacy name omits ER.
+  Applicability: Current metadata mixes passenger, factory freighter, and BCF major-modification scopes.
 
 TYPE-CERTIFICATE AND LIMIT PARAMETERS
 
 FIELD certification.model
-  Value: 767-400ER
-  Status: certified-published
-  Source: easa_ima035_issue_11
-  Applicability: Engine and weight variant remain unresolved; current legacy name omits ER.
+  Value: null
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
 END FIELD
 
 FIELD certification.authority
   Value: EASA
   Status: certified-published
   Source: easa_ima035_issue_11
-  Applicability: Engine and weight variant remain unresolved; current legacy name omits ER.
+  Applicability: Current metadata mixes passenger, factory freighter, and BCF major-modification scopes.
 END FIELD
 
 FIELD certification.type_certificate
   Value: EASA.IM.A.035
   Status: certified-published
   Source: easa_ima035_issue_11
-  Applicability: Engine and weight variant remain unresolved; current legacy name omits ER.
+  Applicability: Current metadata mixes passenger, factory freighter, and BCF major-modification scopes.
 END FIELD
 
 FIELD certification.issue
   Value: 11
   Status: certified-published
   Source: easa_ima035_issue_11
-  Applicability: Engine and weight variant remain unresolved; current legacy name omits ER.
+  Applicability: Current metadata mixes passenger, factory freighter, and BCF major-modification scopes.
 END FIELD
 
 FIELD certification.issue_date
   Value: 2025-02-04
   Status: certified-published
   Source: easa_ima035_issue_11
-  Applicability: Engine and weight variant remain unresolved; current legacy name omits ER.
+  Applicability: Current metadata mixes passenger, factory freighter, and BCF major-modification scopes.
 END FIELD
 
 FIELD mtow
-  Value: 204120
+  Value: 186880
   Unit: kg
   Status: legacy-unverified
   Source: aerox_legacy_aircraft_database
 END FIELD
 
 FIELD mlw
-  Value: 158800
+  Value: 145100
   Unit: kg
   Status: legacy-unverified
   Source: aerox_legacy_aircraft_database
@@ -108,20 +108,20 @@ FIELD wing.area
 END FIELD
 
 FIELD wing.span
-  Value: 51.92
+  Value: 47.57
   Unit: m
   Status: manufacturer-published-planning
   Source: boeing_767_acap_rev_k_2024_12
   Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/767_REV_K.pdf
   Document title: 767 Airplane Characteristics for Airport Planning, D6-58328 Revision K
   Revision date: 2024-12-01
-  Page or section: Section 2.2.4, page 2-11
-  Inputs: 170 ft 4 in (51.92 m)
-  Applicability: 767-400ER external span
+  Page or section: Section 2.2.2, page 2-9
+  Inputs: 156 ft 1 in (47.57 m)
+  Applicability: 767-300/-300ER baseline external span
   Uncertainty: Published rounded conversion
   Previous value: 47.6 m
   Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
-  Notes: Strong correction candidate: 47.6 m belongs to the shorter-wing 767-200/-300 geometry.
+  Notes: Winglets, freighter, and conversions require explicit applicability.
 END FIELD
 
 FIELD wing.mac
@@ -151,7 +151,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_400_cad_3view
+  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_300_cad_3view
 END FIELD
 
 FIELD wing.tip_chord
@@ -160,7 +160,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_400_cad_3view
+  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_300_cad_3view
 END FIELD
 
 FIELD wing.taper_ratio
@@ -169,16 +169,16 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_400_cad_3view
+  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_300_cad_3view
 END FIELD
 
 FIELD wing.aspect_ratio
-  Value: 9.525394
+  Value: 7.99613
   Unit: nondimensional
   Status: legacy-unverified
   Source: boeing_767_acap_rev_k_2024_12 | aerox_legacy_aircraft_database
   Formula: span^2 / area
-  Inputs: span=51.92 m; area=283 m2
+  Inputs: span=47.57 m; area=283 m2
 END FIELD
 
 FIELD wing.dihedral
@@ -187,22 +187,22 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_400_cad_3view
+  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_300_cad_3view
 END FIELD
 
 FIELD horizontal_tail.area
-  Value: 77.039976
+  Value: 77.045385
   Unit: m2
   Status: inferred-with-uncertainty
-  Source: boeing_767_400_cad_3view
-  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7674.zip
-  Document title: Boeing 767-400ER 3-view CAD drawing
-  Page or section: CAD handles LE 2CBF; TE 2C6; tip 2DE/2DD
+  Source: boeing_767_300_cad_3view
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7673.zip
+  Document title: Boeing 767-300 3-view CAD drawing
+  Page or section: CAD handles LE BC; TE BF; tip D4/D3
   Formula: span * (root_chord + tip_chord) / 2
-  Inputs: span=18.620000 m; root=6.619970 m; tip=1.655000 m
-  Applicability: Gross centerline-reference straight-edge horizontal stabilizer; curved root and tip transitions excluded
+  Inputs: span=18.620000 m; root=6.620440 m; tip=1.655112 m
+  Applicability: Gross centerline-reference straight-edge horizontal stabilizer; baseline non-winglet drawing
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-2.79 m2; sweep +/-1 deg
-  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/modeling/boeing-cad-geometry-measurements.csv; Geometry agrees with B762/B763 within CAD precision; not certified.
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/aircraft-data/boeing-cad-geometry-measurements.csv; Geometry agrees with B762 within CAD precision after a rigid transformation; not certified.
 END FIELD
 
 FIELD horizontal_tail.span
@@ -213,80 +213,80 @@ FIELD horizontal_tail.span
   Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/767_REV_K.pdf
   Document title: 767 Airplane Characteristics for Airport Planning, D6-58328 Revision K
   Revision date: 2024-12-01
-  Page or section: Section 2.2.4, page 2-11
+  Page or section: Section 2.2.2, page 2-9
   Inputs: 61 ft 1 in (18.62 m)
-  Applicability: 767-400ER horizontal-tail overall span
+  Applicability: 767-300/-300ER horizontal-tail overall span
   Uncertainty: Published rounded conversion
 END FIELD
 
 FIELD horizontal_tail.mac
-  Value: 4.633981
+  Value: 4.634308
   Unit: m
   Status: inferred-with-uncertainty
-  Source: boeing_767_400_cad_3view
-  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7674.zip
-  Document title: Boeing 767-400ER 3-view CAD drawing
-  Page or section: CAD handles LE 2CBF; TE 2C6; tip 2DE/2DD
+  Source: boeing_767_300_cad_3view
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7673.zip
+  Document title: Boeing 767-300 3-view CAD drawing
+  Page or section: CAD handles LE BC; TE BF; tip D4/D3
   Formula: (2/3) * root_chord * (1 + taper + taper^2) / (1 + taper)
-  Inputs: span=18.620000 m; root=6.619970 m; tip=1.655000 m
-  Applicability: Gross centerline-reference straight-edge horizontal stabilizer; curved root and tip transitions excluded
+  Inputs: span=18.620000 m; root=6.620440 m; tip=1.655112 m
+  Applicability: Gross centerline-reference straight-edge horizontal stabilizer; baseline non-winglet drawing
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-2.79 m2; sweep +/-1 deg
-  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/modeling/boeing-cad-geometry-measurements.csv; Geometry agrees with B762/B763 within CAD precision; not certified.
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/aircraft-data/boeing-cad-geometry-measurements.csv; Geometry agrees with B762 within CAD precision after a rigid transformation; not certified.
 END FIELD
 
 FIELD horizontal_tail.root_chord
-  Value: 6.61997
+  Value: 6.62044
   Unit: m
   Status: inferred-with-uncertainty
-  Source: boeing_767_400_cad_3view
-  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7674.zip
-  Document title: Boeing 767-400ER 3-view CAD drawing
-  Page or section: CAD handles LE 2CBF; TE 2C6; tip 2DE/2DD
+  Source: boeing_767_300_cad_3view
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7673.zip
+  Document title: Boeing 767-300 3-view CAD drawing
+  Page or section: CAD handles LE BC; TE BF; tip D4/D3
   Formula: straight trailing-edge minus leading-edge extrapolation at the aircraft centerline
-  Inputs: span=18.620000 m; root=6.619970 m; tip=1.655000 m
-  Applicability: Gross centerline-reference straight-edge horizontal stabilizer; curved root and tip transitions excluded
+  Inputs: span=18.620000 m; root=6.620440 m; tip=1.655112 m
+  Applicability: Gross centerline-reference straight-edge horizontal stabilizer; baseline non-winglet drawing
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-2.79 m2; sweep +/-1 deg
-  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/modeling/boeing-cad-geometry-measurements.csv; Geometry agrees with B762/B763 within CAD precision; not certified.
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/aircraft-data/boeing-cad-geometry-measurements.csv; Geometry agrees with B762 within CAD precision after a rigid transformation; not certified.
 END FIELD
 
 FIELD horizontal_tail.tip_chord
-  Value: 1.655
+  Value: 1.655112
   Unit: m
   Status: inferred-with-uncertainty
-  Source: boeing_767_400_cad_3view
-  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7674.zip
-  Document title: Boeing 767-400ER 3-view CAD drawing
-  Page or section: CAD handles LE 2CBF; TE 2C6; tip 2DE/2DD
+  Source: boeing_767_300_cad_3view
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7673.zip
+  Document title: Boeing 767-300 3-view CAD drawing
+  Page or section: CAD handles LE BC; TE BF; tip D4/D3
   Formula: straight trailing-edge minus leading-edge extrapolation at the published semispan
-  Inputs: span=18.620000 m; root=6.619970 m; tip=1.655000 m
-  Applicability: Gross centerline-reference straight-edge horizontal stabilizer; curved root and tip transitions excluded
+  Inputs: span=18.620000 m; root=6.620440 m; tip=1.655112 m
+  Applicability: Gross centerline-reference straight-edge horizontal stabilizer; baseline non-winglet drawing
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-2.79 m2; sweep +/-1 deg
-  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/modeling/boeing-cad-geometry-measurements.csv; Geometry agrees with B762/B763 within CAD precision; not certified.
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/aircraft-data/boeing-cad-geometry-measurements.csv; Geometry agrees with B762 within CAD precision after a rigid transformation; not certified.
 END FIELD
 
 FIELD horizontal_tail.taper_ratio
-  Value: 0.250001
+  Value: 0.25
   Unit: nondimensional
   Status: inferred-with-uncertainty
-  Source: boeing_767_400_cad_3view
+  Source: boeing_767_300_cad_3view
   Formula: tip_chord / root_chord
-  Inputs: tip_chord=1.655 m; root_chord=6.61997 m
-  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_400_cad_3view
+  Inputs: tip_chord=1.655112 m; root_chord=6.62044 m
+  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_300_cad_3view
 END FIELD
 
 FIELD horizontal_tail.sweep
-  Value: 32.998846
+  Value: 33.000011
   Unit: deg
   Status: inferred-with-uncertainty
-  Source: boeing_767_400_cad_3view
-  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7674.zip
-  Document title: Boeing 767-400ER 3-view CAD drawing
-  Page or section: CAD handles LE 2CBF; TE 2C6; tip 2DE/2DD
+  Source: boeing_767_300_cad_3view
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7673.zip
+  Document title: Boeing 767-300 3-view CAD drawing
+  Page or section: CAD handles LE BC; TE BF; tip D4/D3
   Formula: atan2(quarter_chord_tip - quarter_chord_root, span / 2)
-  Inputs: span=18.620000 m; root=6.619970 m; tip=1.655000 m
-  Applicability: Gross centerline-reference straight-edge horizontal stabilizer; curved root and tip transitions excluded
+  Inputs: span=18.620000 m; root=6.620440 m; tip=1.655112 m
+  Applicability: Gross centerline-reference straight-edge horizontal stabilizer; baseline non-winglet drawing
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-2.79 m2; sweep +/-1 deg
-  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/modeling/boeing-cad-geometry-measurements.csv; Geometry agrees with B762/B763 within CAD precision; not certified.
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/aircraft-data/boeing-cad-geometry-measurements.csv; Geometry agrees with B762 within CAD precision after a rigid transformation; not certified.
 END FIELD
 
 FIELD horizontal_tail.dihedral
@@ -295,7 +295,7 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_400_cad_3view
+  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_300_cad_3view
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -304,7 +304,7 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_400_cad_3view
+  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_300_cad_3view
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
@@ -313,7 +313,7 @@ FIELD horizontal_tail.elevator_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_400_cad_3view
+  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_300_cad_3view
 END FIELD
 
 FIELD vertical_tail.area
@@ -322,7 +322,7 @@ FIELD vertical_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_400_cad_3view
+  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_300_cad_3view
 END FIELD
 
 FIELD vertical_tail.height
@@ -331,7 +331,7 @@ FIELD vertical_tail.height
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_400_cad_3view
+  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_300_cad_3view
 END FIELD
 
 FIELD vertical_tail.mac
@@ -340,7 +340,7 @@ FIELD vertical_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_400_cad_3view
+  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_300_cad_3view
 END FIELD
 
 FIELD vertical_tail.root_chord
@@ -349,7 +349,7 @@ FIELD vertical_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_400_cad_3view
+  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_300_cad_3view
 END FIELD
 
 FIELD vertical_tail.tip_chord
@@ -358,7 +358,7 @@ FIELD vertical_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_400_cad_3view
+  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_300_cad_3view
 END FIELD
 
 FIELD vertical_tail.taper_ratio
@@ -367,7 +367,7 @@ FIELD vertical_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_400_cad_3view
+  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_300_cad_3view
 END FIELD
 
 FIELD vertical_tail.sweep
@@ -376,7 +376,7 @@ FIELD vertical_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_400_cad_3view
+  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_300_cad_3view
 END FIELD
 
 FIELD vertical_tail.arm
@@ -385,7 +385,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_400_cad_3view
+  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_300_cad_3view
 END FIELD
 
 FIELD vertical_tail.rudder_area_ratio
@@ -394,7 +394,7 @@ FIELD vertical_tail.rudder_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_400_cad_3view
+  Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_300_cad_3view
 END FIELD
 
 LEGACY PARAMETERS

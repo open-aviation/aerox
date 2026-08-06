@@ -578,7 +578,23 @@ def load_aircraft(icao: str, data_dir: Optional[Path] = None) -> Aircraft:
         data = yaml.safe_load(f)
 
     provenance = None
-    sidecar = Path(data_dir).parent / "provenance" / yaml_file.parent.name / f"{yaml_file.stem}.txt"
+    sidecar = (
+        Path(data_dir).parent
+        / "sources"
+        / yaml_file.parent.name
+        / f"{yaml_file.stem}.txt"
+    )
+    if not sidecar.exists():
+        # Compatibility for custom data directories created before the folder
+        # was renamed. Bundled data has only the canonical ``sources`` folder.
+        legacy_sidecar = (
+            Path(data_dir).parent
+            / "provenance"
+            / yaml_file.parent.name
+            / f"{yaml_file.stem}.txt"
+        )
+        if legacy_sidecar.exists():
+            sidecar = legacy_sidecar
     if sidecar.exists():
         provenance = parse_source_notes(sidecar.read_text(encoding="utf-8"))
 

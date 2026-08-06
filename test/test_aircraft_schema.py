@@ -22,26 +22,26 @@ from tools.migrate_aircraft_data import (
 from tools.update_aircraft_geometry import GEOMETRY_UNITS
 
 ROOT = Path("src/aerox/data/aircraft/yml")
-SOURCE_ROOT = Path("src/aerox/data/aircraft/provenance")
+SOURCE_ROOT = Path("src/aerox/data/aircraft/sources")
 FILES = sorted(ROOT.glob("*/*.yml"))
 RESEARCH_FILES = (
-    Path("docs/modeling/geometry-research-airbus-boeing.tsv"),
-    Path("docs/modeling/geometry-research-airbus-tail-batch.tsv"),
-    Path("docs/modeling/geometry-research-cad-batch-2.tsv"),
-    Path("docs/modeling/geometry-research-cad-batch-3.tsv"),
-    Path("docs/modeling/geometry-research-cad-batch-4.tsv"),
-    Path("docs/modeling/geometry-research-cad-batch-5.tsv"),
-    Path("docs/modeling/geometry-research-regional-business.tsv"),
-    Path("docs/modeling/geometry-research-ga-turboprop-military.tsv"),
+    Path("docs/aircraft-data/geometry-research-airbus-boeing.tsv"),
+    Path("docs/aircraft-data/geometry-research-airbus-tail-batch.tsv"),
+    Path("docs/aircraft-data/geometry-research-cad-batch-2.tsv"),
+    Path("docs/aircraft-data/geometry-research-cad-batch-3.tsv"),
+    Path("docs/aircraft-data/geometry-research-cad-batch-4.tsv"),
+    Path("docs/aircraft-data/geometry-research-cad-batch-5.tsv"),
+    Path("docs/aircraft-data/geometry-research-regional-business.tsv"),
+    Path("docs/aircraft-data/geometry-research-ga-turboprop-military.tsv"),
 )
 CAD_MEASUREMENT_FILES = (
-    Path("docs/modeling/airbus-cad-geometry-measurements.csv"),
-    Path("docs/modeling/airbus-cad-tail-direct-extraction.csv"),
-    Path("docs/modeling/airbus-cad-tail-batch-2.csv"),
-    Path("docs/modeling/boeing-cad-geometry-measurements.csv"),
-    Path("docs/modeling/boeing-cad-tail-direct-extraction.csv"),
-    Path("docs/modeling/airbus-cad-vertical-tail-batch-3.csv"),
-    Path("docs/modeling/boeing-cad-vertical-tail-batch-3.csv"),
+    Path("docs/aircraft-data/airbus-cad-geometry-measurements.csv"),
+    Path("docs/aircraft-data/airbus-cad-tail-direct-extraction.csv"),
+    Path("docs/aircraft-data/airbus-cad-tail-batch-2.csv"),
+    Path("docs/aircraft-data/boeing-cad-geometry-measurements.csv"),
+    Path("docs/aircraft-data/boeing-cad-tail-direct-extraction.csv"),
+    Path("docs/aircraft-data/airbus-cad-vertical-tail-batch-3.csv"),
+    Path("docs/aircraft-data/boeing-cad-vertical-tail-batch-3.csv"),
 )
 
 
@@ -51,6 +51,31 @@ def records():
         (path, yaml.safe_load(path.read_text(encoding="utf-8")))
         for path in FILES
     ]
+
+
+def test_aircraft_source_notes_use_the_simple_sources_folder():
+    assert not Path("src/aerox/data/aircraft/provenance").exists()
+    files = sorted(SOURCE_ROOT.glob("*/*.txt"))
+    assert len(files) == len(FILES) == 144
+
+
+def test_loader_keeps_legacy_custom_provenance_folder_compatibility(tmp_path: Path):
+    yaml_root = tmp_path / "aircraft/yml"
+    yaml_target = yaml_root / "turbofan/a320.yml"
+    yaml_target.parent.mkdir(parents=True)
+    yaml_target.write_text(
+        (ROOT / "turbofan/a320.yml").read_text(encoding="utf-8"),
+        encoding="utf-8",
+    )
+    legacy_source = tmp_path / "aircraft/provenance/turbofan/a320.txt"
+    legacy_source.parent.mkdir(parents=True)
+    legacy_source.write_text(
+        (SOURCE_ROOT / "turbofan/a320.txt").read_text(encoding="utf-8"),
+        encoding="utf-8",
+    )
+
+    aircraft = load_aircraft("A320", yaml_root)
+    assert aircraft.certification.source_id == "easa_a064_issue_62"
 
 
 def test_all_aircraft_use_the_original_compact_parameter_layout(records):
@@ -97,7 +122,7 @@ def test_only_compact_certification_and_geometry_extensions_were_added(records):
         ]
 
 
-def test_subtypes_use_exact_uniform_structure_edb_codes_and_provenance(records):
+def test_subtypes_use_exact_uniform_structure_edb_codes_and_sources(records):
     ledger = yaml.safe_load(
         Path("docs/modeling/sources.yml").read_text(encoding="utf-8")
     )
@@ -165,7 +190,7 @@ def test_every_aircraft_has_one_short_plain_text_source_note(records):
         assert len(text.splitlines()) < 600
 
 
-def test_every_geometry_field_has_matching_plain_text_provenance(records):
+def test_every_geometry_field_has_matching_plain_text_sources(records):
     ledger = yaml.safe_load(
         Path("docs/modeling/sources.yml").read_text(encoding="utf-8")
     )
@@ -268,7 +293,7 @@ def test_subtype_updater_is_idempotent():
     assert "changed=0" in result.stdout
 
 
-def test_pc24_manufacturer_tail_span_is_adopted_with_exact_provenance():
+def test_pc24_manufacturer_tail_span_has_exact_sources():
     pc24 = load_aircraft("PC24")
     assert pc24.horizontal_tail.span == pytest.approx(6.8)
     notes = parse_source_notes(
@@ -293,7 +318,7 @@ def test_cad_measurement_inventories_use_stable_ledger_source_ids():
 
 
 def test_cad_archive_inventory_covers_every_stored_manufacturer_drawing():
-    path = Path("docs/modeling/cad-archive-inventory.csv")
+    path = Path("docs/aircraft-data/cad-archive-inventory.csv")
     with path.open(encoding="utf-8", newline="") as stream:
         rows = list(csv.DictReader(stream))
     assert len(rows) == 50
@@ -313,7 +338,7 @@ def test_cad_archive_inventory_covers_every_stored_manufacturer_drawing():
 
 
 def test_cad_evidence_inventory_preserves_unmapped_and_rejected_observations():
-    path = Path("docs/modeling/cad-evidence-inventory.csv")
+    path = Path("docs/aircraft-data/cad-evidence-inventory.csv")
     with path.open(encoding="utf-8", newline="") as stream:
         rows = list(csv.DictReader(stream))
     assert len(rows) >= 200
@@ -335,7 +360,7 @@ def test_secondary_geometry_evidence_uses_stable_source_ids():
         Path("docs/modeling/sources.yml").read_text(encoding="utf-8")
     )
     source_ids = {source["id"] for source in ledger["sources"]}
-    with Path("docs/modeling/manufacturer-geometry-secondary-evidence.csv").open(
+    with Path("docs/aircraft-data/manufacturer-geometry-secondary-evidence.csv").open(
         encoding="utf-8", newline=""
     ) as stream:
         rows = list(csv.DictReader(stream))
@@ -348,8 +373,8 @@ def test_cad_inventory_generator_is_idempotent():
     before = {
         path: path.read_bytes()
         for path in (
-            Path("docs/modeling/cad-archive-inventory.csv"),
-            Path("docs/modeling/cad-evidence-inventory.csv"),
+            Path("docs/aircraft-data/cad-archive-inventory.csv"),
+            Path("docs/aircraft-data/cad-evidence-inventory.csv"),
         )
     }
     result = subprocess.run(
@@ -585,7 +610,7 @@ def test_web_editor_preserves_compact_certification_fields(
     assert saved["minimum_weight"] == document["minimum_weight"]
 
 
-def test_web_editor_updates_geometry_provenance_and_derived_values(
+def test_web_editor_updates_geometry_sources_and_derived_values(
     records, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ):
     from tools import web_editor
@@ -595,7 +620,7 @@ def test_web_editor_updates_geometry_provenance_and_derived_values(
     target = yaml_root / "turbofan/a320.yml"
     target.parent.mkdir(parents=True)
     target.write_text(source_path.read_text(encoding="utf-8"), encoding="utf-8")
-    sidecar = tmp_path / "aircraft/provenance/turbofan/a320.txt"
+    sidecar = tmp_path / "aircraft/sources/turbofan/a320.txt"
     sidecar.parent.mkdir(parents=True)
     sidecar.write_text(
         (SOURCE_ROOT / "turbofan/a320.txt").read_text(encoding="utf-8"),

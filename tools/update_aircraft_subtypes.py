@@ -12,7 +12,6 @@ import argparse
 import csv
 import io
 from collections import OrderedDict
-from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
 
@@ -21,7 +20,7 @@ import yaml
 try:
     from migrate_aircraft_data import (
         AIRCRAFT_ROOT,
-        PROVENANCE_ROOT,
+        SOURCES_ROOT,
         dump_document,
         normalize_bundle,
         validate_simple,
@@ -29,7 +28,7 @@ try:
 except ModuleNotFoundError:  # package-style import used by tests
     from tools.migrate_aircraft_data import (
         AIRCRAFT_ROOT,
-        PROVENANCE_ROOT,
+        SOURCES_ROOT,
         dump_document,
         normalize_bundle,
         validate_simple,
@@ -38,7 +37,7 @@ except ModuleNotFoundError:  # package-style import used by tests
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 SOURCE_LEDGER = PROJECT_ROOT / "docs/modeling/sources.yml"
 DEFAULT_RESEARCH = (
-    PROJECT_ROOT / "docs/modeling/airbus-subtype-engine-mapping.tsv",
+    PROJECT_ROOT / "docs/aircraft-data/airbus-subtype-engine-mapping.tsv",
 )
 ENGINE_TABLE = PROJECT_ROOT / "src/aerox/data/engines/engines.csv"
 OLD_SECTION_MARKER = "MODEL AND ENGINE APPLICABILITY\n"
@@ -113,7 +112,7 @@ def group_mappings(rows: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]
     }
 
 
-def render_provenance(old_text: str, rows: list[dict[str, Any]], mapping: Any) -> str:
+def render_sources(old_text: str, rows: list[dict[str, Any]], mapping: Any) -> str:
     """Append a compact human-readable source block, replacing an old block."""
 
     base = old_text.split(OLD_SECTION_MARKER, 1)[0]
@@ -197,10 +196,10 @@ def main() -> int:
         if issues:
             raise ValueError(f"{path}: " + "; ".join(issues))
         rendered = dump_document(document)
-        sidecar_path = PROVENANCE_ROOT / path.parent.name / f"{path.stem}.txt"
+        sidecar_path = SOURCES_ROOT / path.parent.name / f"{path.stem}.txt"
         old_sidecar = sidecar_path.read_text(encoding="utf-8")
         aircraft_rows = [row for row in rows if row["icao"] == icao]
-        sidecar = render_provenance(old_sidecar, aircraft_rows, mapping)
+        sidecar = render_sources(old_sidecar, aircraft_rows, mapping)
         if rendered != original or sidecar != old_sidecar:
             changed.append((path, rendered, sidecar_path, sidecar))
 

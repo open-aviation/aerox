@@ -24,7 +24,7 @@ where = ["src"]
 aerox = [
     "data/aircraft/*.csv",
     "data/aircraft/yml/*/*.yml",
-    "data/aircraft/provenance/*/*.txt",
+    "data/aircraft/sources/*/*.txt",
     "data/engines/*.csv",
     "data/engines/*.xlsx",
     "data/engines/*.txt",

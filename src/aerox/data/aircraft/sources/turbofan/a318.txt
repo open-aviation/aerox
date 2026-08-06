@@ -1,6 +1,6 @@
 AEROX AIRCRAFT SOURCE NOTES
-Aircraft: Airbus A320 Neo
-ICAO: A20N
+Aircraft: Airbus A318
+ICAO: A318
 Last reviewed: 2026-08-06
 Source ledger: docs/modeling/sources.yml
 
@@ -8,7 +8,7 @@ CERTIFICATION SCOPE
   Model or family: -
   Authority: EASA
   Type certificate: EASA.A.064
-  Applicability: Engine and certified model are not established by the current family-level record.
+  Applicability: The record does not establish the certified model or engine option.
 
 TYPE-CERTIFICATE AND LIMIT PARAMETERS
 
@@ -23,39 +23,39 @@ FIELD certification.authority
   Value: EASA
   Status: certified-published
   Source: easa_a064_issue_62
-  Applicability: Engine and certified model are not established by the current family-level record.
+  Applicability: The record does not establish the certified model or engine option.
 END FIELD
 
 FIELD certification.type_certificate
   Value: EASA.A.064
   Status: certified-published
   Source: easa_a064_issue_62
-  Applicability: Engine and certified model are not established by the current family-level record.
+  Applicability: The record does not establish the certified model or engine option.
 END FIELD
 
 FIELD certification.issue
   Value: 62
   Status: certified-published
   Source: easa_a064_issue_62
-  Applicability: Engine and certified model are not established by the current family-level record.
+  Applicability: The record does not establish the certified model or engine option.
 END FIELD
 
 FIELD certification.issue_date
   Value: 2026-06-26
   Status: certified-published
   Source: easa_a064_issue_62
-  Applicability: Engine and certified model are not established by the current family-level record.
+  Applicability: The record does not establish the certified model or engine option.
 END FIELD
 
 FIELD mtow
-  Value: 79000
+  Value: 59000
   Unit: kg
   Status: legacy-unverified
   Source: aerox_legacy_aircraft_database
 END FIELD
 
 FIELD mlw
-  Value: 67400
+  Value: 57500
   Unit: kg
   Status: legacy-unverified
   Source: aerox_legacy_aircraft_database
@@ -101,25 +101,25 @@ END FIELD
 WING AND TAIL GEOMETRY
 
 FIELD wing.area
-  Value: 124
+  Value: 122
   Unit: m2
   Status: legacy-unverified
   Source: aerox_legacy_aircraft_database
 END FIELD
 
 FIELD wing.span
-  Value: 35.8
+  Value: 34.1
   Unit: m
   Status: manufacturer-published-planning
-  Source: airbus_a320_acap_2026_07
-  Source URL: https://mediaassets.airbus.com/pm_38_916_916266-iujedqawwy.pdf?fileName=aca32001-jul-2026-2.pdf
-  Document title: A320 Aircraft Characteristics - Airport and Maintenance Planning, Revision 46
+  Source: airbus_a318_acap_2026_07
+  Source URL: https://mediaassets.airbus.com/pm_38_916_916233-ndc78dwuma.pdf?fileName=aca31801-jul-2026.pdf
+  Document title: A318 Aircraft Characteristics - Airport and Maintenance Planning, Revision 28
   Revision date: 2026-07-01
-  Page or section: 2-2-0 Figure 991-004-A01, Sharklet, sheet 3/page 4
-  Inputs: 35.80 m drawing dimension
-  Applicability: A320neo/A320-200 sharklet external span
+  Page or section: 2-2-0 Figure 991-001-A01, Wing Tip Fence, sheet 1/page 2
+  Inputs: 34.10 m drawing dimension
+  Applicability: A318-100 with wing-tip fences
   Uncertainty: Drawing dimension; planning publication
-  Notes: Neo model and installed wingtip configuration remain explicit.
+  Notes: Horizontal-tail span is separately dimensioned below.
 END FIELD
 
 FIELD wing.mac
@@ -130,13 +130,13 @@ FIELD wing.mac
   Source URL: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa064-airbus-a318-a319-a320-a321-single-aisle
   Document title: EASA Type Certificate Data Sheet EASA.A.064, Issue 62
   Revision date: 2026-06-26
-  Page or section: A320 series, TCDS page 48
+  Page or section: A318 series, TCDS page 174
   Inputs: 4.1935 m published mean aerodynamic chord
-  Applicability: A320neo certified models within the A320 series
+  Applicability: A318 series certified reference geometry
   Uncertainty: published exact value
-  Previous value: 4.29 m
+  Previous value: 4.19 m
   Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
-  Notes: Corrects the 4.29 m legacy value; sharklets do not change the TCDS MAC definition.
+  Notes: Corrects the rounded 4.19 m legacy value.
 END FIELD
 
 FIELD wing.sweep
@@ -147,7 +147,7 @@ FIELD wing.sweep
 END FIELD
 
 FIELD wing.t/c
-  Value: 0.119
+  Value: 0.12
   Unit: nondimensional
   Status: legacy-unverified
   Source: aerox_legacy_aircraft_database
@@ -159,7 +159,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a320_acap_2026_07 | airbus_a320_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD wing.tip_chord
@@ -168,7 +168,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a320_acap_2026_07 | airbus_a320_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD wing.taper_ratio
@@ -177,16 +177,16 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a320_acap_2026_07 | airbus_a320_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD wing.aspect_ratio
-  Value: 10.335806
+  Value: 9.53123
   Unit: nondimensional
   Status: legacy-unverified
-  Source: airbus_a320_acap_2026_07 | aerox_legacy_aircraft_database
+  Source: airbus_a318_acap_2026_07 | aerox_legacy_aircraft_database
   Formula: span^2 / area
-  Inputs: span=35.8 m; area=124 m2
+  Inputs: span=34.1 m; area=122 m2
 END FIELD
 
 FIELD wing.dihedral
@@ -195,21 +195,21 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a320_acap_2026_07 | airbus_a320_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD horizontal_tail.area
-  Value: 30.843421
+  Value: 30.843429
   Unit: m2
   Status: inferred-with-uncertainty
-  Source: airbus_a320_autocad_sharklet_2014_07
-  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/A320_sharklet-001-Jul-2014%20%281%29.zip
-  Document title: Airbus A320 sharklet AutoCAD 3-view aircraft drawing
-  Revision date: 2014-07
-  Page or section: LE 18E8/19B8; TE 6D65/6D67; hinge 5F0F/5EF9
+  Source: airbus_a318_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A318_WTF-May-2012.zip
+  Document title: Airbus A318 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: LE 63A/80A; TE 63B/80B; hinge 2AC3/2AAD
   Formula: span*(root_chord+tip_chord)/2
-  Inputs: span=12.45 m; root=3.726894 m; tip=1.227873 m
-  Applicability: A20N candidate; current A320neo ACAP independently publishes the same 12.45 m span
+  Inputs: span=12.45 m; root=3.726894 m; tip=1.227874 m
+  Applicability: A318-100 wing-tip-fence external horizontal tail
   Uncertainty: engineering bound +/-5 percent
   Notes: Direct LibreDWG JSON preserves the reviewed entities; values are engineering priors, not certified geometry.
 END FIELD
@@ -218,13 +218,13 @@ FIELD horizontal_tail.span
   Value: 12.45
   Unit: m
   Status: manufacturer-published-planning
-  Source: airbus_a320_acap_2026_07
-  Source URL: https://mediaassets.airbus.com/pm_38_916_916266-iujedqawwy.pdf?fileName=aca32001-jul-2026-2.pdf
-  Document title: A320 Aircraft Characteristics - Airport and Maintenance Planning, Revision 46
+  Source: airbus_a318_acap_2026_07
+  Source URL: https://mediaassets.airbus.com/pm_38_916_916233-ndc78dwuma.pdf?fileName=aca31801-jul-2026.pdf
+  Document title: A318 Aircraft Characteristics - Airport and Maintenance Planning, Revision 28
   Revision date: 2026-07-01
-  Page or section: 2-2-0 Figure 991-004-A01, Sharklet, sheet 3/page 4
+  Page or section: 2-2-0 Figure 991-001-A01, Wing Tip Fence, sheet 1/page 2
   Inputs: 12.45 m drawing dimension
-  Applicability: A320neo/A320-200 horizontal-stabilizer overall span
+  Applicability: A318-100 horizontal-stabilizer overall span
   Uncertainty: Drawing dimension; planning publication
 END FIELD
 
@@ -232,14 +232,14 @@ FIELD horizontal_tail.mac
   Value: 2.687454
   Unit: m
   Status: inferred-with-uncertainty
-  Source: airbus_a320_autocad_sharklet_2014_07
-  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/A320_sharklet-001-Jul-2014%20%281%29.zip
-  Document title: Airbus A320 sharklet AutoCAD 3-view aircraft drawing
-  Revision date: 2014-07
-  Page or section: LE 18E8/19B8; TE 6D65/6D67; hinge 5F0F/5EF9
+  Source: airbus_a318_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A318_WTF-May-2012.zip
+  Document title: Airbus A318 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: LE 63A/80A; TE 63B/80B; hinge 2AC3/2AAD
   Formula: (2/3)*root*(1+taper+taper^2)/(1+taper)
-  Inputs: root=3.726894 m; tip=1.227873 m
-  Applicability: A20N candidate; current A320neo ACAP independently publishes the same 12.45 m span
+  Inputs: root=3.726894 m; tip=1.227874 m
+  Applicability: A318-100 wing-tip-fence external horizontal tail
   Uncertainty: engineering bound +/-0.15 m
   Notes: Direct LibreDWG JSON preserves the reviewed entities; values are engineering priors, not certified geometry.
 END FIELD
@@ -248,30 +248,30 @@ FIELD horizontal_tail.root_chord
   Value: 3.726894
   Unit: m
   Status: inferred-with-uncertainty
-  Source: airbus_a320_autocad_sharklet_2014_07
-  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/A320_sharklet-001-Jul-2014%20%281%29.zip
-  Document title: Airbus A320 sharklet AutoCAD 3-view aircraft drawing
-  Revision date: 2014-07
-  Page or section: LE 18E8/19B8; TE 6D65/6D67; hinge 5F0F/5EF9
+  Source: airbus_a318_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A318_WTF-May-2012.zip
+  Document title: Airbus A318 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: LE 63A/80A; TE 63B/80B; hinge 2AC3/2AAD
   Formula: straight trailing-edge minus leading-edge extrapolation at aircraft centreline
   Inputs: published span=12.45 m
-  Applicability: A20N candidate; current A320neo ACAP independently publishes the same 12.45 m span
+  Applicability: A318-100 wing-tip-fence external horizontal tail
   Uncertainty: engineering bound +/-0.15 m
   Notes: Direct LibreDWG JSON preserves the reviewed entities; values are engineering priors, not certified geometry.
 END FIELD
 
 FIELD horizontal_tail.tip_chord
-  Value: 1.227873
+  Value: 1.227874
   Unit: m
   Status: inferred-with-uncertainty
-  Source: airbus_a320_autocad_sharklet_2014_07
-  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/A320_sharklet-001-Jul-2014%20%281%29.zip
-  Document title: Airbus A320 sharklet AutoCAD 3-view aircraft drawing
-  Revision date: 2014-07
-  Page or section: LE 18E8/19B8; TE 6D65/6D67; hinge 5F0F/5EF9
+  Source: airbus_a318_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A318_WTF-May-2012.zip
+  Document title: Airbus A318 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: LE 63A/80A; TE 63B/80B; hinge 2AC3/2AAD
   Formula: trailing edge minus leading edge at published semispan station
   Inputs: published span=12.45 m
-  Applicability: A20N candidate; current A320neo ACAP independently publishes the same 12.45 m span
+  Applicability: A318-100 wing-tip-fence external horizontal tail
   Uncertainty: engineering bound +/-0.15 m
   Notes: Direct LibreDWG JSON preserves the reviewed entities; values are engineering priors, not certified geometry.
 END FIELD
@@ -280,24 +280,24 @@ FIELD horizontal_tail.taper_ratio
   Value: 0.329463
   Unit: nondimensional
   Status: inferred-with-uncertainty
-  Source: airbus_a320_autocad_sharklet_2014_07
+  Source: airbus_a318_autocad_wtf_2012_05
   Formula: tip_chord / root_chord
-  Inputs: tip_chord=1.227873 m; root_chord=3.726894 m
-  Searched source: easa_a064_issue_62 | airbus_a320_acap_2026_07 | airbus_a320_autocad_sharklet_2014_07
+  Inputs: tip_chord=1.227874 m; root_chord=3.726894 m
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD horizontal_tail.sweep
-  Value: 27.945116
+  Value: 27.945078
   Unit: deg
   Status: inferred-with-uncertainty
-  Source: airbus_a320_autocad_sharklet_2014_07
-  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/A320_sharklet-001-Jul-2014%20%281%29.zip
-  Document title: Airbus A320 sharklet AutoCAD 3-view aircraft drawing
-  Revision date: 2014-07
-  Page or section: LE 18E8/19B8; TE 6D65/6D67; hinge 5F0F/5EF9
+  Source: airbus_a318_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A318_WTF-May-2012.zip
+  Document title: Airbus A318 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: LE 63A/80A; TE 63B/80B; hinge 2AC3/2AAD
   Formula: atan2(quarter-chord longitudinal offset,span/2)
-  Inputs: span=12.45 m; root=3.726894 m; tip=1.227873 m
-  Applicability: A20N candidate; current A320neo ACAP independently publishes the same 12.45 m span
+  Inputs: span=12.45 m; root=3.726894 m; tip=1.227874 m
+  Applicability: A318-100 wing-tip-fence external horizontal tail
   Uncertainty: engineering bound +/-1 deg
   Notes: Direct LibreDWG JSON preserves the reviewed entities; values are engineering priors, not certified geometry.
 END FIELD
@@ -308,7 +308,7 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a320_acap_2026_07 | airbus_a320_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -317,21 +317,21 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a320_acap_2026_07 | airbus_a320_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
-  Value: 0.48056
+  Value: 0.485646
   Unit: nondimensional
   Status: inferred-with-uncertainty
-  Source: airbus_a320_autocad_sharklet_2014_07
-  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/A320_sharklet-001-Jul-2014%20%281%29.zip
-  Document title: Airbus A320 sharklet AutoCAD 3-view aircraft drawing
-  Revision date: 2014-07
-  Page or section: LE 18E8/19B8; TE 6D65/6D67; hinge 5F0F/5EF9
+  Source: airbus_a318_autocad_wtf_2012_05
+  Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A318_WTF-May-2012.zip
+  Document title: Airbus A318 wing-tip-fence AutoCAD 3-view aircraft drawing
+  Revision date: 2012-05
+  Page or section: LE 63A/80A; TE 63B/80B; hinge 2AC3/2AAD
   Formula: gross elevator trapezoid area divided by gross tail trapezoid area
   Inputs: reviewed tail edges and elevator hinge line
-  Applicability: A20N candidate; current A320neo ACAP independently publishes the same 12.45 m span
+  Applicability: A318-100 wing-tip-fence external horizontal tail
   Uncertainty: engineering bound +/-0.04
   Notes: Physical projected surface geometry only; not control-law authority or aerodynamic effectiveness.
 END FIELD
@@ -342,7 +342,7 @@ FIELD vertical_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a320_acap_2026_07 | airbus_a320_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD vertical_tail.height
@@ -351,7 +351,7 @@ FIELD vertical_tail.height
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a320_acap_2026_07 | airbus_a320_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD vertical_tail.mac
@@ -360,7 +360,7 @@ FIELD vertical_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a320_acap_2026_07 | airbus_a320_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD vertical_tail.root_chord
@@ -369,7 +369,7 @@ FIELD vertical_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a320_acap_2026_07 | airbus_a320_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD vertical_tail.tip_chord
@@ -378,7 +378,7 @@ FIELD vertical_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a320_acap_2026_07 | airbus_a320_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD vertical_tail.taper_ratio
@@ -387,7 +387,7 @@ FIELD vertical_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a320_acap_2026_07 | airbus_a320_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD vertical_tail.sweep
@@ -396,7 +396,7 @@ FIELD vertical_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a320_acap_2026_07 | airbus_a320_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD vertical_tail.arm
@@ -405,7 +405,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a320_acap_2026_07 | airbus_a320_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 FIELD vertical_tail.rudder_area_ratio
@@ -414,7 +414,7 @@ FIELD vertical_tail.rudder_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a320_acap_2026_07 | airbus_a320_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_62 | airbus_a318_acap_2026_07 | airbus_a318_autocad_wtf_2012_05
 END FIELD
 
 LEGACY PARAMETERS
@@ -424,24 +424,20 @@ LEGACY PARAMETERS
 SUBTYPE AND ENGINE DATABANK APPLICABILITY
 
 FIELD subtypes
-  Value: 6 unique certified subtype mapping(s)
+  Value: 4 unique certified subtype mapping(s)
   Status: certified-published
   Source: easa_a064_issue_62 | icao_eedb_issue_32
-  Page or section: Section 1 III.5; PDF pp.38-40 | Section 1 III.5; PDF p.38
+  Page or section: Section 4 III.5; PDF p.169
   Applicability: Certified subtype applicability with query identifiers normalized to ICAO EEDB Issue 32.
-  Evidence inventory: docs/modeling/airbus-subtype-engine-mapping.tsv
+  Evidence inventory: docs/aircraft-data/airbus-subtype-engine-mapping.tsv
   Engine table: src/aerox/data/engines/engines.csv
   Mappings:
-    A320-251N:
-      - LEAP-1A26/26E1
-    A320-252N:
-      - LEAP-1A24/24E1/23
-    A320-253N:
-      - LEAP-1A29
-    A320-271N:
-      - PW1127G-JM
-    A320-272N:
-      - PW1124G1-JM
-    A320-273N:
-      - PW1129G-JM
+    A318-111:
+      - CFM56-5B8/P
+    A318-112:
+      - CFM56-5B9/P
+    A318-121:
+      - PW6122A
+    A318-122:
+      - PW6124A
 END FIELD

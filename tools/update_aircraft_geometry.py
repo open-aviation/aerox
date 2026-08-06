@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Apply researched wing/tail geometry and maintain plain-text provenance.
+"""Apply researched wing/tail geometry and maintain plain-text source notes.
 
 Research input is a tab-separated file with one field value per row.  The YAML
 files remain parameter-only; publication status, applicability, formulas, and
-uncertainty are rendered into their matching provenance text files.
+uncertainty are rendered into their matching source-note text files.
 """
 
 from __future__ import annotations
@@ -20,7 +20,7 @@ import yaml
 try:
     from migrate_aircraft_data import (
         AIRCRAFT_ROOT,
-        PROVENANCE_ROOT,
+        SOURCES_ROOT,
         dump_document,
         normalize_bundle,
         parse_old_provenance,
@@ -29,7 +29,7 @@ try:
 except ModuleNotFoundError:  # package-style import used by tests
     from tools.migrate_aircraft_data import (
         AIRCRAFT_ROOT,
-        PROVENANCE_ROOT,
+        SOURCES_ROOT,
         dump_document,
         normalize_bundle,
         parse_old_provenance,
@@ -38,7 +38,7 @@ except ModuleNotFoundError:  # package-style import used by tests
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 SOURCE_LEDGER = PROJECT_ROOT / "docs/modeling/sources.yml"
-DEFAULT_EXCLUSIONS = PROJECT_ROOT / "docs/modeling/geometry-runtime-exclusions.txt"
+DEFAULT_EXCLUSIONS = PROJECT_ROOT / "docs/aircraft-data/geometry-runtime-exclusions.txt"
 
 GEOMETRY_UNITS = {
     "wing.area": "m2",
@@ -438,7 +438,7 @@ def main() -> int:
         document = yaml.safe_load(original)
         document, _ = normalize_bundle(document, "")
         original_values = {field: _get(document, field) for field in GEOMETRY_UNITS}
-        sidecar_path = PROVENANCE_ROOT / path.parent.name / f"{path.stem}.txt"
+        sidecar_path = SOURCES_ROOT / path.parent.name / f"{path.stem}.txt"
         old_sidecar = sidecar_path.read_text(encoding="utf-8")
         metadata = {
             key: dict(value)

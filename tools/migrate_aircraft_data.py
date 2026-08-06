@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Restore and validate Aerox's compact aircraft YAML format.
 
-The aircraft files contain parameters only.  Short source notes for the few
-certification fields live in matching plain-text files under ``provenance``.
+The aircraft files contain parameters only. Short field-level source notes
+live in matching plain-text files under ``sources``.
 """
 
 from __future__ import annotations
@@ -17,7 +17,7 @@ import yaml
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 AIRCRAFT_ROOT = PROJECT_ROOT / "src/aerox/data/aircraft/yml"
-PROVENANCE_ROOT = PROJECT_ROOT / "src/aerox/data/aircraft/provenance"
+SOURCES_ROOT = PROJECT_ROOT / "src/aerox/data/aircraft/sources"
 
 SIMPLE_TEMPLATE: dict[str, Any] = {
     "aircraft": None,
@@ -594,11 +594,15 @@ def main() -> int:
         path for path in sorted(args.root.glob("*/*.yml"))
         if not selected or path.stem.upper() in selected
     ]
-    provenance_root = PROVENANCE_ROOT if args.root.resolve() == AIRCRAFT_ROOT.resolve() else args.root.parent / "provenance"
+    sources_root = (
+        SOURCES_ROOT
+        if args.root.resolve() == AIRCRAFT_ROOT.resolve()
+        else args.root.parent / "sources"
+    )
     for path in files:
         original = path.read_text(encoding="utf-8")
         document = yaml.safe_load(original)
-        sidecar_path = provenance_root / path.parent.name / f"{path.stem}.txt"
+        sidecar_path = sources_root / path.parent.name / f"{path.stem}.txt"
         old_sidecar = sidecar_path.read_text(encoding="utf-8") if sidecar_path.exists() else ""
         normalized, sidecar = normalize_bundle(document, old_sidecar)
         issues = validate_simple(normalized)

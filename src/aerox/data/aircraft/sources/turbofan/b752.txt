@@ -1,61 +1,61 @@
 AEROX AIRCRAFT SOURCE NOTES
-Aircraft: Boeing 757-300
-ICAO: B753
+Aircraft: Boeing 757-200
+ICAO: B752
 Last reviewed: 2026-08-06
 Source ledger: docs/modeling/sources.yml
 
 CERTIFICATION SCOPE
-  Model or family: 757-300
+  Model or family: -
   Authority: EASA
   Type certificate: EASA.IM.A.205
-  Applicability: Engine and weight variant remain unresolved.
+  Applicability: Current IATA metadata mixes passenger, freighter, and combi/conversion scopes.
 
 TYPE-CERTIFICATE AND LIMIT PARAMETERS
 
 FIELD certification.model
-  Value: 757-300
-  Status: certified-published
-  Source: easa_ima205_issue_06
-  Applicability: Engine and weight variant remain unresolved.
+  Value: null
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
 END FIELD
 
 FIELD certification.authority
   Value: EASA
   Status: certified-published
   Source: easa_ima205_issue_06
-  Applicability: Engine and weight variant remain unresolved.
+  Applicability: Current IATA metadata mixes passenger, freighter, and combi/conversion scopes.
 END FIELD
 
 FIELD certification.type_certificate
   Value: EASA.IM.A.205
   Status: certified-published
   Source: easa_ima205_issue_06
-  Applicability: Engine and weight variant remain unresolved.
+  Applicability: Current IATA metadata mixes passenger, freighter, and combi/conversion scopes.
 END FIELD
 
 FIELD certification.issue
   Value: 06
   Status: certified-published
   Source: easa_ima205_issue_06
-  Applicability: Engine and weight variant remain unresolved.
+  Applicability: Current IATA metadata mixes passenger, freighter, and combi/conversion scopes.
 END FIELD
 
 FIELD certification.issue_date
   Value: 2024-11-06
   Status: certified-published
   Source: easa_ima205_issue_06
-  Applicability: Engine and weight variant remain unresolved.
+  Applicability: Current IATA metadata mixes passenger, freighter, and combi/conversion scopes.
 END FIELD
 
 FIELD mtow
-  Value: 123600
+  Value: 115680
   Unit: kg
   Status: legacy-unverified
   Source: aerox_legacy_aircraft_database
 END FIELD
 
 FIELD mlw
-  Value: 101600
+  Value: 92200
   Unit: kg
   Status: legacy-unverified
   Source: aerox_legacy_aircraft_database
@@ -92,7 +92,7 @@ FIELD mmo
 END FIELD
 
 FIELD ceiling
-  Value: 41000
+  Value: 42000
   Unit: ft
   Status: legacy-unverified
   Source: aerox_legacy_aircraft_database
@@ -115,9 +115,9 @@ FIELD wing.span
   Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/757_Rev_H.pdf
   Document title: 757-200/-300 Airplane Characteristics for Airport Planning, D6-58327 Revision H
   Revision date: 2024-12-01
-  Page or section: Section 2.2.2, page 2-11
+  Page or section: Section 2.2.1, page 2-10
   Inputs: 124 ft 10 in (38.05 m)
-  Applicability: 757-300 baseline external span
+  Applicability: 757-200/-200PF baseline external span
   Uncertainty: Published rounded conversion
   Previous value: 38.1 m
   Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
@@ -144,7 +144,7 @@ FIELD wing.t/c
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_200_cad_3view
 END FIELD
 
 FIELD wing.root_chord
@@ -153,7 +153,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_200_cad_3view
 END FIELD
 
 FIELD wing.tip_chord
@@ -162,7 +162,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_200_cad_3view
 END FIELD
 
 FIELD wing.taper_ratio
@@ -171,7 +171,7 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_200_cad_3view
 END FIELD
 
 FIELD wing.aspect_ratio
@@ -189,22 +189,22 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_200_cad_3view
 END FIELD
 
 FIELD horizontal_tail.area
-  Value: 37.985774
+  Value: 37.985014
   Unit: m2
   Status: inferred-with-uncertainty
-  Source: boeing_757_300_cad_3view
-  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7573.zip
-  Document title: Boeing 757-300 3-view CAD drawing
-  Page or section: CAD handles LE 680; TE 6EF; tip 684/683
+  Source: boeing_757_200_cad_3view
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7572.zip
+  Document title: Boeing 757-200 3-view CAD drawing
+  Page or section: CAD handles LE C64; TE C66; tip C69/C68
   Formula: span * (root_chord + tip_chord) / 2
-  Inputs: span=15.210000 m; root=3.555748 m; tip=1.439094 m
-  Applicability: Gross centerline-reference straight-edge horizontal stabilizer; 757-300 drawing
+  Inputs: span=15.210000 m; root=3.555697 m; tip=1.439045 m
+  Applicability: Gross centerline-reference straight-edge horizontal stabilizer; 757-200 baseline drawing
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-2.28 m2; sweep +/-1 deg
-  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/modeling/boeing-cad-geometry-measurements.csv; Geometry agrees with B752 within CAD precision after a rigid translation; not certified.
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/aircraft-data/boeing-cad-geometry-measurements.csv; Span normalized to the existing 15.21 m planning dimension; not certified.
 END FIELD
 
 FIELD horizontal_tail.span
@@ -215,80 +215,80 @@ FIELD horizontal_tail.span
   Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/757_Rev_H.pdf
   Document title: 757-200/-300 Airplane Characteristics for Airport Planning, D6-58327 Revision H
   Revision date: 2024-12-01
-  Page or section: Section 2.2.2, page 2-11
+  Page or section: Section 2.2.1, page 2-10
   Inputs: 49 ft 11 in (15.21 m)
-  Applicability: 757-300 horizontal-tail overall span
+  Applicability: 757-200/-200PF horizontal-tail overall span
   Uncertainty: Published rounded conversion
 END FIELD
 
 FIELD horizontal_tail.mac
-  Value: 2.646916
+  Value: 2.646869
   Unit: m
   Status: inferred-with-uncertainty
-  Source: boeing_757_300_cad_3view
-  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7573.zip
-  Document title: Boeing 757-300 3-view CAD drawing
-  Page or section: CAD handles LE 680; TE 6EF; tip 684/683
+  Source: boeing_757_200_cad_3view
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7572.zip
+  Document title: Boeing 757-200 3-view CAD drawing
+  Page or section: CAD handles LE C64; TE C66; tip C69/C68
   Formula: (2/3) * root_chord * (1 + taper + taper^2) / (1 + taper)
-  Inputs: span=15.210000 m; root=3.555748 m; tip=1.439094 m
-  Applicability: Gross centerline-reference straight-edge horizontal stabilizer; 757-300 drawing
+  Inputs: span=15.210000 m; root=3.555697 m; tip=1.439045 m
+  Applicability: Gross centerline-reference straight-edge horizontal stabilizer; 757-200 baseline drawing
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-2.28 m2; sweep +/-1 deg
-  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/modeling/boeing-cad-geometry-measurements.csv; Geometry agrees with B752 within CAD precision after a rigid translation; not certified.
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/aircraft-data/boeing-cad-geometry-measurements.csv; Span normalized to the existing 15.21 m planning dimension; not certified.
 END FIELD
 
 FIELD horizontal_tail.root_chord
-  Value: 3.555748
+  Value: 3.555697
   Unit: m
   Status: inferred-with-uncertainty
-  Source: boeing_757_300_cad_3view
-  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7573.zip
-  Document title: Boeing 757-300 3-view CAD drawing
-  Page or section: CAD handles LE 680; TE 6EF; tip 684/683
+  Source: boeing_757_200_cad_3view
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7572.zip
+  Document title: Boeing 757-200 3-view CAD drawing
+  Page or section: CAD handles LE C64; TE C66; tip C69/C68
   Formula: straight trailing-edge minus leading-edge extrapolation at the aircraft centerline
-  Inputs: span=15.210000 m; root=3.555748 m; tip=1.439094 m
-  Applicability: Gross centerline-reference straight-edge horizontal stabilizer; 757-300 drawing
+  Inputs: span=15.210000 m; root=3.555697 m; tip=1.439045 m
+  Applicability: Gross centerline-reference straight-edge horizontal stabilizer; 757-200 baseline drawing
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-2.28 m2; sweep +/-1 deg
-  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/modeling/boeing-cad-geometry-measurements.csv; Geometry agrees with B752 within CAD precision after a rigid translation; not certified.
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/aircraft-data/boeing-cad-geometry-measurements.csv; Span normalized to the existing 15.21 m planning dimension; not certified.
 END FIELD
 
 FIELD horizontal_tail.tip_chord
-  Value: 1.439094
+  Value: 1.439045
   Unit: m
   Status: inferred-with-uncertainty
-  Source: boeing_757_300_cad_3view
-  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7573.zip
-  Document title: Boeing 757-300 3-view CAD drawing
-  Page or section: CAD handles LE 680; TE 6EF; tip 684/683
+  Source: boeing_757_200_cad_3view
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7572.zip
+  Document title: Boeing 757-200 3-view CAD drawing
+  Page or section: CAD handles LE C64; TE C66; tip C69/C68
   Formula: straight trailing-edge minus leading-edge extrapolation at the published semispan
-  Inputs: span=15.210000 m; root=3.555748 m; tip=1.439094 m
-  Applicability: Gross centerline-reference straight-edge horizontal stabilizer; 757-300 drawing
+  Inputs: span=15.210000 m; root=3.555697 m; tip=1.439045 m
+  Applicability: Gross centerline-reference straight-edge horizontal stabilizer; 757-200 baseline drawing
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-2.28 m2; sweep +/-1 deg
-  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/modeling/boeing-cad-geometry-measurements.csv; Geometry agrees with B752 within CAD precision after a rigid translation; not certified.
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/aircraft-data/boeing-cad-geometry-measurements.csv; Span normalized to the existing 15.21 m planning dimension; not certified.
 END FIELD
 
 FIELD horizontal_tail.taper_ratio
-  Value: 0.404723
+  Value: 0.404715
   Unit: nondimensional
   Status: inferred-with-uncertainty
-  Source: boeing_757_300_cad_3view
+  Source: boeing_757_200_cad_3view
   Formula: tip_chord / root_chord
-  Inputs: tip_chord=1.439094 m; root_chord=3.555748 m
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Inputs: tip_chord=1.439045 m; root_chord=3.555697 m
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_200_cad_3view
 END FIELD
 
 FIELD horizontal_tail.sweep
-  Value: 24.967498
+  Value: 24.967486
   Unit: deg
   Status: inferred-with-uncertainty
-  Source: boeing_757_300_cad_3view
-  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7573.zip
-  Document title: Boeing 757-300 3-view CAD drawing
-  Page or section: CAD handles LE 680; TE 6EF; tip 684/683
+  Source: boeing_757_200_cad_3view
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7572.zip
+  Document title: Boeing 757-200 3-view CAD drawing
+  Page or section: CAD handles LE C64; TE C66; tip C69/C68
   Formula: atan2(quarter_chord_tip - quarter_chord_root, span / 2)
-  Inputs: span=15.210000 m; root=3.555748 m; tip=1.439094 m
-  Applicability: Gross centerline-reference straight-edge horizontal stabilizer; 757-300 drawing
+  Inputs: span=15.210000 m; root=3.555697 m; tip=1.439045 m
+  Applicability: Gross centerline-reference straight-edge horizontal stabilizer; 757-200 baseline drawing
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-2.28 m2; sweep +/-1 deg
-  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/modeling/boeing-cad-geometry-measurements.csv; Geometry agrees with B752 within CAD precision after a rigid translation; not certified.
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/aircraft-data/boeing-cad-geometry-measurements.csv; Span normalized to the existing 15.21 m planning dimension; not certified.
 END FIELD
 
 FIELD horizontal_tail.dihedral
@@ -297,7 +297,7 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_200_cad_3view
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -306,7 +306,7 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_200_cad_3view
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
@@ -315,7 +315,7 @@ FIELD horizontal_tail.elevator_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_200_cad_3view
 END FIELD
 
 FIELD vertical_tail.area
@@ -324,7 +324,7 @@ FIELD vertical_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_200_cad_3view
 END FIELD
 
 FIELD vertical_tail.height
@@ -333,7 +333,7 @@ FIELD vertical_tail.height
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_200_cad_3view
 END FIELD
 
 FIELD vertical_tail.mac
@@ -342,7 +342,7 @@ FIELD vertical_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_200_cad_3view
 END FIELD
 
 FIELD vertical_tail.root_chord
@@ -351,7 +351,7 @@ FIELD vertical_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_200_cad_3view
 END FIELD
 
 FIELD vertical_tail.tip_chord
@@ -360,7 +360,7 @@ FIELD vertical_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_200_cad_3view
 END FIELD
 
 FIELD vertical_tail.taper_ratio
@@ -369,7 +369,7 @@ FIELD vertical_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_200_cad_3view
 END FIELD
 
 FIELD vertical_tail.sweep
@@ -378,7 +378,7 @@ FIELD vertical_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_200_cad_3view
 END FIELD
 
 FIELD vertical_tail.arm
@@ -387,7 +387,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_200_cad_3view
 END FIELD
 
 FIELD vertical_tail.rudder_area_ratio
@@ -396,7 +396,7 @@ FIELD vertical_tail.rudder_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_200_cad_3view
 END FIELD
 
 LEGACY PARAMETERS

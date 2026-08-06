@@ -487,7 +487,7 @@ FIELD subtypes
   Source: easa_a004_issue_69 | icao_eedb_issue_32
   Page or section: A330-300 III.5.1; PDF p.38
   Applicability: Certified subtype applicability with query identifiers normalized to ICAO EEDB Issue 32.
-  Evidence inventory: docs/modeling/airbus-subtype-engine-mapping.tsv
+  Evidence inventory: docs/aircraft-data/airbus-subtype-engine-mapping.tsv
   Engine table: src/aerox/data/engines/engines.csv
   Mappings:
     A330-301:

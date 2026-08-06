@@ -1480,7 +1480,7 @@ def save_aircraft_data(icao, data, engine_type=None):
 
     sidecar_path = (
         YAML_BASE_DIR.parent
-        / "provenance"
+        / "sources"
         / yaml_file.parent.name
         / f"{yaml_file.stem}.txt"
     )
