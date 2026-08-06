@@ -78,6 +78,24 @@ engine:
   - Trent 1000-K2
   - Trent 1000-J2
   - Trent 1000-A2
+  model_engine_options:
+  - model: 787-9
+    engines:
+    - Trent 1000-J2
+    - Trent 1000-A2
+    - Trent 1000-K2
+    - Trent 1000-D2
+    - Trent 1000-AE3
+    - Trent 1000-D3
+    - Trent 1000-J3
+    - Trent 1000-K3
+    - GEnx-1B74/75/P2
+    - GEnx-1B67/P2
+    - GEnx-1B70/75/P2
+    - GEnx-1B70
+    - GEnx-1B70/P1
+    - GEnx-1B70/P2
+    - GEnx-1B74/75/P1
 drag:
   cd0: 0.01859
   k: 0.04186

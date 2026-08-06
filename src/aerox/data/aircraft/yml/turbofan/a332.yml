@@ -79,6 +79,33 @@ engine:
   - PW4168A
   - PW4170
   - Trent 772
+  model_engine_options:
+  - model: A330-201
+    engines:
+    - General Electric CF6-80E1A2
+  - model: A330-202
+    engines:
+    - General Electric CF6-80E1A4
+    - General Electric CF6-80E1A4/B
+  - model: A330-203
+    engines:
+    - General Electric CF6-80E1A3
+  - model: A330-223
+    engines:
+    - Pratt & Whitney 4170
+    - Pratt & Whitney 4168A
+    - Pratt & Whitney 4168A-1D
+  - model: A330-223F
+    engines:
+    - Pratt & Whitney 4170
+    - Pratt & Whitney 4168A-1D
+  - model: A330-243
+    engines:
+    - Rolls Royce Trent 772B-60
+    - Rolls Royce Trent 772C-60
+  - model: A330-243F
+    engines:
+    - Rolls Royce Trent 772B-60
 drag:
   cd0: 0.0177
   k: 0.04307

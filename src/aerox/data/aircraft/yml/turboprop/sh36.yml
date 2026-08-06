@@ -75,6 +75,7 @@ engine:
   options:
   - P&W PT6A-65R turboprops
   - P&W PT6A-67R turboprops
+  model_engine_options: null
 drag:
   cd0: null
   k: null

@@ -74,6 +74,7 @@ engine:
   default: TFE731-3
   options:
   - TFE731-3
+  model_engine_options: null
 drag:
   cd0: 0.02132
   k: 0.05022

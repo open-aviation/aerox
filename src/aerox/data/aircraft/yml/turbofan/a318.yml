@@ -77,6 +77,19 @@ engine:
   - CFM56-5B9
   - PW6122A
   - PW6124A
+  model_engine_options:
+  - model: A318-111
+    engines:
+    - CFMI CFM 56-5B8/P
+  - model: A318-112
+    engines:
+    - CFMI CFM 56-5B9/P
+  - model: A318-121
+    engines:
+    - PW 6122A
+  - model: A318-122
+    engines:
+    - PW 6124A
 drag:
   cd0: 0.0211
   k: 0.04207

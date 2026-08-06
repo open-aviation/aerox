@@ -75,6 +75,7 @@ engine:
   options:
   - 2 x 180 HP Lycoming O-360-E1AD piston engines with 2 or 3 blade propellers
   - 2 x 180 HP Lycoming TO-360-E1A6D turbocharged piston engines with 2 blade propellers
+  model_engine_options: null
 drag:
   cd0: null
   k: null

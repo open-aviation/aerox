@@ -165,6 +165,14 @@ class Flaps:
 
 
 @dataclass
+class ModelEngineOption:
+    """Approved engines for one exact certified aircraft model designation."""
+
+    model: str
+    engines: List[str] = field(default_factory=list)
+
+
+@dataclass
 class Engine:
     """Engine configuration."""
 
@@ -173,6 +181,17 @@ class Engine:
     number: Optional[int] = None
     default: Optional[str] = None
     options: List[str] = field(default_factory=list)
+    model_engine_options: Optional[List[ModelEngineOption]] = None
+
+    def engines_for_model(self, model: str) -> List[str]:
+        """Return approved engines recorded for an exact certified model."""
+
+        if self.model_engine_options is None:
+            return []
+        for option in self.model_engine_options:
+            if option.model == model:
+                return list(option.engines)
+        return []
 
 
 @dataclass
@@ -350,6 +369,21 @@ def _load_nested_dataclass(data: Optional[Dict], cls):
     return cls(**converted_data)
 
 
+def _load_engine(data: Optional[Dict[str, Any]]) -> Optional[Engine]:
+    """Load engine data, including typed model-to-engine applicability rows."""
+
+    if data is None:
+        return None
+    converted = dict(data)
+    rows = converted.get("model_engine_options")
+    if rows is not None:
+        converted["model_engine_options"] = [
+            ModelEngineOption(model=row["model"], engines=list(row["engines"]))
+            for row in rows
+        ]
+    return Engine(**converted)
+
+
 def _load_kinematic(data: Optional[Dict]) -> Optional[Kinematic]:
     """Load kinematic data structure with flat field names."""
     if data is None:
@@ -431,7 +465,7 @@ def load_aircraft_from_dict(
         data.get("mass_properties"), MassProperties
     )
     flaps = _load_nested_dataclass(data.get("flaps"), Flaps)
-    engine = _load_nested_dataclass(data.get("engine"), Engine)
+    engine = _load_engine(data.get("engine"))
     drag = _load_nested_dataclass(data.get("drag"), Drag)
     kinematic = _load_kinematic(data.get("kinematic"))
     if certification is not None and certification.source_id is None:

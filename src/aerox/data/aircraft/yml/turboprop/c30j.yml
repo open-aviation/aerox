@@ -74,6 +74,7 @@ engine:
   default: 4 x 4.591 SHP Allison 2100 D3 turboprops with 6 blade propellers
   options:
   - 4 x 4.591 SHP Allison 2100 D3 turboprops with 6 blade propellers
+  model_engine_options: null
 drag:
   cd0: null
   k: null

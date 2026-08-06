@@ -74,6 +74,7 @@ engine:
   default: P&W PT6A-64 700 SHP
   options:
   - PT6A-64
+  model_engine_options: null
 drag:
   cd0: null
   k: null

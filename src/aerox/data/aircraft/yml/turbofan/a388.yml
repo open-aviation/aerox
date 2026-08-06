@@ -76,6 +76,17 @@ engine:
   - Trent 970-84
   - Trent 972-84
   - GP7270
+  model_engine_options:
+  - model: A380-841
+    engines:
+    - RB211 Trent 970-84
+  - model: A380-842
+    engines:
+    - RB211 Trent 972-84
+    - RB211 Trent 972E-84
+  - model: A380-861
+    engines:
+    - Engine Alliance GP7270 P/N GP7270GP01
 drag:
   cd0: 0.01397
   k: 0.05141

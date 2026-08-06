@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Airbus A330-300
 ICAO: A333
-Last reviewed: 2026-08-05
+Last reviewed: 2026-08-06
 Source ledger: docs/modeling/sources.yml
 
 CERTIFICATION SCOPE
@@ -368,3 +368,42 @@ END FIELD
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
+
+MODEL AND ENGINE APPLICABILITY
+
+FIELD engine.model_engine_options
+  Value: 9 certified model mapping(s)
+  Status: certified-published
+  Source: easa_a004_issue_69
+  Page or section: A330-300 III.5.1; PDF p.38
+  Applicability: Model-level approved installations; the individual airframe record is required to identify the engine actually installed.
+  Evidence inventory: docs/modeling/airbus-model-engine-mapping-draft.tsv
+  Mappings:
+    A330-301:
+      - General Electric CF6-80E1A2
+    A330-302:
+      - General Electric CF6-80E1A2
+      - General Electric CF6-80E1A4
+      - General Electric CF6-80E1A4/B
+    A330-303:
+      - General Electric CF6-80E1A3
+    A330-321:
+      - Pratt & Whitney 4164
+      - Pratt & Whitney 4164-1D
+    A330-322:
+      - Pratt & Whitney 4168
+      - Pratt & Whitney 4168-1D
+    A330-323:
+      - Pratt & Whitney 4164-1D
+      - Pratt & Whitney 4168A
+      - Pratt & Whitney 4168A-1D
+      - Pratt & Whitney 4170
+    A330-341:
+      - Rolls Royce Trent 768-60
+    A330-342:
+      - Rolls Royce Trent 772-60
+    A330-343:
+      - Rolls Royce Trent 768-60
+      - Rolls Royce Trent 772B-60
+      - Rolls Royce Trent 772C-60
+END FIELD

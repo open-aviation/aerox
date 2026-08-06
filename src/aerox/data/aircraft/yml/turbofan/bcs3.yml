@@ -74,6 +74,11 @@ engine:
   default: PW1500G
   options:
   - PW1500G
+  model_engine_options:
+  - model: BD-500-1A11
+    engines:
+    - Pratt & Whitney PW1521G-3
+    - Pratt & Whitney PW1524G-3
 drag:
   cd0: 0.0226
   k: 0.03738

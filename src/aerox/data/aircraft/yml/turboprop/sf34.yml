@@ -74,6 +74,7 @@ engine:
   default: GE CT75A2 turboprops with 4 blade propellers
   options:
   - GE CT75A2 turboprops with 4 blade propellers
+  model_engine_options: null
 drag:
   cd0: null
   k: null

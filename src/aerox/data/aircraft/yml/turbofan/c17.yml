@@ -74,6 +74,7 @@ engine:
   default: P&W F117-PW-100 (PW2040)
   options:
   - F117-PW-100
+  model_engine_options: null
 drag:
   cd0: 0.01906
   k: 0.0506

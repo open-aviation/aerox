@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Boeing 787-9 Dreamliner
 ICAO: B789
-Last reviewed: 2026-08-05
+Last reviewed: 2026-08-06
 Source ledger: docs/modeling/sources.yml
 
 CERTIFICATION SCOPE
@@ -366,3 +366,31 @@ END FIELD
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
+
+MODEL AND ENGINE APPLICABILITY
+
+FIELD engine.model_engine_options
+  Value: 1 certified model mapping(s)
+  Status: certified-published
+  Source: easa_ima115_issue_30
+  Page or section: Section 2, III.5, p. 33
+  Applicability: Model-level approved installations; the individual airframe record is required to identify the engine actually installed.
+  Evidence inventory: docs/modeling/boeing-model-engine-mapping-draft.tsv
+  Mappings:
+    787-9:
+      - Trent 1000-J2
+      - Trent 1000-A2
+      - Trent 1000-K2
+      - Trent 1000-D2
+      - Trent 1000-AE3
+      - Trent 1000-D3
+      - Trent 1000-J3
+      - Trent 1000-K3
+      - GEnx-1B74/75/P2
+      - GEnx-1B67/P2
+      - GEnx-1B70/75/P2
+      - GEnx-1B70
+      - GEnx-1B70/P1
+      - GEnx-1B70/P2
+      - GEnx-1B74/75/P1
+END FIELD

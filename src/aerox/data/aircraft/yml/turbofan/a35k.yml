@@ -74,6 +74,10 @@ engine:
   default: Trent XWB-97
   options:
   - Trent XWB-97
+  model_engine_options:
+  - model: A350-1041
+    engines:
+    - Rolls Royce Trent XWB-97
 drag:
   cd0: 0.01843
   k: 0.04218

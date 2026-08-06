@@ -74,6 +74,7 @@ engine:
   default: CF34-8C5
   options:
   - CF34-8C1
+  model_engine_options: null
 drag:
   cd0: 0.02358
   k: 0.05024

@@ -75,6 +75,12 @@ engine:
   options:
   - CFM56-3-B1
   - CFM56-3B-2
+  model_engine_options:
+  - model: 737-300
+    engines:
+    - CFM56-3-B1
+    - CFM56-3B-2
+    - CFM56-3C-1
 drag:
   cd0: 0.02264
   k: 0.04782

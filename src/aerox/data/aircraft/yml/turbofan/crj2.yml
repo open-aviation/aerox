@@ -74,6 +74,7 @@ engine:
   default: CF34-3B
   options:
   - CF34-3B
+  model_engine_options: null
 drag:
   cd0: 0.02714
   k: 0.04266

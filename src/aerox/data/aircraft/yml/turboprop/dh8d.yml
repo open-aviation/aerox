@@ -74,6 +74,7 @@ engine:
   default: PW150A
   options:
   - P&W PW150A turboprop
+  model_engine_options: null
 drag:
   cd0: null
   k: null

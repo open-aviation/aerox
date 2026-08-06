@@ -80,6 +80,55 @@ def test_only_compact_certification_and_geometry_extensions_were_added(records):
             "area", "height", "mac", "root_chord", "tip_chord",
             "taper_ratio", "sweep", "arm", "rudder_area_ratio",
         ]
+        assert list(document["engine"]) == [
+            "type", "mount", "number", "default", "options",
+            "model_engine_options",
+        ]
+
+
+def test_model_engine_options_use_exact_uniform_structure_and_provenance(records):
+    ledger = yaml.safe_load(
+        Path("docs/modeling/sources.yml").read_text(encoding="utf-8")
+    )
+    source_ids = {source["id"] for source in ledger["sources"]}
+    mapped_aircraft = 0
+    for path, document in records:
+        mapping = document["engine"]["model_engine_options"]
+        assert mapping is None or mapping, path
+        if mapping is None:
+            continue
+        mapped_aircraft += 1
+        assert len({item["model"] for item in mapping}) == len(mapping), path
+        for item in mapping:
+            assert list(item) == ["model", "engines"], (path, item)
+            assert isinstance(item["model"], str) and item["model"].strip()
+            assert isinstance(item["engines"], list) and item["engines"]
+            assert len(set(item["engines"])) == len(item["engines"])
+            assert all(isinstance(engine, str) and engine.strip() for engine in item["engines"])
+
+        notes = parse_source_notes(
+            (SOURCE_ROOT / path.parent.name / f"{path.stem}.txt").read_text(
+                encoding="utf-8"
+            )
+        )
+        record = notes["fields"]["engine.model_engine_options"]
+        assert record["status"] == "certified-published"
+        adopted_sources = [part.strip() for part in record["source"].split("|")]
+        assert adopted_sources and set(adopted_sources) <= source_ids
+    assert mapped_aircraft == 40
+
+
+def test_airbus_and_boeing_model_engine_scope_is_explicit(records):
+    by_icao = {document["icao"]: document for _, document in records}
+    airbus = {
+        "A19N", "A20N", "A21N", "A306", "A318", "A319", "A320", "A321",
+        "A332", "A333", "A339", "A343", "A359", "A35K", "A388", "BCS1",
+        "BCS3",
+    }
+    assert all(by_icao[icao]["engine"]["model_engine_options"] for icao in airbus)
+    assert by_icao["B37M"]["engine"]["model_engine_options"] is None
+    assert by_icao["B3XM"]["engine"]["model_engine_options"] is None
+    assert by_icao["B38M"]["engine"]["model_engine_options"]
 
 
 def test_every_aircraft_has_one_short_plain_text_source_note(records):
@@ -182,6 +231,19 @@ def test_geometry_updater_is_idempotent_with_all_research_inputs():
     )
     assert expected_rows >= 273
     assert f"research_values={expected_rows}" in result.stdout
+    assert "changed=0" in result.stdout
+
+
+def test_model_engine_updater_is_idempotent():
+    result = subprocess.run(
+        [sys.executable, "tools/update_aircraft_model_engines.py", "--check"],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "researched=42" in result.stdout
+    assert "mapped_models=118" in result.stdout
     assert "changed=0" in result.stdout
 
 

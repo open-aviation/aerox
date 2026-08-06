@@ -75,6 +75,7 @@ engine:
   options:
   - 160 HP Lycoming O-320-A2B piston engine with 2 blade propeller
   - 180 HP Lycoming O-360-A4M piston engine with 2 blade propeller
+  model_engine_options: null
 drag:
   cd0: null
   k: null

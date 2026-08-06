@@ -74,6 +74,7 @@ engine:
   default: Pratt & Whitney Canada PW617F-E turbofan, 7.2 kN (1,695 lbf)
   options:
   - Pratt & Whitney Canada PW617F-E turbofan, 7.2 kN (1,695 lbf)
+  model_engine_options: null
 drag:
   cd0: 0.02598
   k: 0.04677

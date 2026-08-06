@@ -74,6 +74,7 @@ engine:
   default: P&W PT6A-42A turboprop with Hartzell 3 blade constant speed propeller
   options:
   - P&W PT6A-42A turboprop with Hartzell 3 blade constant speed propeller
+  model_engine_options: null
 drag:
   cd0: null
   k: null

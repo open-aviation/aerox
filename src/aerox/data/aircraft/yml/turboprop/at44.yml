@@ -74,6 +74,7 @@ engine:
   default: PW121A
   options:
   - 2 x 1900 SHP P&W PW121A turboprops with 6 blade propellers
+  model_engine_options: null
 drag:
   cd0: null
   k: null

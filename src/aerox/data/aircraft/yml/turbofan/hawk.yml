@@ -74,6 +74,7 @@ engine:
   default: F405-RR-401
   options:
   - F405-RR-401
+  model_engine_options: null
 drag:
   cd0: 0.03726
   k: 0.06765

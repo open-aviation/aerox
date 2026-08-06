@@ -74,6 +74,17 @@ engine:
   default: GEnx-2B67
   options:
   - GEnx-2B67
+  model_engine_options:
+  - model: 747-8
+    engines:
+    - GEnx-2B67
+    - GEnx-2B67B
+    - GEnx-2B67/P
+  - model: 747-8F
+    engines:
+    - GEnx-2B67
+    - GEnx-2B67B
+    - GEnx-2B67/P
 drag:
   cd0: 0.01694
   k: 0.04658

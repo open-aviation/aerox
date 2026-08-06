@@ -73,6 +73,7 @@ engine:
   number: 1
   default: F100-PW-100
   options: null
+  model_engine_options: null
 drag:
   cd0: null
   k: null

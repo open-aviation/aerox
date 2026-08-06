@@ -74,6 +74,7 @@ engine:
   default: 300 HP Lycoming IO-540 piston engine with 2 blade propeller
   options:
   - 300 HP Lycoming IO-540 piston engine with 2 blade propeller
+  model_engine_options: null
 drag:
   cd0: null
   k: null

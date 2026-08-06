@@ -75,6 +75,7 @@ engine:
   options:
   - 300 HP Continental IO-550-B piston
   - 300 HP Continental TIO-520-UB turbocharged piston
+  model_engine_options: null
 drag:
   cd0: null
   k: null

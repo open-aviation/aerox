@@ -74,6 +74,7 @@ engine:
   default: GE CFE738-1-1B turbofan
   options:
   - GE CFE738-1-1B turbofan
+  model_engine_options: null
 drag:
   cd0: 0.02198
   k: 0.04819

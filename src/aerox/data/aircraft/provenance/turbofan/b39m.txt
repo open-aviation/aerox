@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Boeing 737 MAX 9
 ICAO: B39M
-Last reviewed: 2026-08-05
+Last reviewed: 2026-08-06
 Source ledger: docs/modeling/sources.yml
 
 CERTIFICATION SCOPE
@@ -368,3 +368,20 @@ END FIELD
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
+
+MODEL AND ENGINE APPLICABILITY
+
+FIELD engine.model_engine_options
+  Value: 1 certified model mapping(s)
+  Status: certified-published
+  Source: easa_ima120_issue_29
+  Page or section: Section 8, III.5 engine-configuration table, p. 67
+  Applicability: Model-level approved installations; the individual airframe record is required to identify the engine actually installed.
+  Evidence inventory: docs/modeling/boeing-model-engine-mapping-draft.tsv
+  Mappings:
+    737-9:
+      - LEAP-1B27
+      - LEAP-1B28
+      - LEAP-1B28B1
+      - LEAP-1B28BBJ1
+END FIELD

@@ -77,6 +77,29 @@ engine:
   - CFM56-5C3
   - CFM56-5C4
   - CFM56-5C4/P
+  model_engine_options:
+  - model: A340-311
+    engines:
+    - CFM International CFM56-5C2
+    - CFM56-5C2/4
+    - CFM56-5C2/F
+    - CFM56-5C2/F4
+    - CFM56-5C2/G
+    - CFM56-5C2/G4
+    - CFM56-5C2/P
+  - model: A340-312
+    engines:
+    - CFM International CFM56-5C3/F
+    - CFM56-5C3/F4
+    - CFM56-5C3/G
+    - CFM56-5C3/G4
+    - CFM56-5C3/P
+  - model: A340-313
+    engines:
+    - CFM International CFM56-5C4
+    - CFM56-5C4/1
+    - CFM56-5C4/P
+    - CFM56-5C4/1P
 drag:
   cd0: 0.01816
   k: 0.04307

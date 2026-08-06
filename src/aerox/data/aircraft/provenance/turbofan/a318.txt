@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Airbus A318
 ICAO: A318
-Last reviewed: 2026-08-05
+Last reviewed: 2026-08-06
 Source ledger: docs/modeling/sources.yml
 
 CERTIFICATION SCOPE
@@ -367,3 +367,23 @@ END FIELD
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
+
+MODEL AND ENGINE APPLICABILITY
+
+FIELD engine.model_engine_options
+  Value: 4 certified model mapping(s)
+  Status: certified-published
+  Source: easa_a064_issue_62
+  Page or section: Section 4 III.5; PDF p.169
+  Applicability: Model-level approved installations; the individual airframe record is required to identify the engine actually installed.
+  Evidence inventory: docs/modeling/airbus-model-engine-mapping-draft.tsv
+  Mappings:
+    A318-111:
+      - CFMI CFM 56-5B8/P
+    A318-112:
+      - CFMI CFM 56-5B9/P
+    A318-121:
+      - PW 6122A
+    A318-122:
+      - PW 6124A
+END FIELD

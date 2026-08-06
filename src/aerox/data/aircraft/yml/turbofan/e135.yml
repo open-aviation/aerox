@@ -74,6 +74,7 @@ engine:
   default: AE3007A3
   options:
   - AE3007A3
+  model_engine_options: null
 drag:
   cd0: 0.02377
   k: 0.04877

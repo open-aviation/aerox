@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Airbus A321
 ICAO: A321
-Last reviewed: 2026-08-05
+Last reviewed: 2026-08-06
 Source ledger: docs/modeling/sources.yml
 
 CERTIFICATION SCOPE
@@ -369,3 +369,34 @@ END FIELD
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
+
+MODEL AND ENGINE APPLICABILITY
+
+FIELD engine.model_engine_options
+  Value: 8 certified model mapping(s)
+  Status: certified-published
+  Source: easa_a064_issue_62
+  Page or section: Section 2 III.5; PDF pp.92-95 | Section 2 III.5; PDF p.92 | Section 2 III.5; PDF p.93
+  Applicability: Model-level approved installations; the individual airframe record is required to identify the engine actually installed.
+  Evidence inventory: docs/modeling/airbus-model-engine-mapping-draft.tsv
+  Mappings:
+    A321-111:
+      - CFMI CFM 56-5B1
+      - CFMI CFM 56-5B1/2
+    A321-112:
+      - CFMI CFM 56-5B2
+    A321-131:
+      - IAE V2530-A5
+    A321-211:
+      - CFMI CFM 56-5B3/P
+      - CFMI CFM 56-5B3/2P
+    A321-212:
+      - CFMI CFM 56-5B1
+      - CFMI CFM 56-5B1/2
+    A321-213:
+      - CFMI CFM 56-5B2
+    A321-231:
+      - IAE V2533-A5
+    A321-232:
+      - IAE V2530-A5
+END FIELD

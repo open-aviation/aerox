@@ -74,6 +74,7 @@ engine:
   default: TFE731-5BR
   options:
   - TFE731-5BR
+  model_engine_options: null
 drag:
   cd0: 0.02167
   k: 0.05328

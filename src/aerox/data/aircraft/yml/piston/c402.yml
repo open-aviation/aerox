@@ -75,6 +75,7 @@ engine:
   options:
   - 2 x 300 HP Continental TSIO-520-E
   - 2 x 325 HP Continental TSIO-520-VB turbocharged piston engines with 3 blade propellers
+  model_engine_options: null
 drag:
   cd0: null
   k: null

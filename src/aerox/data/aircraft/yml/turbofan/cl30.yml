@@ -74,6 +74,7 @@ engine:
   default: HTF7000
   options:
   - HTF7000
+  model_engine_options: null
 drag:
   cd0: 0.02118
   k: 0.05439

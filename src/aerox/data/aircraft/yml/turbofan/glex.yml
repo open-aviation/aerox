@@ -74,6 +74,7 @@ engine:
   default: BR700-710C4-11
   options:
   - BR700-710C4-11
+  model_engine_options: null
 drag:
   cd0: 0.01811
   k: 0.04582

@@ -76,6 +76,12 @@ engine:
   - GE90-110B1
   - PW4090
   - Trent 892
+  model_engine_options:
+  - model: 777-300
+    engines:
+    - PW4090
+    - PW4098
+    - Trent 892
 drag:
   cd0: 0.01843
   k: 0.04548

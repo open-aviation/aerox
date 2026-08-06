@@ -74,6 +74,7 @@ engine:
   default: HTF7350
   options:
   - HTF7350
+  model_engine_options: null
 drag:
   cd0: 0.02052
   k: 0.04641

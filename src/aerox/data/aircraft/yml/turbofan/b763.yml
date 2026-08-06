@@ -76,6 +76,28 @@ engine:
   - PW4062
   - CF6-80C2B7F
   - RB211-524H
+  model_engine_options:
+  - model: 767-300
+    engines:
+    - JT9D-7R4D
+    - JT9D-7R4E
+    - JT9D-7R4E4
+    - PW4056
+    - PW4060
+    - PW4062
+    - CF6-80A2
+    - CF6-80C2B2
+    - CF6-80C2B4
+    - CF6-80C2B4F
+    - CF6-80C2B6
+    - CF6-80C2B6F
+    - CF6-80C2B7F
+    - RB211-524H36
+    - RB211-524H-T-36
+  - model: 767-300F
+    engines:
+    - CF6-80C2B6F
+    - CF6-80C2B7F
 drag:
   cd0: 0.01842
   k: 0.04875

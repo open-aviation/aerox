@@ -76,6 +76,30 @@ engine:
   - PW4062
   - CF6-80C2B1F
   - RB211-524G
+  model_engine_options:
+  - model: 747-400
+    engines:
+    - PW4056
+    - CF6-80C2B1F
+    - CF6-80C2B5F
+    - RB211-524G2-19
+    - RB211-524G3-19
+    - RB211-524H2-19
+    - RB211-524G2-T-19
+    - RB211-524G3-T-19
+    - RB211-524H2-T-19
+  - model: 747-400F
+    engines:
+    - PW4056
+    - PW4062A
+    - CF6-80C2B1F
+    - CF6-80C2B5F
+    - RB211-524G2-19
+    - RB211-524G3-19
+    - RB211-524H2-19
+    - RB211-524G2-T-19
+    - RB211-524G3-T-19
+    - RB211-524H2-T-19
 drag:
   cd0: 0.01715
   k: 0.05221

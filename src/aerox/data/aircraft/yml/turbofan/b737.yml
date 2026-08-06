@@ -78,6 +78,13 @@ engine:
   - CFM56-7B24
   - CFM56-7B26
   - CFM56-7B27
+  model_engine_options:
+  - model: 737-700
+    engines:
+    - CFM56-7B series
+    - CFM56-7B/2 series
+    - CFM56-7B/3 series
+    - CFM56-7BE series
 drag:
   cd0: 0.02034
   k: 0.04219

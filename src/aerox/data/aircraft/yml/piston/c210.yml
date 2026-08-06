@@ -75,6 +75,7 @@ engine:
   options:
   - 300 HP Continental IO-520L piston engine with 3 blade propeller
   - 310 HP Continental TSIO-520R turbocharged piston engine with 3 blade propeller
+  model_engine_options: null
 drag:
   cd0: null
   k: null

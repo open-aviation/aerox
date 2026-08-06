@@ -74,6 +74,7 @@ engine:
   default: 2 x 850 SHP P&W PT6A-42 turboprops with 3 blade propellers
   options:
   - 2 x 850 SHP P&W PT6A-42 turboprops with 3 blade propellers
+  model_engine_options: null
 drag:
   cd0: null
   k: null

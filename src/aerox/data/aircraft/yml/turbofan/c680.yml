@@ -74,6 +74,7 @@ engine:
   default: PW306C
   options:
   - PW306C
+  model_engine_options: null
 drag:
   cd0: 0.01937
   k: 0.05034

@@ -74,6 +74,7 @@ engine:
   default: Garrett TPE331-12
   options:
   - Garrett TPE331-12
+  model_engine_options: null
 drag:
   cd0: null
   k: null

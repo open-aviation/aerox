@@ -76,6 +76,20 @@ engine:
   - PW1124G1-JM
   - LEAP-1A24
   - LEAP-1A26
+  model_engine_options:
+  - model: A319-151N
+    engines:
+    - CFMI LEAP-1A24
+  - model: A319-153N
+    engines:
+    - CFMI LEAP-1A26
+    - CFMI LEAP-1A26E1
+  - model: A319-171N
+    engines:
+    - IAE PW1124G-JM
+  - model: A319-173N
+    engines:
+    - IAE PW1127G1-JM
 drag:
   cd0: 0.02149
   k: 0.03934

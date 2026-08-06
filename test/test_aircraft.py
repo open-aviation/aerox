@@ -13,6 +13,7 @@ from aerox.aircraft import (
     Fuselage,
     Kinematic,
     MassProperties,
+    ModelEngineOption,
     Pax,
     ReferenceGeometry,
     Tail,
@@ -38,6 +39,9 @@ def test_load_aircraft_from_dict_with_nested_sections():
                 "number": 2,
                 "default": "PWC PW124B",
                 "options": ["PWC PW124B"],
+                "model_engine_options": [
+                    {"model": "ATR 72-212A", "engines": ["PW127M"]}
+                ],
             },
             "drag": {"cd0": 0.02, "k": 0.04, "e": 0.8, "gears": 0.01},
             "kinematic": {"takeoff_distance_m": 1500, "cruise_range_nm": 1500},
@@ -51,6 +55,9 @@ def test_load_aircraft_from_dict_with_nested_sections():
     assert isinstance(aircraft.horizontal_tail, Tail)
     assert isinstance(aircraft.vertical_tail, Tail)
     assert isinstance(aircraft.engine, Engine)
+    assert isinstance(aircraft.engine.model_engine_options[0], ModelEngineOption)
+    assert aircraft.engine.engines_for_model("ATR 72-212A") == ["PW127M"]
+    assert aircraft.engine.engines_for_model("ATR 72-600F") == []
     assert isinstance(aircraft.drag, Drag)
     assert isinstance(aircraft.kinematic, Kinematic)
     assert aircraft.icao == "AT72"
@@ -107,6 +114,11 @@ def test_load_a320_certified_and_higher_order_data():
     assert aircraft.vertical_tail.rudder_area_ratio == pytest.approx(0.299983)
     assert aircraft.aileron is None
     assert aircraft.mass_properties is None
+    assert aircraft.engine.engines_for_model("A320-214") == [
+        "CFMI CFM 56-5B4",
+        "CFMI CFM 56-5B4/2",
+    ]
+    assert aircraft.engine.default == "CFM56-5B4"
     assert (
         aircraft.data_provenance["field_sources"]["mtow"]
         == ["easa_a064_issue_62"]
@@ -175,6 +187,41 @@ data_provenance:
     assert saved["wing"]["mac"] == 4.1935
 
 
+def test_web_editor_preserves_partial_engine_model_mapping(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    monkeypatch.syspath_prepend(str(Path("tools").resolve()))
+    import web_editor
+
+    target_dir = tmp_path / "turbofan"
+    target_dir.mkdir()
+    target = target_dir / "a320.yml"
+    target.write_text(
+        """engine:
+  type: turbofan
+  mount: wing
+  number: 2
+  default: CFM56-5B4
+  options:
+  - CFM56-5B4
+  model_engine_options:
+  - model: A320-214
+    engines:
+    - CFMI CFM 56-5B4
+"""
+    )
+    monkeypatch.setattr(web_editor, "YAML_BASE_DIR", tmp_path)
+
+    web_editor.save_aircraft_data(
+        "A320", {"engine": {"default": "CFM56-5B4"}}, "turbofan"
+    )
+
+    saved = yaml.safe_load(target.read_text())
+    assert saved["engine"]["model_engine_options"] == [
+        {"model": "A320-214", "engines": ["CFMI CFM 56-5B4"]}
+    ]
+
+
 def test_web_editor_form_parser_preserves_decimal_geometry():
     from tools.web_editor import parse_form_data
 
@@ -190,3 +237,24 @@ def test_web_editor_form_parser_preserves_decimal_geometry():
     assert parsed["wing"]["sweep"] == 25.75
     assert parsed["horizontal_tail"]["area"] == 30.843428
     assert parsed["vertical_tail"]["height"] == 5.87
+
+
+def test_web_editor_form_parser_round_trips_model_engine_options():
+    from tools.web_editor import parse_form_data
+
+    parsed = parse_form_data(
+        {
+            "engine__type": "turbofan",
+            "engine__model_engine_options": (
+                "A320-214 | CFMI CFM 56-5B4; CFMI CFM 56-5B4/2\n"
+                "A320-232 | IAE V2527-A5"
+            ),
+        }
+    )
+    assert parsed["engine"]["model_engine_options"] == [
+        {
+            "model": "A320-214",
+            "engines": ["CFMI CFM 56-5B4", "CFMI CFM 56-5B4/2"],
+        },
+        {"model": "A320-232", "engines": ["IAE V2527-A5"]},
+    ]

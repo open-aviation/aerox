@@ -76,6 +76,7 @@ engine:
   - 1 x 180 HP Lycoming O-360-A1D piston engine with 2 blade propeller
   - 1 x 200 HP Lycoming IO-360-A1A piston engine with 2 blade propeller
   - 1 x 280 HP Continental IO-550G piston engine with 2 blade propeller
+  model_engine_options: null
 drag:
   cd0: null
   k: null

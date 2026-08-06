@@ -75,6 +75,7 @@ engine:
   options:
   - 1 x 600 SHP PWC PT6A-114 turboprop with 3 blade propeller
   - 1 x 675 SHP PWC PT6A-114A turboprop with 3 blade propeller
+  model_engine_options: null
 drag:
   cd0: null
   k: null

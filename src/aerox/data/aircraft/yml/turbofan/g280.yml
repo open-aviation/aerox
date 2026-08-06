@@ -74,6 +74,7 @@ engine:
   default: HTF7250G
   options:
   - HTF7250G
+  model_engine_options: null
 drag:
   cd0: 0.02138
   k: 0.04961

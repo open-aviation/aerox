@@ -74,6 +74,7 @@ engine:
   default: JT15D-4
   options:
   - JT15D-4
+  model_engine_options: null
 drag:
   cd0: 0.02045
   k: 0.04798

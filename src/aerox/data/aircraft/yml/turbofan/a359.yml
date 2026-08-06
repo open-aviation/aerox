@@ -74,6 +74,12 @@ engine:
   default: Trent XWB-84
   options:
   - Trent XWB-84
+  model_engine_options:
+  - model: A350-941
+    engines:
+    - Rolls Royce Trent XWB-84
+    - Rolls Royce Trent XWB-75
+    - Rolls Royce Trent XWB-84EP
 drag:
   cd0: 0.01767
   k: 0.04218

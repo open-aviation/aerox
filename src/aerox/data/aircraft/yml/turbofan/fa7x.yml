@@ -74,6 +74,7 @@ engine:
   default: PW307A
   options:
   - PW307A
+  model_engine_options: null
 drag:
   cd0: 0.01886
   k: 0.04154

@@ -154,13 +154,17 @@ FIELD_SCHEMA = {
             },
         },
         "engine": {
-            "fields": ["type", "mount", "number", "default", "options"],
+            "fields": [
+                "type", "mount", "number", "default", "options",
+                "model_engine_options",
+            ],
             "types": {
                 "type": str,
                 "mount": str,
                 "number": int,
                 "default": str,
                 "options": list,
+                "model_engine_options": list,
             },
         },
         "drag": {
@@ -900,6 +904,10 @@ HTML_TEMPLATE = """
                             <label>Options <small style="font-weight: normal; color: #999;">(one per line)</small></label>
                             <textarea name="engine__options" rows="8">{% if data.engine and data.engine.options %}{{ data.engine.options | join('\n') }}{% endif %}</textarea>
                         </div>
+                        <div class="field textarea-field">
+                            <label>Certified model / engines <small style="font-weight: normal; color: #999;">(model | engine; engine)</small></label>
+                            <textarea name="engine__model_engine_options" rows="10">{% if data.engine and data.engine.model_engine_options %}{% for item in data.engine.model_engine_options %}{{ item.model }} | {{ item.engines | join('; ') }}{% if not loop.last %}\n{% endif %}{% endfor %}{% endif %}</textarea>
+                        </div>
                     </div>
                     
                     <div class="form-section">
@@ -1349,6 +1357,25 @@ def safe_convert(value, target_type, field_name=None):
         return None
     try:
         if target_type == list:
+            if field_name == "engine.model_engine_options":
+                if isinstance(value, list):
+                    return value
+                rows = []
+                for line in str(value).splitlines():
+                    if not line.strip():
+                        continue
+                    if "|" not in line:
+                        raise ValueError(
+                            "Certified model/engine rows must use 'model | engine; engine'"
+                        )
+                    model, engine_text = (part.strip() for part in line.split("|", 1))
+                    engines = [item.strip() for item in engine_text.split(";") if item.strip()]
+                    if not model or not engines:
+                        raise ValueError(
+                            "Certified model/engine rows need a model and at least one engine"
+                        )
+                    rows.append({"model": model, "engines": engines})
+                return rows or None
             # For list types (like engine options)
             if isinstance(value, list):
                 return value
@@ -1436,9 +1463,23 @@ def save_aircraft_data(icao, data, engine_type=None):
         existing_data = {}
 
     merged = dict(existing_data)
-    for field_name in editable_fields:
+    for field_name in FIELD_SCHEMA["simple"]:
         if field_name in data:
             merged[field_name] = data[field_name]
+    for section, config in FIELD_SCHEMA["nested"].items():
+        if section not in data:
+            continue
+        submitted = data[section]
+        current = existing_data.get(section)
+        section_data = dict(current) if isinstance(current, dict) else {}
+        if isinstance(submitted, dict):
+            for field_name in config["fields"]:
+                if field_name in submitted:
+                    section_data[field_name] = submitted[field_name]
+        elif submitted is None:
+            for field_name in config["fields"]:
+                section_data[field_name] = None
+        merged[section] = section_data
 
     sidecar_path = (
         YAML_BASE_DIR.parent

@@ -74,6 +74,7 @@ engine:
   default: Pratt & Whitney Canada PW535E turbofan
   options:
   - Pratt & Whitney Canada PW535E turbofan
+  model_engine_options: null
 drag:
   cd0: 0.02265
   k: 0.04266

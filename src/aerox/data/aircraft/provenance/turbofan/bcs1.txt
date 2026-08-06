@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Airbus A220-100
 ICAO: BCS1
-Last reviewed: 2026-08-05
+Last reviewed: 2026-08-06
 Source ledger: docs/modeling/sources.yml
 
 CERTIFICATION SCOPE
@@ -397,3 +397,19 @@ END FIELD
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
+
+MODEL AND ENGINE APPLICABILITY
+
+FIELD engine.model_engine_options
+  Value: 1 certified model mapping(s)
+  Status: certified-published
+  Source: easa_im_a570_issue_24
+  Page or section: Section 1 III.5; PDF p.10
+  Applicability: Model-level approved installations; the individual airframe record is required to identify the engine actually installed.
+  Evidence inventory: docs/modeling/airbus-model-engine-mapping-draft.tsv
+  Mappings:
+    BD-500-1A10:
+      - Pratt & Whitney PW1524G
+      - Pratt & Whitney PW1521G
+      - Pratt & Whitney PW1519G
+END FIELD

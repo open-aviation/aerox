@@ -79,6 +79,25 @@ engine:
   - LEAP-1A26
   - LEAP-1A24
   - LEAP-1A29
+  model_engine_options:
+  - model: A320-251N
+    engines:
+    - CFMI LEAP-1A26
+  - model: A320-252N
+    engines:
+    - CFMI LEAP-1A24
+  - model: A320-253N
+    engines:
+    - CFMI LEAP-1A29
+  - model: A320-271N
+    engines:
+    - IAE PW1127G-JM
+  - model: A320-272N
+    engines:
+    - IAE PW1124G1-JM
+  - model: A320-273N
+    engines:
+    - IAE PW1129G-JM
 drag:
   cd0: 0.02244
   k: 0.03934

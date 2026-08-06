@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Boeing 767-400
 ICAO: B764
-Last reviewed: 2026-08-05
+Last reviewed: 2026-08-06
 Source ledger: docs/modeling/sources.yml
 
 CERTIFICATION SCOPE
@@ -400,3 +400,17 @@ END FIELD
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
+
+MODEL AND ENGINE APPLICABILITY
+
+FIELD engine.model_engine_options
+  Value: 1 certified model mapping(s)
+  Status: certified-published
+  Source: easa_ima035_issue_11
+  Page or section: Section 5, III.5, p. 52
+  Applicability: Model-level approved installations; the individual airframe record is required to identify the engine actually installed.
+  Evidence inventory: docs/modeling/boeing-model-engine-mapping-draft.tsv
+  Mappings:
+    767-400ER:
+      - CF6-80C2B8F
+END FIELD

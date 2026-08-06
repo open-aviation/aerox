@@ -77,6 +77,7 @@ engine:
   - 2 x 260 HP Continental IO-470-D
   - 2 x 285 HP Continental IO-520-M
   - 2 x 285 HP Continental TSIO-520-B (T310 turbocharged)
+  model_engine_options: null
 drag:
   cd0: null
   k: null

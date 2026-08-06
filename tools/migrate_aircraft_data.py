@@ -94,6 +94,7 @@ SIMPLE_TEMPLATE: dict[str, Any] = {
         "number": None,
         "default": None,
         "options": None,
+        "model_engine_options": None,
     },
     "drag": {"cd0": None, "k": None, "e": None, "gears": None},
     "kinematic": {
@@ -286,6 +287,7 @@ def simple_from_canonical(data: Mapping[str, Any]) -> dict[str, Any]:
         "number": _get(data, "propulsion.engine_count"),
         "default": _get(data, "propulsion.default_engine_designation"),
         "options": [item.get("designation") for item in options if item.get("designation")] or None,
+        "model_engine_options": _get(data, "propulsion.model_engine_options"),
     }
     result["drag"] = {
         "cd0": _get(data, "aerodynamics.zero_lift_drag_coefficient"),
@@ -431,6 +433,38 @@ def validate_simple(document: Any) -> list[str]:
             certification["issue_date"], str
         ):
             issues.append("certification.issue_date: expected ISO-date string or null")
+
+    engine = document.get("engine", {})
+    if isinstance(engine, Mapping):
+        model_options = engine.get("model_engine_options")
+        if model_options is not None:
+            if not isinstance(model_options, list):
+                issues.append("engine.model_engine_options: expected list or null")
+            elif not model_options:
+                issues.append("engine.model_engine_options: use null instead of an empty list")
+            else:
+                seen_models: set[str] = set()
+                for index, item in enumerate(model_options):
+                    item_path = f"engine.model_engine_options[{index}]"
+                    if not isinstance(item, Mapping):
+                        issues.append(f"{item_path}: expected mapping")
+                        continue
+                    if list(item) != ["model", "engines"]:
+                        issues.append(f"{item_path}: fields/order must be model, engines")
+                    model = item.get("model")
+                    engines = item.get("engines")
+                    if not isinstance(model, str) or not model.strip():
+                        issues.append(f"{item_path}.model: expected non-empty string")
+                    elif model in seen_models:
+                        issues.append(f"{item_path}.model: duplicate model {model!r}")
+                    else:
+                        seen_models.add(model)
+                    if not isinstance(engines, list) or not engines:
+                        issues.append(f"{item_path}.engines: expected non-empty list")
+                    elif any(not isinstance(value, str) or not value.strip() for value in engines):
+                        issues.append(f"{item_path}.engines: expected non-empty strings")
+                    elif len(engines) != len(set(engines)):
+                        issues.append(f"{item_path}.engines: duplicate engine designation")
 
     geometry_fields = {
         "wing": SIMPLE_TEMPLATE["wing"],

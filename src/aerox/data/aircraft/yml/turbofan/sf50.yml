@@ -74,6 +74,7 @@ engine:
   default: Williams FJ33-5A
   options:
   - Williams FJ33-5A
+  model_engine_options: null
 drag:
   cd0: 0.02321
   k: 0.04781

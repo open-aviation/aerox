@@ -75,6 +75,7 @@ engine:
   options:
   - 2 x 350 HP Lycoming TIO-540-J2BD turbocharged piston engines with 3 blade propellers
   - 2 x 310 HP Lycoming TIO-540-A turbocharged piston engines with 3 blade propellers
+  model_engine_options: null
 drag:
   cd0: null
   k: null

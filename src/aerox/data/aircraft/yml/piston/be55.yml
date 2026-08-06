@@ -74,6 +74,7 @@ engine:
   default: 260 HP Continental IO-470-L piston engine with two blade propellers
   options:
   - 260 HP Continental IO-470-L piston engine with two blade propellers
+  model_engine_options: null
 drag:
   cd0: null
   k: null

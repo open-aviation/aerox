@@ -74,6 +74,7 @@ engine:
   default: 310 HP Continental TSIO-520-NB turbocharged piston engine with 3 blade propeller
   options:
   - 310 HP Continental TSIO-520-NB turbocharged piston engine with 3 blade propeller
+  model_engine_options: null
 drag:
   cd0: null
   k: null

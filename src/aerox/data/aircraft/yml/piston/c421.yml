@@ -74,6 +74,7 @@ engine:
   default: Continental GTSIO-520-H turbocharged piston engine
   options:
   - Continental GTSIO-520-H turbocharged piston engine
+  model_engine_options: null
 drag:
   cd0: null
   k: null

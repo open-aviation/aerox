@@ -74,6 +74,7 @@ engine:
   default: Garrett TPE331-8-401S/402S turboprops
   options:
   - Garrett TPE331-8 series
+  model_engine_options: null
 drag:
   cd0: null
   k: null

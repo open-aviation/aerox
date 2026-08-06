@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Airbus A380-800
 ICAO: A388
-Last reviewed: 2026-08-05
+Last reviewed: 2026-08-06
 Source ledger: docs/modeling/sources.yml
 
 CERTIFICATION SCOPE
@@ -367,3 +367,22 @@ END FIELD
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
+
+MODEL AND ENGINE APPLICABILITY
+
+FIELD engine.model_engine_options
+  Value: 3 certified model mapping(s)
+  Status: certified-published
+  Source: easa_a110_issue_17
+  Page or section: Section 1 III.1.3; PDF p.11 | Section 1 III.2.3; PDF p.12
+  Applicability: Model-level approved installations; the individual airframe record is required to identify the engine actually installed.
+  Evidence inventory: docs/modeling/airbus-model-engine-mapping-draft.tsv
+  Mappings:
+    A380-841:
+      - RB211 Trent 970-84
+    A380-842:
+      - RB211 Trent 972-84
+      - RB211 Trent 972E-84
+    A380-861:
+      - Engine Alliance GP7270 P/N GP7270GP01
+END FIELD

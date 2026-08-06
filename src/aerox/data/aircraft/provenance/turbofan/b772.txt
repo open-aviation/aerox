@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Boeing 777-200
 ICAO: B772
-Last reviewed: 2026-08-05
+Last reviewed: 2026-08-06
 Source ledger: docs/modeling/sources.yml
 
 CERTIFICATION SCOPE
@@ -397,3 +397,30 @@ END FIELD
 LEGACY PARAMETERS
   Parameters not listed above retain the original Aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
+
+MODEL AND ENGINE APPLICABILITY
+
+FIELD engine.model_engine_options
+  Value: 1 certified model mapping(s)
+  Status: certified-published
+  Source: easa_ima003_issue_20
+  Page or section: Section 2, III.4, pp. 7-8
+  Applicability: Model-level approved installations; the individual airframe record is required to identify the engine actually installed.
+  Evidence inventory: docs/modeling/boeing-model-engine-mapping-draft.tsv
+  Mappings:
+    777-200:
+      - PW4077
+      - PW4084
+      - PW4090
+      - PW4090-3
+      - GE90-76B
+      - GE90-85B
+      - GE90-90B
+      - GE90-94B
+      - Trent 875
+      - Trent 877
+      - Trent 884
+      - Trent 892
+      - Trent 892B
+      - Trent 895
+END FIELD

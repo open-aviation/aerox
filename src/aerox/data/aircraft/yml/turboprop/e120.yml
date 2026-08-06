@@ -74,6 +74,7 @@ engine:
   default: PWC PW 118 turboprop 1800 SHP
   options:
   - PWC PW 118 turboprop 1800 SHP
+  model_engine_options: null
 drag:
   cd0: null
   k: null

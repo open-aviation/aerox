@@ -74,6 +74,7 @@ engine:
   default: Williams FJ44-4A
   options:
   - Williams FJ44-4A
+  model_engine_options: null
 drag:
   cd0: 0.02261
   k: 0.04169

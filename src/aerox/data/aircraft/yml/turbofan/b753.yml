@@ -76,6 +76,15 @@ engine:
   - PW2037
   - PW2040
   - RB211-535E4B
+  model_engine_options:
+  - model: 757-300
+    engines:
+    - RB211-535E4-37
+    - RB211-535E4-B-37
+    - RB211-535E4-C-37
+    - PW2037
+    - PW2040
+    - PW2043
 drag:
   cd0: 0.02061
   k: 0.0496

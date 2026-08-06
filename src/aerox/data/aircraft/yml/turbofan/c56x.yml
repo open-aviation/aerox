@@ -74,6 +74,7 @@ engine:
   default: P&W PW545A turbofan
   options:
   - P&W PW545A turbofan
+  model_engine_options: null
 drag:
   cd0: 0.02115
   k: 0.04748
