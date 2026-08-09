@@ -76,10 +76,19 @@ engine:
   options:
   - GE Honda HF-120 turbofan
 drag:
-  cd0: 0.0329
-  k: 0.03417
-  e: 0.75727
-  gears: 0.01973
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: B-observed-core-scaled-tails
+  confidence: medium-low
+  reference_altitude_ft: 51098.2
+  reference_mach: 0.72
+  reference_unit_reynolds_number_per_m: 2642795.6
+  span_efficiency_factor: 0.942102
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 1128
   takeoff_v2: 120

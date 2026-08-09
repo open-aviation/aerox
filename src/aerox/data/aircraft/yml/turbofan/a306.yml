@@ -94,10 +94,19 @@ engine:
   - CF6-80C2A5F
   - PW4158
 drag:
-  cd0: 0.02028
-  k: 0.05022
-  e: 0.81963
-  gears: 0.01574
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: B-observed-core-scaled-tails
+  confidence: medium-low
+  reference_altitude_ft: 37466.6
+  reference_mach: 0.79
+  reference_unit_reynolds_number_per_m: 5583455.0
+  span_efficiency_factor: 0.941938
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 2240
   takeoff_v2: 160

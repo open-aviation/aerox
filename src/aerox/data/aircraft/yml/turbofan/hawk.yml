@@ -76,10 +76,19 @@ engine:
   options:
   - F405-RR-401
 drag:
-  cd0: 0.03726
-  k: 0.06765
-  e: 0.85383
-  gears: 0.01942
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: X-special-scaled
+  confidence: low
+  reference_altitude_ft: 31500.0
+  reference_mach: 0.75
+  reference_unit_reynolds_number_per_m: 6654940.8
+  span_efficiency_factor: 0.85
+  unresolved_fraction_of_resolved_drag: 0.3
+  wave_drag_model: null
+  wave_drag_source_tier: not-applicable
+  wave_drag_confidence: not-applicable
+  wave_drag_technology_factor: null
 kinematic:
   takeoff_distance_m: 700
   takeoff_v2: 115

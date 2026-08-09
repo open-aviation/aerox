@@ -76,10 +76,19 @@ engine:
   options:
   - Pratt & Whitney Canada PW617F-E turbofan, 7.2 kN (1,695 lbf)
 drag:
-  cd0: 0.02598
-  k: 0.04677
-  e: 0.80982
-  gears: 0.01368
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: B-observed-core-scaled-tails
+  confidence: medium-low
+  reference_altitude_ft: 51098.2
+  reference_mach: 0.7
+  reference_unit_reynolds_number_per_m: 2569384.7
+  span_efficiency_factor: 0.943624
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 1036
   takeoff_v2: 110

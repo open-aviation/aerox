@@ -76,10 +76,19 @@ engine:
   options:
   - Williams / Rolls-Royce FJ44-2A
 drag:
-  cd0: 0.02399
-  k: 0.04881
-  e: 0.81579
-  gears: 0.01235
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: B-observed-core-scaled-tails
+  confidence: medium-low
+  reference_altitude_ft: 51098.2
+  reference_mach: 0.78
+  reference_unit_reynolds_number_per_m: 2863028.6
+  span_efficiency_factor: 0.942774
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 1156
   takeoff_v2: 120

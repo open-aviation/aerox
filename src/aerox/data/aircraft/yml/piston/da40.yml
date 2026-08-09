@@ -79,10 +79,19 @@ engine:
   - constant speed FADEC controlled Thielert "Centurion" 135 hp (101 kW) diesel engine
   - Austro Engine AE 300 turbocharged common-rail injected 2.0 liter diesel engine with 168 HP and EECU single lever control system
 drag:
-  cd0: null
-  k: null
-  e: null
-  gears: null
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: D-class-scaled
+  confidence: low
+  reference_altitude_ft: 10000.0
+  reference_mach: 0.203655
+  reference_unit_reynolds_number_per_m: 3575064.6
+  span_efficiency_factor: 0.95
+  unresolved_fraction_of_resolved_drag: 0.35
+  wave_drag_model: null
+  wave_drag_source_tier: not-applicable
+  wave_drag_confidence: not-applicable
+  wave_drag_technology_factor: null
 kinematic:
   takeoff_distance_m: 305
   takeoff_v2: 73

@@ -78,10 +78,19 @@ engine:
   - PW2040
   - RB211-535E4B
 drag:
-  cd0: 0.02061
-  k: 0.0496
-  e: 0.81796
-  gears: 0.01719
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: C-partially-scaled
+  confidence: low
+  reference_altitude_ft: 37602.1
+  reference_mach: 0.8
+  reference_unit_reynolds_number_per_m: 5617405.9
+  span_efficiency_factor: 0.952808
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 2600
   takeoff_v2: 145

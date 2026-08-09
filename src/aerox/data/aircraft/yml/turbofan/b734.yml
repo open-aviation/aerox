@@ -77,10 +77,19 @@ engine:
   - CFM56-3B-2
   - CFM56-3C-1
 drag:
-  cd0: 0.02344
-  k: 0.04902
-  e: 0.81638
-  gears: 0.01894
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: B-observed-core-scaled-tails
+  confidence: medium-low
+  reference_altitude_ft: 35002.6
+  reference_mach: 0.74
+  reference_unit_reynolds_number_per_m: 5808889.5
+  span_efficiency_factor: 0.940413
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 2000
   takeoff_v2: 150

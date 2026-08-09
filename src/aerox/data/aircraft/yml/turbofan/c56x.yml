@@ -76,10 +76,19 @@ engine:
   options:
   - P&W PW545A turbofan
 drag:
-  cd0: 0.02115
-  k: 0.04748
-  e: 0.81196
-  gears: 0.01182
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: B-observed-core-scaled-tails
+  confidence: medium-low
+  reference_altitude_ft: 51098.2
+  reference_mach: 0.73
+  reference_unit_reynolds_number_per_m: 2679501.1
+  span_efficiency_factor: 0.952317
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 1055
   takeoff_v2: 115

@@ -83,10 +83,19 @@ engine:
   - Trent 972-84
   - GP7270
 drag:
-  cd0: 0.01397
-  k: 0.05141
-  e: 0.82269
-  gears: 0.01232
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: A-observed-core-and-tails
+  confidence: medium
+  reference_altitude_ft: 40293.3
+  reference_mach: 0.85
+  reference_unit_reynolds_number_per_m: 5244340.5
+  span_efficiency_factor: 0.955994
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 2970
   takeoff_v2: 150

@@ -76,10 +76,19 @@ engine:
   options:
   - JT15D-5
 drag:
-  cd0: 0.02537
-  k: 0.0482
-  e: 0.81406
-  gears: 0.01568
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: B-observed-core-scaled-tails
+  confidence: medium-low
+  reference_altitude_ft: 51098.2
+  reference_mach: 0.78
+  reference_unit_reynolds_number_per_m: 2863028.6
+  span_efficiency_factor: 0.944568
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 1200
   takeoff_v2: 130

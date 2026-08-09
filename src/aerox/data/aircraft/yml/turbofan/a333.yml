@@ -104,10 +104,19 @@ engine:
   - Trent 768
   - Trent 772
 drag:
-  cd0: 0.01816
-  k: 0.04307
-  e: 0.79758
-  gears: 0.01484
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: A-observed-core-and-tails
+  confidence: medium
+  reference_altitude_ft: 38164.0
+  reference_mach: 0.81
+  reference_unit_reynolds_number_per_m: 5536083.8
+  span_efficiency_factor: 0.954657
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 2300
   takeoff_v2: 145

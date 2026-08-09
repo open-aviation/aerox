@@ -76,10 +76,19 @@ engine:
   options:
   - Williams R-R FJ44-1A turbofan
 drag:
-  cd0: 0.0235
-  k: 0.04296
-  e: 0.79719
-  gears: 0.01147
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: B-observed-core-scaled-tails
+  confidence: medium-low
+  reference_altitude_ft: 50798.5
+  reference_mach: 0.63
+  reference_unit_reynolds_number_per_m: 2345994.4
+  span_efficiency_factor: 0.951083
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 939
   takeoff_v2: 115

@@ -76,10 +76,19 @@ engine:
   options:
   - AE3007A3
 drag:
-  cd0: 0.02377
-  k: 0.04877
-  e: 0.8157
-  gears: 0.01492
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: B-observed-core-scaled-tails
+  confidence: medium-low
+  reference_altitude_ft: 46563.2
+  reference_mach: 0.76
+  reference_unit_reynolds_number_per_m: 3469015.2
+  span_efficiency_factor: 0.947235
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 1400
   takeoff_v2: 125

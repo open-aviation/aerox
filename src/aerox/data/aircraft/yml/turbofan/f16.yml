@@ -75,10 +75,19 @@ engine:
   default: F100-PW-100
   options: null
 drag:
-  cd0: null
-  k: null
-  e: null
-  gears: null
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: X-special-scaled
+  confidence: low
+  reference_altitude_ft: 35000.0
+  reference_mach: 0.86
+  reference_unit_reynolds_number_per_m: 6751493.9
+  span_efficiency_factor: 0.85
+  unresolved_fraction_of_resolved_drag: 0.3
+  wave_drag_model: null
+  wave_drag_source_tier: not-applicable
+  wave_drag_confidence: not-applicable
+  wave_drag_technology_factor: null
 kinematic:
   takeoff_distance_m: 1000
   takeoff_v2: 145

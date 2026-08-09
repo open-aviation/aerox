@@ -76,10 +76,19 @@ engine:
   options:
   - BR700-710A2-20
 drag:
-  cd0: 0.01862
-  k: 0.04283
-  e: 0.79673
-  gears: 0.01547
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: B-observed-core-scaled-tails
+  confidence: medium-low
+  reference_altitude_ft: 47144.4
+  reference_mach: 0.85
+  reference_unit_reynolds_number_per_m: 3772939.9
+  span_efficiency_factor: 0.95684
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 1689
   takeoff_v2: 150

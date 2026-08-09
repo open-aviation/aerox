@@ -80,10 +80,19 @@ engine:
   options:
   - Trent XWB-84
 drag:
-  cd0: 0.01767
-  k: 0.04218
-  e: 0.79433
-  gears: 0.01367
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: A-observed-core-and-tails
+  confidence: medium
+  reference_altitude_ft: 41232.0
+  reference_mach: 0.85
+  reference_unit_reynolds_number_per_m: 5012970.3
+  span_efficiency_factor: 0.95516
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 888
   takeoff_v2: 150

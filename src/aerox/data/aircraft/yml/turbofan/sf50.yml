@@ -76,10 +76,19 @@ engine:
   options:
   - Williams FJ33-5A
 drag:
-  cd0: 0.02321
-  k: 0.04781
-  e: 0.81293
-  gears: 0.0093
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: B-observed-core-scaled-tails
+  confidence: medium-low
+  reference_altitude_ft: 51098.2
+  reference_mach: 0.53
+  reference_unit_reynolds_number_per_m: 1945391.2
+  span_efficiency_factor: 0.939912
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: null
   takeoff_v2: null

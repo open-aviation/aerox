@@ -79,10 +79,19 @@ engine:
   - LEAP-1B28B1
   - LEAP-1B28BBJ1
 drag:
-  cd0: 0.02268
-  k: 0.03916
-  e: 0.78213
-  gears: 0.01969
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: A-observed-core-and-tails
+  confidence: medium
+  reference_altitude_ft: 35753.4
+  reference_mach: 0.79
+  reference_unit_reynolds_number_per_m: 6037716.7
+  span_efficiency_factor: 0.950962
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 2600
   takeoff_v2: 149

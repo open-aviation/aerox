@@ -83,10 +83,19 @@ engine:
   - PW6122A
   - PW6124A
 drag:
-  cd0: 0.0211
-  k: 0.04207
-  e: 0.7939
-  gears: 0.01459
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: B-observed-core-scaled-tails
+  confidence: medium-low
+  reference_altitude_ft: 43802.7
+  reference_mach: 0.79
+  reference_unit_reynolds_number_per_m: 4117587.6
+  span_efficiency_factor: 0.946221
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 1400
   takeoff_v2: 135

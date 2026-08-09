@@ -77,10 +77,19 @@ engine:
   - 2 x 2,000 SHP P&W 120A turboprops with 4 blade propellers
   - 2 x 2,150 SHP P&W 121A turboprops with 4 blade propellers
 drag:
-  cd0: null
-  k: null
-  e: null
-  gears: null
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: D-class-scaled
+  confidence: low
+  reference_altitude_ft: 20000.0
+  reference_mach: 0.406956
+  reference_unit_reynolds_number_per_m: 5273695.1
+  span_efficiency_factor: 0.95
+  unresolved_fraction_of_resolved_drag: 0.28
+  wave_drag_model: null
+  wave_drag_source_tier: not-applicable
+  wave_drag_confidence: not-applicable
+  wave_drag_technology_factor: null
 kinematic:
   takeoff_distance_m: 900
   takeoff_v2: 100

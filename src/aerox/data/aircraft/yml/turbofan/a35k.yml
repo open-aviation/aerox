@@ -77,10 +77,19 @@ engine:
   options:
   - Trent XWB-97
 drag:
-  cd0: 0.01843
-  k: 0.04218
-  e: 0.79433
-  gears: 0.01525
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: A-observed-core-and-tails
+  confidence: medium
+  reference_altitude_ft: 38324.2
+  reference_mach: 0.85
+  reference_unit_reynolds_number_per_m: 5764923.9
+  span_efficiency_factor: 0.95516
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 2600
   takeoff_v2: 155

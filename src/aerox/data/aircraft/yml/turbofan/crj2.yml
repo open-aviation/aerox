@@ -76,10 +76,19 @@ engine:
   options:
   - CF34-3B
 drag:
-  cd0: 0.02714
-  k: 0.04266
-  e: 0.79611
-  gears: 0.0168
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: B-observed-core-scaled-tails
+  confidence: medium-low
+  reference_altitude_ft: 42654.9
+  reference_mach: 0.74
+  reference_unit_reynolds_number_per_m: 4075752.9
+  span_efficiency_factor: 0.941522
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 1527
   takeoff_v2: 135

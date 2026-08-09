@@ -12,21 +12,12 @@ Then open: http://localhost:5000
 """
 
 import csv
-import json
-import locale
 import sys
-from dataclasses import fields
 from functools import lru_cache
 from pathlib import Path
 
-# Import drag calculation functions in both script and package-test contexts.
-try:
-    import dragcoef
-except ModuleNotFoundError:  # pragma: no cover - exercised by package-style import
-    from tools import dragcoef
-import numpy as np
 import yaml
-from flask import Flask, jsonify, redirect, render_template_string, request, url_for
+from flask import Flask, redirect, render_template_string, request, url_for
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 SRC_ROOT = PROJECT_ROOT / "src"
@@ -61,6 +52,7 @@ def load_aircraft_classification(icao: str) -> dict:
                 }
     return {}
 
+
 # Field schema for configuration-driven parsing and validation
 FIELD_SCHEMA = {
     "simple": {
@@ -91,8 +83,16 @@ FIELD_SCHEMA = {
         },
         "wing": {
             "fields": [
-                "area", "span", "mac", "sweep", "t/c", "root_chord",
-                "tip_chord", "taper_ratio", "aspect_ratio", "dihedral",
+                "area",
+                "span",
+                "mac",
+                "sweep",
+                "t/c",
+                "root_chord",
+                "tip_chord",
+                "taper_ratio",
+                "aspect_ratio",
+                "dihedral",
             ],
             "types": {
                 "area": float,
@@ -109,8 +109,15 @@ FIELD_SCHEMA = {
         },
         "horizontal_tail": {
             "fields": [
-                "area", "span", "mac", "root_chord", "tip_chord",
-                "taper_ratio", "sweep", "dihedral", "arm",
+                "area",
+                "span",
+                "mac",
+                "root_chord",
+                "tip_chord",
+                "taper_ratio",
+                "sweep",
+                "dihedral",
+                "arm",
                 "elevator_area_ratio",
             ],
             "types": {
@@ -128,8 +135,15 @@ FIELD_SCHEMA = {
         },
         "vertical_tail": {
             "fields": [
-                "area", "height", "mac", "root_chord", "tip_chord",
-                "taper_ratio", "sweep", "arm", "rudder_area_ratio",
+                "area",
+                "height",
+                "mac",
+                "root_chord",
+                "tip_chord",
+                "taper_ratio",
+                "sweep",
+                "arm",
+                "rudder_area_ratio",
             ],
             "types": {
                 "area": float,
@@ -163,10 +177,6 @@ FIELD_SCHEMA = {
                 "default": str,
                 "options": list,
             },
-        },
-        "drag": {
-            "fields": ["cd0", "k", "e", "gears"],
-            "types": {"cd0": float, "k": float, "e": float, "gears": float},
         },
         "kinematic": {
             "fields": [
@@ -298,20 +308,6 @@ HTML_TEMPLATE = """
         .btn-save:hover {
             background: #218838;
         }
-        .btn-calculate {
-            background: #17a2b8;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-weight: 500;
-        }
-        .btn-calculate:hover {
-            background: #138496;
-        }
-        .btn-calculate:disabled {
-            background: #6c757d;
-            cursor: not-allowed;
-        }
         .aircraft-tags {
             display: inline-flex;
             gap: 6px;
@@ -329,47 +325,6 @@ HTML_TEMPLATE = """
         .tag-business { background: #cce5ff; color: #004085; }
         .tag-yes { background: #d4edda; color: #155724; }
         .tag-no { background: #f8d7da; color: #721c24; }
-        .drag-preview {
-            background: #e7f3ff;
-            border: 2px solid #17a2b8;
-            border-radius: 4px;
-            padding: 12px;
-            margin-bottom: 12px;
-        }
-        .drag-preview.error {
-            background: #f8d7da;
-            border-color: #dc3545;
-        }
-        .preview-content {
-            margin-bottom: 10px;
-        }
-        .preview-content strong {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-        }
-        .preview-values {
-            font-family: monospace;
-            font-size: 13px;
-            color: #495057;
-            line-height: 1.6;
-        }
-        .preview-error {
-            color: #721c24;
-            font-size: 13px;
-            line-height: 1.6;
-        }
-        .btn-apply {
-            background: #28a745;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-weight: 500;
-            width: 100%;
-        }
-        .btn-apply:hover {
-            background: #218838;
-        }
         select, input, textarea, button {
             padding: 5px 8px;
             border: 1px solid #ddd;
@@ -907,44 +862,6 @@ HTML_TEMPLATE = """
                         </div>
                     </div>
                     
-                    <div class="form-section">
-                        <h3><i class="fa-solid fa-wind"></i> Drag Coefficients</h3>
-                        <div class="field">
-                            <button type="button" onclick="calculateDrag('{{ current_icao }}')" class="btn-calculate" style="width: 100%; margin-bottom: 10px;">
-                                <i class="fa-solid fa-calculator"></i> Calculate Coefficients
-                            </button>
-                        </div>
-                        <div id="drag-preview" class="drag-preview" style="display: none;">
-                            <div class="preview-content">
-                                <strong>Calculated Values:</strong>
-                                <div class="preview-values">
-                                    <div>CD0: <span id="preview_cd0">-</span></div>
-                                    <div>K: <span id="preview_k">-</span></div>
-                                    <div>e: <span id="preview_e">-</span></div>
-                                    <div>Gears: <span id="preview_gears">-</span></div>
-                                </div>
-                            </div>
-                            <button type="button" onclick="applyDragValues()" class="btn-apply">
-                                <i class="fa-solid fa-check"></i> Apply to Fields
-                            </button>
-                        </div>
-                        <div class="field">
-                            <label>CD0</label>
-                            <input type="number" step="0.00001" name="drag__cd0" id="drag_cd0" value="{{ data.drag.cd0 if data.drag and data.drag.cd0 else '' }}">
-                        </div>
-                        <div class="field">
-                            <label>K</label>
-                            <input type="number" step="0.00001" name="drag__k" id="drag_k" value="{{ data.drag.k if data.drag and data.drag.k else '' }}">
-                        </div>
-                        <div class="field">
-                            <label>e</label>
-                            <input type="number" step="0.00001" name="drag__e" id="drag_e" value="{{ data.drag.e if data.drag and data.drag.e else '' }}">
-                        </div>
-                        <div class="field">
-                            <label>Gears</label>
-                            <input type="number" step="0.00001" name="drag__gears" id="drag_gears" value="{{ data.drag.gears if data.drag and data.drag.gears else '' }}">
-                        </div>
-                    </div>
                 </div>
                 
                 <!-- Column 4: Kinematic -->
@@ -1262,86 +1179,6 @@ HTML_TEMPLATE = """
             });
         });
         
-        // Store calculated drag values
-        let calculatedDragValues = null;
-        
-        // Calculate drag coefficients
-        async function calculateDrag(icao) {
-            const $button = $(event.target);
-            const $previewDiv = $('#drag-preview');
-            
-            $button.prop('disabled', true);
-            $button.html('<i class="fa-solid fa-spinner fa-spin"></i> Calculating...');
-            $previewDiv.hide();
-            
-            try {
-                const response = await $.ajax({
-                    url: `/${icao}/calculate-drag`,
-                    method: 'POST',
-                    contentType: 'application/json',
-                });
-                
-                if (response.error) {
-                    // Show error in preview div
-                    $previewDiv.removeClass('error').addClass('error');
-                    $previewDiv.html(`
-                        <div class="preview-content">
-                            <strong><i class="fa-solid fa-circle-exclamation"></i> Error:</strong>
-                            <div class="preview-error">${response.error}</div>
-                        </div>
-                    `);
-                    $previewDiv.show();
-                } else {
-                    // Store calculated values
-                    calculatedDragValues = response;
-                    
-                    // Update preview display with success
-                    $previewDiv.removeClass('error');
-                    $previewDiv.html(`
-                        <div class="preview-content">
-                            <strong>Calculated Values:</strong>
-                            <div class="preview-values">
-                                <div>CD0: <span id="preview_cd0">${response.cd0.toFixed(5)}</span></div>
-                                <div>K: <span id="preview_k">${response.k.toFixed(5)}</span></div>
-                                <div>e: <span id="preview_e">${response.e.toFixed(5)}</span></div>
-                                <div>Gears: <span id="preview_gears">${response.gears.toFixed(5)}</span></div>
-                            </div>
-                        </div>
-                        <button type="button" onclick="applyDragValues()" class="btn-apply">
-                            <i class="fa-solid fa-check"></i> Apply to Fields
-                        </button>
-                    `);
-                    $previewDiv.show();
-                }
-            } catch (error) {
-                // Show error in preview div for network/other errors
-                $previewDiv.removeClass('error').addClass('error');
-                const errorMessage = error.responseJSON?.error || error.message || 'Unknown error occurred';
-                $previewDiv.html(`
-                    <div class="preview-content">
-                        <strong><i class="fa-solid fa-circle-exclamation"></i> Error:</strong>
-                        <div class="preview-error">${errorMessage}</div>
-                    </div>
-                `);
-                $previewDiv.show();
-            } finally {
-                $button.prop('disabled', false);
-                $button.html('<i class="fa-solid fa-calculator"></i> Calculate Coefficients');
-            }
-        }
-        
-        // Apply calculated values to form fields
-        function applyDragValues() {
-            if (calculatedDragValues) {
-                $('#drag_cd0').val(calculatedDragValues.cd0.toFixed(5));
-                $('#drag_k').val(calculatedDragValues.k.toFixed(5));
-                $('#drag_e').val(calculatedDragValues.e.toFixed(5));
-                $('#drag_gears').val(calculatedDragValues.gears.toFixed(5));
-                
-                // Optional: Hide preview after applying
-                // $('#drag-preview').hide();
-            }
-        }
     </script>
 </body>
 </html>
@@ -1353,7 +1190,7 @@ def safe_convert(value, target_type, field_name=None):
     if not value or value == "":
         return None
     try:
-        if target_type == list:
+        if target_type is list:
             if field_name == "subtypes":
                 if isinstance(value, list):
                     return value
@@ -1366,7 +1203,9 @@ def safe_convert(value, target_type, field_name=None):
                             "Subtype rows must use 'subtype | engine; engine'"
                         )
                     subtype, engine_text = (part.strip() for part in line.split("|", 1))
-                    engines = [item.strip() for item in engine_text.split(";") if item.strip()]
+                    engines = [
+                        item.strip() for item in engine_text.split(";") if item.strip()
+                    ]
                     if not subtype or not engines:
                         raise ValueError(
                             "Subtype rows need a subtype and at least one engine"
@@ -1427,7 +1266,7 @@ def format_value(value, field_name=None):
         if field_name == "mac":
             return round(value, 4)
         # For drag coefficients, use 5 decimal precision
-        if field_name in ["cd0", "k", "e", "gears"]:
+        if field_name in ["cd0", "k", "e"]:
             return round(value, 5)
         # For Mach numbers
         elif field_name and "mach" in field_name.lower():
@@ -1452,7 +1291,6 @@ def save_aircraft_data(icao, data, engine_type=None):
         if not yaml_file:
             yaml_file = YAML_BASE_DIR / DEFAULT_ENGINE_TYPE / f"{icao.lower()}.yml"
 
-    editable_fields = set(FIELD_SCHEMA["simple"]) | set(FIELD_SCHEMA["nested"])
     if yaml_file.exists():
         with open(yaml_file, "r", encoding="utf-8") as stream:
             existing_data = yaml.safe_load(stream) or {}
@@ -1501,14 +1339,19 @@ def save_aircraft_data(icao, data, engine_type=None):
                 derive_geometry,
                 render_geometry_section,
             )
-            from tools.migrate_aircraft_data import parse_old_provenance, validate_simple
+            from tools.migrate_aircraft_data import (
+                parse_old_provenance,
+                validate_simple,
+            )
 
         old_sidecar = (
             sidecar_path.read_text(encoding="utf-8") if sidecar_path.exists() else ""
         )
         metadata = {
             key: dict(value)
-            for key, value in parse_old_provenance(old_sidecar).get("fields", {}).items()
+            for key, value in parse_old_provenance(old_sidecar)
+            .get("fields", {})
+            .items()
             if key in GEOMETRY_UNITS
         }
         for path, unit in GEOMETRY_UNITS.items():
@@ -1841,10 +1684,6 @@ OVERVIEW_TEMPLATE = """
                     <th class="num sec-a">MAC</th>
                     <th class="num sec-a">Sweep</th>
                     <th class="num sec-a">t/c</th>
-                    <th class="num sec-b">CD0</th>
-                    <th class="num sec-b">K</th>
-                    <th class="num sec-b">e</th>
-                    <th class="num sec-b">Gears</th>
                     <th class="sec-a"><select id="eng-type-filter" onchange="filterTable()" class="th-select"><option value="">Eng Type</option><option value="turbofan">turbofan</option><option value="turboprop">turboprop</option><option value="piston">piston</option></select></th>
                     <th class="sec-a">Eng Mount</th>
                     <th class="num sec-a">N</th>
@@ -1888,10 +1727,6 @@ OVERVIEW_TEMPLATE = """
                     <td class="num sec-a">{{ ac.wing_mac or '-' }}</td>
                     <td class="num sec-a">{{ ac.wing_sweep or '-' }}</td>
                     <td class="num sec-a">{{ ac.wing_tc or '-' }}</td>
-                    <td class="num sec-b">{{ ac.drag_cd0 or '-' }}</td>
-                    <td class="num sec-b">{{ ac.drag_k or '-' }}</td>
-                    <td class="num sec-b">{{ ac.drag_e or '-' }}</td>
-                    <td class="num sec-b">{{ ac.drag_gears or '-' }}</td>
                     <td class="sec-a">{{ ac.engine_type or '-' }}</td>
                     <td class="sec-a">{{ ac.engine_mount or '-' }}</td>
                     <td class="num sec-a">{{ ac.engine_number or '-' }}</td>
@@ -1990,58 +1825,53 @@ def load_all_aircraft_data():
                 wing = data.get("wing") or {}
                 flaps = data.get("flaps") or {}
                 engine = data.get("engine") or {}
-                drag = data.get("drag") or {}
-
-                aircraft_list.append({
-                    # Classification
-                    "icao": icao,
-                    "name": data.get("aircraft", ""),
-                    "iata": data.get("iata"),
-                    "civil": classification.get("civil") == "1",
-                    "military": classification.get("military") == "1",
-                    "business": classification.get("business") == "1",
-                    "edb": classification.get("edb") == "1",
-                    # Weight
-                    "mtow": data.get("mtow"),
-                    "mlw": data.get("mlw"),
-                    "oew": data.get("oew"),
-                    "mfc": data.get("mfc"),
-                    # Performance
-                    "vmo": data.get("vmo"),
-                    "mmo": data.get("mmo"),
-                    "ceiling": data.get("ceiling"),
-                    # WTC
-                    "icao_wtc": data.get("icao_wtc"),
-                    "eu_wtc": data.get("eu_wtc"),
-                    "faa_wtc": data.get("faa_wtc"),
-                    "parking_area_m2": data.get("parking_area_m2"),
-                    # Pax
-                    "pax_max": pax.get("max"),
-                    "pax_high": pax.get("high"),
-                    "pax_low": pax.get("low"),
-                    # Fuselage
-                    "fus_length": fuselage.get("length"),
-                    "fus_height": fuselage.get("height"),
-                    "fus_width": fuselage.get("width"),
-                    # Wing
-                    "wing_area": wing.get("area"),
-                    "wing_span": wing.get("span"),
-                    "wing_mac": wing.get("mac"),
-                    "wing_sweep": wing.get("sweep"),
-                    "wing_tc": wing.get("t/c"),
-                    # Flaps
-                    "flaps_type": flaps.get("type"),
-                    # Engine
-                    "engine_type": engine.get("type"),
-                    "engine_mount": engine.get("mount"),
-                    "engine_number": engine.get("number"),
-                    "engine_default": engine.get("default"),
-                    # Drag
-                    "drag_cd0": drag.get("cd0"),
-                    "drag_k": drag.get("k"),
-                    "drag_e": drag.get("e"),
-                    "drag_gears": drag.get("gears"),
-                })
+                aircraft_list.append(
+                    {
+                        # Classification
+                        "icao": icao,
+                        "name": data.get("aircraft", ""),
+                        "iata": data.get("iata"),
+                        "civil": classification.get("civil") == "1",
+                        "military": classification.get("military") == "1",
+                        "business": classification.get("business") == "1",
+                        "edb": classification.get("edb") == "1",
+                        # Weight
+                        "mtow": data.get("mtow"),
+                        "mlw": data.get("mlw"),
+                        "oew": data.get("oew"),
+                        "mfc": data.get("mfc"),
+                        # Performance
+                        "vmo": data.get("vmo"),
+                        "mmo": data.get("mmo"),
+                        "ceiling": data.get("ceiling"),
+                        # WTC
+                        "icao_wtc": data.get("icao_wtc"),
+                        "eu_wtc": data.get("eu_wtc"),
+                        "faa_wtc": data.get("faa_wtc"),
+                        "parking_area_m2": data.get("parking_area_m2"),
+                        # Pax
+                        "pax_max": pax.get("max"),
+                        "pax_high": pax.get("high"),
+                        "pax_low": pax.get("low"),
+                        # Fuselage
+                        "fus_length": fuselage.get("length"),
+                        "fus_height": fuselage.get("height"),
+                        "fus_width": fuselage.get("width"),
+                        # Wing
+                        "wing_area": wing.get("area"),
+                        "wing_span": wing.get("span"),
+                        "wing_mac": wing.get("mac"),
+                        "wing_sweep": wing.get("sweep"),
+                        "wing_tc": wing.get("t/c"),
+                        # Flaps
+                        "flaps_type": flaps.get("type"),
+                        # Engine
+                        "engine_type": engine.get("type"),
+                        "engine_mount": engine.get("mount"),
+                        "engine_number": engine.get("number"),
+                        "engine_default": engine.get("default"),
+                    }
+                )
             except Exception:
                 continue
 
@@ -2112,7 +1942,7 @@ def edit(icao):
         message = "Changes saved successfully!"
         message_type = "success"
     elif request.args.get("error"):
-        message = f'Error saving: {request.args.get("error")}'
+        message = f"Error saving: {request.args.get('error')}"
         message_type = "error"
 
     # Load classification from turbofan.csv
@@ -2149,73 +1979,6 @@ def save(icao):
     except Exception as e:
         # On error, redirect with error parameter
         return redirect(url_for("edit", icao=icao, error=str(e)))
-
-
-@app.route("/<icao>/calculate-drag", methods=["POST"])
-def calculate_drag(icao):
-    """Calculate drag coefficients for an aircraft."""
-    try:
-        # Load aircraft data
-        data, _ = load_aircraft_data(icao)
-
-        if not data:
-            return jsonify({"error": f"Aircraft {icao} not found"}), 404
-
-        # Check if required data exists
-        if not data.get("wing") or not data.get("fuselage"):
-            return jsonify({"error": "Missing wing or fuselage data"}), 400
-
-        if not data.get("mtow"):
-            return jsonify({"error": "Missing mtow"}), 400
-
-        wing = data.get("wing")
-        fuselage = data.get("fuselage")
-        mtow = data.get("mtow")
-
-        # Check for required fields
-        required_wing = ["area", "span", "mac"]
-        required_fuselage = ["length", "height", "width"]
-
-        for field in required_wing:
-            if not wing.get(field):
-                return jsonify({"error": f"Missing wing.{field}"}), 400
-
-        for field in required_fuselage:
-            if not fuselage.get(field):
-                return jsonify({"error": f"Missing fuselage.{field}"}), 400
-
-        # Calculate drag coefficients using dragcoef module
-        # Create a mock aircraft object with the required attributes
-        class MockAircraft:
-            def __init__(self, wing_data, fuselage_data, mtow_val):
-                self.icao = icao
-                self.mtow = mtow_val
-                self.wing = type(
-                    "obj",
-                    (object,),
-                    {
-                        "area": wing_data["area"],
-                        "span": wing_data["span"],
-                        "mac": wing_data["mac"],
-                    },
-                )()
-                self.fuselage = type(
-                    "obj",
-                    (object,),
-                    {
-                        "length": fuselage_data["length"],
-                        "height": fuselage_data["height"],
-                        "width": fuselage_data["width"],
-                    },
-                )()
-
-        mock_aircraft = MockAircraft(wing, fuselage, mtow)
-        cd0, k, e, gears = dragcoef.calc_drag_coefficients(mock_aircraft)
-
-        return jsonify({"cd0": float(cd0), "k": float(k), "e": float(e), "gears": float(gears)})
-
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
 
 
 @app.route("/clear-cache")

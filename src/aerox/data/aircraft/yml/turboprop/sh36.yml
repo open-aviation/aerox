@@ -77,10 +77,19 @@ engine:
   - P&W PT6A-65R turboprops
   - P&W PT6A-67R turboprops
 drag:
-  cd0: null
-  k: null
-  e: null
-  gears: null
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: D-class-scaled
+  confidence: low
+  reference_altitude_ft: 17600.0
+  reference_mach: 0.338619
+  reference_unit_reynolds_number_per_m: 4729337.4
+  span_efficiency_factor: 0.95
+  unresolved_fraction_of_resolved_drag: 0.28
+  wave_drag_model: null
+  wave_drag_source_tier: not-applicable
+  wave_drag_confidence: not-applicable
+  wave_drag_technology_factor: null
 kinematic:
   takeoff_distance_m: 1300
   takeoff_v2: 110

@@ -77,10 +77,19 @@ engine:
   - 2 x 350 HP Lycoming TIO-540-J2BD turbocharged piston engines with 3 blade propellers
   - 2 x 310 HP Lycoming TIO-540-A turbocharged piston engines with 3 blade propellers
 drag:
-  cd0: null
-  k: null
-  e: null
-  gears: null
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: D-class-scaled
+  confidence: low
+  reference_altitude_ft: 10000.0
+  reference_mach: 0.328981
+  reference_unit_reynolds_number_per_m: 5775104.3
+  span_efficiency_factor: 0.95
+  unresolved_fraction_of_resolved_drag: 0.35
+  wave_drag_model: null
+  wave_drag_source_tier: not-applicable
+  wave_drag_confidence: not-applicable
+  wave_drag_technology_factor: null
 kinematic:
   takeoff_distance_m: 400
   takeoff_v2: 90

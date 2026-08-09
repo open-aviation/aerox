@@ -76,10 +76,19 @@ engine:
   options:
   - HTF7350
 drag:
-  cd0: 0.02052
-  k: 0.04641
-  e: 0.80873
-  gears: 0.01372
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: B-observed-core-scaled-tails
+  confidence: medium-low
+  reference_altitude_ft: 50808.0
+  reference_mach: 0.8
+  reference_unit_reynolds_number_per_m: 2977681.7
+  span_efficiency_factor: 0.950795
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 1474
   takeoff_v2: 140

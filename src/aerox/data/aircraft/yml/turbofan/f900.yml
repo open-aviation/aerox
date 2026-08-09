@@ -76,10 +76,19 @@ engine:
   options:
   - TFE731-5BR
 drag:
-  cd0: 0.02124
-  k: 0.05097
-  e: 0.82158
-  gears: 0.01686
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: B-observed-core-scaled-tails
+  confidence: medium-low
+  reference_altitude_ft: 48206.3
+  reference_mach: 0.85
+  reference_unit_reynolds_number_per_m: 3585211.7
+  span_efficiency_factor: 0.943706
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 1500
   takeoff_v2: 125

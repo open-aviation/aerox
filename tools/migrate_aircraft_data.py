@@ -96,7 +96,21 @@ SIMPLE_TEMPLATE: dict[str, Any] = {
         "default": None,
         "options": None,
     },
-    "drag": {"cd0": None, "k": None, "e": None, "gears": None},
+    "drag": {
+        "model": None,
+        "configuration": None,
+        "geometry_tier": None,
+        "confidence": None,
+        "reference_altitude_ft": None,
+        "reference_mach": None,
+        "reference_unit_reynolds_number_per_m": None,
+        "span_efficiency_factor": None,
+        "unresolved_fraction_of_resolved_drag": None,
+        "wave_drag_model": None,
+        "wave_drag_source_tier": None,
+        "wave_drag_confidence": None,
+        "wave_drag_technology_factor": None,
+    },
     "kinematic": {
         "takeoff_distance_m": None,
         "takeoff_v2": None,
@@ -319,10 +333,19 @@ def simple_from_canonical(data: Mapping[str, Any]) -> dict[str, Any]:
         "options": [item.get("designation") for item in options if item.get("designation")] or None,
     }
     result["drag"] = {
-        "cd0": _get(data, "aerodynamics.zero_lift_drag_coefficient"),
-        "k": _get(data, "aerodynamics.induced_drag_factor"),
-        "e": _get(data, "aerodynamics.oswald_efficiency"),
-        "gears": _get(data, "aerodynamics.gear_drag_increment"),
+        "model": "imported-static-polar-v1",
+        "configuration": "clean",
+        "geometry_tier": "imported",
+        "confidence": "low",
+        "reference_altitude_ft": None,
+        "reference_mach": None,
+        "reference_unit_reynolds_number_per_m": None,
+        "span_efficiency_factor": None,
+        "unresolved_fraction_of_resolved_drag": None,
+        "wave_drag_model": None,
+        "wave_drag_source_tier": None,
+        "wave_drag_confidence": None,
+        "wave_drag_technology_factor": None,
     }
     result["kinematic"] = {
         "takeoff_distance_m": _get(data, "performance.takeoff.distance"),
@@ -558,6 +581,73 @@ def validate_simple(document: Any) -> list[str]:
                 issues.append(
                     f"{section_name}.taper_ratio: does not match tip_chord / root_chord"
                 )
+
+    drag = document.get("drag", {})
+    if isinstance(drag, Mapping):
+        for field_name in (
+            "model", "configuration", "geometry_tier", "confidence",
+            "wave_drag_model", "wave_drag_source_tier", "wave_drag_confidence",
+        ):
+            value = drag.get(field_name)
+            if value is not None and not isinstance(value, str):
+                issues.append(f"drag.{field_name}: expected string or null")
+        numeric_fields = (
+            "reference_altitude_ft",
+            "reference_mach", "reference_unit_reynolds_number_per_m",
+            "span_efficiency_factor", "unresolved_fraction_of_resolved_drag",
+            "wave_drag_technology_factor",
+        )
+        for field_name in numeric_fields:
+            value = drag.get(field_name)
+            if value is not None and (
+                isinstance(value, bool) or not isinstance(value, (int, float))
+            ):
+                issues.append(f"drag.{field_name}: expected number or null")
+            elif isinstance(value, (int, float)) and not math.isfinite(float(value)):
+                issues.append(f"drag.{field_name}: expected finite number")
+        if any(drag.get(field) is not None for field in numeric_fields):
+            for required in ("model", "configuration", "geometry_tier", "confidence"):
+                if not drag.get(required):
+                    issues.append(f"drag.{required}: required for populated model")
+        if drag.get("model") == "aerox-geometry-drag-v1":
+            if drag.get("configuration") != "clean":
+                issues.append("drag.configuration: geometry model requires clean")
+            for required in (
+                "reference_altitude_ft",
+                "reference_mach",
+                "reference_unit_reynolds_number_per_m",
+                "span_efficiency_factor",
+                "unresolved_fraction_of_resolved_drag",
+            ):
+                if drag.get(required) is None:
+                    issues.append(f"drag.{required}: required for geometry model")
+        wave_model = drag.get("wave_drag_model")
+        if wave_model is not None:
+            if wave_model != "aerox-korn-lock-wave-v1":
+                issues.append("drag.wave_drag_model: unsupported model")
+            for required in (
+                "wave_drag_source_tier",
+                "wave_drag_confidence",
+                "wave_drag_technology_factor",
+            ):
+                if drag.get(required) is None:
+                    issues.append(f"drag.{required}: required for wave model")
+        elif drag.get("wave_drag_technology_factor") is not None:
+            issues.append(
+                "drag.wave_drag_model: required with wave technology factor"
+            )
+        bounds = {
+            "reference_altitude_ft": (-2000.0, 70000.0),
+            "reference_mach": (0.0, 1.0),
+            "reference_unit_reynolds_number_per_m": (0.0, float("inf")),
+            "span_efficiency_factor": (0.3, 1.2),
+            "unresolved_fraction_of_resolved_drag": (0.0, 1.0),
+            "wave_drag_technology_factor": (0.5, 1.1),
+        }
+        for field_name, (lower, upper) in bounds.items():
+            value = drag.get(field_name)
+            if isinstance(value, (int, float)) and not lower < float(value) <= upper:
+                issues.append(f"drag.{field_name}: outside supported bounds")
     return issues
 
 

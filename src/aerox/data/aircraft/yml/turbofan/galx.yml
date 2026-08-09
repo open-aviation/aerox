@@ -76,10 +76,19 @@ engine:
   options:
   - PW306A
 drag:
-  cd0: 0.02357
-  k: 0.04647
-  e: 0.80893
-  gears: 0.01743
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: B-observed-core-scaled-tails
+  confidence: medium-low
+  reference_altitude_ft: 46911.6
+  reference_mach: 0.81
+  reference_unit_reynolds_number_per_m: 3635845.1
+  span_efficiency_factor: 0.943618
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 1800
   takeoff_v2: 125

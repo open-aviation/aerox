@@ -54,11 +54,25 @@ COLUMNS = {
 }
 
 REQUIRED_NUMERIC = [
-    "bpr", "max_thrust",
-    "ei_hc_to", "ei_hc_co", "ei_hc_app", "ei_hc_idl",
-    "ei_co_to", "ei_co_co", "ei_co_app", "ei_co_idl",
-    "ei_nox_to", "ei_nox_co", "ei_nox_app", "ei_nox_idl",
-    "ff_to", "ff_co", "ff_app", "ff_idl", "fuel_lto",
+    "bpr",
+    "max_thrust",
+    "ei_hc_to",
+    "ei_hc_co",
+    "ei_hc_app",
+    "ei_hc_idl",
+    "ei_co_to",
+    "ei_co_co",
+    "ei_co_app",
+    "ei_co_idl",
+    "ei_nox_to",
+    "ei_nox_co",
+    "ei_nox_app",
+    "ei_nox_idl",
+    "ff_to",
+    "ff_co",
+    "ff_app",
+    "ff_idl",
+    "fuel_lto",
 ]
 
 
@@ -132,7 +146,10 @@ def main() -> int:
     data = merge_cruise(add_fuel_coefficients(load_edb(args.input)), args.cruise)
     rendered = data.to_csv(index=False, float_format="%g")
     if args.check:
-        if not args.output.exists() or args.output.read_text(encoding="utf-8") != rendered:
+        if (
+            not args.output.exists()
+            or args.output.read_text(encoding="utf-8") != rendered
+        ):
             print(f"stale generated engine table: {args.output}")
             return 1
         print(f"engine table is current: {len(data)} identifiers")

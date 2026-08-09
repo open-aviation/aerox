@@ -1,10 +1,11 @@
-data/
+/data/
 tmp
 old/
 .claude/
 .venv/
-src/aerox/data/aircraft/yml/piston/
-src/aerox/data/aircraft/yml/turbofan/
+
+# Research documentation and generated outputs remain local for now.
+/docs/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -102,33 +103,3 @@ ENV/
 
 #vs code
 .vscode
-
-# Bundled aircraft data are source files and package resources.
-# Keep the broad data ignores above for generated/external datasets, while
-# making the reviewed compact aircraft corpus trackable.
-!src/aerox/data/
-!src/aerox/data/aircraft/
-!src/aerox/data/aircraft/*.csv
-!src/aerox/data/aircraft/yml/
-!src/aerox/data/aircraft/yml/piston/
-!src/aerox/data/aircraft/yml/piston/*.yml
-!src/aerox/data/aircraft/yml/turbofan/
-!src/aerox/data/aircraft/yml/turbofan/*.yml
-!src/aerox/data/aircraft/yml/turboprop/
-!src/aerox/data/aircraft/yml/turboprop/*.yml
-!src/aerox/data/aircraft/provenance/
-!src/aerox/data/aircraft/provenance/piston/
-!src/aerox/data/aircraft/provenance/piston/*.txt
-!src/aerox/data/aircraft/provenance/turbofan/
-!src/aerox/data/aircraft/provenance/turbofan/*.txt
-!src/aerox/data/aircraft/provenance/turboprop/
-!src/aerox/data/aircraft/provenance/turboprop/*.txt
-
-# Keep external manufacturer CAD binaries local, but version their download
-# manifest and archive checksums so the collection can be reproduced/audited.
-!data/
-data/*
-!data/cad/
-data/cad/*
-!data/cad/SOURCES.txt
-!data/cad/SHA256SUMS.txt

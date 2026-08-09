@@ -77,10 +77,19 @@ engine:
   - PT6A-65B
   - PT6A-67D
 drag:
-  cd0: 0.02248
-  k: 0.03687
-  e: 0.77157
-  gears: null
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: C-partially-scaled
+  confidence: low
+  reference_altitude_ft: 20000.0
+  reference_mach: 0.439512
+  reference_unit_reynolds_number_per_m: 5695590.7
+  span_efficiency_factor: 0.95
+  unresolved_fraction_of_resolved_drag: 0.28
+  wave_drag_model: null
+  wave_drag_source_tier: not-applicable
+  wave_drag_confidence: not-applicable
+  wave_drag_technology_factor: null
 kinematic:
   takeoff_distance_m: 1150
   takeoff_v2: 110

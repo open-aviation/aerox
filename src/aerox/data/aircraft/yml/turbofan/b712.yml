@@ -77,10 +77,19 @@ engine:
   - BR700-715A1-30
   - BR700-715C1-30
 drag:
-  cd0: 0.02366
-  k: 0.04897
-  e: 0.81625
-  gears: 0.0158
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: B-observed-core-scaled-tails
+  confidence: medium-low
+  reference_altitude_ft: 41094.1
+  reference_mach: 0.76
+  reference_unit_reynolds_number_per_m: 4511987.6
+  span_efficiency_factor: 0.941499
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 2100
   takeoff_v2: 130

@@ -75,10 +75,19 @@ engine:
   default: null
   options: null
 drag:
-  cd0: null
-  k: null
-  e: null
-  gears: null
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: D-class-scaled
+  confidence: low
+  reference_altitude_ft: 10000.0
+  reference_mach: 0.41
+  reference_unit_reynolds_number_per_m: 7197345.4
+  span_efficiency_factor: 0.95
+  unresolved_fraction_of_resolved_drag: 0.35
+  wave_drag_model: null
+  wave_drag_source_tier: not-applicable
+  wave_drag_confidence: not-applicable
+  wave_drag_technology_factor: null
 kinematic:
   takeoff_distance_m: 450
   takeoff_v2: 80

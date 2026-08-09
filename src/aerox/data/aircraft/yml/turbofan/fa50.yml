@@ -76,10 +76,19 @@ engine:
   options:
   - TFE731-3
 drag:
-  cd0: 0.02132
-  k: 0.05022
-  e: 0.81964
-  gears: 0.01556
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: B-observed-core-scaled-tails
+  confidence: medium-low
+  reference_altitude_ft: 49190.0
+  reference_mach: 0.82
+  reference_unit_reynolds_number_per_m: 3298957.2
+  span_efficiency_factor: 0.942461
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 1400
   takeoff_v2: 120

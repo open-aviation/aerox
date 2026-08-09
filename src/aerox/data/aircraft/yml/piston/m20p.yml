@@ -78,10 +78,19 @@ engine:
   - 1 x 200 HP Lycoming IO-360-A1A piston engine with 2 blade propeller
   - 1 x 280 HP Continental IO-550G piston engine with 2 blade propeller
 drag:
-  cd0: null
-  k: null
-  e: null
-  gears: null
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: D-class-scaled
+  confidence: low
+  reference_altitude_ft: 10000.0
+  reference_mach: 0.371279
+  reference_unit_reynolds_number_per_m: 6517617.7
+  span_efficiency_factor: 0.95
+  unresolved_fraction_of_resolved_drag: 0.35
+  wave_drag_model: null
+  wave_drag_source_tier: not-applicable
+  wave_drag_confidence: not-applicable
+  wave_drag_technology_factor: null
 kinematic:
   takeoff_distance_m: 450
   takeoff_v2: 70

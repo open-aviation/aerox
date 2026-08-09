@@ -76,10 +76,19 @@ engine:
   options:
   - Williams FJ44-4A
 drag:
-  cd0: 0.02261
-  k: 0.04169
-  e: 0.79249
-  gears: 0.01272
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: B-observed-core-scaled-tails
+  confidence: medium-low
+  reference_altitude_ft: 51098.2
+  reference_mach: 0.74
+  reference_unit_reynolds_number_per_m: 2716206.6
+  span_efficiency_factor: 0.952805
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: null
   takeoff_v2: null

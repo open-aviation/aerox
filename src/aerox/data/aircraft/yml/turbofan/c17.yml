@@ -76,10 +76,19 @@ engine:
   options:
   - F117-PW-100
 drag:
-  cd0: 0.01906
-  k: 0.0506
-  e: 0.82062
-  gears: 0.01655
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: X-special-scaled
+  confidence: low
+  reference_altitude_ft: 35000.0
+  reference_mach: 0.76
+  reference_unit_reynolds_number_per_m: 5966436.5
+  span_efficiency_factor: 0.95
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: null
+  wave_drag_source_tier: not-applicable
+  wave_drag_confidence: not-applicable
+  wave_drag_technology_factor: null
 kinematic:
   takeoff_distance_m: 2360
   takeoff_v2: 125

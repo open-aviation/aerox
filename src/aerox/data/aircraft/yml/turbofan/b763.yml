@@ -78,10 +78,19 @@ engine:
   - CF6-80C2B7F
   - RB211-524H
 drag:
-  cd0: 0.01842
-  k: 0.04875
-  e: 0.81562
-  gears: 0.01554
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: B-observed-core-scaled-tails
+  confidence: medium-low
+  reference_altitude_ft: 37845.1
+  reference_mach: 0.8
+  reference_unit_reynolds_number_per_m: 5552203.8
+  span_efficiency_factor: 0.950244
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 2900
   takeoff_v2: 160

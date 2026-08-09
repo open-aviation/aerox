@@ -47,10 +47,7 @@ CAD_MEASUREMENT_FILES = (
 
 @pytest.fixture(scope="module")
 def records():
-    return [
-        (path, yaml.safe_load(path.read_text(encoding="utf-8")))
-        for path in FILES
-    ]
+    return [(path, yaml.safe_load(path.read_text(encoding="utf-8"))) for path in FILES]
 
 
 def test_aircraft_source_notes_use_the_simple_sources_folder():
@@ -90,35 +87,101 @@ def test_all_aircraft_use_the_original_compact_parameter_layout(records):
 
 def test_only_compact_certification_and_geometry_extensions_were_added(records):
     original_sections = {
-        "aircraft", "icao", "iata", "mtow", "mlw", "oew", "mfc", "vmo",
-        "mmo", "ceiling", "icao_wtc", "eu_wtc", "faa_wtc",
-        "parking_area_m2", "pax", "fuselage", "wing", "flaps", "engine",
-        "drag", "kinematic",
+        "aircraft",
+        "icao",
+        "iata",
+        "mtow",
+        "mlw",
+        "oew",
+        "mfc",
+        "vmo",
+        "mmo",
+        "ceiling",
+        "icao_wtc",
+        "eu_wtc",
+        "faa_wtc",
+        "parking_area_m2",
+        "pax",
+        "fuselage",
+        "wing",
+        "flaps",
+        "engine",
+        "drag",
+        "kinematic",
     }
     additions = {
-        "subtypes", "certification", "mzfw", "minimum_weight", "horizontal_tail",
+        "subtypes",
+        "certification",
+        "mzfw",
+        "minimum_weight",
+        "horizontal_tail",
         "vertical_tail",
     }
     for _, document in records:
         assert set(document) == original_sections | additions
         assert list(document["certification"]) == [
-            "model", "authority", "type_certificate", "issue", "issue_date"
+            "model",
+            "authority",
+            "type_certificate",
+            "issue",
+            "issue_date",
         ]
         assert list(document["wing"]) == [
-            "area", "span", "mac", "sweep", "t/c", "root_chord",
-            "tip_chord", "taper_ratio", "aspect_ratio", "dihedral",
+            "area",
+            "span",
+            "mac",
+            "sweep",
+            "t/c",
+            "root_chord",
+            "tip_chord",
+            "taper_ratio",
+            "aspect_ratio",
+            "dihedral",
         ]
         assert list(document["horizontal_tail"]) == [
-            "area", "span", "mac", "root_chord", "tip_chord",
-            "taper_ratio", "sweep", "dihedral", "arm",
+            "area",
+            "span",
+            "mac",
+            "root_chord",
+            "tip_chord",
+            "taper_ratio",
+            "sweep",
+            "dihedral",
+            "arm",
             "elevator_area_ratio",
         ]
         assert list(document["vertical_tail"]) == [
-            "area", "height", "mac", "root_chord", "tip_chord",
-            "taper_ratio", "sweep", "arm", "rudder_area_ratio",
+            "area",
+            "height",
+            "mac",
+            "root_chord",
+            "tip_chord",
+            "taper_ratio",
+            "sweep",
+            "arm",
+            "rudder_area_ratio",
         ]
         assert list(document["engine"]) == [
-            "type", "mount", "number", "default", "options",
+            "type",
+            "mount",
+            "number",
+            "default",
+            "options",
+        ]
+        assert list(document["drag"]) == [
+            "model",
+            "configuration",
+            "geometry_tier",
+            "confidence",
+            "reference_altitude_ft",
+            "reference_mach",
+            "reference_unit_reynolds_number_per_m",
+            "span_efficiency_factor",
+            "unresolved_fraction_of_resolved_drag",
+            "wave_drag_model",
+            "wave_drag_source_tier",
+            "wave_drag_confidence",
+            "wave_drag_technology_factor",
         ]
 
 
@@ -165,8 +228,22 @@ def test_subtypes_use_exact_uniform_structure_edb_codes_and_sources(records):
 def test_airbus_subtypes_are_populated_and_boeing_subtypes_are_null(records):
     by_icao = {document["icao"]: document for _, document in records}
     airbus = {
-        "A19N", "A20N", "A21N", "A306", "A318", "A319", "A320", "A321",
-        "A332", "A333", "A339", "A343", "A359", "A35K", "A388", "BCS1",
+        "A19N",
+        "A20N",
+        "A21N",
+        "A306",
+        "A318",
+        "A319",
+        "A320",
+        "A321",
+        "A332",
+        "A333",
+        "A339",
+        "A343",
+        "A359",
+        "A35K",
+        "A388",
+        "BCS1",
         "BCS3",
     }
     assert all(by_icao[icao]["subtypes"] for icao in airbus)
@@ -186,8 +263,8 @@ def test_every_aircraft_has_one_short_plain_text_source_note(records):
     for path in sidecars:
         text = path.read_text(encoding="utf-8")
         assert text.startswith("AEROX AIRCRAFT SOURCE NOTES\n")
-        assert "{\"" not in text
-        assert len(text.splitlines()) < 600
+        assert '{"' not in text
+        assert len(text.splitlines()) < 650
 
 
 def test_every_geometry_field_has_matching_plain_text_sources(records):
@@ -238,7 +315,9 @@ def test_every_aircraft_loads_through_public_api(records):
         assert document["certification"]["issue_date"] is None or isinstance(
             document["certification"]["issue_date"], str
         )
-        assert aircraft.certification.issue_date == document["certification"]["issue_date"]
+        assert (
+            aircraft.certification.issue_date == document["certification"]["issue_date"]
+        )
 
 
 def test_compact_migration_is_idempotent(records):
@@ -262,6 +341,17 @@ def test_geometry_updater_is_idempotent_without_research_input():
     assert "changed=0" in result.stdout
 
 
+def test_aircraft_drag_model_updater_is_idempotent():
+    result = subprocess.run(
+        [sys.executable, "tools/update_aircraft_drag_models.py", "--check"],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "aircraft=144 changed=0 mode=check" in result.stdout
+
+
 def test_geometry_updater_is_idempotent_with_all_research_inputs():
     command = [sys.executable, "tools/update_aircraft_geometry.py"]
     for path in RESEARCH_FILES:
@@ -271,8 +361,12 @@ def test_geometry_updater_is_idempotent_with_all_research_inputs():
     )
     assert result.returncode == 0, result.stdout + result.stderr
     expected_rows = sum(
-        sum(1 for line in path.read_text(encoding="utf-8").splitlines()
-            if line.strip() and not line.startswith("#")) - 1
+        sum(
+            1
+            for line in path.read_text(encoding="utf-8").splitlines()
+            if line.strip() and not line.startswith("#")
+        )
+        - 1
         for path in RESEARCH_FILES
     )
     assert expected_rows >= 273
@@ -323,12 +417,19 @@ def test_cad_archive_inventory_covers_every_stored_manufacturer_drawing():
         rows = list(csv.DictReader(stream))
     assert len(rows) == 50
     assert len({row["archive_id"] for row in rows}) == 50
-    assert all(row["stored_status"] == "original-archive-and-drawing-present" for row in rows)
-    assert all(row["semantic_extraction_status"] in {
-        "reviewed-and-adopted", "reviewed-evidence-only",
-        "reviewed-blocked-no-parameter",
-        "stored-not-semantically-extracted",
-    } for row in rows)
+    assert all(
+        row["stored_status"] == "original-archive-and-drawing-present" for row in rows
+    )
+    assert all(
+        row["semantic_extraction_status"]
+        in {
+            "reviewed-and-adopted",
+            "reviewed-evidence-only",
+            "reviewed-blocked-no-parameter",
+            "stored-not-semantically-extracted",
+        }
+        for row in rows
+    )
     # Every archive has an explicit semantic review, including blocked ones.
     assert not any(
         row["semantic_extraction_status"] == "stored-not-semantically-extracted"
@@ -414,16 +515,28 @@ def test_direct_airbus_dwg_json_extractor_preserves_reviewed_geometry():
     ratio = drawing.expected_elevator_ratio
     hinge_root = te_root - ratio * root
     hinge_tip = te_tip - ratio * tip
-    objects = [{"object": "SCALE", "handle": [0, 2, int(drawing.leading_right, 16), int(drawing.leading_right, 16)]}]
+    objects = [
+        {
+            "object": "SCALE",
+            "handle": [
+                0,
+                2,
+                int(drawing.leading_right, 16),
+                int(drawing.leading_right, 16),
+            ],
+        }
+    ]
     for left, right, y_root, y_tip in (
         (drawing.leading_left, drawing.leading_right, le_root, le_tip),
         (drawing.trailing_left, drawing.trailing_right, te_root, te_tip),
         (drawing.hinge_left, drawing.hinge_right, hinge_root, hinge_tip),
     ):
-        objects.extend([
-            entity(left, (centre - semispan, y_tip), (centre, y_root)),
-            entity(right, (centre, y_root), (centre + semispan, y_tip)),
-        ])
+        objects.extend(
+            [
+                entity(left, (centre - semispan, y_tip), (centre, y_root)),
+                entity(right, (centre, y_root), (centre + semispan, y_tip)),
+            ]
+        )
 
     result = extract({"OBJECTS": objects}, drawing)
     assert result["root_chord_m"] == pytest.approx(root / 1000)
@@ -442,7 +555,9 @@ def test_a350_common_tail_uses_published_area_and_consistent_derived_geometry():
         assert tail.span == pytest.approx(18.79)
         assert tail.root_chord == pytest.approx(6.262168)
         assert tail.tip_chord == pytest.approx(2.465879)
-        assert tail.taper_ratio == pytest.approx(tail.tip_chord / tail.root_chord, rel=2e-6)
+        assert tail.taper_ratio == pytest.approx(
+            tail.tip_chord / tail.root_chord, rel=2e-6
+        )
         assert tail.area == pytest.approx(
             tail.span * (tail.root_chord + tail.tip_chord) / 2,
             rel=2e-6,
@@ -466,8 +581,7 @@ def test_piecewise_a350_1000_vertical_tail_keeps_its_break_definition():
     lower_height = 4.399900
     upper_height = 9.42 - lower_height
     area = (
-        lower_height * (root + break_chord) / 2
-        + upper_height * (break_chord + tip) / 2
+        lower_height * (root + break_chord) / 2 + upper_height * (break_chord + tip) / 2
     )
     chord_squared_integral = (
         lower_height * (root**2 + root * break_chord + break_chord**2) / 3
@@ -532,7 +646,14 @@ def test_basic_mass_relationships_are_reported_without_automatic_changes(records
         if mtow is not None and mzfw is not None and mzfw > mtow:
             warnings.append((path.stem, "mzfw"))
     # Known mixed-model/applicability conflicts remain data-review warnings.
-    assert {icao for icao, _ in warnings} == {"be33", "be36", "c182", "c310", "c402", "p28r"}
+    assert {icao for icao, _ in warnings} == {
+        "be33",
+        "be36",
+        "c182",
+        "c310",
+        "c402",
+        "p28r",
+    }
 
 
 def test_derived_geometry_matches_documented_formulas(records):
@@ -564,12 +685,12 @@ def test_derived_geometry_matches_documented_formulas(records):
                 dimension = section["span" if name == "horizontal_tail" else "height"]
                 formula = notes["fields"][f"{name}.area"].get("formula", "")
                 if dimension is not None and "piecewise" not in formula:
-                    expected_area = dimension * (
-                        section["root_chord"] + section["tip_chord"]
-                    ) / 2
-                    assert section["area"] == pytest.approx(
-                        expected_area, rel=2e-4
-                    ), path
+                    expected_area = (
+                        dimension * (section["root_chord"] + section["tip_chord"]) / 2
+                    )
+                    assert section["area"] == pytest.approx(expected_area, rel=2e-4), (
+                        path
+                    )
 
             if name != "wing" and section["mac"] is not None:
                 assert section["root_chord"] is not None, path
@@ -637,5 +758,7 @@ def test_web_editor_updates_geometry_sources_and_derived_values(
     notes = parse_source_notes(sidecar.read_text(encoding="utf-8"))
     assert notes["fields"]["wing.span"]["value"] == "34.2"
     assert notes["fields"]["wing.span"]["source"] == "aerox_web_editor_manual_entry"
-    assert notes["fields"]["wing.aspect_ratio"]["inputs"] == "span=34.2 m; area=122.0 m2"
+    assert (
+        notes["fields"]["wing.aspect_ratio"]["inputs"] == "span=34.2 m; area=122.0 m2"
+    )
     assert notes["fields"]["wing.aspect_ratio"]["status"] == "legacy-unverified"

@@ -5,17 +5,14 @@ import yaml
 
 from aerox import Aircraft, get_available_aircraft, load_aircraft
 from aerox.aircraft import (
+    AircraftSubtype,
     Certification,
     CertifiedMassLimits,
-    ControlSurface,
-    Drag,
+    DragModelConfig,
     Engine,
     Fuselage,
-    Kinematic,
-    MassProperties,
-    AircraftSubtype,
+    KinematicParameters,
     Pax,
-    ReferenceGeometry,
     Tail,
     Wing,
     load_aircraft_from_dict,
@@ -28,9 +25,7 @@ def test_load_aircraft_from_dict_with_nested_sections():
             "aircraft": "ATR 72",
             "icao": "AT72",
             "mtow": 21500,
-            "subtypes": [
-                {"ATR 72-212A": "PW127M"}
-            ],
+            "subtypes": [{"ATR 72-212A": "PW127M"}],
             "pax": {"max": 72},
             "fuselage": {"length": 27.2},
             "wing": {"span": 27.1, "t/c": 0.12},
@@ -43,7 +38,21 @@ def test_load_aircraft_from_dict_with_nested_sections():
                 "default": "PWC PW124B",
                 "options": ["PWC PW124B"],
             },
-            "drag": {"cd0": 0.02, "k": 0.04, "e": 0.8, "gears": 0.01},
+            "drag": {
+                "model": "aerox-geometry-drag-v1",
+                "configuration": "clean",
+                "geometry_tier": "D-class-scaled",
+                "confidence": "low",
+                "reference_altitude_ft": 20000.0,
+                "reference_mach": 0.45,
+                "reference_unit_reynolds_number_per_m": 5.0e6,
+                "span_efficiency_factor": 0.95,
+                "unresolved_fraction_of_resolved_drag": 0.28,
+                "wave_drag_model": None,
+                "wave_drag_source_tier": "not-applicable",
+                "wave_drag_confidence": "not-applicable",
+                "wave_drag_technology_factor": None,
+            },
             "kinematic": {"takeoff_distance_m": 1500, "cruise_range_nm": 1500},
         }
     )
@@ -58,8 +67,10 @@ def test_load_aircraft_from_dict_with_nested_sections():
     assert isinstance(aircraft.subtypes[0], AircraftSubtype)
     assert aircraft.engines_for_subtype("ATR 72-212A") == ["PW127M"]
     assert aircraft.engines_for_subtype("ATR 72-600F") == []
-    assert isinstance(aircraft.drag, Drag)
-    assert isinstance(aircraft.kinematic, Kinematic)
+    assert isinstance(aircraft.drag, DragModelConfig)
+    assert aircraft.drag.model == "aerox-geometry-drag-v1"
+    assert aircraft.drag.wave_drag_model is None
+    assert isinstance(aircraft.kinematic, KinematicParameters)
     assert aircraft.icao == "AT72"
     assert aircraft.wing.t_c == 0.12
     assert aircraft.horizontal_tail.span == 7.5
@@ -74,6 +85,12 @@ def test_get_available_aircraft_finds_nested_category_files():
     assert codes == sorted(codes)
     assert "AT72" in codes
     assert all(code == code.upper() for code in codes)
+
+
+def test_aircraft_dictionary_without_drag_remains_compatible():
+    aircraft = load_aircraft_from_dict({"aircraft": "Minimal", "icao": "MINI"})
+
+    assert aircraft.drag is None
 
 
 def test_load_aircraft_finds_turboprop_yaml_by_icao():
@@ -119,10 +136,9 @@ def test_load_a320_certified_and_higher_order_data():
         "CFM56-5B4/2",
     ]
     assert aircraft.engine.default == "CFM56-5B4"
-    assert (
-        aircraft.data_provenance["field_sources"]["mtow"]
-        == ["easa_a064_issue_62"]
-    )
+    assert aircraft.drag.wave_drag_model == "aerox-korn-lock-wave-v1"
+    assert aircraft.drag.wave_drag_technology_factor == pytest.approx(0.95)
+    assert aircraft.data_provenance["field_sources"]["mtow"] == ["easa_a064_issue_62"]
 
 
 def test_load_aircraft_raises_for_unknown_icao():
@@ -215,9 +231,7 @@ engine:
     )
 
     saved = yaml.safe_load(target.read_text())
-    assert saved["subtypes"] == [
-        {"A320-214": "CFM56-5B4"}
-    ]
+    assert saved["subtypes"] == [{"A320-214": "CFM56-5B4"}]
 
 
 def test_web_editor_form_parser_preserves_decimal_geometry():
@@ -243,10 +257,7 @@ def test_web_editor_form_parser_round_trips_subtypes():
     parsed = parse_form_data(
         {
             "engine__type": "turbofan",
-            "subtypes": (
-                "A320-214 | CFM56-5B4; CFM56-5B4/2\n"
-                "A320-232 | V2527-A5"
-            ),
+            "subtypes": ("A320-214 | CFM56-5B4; CFM56-5B4/2\nA320-232 | V2527-A5"),
         }
     )
     assert parsed["subtypes"] == [

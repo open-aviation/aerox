@@ -76,10 +76,19 @@ engine:
   options:
   - J85-GE-5
 drag:
-  cd0: 0.03842
-  k: 0.09719
-  e: 0.88379
-  gears: 0.01768
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: X-special-scaled
+  confidence: low
+  reference_altitude_ft: 35000.0
+  reference_mach: 0.78
+  reference_unit_reynolds_number_per_m: 6123447.9
+  span_efficiency_factor: 0.85
+  unresolved_fraction_of_resolved_drag: 0.3
+  wave_drag_model: null
+  wave_drag_source_tier: not-applicable
+  wave_drag_confidence: not-applicable
+  wave_drag_technology_factor: null
 kinematic:
   takeoff_distance_m: 800
   takeoff_v2: 125

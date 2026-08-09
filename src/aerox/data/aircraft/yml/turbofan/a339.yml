@@ -77,10 +77,19 @@ engine:
   options:
   - Trent7000-72
 drag:
-  cd0: 0.01831
-  k: 0.04307
-  e: 0.79758
-  gears: 0.01528
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: A-observed-core-and-tails
+  confidence: medium
+  reference_altitude_ft: 37404.3
+  reference_mach: 0.81
+  reference_unit_reynolds_number_per_m: 5741973.3
+  span_efficiency_factor: 0.956451
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 2350
   takeoff_v2: 145

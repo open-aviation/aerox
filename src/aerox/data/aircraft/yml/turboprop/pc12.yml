@@ -76,10 +76,19 @@ engine:
   options:
   - 1 x 1.200 SHP P&W PT6A-67B turboprop with 4 bladed Hartzell propeller
 drag:
-  cd0: null
-  k: null
-  e: null
-  gears: null
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: D-class-scaled
+  confidence: low
+  reference_altitude_ft: 24000.0
+  reference_mach: 0.446692
+  reference_unit_reynolds_number_per_m: 5093806.7
+  span_efficiency_factor: 0.95
+  unresolved_fraction_of_resolved_drag: 0.28
+  wave_drag_model: null
+  wave_drag_source_tier: not-applicable
+  wave_drag_confidence: not-applicable
+  wave_drag_technology_factor: null
 kinematic:
   takeoff_distance_m: 600
   takeoff_v2: 110

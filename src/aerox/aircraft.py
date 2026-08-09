@@ -184,18 +184,27 @@ class Engine:
 
 
 @dataclass
-class Drag:
-    """Drag coefficients."""
+class DragModelConfig:
+    """Independent inputs and provenance for the active clean drag model."""
 
-    cd0: Optional[float] = None
-    k: Optional[float] = None
-    e: Optional[float] = None
-    gears: Optional[float] = None
+    model: Optional[str] = None
+    configuration: Optional[str] = None
+    geometry_tier: Optional[str] = None
+    confidence: Optional[str] = None
+    reference_altitude_ft: Optional[float] = None
+    reference_mach: Optional[float] = None
+    reference_unit_reynolds_number_per_m: Optional[float] = None
+    span_efficiency_factor: Optional[float] = None
+    unresolved_fraction_of_resolved_drag: Optional[float] = None
+    wave_drag_model: Optional[str] = None
+    wave_drag_source_tier: Optional[str] = None
+    wave_drag_confidence: Optional[str] = None
+    wave_drag_technology_factor: Optional[float] = None
 
 
 @dataclass
-class Kinematic:
-    """Kinematic performance data with flat field names."""
+class KinematicParameters:
+    """Kinematic performance parameters loaded from an aircraft YAML record."""
 
     # Takeoff
     takeoff_distance_m: Optional[int] = None  # Changed to int (e.g., 2190 m)
@@ -275,8 +284,8 @@ class Aircraft:
         data_provenance: Per-field source and confidence metadata
         flaps: Flap configuration
         engine: Engine configuration
-        drag: Drag coefficients
-        kinematic: Kinematic performance data
+        drag: Independent inputs for the active physical drag model
+        kinematic: KinematicParameters performance data
     """
 
     # Basic identification
@@ -322,8 +331,8 @@ class Aircraft:
     mass_properties: Optional[MassProperties] = None
     flaps: Optional[Flaps] = None
     engine: Optional[Engine] = None
-    drag: Optional[Drag] = None
-    kinematic: Optional[Kinematic] = None
+    drag: Optional[DragModelConfig] = None
+    kinematic: Optional[KinematicParameters] = None
     data_provenance: Dict[str, Any] = field(default_factory=dict)
 
     def engines_for_subtype(self, subtype: str) -> List[str]:
@@ -383,7 +392,9 @@ def _load_subtypes(data: Any) -> Optional[List[AircraftSubtype]]:
     return result
 
 
-def _load_kinematic(data: Optional[Dict]) -> Optional[Kinematic]:
+def _load_kinematic_parameters(
+    data: Optional[Dict],
+) -> Optional[KinematicParameters]:
     """Load kinematic data structure with flat field names."""
     if data is None:
         return None
@@ -394,7 +405,7 @@ def _load_kinematic(data: Optional[Dict]) -> Optional[Kinematic]:
         field_name_clean = field_name.replace("-", "_")
         kinematic_dict[field_name_clean] = value
 
-    return Kinematic(**kinematic_dict)
+    return KinematicParameters(**kinematic_dict)
 
 
 def parse_source_notes(text: str) -> Dict[str, Any]:
@@ -422,7 +433,11 @@ def parse_source_notes(text: str) -> Dict[str, Any]:
 
 def _source_ids(provenance: Dict[str, Any], path: str) -> List[str]:
     value = provenance.get("fields", {}).get(path, {}).get("source")
-    return [] if not value or value == "-" else [part.strip() for part in value.split(" | ")]
+    return (
+        []
+        if not value or value == "-"
+        else [part.strip() for part in value.split(" | ")]
+    )
 
 
 def load_aircraft_from_dict(
@@ -452,7 +467,9 @@ def load_aircraft_from_dict(
             mlw=data.get("mlw"),
             mzfw=data.get("mzfw"),
             minimum_weight=data.get("minimum_weight"),
-            applicability=provenance.get("fields", {}).get("mtow", {}).get("applicability"),
+            applicability=provenance.get("fields", {})
+            .get("mtow", {})
+            .get("applicability"),
             source_id=mtow_sources[0] if mtow_sources else None,
         )
     geometry = _load_nested_dataclass(data.get("geometry"), ReferenceGeometry)
@@ -465,19 +482,23 @@ def load_aircraft_from_dict(
     )
     flaps = _load_nested_dataclass(data.get("flaps"), Flaps)
     engine = _load_nested_dataclass(data.get("engine"), Engine)
-    drag = _load_nested_dataclass(data.get("drag"), Drag)
-    kinematic = _load_kinematic(data.get("kinematic"))
+    drag = _load_nested_dataclass(data.get("drag"), DragModelConfig)
+    kinematic = _load_kinematic_parameters(data.get("kinematic"))
     if certification is not None and certification.source_id is None:
         certification_sources = _source_ids(
             provenance, "certification.type_certificate"
         )
-        certification.source_id = certification_sources[0] if certification_sources else None
+        certification.source_id = (
+            certification_sources[0] if certification_sources else None
+        )
     field_sources = dict(data.get("data_provenance", {}).get("field_sources", {}))
-    field_sources.update({
-        path: _source_ids(provenance, path)
-        for path in provenance.get("fields", {})
-        if _source_ids(provenance, path)
-    })
+    field_sources.update(
+        {
+            path: _source_ids(provenance, path)
+            for path in provenance.get("fields", {})
+            if _source_ids(provenance, path)
+        }
+    )
 
     # Extract top-level fields
     aircraft = Aircraft(

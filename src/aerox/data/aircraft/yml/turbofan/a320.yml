@@ -93,10 +93,19 @@ engine:
   - V2527-A5
   - V2527E-A5
 drag:
-  cd0: 0.02263
-  k: 0.04246
-  e: 0.79537
-  gears: 0.01741
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: A-observed-core-and-tails
+  confidence: medium
+  reference_altitude_ft: 37994.3
+  reference_mach: 0.79
+  reference_unit_reynolds_number_per_m: 5443605.5
+  span_efficiency_factor: 0.946221
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: C-public-increment-cross-check
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 2190
   takeoff_v2: 145

@@ -79,10 +79,19 @@ engine:
   - 2 x 285 HP Continental IO-520-M
   - 2 x 285 HP Continental TSIO-520-B (T310 turbocharged)
 drag:
-  cd0: null
-  k: null
-  e: null
-  gears: null
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: D-class-scaled
+  confidence: low
+  reference_altitude_ft: 10000.0
+  reference_mach: 0.274151
+  reference_unit_reynolds_number_per_m: 4812586.9
+  span_efficiency_factor: 0.95
+  unresolved_fraction_of_resolved_drag: 0.35
+  wave_drag_model: null
+  wave_drag_source_tier: not-applicable
+  wave_drag_confidence: not-applicable
+  wave_drag_technology_factor: null
 kinematic:
   takeoff_distance_m: 507
   takeoff_v2: 95

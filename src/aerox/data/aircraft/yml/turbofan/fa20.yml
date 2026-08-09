@@ -77,10 +77,19 @@ engine:
   - GE CF700-2D-2 turbofan
   - Garrett ATF3-6A-4C turbofan
 drag:
-  cd0: 0.02165
-  k: 0.05858
-  e: 0.83857
-  gears: 0.01337
+  model: aerox-geometry-drag-v1
+  configuration: clean
+  geometry_tier: B-observed-core-scaled-tails
+  confidence: medium-low
+  reference_altitude_ft: 50720.2
+  reference_mach: 0.76
+  reference_unit_reynolds_number_per_m: 2840761.4
+  span_efficiency_factor: 0.933209
+  unresolved_fraction_of_resolved_drag: 0.23
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
 kinematic:
   takeoff_distance_m: 1600
   takeoff_v2: 120
