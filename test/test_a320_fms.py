@@ -515,58 +515,52 @@ def test_alpha_energy_authority_audit_separates_startup_and_saturation() -> None
         assert path.is_file() and path.stat().st_size > 1_000
 
 
-def test_anchor_free_vertical_intent_generates_complete_long_trajectory() -> None:
-    document = yaml.safe_load((FMS_DOCS / "a320-fms-vertical-intent.yml").read_text())
-    constraints = pd.read_csv(FMS_DOCS / "a320-fms-vertical-intent-constraints.csv")
-    history = pd.read_csv(FMS_DOCS / "a320-fms-vertical-intent-history.csv")
-    profile = pd.read_csv(FMS_DOCS / "a320-fms-vertical-intent-profile.csv")
-    comparison = pd.read_csv(
-        FMS_DOCS / "a320-fms-vertical-intent-errors-trajectory.csv"
-    )
+def test_selected_altitude_intent_generates_full_recording_trajectory() -> None:
+    document = yaml.safe_load((FMS_DOCS / "a320-fms-selected-altitude.yml").read_text())
+    history = pd.read_csv(FMS_DOCS / "a320-fms-selected-altitude-history.csv")
+    errors = pd.read_csv(FMS_DOCS / "a320-fms-selected-altitude-errors.csv")
     metrics = document["metrics"]
     boundary = document["intent_boundary"]
 
     assert document["source"]["recording"] == "TAIL-A/FLT0003"
-    assert boundary["lateral_geometry_nodes"] == 43
-    assert boundary["periodic_qar_altitude_speed_anchors"] == 0
-    assert boundary["qar_state_boundaries"] == ["initial", "terminal"]
-    assert boundary["intermediate_qar_states_used_by_planner_or_guidance"] is False
-    assert boundary["observed_heading_or_recorded_controls_used_by_guidance"] is False
-    assert document["energy_plan"]["TOC_or_TOD_copied_from_QAR"] is False
-    cruise_mach = boundary.get(
-        "inferred_cruise_mach", boundary.get("selected_cruise_mach")
+    assert boundary["lateral_geometry_node_count"] == 43
+    assert boundary["altitude_command_event_count"] == 20
+    assert boundary["terminal_QAR_altitude_used_as_intent"] is False
+    assert boundary["terminal_QAR_speed_used_as_intent"] is False
+    assert boundary["artificial_altitude_profile_constructed"] is False
+    assert boundary["top_of_climb_or_descent_constructed"] is False
+    assert boundary["recorded_attitude_or_thrust_controls_used"] is False
+    assert (
+        document["interpretation"]["state_anchors_or_resets_after_initialization"] == 0
     )
-    assert cruise_mach is not None and 0.75 < cruise_mach < 0.80
-    assert document["energy_plan"]["hard_vertical_constraint_waypoint_indices"] == [
-        0,
-        42,
-    ]
-    assert metrics["completed"]
-    assert metrics["anchor_count"] == 2
-    assert metrics["generated_duration_s"] > 13_000.0
-    assert metrics["terminal_horizontal_error_m"] < 1_500.0
-    assert abs(metrics["terminal_altitude_error_m"]) < 100.0
-    assert abs(metrics["terminal_speed_error_mps"]) < 3.0
-    assert document["gates"]["profile_feasible"]["passed"] is False
-    assert document["gates"]["time_aligned_horizontal"]["passed"] is False
-    assert document["gates"]["controller_limiters"]["passed"] is False
-    assert document["status"] == "held"
-    assert list(constraints["name"]) == [
-        "INITIAL",
-        "CALCULATED-TOC",
-        "CALCULATED-TOD",
-        "TERMINAL",
-    ]
-    assert len(history) > 13_000
-    assert {"calibrated_airspeed_mps", "mach"} <= set(profile)
+    assert metrics["recording_interval_completed"]
+    assert metrics["recording_duration_s"] > 13_000.0
+    assert metrics["altitude_rmse_m"] < 300.0
+    assert metrics["calibrated_airspeed_rmse_mps"] < 6.0
+    assert metrics["mach_rmse"] < 0.03
+    assert metrics["maximum_alpha_deg"] < 8.5
+    assert metrics["pitch_limited_fraction"] == 0.0
+    assert metrics["bank_limited_fraction"] == 0.0
+    assert abs(metrics["aerox_fuel_burn_kg"] / metrics["qar_fuel_burn_kg"] - 1.0) < 0.02
+    assert metrics["aerox_fuel_flow_rmse_kg_s"] < metrics["openap_fuel_flow_rmse_kg_s"]
+    assert len(history) == 13_817
     assert {
         "qar_calibrated_airspeed_mps",
         "qar_mach",
         "generated_calibrated_airspeed_mps",
         "generated_mach",
-    } <= set(comparison)
-    assert metrics["calibrated_airspeed_rmse_mps"] < 10.0
-    assert metrics["mach_rmse"] < 0.05
-    for suffix in (".png", ".pdf"):
-        path = FMS_DOCS / "figures" / f"a320-fms-vertical-intent-comparison{suffix}"
-        assert path.is_file() and path.stat().st_size > 1_000
+        "vertical_mode",
+        "speed_mode",
+    } <= set(history)
+    assert len(errors) == len(history)
+    for stem in (
+        "01-horizontal-trajectory",
+        "02-altitude-and-selected-intent",
+        "03-speed-and-selected-intent",
+        "04-generated-controls-and-forces",
+        "05-fuel-comparison",
+        "06-errors-and-limiters",
+    ):
+        for suffix in (".png", ".pdf"):
+            path = FMS_DOCS / "figures/a320-fms-selected-altitude" / f"{stem}{suffix}"
+            assert path.is_file() and path.stat().st_size > 1_000

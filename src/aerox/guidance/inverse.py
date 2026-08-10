@@ -169,6 +169,7 @@ class InverseFlightMechanicsController:
         reference_heading_rad: float,
         reference_heading_rate_rad_s: float,
         reference_pressure_altitude_m: float,
+        altitude_error_feedback_gain_scale: float = 1.0,
         static_temperature_k: float,
         previous_control: PitchBankThrustInput | None = None,
         command_step_s: float = 1.0,
@@ -181,6 +182,13 @@ class InverseFlightMechanicsController:
         values = plant.validate_state(state)
         if not np.isfinite(static_temperature_k) or static_temperature_k <= 0.0:
             raise ValueError("static_temperature_k must be finite and positive")
+        if (
+            not np.isfinite(altitude_error_feedback_gain_scale)
+            or not 0.0 <= altitude_error_feedback_gain_scale <= 1.0
+        ):
+            raise ValueError(
+                "altitude feedback gain scale must lie between zero and one"
+            )
         if not np.isfinite(command_step_s) or command_step_s <= 0.0:
             raise ValueError("command_step_s must be finite and positive")
         speed = values.true_airspeed_mps
@@ -191,8 +199,10 @@ class InverseFlightMechanicsController:
         speed_acceleration = reference_true_airspeed_rate_mps2 + (
             self.speed_error_gain_per_s * (reference_true_airspeed_mps - speed)
         )
-        altitude_gamma_correction = self.altitude_to_flight_path_gain_rad_per_m * (
-            reference_pressure_altitude_m - altitude
+        altitude_gamma_correction = (
+            altitude_error_feedback_gain_scale
+            * self.altitude_to_flight_path_gain_rad_per_m
+            * (reference_pressure_altitude_m - altitude)
         )
         gamma_rate = reference_flight_path_angle_rate_rad_s + (
             self.flight_path_angle_error_gain_per_s

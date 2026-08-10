@@ -3,6 +3,7 @@
 from .inverse import InverseFlightMechanicsController, PitchBankThrustCommand
 from .path import GuidanceTarget, SpatialPathGuidance
 from .reference import TrajectoryReference
+from .selected_altitude import SelectedAltitudeGuidance, SelectedAltitudeMode
 from aerox.navigation import (
     WindCorrectedPath,
     ground_track_to_air_heading,
@@ -14,6 +15,8 @@ __all__ = [
     "InverseFlightMechanicsController",
     "PitchBankThrustCommand",
     "SpatialPathGuidance",
+    "SelectedAltitudeGuidance",
+    "SelectedAltitudeMode",
     "TrajectoryReference",
     "WindCorrectedPath",
     "ground_track_to_air_heading",

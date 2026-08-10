@@ -33,6 +33,12 @@ from aerox.fms.speed_intent import (
     speed_intent_design,
     vertical_phase,
 )
+from aerox.fms.selected_intent import (
+    SelectedAltitudeIntent,
+    SelectedSpeedIntent,
+    SelectedSpeedMode,
+    SelectedSpeedTarget,
+)
 from aerox.fms.planning.speed import (
     ContinuousSpeedMassPlan,
     CruiseSpeedStrategy,
@@ -77,6 +83,10 @@ __all__ = [
     "SpatialTrajectory",
     "SpatialTrajectoryGrid",
     "SpatialTrajectorySample",
+    "SelectedAltitudeIntent",
+    "SelectedSpeedIntent",
+    "SelectedSpeedMode",
+    "SelectedSpeedTarget",
     "SpeedConstraint",
     "SpeedIntentPrediction",
     "SpeedTarget",

@@ -5,6 +5,8 @@ from aerox.fms import (
     AltitudeConstraint,
     FlightIntent,
     LateralWaypoint,
+    SelectedAltitudeIntent,
+    SelectedSpeedIntent,
     SpeedConstraint,
     SpeedTarget,
     SpatialEnvironmentProfile,
@@ -13,6 +15,7 @@ from aerox.fms import (
 )
 from aerox.guidance import (
     InverseFlightMechanicsController,
+    SelectedAltitudeGuidance,
     SpatialPathGuidance,
     ground_track_to_air_heading,
 )
@@ -159,6 +162,86 @@ def test_intent_resolves_cas_mach_and_independent_constraint_bounds() -> None:
     assert np.isneginf(route.waypoint_minimum_altitude_m[2])
     assert route.waypoint_maximum_altitude_m[2] == pytest.approx(10_500.0)
     assert np.all(route.speed_bound_waypoint_mask)
+
+
+def test_selected_command_intent_is_sample_and_hold() -> None:
+    altitude = SelectedAltitudeIntent.from_samples(
+        [0.0, 1.0, 2.0, 3.0, 4.0],
+        [1_000.0, 1_000.0, 2_000.0, 2_000.0, 500.0],
+    )
+    speed = SelectedSpeedIntent.from_samples(
+        [0.0, 1.0, 2.0],
+        [140.0, 140.0, 130.0],
+        [0.76, 0.76, 0.74],
+    )
+
+    assert altitude.effective_time_s == pytest.approx([0.0, 2.0, 4.0])
+    assert altitude.altitude_at(3.9) == pytest.approx(2_000.0)
+    assert altitude.altitude_at(4.0) == pytest.approx(500.0)
+    assert speed.effective_time_s == pytest.approx([0.0, 2.0])
+    assert (
+        speed.target_at(
+            0.0, pressure_altitude_m=1_000.0, static_temperature_k=280.0
+        ).mode
+        == "CAS"
+    )
+    assert (
+        speed.target_at(
+            0.0, pressure_altitude_m=12_000.0, static_temperature_k=220.0
+        ).mode
+        == "MACH"
+    )
+
+
+def test_selected_altitude_guidance_commands_climb_capture_hold_and_descent() -> None:
+    route = SpatialTrajectory.from_intent(
+        FlightIntent(
+            waypoints=(
+                LateralWaypoint(0.0, 0.0),
+                LateralWaypoint(20_000.0, 0.0),
+            ),
+            departure=TerminalConstraint(1_000.0, SpeedTarget("TAS", 100.0)),
+            arrival=TerminalConstraint(1_000.0, SpeedTarget("TAS", 100.0)),
+        )
+    )
+    guidance = SelectedAltitudeGuidance(
+        lateral_guidance=SpatialPathGuidance(route),
+        altitude_intent=SelectedAltitudeIntent(
+            np.array([0.0, 20.0]), np.array([2_000.0, 500.0])
+        ),
+        capture_time_constant_s=100.0,
+        maximum_flight_path_command_rate_rad_s=np.deg2rad(10.0),
+    )
+    common = {
+        "north_m": 0.0,
+        "east_m": 0.0,
+        "true_airspeed_mps": 100.0,
+        "flight_path_angle_rad": 0.0,
+        "static_temperature_k": 280.0,
+        "elapsed_time_s": 1.0,
+    }
+
+    climb = guidance.update(
+        **common, pressure_altitude_m=1_000.0, simulation_time_s=0.0
+    )
+    capture = guidance.update(
+        **common, pressure_altitude_m=1_900.0, simulation_time_s=10.0
+    )
+    hold = guidance.update(
+        **common, pressure_altitude_m=2_000.0, simulation_time_s=10.0
+    )
+    descent = guidance.update(
+        **common, pressure_altitude_m=2_000.0, simulation_time_s=20.0
+    )
+
+    assert climb.vertical_mode == "CLIMB"
+    assert climb.reference_air_flight_path_angle_rad > 0.0
+    assert capture.vertical_mode == "CAPTURE"
+    assert hold.vertical_mode == "ALT_HOLD"
+    assert descent.vertical_mode == "DESCENT"
+    assert descent.reference_air_flight_path_angle_rad < 0.0
+    assert descent.reference_altitude_m == pytest.approx(500.0)
+    assert descent.altitude_error_feedback_gain_scale == 0.0
 
 
 def test_route_projection_has_signed_cross_track_error() -> None:

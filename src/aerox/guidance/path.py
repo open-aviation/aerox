@@ -38,6 +38,9 @@ class GuidanceTarget:
     reference_ground_track_rad: float
     reference_air_heading_rad: float
     predicted_groundspeed_mps: float
+    altitude_error_feedback_gain_scale: float
+    vertical_mode: str
+    speed_mode: str
 
 
 @dataclass
@@ -107,6 +110,9 @@ class SpatialPathGuidance:
         east_m: float,
         true_airspeed_mps: float,
         flight_path_angle_rad: float,
+        pressure_altitude_m: float | None = None,
+        simulation_time_s: float | None = None,
+        static_temperature_k: float | None = None,
         elapsed_time_s: float,
         wind_north_mps: float = 0.0,
         wind_east_mps: float = 0.0,
@@ -114,6 +120,15 @@ class SpatialPathGuidance:
     ) -> GuidanceTarget:
         """Update path progress and return the next state reference."""
 
+        optional_values = tuple(
+            value
+            for value in (
+                pressure_altitude_m,
+                simulation_time_s,
+                static_temperature_k,
+            )
+            if value is not None
+        )
         values = (
             north_m,
             east_m,
@@ -123,6 +138,7 @@ class SpatialPathGuidance:
             wind_north_mps,
             wind_east_mps,
             wind_down_mps,
+            *optional_values,
         )
         if any(not np.isfinite(value) for value in values):
             raise ValueError("guidance state, wind, and elapsed time must be finite")
@@ -259,4 +275,7 @@ class SpatialPathGuidance:
             reference_ground_track_rad=ground_track,
             reference_air_heading_rad=air_heading,
             predicted_groundspeed_mps=float(groundspeed),
+            altitude_error_feedback_gain_scale=1.0,
+            vertical_mode="PROFILE",
+            speed_mode="PROFILE",
         )

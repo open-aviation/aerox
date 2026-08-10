@@ -12,6 +12,7 @@ from aerox.fms.performance import MaximumThrustModel, MinimumThrustModel
 from aerox.fms.route import SpatialTrajectory
 from aerox.guidance.inverse import InverseFlightMechanicsController
 from aerox.guidance.path import SpatialPathGuidance
+from aerox.guidance.selected_altitude import SelectedAltitudeGuidance
 from aerox.modeling.dynamics import (
     PitchBankThrustInput,
     PointMassModel,
@@ -37,6 +38,9 @@ class FMSSimulationResult:
     reference_true_airspeed_mps: FloatArray
     reference_ground_track_rad: FloatArray
     reference_air_heading_rad: FloatArray
+    reference_air_flight_path_angle_rad: FloatArray
+    vertical_mode: NDArray[np.str_]
+    speed_mode: NDArray[np.str_]
     static_temperature_k: FloatArray
     wind_north_mps: FloatArray
     wind_east_mps: FloatArray
@@ -65,7 +69,7 @@ def simulate_fms_trajectory_zoh(
     *,
     plant: PointMassModel,
     controller: InverseFlightMechanicsController,
-    guidance: SpatialPathGuidance,
+    guidance: SpatialPathGuidance | SelectedAltitudeGuidance,
     maximum_time_s: float,
     static_temperature_k: float,
     initial_mass_kg: float,
@@ -81,6 +85,7 @@ def simulate_fms_trajectory_zoh(
     command_step_s: float = 1.0,
     integration_rate_hz: int = 10,
     destination_capture_radius_m: float | None = None,
+    terminate_at_destination: bool = True,
     environment_profile: SpatialEnvironmentProfile | None = None,
     maximum_thrust_model: MaximumThrustModel | None = None,
     minimum_thrust_model: MinimumThrustModel | None = None,
@@ -108,6 +113,8 @@ def simulate_fms_trajectory_zoh(
         raise ValueError("time horizon and command step must be positive")
     if not isinstance(integration_rate_hz, int) or integration_rate_hz < 1:
         raise ValueError("integration_rate_hz must be a positive integer")
+    if not isinstance(terminate_at_destination, bool):
+        raise TypeError("terminate_at_destination must be a bool")
     route = guidance.trajectory
     start = route.intent.waypoints[0]
     destination = route.intent.waypoints[-1]
@@ -168,6 +175,9 @@ def simulate_fms_trajectory_zoh(
     reference_speed: list[float] = []
     reference_track: list[float] = []
     reference_heading: list[float] = []
+    reference_gamma: list[float] = []
+    vertical_mode: list[str] = []
+    speed_mode: list[str] = []
     temperature_history: list[float] = []
     wind_north_history: list[float] = []
     wind_east_history: list[float] = []
@@ -205,6 +215,9 @@ def simulate_fms_trajectory_zoh(
             east_m=state.east_position_m,
             true_airspeed_mps=state.true_airspeed_mps,
             flight_path_angle_rad=state.flight_path_angle_rad,
+            pressure_altitude_m=state.pressure_altitude_m,
+            simulation_time_s=index * command_step_s,
+            static_temperature_k=current_temperature_k,
             elapsed_time_s=command_step_s,
             wind_north_mps=current_wind_north_mps,
             wind_east_mps=current_wind_east_mps,
@@ -226,6 +239,9 @@ def simulate_fms_trajectory_zoh(
             reference_heading_rad=target.reference_air_heading_rad,
             reference_heading_rate_rad_s=0.0,
             reference_pressure_altitude_m=target.reference_altitude_m,
+            altitude_error_feedback_gain_scale=(
+                target.altitude_error_feedback_gain_scale
+            ),
             static_temperature_k=current_temperature_k,
             previous_control=previous_control,
             command_step_s=command_step_s,
@@ -303,6 +319,9 @@ def simulate_fms_trajectory_zoh(
         reference_speed.append(target.reference_true_airspeed_mps)
         reference_track.append(target.reference_ground_track_rad)
         reference_heading.append(target.reference_air_heading_rad)
+        reference_gamma.append(target.reference_air_flight_path_angle_rad)
+        vertical_mode.append(target.vertical_mode)
+        speed_mode.append(target.speed_mode)
         temperature_history.append(current_temperature_k)
         wind_north_history.append(current_wind_north_mps)
         wind_east_history.append(current_wind_east_mps)
@@ -319,8 +338,10 @@ def simulate_fms_trajectory_zoh(
                 state.east_position_m - destination.east_m,
             )
         )
-        if destination_distance <= capture_radius and target.progress_m >= (
-            route.total_distance_m - capture_radius
+        if (
+            terminate_at_destination
+            and destination_distance <= capture_radius
+            and target.progress_m >= route.total_distance_m - capture_radius
         ):
             completed = True
             break
@@ -364,6 +385,9 @@ def simulate_fms_trajectory_zoh(
         reference_true_airspeed_mps=np.asarray(reference_speed),
         reference_ground_track_rad=np.asarray(reference_track),
         reference_air_heading_rad=np.asarray(reference_heading),
+        reference_air_flight_path_angle_rad=np.asarray(reference_gamma),
+        vertical_mode=np.asarray(vertical_mode),
+        speed_mode=np.asarray(speed_mode),
         static_temperature_k=np.asarray(temperature_history),
         wind_north_mps=np.asarray(wind_north_history),
         wind_east_mps=np.asarray(wind_east_history),
