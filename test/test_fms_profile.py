@@ -3,12 +3,16 @@ import pytest
 
 from aerox import aero
 from aerox.fms import (
+    AltitudeConstraint,
     CASMachClimbSchedule,
     CASMachDescentSchedule,
     FlightIntent,
+    LateralWaypoint,
     LocalPerformanceLimits,
+    SpeedConstraint,
+    SpeedTarget,
     SpatialTrajectory,
-    Waypoint,
+    TerminalConstraint,
     plan_advisory_energy_profile,
     plan_energy_shaped_profile,
     plan_feasible_profile,
@@ -22,6 +26,50 @@ from aerox.models.openap import OpenAPFuelFlowPrior
 from aerox.models.thrust import ConstantMaximumThrust, PressureScaledMinimumThrust
 
 MASS_KG = 10_000.0
+
+
+def _target_route(
+    points: tuple[tuple[float, float, float, float, str], ...],
+    *,
+    intermediate: str = "exact",
+    **intent_limits: float,
+) -> SpatialTrajectory:
+    waypoints = tuple(
+        LateralWaypoint(north, east, name) for north, east, _, _, name in points
+    )
+    altitude_constraints = ()
+    speed_constraints = ()
+    if intermediate != "lateral":
+        altitude_factory = (
+            AltitudeConstraint.at
+            if intermediate == "exact"
+            else AltitudeConstraint.preferred
+        )
+        speed_factory = (
+            SpeedConstraint.at if intermediate == "exact" else SpeedConstraint.preferred
+        )
+        altitude_constraints = tuple(
+            altitude_factory(index, altitude)
+            for index, (_, _, altitude, _, _) in enumerate(points[1:-1], start=1)
+        )
+        speed_constraints = tuple(
+            speed_factory(index, SpeedTarget("TAS", speed))
+            for index, (_, _, _, speed, _) in enumerate(points[1:-1], start=1)
+        )
+    return SpatialTrajectory.from_intent(
+        FlightIntent(
+            waypoints=waypoints,
+            departure=TerminalConstraint(
+                points[0][2], SpeedTarget("TAS", points[0][3])
+            ),
+            arrival=TerminalConstraint(
+                points[-1][2], SpeedTarget("TAS", points[-1][3])
+            ),
+            altitude_constraints=altitude_constraints,
+            speed_constraints=speed_constraints,
+            **intent_limits,
+        )
+    )
 
 
 class _FixedEnvelope:
@@ -74,12 +122,10 @@ def _performance(
 
 def test_independent_reachable_bands_cannot_hide_coupled_energy_violation() -> None:
     terminal_speed = np.sqrt(200.0**2 - 2.0 * aero.g0 * 100.0)
-    route = SpatialTrajectory.from_intent(
-        FlightIntent(
-            waypoints=(
-                Waypoint(0.0, 0.0, 1_000.0, 200.0, "START"),
-                Waypoint(10_000.0, 0.0, 1_100.0, terminal_speed, "END"),
-            )
+    route = _target_route(
+        (
+            (0.0, 0.0, 1_000.0, 200.0, "START"),
+            (10_000.0, 0.0, 1_100.0, terminal_speed, "END"),
         )
     ).with_profile(
         along_path_m=np.array([0.0, 1_000.0, 10_000.0]),
@@ -100,12 +146,10 @@ def test_independent_reachable_bands_cannot_hide_coupled_energy_violation() -> N
 
 
 def test_feasible_profile_preserves_hard_waypoint_constraints() -> None:
-    route = SpatialTrajectory.from_intent(
-        FlightIntent(
-            waypoints=(
-                Waypoint(0.0, 0.0, 1_000.0, 100.0, "START"),
-                Waypoint(10_000.0, 0.0, 1_200.0, 110.0, "END"),
-            )
+    route = _target_route(
+        (
+            (0.0, 0.0, 1_000.0, 100.0, "START"),
+            (10_000.0, 0.0, 1_200.0, 110.0, "END"),
         )
     )
 
@@ -135,14 +179,13 @@ def test_feasible_profile_preserves_hard_waypoint_constraints() -> None:
 
 
 def test_feasible_profile_accepts_geometry_only_intermediate_waypoints() -> None:
-    route = SpatialTrajectory.from_intent(
-        FlightIntent(
-            waypoints=(
-                Waypoint(0.0, 0.0, 1_000.0, 100.0, "START"),
-                Waypoint(5_000.0, 0.0, 1_000.0, 100.0, "GEOMETRY"),
-                Waypoint(10_000.0, 0.0, 1_000.0, 100.0, "END"),
-            )
-        )
+    route = _target_route(
+        (
+            (0.0, 0.0, 1_000.0, 100.0, "START"),
+            (5_000.0, 0.0, 1_000.0, 100.0, "GEOMETRY"),
+            (10_000.0, 0.0, 1_000.0, 100.0, "END"),
+        ),
+        intermediate="lateral",
     )
 
     result = plan_feasible_profile(
@@ -150,43 +193,19 @@ def test_feasible_profile_accepts_geometry_only_intermediate_waypoints() -> None
         performance=_performance(),
         mass_kg=MASS_KG,
         static_temperature_k=aero.T0,
-        hard_waypoint_indices=(0, -1),
     )
 
     assert result.feasible
     assert result.violations == ()
 
 
-def test_feasible_profile_requires_hard_route_boundaries() -> None:
-    route = SpatialTrajectory.from_intent(
-        FlightIntent(
-            waypoints=(
-                Waypoint(0.0, 0.0, 1_000.0, 100.0, "START"),
-                Waypoint(5_000.0, 0.0, 1_000.0, 100.0, "MIDDLE"),
-                Waypoint(10_000.0, 0.0, 1_000.0, 100.0, "END"),
-            )
-        )
-    )
-
-    with pytest.raises(ValueError, match="first and last"):
-        plan_feasible_profile(
-            route=route,
-            performance=_performance(),
-            mass_kg=MASS_KG,
-            static_temperature_k=aero.T0,
-            hard_waypoint_indices=(0, 1),
-        )
-
-
 def test_aircraft_limits_reject_unreachable_altitude_anchor() -> None:
-    route = SpatialTrajectory.from_intent(
-        FlightIntent(
-            waypoints=(
-                Waypoint(0.0, 0.0, 1_000.0, 100.0, "START"),
-                Waypoint(10_000.0, 0.0, 2_000.0, 100.0, "TOO-HIGH"),
-            ),
-            maximum_climb_flight_path_angle_rad=np.deg2rad(10.0),
-        )
+    route = _target_route(
+        (
+            (0.0, 0.0, 1_000.0, 100.0, "START"),
+            (10_000.0, 0.0, 2_000.0, 100.0, "TOO-HIGH"),
+        ),
+        maximum_climb_flight_path_angle_rad=np.deg2rad(10.0),
     )
 
     result = plan_feasible_profile(
@@ -198,7 +217,8 @@ def test_aircraft_limits_reject_unreachable_altitude_anchor() -> None:
 
     assert not result.feasible
     assert any(
-        "altitude is not forward-reachable" in item for item in result.violations
+        "altitude bounds are not forward-reachable" in item
+        for item in result.violations
     )
     with pytest.raises(ValueError, match="altitude"):
         plan_feasible_profile(
@@ -211,14 +231,12 @@ def test_aircraft_limits_reject_unreachable_altitude_anchor() -> None:
 
 
 def test_aircraft_limits_reject_unreachable_speed_anchor() -> None:
-    route = SpatialTrajectory.from_intent(
-        FlightIntent(
-            waypoints=(
-                Waypoint(0.0, 0.0, 1_000.0, 100.0, "START"),
-                Waypoint(10_000.0, 0.0, 1_000.0, 200.0, "TOO-FAST"),
-            ),
-            maximum_acceleration_mps2=5.0,
-        )
+    route = _target_route(
+        (
+            (0.0, 0.0, 1_000.0, 100.0, "START"),
+            (10_000.0, 0.0, 1_000.0, 200.0, "TOO-FAST"),
+        ),
+        maximum_acceleration_mps2=5.0,
     )
 
     result = plan_feasible_profile(
@@ -229,19 +247,19 @@ def test_aircraft_limits_reject_unreachable_speed_anchor() -> None:
     )
 
     assert not result.feasible
-    assert any("speed is not forward-reachable" in item for item in result.violations)
+    assert any(
+        "speed bounds are not forward-reachable" in item for item in result.violations
+    )
 
 
 def test_coupled_energy_check_rejects_individually_feasible_demands() -> None:
-    route = SpatialTrajectory.from_intent(
-        FlightIntent(
-            waypoints=(
-                Waypoint(0.0, 0.0, 1_000.0, 100.0, "START"),
-                Waypoint(10_000.0, 0.0, 1_700.0, 130.0, "ENERGY-LIMIT"),
-            ),
-            maximum_climb_flight_path_angle_rad=np.deg2rad(5.0),
-            maximum_acceleration_mps2=0.5,
-        )
+    route = _target_route(
+        (
+            (0.0, 0.0, 1_000.0, 100.0, "START"),
+            (10_000.0, 0.0, 1_700.0, 130.0, "ENERGY-LIMIT"),
+        ),
+        maximum_climb_flight_path_angle_rad=np.deg2rad(5.0),
+        maximum_acceleration_mps2=0.5,
     )
 
     result = plan_feasible_profile(
@@ -268,12 +286,10 @@ class _AltitudeLapsingMaximumThrust:
 
 
 def test_energy_shaping_frontloads_climb_under_lapsing_thrust() -> None:
-    route = SpatialTrajectory.from_intent(
-        FlightIntent(
-            waypoints=(
-                Waypoint(0.0, 0.0, 1_000.0, 100.0, "START"),
-                Waypoint(20_000.0, 0.0, 1_600.0, 100.0, "END"),
-            )
+    route = _target_route(
+        (
+            (0.0, 0.0, 1_000.0, 100.0, "START"),
+            (20_000.0, 0.0, 1_600.0, 100.0, "END"),
         )
     )
     performance = PointMassProfilePerformance(
@@ -307,15 +323,49 @@ def test_energy_shaping_frontloads_climb_under_lapsing_thrust() -> None:
     assert shaped.nominal_altitude_m[-1] == pytest.approx(1_600.0)
 
 
+def test_energy_shaping_does_not_anchor_state_at_lateral_only_waypoint() -> None:
+    route = _target_route(
+        (
+            (0.0, 0.0, 1_000.0, 100.0, "START"),
+            (10_000.0, 2_000.0, 1_300.0, 100.0, "GEOMETRY"),
+            (20_000.0, 0.0, 1_600.0, 100.0, "END"),
+        ),
+        intermediate="lateral",
+    )
+    performance = PointMassProfilePerformance(
+        plant=_plant(),
+        maximum_thrust_model=_AltitudeLapsingMaximumThrust(),
+        minimum_thrust_n=0.0,
+        maximum_climb_angle_rad=np.deg2rad(5.0),
+        maximum_descent_angle_rad=np.deg2rad(5.0),
+        maximum_acceleration_mps2=0.5,
+        maximum_deceleration_mps2=0.5,
+    )
+
+    shaped = plan_energy_shaped_profile(
+        route=route,
+        performance=performance,
+        mass_kg=MASS_KG,
+        static_temperature_k=aero.T0,
+        spacing_m=500.0,
+    )
+    waypoint_node = int(
+        np.searchsorted(shaped.along_path_m, route.waypoint_along_path_m[1])
+    )
+
+    assert shaped.feasible
+    assert not route.altitude_target_waypoint_mask[1]
+    assert shaped.nominal_altitude_m[waypoint_node] > route.waypoint_altitude_m[1]
+
+
 def test_advisory_projection_relaxes_only_unreachable_internal_altitude() -> None:
-    route = SpatialTrajectory.from_intent(
-        FlightIntent(
-            waypoints=(
-                Waypoint(0.0, 0.0, 1_000.0, 100.0, "START"),
-                Waypoint(10_000.0, 0.0, 1_600.0, 100.0, "ADVISORY"),
-                Waypoint(20_000.0, 0.0, 1_700.0, 100.0, "END"),
-            )
-        )
+    route = _target_route(
+        (
+            (0.0, 0.0, 1_000.0, 100.0, "START"),
+            (10_000.0, 0.0, 1_600.0, 100.0, "ADVISORY"),
+            (20_000.0, 0.0, 1_700.0, 100.0, "END"),
+        ),
+        intermediate="preferred",
     )
     performance = _performance(maximum_thrust_n=12_000.0)
 
@@ -335,13 +385,12 @@ def test_advisory_projection_relaxes_only_unreachable_internal_altitude() -> Non
         spacing_m=500.0,
     )
 
-    projected_waypoints = projected.trajectory.intent.waypoints
     assert not exact.feasible
     assert projected.feasible
-    assert projected_waypoints[0].altitude_m == pytest.approx(1_000.0)
-    assert projected_waypoints[-1].altitude_m == pytest.approx(1_700.0)
-    assert 1_300.0 <= projected_waypoints[1].altitude_m < 1_600.0
-    assert [point.true_airspeed_mps for point in projected_waypoints] == pytest.approx(
+    assert projected.trajectory.waypoint_altitude_m[0] == pytest.approx(1_000.0)
+    assert projected.trajectory.waypoint_altitude_m[-1] == pytest.approx(1_700.0)
+    assert 1_300.0 <= projected.trajectory.waypoint_altitude_m[1] < 1_600.0
+    assert projected.trajectory.waypoint_true_airspeed_mps == pytest.approx(
         [100.0, 100.0, 100.0]
     )
 
@@ -538,3 +587,5 @@ def test_energy_top_of_climb_uses_schedule_wind_and_reserve() -> None:
         calm.climb_ground_distance_m + 10_000.0
     )
     assert downdraft.climb_ground_distance_m > calm.climb_ground_distance_m
+    (SpeedConstraint,)
+    (SpeedTarget,)

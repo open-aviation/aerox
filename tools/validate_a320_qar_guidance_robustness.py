@@ -88,6 +88,7 @@ class QARGuidanceReference:
     wind_north_mps: np.ndarray
     wind_east_mps: np.ndarray
     mass_kg: np.ndarray
+    fuel_flow_kg_s: np.ndarray
     initial_mass_kg: float
     source_start_time_s: float
     source_end_time_s: float
@@ -131,27 +132,87 @@ class ScenarioResult:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--raw-dir", type=Path, default=Path("data/a320_raw"))
-    parser.add_argument("--processed", type=Path, default=Path("data/a320/a320.parquet"))
+    parser.add_argument(
+        "--processed", type=Path, default=Path("data/a320/a320.parquet")
+    )
     parser.add_argument(
         "--panel",
         type=Path,
         default=Path("docs/modeling/a320-vspaero-extension-confirmation-panel.csv"),
     )
-    parser.add_argument("--vertical-parameters", type=Path, default=Path("docs/modeling/a320-vertical-kinematic-calibration.yml"))
-    parser.add_argument("--horizontal-parameters", type=Path, default=Path("docs/modeling/a320-horizontal-kinematic-calibration.yml"))
-    parser.add_argument("--thrust-parameters", type=Path, default=Path("docs/modeling/a320-effective-thrust-calibration.yml"))
-    parser.add_argument("--fuel-parameters", type=Path, default=Path("docs/modeling/a320-effective-fuel-calibration.yml"))
-    parser.add_argument("--pitch-bank-parameters", type=Path, default=Path("docs/modeling/a320-pitch-bank-input-calibration.yml"))
-    parser.add_argument("--surface-parameters", type=Path, default=Path("docs/modeling/a320-vspaero-lift-surface-identification.yml"))
-    parser.add_argument("--boundary-parameters", type=Path, default=Path("docs/modeling/a320-vspaero-hybrid-boundary-selection.yml"))
-    parser.add_argument("--lift-surface", type=Path, default=Path("docs/modeling/a320-vspaero-mach-extended-lift-surface.csv"))
-    parser.add_argument("--workers", type=int, default=min(10, 2 * (os.cpu_count() or 4)))
-    parser.add_argument("--metrics", type=Path, default=Path("docs/modeling/a320-qar-guidance-robustness-metrics.csv"))
-    parser.add_argument("--parameters", type=Path, default=Path("docs/modeling/a320-qar-guidance-robustness.yml"))
-    parser.add_argument("--report", type=Path, default=Path("docs/modeling/a320-qar-guidance-robustness.md"))
-    parser.add_argument("--nominal-figure-prefix", type=Path, default=Path("docs/modeling/figures/a320-qar-guidance-errors"))
-    parser.add_argument("--trajectory-figure-prefix", type=Path, default=Path("docs/modeling/figures/a320-qar-guidance-trajectory-comparison"))
-    parser.add_argument("--robustness-figure-prefix", type=Path, default=Path("docs/modeling/figures/a320-qar-guidance-robustness"))
+    parser.add_argument(
+        "--vertical-parameters",
+        type=Path,
+        default=Path("docs/modeling/a320-vertical-kinematic-calibration.yml"),
+    )
+    parser.add_argument(
+        "--horizontal-parameters",
+        type=Path,
+        default=Path("docs/modeling/a320-horizontal-kinematic-calibration.yml"),
+    )
+    parser.add_argument(
+        "--thrust-parameters",
+        type=Path,
+        default=Path("docs/modeling/a320-effective-thrust-calibration.yml"),
+    )
+    parser.add_argument(
+        "--fuel-parameters",
+        type=Path,
+        default=Path("docs/modeling/a320-effective-fuel-calibration.yml"),
+    )
+    parser.add_argument(
+        "--pitch-bank-parameters",
+        type=Path,
+        default=Path("docs/modeling/a320-pitch-bank-input-calibration.yml"),
+    )
+    parser.add_argument(
+        "--surface-parameters",
+        type=Path,
+        default=Path("docs/modeling/a320-vspaero-lift-surface-identification.yml"),
+    )
+    parser.add_argument(
+        "--boundary-parameters",
+        type=Path,
+        default=Path("docs/modeling/a320-vspaero-hybrid-boundary-selection.yml"),
+    )
+    parser.add_argument(
+        "--lift-surface",
+        type=Path,
+        default=Path("docs/modeling/a320-vspaero-mach-extended-lift-surface.csv"),
+    )
+    parser.add_argument(
+        "--workers", type=int, default=min(10, 2 * (os.cpu_count() or 4))
+    )
+    parser.add_argument(
+        "--metrics",
+        type=Path,
+        default=Path("docs/modeling/a320-qar-guidance-robustness-metrics.csv"),
+    )
+    parser.add_argument(
+        "--parameters",
+        type=Path,
+        default=Path("docs/modeling/a320-qar-guidance-robustness.yml"),
+    )
+    parser.add_argument(
+        "--report",
+        type=Path,
+        default=Path("docs/modeling/a320-qar-guidance-robustness.md"),
+    )
+    parser.add_argument(
+        "--nominal-figure-prefix",
+        type=Path,
+        default=Path("docs/modeling/figures/a320-qar-guidance-errors"),
+    )
+    parser.add_argument(
+        "--trajectory-figure-prefix",
+        type=Path,
+        default=Path("docs/modeling/figures/a320-qar-guidance-trajectory-comparison"),
+    )
+    parser.add_argument(
+        "--robustness-figure-prefix",
+        type=Path,
+        default=Path("docs/modeling/figures/a320-qar-guidance-robustness"),
+    )
     return parser.parse_args()
 
 
@@ -166,8 +227,14 @@ def scenarios() -> tuple[RobustScenario, ...]:
         RobustScenario("drag_plus_10pct", drag_scale=1.10),
         RobustScenario("lift_minus_5pct", lift_scale=0.95),
         RobustScenario("lift_plus_5pct", lift_scale=1.05),
-        RobustScenario("wind_bias_northeast_3mps", wind_north_bias_mps=3.0, wind_east_bias_mps=3.0),
-        RobustScenario("wind_bias_southwest_3mps", wind_north_bias_mps=-3.0, wind_east_bias_mps=-3.0),
+        RobustScenario(
+            "wind_bias_northeast_3mps", wind_north_bias_mps=3.0, wind_east_bias_mps=3.0
+        ),
+        RobustScenario(
+            "wind_bias_southwest_3mps",
+            wind_north_bias_mps=-3.0,
+            wind_east_bias_mps=-3.0,
+        ),
         RobustScenario(
             "combined_adverse",
             guidance_mass_scale=0.90,
@@ -193,18 +260,26 @@ def build_qar_reference(flight: PointMassReplayFlight) -> QARGuidanceReference:
     source_time = base.time_s[selection]
     time = source_time - source_time[0]
     speed = savgol_filter(base.true_airspeed_mps[selection], 31, 3, mode="interp")
-    speed_rate = savgol_filter(base.true_airspeed_mps[selection], 31, 3, deriv=1, delta=1.0, mode="interp")
+    speed_rate = savgol_filter(
+        base.true_airspeed_mps[selection], 31, 3, deriv=1, delta=1.0, mode="interp"
+    )
     altitude = savgol_filter(base.pressure_altitude_m[selection], 61, 3, mode="interp")
-    altitude_rate = savgol_filter(base.pressure_altitude_m[selection], 61, 3, deriv=1, delta=1.0, mode="interp")
-    altitude_acceleration = savgol_filter(base.pressure_altitude_m[selection], 61, 3, deriv=2, delta=1.0, mode="interp")
+    altitude_rate = savgol_filter(
+        base.pressure_altitude_m[selection], 61, 3, deriv=1, delta=1.0, mode="interp"
+    )
+    altitude_acceleration = savgol_filter(
+        base.pressure_altitude_m[selection], 61, 3, deriv=2, delta=1.0, mode="interp"
+    )
     sine_gamma = np.clip(altitude_rate / speed, -0.25, 0.25)
     gamma = np.arcsin(sine_gamma)
-    gamma_rate = (
-        altitude_acceleration * speed - altitude_rate * speed_rate
-    ) / (speed**2 * np.sqrt(1.0 - sine_gamma**2))
+    gamma_rate = (altitude_acceleration * speed - altitude_rate * speed_rate) / (
+        speed**2 * np.sqrt(1.0 - sine_gamma**2)
+    )
     unwrapped_heading = np.unwrap(flight.calibrated_heading_rad[selection])
     heading = savgol_filter(unwrapped_heading, 31, 3, mode="interp")
-    heading_rate = savgol_filter(unwrapped_heading, 31, 3, deriv=1, delta=1.0, mode="interp")
+    heading_rate = savgol_filter(
+        unwrapped_heading, 31, 3, deriv=1, delta=1.0, mode="interp"
+    )
 
     latitude = flight.latitude_rad[selection]
     longitude = flight.longitude_rad[selection]
@@ -232,20 +307,25 @@ def build_qar_reference(flight: PointMassReplayFlight) -> QARGuidanceReference:
         wind_north_mps=flight.wind_north_mps[selection],
         wind_east_mps=flight.wind_east_mps[selection],
         mass_kg=base.mass_kg[selection],
+        fuel_flow_kg_s=base.fuel_flow_kg_s[selection],
         initial_mass_kg=float(base.mass_kg[selection][0]),
         source_start_time_s=float(source_time[0]),
         source_end_time_s=float(source_time[-1]),
     )
 
 
-def _load_reference(args: argparse.Namespace) -> tuple[QARGuidanceReference, PointMassReplayFlight]:
+def _load_reference(
+    args: argparse.Namespace,
+) -> tuple[QARGuidanceReference, PointMassReplayFlight]:
     panel = pd.read_csv(args.panel, dtype={"recording": str})
     selected = panel.loc[
         (panel["registration"] == TARGET_REGISTRATION)
         & (panel["recording"] == TARGET_RECORDING)
     ]
     if len(selected) != 1:
-        raise ValueError("the frozen response-blind QAR reference is absent from the panel")
+        raise ValueError(
+            "the frozen response-blind QAR reference is absent from the panel"
+        )
     aircraft = load_aircraft("A320")
     flights = _load_point_mass_flights(
         selected,
@@ -259,7 +339,9 @@ def _load_reference(args: argparse.Namespace) -> tuple[QARGuidanceReference, Poi
     return build_qar_reference(flights[0]), flights[0]
 
 
-def _build_nominal_model(args: argparse.Namespace, registration: str) -> GuardedHybridLiftModel:
+def _build_nominal_model(
+    args: argparse.Namespace, registration: str
+) -> GuardedHybridLiftModel:
     vertical = _read_vertical_calibration(args.vertical_parameters)
     parameters, _ = _read_frozen_surface_parameters(args.surface_parameters)
     surface = TabulatedLiftSurface.from_vspaero_alpha_support_csv(args.lift_surface)
@@ -301,11 +383,26 @@ def _metrics(
         trajectory.pressure_altitude_m, qar.static_temperature_k
     )
     mach = trajectory.true_airspeed_mps / atmosphere.speed_of_sound_mps
-    any_limited = tracking.pitch_limited | tracking.bank_limited | tracking.thrust_limited
+    any_limited = (
+        tracking.pitch_limited | tracking.bank_limited | tracking.thrust_limited
+    )
     return {
         "integrated": True,
-        "speed_rmse_mps": float(np.sqrt(np.mean((trajectory.true_airspeed_mps - reference.true_airspeed_mps) ** 2))),
-        "altitude_rmse_m": float(np.sqrt(np.mean((trajectory.pressure_altitude_m - reference.pressure_altitude_m) ** 2))),
+        "speed_rmse_mps": float(
+            np.sqrt(
+                np.mean(
+                    (trajectory.true_airspeed_mps - reference.true_airspeed_mps) ** 2
+                )
+            )
+        ),
+        "altitude_rmse_m": float(
+            np.sqrt(
+                np.mean(
+                    (trajectory.pressure_altitude_m - reference.pressure_altitude_m)
+                    ** 2
+                )
+            )
+        ),
         "heading_rmse_deg": float(np.rad2deg(np.sqrt(np.mean(heading_error**2)))),
         "horizontal_rmse_m": float(np.sqrt(np.mean(horizontal**2))),
         "horizontal_terminal_error_m": float(horizontal[-1]),
@@ -315,11 +412,17 @@ def _metrics(
         "any_control_limited_fraction": float(np.mean(any_limited)),
         "minimum_mach": float(np.min(mach)),
         "maximum_mach": float(np.max(mach)),
-        "minimum_effective_alpha_deg": float(np.rad2deg(np.min(trajectory.angle_of_attack_rad))),
-        "maximum_effective_alpha_deg": float(np.rad2deg(np.max(trajectory.angle_of_attack_rad))),
+        "minimum_effective_alpha_deg": float(
+            np.rad2deg(np.min(trajectory.angle_of_attack_rad))
+        ),
+        "maximum_effective_alpha_deg": float(
+            np.rad2deg(np.max(trajectory.angle_of_attack_rad))
+        ),
         "minimum_pitch_deg": float(np.rad2deg(np.min(trajectory.pitch_angle_rad))),
         "maximum_pitch_deg": float(np.rad2deg(np.max(trajectory.pitch_angle_rad))),
-        "maximum_absolute_bank_deg": float(np.rad2deg(np.max(np.abs(trajectory.bank_angle_rad)))),
+        "maximum_absolute_bank_deg": float(
+            np.rad2deg(np.max(np.abs(trajectory.bank_angle_rad)))
+        ),
         "minimum_net_thrust_n": float(np.min(trajectory.net_thrust_n)),
         "maximum_net_thrust_n": float(np.max(trajectory.net_thrust_n)),
         "fuel_burn_kg": float(trajectory.mass_kg[0] - trajectory.mass_kg[-1]),
@@ -370,7 +473,11 @@ def _run_scenario(
     return ScenarioResult(scenario, tracking, _metrics(tracking, qar))
 
 
-def _gate_document(results: list[ScenarioResult], qar: QARGuidanceReference, nominal_lift: GuardedHybridLiftModel) -> dict[str, Any]:
+def _gate_document(
+    results: list[ScenarioResult],
+    qar: QARGuidanceReference,
+    nominal_lift: GuardedHybridLiftModel,
+) -> dict[str, Any]:
     indexed = {result.scenario.name: result for result in results}
     nominal = indexed["nominal"].metrics
     maximum = {
@@ -384,7 +491,9 @@ def _gate_document(results: list[ScenarioResult], qar: QARGuidanceReference, nom
         )
     }
     worst_scenarios = {
-        metric: max(results, key=lambda result: float(result.metrics[metric])).scenario.name
+        metric: max(
+            results, key=lambda result: float(result.metrics[metric])
+        ).scenario.name
         for metric in maximum
     }
     gates: dict[str, dict[str, float | bool]] = {}
@@ -404,13 +513,33 @@ def _gate_document(results: list[ScenarioResult], qar: QARGuidanceReference, nom
         }
     minimum_mach = min(float(result.metrics["minimum_mach"]) for result in results)
     maximum_mach = max(float(result.metrics["maximum_mach"]) for result in results)
-    minimum_alpha = min(float(result.metrics["minimum_effective_alpha_deg"]) for result in results)
-    maximum_alpha = max(float(result.metrics["maximum_effective_alpha_deg"]) for result in results)
+    minimum_alpha = min(
+        float(result.metrics["minimum_effective_alpha_deg"]) for result in results
+    )
+    maximum_alpha = max(
+        float(result.metrics["maximum_effective_alpha_deg"]) for result in results
+    )
     envelope = {
-        "robust_minimum_mach": {"value": minimum_mach, "minimum": 0.20, "passed": minimum_mach >= 0.20},
-        "robust_maximum_mach": {"value": maximum_mach, "maximum": 0.82, "passed": maximum_mach <= 0.82},
-        "robust_minimum_effective_alpha_deg": {"value": minimum_alpha, "minimum": -1.0, "passed": minimum_alpha >= -1.0},
-        "robust_maximum_effective_alpha_deg": {"value": maximum_alpha, "maximum": 8.5, "passed": maximum_alpha <= 8.5},
+        "robust_minimum_mach": {
+            "value": minimum_mach,
+            "minimum": 0.20,
+            "passed": minimum_mach >= 0.20,
+        },
+        "robust_maximum_mach": {
+            "value": maximum_mach,
+            "maximum": 0.82,
+            "passed": maximum_mach <= 0.82,
+        },
+        "robust_minimum_effective_alpha_deg": {
+            "value": minimum_alpha,
+            "minimum": -1.0,
+            "passed": minimum_alpha >= -1.0,
+        },
+        "robust_maximum_effective_alpha_deg": {
+            "value": maximum_alpha,
+            "maximum": 8.5,
+            "passed": maximum_alpha <= 8.5,
+        },
     }
     gates.update(envelope)
     nominal_passed = all(
@@ -428,16 +557,24 @@ def _gate_document(results: list[ScenarioResult], qar: QARGuidanceReference, nom
     nominal_atmosphere = atmosphere_at_pressure_altitude(
         nominal_trajectory.pressure_altitude_m, qar.static_temperature_k
     )
-    nominal_mach = nominal_trajectory.true_airspeed_mps / nominal_atmosphere.speed_of_sound_mps
-    surface_weight = np.array([
-        nominal_lift.surface_weight_scalar(alpha, mach)
-        for alpha, mach in zip(nominal_trajectory.angle_of_attack_rad, nominal_mach, strict=True)
-    ])
+    nominal_mach = (
+        nominal_trajectory.true_airspeed_mps / nominal_atmosphere.speed_of_sound_mps
+    )
+    surface_weight = np.array(
+        [
+            nominal_lift.surface_weight_scalar(alpha, mach)
+            for alpha, mach in zip(
+                nominal_trajectory.angle_of_attack_rad, nominal_mach, strict=True
+            )
+        ]
+    )
     return {
         "schema_version": 1,
         "updated": UPDATED,
         "aircraft": "Airbus A320-214",
-        "status": "qar-guidance-robustness-passed" if passed else "qar-guidance-robustness-held",
+        "status": "qar-guidance-robustness-passed"
+        if passed
+        else "qar-guidance-robustness-held",
         "reference": {
             "registration": TARGET_REGISTRATION,
             "recording": TARGET_RECORDING,
@@ -469,8 +606,7 @@ def _gate_document(results: list[ScenarioResult], qar: QARGuidanceReference, nom
             "model_mismatch": "nominal guidance plant commands a separately perturbed propagated plant",
         },
         "scenario_metrics": [
-            {"scenario": result.scenario.name, **result.metrics}
-            for result in results
+            {"scenario": result.scenario.name, **result.metrics} for result in results
         ],
         "robust_maximum_metrics": maximum,
         "robust_worst_scenarios": worst_scenarios,
@@ -508,42 +644,71 @@ def _metrics_frame(results: list[ScenarioResult]) -> pd.DataFrame:
 
 
 def _style_axis(axis: Any, label: str) -> None:
-    axis.text(-0.13, 1.06, label, transform=axis.transAxes, fontsize=11, fontweight="bold", va="top")
+    axis.text(
+        -0.13,
+        1.06,
+        label,
+        transform=axis.transAxes,
+        fontsize=11,
+        fontweight="bold",
+        va="top",
+    )
     axis.grid(True, alpha=0.22, linewidth=0.7)
     axis.spines["top"].set_visible(False)
     axis.spines["right"].set_visible(False)
 
 
-def _plot_nominal(result: ScenarioResult, qar: QARGuidanceReference, prefix: Path) -> None:
+def _plot_nominal(
+    result: ScenarioResult, qar: QARGuidanceReference, prefix: Path
+) -> None:
     import matplotlib.pyplot as plt
 
     trajectory = result.tracking.trajectory
     reference = qar.reference
     time_min = reference.time_s / 60.0
-    heading_error = np.rad2deg(_wrapped_error(reference.heading_rad, trajectory.heading_rad))
+    heading_error = np.rad2deg(
+        _wrapped_error(reference.heading_rad, trajectory.heading_rad)
+    )
     horizontal = np.hypot(
         trajectory.north_position_m - qar.north_position_m,
         trajectory.east_position_m - qar.east_position_m,
     )
     blue, orange = "#0072B2", "#D55E00"
     fig, axes = plt.subplots(2, 3, figsize=(12.0, 7.0), constrained_layout=True)
-    axes[0, 0].plot(time_min, trajectory.true_airspeed_mps - reference.true_airspeed_mps, color=blue)
+    axes[0, 0].plot(
+        time_min, trajectory.true_airspeed_mps - reference.true_airspeed_mps, color=blue
+    )
     axes[0, 0].set(xlabel="Elapsed time (min)", ylabel="TAS tracking error (m/s)")
-    axes[0, 1].plot(time_min, trajectory.pressure_altitude_m - reference.pressure_altitude_m, color=blue)
+    axes[0, 1].plot(
+        time_min,
+        trajectory.pressure_altitude_m - reference.pressure_altitude_m,
+        color=blue,
+    )
     axes[0, 1].set(xlabel="Elapsed time (min)", ylabel="Altitude tracking error (m)")
     axes[0, 2].plot(time_min, heading_error, color=blue)
     axes[0, 2].set(xlabel="Elapsed time (min)", ylabel="Heading tracking error (deg)")
     axes[1, 0].plot(time_min, horizontal, color=orange)
     axes[1, 0].set(xlabel="Elapsed time (min)", ylabel="Horizontal reference error (m)")
-    axes[1, 1].plot(time_min, np.rad2deg(trajectory.pitch_angle_rad), color=blue, label="pitch")
-    axes[1, 1].plot(time_min, np.rad2deg(trajectory.bank_angle_rad), color=orange, linestyle="--", label="bank")
+    axes[1, 1].plot(
+        time_min, np.rad2deg(trajectory.pitch_angle_rad), color=blue, label="pitch"
+    )
+    axes[1, 1].plot(
+        time_min,
+        np.rad2deg(trajectory.bank_angle_rad),
+        color=orange,
+        linestyle="--",
+        label="bank",
+    )
     axes[1, 1].set(xlabel="Elapsed time (min)", ylabel="Commanded attitude (deg)")
     axes[1, 1].legend(frameon=False)
     axes[1, 2].plot(time_min, trajectory.net_thrust_n / 1_000.0, color=blue)
     axes[1, 2].set(xlabel="Elapsed time (min)", ylabel="Total realized net thrust (kN)")
     for label, axis in zip("ABCDEF", axes.ravel(), strict=True):
         _style_axis(axis, label)
-    fig.suptitle("A320 QAR-derived reference tracking: errors and generated controls", fontsize=13)
+    fig.suptitle(
+        "A320 QAR-derived reference tracking: errors and generated controls",
+        fontsize=13,
+    )
     prefix.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(prefix.with_suffix(".png"), dpi=300)
     fig.savefig(prefix.with_suffix(".pdf"))
@@ -637,25 +802,45 @@ def _plot_robustness(metrics: pd.DataFrame, prefix: Path) -> None:
     import matplotlib.pyplot as plt
 
     short = [
-        "nominal", "mass −10%", "mass +10%", "drag −10%", "drag +10%",
-        "lift −5%", "lift +5%", "wind NE", "wind SW", "combined",
+        "nominal",
+        "mass −10%",
+        "mass +10%",
+        "drag −10%",
+        "drag +10%",
+        "lift −5%",
+        "lift +5%",
+        "wind NE",
+        "wind SW",
+        "combined",
     ]
     colors = ["#0072B2"] + ["#999999"] * 8 + ["#D55E00"]
     plots = (
         ("speed_rmse_mps", "TAS RMSE (m/s)", ROBUST_LIMITS["speed_rmse_mps"]),
         ("altitude_rmse_m", "Altitude RMSE (m)", ROBUST_LIMITS["altitude_rmse_m"]),
         ("heading_rmse_deg", "Heading RMSE (deg)", ROBUST_LIMITS["heading_rmse_deg"]),
-        ("horizontal_rmse_m", "Horizontal RMSE (m)", ROBUST_LIMITS["horizontal_rmse_m"]),
-        ("any_control_limited_fraction", "Limited sample fraction", ROBUST_LIMITS["limited_fraction"]),
+        (
+            "horizontal_rmse_m",
+            "Horizontal RMSE (m)",
+            ROBUST_LIMITS["horizontal_rmse_m"],
+        ),
+        (
+            "any_control_limited_fraction",
+            "Limited sample fraction",
+            ROBUST_LIMITS["limited_fraction"],
+        ),
         ("horizontal_terminal_error_m", "Terminal horizontal error (m)", None),
     )
     fig, axes = plt.subplots(2, 3, figsize=(12.0, 7.5), constrained_layout=True)
     positions = np.arange(len(metrics))
-    for label, axis, (column, ylabel, limit) in zip("ABCDEF", axes.ravel(), plots, strict=True):
+    for label, axis, (column, ylabel, limit) in zip(
+        "ABCDEF", axes.ravel(), plots, strict=True
+    ):
         axis.scatter(positions, metrics[column], c=colors, s=34, zorder=3)
         axis.plot(positions, metrics[column], color="0.72", linewidth=0.8, zorder=1)
         if limit is not None:
-            axis.axhline(limit, color="black", linestyle=":", linewidth=1.1, label="robust gate")
+            axis.axhline(
+                limit, color="black", linestyle=":", linewidth=1.1, label="robust gate"
+            )
         axis.set_xticks(positions, short, rotation=42, ha="right")
         axis.set_ylabel(ylabel)
         if limit is not None and label == "A":
@@ -669,7 +854,9 @@ def _plot_robustness(metrics: pd.DataFrame, prefix: Path) -> None:
 
 
 def _render_report(document: dict[str, Any]) -> str:
-    nominal = next(row for row in document["scenario_metrics"] if row["scenario"] == "nominal")
+    nominal = next(
+        row for row in document["scenario_metrics"] if row["scenario"] == "nominal"
+    )
     maximum = document["robust_maximum_metrics"]
     worst_altitude_scenario = document["robust_worst_scenarios"]["altitude_rmse_m"]
     gate_rows = "\n".join(
@@ -684,17 +871,17 @@ def _render_report(document: dict[str, Any]) -> str:
 
 ## Outcome
 
-The unchanged bounded pitch–bank–realized-net-thrust controller **{'passes' if nominal_passed else 'does not pass'} the nominal QAR-derived reference gate** and **{'passes' if robustness_passed else 'does not pass'} the deterministic robustness gate**. The overall status is therefore **{'passed' if document['decision']['overall_gate_passed'] else 'held'}**. The reference is the longest contiguous clean segment of `{TARGET_REGISTRATION}/{TARGET_RECORDING}`, the first flight in the response-blind Mach-extension confirmation panel. No controller gain was refitted after loading this reference.
+The unchanged bounded pitch–bank–realized-net-thrust controller **{"passes" if nominal_passed else "does not pass"} the nominal QAR-derived reference gate** and **{"passes" if robustness_passed else "does not pass"} the deterministic robustness gate**. The overall status is therefore **{"passed" if document["decision"]["overall_gate_passed"] else "held"}**. The reference is the longest contiguous clean segment of `{TARGET_REGISTRATION}/{TARGET_RECORDING}`, the first flight in the response-blind Mach-extension confirmation panel. No controller gain was refitted after loading this reference.
 
 | Metric | Nominal QAR reference | Worst robustness case |
 |---|---:|---:|
-| TAS RMSE (m/s) | {nominal['speed_rmse_mps']:.3f} | {maximum['speed_rmse_mps']:.3f} |
-| Altitude RMSE (m) | {nominal['altitude_rmse_m']:.2f} | {maximum['altitude_rmse_m']:.2f} |
-| Heading RMSE (deg) | {nominal['heading_rmse_deg']:.3f} | {maximum['heading_rmse_deg']:.3f} |
-| Horizontal RMSE (m) | {nominal['horizontal_rmse_m']:.1f} | {maximum['horizontal_rmse_m']:.1f} |
-| Any limiter fraction | {nominal['any_control_limited_fraction']:.3f} | {maximum['any_control_limited_fraction']:.3f} |
+| TAS RMSE (m/s) | {nominal["speed_rmse_mps"]:.3f} | {maximum["speed_rmse_mps"]:.3f} |
+| Altitude RMSE (m) | {nominal["altitude_rmse_m"]:.2f} | {maximum["altitude_rmse_m"]:.2f} |
+| Heading RMSE (deg) | {nominal["heading_rmse_deg"]:.3f} | {maximum["heading_rmse_deg"]:.3f} |
+| Horizontal RMSE (m) | {nominal["horizontal_rmse_m"]:.1f} | {maximum["horizontal_rmse_m"]:.1f} |
+| Any limiter fraction | {nominal["any_control_limited_fraction"]:.3f} | {maximum["any_control_limited_fraction"]:.3f} |
 
-The only failed threshold is robust altitude RMSE. The `{worst_altitude_scenario}` case reaches {maximum['altitude_rmse_m']:.1f} m against the frozen 150 m maximum; that threshold is retained unchanged.
+The only failed threshold is robust altitude RMSE. The `{worst_altitude_scenario}` case reaches {maximum["altitude_rmse_m"]:.1f} m against the frozen 150 m maximum; that threshold is retained unchanged.
 
 ## Frozen gates
 

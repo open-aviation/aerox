@@ -36,9 +36,7 @@ def test_generated_autothrust_envelope_is_frozen_before_validation():
 
     validation = set(panel.loc[panel["role"] == "validation", "recording"])
     assert audit["leakage_control"]["structure_frozen_before_validation_load"]
-    assert set(points.loc[points["split"] == "fit", "recording"]).isdisjoint(
-        validation
-    )
+    assert set(points.loc[points["split"] == "fit", "recording"]).isdisjoint(validation)
     assert set(points.loc[points["split"] == "validation", "recording"]) == validation
     assert audit["model"]["modes"] == [
         "fixed_idle",

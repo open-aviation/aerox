@@ -38,29 +38,14 @@ class ProfileFeasibilityResult:
     violations: tuple[str, ...]
 
 
-def _anchor_indices(
+def _constraint_indices(
     route: SpatialTrajectory,
     along_path_m: FloatArray,
-    waypoint_indices: tuple[int, ...] | None = None,
+    waypoint_mask: np.ndarray,
 ) -> dict[int, int]:
-    waypoint_count = len(route.intent.waypoints)
-    if waypoint_indices is None:
-        indices = tuple(range(waypoint_count))
-    else:
-        normalized: set[int] = set()
-        for raw_index in waypoint_indices:
-            index = raw_index if raw_index >= 0 else waypoint_count + raw_index
-            if not 0 <= index < waypoint_count:
-                raise ValueError("hard_waypoint_indices contains an out-of-range index")
-            normalized.add(index)
-        if 0 not in normalized or waypoint_count - 1 not in normalized:
-            raise ValueError(
-                "hard_waypoint_indices must include the first and last waypoint"
-            )
-        indices = tuple(sorted(normalized))
     return {
         int(np.searchsorted(along_path_m, route.waypoint_along_path_m[index])): index
-        for index in indices
+        for index in np.flatnonzero(waypoint_mask)
     }
 
 
@@ -163,16 +148,12 @@ def plan_feasible_profile(
     raise_on_infeasible: bool = False,
     environment_profile: SpatialEnvironmentProfile | None = None,
     waypoint_mass_kg: FloatArray | None = None,
-    hard_waypoint_indices: tuple[int, ...] | None = None,
 ) -> ProfileFeasibilityResult:
-    """Propagate hard waypoint constraints forward and backward in distance.
+    """Propagate explicit altitude and speed bounds in both directions.
 
-    By default, every waypoint altitude and speed is an exact anchor. A caller
-    may designate a subset with ``hard_waypoint_indices`` when intermediate
-    waypoints define lateral geometry only; the first and last waypoints must
-    remain hard. Between anchors, the original profile is retained wherever it
-    lies inside the reachable intersection and clipped only when aircraft
-    limits require earlier action.
+    Lateral-only waypoints impose no state restriction. Preferred state targets
+    define the nominal profile, while terminal and bounded constraints limit
+    the reachable intersection independently for altitude and speed.
     """
 
     if not np.isfinite(spacing_m) or spacing_m <= 0.0:
@@ -249,34 +230,40 @@ def plan_feasible_profile(
         wind_east_mps=conditions.wind_east_mps,
         wind_down_mps=conditions.wind_down_mps,
     )
-    maximum_climb_gradient = np.maximum(
-        np.tan(maximum_climb_ground_angle), 0.0
-    )
-    maximum_descent_gradient = np.maximum(
-        -np.tan(maximum_descent_ground_angle), 0.0
-    )
+    maximum_climb_gradient = np.maximum(np.tan(maximum_climb_ground_angle), 0.0)
+    maximum_descent_gradient = np.maximum(-np.tan(maximum_descent_ground_angle), 0.0)
     air_to_ground_energy_scale = (
         nominal_speed / nominal_motion.horizontal_ground_speed_mps
     )
-    anchors = _anchor_indices(route, along_path, hard_waypoint_indices)
+    altitude_constraints = _constraint_indices(
+        route,
+        along_path,
+        route.altitude_bound_waypoint_mask,
+    )
+    speed_constraints = _constraint_indices(
+        route,
+        along_path,
+        route.speed_bound_waypoint_mask,
+    )
     point_count = len(along_path)
     forward_altitude_min = np.full(point_count, -np.inf)
     forward_altitude_max = np.full(point_count, np.inf)
     forward_speed_min = np.full(point_count, 1.0)
     forward_speed_max = np.full(point_count, np.inf)
-    first = route.intent.waypoints[0]
-    forward_altitude_min[0] = forward_altitude_max[0] = first.altitude_m
-    forward_speed_min[0] = forward_speed_max[0] = first.true_airspeed_mps
+    forward_altitude_min[0] = route.waypoint_minimum_altitude_m[0]
+    forward_altitude_max[0] = route.waypoint_maximum_altitude_m[0]
+    forward_speed_min[0] = route.waypoint_minimum_true_airspeed_mps[0]
+    forward_speed_max[0] = route.waypoint_maximum_true_airspeed_mps[0]
     violations: list[str] = []
 
     for index, distance in enumerate(np.diff(along_path)):
         next_index = index + 1
-        forward_altitude_min[next_index] = forward_altitude_min[
-            index
-        ] - distance * maximum_descent_gradient[index]
-        forward_altitude_max[next_index] = forward_altitude_max[
-            index
-        ] + distance * maximum_climb_gradient[index]
+        forward_altitude_min[next_index] = (
+            forward_altitude_min[index] - distance * maximum_descent_gradient[index]
+        )
+        forward_altitude_max[next_index] = (
+            forward_altitude_max[index] + distance * maximum_climb_gradient[index]
+        )
         forward_speed_min[next_index] = np.sqrt(
             max(
                 1.0,
@@ -297,46 +284,60 @@ def plan_feasible_profile(
                 * distance,
             )
         )
-        if next_index in anchors:
-            waypoint = route.intent.waypoints[anchors[next_index]]
-            if not (
-                forward_altitude_min[next_index] - 1e-6
-                <= waypoint.altitude_m
-                <= forward_altitude_max[next_index] + 1e-6
-            ):
-                violations.append(
-                    f"{waypoint.name or anchors[next_index]} altitude is not forward-reachable"
-                )
-            if not (
-                forward_speed_min[next_index] - 1e-6
-                <= waypoint.true_airspeed_mps
-                <= forward_speed_max[next_index] + 1e-6
-            ):
-                violations.append(
-                    f"{waypoint.name or anchors[next_index]} speed is not forward-reachable"
-                )
-            forward_altitude_min[next_index] = forward_altitude_max[next_index] = (
-                waypoint.altitude_m
+        if next_index in altitude_constraints:
+            waypoint_index = altitude_constraints[next_index]
+            lower = max(
+                forward_altitude_min[next_index],
+                route.waypoint_minimum_altitude_m[waypoint_index],
             )
-            forward_speed_min[next_index] = forward_speed_max[next_index] = (
-                waypoint.true_airspeed_mps
+            upper = min(
+                forward_altitude_max[next_index],
+                route.waypoint_maximum_altitude_m[waypoint_index],
             )
+            if lower > upper + 1e-6:
+                waypoint = route.intent.waypoints[waypoint_index]
+                violations.append(
+                    f"{waypoint.name or waypoint_index} altitude bounds are not "
+                    "forward-reachable"
+                )
+            forward_altitude_min[next_index] = lower
+            forward_altitude_max[next_index] = upper
+        if next_index in speed_constraints:
+            waypoint_index = speed_constraints[next_index]
+            lower = max(
+                forward_speed_min[next_index],
+                route.waypoint_minimum_true_airspeed_mps[waypoint_index],
+            )
+            upper = min(
+                forward_speed_max[next_index],
+                route.waypoint_maximum_true_airspeed_mps[waypoint_index],
+            )
+            if lower > upper + 1e-6:
+                waypoint = route.intent.waypoints[waypoint_index]
+                violations.append(
+                    f"{waypoint.name or waypoint_index} speed bounds are not "
+                    "forward-reachable"
+                )
+            forward_speed_min[next_index] = lower
+            forward_speed_max[next_index] = upper
 
     backward_altitude_min = np.full(point_count, -np.inf)
     backward_altitude_max = np.full(point_count, np.inf)
     backward_speed_min = np.full(point_count, 1.0)
     backward_speed_max = np.full(point_count, np.inf)
-    last = route.intent.waypoints[-1]
-    backward_altitude_min[-1] = backward_altitude_max[-1] = last.altitude_m
-    backward_speed_min[-1] = backward_speed_max[-1] = last.true_airspeed_mps
+    backward_altitude_min[-1] = route.waypoint_minimum_altitude_m[-1]
+    backward_altitude_max[-1] = route.waypoint_maximum_altitude_m[-1]
+    backward_speed_min[-1] = route.waypoint_minimum_true_airspeed_mps[-1]
+    backward_speed_max[-1] = route.waypoint_maximum_true_airspeed_mps[-1]
     for index in range(point_count - 2, -1, -1):
         distance = along_path[index + 1] - along_path[index]
-        backward_altitude_min[index] = backward_altitude_min[
-            index + 1
-        ] - distance * maximum_climb_gradient[index]
-        backward_altitude_max[index] = backward_altitude_max[
-            index + 1
-        ] + distance * maximum_descent_gradient[index]
+        backward_altitude_min[index] = (
+            backward_altitude_min[index + 1] - distance * maximum_climb_gradient[index]
+        )
+        backward_altitude_max[index] = (
+            backward_altitude_max[index + 1]
+            + distance * maximum_descent_gradient[index]
+        )
         backward_speed_min[index] = np.sqrt(
             max(
                 1.0,
@@ -357,30 +358,42 @@ def plan_feasible_profile(
                 * distance,
             )
         )
-        if index in anchors:
-            waypoint = route.intent.waypoints[anchors[index]]
-            if not (
-                backward_altitude_min[index] - 1e-6
-                <= waypoint.altitude_m
-                <= backward_altitude_max[index] + 1e-6
-            ):
-                violations.append(
-                    f"{waypoint.name or anchors[index]} altitude is not backward-reachable"
-                )
-            if not (
-                backward_speed_min[index] - 1e-6
-                <= waypoint.true_airspeed_mps
-                <= backward_speed_max[index] + 1e-6
-            ):
-                violations.append(
-                    f"{waypoint.name or anchors[index]} speed is not backward-reachable"
-                )
-            backward_altitude_min[index] = backward_altitude_max[index] = (
-                waypoint.altitude_m
+        if index in altitude_constraints:
+            waypoint_index = altitude_constraints[index]
+            lower = max(
+                backward_altitude_min[index],
+                route.waypoint_minimum_altitude_m[waypoint_index],
             )
-            backward_speed_min[index] = backward_speed_max[index] = (
-                waypoint.true_airspeed_mps
+            upper = min(
+                backward_altitude_max[index],
+                route.waypoint_maximum_altitude_m[waypoint_index],
             )
+            if lower > upper + 1e-6:
+                waypoint = route.intent.waypoints[waypoint_index]
+                violations.append(
+                    f"{waypoint.name or waypoint_index} altitude bounds are not "
+                    "backward-reachable"
+                )
+            backward_altitude_min[index] = lower
+            backward_altitude_max[index] = upper
+        if index in speed_constraints:
+            waypoint_index = speed_constraints[index]
+            lower = max(
+                backward_speed_min[index],
+                route.waypoint_minimum_true_airspeed_mps[waypoint_index],
+            )
+            upper = min(
+                backward_speed_max[index],
+                route.waypoint_maximum_true_airspeed_mps[waypoint_index],
+            )
+            if lower > upper + 1e-6:
+                waypoint = route.intent.waypoints[waypoint_index]
+                violations.append(
+                    f"{waypoint.name or waypoint_index} speed bounds are not "
+                    "backward-reachable"
+                )
+            backward_speed_min[index] = lower
+            backward_speed_max[index] = upper
 
     altitude_min = np.maximum(forward_altitude_min, backward_altitude_min)
     altitude_max = np.minimum(forward_altitude_max, backward_altitude_max)

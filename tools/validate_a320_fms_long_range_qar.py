@@ -19,10 +19,14 @@ if str(PROJECT_ROOT) not in sys.path:
 
 from aerox import load_aircraft
 from aerox.fms import (
+    AltitudeConstraint,
     FlightIntent,
+    LateralWaypoint,
+    SpeedConstraint,
+    SpeedTarget,
     SpatialEnvironmentProfile,
     SpatialTrajectory,
-    Waypoint,
+    TerminalConstraint,
     plan_energy_shaped_profile,
 )
 from aerox.guidance import SpatialPathGuidance
@@ -120,11 +124,9 @@ def build_long_range_intent(
 
     indices = _anchor_indices(len(qar.reference.time_s))
     waypoints = tuple(
-        Waypoint(
+        LateralWaypoint(
             north_m=float(qar.north_position_m[index]),
             east_m=float(qar.east_position_m[index]),
-            altitude_m=float(qar.reference.pressure_altitude_m[index]),
-            true_airspeed_mps=float(qar.reference.true_airspeed_mps[index]),
             name=f"L{number}",
             acceptance_radius_m=1_500.0 if index == indices[-1] else 4_000.0,
         )
@@ -133,11 +135,36 @@ def build_long_range_intent(
     route = SpatialTrajectory.from_intent(
         FlightIntent(
             waypoints=waypoints,
+            departure=TerminalConstraint(
+                float(qar.reference.pressure_altitude_m[indices[0]]),
+                SpeedTarget("TAS", float(qar.reference.true_airspeed_mps[indices[0]])),
+            ),
+            arrival=TerminalConstraint(
+                float(qar.reference.pressure_altitude_m[indices[-1]]),
+                SpeedTarget("TAS", float(qar.reference.true_airspeed_mps[indices[-1]])),
+            ),
+            altitude_constraints=tuple(
+                AltitudeConstraint.preferred(
+                    waypoint_index,
+                    float(qar.reference.pressure_altitude_m[source_index]),
+                )
+                for waypoint_index, source_index in enumerate(indices[1:-1], start=1)
+            ),
+            speed_constraints=tuple(
+                SpeedConstraint.preferred(
+                    waypoint_index,
+                    SpeedTarget(
+                        "TAS", float(qar.reference.true_airspeed_mps[source_index])
+                    ),
+                )
+                for waypoint_index, source_index in enumerate(indices[1:-1], start=1)
+            ),
             maximum_climb_flight_path_angle_rad=math.radians(6.0),
             maximum_descent_flight_path_angle_rad=math.radians(4.0),
             maximum_acceleration_mps2=0.5,
             maximum_deceleration_mps2=0.5,
-        )
+        ),
+        static_temperature_k=qar.static_temperature_k[indices],
     )
     environment = SpatialEnvironmentProfile(
         along_path_m=route.waypoint_along_path_m,
@@ -154,13 +181,26 @@ def _history(result: Any) -> pd.DataFrame:
     return pd.DataFrame(
         {
             "elapsed_time_s": trajectory.time_s,
+            "north_position_m": trajectory.north_position_m,
+            "east_position_m": trajectory.east_position_m,
             "pressure_altitude_m": trajectory.pressure_altitude_m,
             "true_airspeed_mps": trajectory.true_airspeed_mps,
+            "flight_path_angle_deg": np.rad2deg(trajectory.flight_path_angle_rad),
+            "heading_deg": np.rad2deg(trajectory.heading_rad),
             "pitch_angle_deg": np.rad2deg(trajectory.pitch_angle_rad),
             "bank_angle_deg": np.rad2deg(trajectory.bank_angle_rad),
             "effective_alpha_deg": np.rad2deg(trajectory.angle_of_attack_rad),
             "net_thrust_kn": trajectory.net_thrust_n / 1_000.0,
+            "lift_coefficient": trajectory.lift_coefficient,
+            "lift_kn": trajectory.lift_n / 1_000.0,
+            "drag_kn": trajectory.drag_n / 1_000.0,
+            "fuel_flow_kg_s": trajectory.fuel_flow_kg_s,
             "mass_kg": trajectory.mass_kg,
+            "progress_m": result.progress_m,
+            "cross_track_error_m": result.cross_track_error_m,
+            "reference_altitude_m": result.reference_altitude_m,
+            "reference_true_airspeed_mps": result.reference_true_airspeed_mps,
+            "static_temperature_k": result.static_temperature_k,
             "pitch_limited": result.pitch_limited,
             "bank_limited": result.bank_limited,
             "thrust_limited": result.thrust_limited,

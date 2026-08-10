@@ -75,24 +75,17 @@ def _climb_ground_distance_steps(
 
     mean_speed = 0.5 * (true_airspeed_mps[:-1] + true_airspeed_mps[1:])
     mean_excess = 0.5 * (
-        maximum_specific_excess_force_mps2[:-1]
-        + maximum_specific_excess_force_mps2[1:]
+        maximum_specific_excess_force_mps2[:-1] + maximum_specific_excess_force_mps2[1:]
     )
-    mean_along_wind = 0.5 * (
-        along_track_wind_mps[:-1] + along_track_wind_mps[1:]
-    )
-    mean_crosswind = 0.5 * (
-        cross_track_wind_mps[:-1] + cross_track_wind_mps[1:]
-    )
+    mean_along_wind = 0.5 * (along_track_wind_mps[:-1] + along_track_wind_mps[1:])
+    mean_crosswind = 0.5 * (cross_track_wind_mps[:-1] + cross_track_wind_mps[1:])
     mean_down_wind = 0.5 * (wind_down_mps[:-1] + wind_down_mps[1:])
     interval_angle_limit = np.minimum(
         maximum_air_path_angle_rad[:-1], maximum_air_path_angle_rad[1:]
     )
 
     energy_gain_rate = mean_speed * mean_excess - G0 * mean_down_wind
-    maximum_altitude_rate = (
-        mean_speed * np.sin(interval_angle_limit) - mean_down_wind
-    )
+    maximum_altitude_rate = mean_speed * np.sin(interval_angle_limit) - mean_down_wind
     if np.any(energy_gain_rate <= 0.0):
         raise ValueError("wind and maximum thrust cannot increase climb energy")
     if np.any(maximum_altitude_rate <= 0.0):
@@ -103,9 +96,7 @@ def _climb_ground_distance_steps(
         altitude_step / maximum_altitude_rate,
     )
     required_air_vertical_speed = altitude_step / elapsed_time + mean_down_wind
-    horizontal_air_speed_squared = (
-        mean_speed**2 - required_air_vertical_speed**2
-    )
+    horizontal_air_speed_squared = mean_speed**2 - required_air_vertical_speed**2
     along_air_speed_squared = horizontal_air_speed_squared - mean_crosswind**2
     if np.any(along_air_speed_squared <= 0.0):
         raise ValueError("crosswind prevents climb along the requested route")
@@ -133,15 +124,10 @@ def _descent_ground_distance_steps(
 
     mean_speed = 0.5 * (true_airspeed_mps[:-1] + true_airspeed_mps[1:])
     mean_excess = 0.5 * (
-        minimum_specific_excess_force_mps2[:-1]
-        + minimum_specific_excess_force_mps2[1:]
+        minimum_specific_excess_force_mps2[:-1] + minimum_specific_excess_force_mps2[1:]
     )
-    mean_along_wind = 0.5 * (
-        along_track_wind_mps[:-1] + along_track_wind_mps[1:]
-    )
-    mean_crosswind = 0.5 * (
-        cross_track_wind_mps[:-1] + cross_track_wind_mps[1:]
-    )
+    mean_along_wind = 0.5 * (along_track_wind_mps[:-1] + along_track_wind_mps[1:])
+    mean_crosswind = 0.5 * (cross_track_wind_mps[:-1] + cross_track_wind_mps[1:])
     mean_down_wind = 0.5 * (wind_down_mps[:-1] + wind_down_mps[1:])
     interval_angle_limit = np.minimum(
         maximum_air_path_angle_rad[:-1], maximum_air_path_angle_rad[1:]
@@ -161,9 +147,7 @@ def _descent_ground_distance_steps(
         altitude_step / maximum_altitude_loss_rate,
     )
     required_air_vertical_speed = altitude_step / elapsed_time - mean_down_wind
-    horizontal_air_speed_squared = (
-        mean_speed**2 - required_air_vertical_speed**2
-    )
+    horizontal_air_speed_squared = mean_speed**2 - required_air_vertical_speed**2
     along_air_speed_squared = horizontal_air_speed_squared - mean_crosswind**2
     if np.any(along_air_speed_squared <= 0.0):
         raise ValueError("crosswind prevents descent along the requested route")
@@ -392,9 +376,7 @@ def plan_top_of_climb(
     crosswind = _profile_at_altitude(
         cross_track_wind_mps, altitude, name="cross-track wind"
     )
-    down_wind = _profile_at_altitude(
-        wind_down_mps, altitude, name="downward wind"
-    )
+    down_wind = _profile_at_altitude(wind_down_mps, altitude, name="downward wind")
     temperature = np.asarray(aero.temperature(altitude), dtype=float) + float(
         static_temperature_offset_k
     )
@@ -511,9 +493,7 @@ def plan_top_of_descent(
     crosswind = _profile_at_altitude(
         cross_track_wind_mps, altitude, name="cross-track wind"
     )
-    down_wind = _profile_at_altitude(
-        wind_down_mps, altitude, name="downward wind"
-    )
+    down_wind = _profile_at_altitude(wind_down_mps, altitude, name="downward wind")
     temperature = np.asarray(aero.temperature(altitude), dtype=float) + float(
         static_temperature_offset_k
     )

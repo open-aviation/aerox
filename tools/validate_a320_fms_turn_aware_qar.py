@@ -18,17 +18,25 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from aerox.fms import (
+    AltitudeConstraint,
     FlightIntent,
+    LateralWaypoint,
+    SpeedConstraint,
+    SpeedTarget,
     SpatialEnvironmentProfile,
     SpatialTrajectory,
-    Waypoint,
+    TerminalConstraint,
     plan_energy_shaped_profile,
 )
 from aerox.guidance import SpatialPathGuidance
 from aerox.modeling import PointMassProfilePerformance
 from aerox.simulation import simulate_fms_trajectory_zoh
 from tools.generate_a320_comparison_trajectories import _controller
-from tools.validate_a320_fms_long_range_qar import _history, _load_holdout
+from tools.validate_a320_fms_long_range_qar import (
+    _anchor_indices,
+    _history,
+    _load_holdout,
+)
 from tools.validate_a320_fms_profile_feasibility import _load_climb_thrust_ceiling
 from tools.validate_a320_fms_qar_intent import (
     INTEGRATION_RATE_HZ,
@@ -77,12 +85,11 @@ def parse_args() -> argparse.Namespace:
 
 
 def _build_intent(qar: Any, indices: np.ndarray) -> tuple[Any, Any]:
+    state_source_indices = set(_anchor_indices(len(qar.reference.time_s)).tolist())
     waypoints = tuple(
-        Waypoint(
+        LateralWaypoint(
             north_m=float(qar.north_position_m[index]),
             east_m=float(qar.east_position_m[index]),
-            altitude_m=float(qar.reference.pressure_altitude_m[index]),
-            true_airspeed_mps=float(qar.reference.true_airspeed_mps[index]),
             name=f"T{number}",
             acceptance_radius_m=1_500.0 if index == indices[-1] else 4_000.0,
         )
@@ -91,11 +98,40 @@ def _build_intent(qar: Any, indices: np.ndarray) -> tuple[Any, Any]:
     route = SpatialTrajectory.from_intent(
         FlightIntent(
             waypoints=waypoints,
+            departure=TerminalConstraint(
+                float(qar.reference.pressure_altitude_m[indices[0]]),
+                SpeedTarget("TAS", float(qar.reference.true_airspeed_mps[indices[0]])),
+            ),
+            arrival=TerminalConstraint(
+                float(qar.reference.pressure_altitude_m[indices[-1]]),
+                SpeedTarget(
+                    "TAS", float(qar.reference.true_airspeed_mps[indices[-1]])
+                ),
+            ),
+            altitude_constraints=tuple(
+                AltitudeConstraint.preferred(
+                    waypoint_index,
+                    float(qar.reference.pressure_altitude_m[source_index]),
+                )
+                for waypoint_index, source_index in enumerate(indices[1:-1], start=1)
+                if source_index in state_source_indices
+            ),
+            speed_constraints=tuple(
+                SpeedConstraint.preferred(
+                    waypoint_index,
+                    SpeedTarget(
+                        "TAS", float(qar.reference.true_airspeed_mps[source_index])
+                    ),
+                )
+                for waypoint_index, source_index in enumerate(indices[1:-1], start=1)
+                if source_index in state_source_indices
+            ),
             maximum_climb_flight_path_angle_rad=math.radians(6.0),
             maximum_descent_flight_path_angle_rad=math.radians(4.0),
             maximum_acceleration_mps2=0.5,
             maximum_deceleration_mps2=0.5,
-        )
+        ),
+        static_temperature_k=qar.static_temperature_k[indices],
     )
     environment = SpatialEnvironmentProfile(
         along_path_m=route.waypoint_along_path_m,

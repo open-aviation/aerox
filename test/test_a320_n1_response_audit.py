@@ -96,13 +96,10 @@ def test_generated_response_artifacts_preserve_fit_only_scope():
     validation = set(panel.loc[panel["role"] == "validation", "recording"])
     assert not audit["leakage_control"]["validation_flights_loaded"]
     assert validation.isdisjoint(set(events["recording"]))
-    assert not audit["airborne_actuator_decision"][
-        "nominal_time_constants_available"
-    ]
+    assert not audit["airborne_actuator_decision"]["nominal_time_constants_available"]
     for direction in ("rise", "fall"):
         bound = audit["low_power_ground_bounds"][direction]
         selected = events.loc[
-            events["used_for_actuator_bound"]
-            & (events["direction"] == direction)
+            events["used_for_actuator_bound"] & (events["direction"] == direction)
         ]
         assert bound["events"] == len(selected)

@@ -114,7 +114,9 @@ class SpeedIntentPrediction:
             or any(np.any(~np.isfinite(array)) for array in numeric.values())
             or not np.all(np.isin(active_kind, ("CAS", "MACH")))
         ):
-            raise ValueError("speed-intent prediction arrays must be finite and aligned")
+            raise ValueError(
+                "speed-intent prediction arrays must be finite and aligned"
+            )
         for name, array in numeric.items():
             object.__setattr__(self, name, array)
         object.__setattr__(self, "active_kind", active_kind)
@@ -201,11 +203,8 @@ class ModeConditionedSpeedIntent:
             == phase_array.shape
         ):
             raise ValueError("speed-intent prediction inputs must have equal shapes")
-        if (
-            selected_cas.ndim != 1
-            or np.any(
-                ~np.isfinite(selected_cas + selected_mach_array + altitude_ft + mass)
-            )
+        if selected_cas.ndim != 1 or np.any(
+            ~np.isfinite(selected_cas + selected_mach_array + altitude_ft + mass)
         ):
             raise ValueError("speed-intent prediction inputs must be finite vectors")
 

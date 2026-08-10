@@ -6,7 +6,6 @@ from __future__ import annotations
 import argparse
 import math
 import sys
-from dataclasses import replace
 from pathlib import Path
 from typing import Any
 
@@ -24,10 +23,12 @@ from aerox.fms import (
     CASMachDescentSchedule,
     CruiseSpeedStrategy,
     FlightIntent,
+    LateralWaypoint,
     ModeConditionedSpeedIntent,
+    SpeedTarget,
     SpatialEnvironmentProfile,
     SpatialTrajectory,
-    Waypoint,
+    TerminalConstraint,
     plan_continuous_speed_mass_profile,
     plan_feasible_profile,
     plan_top_of_climb,
@@ -299,14 +300,10 @@ def _load_minimum_thrust(path: Path) -> PressureScaledMinimumThrust:
 
 
 def _geometry_route(qar: Any, indices: np.ndarray) -> SpatialTrajectory:
-    initial_altitude = float(qar.reference.pressure_altitude_m[0])
-    initial_speed = float(qar.reference.true_airspeed_mps[0])
     waypoints = tuple(
-        Waypoint(
+        LateralWaypoint(
             north_m=float(qar.north_position_m[index]),
             east_m=float(qar.east_position_m[index]),
-            altitude_m=initial_altitude,
-            true_airspeed_mps=initial_speed,
             name=f"G{number}",
             acceptance_radius_m=1_500.0 if index == indices[-1] else 4_000.0,
         )
@@ -315,6 +312,14 @@ def _geometry_route(qar: Any, indices: np.ndarray) -> SpatialTrajectory:
     return SpatialTrajectory.from_intent(
         FlightIntent(
             waypoints=waypoints,
+            departure=TerminalConstraint(
+                float(qar.reference.pressure_altitude_m[indices[0]]),
+                SpeedTarget("TAS", float(qar.reference.true_airspeed_mps[indices[0]])),
+            ),
+            arrival=TerminalConstraint(
+                float(qar.reference.pressure_altitude_m[indices[-1]]),
+                SpeedTarget("TAS", float(qar.reference.true_airspeed_mps[indices[-1]])),
+            ),
             maximum_climb_flight_path_angle_rad=math.radians(6.0),
             maximum_descent_flight_path_angle_rad=math.radians(4.0),
             maximum_acceleration_mps2=0.5,
@@ -410,22 +415,7 @@ def _compose_energy_profile(
     )
     altitude = np.interp(support, raw_s, raw_altitude)
     speed = np.interp(support, raw_s, raw_speed)
-    mapped_waypoints = tuple(
-        replace(
-            waypoint,
-            altitude_m=float(np.interp(distance, support, altitude)),
-            true_airspeed_mps=float(np.interp(distance, support, speed)),
-        )
-        for waypoint, distance in zip(
-            geometry.intent.waypoints,
-            geometry.waypoint_along_path_m,
-            strict=True,
-        )
-    )
-    mapped = SpatialTrajectory.from_intent(
-        replace(geometry.intent, waypoints=mapped_waypoints)
-    )
-    return mapped.with_profile(
+    return geometry.with_profile(
         along_path_m=support,
         altitude_m=altitude,
         true_airspeed_mps=speed,
@@ -793,9 +783,21 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     speed_intent_evaluation: dict[str, Any] | None = None
     speed_intent_document: dict[str, Any] | None = None
     if args.speed_intent_parameters is None:
-        schedule_values = intent_metrics["schedule"]
+        schedule_values = dict(intent_metrics["schedule"])
+        for phase in ("climb", "cruise", "descent"):
+            selected_key = f"{phase}_selected_mach"
+            if selected_key in schedule_values:
+                schedule_values[f"{phase}_observed_mach"] = schedule_values[
+                    selected_key
+                ]
+        for phase in ("climb", "descent", "low_altitude"):
+            selected_key = f"{phase}_selected_cas_kts"
+            if selected_key in schedule_values:
+                schedule_values[f"{phase}_observed_cas_kts"] = schedule_values[
+                    selected_key
+                ]
         speed_schedule_source = (
-            "stable flown CAS/Mach medians from the frozen intent audit"
+            "stable selected CAS/Mach modes from QAR intent channels"
         )
     else:
         speed_intent_model, speed_intent_document = _load_mode_conditioned_speed_intent(
@@ -944,9 +946,6 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             geometry.total_distance_m,
         ]
     )
-    geometry_samples = [
-        geometry.sample(float(value)) for value in geometry_constraint_s
-    ]
     toc_speed = float(
         climb_schedule.true_airspeed_mps(
             np.array([cruise_altitude_m]), phase_temperature_offset_k["climb"]
@@ -957,32 +956,18 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             np.array([cruise_altitude_m]), phase_temperature_offset_k["descent"]
         )[0]
     )
-    constraint_waypoints = tuple(
-        Waypoint(
-            north_m=sample.north_m,
-            east_m=sample.east_m,
-            altitude_m=altitude,
-            true_airspeed_mps=speed,
-            name=name,
-            acceptance_radius_m=1_500.0 if name == "TERMINAL" else 4_000.0,
-        )
-        for sample, altitude, speed, name in zip(
-            geometry_samples,
-            (
-                float(qar.reference.pressure_altitude_m[0]),
-                cruise_altitude_m,
-                cruise_altitude_m,
-                float(qar.reference.pressure_altitude_m[-1]),
-            ),
-            (
-                float(qar.reference.true_airspeed_mps[0]),
-                toc_speed,
-                tod_speed,
-                float(qar.reference.true_airspeed_mps[-1]),
-            ),
-            ("INITIAL", "CALCULATED-TOC", "CALCULATED-TOD", "TERMINAL"),
-            strict=True,
-        )
+    constraint_names = ("INITIAL", "CALCULATED-TOC", "CALCULATED-TOD", "TERMINAL")
+    constraint_altitude_m = (
+        float(qar.reference.pressure_altitude_m[0]),
+        cruise_altitude_m,
+        cruise_altitude_m,
+        float(qar.reference.pressure_altitude_m[-1]),
+    )
+    constraint_speed_mps = (
+        float(qar.reference.true_airspeed_mps[0]),
+        toc_speed,
+        tod_speed,
+        float(qar.reference.true_airspeed_mps[-1]),
     )
     energy_route = _compose_energy_profile(
         geometry=geometry,
@@ -1038,7 +1023,6 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         spacing_m=500.0,
         environment_profile=environment,
         waypoint_mass_kg=waypoint_mass_kg,
-        hard_waypoint_indices=(0, -1),
     )
     profile_gamma = np.arctan(
         np.gradient(final_profile.nominal_altitude_m, final_profile.along_path_m)
@@ -1153,13 +1137,11 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         )
     constraints = pd.DataFrame(
         {
-            "name": [point.name for point in constraint_waypoints],
+            "name": constraint_names,
             "geometry_along_path_m": geometry_constraint_s,
             "state_route_along_path_m": geometry_constraint_s,
-            "pressure_altitude_m": [point.altitude_m for point in constraint_waypoints],
-            "true_airspeed_mps": [
-                point.true_airspeed_mps for point in constraint_waypoints
-            ],
+            "pressure_altitude_m": constraint_altitude_m,
+            "true_airspeed_mps": constraint_speed_mps,
             "source": (
                 "QAR initial boundary",
                 "energy-calculated from selected cruise target",
@@ -1244,7 +1226,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 if speed_intent_document is not None
                 else None
             ),
-            "selected_speed_fields_claimed_as_active_targets": False,
+            "selected_speed_fields_claimed_as_active_targets": (
+                args.speed_intent_parameters is None
+            ),
             "discarded_ALT_SEL_steps_as_spatial_constraints": True,
             "reason": "several selected values lie below the simultaneous climbing state or above the simultaneous descending state",
         },
@@ -1363,9 +1347,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     if speed_intent_document is None:
         report_title = "A320 FMS trajectory from anchor-free vertical intent"
         figure_title = "A320 trajectory from anchor-free vertical intent"
-        schedule_explanation = f"""Because active selected versus managed speed mode is
-unobservable, the speed fields are retained only as candidate evidence. The
-coarse flown schedule is inferred from stable phase medians: climb
+        schedule_explanation = f"""Active selected versus managed speed mode is not
+directly recorded. For this intent-driven diagnostic, the stable selector modes
+are treated as the available commanded targets rather than using flown-speed
+response: climb
 {schedule_values["climb_observed_cas_kts"]:.0f} kt / Mach
 {schedule_values["climb_observed_mach"]:.3f}, cruise Mach
 {schedule_values["cruise_observed_mach"]:.3f}, and descent
@@ -1429,7 +1414,7 @@ The FMS calculates an unreserved TOC at
 {unreserved_toc.top_of_climb_along_path_m / 1000:.1f} km and applies a fixed
 {CLIMB_ENERGY_CAPACITY_FRACTION:.0%} climb-energy-capacity planning margin,
 placing commanded TOC at {toc.top_of_climb_along_path_m / 1000:.1f} km. TOD is
-calculated at
+calculated at {tod.top_of_descent_along_path_m / 1000:.1f} km using the released
 descent-planning prior plus a fixed
 {(1.0 / DESCENT_ENERGY_CAPACITY_FRACTION - 1.0):.1%} distance reserve. Neither
 location is copied from QAR. The unreserved and commanded descent distances are

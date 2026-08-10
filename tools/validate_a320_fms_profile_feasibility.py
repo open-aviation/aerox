@@ -19,8 +19,10 @@ if str(PROJECT_ROOT) not in sys.path:
 
 from aerox.fms import (
     FlightIntent,
+    LateralWaypoint,
+    SpeedTarget,
     SpatialTrajectory,
-    Waypoint,
+    TerminalConstraint,
     plan_feasible_profile,
 )
 from aerox.modeling import PointMassProfilePerformance
@@ -189,9 +191,11 @@ def _stress_route() -> SpatialTrajectory:
     return SpatialTrajectory.from_intent(
         FlightIntent(
             waypoints=(
-                Waypoint(0.0, 0.0, 9_500.0, 215.0, "STRESS-START"),
-                Waypoint(20_000.0, 0.0, 11_500.0, 215.0, "UNREACHABLE-ALT"),
+                LateralWaypoint(0.0, 0.0, "STRESS-START"),
+                LateralWaypoint(20_000.0, 0.0, "UNREACHABLE-ALT"),
             ),
+            departure=TerminalConstraint(9_500.0, SpeedTarget("TAS", 215.0)),
+            arrival=TerminalConstraint(11_500.0, SpeedTarget("TAS", 215.0)),
             maximum_climb_flight_path_angle_rad=math.radians(10.0),
         )
     )
@@ -201,12 +205,16 @@ def _constraint_error(result: Any) -> tuple[float, float]:
     route = result.trajectory
     altitude_error = []
     speed_error = []
-    for distance, waypoint in zip(
-        route.waypoint_along_path_m, route.intent.waypoints, strict=True
+    for index, distance in enumerate(
+        route.waypoint_along_path_m
     ):
         sample = route.sample(float(distance))
-        altitude_error.append(abs(sample.altitude_m - waypoint.altitude_m))
-        speed_error.append(abs(sample.true_airspeed_mps - waypoint.true_airspeed_mps))
+        altitude_error.append(
+            abs(sample.altitude_m - route.waypoint_altitude_m[index])
+        )
+        speed_error.append(
+            abs(sample.true_airspeed_mps - route.waypoint_true_airspeed_mps[index])
+        )
     return max(altitude_error), max(speed_error)
 
 
@@ -424,7 +432,7 @@ def _plot(result: Any, prefix: Path) -> None:
     )
     axes[0, 0].scatter(
         result.trajectory.waypoint_along_path_m / 1_000.0,
-        [point.altitude_m for point in result.trajectory.intent.waypoints],
+        result.trajectory.waypoint_altitude_m,
         color="black",
         facecolors="white",
         zorder=4,
@@ -449,7 +457,7 @@ def _plot(result: Any, prefix: Path) -> None:
     )
     axes[0, 1].scatter(
         result.trajectory.waypoint_along_path_m / 1_000.0,
-        [point.true_airspeed_mps for point in result.trajectory.intent.waypoints],
+        result.trajectory.waypoint_true_airspeed_mps,
         color="black",
         facecolors="white",
         zorder=4,
@@ -611,7 +619,7 @@ def main() -> None:
     plant, _, _ = _build_plants(args)
     route = SpatialTrajectory.from_intent(build_intent())
     temperature = float(
-        isa_atmosphere(np.array([route.intent.waypoints[0].altitude_m])).temperature_k[
+        isa_atmosphere(np.array([route.waypoint_altitude_m[0]])).temperature_k[
             0
         ]
     )

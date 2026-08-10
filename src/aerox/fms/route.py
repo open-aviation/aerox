@@ -7,7 +7,12 @@ from dataclasses import dataclass, replace
 import numpy as np
 from numpy.typing import NDArray
 
-from aerox.fms.intent import FlightIntent
+from aerox.fms.intent import FlightIntent, SpeedTarget
+from aerox.models.atmosphere import (
+    isa_atmosphere,
+    true_airspeed_from_calibrated_airspeed,
+    true_airspeed_from_mach,
+)
 
 FloatArray = NDArray[np.float64]
 
@@ -58,6 +63,16 @@ class SpatialTrajectory:
 
     intent: FlightIntent
     waypoint_along_path_m: FloatArray
+    waypoint_altitude_m: FloatArray
+    waypoint_true_airspeed_mps: FloatArray
+    waypoint_minimum_altitude_m: FloatArray
+    waypoint_maximum_altitude_m: FloatArray
+    waypoint_minimum_true_airspeed_mps: FloatArray
+    waypoint_maximum_true_airspeed_mps: FloatArray
+    altitude_target_waypoint_mask: NDArray[np.bool_]
+    speed_target_waypoint_mask: NDArray[np.bool_]
+    altitude_bound_waypoint_mask: NDArray[np.bool_]
+    speed_bound_waypoint_mask: NDArray[np.bool_]
     segment_length_m: FloatArray
     segment_track_rad: FloatArray
     segment_altitude_gradient: FloatArray
@@ -71,6 +86,11 @@ class SpatialTrajectory:
         waypoint_count = len(self.intent.waypoints)
         fields = {
             "waypoint_along_path_m": (self.waypoint_along_path_m, waypoint_count),
+            "waypoint_altitude_m": (self.waypoint_altitude_m, waypoint_count),
+            "waypoint_true_airspeed_mps": (
+                self.waypoint_true_airspeed_mps,
+                waypoint_count,
+            ),
             "segment_length_m": (self.segment_length_m, waypoint_count - 1),
             "segment_track_rad": (self.segment_track_rad, waypoint_count - 1),
             "segment_altitude_gradient": (
@@ -91,6 +111,41 @@ class SpatialTrajectory:
             if array.shape != (expected_length,) or np.any(~np.isfinite(array)):
                 raise ValueError(f"{name} has invalid shape or non-finite values")
             object.__setattr__(self, name, array)
+        bounded_fields = {
+            "waypoint_minimum_altitude_m": self.waypoint_minimum_altitude_m,
+            "waypoint_maximum_altitude_m": self.waypoint_maximum_altitude_m,
+            "waypoint_minimum_true_airspeed_mps": (
+                self.waypoint_minimum_true_airspeed_mps
+            ),
+            "waypoint_maximum_true_airspeed_mps": (
+                self.waypoint_maximum_true_airspeed_mps
+            ),
+        }
+        for name, value in bounded_fields.items():
+            array = np.asarray(value, dtype=float)
+            if array.shape != (waypoint_count,) or np.any(np.isnan(array)):
+                raise ValueError(f"{name} has invalid shape or NaN values")
+            object.__setattr__(self, name, array)
+        mask_fields = (
+            "altitude_target_waypoint_mask",
+            "speed_target_waypoint_mask",
+            "altitude_bound_waypoint_mask",
+            "speed_bound_waypoint_mask",
+        )
+        for name in mask_fields:
+            mask = np.asarray(getattr(self, name), dtype=bool)
+            if mask.shape != (waypoint_count,):
+                raise ValueError(f"{name} has invalid shape")
+            object.__setattr__(self, name, mask)
+        if np.any(
+            self.waypoint_minimum_altitude_m > self.waypoint_maximum_altitude_m
+        ) or np.any(
+            self.waypoint_minimum_true_airspeed_mps
+            > self.waypoint_maximum_true_airspeed_mps
+        ):
+            raise ValueError("resolved waypoint constraint bounds are reversed")
+        if np.any(self.waypoint_true_airspeed_mps <= 1.0):
+            raise ValueError("resolved waypoint TAS must exceed 1 m/s")
         if np.any(self.segment_length_m <= 0.0):
             raise ValueError("route segment lengths must be positive")
         if not np.isclose(self.waypoint_along_path_m[0], 0.0) or np.any(
@@ -125,43 +180,142 @@ class SpatialTrajectory:
             object.__setattr__(self, "profile_true_airspeed_mps", profile_speed)
 
     @classmethod
-    def from_intent(cls, intent: FlightIntent) -> SpatialTrajectory:
-        """Build and check the first deterministic piecewise-linear profile."""
+    def from_intent(
+        cls,
+        intent: FlightIntent,
+        *,
+        static_temperature_k: FloatArray | None = None,
+    ) -> SpatialTrajectory:
+        """Resolve independent intent into a deterministic spatial target."""
 
         north = np.array([point.north_m for point in intent.waypoints], dtype=float)
         east = np.array([point.east_m for point in intent.waypoints], dtype=float)
-        altitude = np.array(
-            [point.altitude_m for point in intent.waypoints], dtype=float
-        )
-        speed = np.array(
-            [point.true_airspeed_mps for point in intent.waypoints], dtype=float
-        )
         delta_north = np.diff(north)
         delta_east = np.diff(east)
         length = np.hypot(delta_north, delta_east)
         along_path = np.concatenate(([0.0], np.cumsum(length)))
+        waypoint_count = len(intent.waypoints)
+
+        altitude = np.full(waypoint_count, np.nan)
+        minimum_altitude = np.full(waypoint_count, -np.inf)
+        maximum_altitude = np.full(waypoint_count, np.inf)
+        altitude_target_mask = np.zeros(waypoint_count, dtype=bool)
+        altitude_bound_mask = np.zeros(waypoint_count, dtype=bool)
+        altitude[0] = intent.departure.altitude_m
+        altitude[-1] = intent.arrival.altitude_m
+        minimum_altitude[[0, -1]] = altitude[[0, -1]]
+        maximum_altitude[[0, -1]] = altitude[[0, -1]]
+        altitude_target_mask[[0, -1]] = True
+        altitude_bound_mask[[0, -1]] = True
+        if intent.cruise_target is not None:
+            cruise_slice = slice(
+                intent.cruise_target.start_waypoint_index,
+                intent.cruise_target.end_waypoint_index + 1,
+            )
+            altitude[cruise_slice] = intent.cruise_target.altitude_m
+            altitude_target_mask[cruise_slice] = True
+        for constraint in intent.altitude_constraints:
+            index = constraint.waypoint_index
+            altitude[index] = constraint.target_altitude_m
+            altitude_target_mask[index] = True
+            if constraint.minimum_altitude_m is not None:
+                minimum_altitude[index] = constraint.minimum_altitude_m
+                altitude_bound_mask[index] = True
+            if constraint.maximum_altitude_m is not None:
+                maximum_altitude[index] = constraint.maximum_altitude_m
+                altitude_bound_mask[index] = True
+        target_indices = np.flatnonzero(altitude_target_mask)
+        altitude = np.interp(
+            along_path,
+            along_path[target_indices],
+            altitude[target_indices],
+        )
+
+        if static_temperature_k is None:
+            temperature = isa_atmosphere(altitude).temperature_k
+        else:
+            temperature = np.asarray(static_temperature_k, dtype=float)
+            if (
+                temperature.shape != (waypoint_count,)
+                or np.any(~np.isfinite(temperature))
+                or np.any(temperature <= 0.0)
+            ):
+                raise ValueError(
+                    "static_temperature_k must be a positive waypoint-aligned vector"
+                )
+
+        def tas(target: SpeedTarget, index: int, value: float | None = None) -> float:
+            resolved_value = target.value if value is None else value
+            if target.kind == "TAS":
+                return float(resolved_value)
+            if target.kind == "CAS":
+                return float(
+                    true_airspeed_from_calibrated_airspeed(
+                        resolved_value,
+                        altitude[index],
+                        temperature[index],
+                    )
+                )
+            return float(
+                true_airspeed_from_mach(
+                    resolved_value,
+                    altitude[index],
+                    temperature[index],
+                )
+            )
+
+        speed = np.full(waypoint_count, np.nan)
+        minimum_speed = np.full(waypoint_count, 1.0)
+        maximum_speed = np.full(waypoint_count, np.inf)
+        speed_target_mask = np.zeros(waypoint_count, dtype=bool)
+        speed_bound_mask = np.zeros(waypoint_count, dtype=bool)
+        terminal_speeds = (intent.departure.speed, intent.arrival.speed)
+        for index, target in zip((0, waypoint_count - 1), terminal_speeds, strict=True):
+            speed[index] = tas(target, index)
+            minimum_speed[index] = maximum_speed[index] = speed[index]
+            speed_target_mask[index] = True
+            speed_bound_mask[index] = True
+        if intent.cruise_target is not None:
+            for index in range(
+                intent.cruise_target.start_waypoint_index,
+                intent.cruise_target.end_waypoint_index + 1,
+            ):
+                speed[index] = tas(intent.cruise_target.speed, index)
+                speed_target_mask[index] = True
+        for constraint in intent.speed_constraints:
+            index = constraint.waypoint_index
+            speed[index] = tas(constraint.target, index)
+            speed_target_mask[index] = True
+            if constraint.minimum_value is not None:
+                minimum_speed[index] = tas(
+                    constraint.target, index, constraint.minimum_value
+                )
+                speed_bound_mask[index] = True
+            if constraint.maximum_value is not None:
+                maximum_speed[index] = tas(
+                    constraint.target, index, constraint.maximum_value
+                )
+                speed_bound_mask[index] = True
+        target_indices = np.flatnonzero(speed_target_mask)
+        speed = np.interp(along_path, along_path[target_indices], speed[target_indices])
+
         altitude_gradient = np.diff(altitude) / length
         gamma = np.arctan(altitude_gradient)
-        if np.any(gamma > intent.maximum_climb_flight_path_angle_rad) or np.any(
-            gamma < -intent.maximum_descent_flight_path_angle_rad
-        ):
-            raise ValueError("waypoint altitude profile exceeds declared angle limits")
         speed_gradient = np.diff(speed) / length
-        acceleration_at_ends = (
-            np.maximum(speed[:-1], speed[1:]) * np.cos(gamma) * speed_gradient
-        )
-        if np.any(acceleration_at_ends > intent.maximum_acceleration_mps2) or np.any(
-            acceleration_at_ends < -intent.maximum_deceleration_mps2
-        ):
-            raise ValueError(
-                "waypoint speed profile exceeds declared acceleration limits"
-            )
-        segment_time = 2.0 * length / (
-            (speed[:-1] + speed[1:]) * np.cos(gamma)
-        )
+        segment_time = 2.0 * length / ((speed[:-1] + speed[1:]) * np.cos(gamma))
         return cls(
             intent=intent,
             waypoint_along_path_m=along_path,
+            waypoint_altitude_m=altitude,
+            waypoint_true_airspeed_mps=speed,
+            waypoint_minimum_altitude_m=minimum_altitude,
+            waypoint_maximum_altitude_m=maximum_altitude,
+            waypoint_minimum_true_airspeed_mps=minimum_speed,
+            waypoint_maximum_true_airspeed_mps=maximum_speed,
+            altitude_target_waypoint_mask=altitude_target_mask,
+            speed_target_waypoint_mask=speed_target_mask,
+            altitude_bound_waypoint_mask=altitude_bound_mask,
+            speed_bound_waypoint_mask=speed_bound_mask,
             segment_length_m=length,
             segment_track_rad=np.arctan2(delta_east, delta_north),
             segment_altitude_gradient=altitude_gradient,
@@ -196,8 +350,8 @@ class SpatialTrajectory:
         )
         horizontal_speed_start = profile_speed[:-1] * np.cos(interval_gamma)
         horizontal_speed_end = profile_speed[1:] * np.cos(interval_gamma)
-        segment_time = 2.0 * np.diff(profile_s) / (
-            horizontal_speed_start + horizontal_speed_end
+        segment_time = (
+            2.0 * np.diff(profile_s) / (horizontal_speed_start + horizontal_speed_end)
         )
         profile_time = np.concatenate(([0.0], np.cumsum(segment_time)))
         return replace(
@@ -220,9 +374,12 @@ class SpatialTrajectory:
         ]
         first = self.intent.waypoints[index]
         second = self.intent.waypoints[index + 1]
-        altitude = first.altitude_m + fraction * (second.altitude_m - first.altitude_m)
-        speed = first.true_airspeed_mps + fraction * (
-            second.true_airspeed_mps - first.true_airspeed_mps
+        altitude = self.waypoint_altitude_m[index] + fraction * (
+            self.waypoint_altitude_m[index + 1] - self.waypoint_altitude_m[index]
+        )
+        speed = self.waypoint_true_airspeed_mps[index] + fraction * (
+            self.waypoint_true_airspeed_mps[index + 1]
+            - self.waypoint_true_airspeed_mps[index]
         )
         altitude_gradient = self.segment_altitude_gradient[index]
         speed_gradient = self.segment_true_airspeed_gradient_per_m[index]
@@ -297,9 +454,7 @@ class SpatialTrajectory:
             true_airspeed_mps=np.array(
                 [sample.true_airspeed_mps for sample in samples]
             ),
-            ground_track_rad=np.array(
-                [sample.ground_track_rad for sample in samples]
-            ),
+            ground_track_rad=np.array([sample.ground_track_rad for sample in samples]),
             ground_path_angle_rad=np.array(
                 [sample.ground_path_angle_rad for sample in samples]
             ),
@@ -355,77 +510,3 @@ class SpatialTrajectory:
                 best = candidate
         assert best is not None
         return best
-
-
-def inherit_state_profile(
-    *,
-    geometry_route: SpatialTrajectory,
-    state_profile: SpatialTrajectory,
-    state_along_path_at_geometry_waypoints_m: FloatArray,
-    spacing_m: float = 500.0,
-) -> SpatialTrajectory:
-    """Return ``geometry_route`` with altitude and speed inherited separately.
-
-    ``state_along_path_at_geometry_waypoints_m`` maps every geometry waypoint
-    to a monotonically increasing distance on ``state_profile``. This lets an
-    FMS add horizontal-only turn nodes without turning them into new observed
-    altitude or speed constraints. The returned waypoint values and dense
-    profile are sampled only from ``state_profile``.
-    """
-
-    mapping = np.asarray(state_along_path_at_geometry_waypoints_m, dtype=float)
-    if (
-        mapping.shape != geometry_route.waypoint_along_path_m.shape
-        or np.any(~np.isfinite(mapping))
-        or np.any(np.diff(mapping) <= 0.0)
-        or not np.isclose(mapping[0], 0.0)
-        or not np.isclose(mapping[-1], state_profile.total_distance_m)
-    ):
-        raise ValueError(
-            "state-profile mapping must increase from zero to the source distance"
-        )
-    if not np.isfinite(spacing_m) or spacing_m <= 0.0:
-        raise ValueError("spacing_m must be finite and positive")
-
-    mapped_samples = [state_profile.sample(float(value)) for value in mapping]
-    mapped_waypoints = tuple(
-        replace(
-            waypoint,
-            altitude_m=sample.altitude_m,
-            true_airspeed_mps=sample.true_airspeed_mps,
-        )
-        for waypoint, sample in zip(
-            geometry_route.intent.waypoints, mapped_samples, strict=True
-        )
-    )
-    mapped_route = SpatialTrajectory.from_intent(
-        replace(geometry_route.intent, waypoints=mapped_waypoints)
-    )
-
-    target_support = [
-        np.arange(0.0, mapped_route.total_distance_m, spacing_m),
-        mapped_route.waypoint_along_path_m,
-        np.array([mapped_route.total_distance_m]),
-    ]
-    if state_profile.profile_along_path_m is not None:
-        target_support.append(
-            np.interp(
-                state_profile.profile_along_path_m,
-                mapping,
-                mapped_route.waypoint_along_path_m,
-            )
-        )
-    target_s = np.unique(np.concatenate(target_support))
-    source_s = np.interp(
-        target_s,
-        mapped_route.waypoint_along_path_m,
-        mapping,
-    )
-    inherited_samples = [state_profile.sample(float(value)) for value in source_s]
-    return mapped_route.with_profile(
-        along_path_m=target_s,
-        altitude_m=np.array([sample.altitude_m for sample in inherited_samples]),
-        true_airspeed_mps=np.array(
-            [sample.true_airspeed_mps for sample in inherited_samples]
-        ),
-    )

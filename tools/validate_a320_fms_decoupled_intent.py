@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate turn geometry with a separately inherited A320 state profile."""
+"""Validate turn geometry with independent advisory A320 state constraints."""
 
 from __future__ import annotations
 
@@ -18,21 +18,14 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from aerox.fms import (
-    SpatialEnvironmentProfile,
-    inherit_state_profile,
     plan_advisory_energy_profile,
-    plan_feasible_profile,
 )
 from aerox.guidance import SpatialPathGuidance
 from aerox.modeling import PointMassProfilePerformance
 from aerox.simulation import simulate_fms_trajectory_zoh
 from tools.generate_a320_comparison_trajectories import _controller
 from tools.plot_a320_fms_decoupled_result import render_decoupled_figure
-from tools.validate_a320_fms_long_range_qar import (
-    _history,
-    _load_holdout,
-    build_long_range_intent,
-)
+from tools.validate_a320_fms_long_range_qar import _history, _load_holdout
 from tools.validate_a320_fms_profile_feasibility import _load_climb_thrust_ceiling
 from tools.validate_a320_fms_qar_intent import (
     INTEGRATION_RATE_HZ,
@@ -211,9 +204,7 @@ def main() -> None:
     ].to_numpy(dtype=int)
 
     qar, registration, recording = _load_holdout(args)
-    state_route, state_environment, loaded_mandatory = build_long_range_intent(qar)
-    if not np.array_equal(mandatory_indices, loaded_mandatory):
-        raise ValueError("frozen mandatory state anchors do not match the base intent")
+    route, environment = _build_intent(qar, adaptive_indices)
     plant = _build_plant(args)
     thrust_ceiling = _load_climb_thrust_ceiling(args)
     performance = PointMassProfilePerformance(
@@ -225,54 +216,17 @@ def main() -> None:
         maximum_acceleration_mps2=0.5,
         maximum_deceleration_mps2=0.5,
     )
-    state_profile = plan_advisory_energy_profile(
-        route=state_route,
-        performance=performance,
-        mass_kg=qar.initial_mass_kg,
-        static_temperature_k=float(
-            np.median(qar.static_temperature_k[mandatory_indices])
-        ),
-        hard_waypoint_indices=(0, len(mandatory_indices) - 1),
-        maximum_altitude_adjustment_m=300.0,
-        spacing_m=500.0,
-        environment_profile=state_environment,
-        waypoint_mass_kg=qar.mass_kg[mandatory_indices],
-    )
-
-    geometry_route, _ = _build_intent(qar, adaptive_indices)
-    state_mapping = np.interp(
-        qar.reference.time_s[adaptive_indices],
-        qar.reference.time_s[mandatory_indices],
-        state_route.waypoint_along_path_m,
-    )
-    inherited_route = inherit_state_profile(
-        geometry_route=geometry_route,
-        state_profile=state_profile.trajectory,
-        state_along_path_at_geometry_waypoints_m=state_mapping,
-        spacing_m=500.0,
-    )
-    environment = SpatialEnvironmentProfile(
-        along_path_m=inherited_route.waypoint_along_path_m,
-        static_temperature_k=qar.static_temperature_k[adaptive_indices],
-        wind_north_mps=qar.wind_north_mps[adaptive_indices],
-        wind_east_mps=qar.wind_east_mps[adaptive_indices],
-        wind_down_mps=np.zeros(len(adaptive_indices)),
-    )
-    inherited_mass = np.interp(
-        qar.reference.time_s[adaptive_indices],
-        qar.reference.time_s[mandatory_indices],
-        qar.mass_kg[mandatory_indices],
-    )
-    profile = plan_feasible_profile(
-        route=inherited_route,
+    profile = plan_advisory_energy_profile(
+        route=route,
         performance=performance,
         mass_kg=qar.initial_mass_kg,
         static_temperature_k=float(
             np.median(qar.static_temperature_k[adaptive_indices])
         ),
+        maximum_altitude_adjustment_m=300.0,
         spacing_m=500.0,
         environment_profile=environment,
-        waypoint_mass_kg=inherited_mass,
+        waypoint_mass_kg=qar.mass_kg[adaptive_indices],
     )
     guidance = SpatialPathGuidance(
         profile.trajectory,
@@ -303,7 +257,7 @@ def main() -> None:
         initial_flight_path_angle_rad=initial_gamma,
         initial_control=initial_control,
     )
-    metrics, errors, _ = _evaluate(qar, inherited_route, adaptive_indices, result)
+    metrics, errors, _ = _evaluate(qar, profile.trajectory, adaptive_indices, result)
     gates = _gates(metrics, profile.feasible)
     uniform_document = yaml.safe_load(args.uniform_parameters.read_text())
     coupled_document = yaml.safe_load(args.coupled_parameters.read_text())
@@ -315,26 +269,17 @@ def main() -> None:
     passed = all(gate["passed"] for gate in gates.values())
     inherited_state_rows = []
     mandatory_set = set(mandatory_indices.tolist())
-    projected_state_waypoints = state_profile.trajectory.intent.waypoints
-    original_state_waypoints = state_route.intent.waypoints
-    for order, (source_index, mapped_s, waypoint) in enumerate(
-        zip(
-            adaptive_indices,
-            state_mapping,
-            inherited_route.intent.waypoints,
-            strict=True,
-        )
-    ):
-        state_order = int(np.searchsorted(mandatory_indices, source_index))
+    for order, source_index in enumerate(adaptive_indices):
         is_observed = source_index in mandatory_set
         if is_observed:
-            target_altitude = original_state_waypoints[state_order].altitude_m
-            target_speed = original_state_waypoints[state_order].true_airspeed_mps
-            planned_state = projected_state_waypoints[state_order]
+            target_altitude = route.waypoint_altitude_m[order]
+            target_speed = route.waypoint_true_airspeed_mps[order]
         else:
             target_altitude = np.nan
             target_speed = np.nan
-            planned_state = waypoint
+        planned_state = profile.trajectory.sample(
+            float(profile.trajectory.waypoint_along_path_m[order])
+        )
         inherited_state_rows.append(
             {
                 "anchor_order": order,
@@ -344,12 +289,12 @@ def main() -> None:
                 ),
                 "constraint_mode": (
                     "hard"
-                    if is_observed and state_order in {0, len(mandatory_indices) - 1}
+                    if order in {0, len(adaptive_indices) - 1}
                     else "advisory"
                     if is_observed
-                    else "inherited"
+                    else "interpolated"
                 ),
-                "mapped_state_along_path_m": mapped_s,
+                "mapped_state_along_path_m": route.waypoint_along_path_m[order],
                 "target_altitude_m": target_altitude,
                 "target_true_airspeed_mps": target_speed,
                 "planned_altitude_m": planned_state.altitude_m,
@@ -361,10 +306,9 @@ def main() -> None:
         )
     state_adjustments = np.array(
         [
-            planned.altitude_m - original.altitude_m
-            for planned, original in zip(
-                projected_state_waypoints, original_state_waypoints, strict=True
-            )
+            profile.trajectory.waypoint_altitude_m[index]
+            - route.waypoint_altitude_m[index]
+            for index in np.flatnonzero(route.altitude_target_waypoint_mask)
         ]
     )
     document = {
@@ -384,9 +328,9 @@ def main() -> None:
             "hard_state_constraint_count": 2,
             "geometry_only_anchor_count": len(adaptive_indices)
             - len(mandatory_indices),
-            "geometry_only_state_source": "inherited from the 25-target advisory aircraft-aware energy-shaped profile",
+            "geometry_only_state_source": "interpolated between independent state constraints and shaped by the feasibility planner",
             "geometry_only_qar_altitude_speed_exposed": False,
-            "core_operation": "aerox.fms.inherit_state_profile",
+            "core_operation": "aerox.fms.plan_advisory_energy_profile",
         },
         "exact_state_profile_feasibility": {
             "feasible": exact_document["base_state_profile_feasibility"]["feasible"],
@@ -401,11 +345,11 @@ def main() -> None:
             ),
             "adjusted_target_count": int(np.sum(np.abs(state_adjustments) > 1e-6)),
             "speed_targets_changed": False,
-            "hard_waypoint_indices": [0, len(mandatory_indices) - 1],
+            "hard_waypoint_indices": [0, len(adaptive_indices) - 1],
         },
         "base_state_profile_feasibility": {
-            "feasible": state_profile.feasible,
-            "violations": list(state_profile.violations),
+            "feasible": profile.feasible,
+            "violations": list(profile.violations),
         },
         "remapped_profile_feasibility": {
             "feasible": profile.feasible,

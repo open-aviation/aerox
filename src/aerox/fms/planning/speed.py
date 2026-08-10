@@ -523,10 +523,9 @@ def plan_continuous_speed_mass_profile(
         )
         gamma = motion.air_flight_path_angle_rad
         ground_speed = motion.horizontal_ground_speed_mps
-        demand = (
-            ground_speed / speed * np.gradient(kinetic_energy, distance)
-            + G0 * np.sin(gamma)
-        )
+        demand = ground_speed / speed * np.gradient(
+            kinetic_energy, distance
+        ) + G0 * np.sin(gamma)
         minimum_thrust = drag + mass * minimum_excess
         thrust = np.clip(drag + mass * demand, minimum_thrust, maximum_thrust)
         fuel_flow = np.asarray(
@@ -582,9 +581,8 @@ def plan_continuous_speed_mass_profile(
     )
     gamma = motion.air_flight_path_angle_rad
     ground_speed = motion.horizontal_ground_speed_mps
-    demand = (
-        ground_speed / speed * np.gradient(kinetic_energy, distance)
-        + G0 * np.sin(gamma)
+    demand = ground_speed / speed * np.gradient(kinetic_energy, distance) + G0 * np.sin(
+        gamma
     )
     minimum_thrust = drag + mass * minimum_excess
     thrust = np.clip(drag + mass * demand, minimum_thrust, maximum_thrust)

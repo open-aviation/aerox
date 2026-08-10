@@ -35,22 +35,20 @@ def wind_corrected_path(
     is therefore positive downward.
     """
 
-    track, path_angle, speed, wind_north, wind_east, wind_down = (
-        np.broadcast_arrays(
-            np.asarray(ground_track_rad, dtype=float),
-            np.asarray(ground_path_angle_rad, dtype=float),
-            np.asarray(true_airspeed_mps, dtype=float),
-            np.asarray(wind_north_mps, dtype=float),
-            np.asarray(wind_east_mps, dtype=float),
-            np.asarray(wind_down_mps, dtype=float),
-        )
+    track, path_angle, speed, wind_north, wind_east, wind_down = np.broadcast_arrays(
+        np.asarray(ground_track_rad, dtype=float),
+        np.asarray(ground_path_angle_rad, dtype=float),
+        np.asarray(true_airspeed_mps, dtype=float),
+        np.asarray(wind_north_mps, dtype=float),
+        np.asarray(wind_east_mps, dtype=float),
+        np.asarray(wind_down_mps, dtype=float),
     )
     if np.any(
-        ~np.isfinite(
-            track + path_angle + speed + wind_north + wind_east + wind_down
-        )
+        ~np.isfinite(track + path_angle + speed + wind_north + wind_east + wind_down)
     ) or np.any(speed <= 1.0):
-        raise ValueError("path, airspeed, and wind must be finite with positive airspeed")
+        raise ValueError(
+            "path, airspeed, and wind must be finite with positive airspeed"
+        )
     if np.any(np.abs(path_angle) >= np.deg2rad(89.0)):
         raise ValueError("ground-path angle must remain below 89 degrees")
 
@@ -104,9 +102,7 @@ def ground_track_to_air_heading(
         wind_east_mps=wind_east_mps,
         wind_down_mps=wind_down_mps,
     )
-    return float(solution.air_heading_rad), float(
-        solution.horizontal_ground_speed_mps
-    )
+    return float(solution.air_heading_rad), float(solution.horizontal_ground_speed_mps)
 
 
 def horizontal_ground_speed_mps(
@@ -153,7 +149,9 @@ def ground_path_angle_from_air_motion(
     if np.any(
         ~np.isfinite(track + air_angle + speed + wind_north + wind_east + wind_down)
     ) or np.any(speed <= 1.0):
-        raise ValueError("path, airspeed, and wind must be finite with positive airspeed")
+        raise ValueError(
+            "path, airspeed, and wind must be finite with positive airspeed"
+        )
     right_north = -np.sin(track)
     right_east = np.cos(track)
     tangent_north = np.cos(track)

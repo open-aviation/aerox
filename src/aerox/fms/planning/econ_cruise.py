@@ -165,7 +165,9 @@ class EconomyCruiseOptimizer:
         drag = dynamic_pressure_area * drag_coefficient
         fuel_flow = np.asarray(self.fuel_flow_model.fuel_flow_kg_s(drag), dtype=float)
         if fuel_flow.shape != mach.shape or np.any(~np.isfinite(fuel_flow)):
-            raise ValueError("fuel-flow model must return one finite value per Mach point")
+            raise ValueError(
+                "fuel-flow model must return one finite value per Mach point"
+            )
         if np.any(fuel_flow < 0.0):
             raise ValueError("fuel-flow model must not return negative flow")
         ground_speed = speed + along_track_wind_mps
@@ -191,7 +193,9 @@ class EconomyCruiseOptimizer:
             if np.any(~np.isfinite(available_thrust)) or np.any(
                 available_thrust <= 0.0
             ):
-                raise ValueError("maximum-thrust model must return positive finite values")
+                raise ValueError(
+                    "maximum-thrust model must return positive finite values"
+                )
             feasible &= drag <= available_thrust
         if not np.any(feasible):
             raise ValueError("no economy candidate satisfies the cruise constraints")

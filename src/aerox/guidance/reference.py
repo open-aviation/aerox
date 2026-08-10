@@ -10,6 +10,7 @@ from numpy.typing import NDArray
 
 FloatArray = NDArray[np.float64]
 
+
 @dataclass(frozen=True)
 class TrajectoryReference:
     """Node-aligned state reference and analytic first derivatives."""
@@ -52,4 +53,3 @@ class TrajectoryReference:
 
 
 __all__ = ["TrajectoryReference"]
-

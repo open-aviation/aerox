@@ -74,9 +74,7 @@ def test_generated_n2_artifacts_are_fit_only_and_self_consistent():
     root = Path(__file__).parents[1]
     with (root / "docs/modeling/a320-n2-observability-audit.yml").open() as stream:
         audit = yaml.safe_load(stream)
-    model_metrics = pd.read_csv(
-        root / "docs/modeling/a320-n2-model-metrics.csv"
-    )
+    model_metrics = pd.read_csv(root / "docs/modeling/a320-n2-model-metrics.csv")
     lag_metrics = pd.read_csv(root / "docs/modeling/a320-n2-lag-metrics.csv")
     transition_metrics = pd.read_csv(
         root / "docs/modeling/a320-n2-transition-metrics.csv"

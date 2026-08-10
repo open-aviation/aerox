@@ -30,13 +30,13 @@ def test_envelope_audit_attributes_hold_to_recorded_support():
 
 
 def test_guarded_hybrid_restores_execution_but_remains_held():
-    hybrid = yaml.safe_load(
-        (MODELING / "a320-vspaero-hybrid-replay.yml").read_text()
-    )
+    hybrid = yaml.safe_load((MODELING / "a320-vspaero-hybrid-replay.yml").read_text())
 
     assert hybrid["gates"]["hybrid_window_failure_fraction"]["passed"]
     assert hybrid["gates"]["hybrid_validation_full_successes"]["passed"]
-    assert hybrid["validation_hybrid_to_empirical_ratios"]["window_speed_rmse_mps"] < 1.0
+    assert (
+        hybrid["validation_hybrid_to_empirical_ratios"]["window_speed_rmse_mps"] < 1.0
+    )
     assert not hybrid["gates"]["validation_window_altitude_rmse_ratio"]["passed"]
     assert not hybrid["gates"]["validation_recorded_mean_surface_weight"]["passed"]
     assert not hybrid["decision"]["make_guarded_hybrid_clean_replay_default"]

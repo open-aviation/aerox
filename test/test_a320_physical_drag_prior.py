@@ -10,16 +10,12 @@ def test_a320_physical_drag_prior_is_reproducible_and_not_released_early():
     document = yaml.safe_load(
         (ROOT / "docs/modeling/a320-physical-drag-prior.yml").read_text()
     )
-    components = pd.read_csv(
-        ROOT / "docs/modeling/a320-physical-drag-components.csv"
-    )
+    components = pd.read_csv(ROOT / "docs/modeling/a320-physical-drag-components.csv")
     metrics = pd.read_csv(
         ROOT / "docs/modeling/a320-physical-drag-candidate-metrics.csv"
     )
 
-    assert document["status"] == (
-        "candidate_pending_qar_thrust_fuel_trajectory_gate"
-    )
+    assert document["status"] == ("candidate_pending_qar_thrust_fuel_trajectory_gate")
     assert document["fit_protocol"]["qar_used_for_drag_fit"] is False
     assert document["selected_candidate"]["candidate"] == "G2_fixed_onset"
     assert set(components["component"]) == {

@@ -21,7 +21,9 @@ def test_local_linear_fit_gate_and_residual_attribution_are_frozen():
     assert not identification["gates"]["model_alpha_envelope_fraction"]["passed"]
     assert not identification["gates"]["registration_bias_difference_cl"]["passed"]
     assert residual["result"]["selected_candidate"] == "registration"
-    assert residual["result"]["selected_metrics"]["registration_angle_difference_deg"] == pytest.approx(-0.2973016904)
+    assert residual["result"]["selected_metrics"][
+        "registration_angle_difference_deg"
+    ] == pytest.approx(-0.2973016904)
     assert not residual["decision"]["tail_specific_aerodynamics"]
     assert not residual["decision"]["open_validation"]
 

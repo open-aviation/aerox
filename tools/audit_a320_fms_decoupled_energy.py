@@ -18,17 +18,11 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from aerox.fms import (
-    SpatialEnvironmentProfile,
-    inherit_state_profile,
-    plan_energy_shaped_profile,
-    plan_feasible_profile,
+    plan_advisory_energy_profile,
 )
 from aerox.modeling import PointMassProfilePerformance
 from aerox.models.atmosphere import G0
-from tools.validate_a320_fms_long_range_qar import (
-    _load_holdout,
-    build_long_range_intent,
-)
+from tools.validate_a320_fms_long_range_qar import _load_holdout
 from tools.validate_a320_fms_profile_feasibility import _load_climb_thrust_ceiling
 from tools.validate_a320_fms_qar_intent import _build_plant, _style_axis
 from tools.validate_a320_fms_turn_aware_qar import _build_intent
@@ -76,9 +70,7 @@ def _build_plan(args: argparse.Namespace) -> tuple[Any, ...]:
         "source_sample_index",
     ].to_numpy(dtype=int)
     qar, _, _ = _load_holdout(args)
-    state_route, state_environment, loaded_mandatory = build_long_range_intent(qar)
-    if not np.array_equal(mandatory_indices, loaded_mandatory):
-        raise ValueError("mandatory state anchors do not match the frozen intent")
+    route, environment = _build_intent(qar, adaptive_indices)
     plant = _build_plant(args)
     ceiling = _load_climb_thrust_ceiling(args)
     performance = PointMassProfilePerformance(
@@ -90,63 +82,31 @@ def _build_plan(args: argparse.Namespace) -> tuple[Any, ...]:
         maximum_acceleration_mps2=0.5,
         maximum_deceleration_mps2=0.5,
     )
-    state_profile = plan_energy_shaped_profile(
-        route=state_route,
-        performance=performance,
-        mass_kg=qar.initial_mass_kg,
-        static_temperature_k=float(
-            np.median(qar.static_temperature_k[mandatory_indices])
-        ),
-        spacing_m=500.0,
-        environment_profile=state_environment,
-        waypoint_mass_kg=qar.mass_kg[mandatory_indices],
-    )
-    geometry_route, _ = _build_intent(qar, adaptive_indices)
-    state_mapping = np.interp(
-        qar.reference.time_s[adaptive_indices],
-        qar.reference.time_s[mandatory_indices],
-        state_route.waypoint_along_path_m,
-    )
-    inherited_route = inherit_state_profile(
-        geometry_route=geometry_route,
-        state_profile=state_profile.trajectory,
-        state_along_path_at_geometry_waypoints_m=state_mapping,
-        spacing_m=500.0,
-    )
-    environment = SpatialEnvironmentProfile(
-        along_path_m=inherited_route.waypoint_along_path_m,
-        static_temperature_k=qar.static_temperature_k[adaptive_indices],
-        wind_north_mps=qar.wind_north_mps[adaptive_indices],
-        wind_east_mps=qar.wind_east_mps[adaptive_indices],
-        wind_down_mps=np.zeros(len(adaptive_indices)),
-    )
-    inherited_mass = np.interp(
-        qar.reference.time_s[adaptive_indices],
-        qar.reference.time_s[mandatory_indices],
-        qar.mass_kg[mandatory_indices],
-    )
-    profile = plan_feasible_profile(
-        route=inherited_route,
+    profile = plan_advisory_energy_profile(
+        route=route,
         performance=performance,
         mass_kg=qar.initial_mass_kg,
         static_temperature_k=float(
             np.median(qar.static_temperature_k[adaptive_indices])
         ),
+        maximum_altitude_adjustment_m=300.0,
         spacing_m=500.0,
         environment_profile=environment,
-        waypoint_mass_kg=inherited_mass,
+        waypoint_mass_kg=qar.mass_kg[adaptive_indices],
     )
+    state_mapping = route.waypoint_along_path_m.copy()
+    inherited_mass = qar.mass_kg[adaptive_indices]
     return (
         qar,
         adaptive_indices,
         mandatory_indices,
-        state_route,
-        inherited_route,
+        route,
+        route,
         state_mapping,
         environment,
         inherited_mass,
         performance,
-        state_profile,
+        profile,
         profile,
     )
 

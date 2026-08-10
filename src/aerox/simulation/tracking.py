@@ -19,6 +19,7 @@ from aerox.modeling.dynamics import (
 
 FloatArray = NDArray[np.float64]
 
+
 @dataclass(frozen=True)
 class TrackingSimulationResult:
     """Closed-loop generated trajectory and command diagnostics."""

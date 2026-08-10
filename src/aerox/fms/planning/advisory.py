@@ -7,6 +7,7 @@ from dataclasses import replace
 import numpy as np
 
 from aerox.fms.performance import ProfilePerformance
+from aerox.fms.intent import AltitudeConstraint
 from aerox.models.atmosphere import G0
 from ..environment import SpatialEnvironmentProfile
 from ..route import FloatArray, SpatialTrajectory
@@ -14,13 +15,13 @@ from .conditions import planning_conditions
 from .energy import plan_energy_shaped_profile
 from .feasibility import ProfileFeasibilityResult
 
+
 def plan_advisory_energy_profile(
     *,
     route: SpatialTrajectory,
     performance: ProfilePerformance,
     mass_kg: float,
     static_temperature_k: float,
-    hard_waypoint_indices: tuple[int, ...] = (0, -1),
     maximum_altitude_adjustment_m: float = 300.0,
     energy_reserve_fraction: float = 0.01,
     energy_reserve_m2ps2: float = 25.0,
@@ -32,12 +33,10 @@ def plan_advisory_energy_profile(
 ) -> ProfileFeasibilityResult:
     """Project advisory altitude targets onto the aircraft energy envelope.
 
-    :func:`plan_energy_shaped_profile` treats every waypoint altitude and speed
-    as exact. This variant is for route samples or advisory state targets:
-    caller-designated hard waypoints remain exact, speed targets remain exact,
-    and only an integrally unreachable advisory altitude is shifted by the
-    minimum energy correction. Following legs absorb that correction whenever
-    they have sufficient excess capacity.
+    Bounded altitude constraints remain hard. This variant may shift only
+    preferred altitude targets by the minimum integral energy correction;
+    lateral-only waypoints and all speed intent remain unchanged. Following
+    legs absorb a correction whenever they have sufficient excess capacity.
 
     This changes requested advisory state, never thrust, drag, or a declared
     performance limit. The returned trajectory's intent contains the projected
@@ -60,15 +59,9 @@ def plan_advisory_energy_profile(
         raise ValueError("maximum_altitude_adjustment_m must be positive")
 
     waypoint_count = len(route.intent.waypoints)
-    hard: set[int] = set()
-    for raw_index in hard_waypoint_indices:
-        index = raw_index if raw_index >= 0 else waypoint_count + raw_index
-        if not 0 <= index < waypoint_count:
-            raise ValueError("hard_waypoint_indices contains an out-of-range index")
-        hard.add(index)
-    original_altitude = np.array(
-        [point.altitude_m for point in route.intent.waypoints], dtype=float
-    )
+    hard = set(np.flatnonzero(route.altitude_bound_waypoint_mask).tolist())
+    targets = set(np.flatnonzero(route.altitude_target_waypoint_mask).tolist())
+    original_altitude = route.waypoint_altitude_m.copy()
     projected_altitude = original_altitude.copy()
     projected_route = route
 
@@ -122,12 +115,9 @@ def plan_advisory_energy_profile(
             / nominal_motion.horizontal_ground_speed_mps
         )
         vertical_wind_energy_gradient = (
-            G0
-            * conditions.wind_down_mps
-            / nominal_motion.horizontal_ground_speed_mps
+            G0 * conditions.wind_down_mps / nominal_motion.horizontal_ground_speed_mps
         )
         changed = False
-        waypoints = projected_route.intent.waypoints
         for segment_index, (start_s, end_s) in enumerate(
             zip(
                 projected_route.waypoint_along_path_m[:-1],
@@ -136,16 +126,17 @@ def plan_advisory_energy_profile(
             )
         ):
             selection = (along_path >= start_s) & (along_path <= end_s)
-            first = waypoints[segment_index]
-            last = waypoints[segment_index + 1]
-            required_energy = 0.5 * (
-                last.true_airspeed_mps**2 - first.true_airspeed_mps**2
-            ) + G0 * (last.altitude_m - first.altitude_m)
+            first_altitude = projected_route.waypoint_altitude_m[segment_index]
+            last_altitude = projected_route.waypoint_altitude_m[segment_index + 1]
+            first_speed = projected_route.waypoint_true_airspeed_mps[segment_index]
+            last_speed = projected_route.waypoint_true_airspeed_mps[segment_index + 1]
+            required_energy = 0.5 * (last_speed**2 - first_speed**2) + G0 * (
+                last_altitude - first_altitude
+            )
             if required_energy >= 0.0:
                 available_energy = float(
                     np.trapezoid(
-                        maximum_excess[selection]
-                        * energy_distance_scale[selection]
+                        maximum_excess[selection] * energy_distance_scale[selection]
                         - vertical_wind_energy_gradient[selection],
                         along_path[selection],
                     )
@@ -155,8 +146,7 @@ def plan_advisory_energy_profile(
             else:
                 available_energy = float(
                     np.trapezoid(
-                        minimum_excess[selection]
-                        * energy_distance_scale[selection]
+                        minimum_excess[selection] * energy_distance_scale[selection]
                         - vertical_wind_energy_gradient[selection],
                         along_path[selection],
                     )
@@ -171,10 +161,10 @@ def plan_advisory_energy_profile(
             energy_correction = deficit + reserve
             end_index = segment_index + 1
             start_index = segment_index
-            if end_index not in hard:
+            if end_index in targets and end_index not in hard:
                 target_index = end_index
                 altitude_delta = direction * energy_correction / G0
-            elif start_index not in hard:
+            elif start_index in targets and start_index not in hard:
                 target_index = start_index
                 altitude_delta = -direction * energy_correction / G0
             else:
@@ -191,12 +181,35 @@ def plan_advisory_energy_profile(
             if raise_on_infeasible and not result.feasible:
                 raise ValueError("; ".join(dict.fromkeys(result.violations)))
             return result
-        projected_waypoints = tuple(
-            replace(point, altitude_m=float(projected_altitude[index]))
-            for index, point in enumerate(route.intent.waypoints)
+        projected_constraints = tuple(
+            AltitudeConstraint(
+                waypoint_index=index,
+                target_altitude_m=float(projected_altitude[index]),
+                minimum_altitude_m=(
+                    float(route.waypoint_minimum_altitude_m[index])
+                    if np.isfinite(route.waypoint_minimum_altitude_m[index])
+                    else None
+                ),
+                maximum_altitude_m=(
+                    float(route.waypoint_maximum_altitude_m[index])
+                    if np.isfinite(route.waypoint_maximum_altitude_m[index])
+                    else None
+                ),
+            )
+            for index in sorted(targets - {0, waypoint_count - 1})
         )
+        projected_intent = replace(
+            route.intent,
+            altitude_constraints=projected_constraints,
+        )
+        waypoint_temperature = None
+        if environment_profile is not None:
+            waypoint_temperature = environment_profile.sample_arrays(
+                route.waypoint_along_path_m
+            )[0]
         projected_route = SpatialTrajectory.from_intent(
-            replace(route.intent, waypoints=projected_waypoints)
+            projected_intent,
+            static_temperature_k=waypoint_temperature,
         )
 
     result = plan_energy_shaped_profile(

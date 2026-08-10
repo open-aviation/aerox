@@ -34,6 +34,7 @@ def _bounded_rate(
     value = float(np.clip(target, previous - bound, previous + bound))
     return value, not np.isclose(value, target, rtol=0.0, atol=1e-12)
 
+
 @dataclass(frozen=True)
 class PitchBankThrustCommand:
     """One generated command plus inversion and saturation diagnostics."""
@@ -294,4 +295,3 @@ class InverseFlightMechanicsController:
 
 
 __all__ = ["InverseFlightMechanicsController", "PitchBankThrustCommand"]
-

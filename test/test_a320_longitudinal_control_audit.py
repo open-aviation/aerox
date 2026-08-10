@@ -36,8 +36,6 @@ def test_rate_scales_are_stable_and_elevator_offsets_are_measurement_nuisances()
     assert observed["mean_lofo_rmse_improvement_over_equal_scale"] > 0.4
     assert observed["pitch_rate_scale_ratio_lofo_coefficient_of_variation"] < 0.01
     assert observed["yaw_rate_scale_ratio_lofo_coefficient_of_variation"] < 0.02
-    offsets = flights.groupby("registration")[
-        "elevator_1_minus_2_median_code"
-    ].median()
+    offsets = flights.groupby("registration")["elevator_1_minus_2_median_code"].median()
     assert offsets["TAIL-A"] < 0.0 < offsets["TAIL-B"]
     assert flights["elevator_pair_correlation"].min() > 0.97

@@ -2,11 +2,14 @@ import numpy as np
 import pytest
 
 from aerox.fms import (
+    AltitudeConstraint,
     FlightIntent,
+    LateralWaypoint,
+    SpeedConstraint,
+    SpeedTarget,
     SpatialEnvironmentProfile,
     SpatialTrajectory,
-    Waypoint,
-    inherit_state_profile,
+    TerminalConstraint,
 )
 from aerox.guidance import (
     InverseFlightMechanicsController,
@@ -23,6 +26,10 @@ from aerox.modeling.dynamics import (
     PointMassModel,
 )
 from aerox.models import EffectiveLiftMap, ParabolicDragPolar
+from aerox.models.atmosphere import (
+    true_airspeed_from_calibrated_airspeed,
+    true_airspeed_from_mach,
+)
 from aerox.models.openap import OpenAPFuelFlowPrior
 from aerox.models.thrust import PressureScaledMinimumThrust
 from aerox.simulation import simulate_fms_trajectory_zoh
@@ -32,10 +39,14 @@ def _route() -> SpatialTrajectory:
     return SpatialTrajectory.from_intent(
         FlightIntent(
             waypoints=(
-                Waypoint(0.0, 0.0, 9_000.0, 200.0, "START"),
-                Waypoint(20_000.0, 0.0, 9_200.0, 202.0, "TURN"),
-                Waypoint(20_000.0, 30_000.0, 9_500.0, 205.0, "END"),
-            )
+                LateralWaypoint(0.0, 0.0, "START"),
+                LateralWaypoint(20_000.0, 0.0, "TURN"),
+                LateralWaypoint(20_000.0, 30_000.0, "END"),
+            ),
+            departure=TerminalConstraint(9_000.0, SpeedTarget("TAS", 200.0)),
+            arrival=TerminalConstraint(9_500.0, SpeedTarget("TAS", 205.0)),
+            altitude_constraints=(AltitudeConstraint.at(1, 9_200.0),),
+            speed_constraints=(SpeedConstraint.at(1, SpeedTarget("TAS", 202.0)),),
         )
     )
 
@@ -58,57 +69,96 @@ def test_spatial_trajectory_interpolates_route_constraints() -> None:
     assert second_leg.ground_track_rad == pytest.approx(np.pi / 2.0)
 
 
-def test_geometry_route_can_inherit_separate_state_profile() -> None:
-    state_route = SpatialTrajectory.from_intent(
+def test_lateral_waypoint_does_not_create_a_state_constraint() -> None:
+    route = SpatialTrajectory.from_intent(
         FlightIntent(
             waypoints=(
-                Waypoint(0.0, 0.0, 1_000.0, 100.0, "STATE-START"),
-                Waypoint(10_000.0, 0.0, 2_000.0, 120.0, "STATE-END"),
+                LateralWaypoint(0.0, 0.0, "START"),
+                LateralWaypoint(5_000.0, 2_000.0, "GEOMETRY-ONLY"),
+                LateralWaypoint(10_000.0, 0.0, "END"),
             ),
+            departure=TerminalConstraint(1_000.0, SpeedTarget("TAS", 100.0)),
+            arrival=TerminalConstraint(2_000.0, SpeedTarget("TAS", 120.0)),
             maximum_climb_flight_path_angle_rad=np.deg2rad(10.0),
         )
-    ).with_profile(
-        along_path_m=np.array([0.0, 5_000.0, 10_000.0]),
+    )
+    route = route.with_profile(
+        along_path_m=np.array(
+            [0.0, route.waypoint_along_path_m[1], route.total_distance_m]
+        ),
         altitude_m=np.array([1_000.0, 1_400.0, 2_000.0]),
         true_airspeed_mps=np.array([100.0, 108.0, 120.0]),
     )
-    geometry_route = SpatialTrajectory.from_intent(
-        FlightIntent(
-            waypoints=(
-                Waypoint(0.0, 0.0, 1_000.0, 100.0, "START"),
-                Waypoint(5_000.0, 2_000.0, 1_500.0, 110.0, "GEOMETRY-ONLY"),
-                Waypoint(10_000.0, 0.0, 2_000.0, 120.0, "END"),
-            ),
-            maximum_climb_flight_path_angle_rad=np.deg2rad(10.0),
-        )
-    )
 
-    inherited = inherit_state_profile(
-        geometry_route=geometry_route,
-        state_profile=state_route,
-        state_along_path_at_geometry_waypoints_m=np.array([0.0, 5_000.0, 10_000.0]),
-        spacing_m=1_000.0,
-    )
-
-    middle = inherited.sample(inherited.waypoint_along_path_m[1])
-    assert inherited.total_distance_m > state_route.total_distance_m
+    middle = route.sample(route.waypoint_along_path_m[1])
     assert middle.north_m == pytest.approx(5_000.0)
     assert middle.east_m == pytest.approx(2_000.0)
     assert middle.altitude_m == pytest.approx(1_400.0)
     assert middle.true_airspeed_mps == pytest.approx(108.0)
+    assert not route.altitude_target_waypoint_mask[1]
+    assert not route.speed_target_waypoint_mask[1]
 
 
-def test_spatial_trajectory_rejects_infeasible_vertical_profile() -> None:
+def test_spatial_trajectory_preserves_infeasible_target_for_planner() -> None:
     intent = FlightIntent(
         waypoints=(
-            Waypoint(0.0, 0.0, 0.0, 100.0),
-            Waypoint(1_000.0, 0.0, 500.0, 100.0),
+            LateralWaypoint(0.0, 0.0),
+            LateralWaypoint(1_000.0, 0.0),
         ),
+        departure=TerminalConstraint(0.0, SpeedTarget("TAS", 100.0)),
+        arrival=TerminalConstraint(500.0, SpeedTarget("TAS", 100.0)),
         maximum_climb_flight_path_angle_rad=np.deg2rad(5.0),
     )
 
-    with pytest.raises(ValueError, match="angle limits"):
-        SpatialTrajectory.from_intent(intent)
+    route = SpatialTrajectory.from_intent(intent)
+
+    assert np.arctan(route.segment_altitude_gradient[0]) > (
+        intent.maximum_climb_flight_path_angle_rad
+    )
+
+
+def test_intent_resolves_cas_mach_and_independent_constraint_bounds() -> None:
+    temperature = np.array([285.0, 250.0, 220.0, 250.0])
+    route = SpatialTrajectory.from_intent(
+        FlightIntent(
+            waypoints=tuple(
+                LateralWaypoint(float(index) * 10_000.0, 0.0) for index in range(4)
+            ),
+            departure=TerminalConstraint(0.0, SpeedTarget("CAS", 120.0)),
+            arrival=TerminalConstraint(2_000.0, SpeedTarget("CAS", 110.0)),
+            altitude_constraints=(
+                AltitudeConstraint(1, 5_000.0, minimum_altitude_m=4_500.0),
+                AltitudeConstraint(2, 10_000.0, maximum_altitude_m=10_500.0),
+            ),
+            speed_constraints=(
+                SpeedConstraint(
+                    1,
+                    SpeedTarget("CAS", 140.0),
+                    minimum_value=135.0,
+                    maximum_value=145.0,
+                ),
+                SpeedConstraint(
+                    2,
+                    SpeedTarget("MACH", 0.76),
+                    minimum_value=0.74,
+                    maximum_value=0.78,
+                ),
+            ),
+        ),
+        static_temperature_k=temperature,
+    )
+
+    assert route.waypoint_true_airspeed_mps[1] == pytest.approx(
+        true_airspeed_from_calibrated_airspeed(140.0, 5_000.0, 250.0)
+    )
+    assert route.waypoint_true_airspeed_mps[2] == pytest.approx(
+        true_airspeed_from_mach(0.76, 10_000.0, 220.0)
+    )
+    assert route.waypoint_minimum_altitude_m[1] == pytest.approx(4_500.0)
+    assert np.isposinf(route.waypoint_maximum_altitude_m[1])
+    assert np.isneginf(route.waypoint_minimum_altitude_m[2])
+    assert route.waypoint_maximum_altitude_m[2] == pytest.approx(10_500.0)
+    assert np.all(route.speed_bound_waypoint_mask)
 
 
 def test_route_projection_has_signed_cross_track_error() -> None:
@@ -287,9 +337,7 @@ def test_guidance_uses_shorter_profile_than_lateral_lookahead() -> None:
         200.0 * np.cos(current_air_path_angle) * 5.0,
         1_000.0,
     )
-    assert target.profile_target_along_path_m == pytest.approx(
-        expected_profile_target
-    )
+    assert target.profile_target_along_path_m == pytest.approx(expected_profile_target)
     assert target.reference_altitude_m == pytest.approx(
         9_000.0 + 0.01 * expected_profile_target
     )

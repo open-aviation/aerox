@@ -74,7 +74,10 @@ def parse_args() -> argparse.Namespace:
         ),
         ("thrust-parameters", "docs/modeling/a320-effective-thrust-calibration.yml"),
         ("fuel-parameters", "docs/modeling/a320-effective-fuel-calibration.yml"),
-        ("pitch-bank-parameters", "docs/modeling/a320-pitch-bank-input-calibration.yml"),
+        (
+            "pitch-bank-parameters",
+            "docs/modeling/a320-pitch-bank-input-calibration.yml",
+        ),
         (
             "surface-parameters",
             "docs/modeling/a320-vspaero-lift-surface-identification.yml",
@@ -138,6 +141,7 @@ def _slice_reference(
         wind_north_mps=qar.wind_north_mps[selection],
         wind_east_mps=qar.wind_east_mps[selection],
         mass_kg=qar.mass_kg[selection],
+        fuel_flow_kg_s=qar.fuel_flow_kg_s[selection],
         initial_mass_kg=float(qar.mass_kg[start]),
         source_start_time_s=qar.source_start_time_s + float(original.time_s[start]),
         source_end_time_s=qar.source_start_time_s + float(original.time_s[end]),

@@ -155,9 +155,7 @@ class SpatialPathGuidance:
                 wind_east_mps=wind_east_mps,
                 wind_down_mps=wind_down_mps,
             )
-            current_groundspeed = float(
-                current_solution.horizontal_ground_speed_mps
-            )
+            current_groundspeed = float(current_solution.horizontal_ground_speed_mps)
         else:
             current_groundspeed = float(
                 horizontal_ground_speed_mps(

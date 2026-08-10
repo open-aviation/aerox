@@ -4,11 +4,14 @@ import pytest
 from aerox import aero
 from aerox.fms import (
     CruiseSpeedStrategy,
+    CruiseTarget,
     FlightIntent,
+    LateralWaypoint,
     ModeConditionedSpeedIntent,
+    SpeedTarget,
     SpatialEnvironmentProfile,
     SpatialTrajectory,
-    Waypoint,
+    TerminalConstraint,
     plan_continuous_speed_mass_profile,
 )
 from aerox.modeling import PointMassProfilePerformance
@@ -45,11 +48,14 @@ def test_continuous_speed_plan_iterates_fuel_mass_without_response_inputs() -> N
     route = SpatialTrajectory.from_intent(
         FlightIntent(
             waypoints=(
-                Waypoint(0.0, 0.0, 1_000.0, 100.0, "START"),
-                Waypoint(30_000.0, 0.0, 2_000.0, 130.0, "TOC"),
-                Waypoint(70_000.0, 0.0, 2_000.0, 130.0, "TOD"),
-                Waypoint(100_000.0, 0.0, 1_000.0, 100.0, "END"),
+                LateralWaypoint(0.0, 0.0, "START"),
+                LateralWaypoint(30_000.0, 0.0, "TOC"),
+                LateralWaypoint(70_000.0, 0.0, "TOD"),
+                LateralWaypoint(100_000.0, 0.0, "END"),
             ),
+            departure=TerminalConstraint(1_000.0, SpeedTarget("TAS", 100.0)),
+            arrival=TerminalConstraint(1_000.0, SpeedTarget("TAS", 100.0)),
+            cruise_target=CruiseTarget(1, 2, 2_000.0, SpeedTarget("TAS", 130.0)),
             maximum_climb_flight_path_angle_rad=np.deg2rad(5.0),
             maximum_descent_flight_path_angle_rad=np.deg2rad(5.0),
         )
@@ -80,9 +86,7 @@ def test_continuous_speed_plan_iterates_fuel_mass_without_response_inputs() -> N
         initial_mass_kg=10_000.0,
         environment_profile=environment,
         spacing_m=500.0,
-        cruise_strategy=CruiseSpeedStrategy(
-            kind="commanded_mach", commanded_mach=0.40
-        ),
+        cruise_strategy=CruiseSpeedStrategy(kind="commanded_mach", commanded_mach=0.40),
     )
 
     assert result.iteration_count > 1
@@ -99,10 +103,7 @@ def test_continuous_speed_plan_iterates_fuel_mass_without_response_inputs() -> N
     assert np.all(result.mach_target[level] == pytest.approx(0.40))
     assert np.all(np.isnan(result.economy_cruise_target_mach))
     assert np.any(
-        np.abs(
-            result.planned_true_airspeed_mps
-            - result.desired_true_airspeed_mps
-        )
+        np.abs(result.planned_true_airspeed_mps - result.desired_true_airspeed_mps)
         > 0.1
     )
 

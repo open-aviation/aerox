@@ -19,6 +19,7 @@ from .feasibility import (
     plan_feasible_profile,
 )
 
+
 def plan_energy_shaped_profile(
     *,
     route: SpatialTrajectory,
@@ -33,7 +34,8 @@ def plan_energy_shaped_profile(
 ) -> ProfileFeasibilityResult:
     """Redistribute each leg's energy change before checking feasibility.
 
-    Altitude and speed waypoint values remain exact. Between anchors, a shared
+    Altitude and speed target values remain exact. Lateral-only waypoints do
+    not divide the energy problem. Between state anchors, a shared
     monotone progress coordinate is weighted by the local climb/descent,
     acceleration/deceleration, and combined specific-excess-force capacity.
     This lets a climb front-load energy addition as thrust lapses with altitude
@@ -60,12 +62,12 @@ def plan_energy_shaped_profile(
     altitude = np.interp(
         along_path,
         route.waypoint_along_path_m,
-        [point.altitude_m for point in route.intent.waypoints],
+        route.waypoint_altitude_m,
     )
     speed = np.interp(
         along_path,
         route.waypoint_along_path_m,
-        [point.true_airspeed_mps for point in route.intent.waypoints],
+        route.waypoint_true_airspeed_mps,
     )
     conditions = planning_conditions(
         route=route,
@@ -75,24 +77,29 @@ def plan_energy_shaped_profile(
         environment_profile=environment_profile,
         waypoint_mass_kg=waypoint_mass_kg,
     )
+    state_anchor_indices = np.flatnonzero(
+        route.altitude_target_waypoint_mask | route.speed_target_waypoint_mask
+    )
 
     for _ in range(iteration_count):
         updated_altitude = altitude.copy()
         updated_speed = speed.copy()
-        for segment_index, (start_s, end_s) in enumerate(
-            zip(
-                route.waypoint_along_path_m[:-1],
-                route.waypoint_along_path_m[1:],
-                strict=True,
-            )
+        for first_waypoint_index, last_waypoint_index in zip(
+            state_anchor_indices[:-1], state_anchor_indices[1:], strict=True
         ):
+            start_s = route.waypoint_along_path_m[first_waypoint_index]
+            end_s = route.waypoint_along_path_m[last_waypoint_index]
             first_index = int(np.searchsorted(along_path, start_s))
             last_index = int(np.searchsorted(along_path, end_s))
             segment_s = along_path[first_index : last_index + 1]
-            first = route.intent.waypoints[segment_index]
-            last = route.intent.waypoints[segment_index + 1]
-            altitude_change = last.altitude_m - first.altitude_m
-            speed_change = last.true_airspeed_mps - first.true_airspeed_mps
+            first_altitude = route.waypoint_altitude_m[first_waypoint_index]
+            first_speed = route.waypoint_true_airspeed_mps[first_waypoint_index]
+            altitude_change = (
+                route.waypoint_altitude_m[last_waypoint_index] - first_altitude
+            )
+            speed_change = (
+                route.waypoint_true_airspeed_mps[last_waypoint_index] - first_speed
+            )
             if abs(altitude_change) < 1e-12 and abs(speed_change) < 1e-12:
                 continue
             local = [
@@ -141,8 +148,7 @@ def plan_energy_shaped_profile(
                 )
                 progress_rate_limit = np.minimum(
                     progress_rate_limit,
-                    np.maximum(-np.tan(ground_angle_limit), 0.0)
-                    / -altitude_change,
+                    np.maximum(-np.tan(ground_angle_limit), 0.0) / -altitude_change,
                 )
             local_motion = local_conditions.path_motion(
                 along_path_m=segment_s,
@@ -174,9 +180,7 @@ def plan_energy_shaped_profile(
             minimum_excess = np.array(
                 [value.minimum_specific_excess_force_mps2 for value in local]
             )
-            vertical_wind_demand = (
-                G0 * local_conditions.wind_down_mps / local_speed
-            )
+            vertical_wind_demand = G0 * local_conditions.wind_down_mps / local_speed
             maximum_excess = maximum_excess - vertical_wind_demand
             minimum_excess = minimum_excess - vertical_wind_demand
             progress_rate_limit[positive_energy] = np.minimum(
@@ -191,10 +195,10 @@ def plan_energy_shaped_profile(
             )
             progress = _progress_from_rate_limit(segment_s, progress_rate_limit)
             updated_altitude[first_index : last_index + 1] = (
-                first.altitude_m + altitude_change * progress
+                first_altitude + altitude_change * progress
             )
             updated_speed[first_index : last_index + 1] = (
-                first.true_airspeed_mps + speed_change * progress
+                first_speed + speed_change * progress
             )
         altitude = updated_altitude
         speed = updated_speed
@@ -203,21 +207,23 @@ def plan_energy_shaped_profile(
     # speed independently because real vertical and kinetic energy changes need
     # not occur in lockstep between two sparse anchors.
     for _ in range(iteration_count):
-        for segment_index, (start_s, end_s) in enumerate(
-            zip(
-                route.waypoint_along_path_m[:-1],
-                route.waypoint_along_path_m[1:],
-                strict=True,
-            )
+        for first_waypoint_index, last_waypoint_index in zip(
+            state_anchor_indices[:-1], state_anchor_indices[1:], strict=True
         ):
+            start_s = route.waypoint_along_path_m[first_waypoint_index]
+            end_s = route.waypoint_along_path_m[last_waypoint_index]
             first_index = int(np.searchsorted(along_path, start_s))
             last_index = int(np.searchsorted(along_path, end_s))
             segment_slice = slice(first_index, last_index + 1)
             segment_s = along_path[segment_slice]
-            first = route.intent.waypoints[segment_index]
-            last = route.intent.waypoints[segment_index + 1]
-            altitude_change = last.altitude_m - first.altitude_m
-            speed_change = last.true_airspeed_mps - first.true_airspeed_mps
+            first_altitude = route.waypoint_altitude_m[first_waypoint_index]
+            first_speed = route.waypoint_true_airspeed_mps[first_waypoint_index]
+            altitude_change = (
+                route.waypoint_altitude_m[last_waypoint_index] - first_altitude
+            )
+            speed_change = (
+                route.waypoint_true_airspeed_mps[last_waypoint_index] - first_speed
+            )
 
             local = [
                 performance.limits(
@@ -275,8 +281,7 @@ def plan_energy_shaped_profile(
                         wind_down_mps=segment_conditions.wind_down_mps,
                     )
                     rate_limit = (
-                        np.maximum(np.tan(ground_angle_limit), 0.0)
-                        / altitude_change
+                        np.maximum(np.tan(ground_angle_limit), 0.0) / altitude_change
                     )
                 else:
                     available_sine = np.clip(
@@ -307,11 +312,10 @@ def plan_energy_shaped_profile(
                         wind_down_mps=segment_conditions.wind_down_mps,
                     )
                     rate_limit = (
-                        np.maximum(-np.tan(ground_angle_limit), 0.0)
-                        / -altitude_change
+                        np.maximum(-np.tan(ground_angle_limit), 0.0) / -altitude_change
                     )
                 progress = _progress_from_rate_limit(segment_s, rate_limit)
-                altitude[segment_slice] = first.altitude_m + altitude_change * progress
+                altitude[segment_slice] = first_altitude + altitude_change * progress
 
             local = [
                 performance.limits(
@@ -371,7 +375,7 @@ def plan_energy_shaped_profile(
                     ) / (local_ground_speed * -speed_change)
                     rate_limit = np.minimum(combined_limit, deceleration_limit)
                 progress = _progress_from_rate_limit(segment_s, rate_limit)
-                speed[segment_slice] = first.true_airspeed_mps + speed_change * progress
+                speed[segment_slice] = first_speed + speed_change * progress
 
     # Finish with a bounded, deterministic per-leg search over independent
     # altitude and speed timing. The two shape parameters cannot change an
@@ -379,29 +383,31 @@ def plan_energy_shaped_profile(
     # already-requested state change occurs.
     from scipy.optimize import differential_evolution
 
-    for segment_index, (start_s, end_s) in enumerate(
-        zip(
-            route.waypoint_along_path_m[:-1],
-            route.waypoint_along_path_m[1:],
-            strict=True,
-        )
+    for span_index, (first_waypoint_index, last_waypoint_index) in enumerate(
+        zip(state_anchor_indices[:-1], state_anchor_indices[1:], strict=True)
     ):
+        start_s = route.waypoint_along_path_m[first_waypoint_index]
+        end_s = route.waypoint_along_path_m[last_waypoint_index]
         first_index = int(np.searchsorted(along_path, start_s))
         last_index = int(np.searchsorted(along_path, end_s))
         segment_slice = slice(first_index, last_index + 1)
         segment_s = along_path[segment_slice]
         fraction = (segment_s - start_s) / (end_s - start_s)
-        first = route.intent.waypoints[segment_index]
-        last = route.intent.waypoints[segment_index + 1]
-        altitude_change = last.altitude_m - first.altitude_m
-        speed_change = last.true_airspeed_mps - first.true_airspeed_mps
+        first_altitude = route.waypoint_altitude_m[first_waypoint_index]
+        first_speed = route.waypoint_true_airspeed_mps[first_waypoint_index]
+        altitude_change = (
+            route.waypoint_altitude_m[last_waypoint_index] - first_altitude
+        )
+        speed_change = (
+            route.waypoint_true_airspeed_mps[last_waypoint_index] - first_speed
+        )
 
         def candidate(
             parameters: np.ndarray,
             *,
             local_fraction: FloatArray = fraction,
-            first_altitude_m: float = first.altitude_m,
-            first_speed_mps: float = first.true_airspeed_mps,
+            first_altitude_m: float = first_altitude,
+            first_speed_mps: float = first_speed,
             local_altitude_change: float = altitude_change,
             local_speed_change: float = speed_change,
             local_slice: slice = segment_slice,
@@ -466,7 +472,7 @@ def plan_energy_shaped_profile(
         result = differential_evolution(
             lambda parameters: candidate(parameters)[0],
             bounds=((-8.0, 8.0), (-8.0, 8.0)),
-            seed=segment_index,
+            seed=span_index,
             popsize=6,
             maxiter=40,
             tol=1e-7,
@@ -484,29 +490,31 @@ def plan_energy_shaped_profile(
     # Softmax increments and PCHIP interpolation preserve exact anchors and
     # monotonicity; this adds timing freedom, not performance authority.
     knot_interval_count = 3
-    for segment_index, (start_s, end_s) in enumerate(
-        zip(
-            route.waypoint_along_path_m[:-1],
-            route.waypoint_along_path_m[1:],
-            strict=True,
-        )
+    for span_index, (first_waypoint_index, last_waypoint_index) in enumerate(
+        zip(state_anchor_indices[:-1], state_anchor_indices[1:], strict=True)
     ):
+        start_s = route.waypoint_along_path_m[first_waypoint_index]
+        end_s = route.waypoint_along_path_m[last_waypoint_index]
         first_index = int(np.searchsorted(along_path, start_s))
         last_index = int(np.searchsorted(along_path, end_s))
         segment_slice = slice(first_index, last_index + 1)
         segment_s = along_path[segment_slice]
         fraction = (segment_s - start_s) / (end_s - start_s)
-        first = route.intent.waypoints[segment_index]
-        last = route.intent.waypoints[segment_index + 1]
-        altitude_change = last.altitude_m - first.altitude_m
-        speed_change = last.true_airspeed_mps - first.true_airspeed_mps
+        first_altitude = route.waypoint_altitude_m[first_waypoint_index]
+        first_speed = route.waypoint_true_airspeed_mps[first_waypoint_index]
+        altitude_change = (
+            route.waypoint_altitude_m[last_waypoint_index] - first_altitude
+        )
+        speed_change = (
+            route.waypoint_true_airspeed_mps[last_waypoint_index] - first_speed
+        )
 
         def flexible_candidate(
             parameters: np.ndarray,
             *,
             local_fraction: FloatArray = fraction,
-            first_altitude_m: float = first.altitude_m,
-            first_speed_mps: float = first.true_airspeed_mps,
+            first_altitude_m: float = first_altitude,
+            first_speed_mps: float = first_speed,
             local_altitude_change: float = altitude_change,
             local_speed_change: float = speed_change,
             local_slice: slice = segment_slice,
@@ -573,7 +581,7 @@ def plan_energy_shaped_profile(
         result = differential_evolution(
             lambda parameters: flexible_candidate(parameters)[0],
             bounds=[(-4.0, 4.0)] * (2 * knot_interval_count),
-            seed=100 + segment_index,
+            seed=100 + span_index,
             popsize=5,
             maxiter=35,
             tol=1e-7,

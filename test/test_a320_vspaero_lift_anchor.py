@@ -24,9 +24,7 @@ def test_vspaero_anchor_blocks_physical_effective_angle_promotion():
 
 
 def test_generated_lift_anchor_matches_reproducible_audit():
-    generated = yaml.safe_load(
-        (MODELING / "a320-vspaero-lift-anchor.yml").read_text()
-    )
+    generated = yaml.safe_load((MODELING / "a320-vspaero-lift-anchor.yml").read_text())
     rebuilt, rebuilt_rows = build_audit(
         MODELING / "a320-vspaero-prior.csv",
         MODELING / "a320-pitch-bank-input-calibration.yml",

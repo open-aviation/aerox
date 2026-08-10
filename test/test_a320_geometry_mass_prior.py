@@ -34,10 +34,22 @@ def test_visible_control_geometry_does_not_claim_actuator_limits():
     prior = build_prior(MEASUREMENTS)
     controls = prior["geometry"]["flight_controls"]
 
-    assert controls["elevator"]["area_ratio"]["nominal"] == pytest.approx(0.481, abs=0.002)
-    assert controls["rudder"]["area_ratio"]["nominal"] == pytest.approx(0.300, abs=0.002)
-    assert 0.75 < controls["aileron"]["inboard_span_station_fraction_semispan"]["nominal"] < 0.82
-    assert 0.92 < controls["aileron"]["outboard_span_station_fraction_semispan"]["nominal"] < 0.98
+    assert controls["elevator"]["area_ratio"]["nominal"] == pytest.approx(
+        0.481, abs=0.002
+    )
+    assert controls["rudder"]["area_ratio"]["nominal"] == pytest.approx(
+        0.300, abs=0.002
+    )
+    assert (
+        0.75
+        < controls["aileron"]["inboard_span_station_fraction_semispan"]["nominal"]
+        < 0.82
+    )
+    assert (
+        0.92
+        < controls["aileron"]["outboard_span_station_fraction_semispan"]["nominal"]
+        < 0.98
+    )
     assert not prior["release_decision"]["control_surface_deflection_or_rate_limits"]
 
 
@@ -50,15 +62,19 @@ def test_generic_inertia_prior_is_bounded_and_not_released_as_a320_data():
     assert not prior["release_decision"]["a320_inertia_tensor"]
     assert diagonal["ixx"]["nominal_kg_m2"] < diagonal["iyy"]["nominal_kg_m2"]
     assert diagonal["iyy"]["nominal_kg_m2"] < diagonal["izz"]["nominal_kg_m2"]
-    assert abs(mass["ixz"]["admissible_range_kg_m2"][1]) < (
-        diagonal["ixx"]["nominal_kg_m2"] * diagonal["izz"]["nominal_kg_m2"]
-    ) ** 0.5
+    assert (
+        abs(mass["ixz"]["admissible_range_kg_m2"][1])
+        < (diagonal["ixx"]["nominal_kg_m2"] * diagonal["izz"]["nominal_kg_m2"]) ** 0.5
+    )
 
 
 def test_generated_prior_matches_reproducible_measurement_build():
     generated = yaml.safe_load(PARAMETERS.read_text())
     rebuilt = build_prior(MEASUREMENTS)
 
-    assert generated["source"]["source_dwg_sha256"] == rebuilt["source"]["source_dwg_sha256"]
+    assert (
+        generated["source"]["source_dwg_sha256"]
+        == rebuilt["source"]["source_dwg_sha256"]
+    )
     assert generated["geometry"] == rebuilt["geometry"]
     assert generated["mass_properties"] == rebuilt["mass_properties"]

@@ -10,12 +10,8 @@ def test_compact_drag_long_range_trajectory_is_compared_without_promotion():
         (ROOT / "docs/fms/a320-fms-compact-drag-trajectory.yml").read_text()
     )
 
-    assert document["status"] == (
-        "compact-drag-trajectory-held-by-noninferiority-gate"
-    )
-    assert document["configuration"]["drag_model"] == (
-        "a320_compact_drag_candidate"
-    )
+    assert document["status"] == ("compact-drag-trajectory-held-by-noninferiority-gate")
+    assert document["configuration"]["drag_model"] == ("a320_compact_drag_candidate")
     assert document["configuration"]["controller_changed"] is False
     assert document["configuration"]["n1_surrogate_used_by_rollout"] is False
     assert document["metrics"]["completed"] is True

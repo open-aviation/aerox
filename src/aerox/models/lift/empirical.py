@@ -130,4 +130,3 @@ class EffectiveLiftMap:
 
 
 __all__ = ["LIFT_FEATURE_SETS", "EffectiveLiftMap", "effective_lift_design"]
-

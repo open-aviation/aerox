@@ -18,9 +18,13 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from aerox.fms import (
+    AltitudeConstraint,
     FlightIntent,
+    LateralWaypoint,
+    SpeedConstraint,
+    SpeedTarget,
     SpatialTrajectory,
-    Waypoint,
+    TerminalConstraint,
 )
 from aerox.guidance import SpatialPathGuidance
 from aerox.models.atmosphere import atmosphere_at_pressure_altitude, isa_atmosphere
@@ -125,18 +129,28 @@ def build_intent() -> FlightIntent:
 
     return FlightIntent(
         waypoints=(
-            Waypoint(0.0, 0.0, 9_500.0, 215.0, "ORIGIN"),
-            Waypoint(50_000.0, 0.0, 9_700.0, 220.0, "CLIMB-1"),
-            Waypoint(90_000.0, 35_000.0, 10_100.0, 220.0, "CLIMB-2"),
-            Waypoint(140_000.0, 20_000.0, 9_900.0, 212.0, "DESCENT-1"),
-            Waypoint(
+            LateralWaypoint(0.0, 0.0, "ORIGIN"),
+            LateralWaypoint(50_000.0, 0.0, "CLIMB-1"),
+            LateralWaypoint(90_000.0, 35_000.0, "CLIMB-2"),
+            LateralWaypoint(140_000.0, 20_000.0, "DESCENT-1"),
+            LateralWaypoint(
                 185_000.0,
                 65_000.0,
-                9_500.0,
-                205.0,
                 "DESTINATION",
                 acceptance_radius_m=1_500.0,
             ),
+        ),
+        departure=TerminalConstraint(9_500.0, SpeedTarget("TAS", 215.0)),
+        arrival=TerminalConstraint(9_500.0, SpeedTarget("TAS", 205.0)),
+        altitude_constraints=(
+            AltitudeConstraint.at(1, 9_700.0),
+            AltitudeConstraint.at(2, 10_100.0),
+            AltitudeConstraint.at(3, 9_900.0),
+        ),
+        speed_constraints=(
+            SpeedConstraint.at(1, SpeedTarget("TAS", 220.0)),
+            SpeedConstraint.at(2, SpeedTarget("TAS", 220.0)),
+            SpeedConstraint.at(3, SpeedTarget("TAS", 212.0)),
         ),
         maximum_climb_flight_path_angle_rad=math.radians(4.0),
         maximum_descent_flight_path_angle_rad=math.radians(4.0),
@@ -162,7 +176,7 @@ def _run(
         wind_correction=wind_correction,
     )
     temperature = float(
-        isa_atmosphere(np.array([route.intent.waypoints[0].altitude_m])).temperature_k[
+        isa_atmosphere(np.array([route.waypoint_altitude_m[0]])).temperature_k[
             0
         ]
     )
@@ -185,7 +199,7 @@ def _mach(result: FMSSimulationResult) -> np.ndarray:
     trajectory = result.trajectory
     temperature = float(
         isa_atmosphere(
-            np.array([result.planned_trajectory.intent.waypoints[0].altitude_m])
+            np.array([result.planned_trajectory.waypoint_altitude_m[0]])
         ).temperature_k[0]
     )
     atmosphere = atmosphere_at_pressure_altitude(
@@ -708,11 +722,13 @@ def main() -> None:
                     "name": point.name,
                     "north_m": point.north_m,
                     "east_m": point.east_m,
-                    "altitude_m": point.altitude_m,
-                    "true_airspeed_mps": point.true_airspeed_mps,
+                    "target_altitude_m": float(route.waypoint_altitude_m[index]),
+                    "target_true_airspeed_mps": float(
+                        route.waypoint_true_airspeed_mps[index]
+                    ),
                     "acceptance_radius_m": point.acceptance_radius_m,
                 }
-                for point in route.intent.waypoints
+                for index, point in enumerate(route.intent.waypoints)
             ],
         },
         "fms": {

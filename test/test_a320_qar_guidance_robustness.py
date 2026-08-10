@@ -33,10 +33,7 @@ def test_qar_guidance_artifacts_separate_nominal_pass_from_robustness_hold():
     assert not document["decision"]["overall_gate_passed"]
     assert document["status"] == "qar-guidance-robustness-held"
     assert not document["gates"]["robust_maximum_altitude_rmse_m"]["passed"]
-    assert (
-        document["robust_worst_scenarios"]["altitude_rmse_m"]
-        == "combined_adverse"
-    )
+    assert document["robust_worst_scenarios"]["altitude_rmse_m"] == "combined_adverse"
     assert len(metrics) == 10
     assert not {"latitude", "longitude", "time_s"} & set(metrics.columns)
     assert set(metrics["name"]) == {case.name for case in scenarios()}

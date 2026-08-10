@@ -19,10 +19,14 @@ if str(PROJECT_ROOT) not in sys.path:
 
 from aerox import load_aircraft
 from aerox.fms import (
+    AltitudeConstraint,
     FlightIntent,
+    LateralWaypoint,
+    SpeedConstraint,
+    SpeedTarget,
     SpatialEnvironmentProfile,
     SpatialTrajectory,
-    Waypoint,
+    TerminalConstraint,
     plan_energy_shaped_profile,
 )
 from aerox.guidance import InverseFlightMechanicsController, SpatialPathGuidance
@@ -33,6 +37,7 @@ from aerox.modeling.dynamics import (
 )
 from aerox.models.atmosphere import atmosphere_at_pressure_altitude
 from aerox.models.drag import build_drag_model
+from aerox.navigation import wind_corrected_path
 from aerox.simulation import simulate_fms_trajectory_zoh
 from tools.generate_a320_comparison_trajectories import _controller
 from tools.replay_a320_point_mass import _read_fuel_model
@@ -176,11 +181,9 @@ def build_sparse_intent(
 
     indices = _anchor_indices(len(qar.reference.time_s))
     waypoints = tuple(
-        Waypoint(
+        LateralWaypoint(
             north_m=float(qar.north_position_m[index]),
             east_m=float(qar.east_position_m[index]),
-            altitude_m=float(qar.reference.pressure_altitude_m[index]),
-            true_airspeed_mps=float(qar.reference.true_airspeed_mps[index]),
             name=f"A{number}",
             acceptance_radius_m=1_500.0 if index == indices[-1] else 4_000.0,
         )
@@ -189,11 +192,36 @@ def build_sparse_intent(
     route = SpatialTrajectory.from_intent(
         FlightIntent(
             waypoints=waypoints,
+            departure=TerminalConstraint(
+                float(qar.reference.pressure_altitude_m[indices[0]]),
+                SpeedTarget("TAS", float(qar.reference.true_airspeed_mps[indices[0]])),
+            ),
+            arrival=TerminalConstraint(
+                float(qar.reference.pressure_altitude_m[indices[-1]]),
+                SpeedTarget("TAS", float(qar.reference.true_airspeed_mps[indices[-1]])),
+            ),
+            altitude_constraints=tuple(
+                AltitudeConstraint.preferred(
+                    waypoint_index,
+                    float(qar.reference.pressure_altitude_m[source_index]),
+                )
+                for waypoint_index, source_index in enumerate(indices[1:-1], start=1)
+            ),
+            speed_constraints=tuple(
+                SpeedConstraint.preferred(
+                    waypoint_index,
+                    SpeedTarget(
+                        "TAS", float(qar.reference.true_airspeed_mps[source_index])
+                    ),
+                )
+                for waypoint_index, source_index in enumerate(indices[1:-1], start=1)
+            ),
             maximum_climb_flight_path_angle_rad=math.radians(6.0),
             maximum_descent_flight_path_angle_rad=math.radians(4.0),
             maximum_acceleration_mps2=0.5,
             maximum_deceleration_mps2=0.5,
-        )
+        ),
+        static_temperature_k=qar.static_temperature_k[indices],
     )
     environment = SpatialEnvironmentProfile(
         along_path_m=route.waypoint_along_path_m,
@@ -228,14 +256,22 @@ def _initial_trim_control(
     start = trajectory.intent.waypoints[0]
     reference = trajectory.sample(0.0)
     local_environment = environment.sample(0.0)
+    air_path = wind_corrected_path(
+        ground_track_rad=reference.ground_track_rad,
+        ground_path_angle_rad=reference.ground_path_angle_rad,
+        true_airspeed_mps=reference.true_airspeed_mps,
+        wind_north_mps=local_environment.wind_north_mps,
+        wind_east_mps=local_environment.wind_east_mps,
+        wind_down_mps=local_environment.wind_down_mps,
+    )
     state = np.array(
         [
-            start.true_airspeed_mps,
-            reference.flight_path_angle_rad,
+            trajectory.waypoint_true_airspeed_mps[0],
+            air_path.air_flight_path_angle_rad,
             trajectory.segment_track_rad[0],
             start.north_m,
             start.east_m,
-            start.altitude_m,
+            trajectory.waypoint_altitude_m[0],
             initial_mass_kg,
         ]
     )
@@ -243,8 +279,11 @@ def _initial_trim_control(
         plant=plant,
         state=state,
         reference_true_airspeed_mps=reference.true_airspeed_mps,
-        reference_true_airspeed_rate_mps2=reference.true_airspeed_rate_mps2,
-        reference_flight_path_angle_rad=reference.flight_path_angle_rad,
+        reference_true_airspeed_rate_mps2=(
+            reference.true_airspeed_gradient_per_m
+            * air_path.horizontal_ground_speed_mps
+        ),
+        reference_flight_path_angle_rad=air_path.air_flight_path_angle_rad,
         reference_flight_path_angle_rate_rad_s=0.0,
         reference_heading_rad=reference.ground_track_rad,
         reference_heading_rate_rad_s=0.0,
@@ -255,7 +294,7 @@ def _initial_trim_control(
         wind_down_mps=local_environment.wind_down_mps,
     )
     effective_alpha = plant.forces(state, command.control).angle_of_attack_rad
-    return reference.flight_path_angle_rad, command.control, effective_alpha
+    return air_path.air_flight_path_angle_rad, command.control, effective_alpha
 
 
 def _point_to_polyline_distance(

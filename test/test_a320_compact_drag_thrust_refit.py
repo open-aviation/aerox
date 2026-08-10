@@ -10,13 +10,9 @@ def test_compact_drag_refit_records_support_gain_and_frozen_hold():
     document = yaml.safe_load(
         (ROOT / "docs/modeling/a320-compact-drag-thrust-refit.yml").read_text()
     )
-    metrics = pd.read_csv(
-        ROOT / "docs/modeling/a320-compact-drag-thrust-metrics.csv"
-    )
+    metrics = pd.read_csv(ROOT / "docs/modeling/a320-compact-drag-thrust-metrics.csv")
 
-    assert document["status"] == (
-        "compact-candidate-held-by-thrust-fuel-support-gate"
-    )
+    assert document["status"] == ("compact-candidate-held-by-thrust-fuel-support-gate")
     assert document["leakage_control"]["drag_fit_uses_qar"] is False
     assert document["leakage_control"]["fuel_flow_used_for_fit_or_selection"] is False
     assert document["coverage"]["all"]["compact_support_fraction"] >= 0.99

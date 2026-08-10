@@ -15,7 +15,9 @@ def test_extension_panel_is_balanced_unused_and_response_blind():
         MODELING / "a320-vspaero-extension-confirmation-panel.csv",
         dtype={"recording": str},
     )
-    baseline_keys = set(zip(baseline["registration"], baseline["recording"], strict=True))
+    baseline_keys = set(
+        zip(baseline["registration"], baseline["recording"], strict=True)
+    )
     panel_keys = set(zip(panel["registration"], panel["recording"], strict=True))
     assert not baseline_keys & panel_keys
     assert panel.groupby("registration").size().to_dict() == {"TAIL-A": 3, "TAIL-B": 3}
@@ -25,7 +27,9 @@ def test_extension_panel_is_balanced_unused_and_response_blind():
 
 
 def test_mach_extension_records_failed_original_gate_without_drag_claim():
-    document = yaml.safe_load((MODELING / "a320-vspaero-mach-extension.yml").read_text())
+    document = yaml.safe_load(
+        (MODELING / "a320-vspaero-mach-extension.yml").read_text()
+    )
     assert document["status"] == "numerical-mach-extension-held"
     assert not document["gates"]["cl_alpha_relative_change_from_mach_078"]["passed"]
     assert not document["decision"]["release_vspaero_drag"]

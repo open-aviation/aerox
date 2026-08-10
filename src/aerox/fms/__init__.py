@@ -5,8 +5,20 @@ from aerox.fms.planning.econ_cruise import (
     EconomyCruisePoint,
 )
 from aerox.fms.environment import EnvironmentSample, SpatialEnvironmentProfile
-from aerox.fms.intent import FlightIntent, Waypoint
-from aerox.fms.performance import FuelFlowModel, LocalPerformanceLimits, ProfilePerformance
+from aerox.fms.intent import (
+    AltitudeConstraint,
+    CruiseTarget,
+    FlightIntent,
+    LateralWaypoint,
+    SpeedConstraint,
+    SpeedTarget,
+    TerminalConstraint,
+)
+from aerox.fms.performance import (
+    FuelFlowModel,
+    LocalPerformanceLimits,
+    ProfilePerformance,
+)
 from aerox.fms.planning.advisory import plan_advisory_energy_profile
 from aerox.fms.planning.energy import plan_energy_shaped_profile
 from aerox.fms.planning.feasibility import (
@@ -31,7 +43,6 @@ from aerox.fms.route import (
     SpatialTrajectory,
     SpatialTrajectoryGrid,
     SpatialTrajectorySample,
-    inherit_state_profile,
 )
 from aerox.fms.planning.vertical import (
     CASMachClimbSchedule,
@@ -44,16 +55,19 @@ from aerox.fms.planning.vertical import (
 
 __all__ = [
     "AFFINE_SELECTOR_FEATURES",
+    "AltitudeConstraint",
     "PHASE_CONSTANT_FEATURES",
     "CASMachClimbSchedule",
     "CASMachDescentSchedule",
     "ContinuousSpeedMassPlan",
     "CruiseSpeedStrategy",
+    "CruiseTarget",
     "EnvironmentSample",
     "EconomyCruiseOptimizer",
     "EconomyCruisePoint",
     "FlightIntent",
     "FuelFlowModel",
+    "LateralWaypoint",
     "LocalPerformanceLimits",
     "ModeConditionedSpeedIntent",
     "ProfilePerformance",
@@ -63,11 +77,12 @@ __all__ = [
     "SpatialTrajectory",
     "SpatialTrajectoryGrid",
     "SpatialTrajectorySample",
+    "SpeedConstraint",
     "SpeedIntentPrediction",
+    "SpeedTarget",
+    "TerminalConstraint",
     "TopOfClimbPlan",
     "TopOfDescentPlan",
-    "Waypoint",
-    "inherit_state_profile",
     "plan_advisory_energy_profile",
     "plan_continuous_speed_mass_profile",
     "plan_energy_shaped_profile",

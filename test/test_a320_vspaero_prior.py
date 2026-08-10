@@ -74,7 +74,7 @@ def test_nominal_result_has_expected_stable_transport_signs():
 def test_openvsp_model_is_inspectable_and_contains_all_lifting_surfaces():
     text = MODEL.read_text()
 
-    assert text.startswith("<?xml version=\"1.0\"?>")
+    assert text.startswith('<?xml version="1.0"?>')
     assert "A320_Main_Wing" in text
     assert "A320_Horizontal_Tail" in text
     assert "A320_Vertical_Tail" in text

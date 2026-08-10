@@ -13,9 +13,7 @@ def test_a320_drag_reconciliation_selects_bounded_candidate_without_release() ->
     surface = pd.read_csv(
         ROOT / "docs/modeling/a320-drag-source-reconciliation-surface.csv"
     )
-    qar = pd.read_csv(
-        ROOT / "docs/modeling/a320-drag-source-reconciliation-qar.csv"
-    )
+    qar = pd.read_csv(ROOT / "docs/modeling/a320-drag-source-reconciliation-qar.csv")
 
     assert document["status"] == "poll-schumann-leading-candidate-default-held"
     assert document["decision"]["candidate_implemented"] is True
@@ -25,9 +23,12 @@ def test_a320_drag_reconciliation_selects_bounded_candidate_without_release() ->
         "mach": [0.0, 0.82],
         "reynolds_number_is_explicit": True,
     }
-    assert document["source_assessment"]["openap_surveillance"]["distribution"][
-        "sample_count"
-    ] == 92
+    assert (
+        document["source_assessment"]["openap_surveillance"]["distribution"][
+            "sample_count"
+        ]
+        == 92
+    )
     assert (
         document["source_assessment"]["openap_surveillance"]["distribution"][
             "cd0_k_correlation"
@@ -43,10 +44,13 @@ def test_a320_drag_reconciliation_selects_bounded_candidate_without_release() ->
         ]
     )
     representative = document["representative_comparison"]
-    assert abs(
-        representative["obert_krull_total_drag_coefficient"]
-        - representative["poll_schumann"]["total_drag_coefficient"]
-    ) < 2.0e-4
+    assert (
+        abs(
+            representative["obert_krull_total_drag_coefficient"]
+            - representative["poll_schumann"]["total_drag_coefficient"]
+        )
+        < 2.0e-4
+    )
     assert document["qar_cruise_comparison"]["sample_count"] == len(qar) == 953
     assert qar["poll_minus_current_drag_n"].median() < -3_000.0
     assert surface["poll_schumann_drag_coefficient"].notna().all()

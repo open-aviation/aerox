@@ -119,12 +119,12 @@ def simulate_fms_trajectory_zoh(
     if not np.isfinite(capture_radius) or capture_radius <= 0.0:
         raise ValueError("destination capture radius must be finite and positive")
     speed0 = (
-        start.true_airspeed_mps
+        route.waypoint_true_airspeed_mps[0]
         if initial_true_airspeed_mps is None
         else initial_true_airspeed_mps
     )
     altitude0 = (
-        start.altitude_m
+        route.waypoint_altitude_m[0]
         if initial_pressure_altitude_m is None
         else initial_pressure_altitude_m
     )

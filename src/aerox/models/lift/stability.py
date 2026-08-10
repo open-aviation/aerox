@@ -181,4 +181,3 @@ class TabulatedStaticStabilityPrior:
 
 
 __all__ = ["StaticAerodynamicCoefficients", "TabulatedStaticStabilityPrior"]
-

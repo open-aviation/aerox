@@ -22,9 +22,7 @@ def test_isa_reference_states_at_sea_level_and_tropopause():
         state.pressure_pa, [101_324.9985, 22_625.7912], rtol=2e-6
     )
     np.testing.assert_allclose(state.temperature_k, [288.15, 216.65], atol=1e-12)
-    np.testing.assert_allclose(
-        state.density_kg_m3, [1.225, 0.36381717], rtol=2e-5
-    )
+    np.testing.assert_allclose(state.density_kg_m3, [1.225, 0.36381717], rtol=2e-5)
 
 
 def test_supplied_temperature_changes_density_but_not_pressure():
@@ -67,9 +65,7 @@ def test_pressure_altitude_airdata_round_trip_with_non_isa_temperature():
     temperature = isa_atmosphere(altitude).temperature_k + 12.0
 
     tas = true_airspeed_from_calibrated_airspeed(cas, altitude, temperature)
-    recovered_cas = calibrated_airspeed_from_true_airspeed(
-        tas, altitude, temperature
-    )
+    recovered_cas = calibrated_airspeed_from_true_airspeed(tas, altitude, temperature)
     mach = mach_from_true_airspeed(tas, altitude, temperature)
 
     np.testing.assert_allclose(recovered_cas, cas, rtol=1e-12, atol=1e-10)
