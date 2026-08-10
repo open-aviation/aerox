@@ -19,13 +19,12 @@ if str(PROJECT_ROOT) not in sys.path:
 
 from aerox.fms import (
     FlightIntent,
-    FMSTrajectoryResult,
-    SpatialPathGuidance,
     SpatialTrajectory,
     Waypoint,
-    simulate_fms_trajectory_zoh,
 )
+from aerox.guidance import SpatialPathGuidance
 from aerox.models.atmosphere import atmosphere_at_pressure_altitude, isa_atmosphere
+from aerox.simulation import FMSSimulationResult, simulate_fms_trajectory_zoh
 from tools.generate_a320_comparison_trajectories import _build_plants, _controller
 
 UPDATED = "2026-08-06"
@@ -152,14 +151,13 @@ def _run(
     *,
     position_feedback: bool,
     wind_correction: bool,
-) -> FMSTrajectoryResult:
+) -> FMSSimulationResult:
     guidance = SpatialPathGuidance(
         route,
         lookahead_time_s=45.0,
         minimum_lookahead_m=2_500.0,
         maximum_lookahead_m=10_000.0,
         maximum_heading_command_rate_rad_s=math.radians(1.0),
-        command_step_s=COMMAND_STEP_S,
         position_feedback=position_feedback,
         wind_correction=wind_correction,
     )
@@ -183,7 +181,7 @@ def _run(
     )
 
 
-def _mach(result: FMSTrajectoryResult) -> np.ndarray:
+def _mach(result: FMSSimulationResult) -> np.ndarray:
     trajectory = result.trajectory
     temperature = float(
         isa_atmosphere(
@@ -197,7 +195,7 @@ def _mach(result: FMSTrajectoryResult) -> np.ndarray:
     return trajectory.true_airspeed_mps / atmosphere.speed_of_sound_mps
 
 
-def _metrics(result: FMSTrajectoryResult) -> dict[str, Any]:
+def _metrics(result: FMSSimulationResult) -> dict[str, Any]:
     route = result.planned_trajectory
     destination = route.intent.waypoints[-1]
     trajectory = result.trajectory
@@ -315,7 +313,7 @@ def _gates(fms: dict[str, Any], baseline: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def _table(result: FMSTrajectoryResult, scenario: str) -> pd.DataFrame:
+def _table(result: FMSSimulationResult, scenario: str) -> pd.DataFrame:
     trajectory = result.trajectory
     return pd.DataFrame(
         {
@@ -364,13 +362,18 @@ def _style_axis(axis: Any, label: str) -> None:
 
 
 def _plot_comparison(
-    fms: FMSTrajectoryResult,
-    baseline: FMSTrajectoryResult,
+    fms: FMSSimulationResult,
+    baseline: FMSSimulationResult,
     prefix: Path,
 ) -> None:
     import matplotlib.pyplot as plt
 
-    along, north, east, altitude, speed, _ = fms.planned_trajectory.sampled(250.0)
+    sampled_route = fms.planned_trajectory.sample_grid(250.0)
+    along = sampled_route.along_path_m
+    north = sampled_route.north_m
+    east = sampled_route.east_m
+    altitude = sampled_route.altitude_m
+    speed = sampled_route.true_airspeed_mps
     colors = {"plan": "#000000", "fms": "#0072B2", "baseline": "#D55E00"}
     fig, axes = plt.subplots(2, 3, figsize=(12.2, 7.2), constrained_layout=True)
     axes[0, 0].plot(
@@ -529,7 +532,7 @@ def _plot_comparison(
     plt.close(fig)
 
 
-def _plot_controls(fms: FMSTrajectoryResult, prefix: Path) -> None:
+def _plot_controls(fms: FMSSimulationResult, prefix: Path) -> None:
     import matplotlib.pyplot as plt
 
     trajectory = fms.trajectory

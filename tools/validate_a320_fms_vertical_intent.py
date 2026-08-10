@@ -20,28 +20,28 @@ if str(PROJECT_ROOT) not in sys.path:
 
 from aerox import aero
 from aerox.fms import (
-    PointMassProfilePerformance,
     CASMachClimbSchedule,
     CASMachDescentSchedule,
     CruiseSpeedStrategy,
     FlightIntent,
     ModeConditionedSpeedIntent,
-    PressureScaledMinimumThrust,
     SpatialEnvironmentProfile,
-    SpatialPathGuidance,
     SpatialTrajectory,
     Waypoint,
     plan_continuous_speed_mass_profile,
     plan_feasible_profile,
     plan_top_of_climb,
     plan_top_of_descent,
-    simulate_fms_trajectory_zoh,
 )
+from aerox.guidance import SpatialPathGuidance
+from aerox.modeling import PointMassProfilePerformance
 from aerox.models.atmosphere import (
     calibrated_airspeed_from_true_airspeed,
     mach_from_true_airspeed,
     true_airspeed_from_mach,
 )
+from aerox.models.thrust import PressureScaledMinimumThrust
+from aerox.simulation import simulate_fms_trajectory_zoh
 from tools.generate_a320_comparison_trajectories import _controller
 from tools.replay_a320_point_mass import _read_fuel_model
 from tools.validate_a320_fms_long_range_qar import _history, _load_holdout
@@ -59,7 +59,6 @@ from tools.validate_a320_fms_qar_intent import (
 UPDATED = "2026-08-08"
 FT_TO_M = 0.3048
 KNOT_TO_MPS = 0.5144444444444445
-COMMAND_STEP_S = 1.0
 CLIMB_ENERGY_CAPACITY_FRACTION = 0.8
 DESCENT_ENERGY_CAPACITY_FRACTION = 0.95
 BOUNDARY_SPEED_BLEND_DISTANCE_M = 25_000.0
@@ -439,7 +438,12 @@ def _planned_profile_table(
     tod_s: float,
     environment: SpatialEnvironmentProfile,
 ) -> pd.DataFrame:
-    s, north, east, altitude, speed, _ = route.sampled(spacing_m=500.0)
+    sampled_route = route.sample_grid(spacing_m=500.0)
+    s = sampled_route.along_path_m
+    north = sampled_route.north_m
+    east = sampled_route.east_m
+    altitude = sampled_route.altitude_m
+    speed = sampled_route.true_airspeed_mps
     time = np.r_[0.0, np.cumsum(2.0 * np.diff(s) / (speed[:-1] + speed[1:]))]
     forecast_temperature = np.array(
         [environment.sample(float(distance)).static_temperature_k for distance in s]
@@ -1066,7 +1070,6 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         minimum_lookahead_m=2_500.0,
         maximum_lookahead_m=10_000.0,
         maximum_heading_command_rate_rad_s=math.radians(1.0),
-        command_step_s=COMMAND_STEP_S,
     )
     controller = _controller()
     initial_gamma, initial_control, _ = _initial_trim_control(

@@ -3,8 +3,6 @@ import pytest
 
 from aerox import aero
 from aerox.fms import (
-    PointMassProfilePerformance,
-    ConstantMaximumThrust,
     CruiseSpeedStrategy,
     FlightIntent,
     ModeConditionedSpeedIntent,
@@ -13,9 +11,11 @@ from aerox.fms import (
     Waypoint,
     plan_continuous_speed_mass_profile,
 )
-from aerox.models import EffectiveLiftMap, ParabolicDragPolar
+from aerox.modeling import PointMassProfilePerformance
 from aerox.modeling.dynamics import PointMassModel
+from aerox.models import EffectiveLiftMap, ParabolicDragPolar
 from aerox.models.openap import OpenAPFuelFlowPrior
+from aerox.models.thrust import ConstantMaximumThrust
 
 
 class _LinearFuelFlow:

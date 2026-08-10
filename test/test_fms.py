@@ -3,22 +3,29 @@ import pytest
 
 from aerox.fms import (
     FlightIntent,
-    PressureScaledMinimumThrust,
     SpatialEnvironmentProfile,
-    SpatialPathGuidance,
     SpatialTrajectory,
     Waypoint,
-    ground_track_to_air_heading,
     inherit_state_profile,
-    simulate_fms_trajectory_zoh,
 )
-from aerox.models import EffectiveLiftMap, ParabolicDragPolar
+from aerox.guidance import (
+    InverseFlightMechanicsController,
+    SpatialPathGuidance,
+    ground_track_to_air_heading,
+)
+from aerox.navigation import (
+    ground_path_angle_from_air_motion,
+    horizontal_ground_speed_mps,
+    wind_corrected_path,
+)
 from aerox.modeling.dynamics import (
     PitchBankThrustInput,
     PointMassModel,
 )
-from aerox.guidance import TrajectoryTrackingController
+from aerox.models import EffectiveLiftMap, ParabolicDragPolar
 from aerox.models.openap import OpenAPFuelFlowPrior
+from aerox.models.thrust import PressureScaledMinimumThrust
+from aerox.simulation import simulate_fms_trajectory_zoh
 
 
 def _route() -> SpatialTrajectory:
@@ -133,6 +140,73 @@ def test_wind_correction_rejects_infeasible_crosswind() -> None:
         ground_track_to_air_heading(0.0, 50.0, 0.0, 60.0)
 
 
+def test_3d_wind_correction_reconstructs_ground_velocity() -> None:
+    track = np.deg2rad(38.0)
+    ground_path_angle = np.deg2rad(3.2)
+    true_airspeed = 205.0
+    wind = np.array([18.0, -27.0, 4.0])
+
+    solution = wind_corrected_path(
+        ground_track_rad=track,
+        ground_path_angle_rad=ground_path_angle,
+        true_airspeed_mps=true_airspeed,
+        wind_north_mps=wind[0],
+        wind_east_mps=wind[1],
+        wind_down_mps=wind[2],
+    )
+    air_velocity = true_airspeed * np.array(
+        [
+            np.cos(solution.air_flight_path_angle_rad)
+            * np.cos(solution.air_heading_rad),
+            np.cos(solution.air_flight_path_angle_rad)
+            * np.sin(solution.air_heading_rad),
+            -np.sin(solution.air_flight_path_angle_rad),
+        ]
+    )
+    ground_velocity = air_velocity + wind
+
+    assert np.linalg.norm(air_velocity) == pytest.approx(true_airspeed)
+    assert np.arctan2(ground_velocity[1], ground_velocity[0]) == pytest.approx(track)
+    assert np.arctan2(-ground_velocity[2], np.hypot(*ground_velocity[:2])) == (
+        pytest.approx(ground_path_angle)
+    )
+    assert np.hypot(*ground_velocity[:2]) == pytest.approx(
+        solution.horizontal_ground_speed_mps
+    )
+
+
+def test_air_to_ground_path_conversion_inverts_wind_correction() -> None:
+    track = np.deg2rad(-20.0)
+    requested_ground_angle = np.deg2rad(-2.5)
+    solution = wind_corrected_path(
+        ground_track_rad=track,
+        ground_path_angle_rad=requested_ground_angle,
+        true_airspeed_mps=180.0,
+        wind_north_mps=-12.0,
+        wind_east_mps=21.0,
+        wind_down_mps=-3.0,
+    )
+
+    reconstructed = ground_path_angle_from_air_motion(
+        ground_track_rad=track,
+        air_flight_path_angle_rad=solution.air_flight_path_angle_rad,
+        true_airspeed_mps=180.0,
+        wind_north_mps=-12.0,
+        wind_east_mps=21.0,
+        wind_down_mps=-3.0,
+    )
+
+    assert reconstructed == pytest.approx(requested_ground_angle)
+
+
+def test_horizontal_ground_speed_uses_flight_path_angle_and_along_wind() -> None:
+    groundspeed = horizontal_ground_speed_mps(
+        np.array([100.0]), np.array([np.deg2rad(60.0)]), np.array([10.0])
+    )
+
+    assert groundspeed[0] == pytest.approx(60.0)
+
+
 def test_guidance_looks_through_corner_and_progress_is_monotonic() -> None:
     guidance = SpatialPathGuidance(
         _route(),
@@ -145,11 +219,15 @@ def test_guidance_looks_through_corner_and_progress_is_monotonic() -> None:
         north_m=18_000.0,
         east_m=0.0,
         true_airspeed_mps=200.0,
+        flight_path_angle_rad=0.0,
+        elapsed_time_s=1.0,
     )
     after_backtracking_measurement = guidance.update(
         north_m=17_500.0,
         east_m=0.0,
         true_airspeed_mps=200.0,
+        flight_path_angle_rad=0.0,
+        elapsed_time_s=1.0,
     )
 
     assert before_corner.target_north_m == pytest.approx(20_000.0)
@@ -164,22 +242,25 @@ def test_guidance_rate_limits_polyline_corner_heading_command() -> None:
         minimum_lookahead_m=4_000.0,
         maximum_lookahead_m=4_000.0,
         maximum_heading_command_rate_rad_s=np.deg2rad(1.0),
-        command_step_s=1.0,
     )
     initial = guidance.update(
         north_m=0.0,
         east_m=0.0,
         true_airspeed_mps=200.0,
+        flight_path_angle_rad=0.0,
+        elapsed_time_s=0.25,
     )
     corner = guidance.update(
         north_m=18_000.0,
         east_m=0.0,
         true_airspeed_mps=200.0,
+        flight_path_angle_rad=0.0,
+        elapsed_time_s=0.25,
     )
 
     assert initial.reference_air_heading_rad == pytest.approx(0.0)
     assert corner.reference_ground_track_rad == pytest.approx(np.pi / 4.0)
-    assert corner.reference_air_heading_rad == pytest.approx(np.deg2rad(1.0))
+    assert corner.reference_air_heading_rad == pytest.approx(np.deg2rad(0.25))
 
 
 def test_guidance_uses_shorter_profile_than_lateral_lookahead() -> None:
@@ -192,15 +273,26 @@ def test_guidance_uses_shorter_profile_than_lateral_lookahead() -> None:
         maximum_profile_lookahead_m=1_000.0,
     )
 
+    current_air_path_angle = np.deg2rad(3.0)
     target = guidance.update(
         north_m=10_000.0,
         east_m=0.0,
         true_airspeed_mps=200.0,
+        flight_path_angle_rad=current_air_path_angle,
+        elapsed_time_s=1.0,
     )
 
     assert target.target_along_path_m == pytest.approx(16_000.0)
-    assert target.profile_target_along_path_m == pytest.approx(11_000.0)
-    assert target.reference_altitude_m == pytest.approx(9_110.0)
+    expected_profile_target = 10_000.0 + min(
+        200.0 * np.cos(current_air_path_angle) * 5.0,
+        1_000.0,
+    )
+    assert target.profile_target_along_path_m == pytest.approx(
+        expected_profile_target
+    )
+    assert target.reference_altitude_m == pytest.approx(
+        9_000.0 + 0.01 * expected_profile_target
+    )
 
 
 def test_spatial_environment_interpolates_anchor_forecast() -> None:
@@ -233,7 +325,7 @@ def test_fms_initial_control_seeds_first_command_rate_bounds() -> None:
             c3=1.0,
         ),
     )
-    controller = TrajectoryTrackingController(
+    controller = InverseFlightMechanicsController(
         speed_error_gain_per_s=0.05,
         flight_path_angle_error_gain_per_s=0.25,
         heading_error_gain_per_s=0.08,
@@ -288,7 +380,7 @@ def test_fms_simulation_applies_conditioned_minimum_thrust() -> None:
             c3=1.0,
         ),
     )
-    controller = TrajectoryTrackingController(
+    controller = InverseFlightMechanicsController(
         speed_error_gain_per_s=0.05,
         flight_path_angle_error_gain_per_s=0.25,
         heading_error_gain_per_s=0.08,

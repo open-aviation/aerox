@@ -1,4 +1,4 @@
-"""Online spatial guidance and closed-loop FMS trajectory simulation."""
+"""Closed-loop composition of FMS targets, guidance, and aircraft dynamics."""
 
 from __future__ import annotations
 
@@ -8,196 +8,22 @@ import numpy as np
 from numpy.typing import NDArray
 
 from aerox.fms.environment import SpatialEnvironmentProfile
-from aerox.fms.profile import MaximumThrustModel, MinimumThrustModel
-from aerox.fms.trajectory import (
-    RouteProjection,
-    SpatialTrajectory,
-    ground_track_to_air_heading,
-)
+from aerox.fms.performance import MaximumThrustModel, MinimumThrustModel
+from aerox.fms.route import SpatialTrajectory
+from aerox.guidance.inverse import InverseFlightMechanicsController
+from aerox.guidance.path import SpatialPathGuidance
 from aerox.modeling.dynamics import (
     PitchBankThrustInput,
     PointMassModel,
     PointMassState,
     PointMassTrajectory,
 )
-from aerox.guidance import TrajectoryTrackingController
 
 FloatArray = NDArray[np.float64]
 
 
-def _wrapped_angle_delta(target_rad: float, actual_rad: float) -> float:
-    return float(
-        np.arctan2(np.sin(target_rad - actual_rad), np.cos(target_rad - actual_rad))
-    )
-
-
 @dataclass(frozen=True)
-class GuidanceTarget:
-    """One online reference generated from route progress and current state."""
-
-    projection: RouteProjection
-    progress_m: float
-    lookahead_distance_m: float
-    target_along_path_m: float
-    profile_target_along_path_m: float
-    target_north_m: float
-    target_east_m: float
-    reference_altitude_m: float
-    reference_true_airspeed_mps: float
-    reference_true_airspeed_rate_mps2: float
-    reference_flight_path_angle_rad: float
-    reference_ground_track_rad: float
-    reference_air_heading_rad: float
-    predicted_groundspeed_mps: float
-
-
-@dataclass
-class SpatialPathGuidance:
-    """Stateful, monotonic route-progress and look-ahead guidance law.
-
-    `position_feedback=False` and `wind_correction=False` define a transparent
-    route-leg-bearing baseline for comparisons. They are not recommended for
-    trajectory generation in wind.
-    """
-
-    trajectory: SpatialTrajectory
-    lookahead_time_s: float = 25.0
-    minimum_lookahead_m: float = 2_500.0
-    maximum_lookahead_m: float = 6_000.0
-    profile_lookahead_time_s: float = 5.0
-    maximum_profile_lookahead_m: float = 1_000.0
-    maximum_heading_command_rate_rad_s: float = np.deg2rad(1.0)
-    command_step_s: float = 1.0
-    position_feedback: bool = True
-    wind_correction: bool = True
-    _progress_m: float = 0.0
-    _previous_heading_command_rad: float | None = None
-
-    def __post_init__(self) -> None:
-        values = (
-            self.lookahead_time_s,
-            self.minimum_lookahead_m,
-            self.maximum_lookahead_m,
-            self.profile_lookahead_time_s,
-            self.maximum_profile_lookahead_m,
-            self.maximum_heading_command_rate_rad_s,
-            self.command_step_s,
-        )
-        if any(not np.isfinite(value) or value <= 0.0 for value in values):
-            raise ValueError("look-ahead settings must be finite and positive")
-        if self.minimum_lookahead_m > self.maximum_lookahead_m:
-            raise ValueError("minimum look-ahead must not exceed maximum look-ahead")
-
-    @property
-    def progress_m(self) -> float:
-        return self._progress_m
-
-    def reset(self, progress_m: float = 0.0) -> None:
-        if not np.isfinite(progress_m):
-            raise ValueError("progress must be finite")
-        self._progress_m = float(
-            np.clip(progress_m, 0.0, self.trajectory.total_distance_m)
-        )
-        self._previous_heading_command_rad = None
-
-    def update(
-        self,
-        *,
-        north_m: float,
-        east_m: float,
-        true_airspeed_mps: float,
-        wind_north_mps: float = 0.0,
-        wind_east_mps: float = 0.0,
-    ) -> GuidanceTarget:
-        """Update path progress and return the next state reference."""
-
-        active_segment = self.trajectory.segment_index_at(self._progress_m)
-        projection = self.trajectory.project(
-            north_m,
-            east_m,
-            first_segment_index=max(0, active_segment - 1),
-            final_segment_index=min(
-                active_segment + 1, len(self.trajectory.segment_length_m) - 1
-            ),
-        )
-        self._progress_m = max(self._progress_m, projection.along_path_m)
-        self._progress_m = min(self._progress_m, self.trajectory.total_distance_m)
-        lookahead = float(
-            np.clip(
-                true_airspeed_mps * self.lookahead_time_s,
-                self.minimum_lookahead_m,
-                self.maximum_lookahead_m,
-            )
-        )
-        target_along_path = min(
-            self._progress_m + lookahead, self.trajectory.total_distance_m
-        )
-        target = self.trajectory.sample(target_along_path)
-        profile_lookahead = min(
-            true_airspeed_mps * self.profile_lookahead_time_s,
-            self.maximum_profile_lookahead_m,
-        )
-        profile_target_along_path = min(
-            self._progress_m + profile_lookahead,
-            self.trajectory.total_distance_m,
-        )
-        profile_target = self.trajectory.sample(profile_target_along_path)
-        delta_north = target.north_m - north_m
-        delta_east = target.east_m - east_m
-        if self.position_feedback and np.hypot(delta_north, delta_east) > 1.0:
-            ground_track = float(np.arctan2(delta_east, delta_north))
-        else:
-            ground_track = self.trajectory.sample(self._progress_m).ground_track_rad
-        if self.wind_correction:
-            raw_air_heading, groundspeed = ground_track_to_air_heading(
-                ground_track,
-                target.true_airspeed_mps,
-                wind_north_mps,
-                wind_east_mps,
-            )
-        else:
-            raw_air_heading = ground_track
-            tangent = np.array([np.cos(ground_track), np.sin(ground_track)])
-            groundspeed = target.true_airspeed_mps + float(
-                np.dot(tangent, np.array([wind_north_mps, wind_east_mps]))
-            )
-        if self._previous_heading_command_rad is None:
-            air_heading = raw_air_heading
-        else:
-            maximum_change = (
-                self.maximum_heading_command_rate_rad_s * self.command_step_s
-            )
-            air_heading = self._previous_heading_command_rad + float(
-                np.clip(
-                    _wrapped_angle_delta(
-                        raw_air_heading, self._previous_heading_command_rad
-                    ),
-                    -maximum_change,
-                    maximum_change,
-                )
-            )
-            air_heading = float(np.arctan2(np.sin(air_heading), np.cos(air_heading)))
-        self._previous_heading_command_rad = air_heading
-        return GuidanceTarget(
-            projection=projection,
-            progress_m=self._progress_m,
-            lookahead_distance_m=lookahead,
-            target_along_path_m=target_along_path,
-            profile_target_along_path_m=profile_target_along_path,
-            target_north_m=target.north_m,
-            target_east_m=target.east_m,
-            reference_altitude_m=profile_target.altitude_m,
-            reference_true_airspeed_mps=profile_target.true_airspeed_mps,
-            reference_true_airspeed_rate_mps2=profile_target.true_airspeed_rate_mps2,
-            reference_flight_path_angle_rad=profile_target.flight_path_angle_rad,
-            reference_ground_track_rad=ground_track,
-            reference_air_heading_rad=air_heading,
-            predicted_groundspeed_mps=float(groundspeed),
-        )
-
-
-@dataclass(frozen=True)
-class FMSTrajectoryResult:
+class FMSSimulationResult:
     """Closed-loop plant trajectory plus node-aligned FMS diagnostics."""
 
     trajectory: PointMassTrajectory
@@ -238,7 +64,7 @@ class FMSTrajectoryResult:
 def simulate_fms_trajectory_zoh(
     *,
     plant: PointMassModel,
-    controller: TrajectoryTrackingController,
+    controller: InverseFlightMechanicsController,
     guidance: SpatialPathGuidance,
     maximum_time_s: float,
     static_temperature_k: float,
@@ -259,7 +85,7 @@ def simulate_fms_trajectory_zoh(
     maximum_thrust_model: MaximumThrustModel | None = None,
     minimum_thrust_model: MinimumThrustModel | None = None,
     initial_control: PitchBankThrustInput | None = None,
-) -> FMSTrajectoryResult:
+) -> FMSSimulationResult:
     """Generate FMS references online and propagate the physical plant.
 
     ``initial_control`` seeds the first command's pitch, bank, and thrust rate
@@ -280,6 +106,8 @@ def simulate_fms_trajectory_zoh(
         raise ValueError("simulation scalar inputs must be finite")
     if maximum_time_s <= 0.0 or command_step_s <= 0.0:
         raise ValueError("time horizon and command step must be positive")
+    if not isinstance(integration_rate_hz, int) or integration_rate_hz < 1:
+        raise ValueError("integration_rate_hz must be a positive integer")
     route = guidance.trajectory
     start = route.intent.waypoints[0]
     destination = route.intent.waypoints[-1]
@@ -318,7 +146,8 @@ def simulate_fms_trajectory_zoh(
         pressure_altitude_m=altitude0,
         mass_kg=initial_mass_kg,
     )
-    guidance.reset()
+    initial_projection = route.project(north0, east0)
+    guidance.reset(initial_projection.along_path_m)
     maximum_nodes = int(np.floor(maximum_time_s / command_step_s)) + 1
     time_values: list[float] = []
     states: list[FloatArray] = []
@@ -359,7 +188,14 @@ def simulate_fms_trajectory_zoh(
             current_wind_east_mps = wind_east_mps
             current_wind_down_mps = wind_down_mps
         else:
-            environment = environment_profile.sample(guidance.progress_m)
+            current_projection = guidance.project_position(
+                north_m=state.north_position_m,
+                east_m=state.east_position_m,
+            )
+            environment_distance = max(
+                guidance.progress_m, current_projection.along_path_m
+            )
+            environment = environment_profile.sample(environment_distance)
             current_temperature_k = environment.static_temperature_k
             current_wind_north_mps = environment.wind_north_mps
             current_wind_east_mps = environment.wind_east_mps
@@ -368,15 +204,20 @@ def simulate_fms_trajectory_zoh(
             north_m=state.north_position_m,
             east_m=state.east_position_m,
             true_airspeed_mps=state.true_airspeed_mps,
+            flight_path_angle_rad=state.flight_path_angle_rad,
+            elapsed_time_s=command_step_s,
             wind_north_mps=current_wind_north_mps,
             wind_east_mps=current_wind_east_mps,
+            wind_down_mps=current_wind_down_mps,
         )
         command = controller.command(
             plant=plant,
             state=state,
             reference_true_airspeed_mps=target.reference_true_airspeed_mps,
             reference_true_airspeed_rate_mps2=target.reference_true_airspeed_rate_mps2,
-            reference_flight_path_angle_rad=target.reference_flight_path_angle_rad,
+            reference_flight_path_angle_rad=(
+                target.reference_air_flight_path_angle_rad
+            ),
             # The moving spatial target is a state reference, not a measured
             # trajectory derivative. Differentiating it injects corner and
             # segment-transition impulses, so feedback performs capture while
@@ -417,6 +258,13 @@ def simulate_fms_trajectory_zoh(
                 true_airspeed_mps=state.true_airspeed_mps,
                 static_temperature_k=current_temperature_k,
             )
+            if (
+                not np.isfinite(conditioned_maximum_thrust)
+                or conditioned_maximum_thrust <= 0.0
+            ):
+                raise ValueError(
+                    "conditioned maximum thrust must be finite and positive"
+                )
         if conditioned_minimum_thrust >= conditioned_maximum_thrust:
             raise ValueError("conditioned maximum thrust must exceed minimum thrust")
         bounded_thrust = float(
@@ -504,7 +352,7 @@ def simulate_fms_trajectory_zoh(
         drag_n=np.asarray(drag),
         fuel_flow_kg_s=np.asarray(fuel_flow),
     )
-    return FMSTrajectoryResult(
+    return FMSSimulationResult(
         trajectory=trajectory,
         planned_trajectory=route,
         progress_m=np.asarray(progress),
@@ -526,3 +374,6 @@ def simulate_fms_trajectory_zoh(
         thrust_limited=np.asarray(thrust_limited, dtype=bool),
         completed=completed,
     )
+
+
+__all__ = ["FMSSimulationResult", "simulate_fms_trajectory_zoh"]

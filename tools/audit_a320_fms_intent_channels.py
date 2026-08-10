@@ -30,10 +30,10 @@ from aerox.flightdata.a320_qar import (
     raw_columns,
 )
 from aerox.fms import (
-    PointMassProfilePerformance,
     CASMachDescentSchedule,
     plan_top_of_descent,
 )
+from aerox.modeling import PointMassProfilePerformance
 from aerox.models.atmosphere import (
     calibrated_airspeed_from_true_airspeed,
     mach_from_true_airspeed,

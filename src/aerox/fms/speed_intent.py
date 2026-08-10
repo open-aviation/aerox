@@ -94,6 +94,31 @@ class SpeedIntentPrediction:
     active_kind: StringArray
     active_cas_equivalent_kts: FloatArray
 
+    def __post_init__(self) -> None:
+        numeric_names = (
+            "cas_target_kts",
+            "mach_target",
+            "unconstrained_crossover_altitude_ft",
+            "crossover_altitude_ft",
+            "active_cas_equivalent_kts",
+        )
+        numeric = {
+            name: np.asarray(getattr(self, name), dtype=float) for name in numeric_names
+        }
+        active_kind = np.asarray(self.active_kind, dtype=str)
+        shape = numeric["cas_target_kts"].shape
+        if (
+            len(shape) != 1
+            or any(array.shape != shape for array in numeric.values())
+            or active_kind.shape != shape
+            or any(np.any(~np.isfinite(array)) for array in numeric.values())
+            or not np.all(np.isin(active_kind, ("CAS", "MACH")))
+        ):
+            raise ValueError("speed-intent prediction arrays must be finite and aligned")
+        for name, array in numeric.items():
+            object.__setattr__(self, name, array)
+        object.__setattr__(self, "active_kind", active_kind)
+
 
 @dataclass(frozen=True)
 class ModeConditionedSpeedIntent:
@@ -121,6 +146,8 @@ class ModeConditionedSpeedIntent:
             raise ValueError("coefficient vector does not match model structure")
         if np.any(~np.isfinite(cas)) or np.any(~np.isfinite(mach)):
             raise ValueError("speed-intent coefficients must be finite")
+        object.__setattr__(self, "cas_coefficients", cas)
+        object.__setattr__(self, "mach_coefficients", mach)
         bounds = (
             self.minimum_cas_kts,
             self.maximum_cas_kts,
@@ -165,6 +192,22 @@ class ModeConditionedSpeedIntent:
         altitude_ft = np.asarray(pressure_altitude_ft, dtype=float)
         mass = np.asarray(mass_kg, dtype=float)
         phase_array = np.asarray(phase, dtype=str)
+
+        if not (
+            selected_cas.shape
+            == selected_mach_array.shape
+            == altitude_ft.shape
+            == mass.shape
+            == phase_array.shape
+        ):
+            raise ValueError("speed-intent prediction inputs must have equal shapes")
+        if (
+            selected_cas.ndim != 1
+            or np.any(
+                ~np.isfinite(selected_cas + selected_mach_array + altitude_ft + mass)
+            )
+        ):
+            raise ValueError("speed-intent prediction inputs must be finite vectors")
 
         if self.structure == "selector":
             cas_target = selected_cas.copy()

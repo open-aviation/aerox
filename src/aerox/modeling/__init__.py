@@ -1,4 +1,4 @@
-"""Model construction, inference, reconstruction, and simulation workflows."""
+"""Model construction, inference, and reconstruction workflows."""
 
 from .force_reconstruction import (
     TranslationalForces,
@@ -16,10 +16,12 @@ from .mode_inference import (
     InferredGuidanceModes,
     infer_guidance_modes,
 )
+from .profile_performance import PointMassProfilePerformance
 
 __all__ = [
     "GuidanceModeThresholds",
     "InferredGuidanceModes",
+    "PointMassProfilePerformance",
     "RobustLinearFit",
     "TranslationalForces",
     "centered_linear_derivative",

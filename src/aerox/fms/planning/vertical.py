@@ -1,4 +1,4 @@
-"""Vertical-intent speed schedules and energy-based top-of-descent planning."""
+"""Vertical-intent speed schedules and energy-based TOC/TOD planning."""
 
 from __future__ import annotations
 
@@ -8,16 +8,18 @@ from dataclasses import dataclass
 import numpy as np
 
 from aerox import aero
-from aerox.fms.profile import PointMassProfilePerformance
+from aerox.fms.performance import ProfilePerformance
 from aerox.models.atmosphere import (
+    G0,
     true_airspeed_from_calibrated_airspeed,
     true_airspeed_from_mach,
 )
 
-from .trajectory import FloatArray
+from ..route import FloatArray
 
 KNOT_TO_MPS = 0.5144444444444445
 FT_TO_M = 0.3048
+WindProfile = float | Callable[[FloatArray], FloatArray]
 
 
 def _altitude_nodes(
@@ -33,6 +35,142 @@ def _altitude_nodes(
     for value in special_m:
         base = base[np.abs(base - value) > tolerance_m]
     return np.unique(np.r_[base, special_m, lower_m, upper_m])
+
+
+def _profile_at_altitude(
+    profile: WindProfile,
+    altitude_m: FloatArray,
+    *,
+    name: str,
+) -> FloatArray:
+    values = (
+        np.asarray(profile(altitude_m), dtype=float)
+        if callable(profile)
+        else np.asarray(profile, dtype=float)
+    )
+    try:
+        result = np.broadcast_to(values, altitude_m.shape)
+    except ValueError as error:
+        raise ValueError(f"{name} must broadcast over altitude nodes") from error
+    if np.any(~np.isfinite(result)):
+        raise ValueError(f"{name} must be finite")
+    return np.asarray(result, dtype=float)
+
+
+def _climb_ground_distance_steps(
+    *,
+    altitude_m: FloatArray,
+    true_airspeed_mps: FloatArray,
+    maximum_specific_excess_force_mps2: FloatArray,
+    maximum_air_path_angle_rad: FloatArray,
+    along_track_wind_mps: FloatArray,
+    cross_track_wind_mps: FloatArray,
+    wind_down_mps: FloatArray,
+) -> FloatArray:
+    altitude_step = np.diff(altitude_m)
+    specific_energy = G0 * altitude_m + 0.5 * true_airspeed_mps**2
+    energy_step = np.diff(specific_energy)
+    if np.any(energy_step <= 0.0):
+        raise ValueError("climb speed schedule must increase in energy with altitude")
+
+    mean_speed = 0.5 * (true_airspeed_mps[:-1] + true_airspeed_mps[1:])
+    mean_excess = 0.5 * (
+        maximum_specific_excess_force_mps2[:-1]
+        + maximum_specific_excess_force_mps2[1:]
+    )
+    mean_along_wind = 0.5 * (
+        along_track_wind_mps[:-1] + along_track_wind_mps[1:]
+    )
+    mean_crosswind = 0.5 * (
+        cross_track_wind_mps[:-1] + cross_track_wind_mps[1:]
+    )
+    mean_down_wind = 0.5 * (wind_down_mps[:-1] + wind_down_mps[1:])
+    interval_angle_limit = np.minimum(
+        maximum_air_path_angle_rad[:-1], maximum_air_path_angle_rad[1:]
+    )
+
+    energy_gain_rate = mean_speed * mean_excess - G0 * mean_down_wind
+    maximum_altitude_rate = (
+        mean_speed * np.sin(interval_angle_limit) - mean_down_wind
+    )
+    if np.any(energy_gain_rate <= 0.0):
+        raise ValueError("wind and maximum thrust cannot increase climb energy")
+    if np.any(maximum_altitude_rate <= 0.0):
+        raise ValueError("vertical wind prevents climb at the declared angle limit")
+
+    elapsed_time = np.maximum(
+        energy_step / energy_gain_rate,
+        altitude_step / maximum_altitude_rate,
+    )
+    required_air_vertical_speed = altitude_step / elapsed_time + mean_down_wind
+    horizontal_air_speed_squared = (
+        mean_speed**2 - required_air_vertical_speed**2
+    )
+    along_air_speed_squared = horizontal_air_speed_squared - mean_crosswind**2
+    if np.any(along_air_speed_squared <= 0.0):
+        raise ValueError("crosswind prevents climb along the requested route")
+    ground_speed = np.sqrt(along_air_speed_squared) + mean_along_wind
+    if np.any(ground_speed <= 0.0):
+        raise ValueError("headwind prevents positive route progress during climb")
+    return np.asarray(ground_speed * elapsed_time, dtype=float)
+
+
+def _descent_ground_distance_steps(
+    *,
+    altitude_m: FloatArray,
+    true_airspeed_mps: FloatArray,
+    minimum_specific_excess_force_mps2: FloatArray,
+    maximum_air_path_angle_rad: FloatArray,
+    along_track_wind_mps: FloatArray,
+    cross_track_wind_mps: FloatArray,
+    wind_down_mps: FloatArray,
+) -> FloatArray:
+    altitude_step = np.diff(altitude_m)
+    specific_energy = G0 * altitude_m + 0.5 * true_airspeed_mps**2
+    energy_step = np.diff(specific_energy)
+    if np.any(energy_step <= 0.0):
+        raise ValueError("descent speed schedule must increase in energy with altitude")
+
+    mean_speed = 0.5 * (true_airspeed_mps[:-1] + true_airspeed_mps[1:])
+    mean_excess = 0.5 * (
+        minimum_specific_excess_force_mps2[:-1]
+        + minimum_specific_excess_force_mps2[1:]
+    )
+    mean_along_wind = 0.5 * (
+        along_track_wind_mps[:-1] + along_track_wind_mps[1:]
+    )
+    mean_crosswind = 0.5 * (
+        cross_track_wind_mps[:-1] + cross_track_wind_mps[1:]
+    )
+    mean_down_wind = 0.5 * (wind_down_mps[:-1] + wind_down_mps[1:])
+    interval_angle_limit = np.minimum(
+        maximum_air_path_angle_rad[:-1], maximum_air_path_angle_rad[1:]
+    )
+
+    energy_loss_rate = -mean_speed * mean_excess + G0 * mean_down_wind
+    maximum_altitude_loss_rate = (
+        mean_speed * np.sin(interval_angle_limit) + mean_down_wind
+    )
+    if np.any(energy_loss_rate <= 0.0):
+        raise ValueError("wind and minimum thrust cannot decrease descent energy")
+    if np.any(maximum_altitude_loss_rate <= 0.0):
+        raise ValueError("vertical wind prevents descent at the declared angle limit")
+
+    elapsed_time = np.maximum(
+        energy_step / energy_loss_rate,
+        altitude_step / maximum_altitude_loss_rate,
+    )
+    required_air_vertical_speed = altitude_step / elapsed_time - mean_down_wind
+    horizontal_air_speed_squared = (
+        mean_speed**2 - required_air_vertical_speed**2
+    )
+    along_air_speed_squared = horizontal_air_speed_squared - mean_crosswind**2
+    if np.any(along_air_speed_squared <= 0.0):
+        raise ValueError("crosswind prevents descent along the requested route")
+    ground_speed = np.sqrt(along_air_speed_squared) + mean_along_wind
+    if np.any(ground_speed <= 0.0):
+        raise ValueError("headwind prevents positive route progress during descent")
+    return np.asarray(ground_speed * elapsed_time, dtype=float)
 
 
 @dataclass(frozen=True)
@@ -195,15 +333,22 @@ def plan_top_of_climb(
     initial_altitude_m: float,
     cruise_altitude_m: float,
     schedule: CASMachClimbSchedule,
-    performance: PointMassProfilePerformance,
+    performance: ProfilePerformance,
     mass_kg: float,
     altitude_step_m: float = 100.0,
-    along_track_wind_mps: float | Callable[[FloatArray], FloatArray] = 0.0,
+    along_track_wind_mps: WindProfile = 0.0,
+    cross_track_wind_mps: WindProfile = 0.0,
+    wind_down_mps: WindProfile = 0.0,
     static_temperature_offset_k: float = 0.0,
     speed_schedule_temperature_offset_k: float | None = None,
     climb_distance_reserve_m: float = 0.0,
 ) -> TopOfClimbPlan:
-    """Calculate TOC by forward integration of maximum-climb energy."""
+    """Calculate TOC by forward integration of maximum-climb energy.
+
+    Wind is supplied in route coordinates. Positive cross-track wind may act on
+    either side because only its squared crab penalty matters; vertical wind
+    follows the NED convention and is positive downward.
+    """
 
     scalar_values = (
         route_distance_m,
@@ -241,19 +386,15 @@ def plan_top_of_climb(
         (altitude >= initial_altitude_m) & (altitude <= cruise_altitude_m)
     ]
     speed = schedule.true_airspeed_mps(altitude, schedule_temperature_offset_k)
-    wind = (
-        np.asarray(along_track_wind_mps(altitude), dtype=float)
-        if callable(along_track_wind_mps)
-        else np.asarray(along_track_wind_mps, dtype=float)
+    along_wind = _profile_at_altitude(
+        along_track_wind_mps, altitude, name="along-track wind"
     )
-    try:
-        wind = np.broadcast_to(wind, altitude.shape)
-    except ValueError as error:
-        raise ValueError(
-            "along-track wind must broadcast over altitude nodes"
-        ) from error
-    if np.any(~np.isfinite(wind)):
-        raise ValueError("along-track wind must be finite")
+    crosswind = _profile_at_altitude(
+        cross_track_wind_mps, altitude, name="cross-track wind"
+    )
+    down_wind = _profile_at_altitude(
+        wind_down_mps, altitude, name="downward wind"
+    )
     temperature = np.asarray(aero.temperature(altitude), dtype=float) + float(
         static_temperature_offset_k
     )
@@ -272,23 +413,16 @@ def plan_top_of_climb(
     if np.any(maximum_excess <= 0.0):
         raise ValueError("maximum thrust must permit energy gain throughout climb")
 
-    specific_energy = 9.80665 * altitude + 0.5 * speed**2
-    energy_step = np.diff(specific_energy)
-    if np.any(energy_step <= 0.0):
-        raise ValueError("climb speed schedule must increase in energy with altitude")
-    gain_rate = 0.5 * (maximum_excess[:-1] + maximum_excess[1:])
-    air_distance_step = energy_step / gain_rate
-    mean_speed = 0.5 * (speed[:-1] + speed[1:])
-    mean_wind = 0.5 * (wind[:-1] + wind[1:])
-    ground_scale = (mean_speed + mean_wind) / mean_speed
-    if np.any(ground_scale <= 0.0):
-        raise ValueError("headwind magnitude must remain below scheduled airspeed")
-    energy_ground_step = air_distance_step * ground_scale
-
     maximum_climb = np.array([value.maximum_climb_angle_rad for value in local])
-    angle_air_step = np.diff(altitude) / np.tan(maximum_climb[:-1])
-    angle_ground_step = angle_air_step * ground_scale
-    ground_distance_step = np.maximum(energy_ground_step, angle_ground_step)
+    ground_distance_step = _climb_ground_distance_steps(
+        altitude_m=altitude,
+        true_airspeed_mps=speed,
+        maximum_specific_excess_force_mps2=maximum_excess,
+        maximum_air_path_angle_rad=maximum_climb,
+        along_track_wind_mps=along_wind,
+        cross_track_wind_mps=crosswind,
+        wind_down_mps=down_wind,
+    )
     distance_from_origin = np.r_[0.0, np.cumsum(ground_distance_step)]
     climb_distance = float(distance_from_origin[-1] + climb_distance_reserve_m)
     return TopOfClimbPlan(
@@ -309,10 +443,12 @@ def plan_top_of_descent(
     cruise_altitude_m: float,
     destination_altitude_m: float,
     schedule: CASMachDescentSchedule,
-    performance: PointMassProfilePerformance,
+    performance: ProfilePerformance,
     mass_kg: float,
     altitude_step_m: float = 100.0,
-    along_track_wind_mps: float | Callable[[FloatArray], FloatArray] = 0.0,
+    along_track_wind_mps: WindProfile = 0.0,
+    cross_track_wind_mps: WindProfile = 0.0,
+    wind_down_mps: WindProfile = 0.0,
     static_temperature_offset_k: float = 0.0,
     speed_schedule_temperature_offset_k: float | None = None,
     descent_distance_reserve_m: float = 0.0,
@@ -323,8 +459,10 @@ def plan_top_of_descent(
     the routine divides the schedule's energy change by the modeled magnitude
     of minimum-thrust specific excess force. This includes drag, speed changes,
     mass, CAS/Mach crossover, the 10,000-ft speed transition, and along-track
-    wind. The declared descent-angle cap remains an independent lower bound on
-    distance. A positive reserve can represent forecast/control uncertainty.
+    wind. Wind is supplied in route coordinates, with positive vertical wind
+    pointing downward. The declared air-relative descent-angle cap remains an
+    independent lower bound on distance. A positive reserve can represent
+    forecast/control uncertainty.
 
     Callers supply the descent planning assumption through either the scalar
     ``performance.minimum_thrust_n`` fallback or its condition-dependent
@@ -367,19 +505,15 @@ def plan_top_of_descent(
         (altitude >= destination_altitude_m) & (altitude <= cruise_altitude_m)
     ]
     speed = schedule.true_airspeed_mps(altitude, schedule_temperature_offset_k)
-    wind = (
-        np.asarray(along_track_wind_mps(altitude), dtype=float)
-        if callable(along_track_wind_mps)
-        else np.asarray(along_track_wind_mps, dtype=float)
+    along_wind = _profile_at_altitude(
+        along_track_wind_mps, altitude, name="along-track wind"
     )
-    try:
-        wind = np.broadcast_to(wind, altitude.shape)
-    except ValueError as error:
-        raise ValueError(
-            "along-track wind must broadcast over altitude nodes"
-        ) from error
-    if np.any(~np.isfinite(wind)):
-        raise ValueError("along-track wind must be finite")
+    crosswind = _profile_at_altitude(
+        cross_track_wind_mps, altitude, name="cross-track wind"
+    )
+    down_wind = _profile_at_altitude(
+        wind_down_mps, altitude, name="downward wind"
+    )
     temperature = np.asarray(aero.temperature(altitude), dtype=float) + float(
         static_temperature_offset_k
     )
@@ -398,23 +532,16 @@ def plan_top_of_descent(
     if np.any(minimum_excess >= 0.0):
         raise ValueError("minimum thrust must permit energy loss throughout descent")
 
-    specific_energy = 9.80665 * altitude + 0.5 * speed**2
-    energy_step = np.diff(specific_energy)
-    if np.any(energy_step <= 0.0):
-        raise ValueError("descent speed schedule must increase in energy with altitude")
-    loss_rate = -0.5 * (minimum_excess[:-1] + minimum_excess[1:])
-    air_distance_step = energy_step / loss_rate
-    mean_speed = 0.5 * (speed[:-1] + speed[1:])
-    mean_wind = 0.5 * (wind[:-1] + wind[1:])
-    ground_scale = (mean_speed + mean_wind) / mean_speed
-    if np.any(ground_scale <= 0.0):
-        raise ValueError("headwind magnitude must remain below scheduled airspeed")
-    energy_ground_step = air_distance_step * ground_scale
-
     maximum_descent = np.array([value.maximum_descent_angle_rad for value in local])
-    angle_air_step = np.diff(altitude) / np.tan(maximum_descent[:-1])
-    angle_ground_step = angle_air_step * ground_scale
-    ground_distance_step = np.maximum(energy_ground_step, angle_ground_step)
+    ground_distance_step = _descent_ground_distance_steps(
+        altitude_m=altitude,
+        true_airspeed_mps=speed,
+        minimum_specific_excess_force_mps2=minimum_excess,
+        maximum_air_path_angle_rad=maximum_descent,
+        along_track_wind_mps=along_wind,
+        cross_track_wind_mps=crosswind,
+        wind_down_mps=down_wind,
+    )
     distance_to_destination = np.r_[0.0, np.cumsum(ground_distance_step)]
     descent_distance = float(distance_to_destination[-1] + descent_distance_reserve_m)
     tod = float(route_distance_m - descent_distance)

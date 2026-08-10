@@ -1,14 +1,14 @@
 import numpy as np
 
 from aerox import aero
-from aerox.models import EffectiveLiftMap, ParabolicDragPolar
-from aerox.modeling.dynamics import PointMassModel
 from aerox.guidance import (
-    TrajectoryTrackingController,
+    InverseFlightMechanicsController,
     TrajectoryReference,
-    simulate_trajectory_tracking_zoh,
 )
+from aerox.modeling.dynamics import PointMassModel
+from aerox.models import EffectiveLiftMap, ParabolicDragPolar
 from aerox.models.openap import OpenAPFuelFlowPrior
+from aerox.simulation import simulate_reference_tracking_zoh
 
 
 def _plant() -> PointMassModel:
@@ -26,8 +26,8 @@ def _plant() -> PointMassModel:
     )
 
 
-def _controller() -> TrajectoryTrackingController:
-    return TrajectoryTrackingController(
+def _controller() -> InverseFlightMechanicsController:
+    return InverseFlightMechanicsController(
         speed_error_gain_per_s=0.05,
         flight_path_angle_error_gain_per_s=0.25,
         heading_error_gain_per_s=0.08,
@@ -62,7 +62,7 @@ def _reference(time: np.ndarray, *, heading_rad: np.ndarray | None = None):
 
 def test_level_reference_converges_from_state_errors():
     time = np.arange(0.0, 121.0)
-    result = simulate_trajectory_tracking_zoh(
+    result = simulate_reference_tracking_zoh(
         plant=_plant(),
         controller=_controller(),
         reference=_reference(time),
@@ -87,7 +87,7 @@ def test_smooth_heading_reference_generates_bounded_bank_and_turn():
     phase = np.clip((time - 20.0) / 80.0, 0.0, 1.0)
     smooth = 10.0 * phase**3 - 15.0 * phase**4 + 6.0 * phase**5
     reference = _reference(time, heading_rad=np.deg2rad(30.0) * smooth)
-    result = simulate_trajectory_tracking_zoh(
+    result = simulate_reference_tracking_zoh(
         plant=_plant(),
         controller=_controller(),
         reference=reference,
@@ -134,8 +134,8 @@ def test_tracking_supports_explicit_guidance_mass_mismatch():
         static_temperature_k=aero.T0,
         initial_mass_kg=60_000.0,
     )
-    nominal = simulate_trajectory_tracking_zoh(**common)
-    biased = simulate_trajectory_tracking_zoh(
+    nominal = simulate_reference_tracking_zoh(**common)
+    biased = simulate_reference_tracking_zoh(
         **common,
         guidance_plant=_plant(),
         guidance_mass_scale=0.9,
@@ -150,4 +150,4 @@ def test_tracking_supports_explicit_guidance_mass_mismatch():
     )
 
     with np.testing.assert_raises(ValueError):
-        simulate_trajectory_tracking_zoh(**common, guidance_mass_scale=0.0)
+        simulate_reference_tracking_zoh(**common, guidance_mass_scale=0.0)

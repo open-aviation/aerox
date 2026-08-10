@@ -27,20 +27,19 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from aerox import load_aircraft
-from aerox.models.drag import build_reference_drag_polar
+from aerox.guidance import (
+    TrajectoryReference,
+)
+from aerox.modeling.dynamics import PointMassModel
+from aerox.modeling.dynamics.kinematics import differentiate_wgs84_intervals
 from aerox.models import (
     GuardedHybridLiftModel,
     ParabolicDragPolar,
     TabulatedLiftSurface,
 )
 from aerox.models.atmosphere import atmosphere_at_pressure_altitude
-from aerox.modeling.dynamics import PointMassModel
-from aerox.guidance import (
-    TrajectoryTrackingResult,
-    TrajectoryReference,
-    simulate_trajectory_tracking_zoh,
-)
-from aerox.modeling.dynamics.kinematics import differentiate_wgs84_intervals
+from aerox.models.drag import build_reference_drag_polar
+from aerox.simulation import TrackingSimulationResult, simulate_reference_tracking_zoh
 from tools.calibrate_a320_effective_thrust import (
     _read_tas_scale,
     _read_vertical_calibration,
@@ -125,7 +124,7 @@ class ScaledAttitudeLiftModel:
 @dataclass(frozen=True)
 class ScenarioResult:
     scenario: RobustScenario
-    tracking: TrajectoryTrackingResult
+    tracking: TrackingSimulationResult
     metrics: dict[str, float | bool]
 
 
@@ -288,7 +287,7 @@ def _wrapped_error(target: np.ndarray, actual: np.ndarray) -> np.ndarray:
 
 
 def _metrics(
-    tracking: TrajectoryTrackingResult,
+    tracking: TrackingSimulationResult,
     qar: QARGuidanceReference,
 ) -> dict[str, float | bool]:
     trajectory = tracking.trajectory
@@ -356,7 +355,7 @@ def _run_scenario(
         ),
         fuel_flow_prior=fuel_model,
     )
-    tracking = simulate_trajectory_tracking_zoh(
+    tracking = simulate_reference_tracking_zoh(
         plant=actual_plant,
         guidance_plant=nominal_plant,
         guidance_mass_scale=scenario.guidance_mass_scale,

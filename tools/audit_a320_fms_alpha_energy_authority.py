@@ -18,13 +18,12 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from aerox.fms import (
-    PointMassProfilePerformance,
-    SpatialPathGuidance,
     plan_energy_shaped_profile,
-    simulate_fms_trajectory_zoh,
 )
-from aerox.models.atmosphere import atmosphere_at_pressure_altitude
-from aerox.models.atmosphere import G0
+from aerox.guidance import SpatialPathGuidance
+from aerox.modeling import PointMassProfilePerformance
+from aerox.models.atmosphere import G0, atmosphere_at_pressure_altitude
+from aerox.simulation import simulate_fms_trajectory_zoh
 from tools.generate_a320_comparison_trajectories import _controller
 from tools.validate_a320_fms_profile_feasibility import _load_climb_thrust_ceiling
 from tools.validate_a320_fms_qar_intent import (
@@ -178,7 +177,6 @@ def _build_rollout(args: argparse.Namespace) -> tuple[Any, ...]:
         minimum_lookahead_m=2_500.0,
         maximum_lookahead_m=10_000.0,
         maximum_heading_command_rate_rad_s=math.radians(1.0),
-        command_step_s=1.0,
     )
     controller = _controller()
     result = simulate_fms_trajectory_zoh(
@@ -238,7 +236,7 @@ def _diagnostics(
     profile_altitude = np.array([sample.altitude_m for sample in profile_samples])
     profile_speed = np.array([sample.true_airspeed_mps for sample in profile_samples])
     profile_gamma = np.array(
-        [sample.flight_path_angle_rad for sample in profile_samples]
+        [sample.ground_path_angle_rad for sample in profile_samples]
     )
     profile_acceleration = np.array(
         [sample.true_airspeed_rate_mps2 for sample in profile_samples]

@@ -3,12 +3,10 @@ import pytest
 
 from aerox import aero
 from aerox.fms import (
-    PointMassProfilePerformance,
     CASMachClimbSchedule,
     CASMachDescentSchedule,
-    ConstantMaximumThrust,
     FlightIntent,
-    PressureScaledMinimumThrust,
+    LocalPerformanceLimits,
     SpatialTrajectory,
     Waypoint,
     plan_advisory_energy_profile,
@@ -17,11 +15,35 @@ from aerox.fms import (
     plan_top_of_climb,
     plan_top_of_descent,
 )
-from aerox.models import EffectiveLiftMap, ParabolicDragPolar
+from aerox.modeling import PointMassProfilePerformance
 from aerox.modeling.dynamics import PointMassModel
+from aerox.models import EffectiveLiftMap, ParabolicDragPolar
 from aerox.models.openap import OpenAPFuelFlowPrior
+from aerox.models.thrust import ConstantMaximumThrust, PressureScaledMinimumThrust
 
 MASS_KG = 10_000.0
+
+
+class _FixedEnvelope:
+    def limits(
+        self,
+        *,
+        pressure_altitude_m: float,
+        true_airspeed_mps: float,
+        mass_kg: float,
+        static_temperature_k: float,
+    ) -> LocalPerformanceLimits:
+        del pressure_altitude_m, true_airspeed_mps, mass_kg, static_temperature_k
+        return LocalPerformanceLimits(
+            maximum_thrust_n=10_000.0,
+            level_drag_n=5_000.0,
+            maximum_climb_angle_rad=np.deg2rad(1.0),
+            maximum_descent_angle_rad=np.deg2rad(1.0),
+            maximum_acceleration_mps2=0.1,
+            maximum_deceleration_mps2=0.1,
+            maximum_specific_excess_force_mps2=0.05,
+            minimum_specific_excess_force_mps2=-0.05,
+        )
 
 
 def _plant() -> PointMassModel:
@@ -48,6 +70,33 @@ def _performance(
         maximum_acceleration_mps2=maximum_acceleration_mps2,
         maximum_deceleration_mps2=0.5,
     )
+
+
+def test_independent_reachable_bands_cannot_hide_coupled_energy_violation() -> None:
+    terminal_speed = np.sqrt(200.0**2 - 2.0 * aero.g0 * 100.0)
+    route = SpatialTrajectory.from_intent(
+        FlightIntent(
+            waypoints=(
+                Waypoint(0.0, 0.0, 1_000.0, 200.0, "START"),
+                Waypoint(10_000.0, 0.0, 1_100.0, terminal_speed, "END"),
+            )
+        )
+    ).with_profile(
+        along_path_m=np.array([0.0, 1_000.0, 10_000.0]),
+        altitude_m=np.array([1_000.0, 1_100.0, 1_100.0]),
+        true_airspeed_mps=np.array([200.0, terminal_speed, terminal_speed]),
+    )
+
+    result = plan_feasible_profile(
+        route=route,
+        performance=_FixedEnvelope(),
+        mass_kg=MASS_KG,
+        static_temperature_k=aero.T0,
+        spacing_m=500.0,
+    )
+
+    assert not result.feasible
+    assert any("coupled performance limits" in item for item in result.violations)
 
 
 def test_feasible_profile_preserves_hard_waypoint_constraints() -> None:
@@ -333,6 +382,16 @@ def test_energy_tod_uses_cas_mach_schedule_and_wind() -> None:
         altitude_step_m=100.0,
         along_track_wind_mps=lambda altitude: np.linspace(0.0, 20.0, len(altitude)),
     )
+    crosswind = plan_top_of_descent(
+        route_distance_m=500_000.0,
+        cruise_altitude_m=11_000.0,
+        destination_altitude_m=1_000.0,
+        schedule=schedule,
+        performance=performance,
+        mass_kg=MASS_KG,
+        altitude_step_m=100.0,
+        cross_track_wind_mps=30.0,
+    )
 
     assert 0.0 < schedule.crossover_altitude_m < 20_000.0
     assert calm.feasible_within_route
@@ -347,6 +406,7 @@ def test_energy_tod_uses_cas_mach_schedule_and_wind() -> None:
         < tailwind.descent_ground_distance_m
     )
     assert tailwind.top_of_descent_along_path_m < calm.top_of_descent_along_path_m
+    assert crosswind.descent_ground_distance_m < calm.descent_ground_distance_m
 
 
 def test_cas_mach_schedules_apply_forecast_temperature_offset() -> None:
@@ -461,6 +521,15 @@ def test_energy_top_of_climb_uses_schedule_wind_and_reserve() -> None:
         mass_kg=MASS_KG,
         climb_distance_reserve_m=10_000.0,
     )
+    downdraft = plan_top_of_climb(
+        route_distance_m=500_000.0,
+        initial_altitude_m=1_000.0,
+        cruise_altitude_m=11_000.0,
+        schedule=schedule,
+        performance=performance,
+        mass_kg=MASS_KG,
+        wind_down_mps=3.0,
+    )
 
     assert calm.feasible_within_route
     assert np.all(np.diff(calm.distance_from_origin_m) > 0.0)
@@ -468,3 +537,4 @@ def test_energy_top_of_climb_uses_schedule_wind_and_reserve() -> None:
     assert reserved.climb_ground_distance_m == pytest.approx(
         calm.climb_ground_distance_m + 10_000.0
     )
+    assert downdraft.climb_ground_distance_m > calm.climb_ground_distance_m

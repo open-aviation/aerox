@@ -18,14 +18,14 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from aerox.fms import (
-    PointMassProfilePerformance,
     SpatialEnvironmentProfile,
-    SpatialPathGuidance,
     inherit_state_profile,
     plan_advisory_energy_profile,
     plan_feasible_profile,
-    simulate_fms_trajectory_zoh,
 )
+from aerox.guidance import SpatialPathGuidance
+from aerox.modeling import PointMassProfilePerformance
+from aerox.simulation import simulate_fms_trajectory_zoh
 from tools.generate_a320_comparison_trajectories import _controller
 from tools.plot_a320_fms_decoupled_result import render_decoupled_figure
 from tools.validate_a320_fms_long_range_qar import (
@@ -280,7 +280,6 @@ def main() -> None:
         minimum_lookahead_m=2_500.0,
         maximum_lookahead_m=10_000.0,
         maximum_heading_command_rate_rad_s=math.radians(1.0),
-        command_step_s=1.0,
     )
     controller = _controller()
     initial_gamma, initial_control, _ = _initial_trim_control(

@@ -58,3 +58,23 @@ def test_speed_intent_design_rejects_unknown_phase() -> None:
             speed_kind="CAS",
             feature_set="affine_selector",
         )
+
+
+@pytest.mark.parametrize("selected_mach", [np.array([np.nan]), np.array(0.78)])
+def test_selector_model_rejects_invalid_selected_mach_shape_or_value(
+    selected_mach: np.ndarray,
+) -> None:
+    model = ModeConditionedSpeedIntent(
+        structure="selector",
+        cas_coefficients=np.empty(0),
+        mach_coefficients=np.empty(0),
+    )
+
+    with pytest.raises(ValueError, match="speed-intent prediction inputs"):
+        model.predict(
+            selected_cas_kts=np.array([280.0]),
+            selected_mach=selected_mach,
+            pressure_altitude_ft=np.array([30_000.0]),
+            mass_kg=np.array([60_000.0]),
+            phase=np.array(["LEVEL"]),
+        )

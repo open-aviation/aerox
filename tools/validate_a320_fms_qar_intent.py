@@ -18,23 +18,22 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from aerox import load_aircraft
-from aerox.models.drag import build_drag_model
 from aerox.fms import (
-    PointMassProfilePerformance,
     FlightIntent,
     SpatialEnvironmentProfile,
-    SpatialPathGuidance,
     SpatialTrajectory,
     Waypoint,
     plan_energy_shaped_profile,
-    simulate_fms_trajectory_zoh,
 )
-from aerox.models.atmosphere import atmosphere_at_pressure_altitude
+from aerox.guidance import InverseFlightMechanicsController, SpatialPathGuidance
+from aerox.modeling import PointMassProfilePerformance
 from aerox.modeling.dynamics import (
     PitchBankThrustInput,
     PointMassModel,
 )
-from aerox.guidance import TrajectoryTrackingController
+from aerox.models.atmosphere import atmosphere_at_pressure_altitude
+from aerox.models.drag import build_drag_model
+from aerox.simulation import simulate_fms_trajectory_zoh
 from tools.generate_a320_comparison_trajectories import _controller
 from tools.replay_a320_point_mass import _read_fuel_model
 from tools.validate_a320_fms_profile_feasibility import _load_climb_thrust_ceiling
@@ -219,7 +218,7 @@ def _build_plant(args: argparse.Namespace) -> PointMassModel:
 def _initial_trim_control(
     *,
     plant: PointMassModel,
-    controller: TrajectoryTrackingController,
+    controller: InverseFlightMechanicsController,
     trajectory: SpatialTrajectory,
     environment: SpatialEnvironmentProfile,
     initial_mass_kg: float,
@@ -615,7 +614,7 @@ def _initialization_diagnostics(
     )
     reference_gamma = np.array(
         [
-            result.planned_trajectory.sample(float(value)).flight_path_angle_rad
+            result.planned_trajectory.sample(float(value)).ground_path_angle_rad
             for value in profile_target_s
         ]
     )
@@ -974,7 +973,6 @@ def main() -> None:
         minimum_lookahead_m=2_500.0,
         maximum_lookahead_m=10_000.0,
         maximum_heading_command_rate_rad_s=math.radians(1.0),
-        command_step_s=1.0,
     )
     controller = _controller()
     initial_gamma, initial_control, initial_effective_alpha = _initial_trim_control(

@@ -18,18 +18,18 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from aerox.fms import (
-    PointMassProfilePerformance,
     plan_energy_shaped_profile,
     plan_feasible_profile,
 )
+from aerox.modeling import PointMassProfilePerformance
 from aerox.models import DragCondition
 from aerox.models.atmosphere import (
+    G0,
     SEA_LEVEL_PRESSURE_PA,
     atmosphere_at_pressure_altitude,
     unit_reynolds_number,
 )
 from aerox.models.openap import OpenAPTwoSpoolMaximumClimbThrust
-from aerox.models.atmosphere import G0
 from tools.validate_a320_fms_profile_feasibility import _load_climb_thrust_ceiling
 from tools.validate_a320_fms_qar_intent import (
     _build_plant,

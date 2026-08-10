@@ -26,15 +26,15 @@ if str(PROJECT_ROOT) not in sys.path:
 
 from aerox import aero
 from aerox.fms import (
-    PointMassProfilePerformance,
     CASMachDescentSchedule,
-    PressureScaledMinimumThrust,
     plan_top_of_descent,
 )
+from aerox.modeling import PointMassProfilePerformance
 from aerox.models.atmosphere import (
     SEA_LEVEL_PRESSURE_PA,
     atmosphere_at_pressure_altitude,
 )
+from aerox.models.thrust import PressureScaledMinimumThrust
 from tools.audit_a320_autothrust_envelope import (
     _boundary_points,
     _load_flights,
@@ -638,7 +638,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "bootstrap_coefficient_p05_n": float(np.quantile(bootstrap, 0.05)),
             "bootstrap_coefficient_p50_n": float(np.quantile(bootstrap, 0.50)),
             "bootstrap_coefficient_p95_n": float(np.quantile(bootstrap, 0.95)),
-            "core_class": "aerox.fms.PressureScaledMinimumThrust",
+            "core_class": "aerox.models.thrust.PressureScaledMinimumThrust",
         },
         "selection": {
             "candidate_pressure_exponents": list(PRESSURE_EXPONENTS),

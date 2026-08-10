@@ -24,20 +24,23 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from aerox import load_aircraft
-from aerox.models.drag import build_drag_model
+from aerox.guidance import (
+    InverseFlightMechanicsController,
+    TrajectoryReference,
+)
+from aerox.modeling.dynamics import (
+    PointMassModel,
+    PointMassTrajectory,
+    simulate_point_mass_zoh,
+)
 from aerox.models import (
     CalibratedTabulatedLiftSurface,
     GuardedHybridLiftModel,
     TabulatedLiftSurface,
 )
 from aerox.models.atmosphere import isa_atmosphere
-from aerox.modeling.dynamics import PointMassModel, PointMassTrajectory, simulate_point_mass_zoh
-from aerox.guidance import (
-    TrajectoryTrackingController,
-    TrajectoryTrackingResult,
-    TrajectoryReference,
-    simulate_trajectory_tracking_zoh,
-)
+from aerox.models.drag import build_drag_model
+from aerox.simulation import TrackingSimulationResult, simulate_reference_tracking_zoh
 from tools.calibrate_a320_effective_thrust import _read_vertical_calibration
 from tools.replay_a320_point_mass import _read_fuel_model
 from tools.validate_a320_vspaero_lift_surface import (
@@ -229,8 +232,8 @@ def _build_plants(args: argparse.Namespace) -> tuple[PointMassModel, PointMassMo
     )
 
 
-def _controller() -> TrajectoryTrackingController:
-    return TrajectoryTrackingController(
+def _controller() -> InverseFlightMechanicsController:
+    return InverseFlightMechanicsController(
         speed_error_gain_per_s=0.04,
         flight_path_angle_error_gain_per_s=0.25,
         heading_error_gain_per_s=0.06,
@@ -283,7 +286,7 @@ def _trajectory_metrics(
 
 
 def _build_document(
-    tracking: TrajectoryTrackingResult,
+    tracking: TrackingSimulationResult,
     empirical: PointMassTrajectory,
     reference_north_m: np.ndarray,
     reference_east_m: np.ndarray,
@@ -394,7 +397,7 @@ def _build_document(
 
 
 def _trajectory_table(
-    tracking: TrajectoryTrackingResult,
+    tracking: TrackingSimulationResult,
     empirical: PointMassTrajectory,
     reference_north_m: np.ndarray,
     reference_east_m: np.ndarray,
@@ -449,7 +452,7 @@ def _style_axis(axis: Any, label: str) -> None:
 
 
 def _plot_trajectories(
-    tracking: TrajectoryTrackingResult,
+    tracking: TrackingSimulationResult,
     empirical: PointMassTrajectory,
     reference_north_m: np.ndarray,
     reference_east_m: np.ndarray,
@@ -500,7 +503,7 @@ def _plot_trajectories(
 
 
 def _plot_controls(
-    tracking: TrajectoryTrackingResult,
+    tracking: TrackingSimulationResult,
     empirical: PointMassTrajectory,
     surface_weight: np.ndarray,
     prefix: Path,
@@ -595,7 +598,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     reference, reference_north, reference_east = build_reference()
     hybrid_plant, empirical_plant, hybrid_model = _build_plants(args)
     temperature = isa_atmosphere(reference.pressure_altitude_m).temperature_k
-    tracking = simulate_trajectory_tracking_zoh(
+    tracking = simulate_reference_tracking_zoh(
         plant=hybrid_plant,
         controller=_controller(),
         reference=reference,

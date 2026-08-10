@@ -1,14 +1,14 @@
 """Lift and static aerodynamic models."""
 
-from .core import (
-    LIFT_FEATURE_SETS,
-    CalibratedTabulatedLiftSurface,
-    EffectiveLiftMap,
-    GuardedHybridLiftModel,
+from .empirical import LIFT_FEATURE_SETS, EffectiveLiftMap, effective_lift_design
+from .stability import (
     StaticAerodynamicCoefficients,
-    TabulatedLiftSurface,
     TabulatedStaticStabilityPrior,
-    effective_lift_design,
+)
+from .surfaces import (
+    CalibratedTabulatedLiftSurface,
+    GuardedHybridLiftModel,
+    TabulatedLiftSurface,
 )
 
 __all__ = [

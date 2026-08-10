@@ -19,16 +19,26 @@ from .engine import (
     thrust_map_features,
     total_temperature_ratio,
 )
+from .planning import (
+    ConstantMaximumThrust,
+    PressureScaledMinimumThrust,
+    QARDemonstratedClimbThrustCapacity,
+    QAREffectiveClimbThrustCeiling,
+)
 
 __all__ = [
     "N1_ENVELOPE_FEATURE_SETS",
     "THRUST_MAP_FEATURE_SETS",
     "AsymmetricFirstOrderN1Actuator",
     "AutothrustMode",
+    "ConstantMaximumThrust",
     "DemonstratedClimbN1Capacity",
     "EffectiveN1Envelope",
     "EffectiveThrustMap",
     "MeasuredN1ThrustAdapter",
+    "PressureScaledMinimumThrust",
+    "QARDemonstratedClimbThrustCapacity",
+    "QAREffectiveClimbThrustCeiling",
     "SpeedTrackingAutothrustController",
     "fan_speed_fraction",
     "n1_envelope_features",

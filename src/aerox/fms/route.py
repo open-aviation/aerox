@@ -12,10 +12,6 @@ from aerox.fms.intent import FlightIntent
 FloatArray = NDArray[np.float64]
 
 
-def _wrap_angle(angle_rad: float) -> float:
-    return float(np.arctan2(np.sin(angle_rad), np.cos(angle_rad)))
-
-
 @dataclass(frozen=True)
 class SpatialTrajectorySample:
     """One state reference evaluated at along-path distance."""
@@ -26,9 +22,22 @@ class SpatialTrajectorySample:
     altitude_m: float
     true_airspeed_mps: float
     ground_track_rad: float
-    flight_path_angle_rad: float
-    true_airspeed_rate_mps2: float
+    ground_path_angle_rad: float
+    true_airspeed_gradient_per_m: float
     segment_index: int
+
+
+@dataclass(frozen=True)
+class SpatialTrajectoryGrid:
+    """Dense named arrays sampled from one spatial trajectory."""
+
+    along_path_m: FloatArray
+    north_m: FloatArray
+    east_m: FloatArray
+    altitude_m: FloatArray
+    true_airspeed_mps: FloatArray
+    ground_track_rad: FloatArray
+    ground_path_angle_rad: FloatArray
 
 
 @dataclass(frozen=True)
@@ -52,8 +61,8 @@ class SpatialTrajectory:
     segment_length_m: FloatArray
     segment_track_rad: FloatArray
     segment_altitude_gradient: FloatArray
-    segment_speed_gradient_per_s: FloatArray
-    predicted_waypoint_time_s: FloatArray
+    segment_true_airspeed_gradient_per_m: FloatArray
+    calm_air_waypoint_time_s: FloatArray
     profile_along_path_m: FloatArray | None = None
     profile_altitude_m: FloatArray | None = None
     profile_true_airspeed_mps: FloatArray | None = None
@@ -68,12 +77,12 @@ class SpatialTrajectory:
                 self.segment_altitude_gradient,
                 waypoint_count - 1,
             ),
-            "segment_speed_gradient_per_s": (
-                self.segment_speed_gradient_per_s,
+            "segment_true_airspeed_gradient_per_m": (
+                self.segment_true_airspeed_gradient_per_m,
                 waypoint_count - 1,
             ),
-            "predicted_waypoint_time_s": (
-                self.predicted_waypoint_time_s,
+            "calm_air_waypoint_time_s": (
+                self.calm_air_waypoint_time_s,
                 waypoint_count,
             ),
         }
@@ -138,22 +147,26 @@ class SpatialTrajectory:
         ):
             raise ValueError("waypoint altitude profile exceeds declared angle limits")
         speed_gradient = np.diff(speed) / length
-        acceleration_at_ends = np.maximum(speed[:-1], speed[1:]) * speed_gradient
+        acceleration_at_ends = (
+            np.maximum(speed[:-1], speed[1:]) * np.cos(gamma) * speed_gradient
+        )
         if np.any(acceleration_at_ends > intent.maximum_acceleration_mps2) or np.any(
             acceleration_at_ends < -intent.maximum_deceleration_mps2
         ):
             raise ValueError(
                 "waypoint speed profile exceeds declared acceleration limits"
             )
-        segment_time = 2.0 * length / (speed[:-1] + speed[1:])
+        segment_time = 2.0 * length / (
+            (speed[:-1] + speed[1:]) * np.cos(gamma)
+        )
         return cls(
             intent=intent,
             waypoint_along_path_m=along_path,
             segment_length_m=length,
             segment_track_rad=np.arctan2(delta_east, delta_north),
             segment_altitude_gradient=altitude_gradient,
-            segment_speed_gradient_per_s=speed_gradient,
-            predicted_waypoint_time_s=np.concatenate(([0.0], np.cumsum(segment_time))),
+            segment_true_airspeed_gradient_per_m=speed_gradient,
+            calm_air_waypoint_time_s=np.concatenate(([0.0], np.cumsum(segment_time))),
         )
 
     @property
@@ -178,13 +191,18 @@ class SpatialTrajectory:
 
         profile_s = np.asarray(along_path_m, dtype=float)
         profile_speed = np.asarray(true_airspeed_mps, dtype=float)
-        segment_time = (
-            2.0 * np.diff(profile_s) / (profile_speed[:-1] + profile_speed[1:])
+        interval_gamma = np.arctan(
+            np.diff(np.asarray(altitude_m, dtype=float)) / np.diff(profile_s)
+        )
+        horizontal_speed_start = profile_speed[:-1] * np.cos(interval_gamma)
+        horizontal_speed_end = profile_speed[1:] * np.cos(interval_gamma)
+        segment_time = 2.0 * np.diff(profile_s) / (
+            horizontal_speed_start + horizontal_speed_end
         )
         profile_time = np.concatenate(([0.0], np.cumsum(segment_time)))
         return replace(
             self,
-            predicted_waypoint_time_s=np.interp(
+            calm_air_waypoint_time_s=np.interp(
                 self.waypoint_along_path_m, profile_s, profile_time
             ),
             profile_along_path_m=profile_s,
@@ -207,7 +225,7 @@ class SpatialTrajectory:
             second.true_airspeed_mps - first.true_airspeed_mps
         )
         altitude_gradient = self.segment_altitude_gradient[index]
-        speed_gradient = self.segment_speed_gradient_per_s[index]
+        speed_gradient = self.segment_true_airspeed_gradient_per_m[index]
         if self.profile_along_path_m is not None:
             assert self.profile_altitude_m is not None
             assert self.profile_true_airspeed_mps is not None
@@ -252,13 +270,13 @@ class SpatialTrajectory:
             altitude_m=float(altitude),
             true_airspeed_mps=float(speed),
             ground_track_rad=float(self.segment_track_rad[index]),
-            flight_path_angle_rad=float(np.arctan(altitude_gradient)),
-            true_airspeed_rate_mps2=float(speed * speed_gradient),
+            ground_path_angle_rad=float(np.arctan(altitude_gradient)),
+            true_airspeed_gradient_per_m=float(speed_gradient),
             segment_index=index,
         )
 
-    def sampled(self, spacing_m: float = 500.0) -> tuple[FloatArray, ...]:
-        """Return dense arrays useful for plots and external trajectory tables."""
+    def sample_grid(self, spacing_m: float = 500.0) -> SpatialTrajectoryGrid:
+        """Return named dense arrays for plots and external trajectory tables."""
 
         if not np.isfinite(spacing_m) or spacing_m <= 0.0:
             raise ValueError("spacing_m must be finite and positive")
@@ -271,13 +289,20 @@ class SpatialTrajectory:
             components.append(self.profile_along_path_m)
         values = np.unique(np.concatenate(components))
         samples = [self.sample(value) for value in values]
-        return (
-            values,
-            np.array([sample.north_m for sample in samples]),
-            np.array([sample.east_m for sample in samples]),
-            np.array([sample.altitude_m for sample in samples]),
-            np.array([sample.true_airspeed_mps for sample in samples]),
-            np.array([sample.ground_track_rad for sample in samples]),
+        return SpatialTrajectoryGrid(
+            along_path_m=values,
+            north_m=np.array([sample.north_m for sample in samples]),
+            east_m=np.array([sample.east_m for sample in samples]),
+            altitude_m=np.array([sample.altitude_m for sample in samples]),
+            true_airspeed_mps=np.array(
+                [sample.true_airspeed_mps for sample in samples]
+            ),
+            ground_track_rad=np.array(
+                [sample.ground_track_rad for sample in samples]
+            ),
+            ground_path_angle_rad=np.array(
+                [sample.ground_path_angle_rad for sample in samples]
+            ),
         )
 
     def project(
@@ -404,32 +429,3 @@ def inherit_state_profile(
             [sample.true_airspeed_mps for sample in inherited_samples]
         ),
     )
-
-
-def ground_track_to_air_heading(
-    ground_track_rad: float,
-    true_airspeed_mps: float,
-    wind_north_mps: float,
-    wind_east_mps: float,
-) -> tuple[float, float]:
-    """Return wind-corrected air heading and attainable along-track groundspeed."""
-
-    values = (ground_track_rad, true_airspeed_mps, wind_north_mps, wind_east_mps)
-    if any(not np.isfinite(value) for value in values) or true_airspeed_mps <= 1.0:
-        raise ValueError(
-            "track, airspeed, and wind must be finite with positive airspeed"
-        )
-    tangent = np.array([np.cos(ground_track_rad), np.sin(ground_track_rad)])
-    right = np.array([-np.sin(ground_track_rad), np.cos(ground_track_rad)])
-    wind = np.array([wind_north_mps, wind_east_mps])
-    crosswind = float(np.dot(wind, right))
-    if abs(crosswind) >= true_airspeed_mps:
-        raise ValueError("crosswind magnitude is not attainable at this true airspeed")
-    along_air = float(np.sqrt(true_airspeed_mps**2 - crosswind**2))
-    air_velocity = along_air * tangent - crosswind * right
-    ground_speed = along_air + float(np.dot(wind, tangent))
-    if ground_speed <= 0.0:
-        raise ValueError("wind leaves no positive along-track groundspeed")
-    return _wrap_angle(
-        float(np.arctan2(air_velocity[1], air_velocity[0]))
-    ), ground_speed

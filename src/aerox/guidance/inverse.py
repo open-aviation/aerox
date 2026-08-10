@@ -1,4 +1,4 @@
-"""Bounded reference tracking above the attitude/realized-thrust plant.
+"""Inverse flight-mechanics control above the realized-attitude plant.
 
 This module deliberately commands actual pitch, bank, and total realized net
 thrust.  It is a model-based trajectory-generation layer, not an Airbus flight
@@ -7,10 +7,10 @@ control law, surface allocator, FADEC model, or identified autopilot.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, replace
+from dataclasses import dataclass
 
 import numpy as np
-from numpy.typing import ArrayLike, NDArray
+from numpy.typing import ArrayLike
 
 from aerox.models.atmosphere import G0, atmosphere_at_pressure_altitude
 from aerox.modeling.dynamics import (
@@ -18,11 +18,7 @@ from aerox.modeling.dynamics import (
     PitchBankThrustInput,
     PointMassModel,
     PointMassState,
-    PointMassTrajectory,
 )
-
-
-FloatArray = NDArray[np.float64]
 
 
 def _wrapped_angle_error(target: float, actual: float) -> float:
@@ -38,48 +34,6 @@ def _bounded_rate(
     value = float(np.clip(target, previous - bound, previous + bound))
     return value, not np.isclose(value, target, rtol=0.0, atol=1e-12)
 
-
-@dataclass(frozen=True)
-class TrajectoryReference:
-    """Node-aligned state reference and analytic first derivatives."""
-
-    time_s: FloatArray
-    true_airspeed_mps: FloatArray
-    true_airspeed_rate_mps2: FloatArray
-    flight_path_angle_rad: FloatArray
-    flight_path_angle_rate_rad_s: FloatArray
-    heading_rad: FloatArray
-    heading_rate_rad_s: FloatArray
-    pressure_altitude_m: FloatArray
-
-    def __post_init__(self) -> None:
-        time = np.asarray(self.time_s, dtype=float)
-        arrays = {
-            "true_airspeed_mps": self.true_airspeed_mps,
-            "true_airspeed_rate_mps2": self.true_airspeed_rate_mps2,
-            "flight_path_angle_rad": self.flight_path_angle_rad,
-            "flight_path_angle_rate_rad_s": self.flight_path_angle_rate_rad_s,
-            "heading_rad": self.heading_rad,
-            "heading_rate_rad_s": self.heading_rate_rad_s,
-            "pressure_altitude_m": self.pressure_altitude_m,
-        }
-        if (
-            time.ndim != 1
-            or len(time) < 2
-            or np.any(~np.isfinite(time))
-            or np.any(np.diff(time) <= 0.0)
-        ):
-            raise ValueError("time_s must be a finite increasing vector")
-        object.__setattr__(self, "time_s", time)
-        for name, values in arrays.items():
-            array = np.asarray(values, dtype=float)
-            if array.shape != time.shape or np.any(~np.isfinite(array)):
-                raise ValueError(f"{name} must be a finite vector matching time_s")
-            object.__setattr__(self, name, array)
-        if np.any(self.true_airspeed_mps <= 1.0):
-            raise ValueError("reference true airspeed must exceed 1 m/s")
-
-
 @dataclass(frozen=True)
 class PitchBankThrustCommand:
     """One generated command plus inversion and saturation diagnostics."""
@@ -93,7 +47,7 @@ class PitchBankThrustCommand:
 
 
 @dataclass(frozen=True)
-class TrajectoryTrackingController:
+class InverseFlightMechanicsController:
     """Inverse-flight-mechanics feedforward with bounded state feedback.
 
     Gains and limits are supplied explicitly by the caller.  The controller
@@ -339,189 +293,5 @@ class TrajectoryTrackingController:
         )
 
 
-@dataclass(frozen=True)
-class TrajectoryTrackingResult:
-    """Closed-loop generated trajectory and command diagnostics."""
+__all__ = ["InverseFlightMechanicsController", "PitchBankThrustCommand"]
 
-    trajectory: PointMassTrajectory
-    reference: TrajectoryReference
-    target_lift_coefficient: FloatArray
-    pitch_limited: NDArray[np.bool_]
-    bank_limited: NDArray[np.bool_]
-    thrust_limited: NDArray[np.bool_]
-
-
-def simulate_trajectory_tracking_zoh(
-    *,
-    plant: PointMassModel,
-    controller: TrajectoryTrackingController,
-    reference: TrajectoryReference,
-    static_temperature_k: ArrayLike,
-    initial_mass_kg: float,
-    initial_true_airspeed_mps: float | None = None,
-    initial_flight_path_angle_rad: float | None = None,
-    initial_heading_rad: float | None = None,
-    initial_pressure_altitude_m: float | None = None,
-    wind_north_mps: ArrayLike | None = None,
-    wind_east_mps: ArrayLike | None = None,
-    wind_down_mps: ArrayLike | None = None,
-    initial_north_position_m: float = 0.0,
-    initial_east_position_m: float = 0.0,
-    integration_rate_hz: int = 10,
-    guidance_plant: PointMassModel | None = None,
-    guidance_mass_scale: float = 1.0,
-) -> TrajectoryTrackingResult:
-    """Generate and integrate bounded controls at the reference sample rate.
-
-    ``guidance_plant`` defaults to the propagated ``plant``. Supplying a
-    distinct model permits controlled model-mismatch studies while preserving
-    one physical propagated plant. ``guidance_mass_scale`` changes only the
-    mass observed by the guidance calculation; the propagated mass is not
-    altered.
-    """
-
-    time = reference.time_s
-    temperature = np.broadcast_to(
-        np.asarray(static_temperature_k, dtype=float), time.shape
-    )
-    if np.any(~np.isfinite(temperature)) or np.any(temperature <= 0.0):
-        raise ValueError(
-            "static_temperature_k must broadcast to finite positive values"
-        )
-    if not np.isfinite(guidance_mass_scale) or guidance_mass_scale <= 0.0:
-        raise ValueError("guidance_mass_scale must be finite and positive")
-    command_plant = plant if guidance_plant is None else guidance_plant
-    zeros = np.zeros_like(time)
-
-    def wind(values: ArrayLike | None, name: str) -> FloatArray:
-        array = np.broadcast_to(
-            zeros if values is None else np.asarray(values, dtype=float), time.shape
-        ).astype(float, copy=False)
-        if np.any(~np.isfinite(array)):
-            raise ValueError(f"{name} must broadcast to finite values")
-        return array
-
-    north_wind = wind(wind_north_mps, "wind_north_mps")
-    east_wind = wind(wind_east_mps, "wind_east_mps")
-    down_wind = wind(wind_down_mps, "wind_down_mps")
-    state = PointMassState(
-        true_airspeed_mps=(
-            reference.true_airspeed_mps[0]
-            if initial_true_airspeed_mps is None
-            else initial_true_airspeed_mps
-        ),
-        flight_path_angle_rad=(
-            reference.flight_path_angle_rad[0]
-            if initial_flight_path_angle_rad is None
-            else initial_flight_path_angle_rad
-        ),
-        heading_rad=(
-            reference.heading_rad[0]
-            if initial_heading_rad is None
-            else initial_heading_rad
-        ),
-        north_position_m=initial_north_position_m,
-        east_position_m=initial_east_position_m,
-        pressure_altitude_m=(
-            reference.pressure_altitude_m[0]
-            if initial_pressure_altitude_m is None
-            else initial_pressure_altitude_m
-        ),
-        mass_kg=initial_mass_kg,
-    )
-    states = np.empty((len(time), 7), dtype=float)
-    pitch = np.empty(len(time), dtype=float)
-    bank = np.empty(len(time), dtype=float)
-    thrust = np.empty(len(time), dtype=float)
-    target_cl = np.empty(len(time), dtype=float)
-    pitch_limited = np.empty(len(time), dtype=bool)
-    bank_limited = np.empty(len(time), dtype=bool)
-    thrust_limited = np.empty(len(time), dtype=bool)
-    angle = np.empty(len(time), dtype=float)
-    lift_coefficient = np.empty(len(time), dtype=float)
-    lift = np.empty(len(time), dtype=float)
-    drag = np.empty(len(time), dtype=float)
-    fuel_flow = np.empty(len(time), dtype=float)
-    previous: PitchBankThrustInput | None = None
-
-    for index in range(len(time)):
-        states[index] = state.to_array()
-        step_s = 1.0 if index == 0 else float(time[index] - time[index - 1])
-        guidance_state = replace(
-            state,
-            mass_kg=state.mass_kg * guidance_mass_scale,
-        )
-        result = controller.command(
-            plant=command_plant,
-            state=guidance_state,
-            reference_true_airspeed_mps=float(reference.true_airspeed_mps[index]),
-            reference_true_airspeed_rate_mps2=float(
-                reference.true_airspeed_rate_mps2[index]
-            ),
-            reference_flight_path_angle_rad=float(
-                reference.flight_path_angle_rad[index]
-            ),
-            reference_flight_path_angle_rate_rad_s=float(
-                reference.flight_path_angle_rate_rad_s[index]
-            ),
-            reference_heading_rad=float(reference.heading_rad[index]),
-            reference_heading_rate_rad_s=float(reference.heading_rate_rad_s[index]),
-            reference_pressure_altitude_m=float(reference.pressure_altitude_m[index]),
-            static_temperature_k=float(temperature[index]),
-            previous_control=previous,
-            command_step_s=step_s,
-            wind_north_mps=float(north_wind[index]),
-            wind_east_mps=float(east_wind[index]),
-            wind_down_mps=float(down_wind[index]),
-        )
-        control = result.control
-        previous = control
-        pitch[index] = control.pitch_angle_rad
-        bank[index] = control.bank_angle_rad
-        thrust[index] = control.net_thrust_n
-        target_cl[index] = result.target_lift_coefficient
-        pitch_limited[index] = result.pitch_limited
-        bank_limited[index] = result.bank_limited
-        thrust_limited[index] = result.thrust_limited
-        forces = plant.forces(state, control)
-        angle[index] = forces.angle_of_attack_rad
-        lift_coefficient[index] = forces.lift_coefficient
-        lift[index] = forces.lift_n
-        drag[index] = forces.drag_n
-        fuel_flow[index] = forces.fuel_flow_kg_s
-        if index == len(time) - 1:
-            break
-        interval = float(time[index + 1] - time[index])
-        state = plant.integrate_zoh_step(
-            state,
-            control,
-            interval,
-            integration_rate_hz=integration_rate_hz,
-        )
-
-    trajectory = PointMassTrajectory(
-        time_s=time,
-        true_airspeed_mps=states[:, 0],
-        flight_path_angle_rad=states[:, 1],
-        heading_rad=states[:, 2],
-        north_position_m=states[:, 3],
-        east_position_m=states[:, 4],
-        pressure_altitude_m=states[:, 5],
-        mass_kg=states[:, 6],
-        pitch_angle_rad=pitch,
-        bank_angle_rad=bank,
-        angle_of_attack_rad=angle,
-        net_thrust_n=thrust,
-        lift_coefficient=lift_coefficient,
-        lift_n=lift,
-        drag_n=drag,
-        fuel_flow_kg_s=fuel_flow,
-    )
-    return TrajectoryTrackingResult(
-        trajectory=trajectory,
-        reference=reference,
-        target_lift_coefficient=target_cl,
-        pitch_limited=pitch_limited,
-        bank_limited=bank_limited,
-        thrust_limited=thrust_limited,
-    )

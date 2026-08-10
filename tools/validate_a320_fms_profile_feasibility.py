@@ -18,21 +18,21 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from aerox.fms import (
-    PointMassProfilePerformance,
     FlightIntent,
-    QARDemonstratedClimbThrustCapacity,
-    QAREffectiveClimbThrustCeiling,
     SpatialTrajectory,
     Waypoint,
     plan_feasible_profile,
 )
+from aerox.modeling import PointMassProfilePerformance
 from aerox.models.atmosphere import isa_atmosphere
 from aerox.models.thrust import (
-    THRUST_MAP_FEATURE_SETS,
     N1_ENVELOPE_FEATURE_SETS,
+    THRUST_MAP_FEATURE_SETS,
     DemonstratedClimbN1Capacity,
     EffectiveN1Envelope,
     EffectiveThrustMap,
+    QARDemonstratedClimbThrustCapacity,
+    QAREffectiveClimbThrustCeiling,
 )
 from tools.generate_a320_comparison_trajectories import _build_plants
 from tools.generate_a320_fms_trajectory import _metrics, _run, build_intent

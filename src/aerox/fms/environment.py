@@ -6,7 +6,7 @@ from dataclasses import dataclass
 
 import numpy as np
 
-from .trajectory import FloatArray
+from .route import FloatArray
 
 
 @dataclass(frozen=True)
@@ -72,4 +72,20 @@ class SpatialEnvironmentProfile:
             wind_down_mps=float(
                 np.interp(distance, self.along_path_m, self.wind_down_mps)
             ),
+        )
+
+    def sample_arrays(
+        self, along_path_m: FloatArray
+    ) -> tuple[FloatArray, FloatArray, FloatArray, FloatArray]:
+        """Vectorize interpolation of temperature and all wind components."""
+
+        distance = np.asarray(along_path_m, dtype=float)
+        if distance.ndim != 1 or np.any(~np.isfinite(distance)):
+            raise ValueError("environment sample coordinates must be a finite vector")
+        clipped = np.clip(distance, self.along_path_m[0], self.along_path_m[-1])
+        return (
+            np.interp(clipped, self.along_path_m, self.static_temperature_k),
+            np.interp(clipped, self.along_path_m, self.wind_north_mps),
+            np.interp(clipped, self.along_path_m, self.wind_east_mps),
+            np.interp(clipped, self.along_path_m, self.wind_down_mps),
         )

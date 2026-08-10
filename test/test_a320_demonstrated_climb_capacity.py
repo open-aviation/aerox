@@ -6,8 +6,10 @@ import pandas as pd
 import pytest
 import yaml
 
-from aerox.fms import QARDemonstratedClimbThrustCapacity
-from aerox.models.thrust import DemonstratedClimbN1Capacity
+from aerox.models.thrust import (
+    DemonstratedClimbN1Capacity,
+    QARDemonstratedClimbThrustCapacity,
+)
 from tools.validate_a320_fms_profile_feasibility import _load_climb_thrust_ceiling
 
 ROOT = Path(__file__).parents[1]

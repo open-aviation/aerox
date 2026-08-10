@@ -19,15 +19,15 @@ if str(PROJECT_ROOT) not in sys.path:
 
 from aerox import load_aircraft
 from aerox.fms import (
-    PointMassProfilePerformance,
     FlightIntent,
     SpatialEnvironmentProfile,
-    SpatialPathGuidance,
     SpatialTrajectory,
     Waypoint,
     plan_energy_shaped_profile,
-    simulate_fms_trajectory_zoh,
 )
+from aerox.guidance import SpatialPathGuidance
+from aerox.modeling import PointMassProfilePerformance
+from aerox.simulation import simulate_fms_trajectory_zoh
 from tools.calibrate_a320_effective_thrust import (
     _read_tas_scale,
     _read_vertical_calibration,
@@ -54,7 +54,6 @@ from tools.validate_a320_qar_guidance_robustness import (
 
 UPDATED = "2026-08-06"
 ANCHOR_INTERVAL_S = 600
-COMMAND_STEP_S = 1.0
 
 
 def parse_args() -> argparse.Namespace:
@@ -351,7 +350,6 @@ def main() -> None:
         minimum_lookahead_m=2_500.0,
         maximum_lookahead_m=10_000.0,
         maximum_heading_command_rate_rad_s=math.radians(1.0),
-        command_step_s=COMMAND_STEP_S,
     )
     controller = _controller()
     initial_gamma, initial_control, _ = _initial_trim_control(

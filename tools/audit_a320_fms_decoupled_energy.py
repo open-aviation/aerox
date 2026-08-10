@@ -18,12 +18,12 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from aerox.fms import (
-    PointMassProfilePerformance,
     SpatialEnvironmentProfile,
     inherit_state_profile,
     plan_energy_shaped_profile,
     plan_feasible_profile,
 )
+from aerox.modeling import PointMassProfilePerformance
 from aerox.models.atmosphere import G0
 from tools.validate_a320_fms_long_range_qar import (
     _load_holdout,
