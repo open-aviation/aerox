@@ -317,66 +317,104 @@ FIELD horizontal_tail.elevator_area_ratio
 END FIELD
 
 FIELD vertical_tail.area
-  Value: null
+  Value: 77.1
   Unit: m2
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_400_acap_rev_f_2024_12 | boeing_747_400_cad_3view
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-3/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 3, column 747-400
+  Inputs: Area (m2) 77.1
+  Applicability: 747-400 vertical tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD vertical_tail.height
-  Value: null
+  Value: 10.16
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_400_acap_rev_f_2024_12 | boeing_747_400_cad_3view
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-3/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 3, column 747-400
+  Inputs: Height (m) 10.16
+  Applicability: 747-400 vertical tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD vertical_tail.mac
-  Value: null
+  Value: 8.23051
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_400_acap_rev_f_2024_12 | boeing_747_400_cad_3view
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-3/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 3, column 747-400
+  Formula: (2/3) * root_chord * (1 + taper + taper^2) / (1 + taper)
+  Inputs: area=77.1 m2; height=10.16 m; taper=0.33
+  Applicability: 747-400 vertical tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD vertical_tail.root_chord
-  Value: null
+  Value: 11.411403
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_400_acap_rev_f_2024_12 | boeing_747_400_cad_3view
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-3/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 3, column 747-400
+  Formula: 2 * area / (height * (1 + taper))
+  Inputs: area=77.1 m2; height=10.16 m; taper=0.33
+  Applicability: 747-400 vertical tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD vertical_tail.tip_chord
-  Value: null
+  Value: 3.765763
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_400_acap_rev_f_2024_12 | boeing_747_400_cad_3view
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-3/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 3, column 747-400
+  Formula: taper * root_chord
+  Inputs: area=77.1 m2; height=10.16 m; taper=0.33
+  Applicability: 747-400 vertical tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD vertical_tail.taper_ratio
-  Value: null
+  Value: 0.33
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_400_acap_rev_f_2024_12 | boeing_747_400_cad_3view
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-3/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 3, column 747-400
+  Inputs: Taper Ratio 0.33
+  Applicability: 747-400 vertical tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD vertical_tail.sweep
-  Value: null
+  Value: 45
   Unit: deg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_400_acap_rev_f_2024_12 | boeing_747_400_cad_3view
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-3/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 3, column 747-400
+  Inputs: 1/4 Chord Sweep (deg) 45
+  Applicability: 747-400 vertical tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD vertical_tail.arm
@@ -403,14 +441,14 @@ LEGACY PARAMETERS
 
 DRAG MODEL
   Active Aerox physical drag model and reference-condition polar snapshot.
-  Scaled or substituted geometry fields: vertical_tail.area, vertical_tail.mac, wing.root_chord, vertical_tail.sweep, engine.nacelle_max_diameter, engine.nacelle_length
+  Scaled or substituted geometry fields: wing.root_chord, engine.nacelle_max_diameter, engine.nacelle_length
 
 FIELD drag.model
   Value: aerox-geometry-drag-v2
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9521; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
-  Zero-lift terms at reference (drag counts): wing=43.75; fuselage=46.42; horizontal_tail=15.26; vertical_tail=9.42; nacelles=11.11; pylons=1.71; fuselage_upsweep=4.73; control_surface_gaps=0.91; nacelle_base=1.44; roughness_excrescence=12.13
+  Inputs: configuration=clean; tier=A-observed-core-and-tails; confidence=medium; e_span=0.9521; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
+  Zero-lift terms at reference (drag counts): wing=43.75; fuselage=46.42; horizontal_tail=15.26; vertical_tail=8.34; nacelles=11.11; pylons=1.71; fuselage_upsweep=4.73; control_surface_gaps=0.85; nacelle_base=1.44; roughness_excrescence=12.02
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -420,13 +458,13 @@ FIELD drag.configuration
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.geometry_tier
-  Value: B-observed-core-scaled-tails
+  Value: A-observed-core-and-tails
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.confidence
-  Value: medium-low
+  Value: medium
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Model metadata; not a measured aircraft coefficient.

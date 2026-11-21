@@ -67,13 +67,13 @@ horizontal_tail:
   arm: null
   elevator_area_ratio: null
 vertical_tail:
-  area: null
-  height: null
-  mac: null
-  root_chord: null
-  tip_chord: null
-  taper_ratio: null
-  sweep: null
+  area: 45.2
+  height: 8.6
+  mac: 5.634955
+  root_chord: 7.700826
+  tip_chord: 2.810802
+  taper_ratio: 0.365
+  sweep: 40
   arm: null
   rudder_area_ratio: null
 flaps:
@@ -96,8 +96,8 @@ engine:
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean
-  geometry_tier: B-observed-core-scaled-tails
-  confidence: medium-low
+  geometry_tier: A-observed-core-and-tails
+  confidence: medium
   reference_altitude_ft: 37466.6
   reference_mach: 0.79
   reference_unit_reynolds_number_per_m: 5583455.0

@@ -98,6 +98,23 @@ FIELD ceiling
   Source: aerox_legacy_aircraft_database
 END FIELD
 
+FUSELAGE GEOMETRY
+
+FIELD fuselage.length
+  Value: 58.65
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-6/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 6, column MD-11
+  Inputs: Fuselage: Length (m) 58.65
+  Applicability: MD-11 fuselage length (body only, not overall airplane length)
+  Uncertainty: Secondary textbook compilation; +/-0.5 m
+  Previous value: 61.2 m (legacy-unverified; overall airplane length)
+  Correction reason: The drag build-up uses the body length; the legacy value was the overall length.
+END FIELD
+
 WING AND TAIL GEOMETRY
 
 FIELD wing.area
@@ -191,12 +208,17 @@ FIELD wing.dihedral
 END FIELD
 
 FIELD horizontal_tail.area
-  Value: null
+  Value: 85.5
   Unit: m2
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-6/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 6, column MD-11
+  Inputs: Area (m2) 85.5
+  Applicability: MD-11 horizontal tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD horizontal_tail.span
@@ -215,48 +237,76 @@ FIELD horizontal_tail.span
 END FIELD
 
 FIELD horizontal_tail.mac
-  Value: null
+  Value: 5.065136
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-6/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 6, column MD-11
+  Formula: (2/3) * root_chord * (1 + taper + taper^2) / (1 + taper)
+  Inputs: area=85.5 m2; span=18 m (record, manufacturer planning); taper=0.383
+  Applicability: MD-11 horizontal tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD horizontal_tail.root_chord
-  Value: null
+  Value: 6.869125
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-6/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 6, column MD-11
+  Formula: 2 * area / (span * (1 + taper))
+  Inputs: area=85.5 m2; span=18 m (record, manufacturer planning); taper=0.383
+  Applicability: MD-11 horizontal tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD horizontal_tail.tip_chord
-  Value: null
+  Value: 2.630875
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-6/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 6, column MD-11
+  Formula: taper * root_chord
+  Inputs: area=85.5 m2; span=18 m (record, manufacturer planning); taper=0.383
+  Applicability: MD-11 horizontal tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD horizontal_tail.taper_ratio
-  Value: null
+  Value: 0.383
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-6/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 6, column MD-11
+  Inputs: Taper Ratio 0.383
+  Applicability: MD-11 horizontal tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD horizontal_tail.sweep
-  Value: null
+  Value: 35
   Unit: deg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-6/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 6, column MD-11
+  Inputs: 1/4 Chord Sweep (deg) 35
+  Applicability: MD-11 horizontal tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD horizontal_tail.dihedral
@@ -287,66 +337,104 @@ FIELD horizontal_tail.elevator_area_ratio
 END FIELD
 
 FIELD vertical_tail.area
-  Value: null
+  Value: 56.2
   Unit: m2
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-6/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 6, column MD-11
+  Inputs: Area (m2) 56.2
+  Applicability: MD-11 vertical tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD vertical_tail.height
-  Value: null
+  Value: 11.16
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-6/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 6, column MD-11
+  Inputs: Height (m) 11.16
+  Applicability: MD-11 vertical tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD vertical_tail.mac
-  Value: null
+  Value: 5.39246
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-6/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 6, column MD-11
+  Formula: (2/3) * root_chord * (1 + taper + taper^2) / (1 + taper)
+  Inputs: area=56.2 m2; height=11.16 m; taper=0.369
+  Applicability: MD-11 vertical tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD vertical_tail.root_chord
-  Value: null
+  Value: 7.356965
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-6/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 6, column MD-11
+  Formula: 2 * area / (height * (1 + taper))
+  Inputs: area=56.2 m2; height=11.16 m; taper=0.369
+  Applicability: MD-11 vertical tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD vertical_tail.tip_chord
-  Value: null
+  Value: 2.71472
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-6/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 6, column MD-11
+  Formula: taper * root_chord
+  Inputs: area=56.2 m2; height=11.16 m; taper=0.369
+  Applicability: MD-11 vertical tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD vertical_tail.taper_ratio
-  Value: null
+  Value: 0.369
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-6/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 6, column MD-11
+  Inputs: Taper Ratio 0.369
+  Applicability: MD-11 vertical tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD vertical_tail.sweep
-  Value: null
+  Value: 40
   Unit: deg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima210_issue_02 | boeing_md11_acap_rev_f_2011_05
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-6/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 6, column MD-11
+  Inputs: 1/4 Chord Sweep (deg) 40
+  Applicability: MD-11 vertical tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD vertical_tail.arm
@@ -373,14 +461,14 @@ LEGACY PARAMETERS
 
 DRAG MODEL
   Active Aerox physical drag model and reference-condition polar snapshot.
-  Scaled or substituted geometry fields: horizontal_tail.area, horizontal_tail.mac, vertical_tail.area, vertical_tail.mac, wing.root_chord, horizontal_tail.sweep, vertical_tail.sweep, engine.nacelle_max_diameter, engine.nacelle_length
+  Scaled or substituted geometry fields: wing.root_chord, engine.nacelle_max_diameter, engine.nacelle_length
 
 FIELD drag.model
   Value: aerox-geometry-drag-v2
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9461; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
-  Zero-lift terms at reference (drag counts): wing=43.46; fuselage=53.50; horizontal_tail=15.04; vertical_tail=9.61; nacelles=13.42; pylons=1.96; fuselage_upsweep=5.05; control_surface_gaps=0.94; nacelle_base=1.67; roughness_excrescence=13.02
+  Inputs: configuration=clean; tier=A-observed-core-and-tails; confidence=medium; e_span=0.9461; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
+  Zero-lift terms at reference (drag counts): wing=43.46; fuselage=51.56; horizontal_tail=15.21; vertical_tail=9.91; nacelles=13.42; pylons=1.96; fuselage_upsweep=5.05; control_surface_gaps=0.92; nacelle_base=1.67; roughness_excrescence=12.88
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -390,13 +478,13 @@ FIELD drag.configuration
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.geometry_tier
-  Value: B-observed-core-scaled-tails
+  Value: A-observed-core-and-tails
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.confidence
-  Value: medium-low
+  Value: medium
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Model metadata; not a measured aircraft coefficient.

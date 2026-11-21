@@ -319,66 +319,104 @@ FIELD horizontal_tail.elevator_area_ratio
 END FIELD
 
 FIELD vertical_tail.area
-  Value: null
+  Value: 23.13
   Unit: m2
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | boeing_737_800_cad_3view | nasa_tm_2011_217264_b738_reference_geometry
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-2/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 2, column 737-800
+  Inputs: Area (m2) 23.13
+  Applicability: 737-800 vertical tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD vertical_tail.height
-  Value: null
+  Value: 6
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | boeing_737_800_cad_3view | nasa_tm_2011_217264_b738_reference_geometry
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-2/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 2, column 737-800
+  Inputs: Height (m) 6
+  Applicability: 737-800 vertical tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD vertical_tail.mac
-  Value: null
+  Value: 4.211499
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | boeing_737_800_cad_3view | nasa_tm_2011_217264_b738_reference_geometry
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-2/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 2, column 737-800
+  Formula: (2/3) * root_chord * (1 + taper + taper^2) / (1 + taper)
+  Inputs: area=23.13 m2; height=6 m; taper=0.31
+  Applicability: 737-800 vertical tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD vertical_tail.root_chord
-  Value: null
+  Value: 5.885496
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | boeing_737_800_cad_3view | nasa_tm_2011_217264_b738_reference_geometry
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-2/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 2, column 737-800
+  Formula: 2 * area / (height * (1 + taper))
+  Inputs: area=23.13 m2; height=6 m; taper=0.31
+  Applicability: 737-800 vertical tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD vertical_tail.tip_chord
-  Value: null
+  Value: 1.824504
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | boeing_737_800_cad_3view | nasa_tm_2011_217264_b738_reference_geometry
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-2/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 2, column 737-800
+  Formula: taper * root_chord
+  Inputs: area=23.13 m2; height=6 m; taper=0.31
+  Applicability: 737-800 vertical tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD vertical_tail.taper_ratio
-  Value: null
+  Value: 0.31
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | boeing_737_800_cad_3view | nasa_tm_2011_217264_b738_reference_geometry
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-2/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 2, column 737-800
+  Inputs: Taper Ratio 0.31
+  Applicability: 737-800 vertical tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD vertical_tail.sweep
-  Value: null
+  Value: 35
   Unit: deg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | boeing_737_800_cad_3view | nasa_tm_2011_217264_b738_reference_geometry
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-2/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 2, column 737-800
+  Inputs: 1/4 Chord Sweep (deg) 35
+  Applicability: 737-800 vertical tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area.
 END FIELD
 
 FIELD vertical_tail.arm
@@ -405,14 +443,14 @@ LEGACY PARAMETERS
 
 DRAG MODEL
   Active Aerox physical drag model and reference-condition polar snapshot.
-  Scaled or substituted geometry fields: wing.t/c, vertical_tail.area, vertical_tail.mac, wing.root_chord, vertical_tail.sweep, engine.nacelle_max_diameter, engine.nacelle_length
+  Scaled or substituted geometry fields: wing.t/c, wing.root_chord, engine.nacelle_max_diameter, engine.nacelle_length
 
 FIELD drag.model
   Value: aerox-geometry-drag-v2
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=C-partially-scaled; confidence=low; e_span=0.9491; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
-  Zero-lift terms at reference (drag counts): wing=52.12; fuselage=61.92; horizontal_tail=18.31; vertical_tail=10.93; nacelles=11.05; pylons=1.70; fuselage_upsweep=5.29; control_surface_gaps=1.13; nacelle_base=1.99; roughness_excrescence=14.80
+  Zero-lift terms at reference (drag counts): wing=52.12; fuselage=61.92; horizontal_tail=18.31; vertical_tail=11.97; nacelles=11.05; pylons=1.70; fuselage_upsweep=5.29; control_surface_gaps=1.11; nacelle_base=1.99; roughness_excrescence=14.89
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration

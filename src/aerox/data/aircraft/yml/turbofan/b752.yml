@@ -26,7 +26,7 @@ pax:
   high: 225
   low: 200
 fuselage:
-  length: 47.3
+  length: 46.96
   height: 4.1
   width: 4.1
 wing:
@@ -52,13 +52,13 @@ horizontal_tail:
   arm: null
   elevator_area_ratio: null
 vertical_tail:
-  area: null
-  height: null
-  mac: null
-  root_chord: null
-  tip_chord: null
-  taper_ratio: null
-  sweep: null
+  area: 34.37
+  height: 7.33
+  mac: 5.051287
+  root_chord: 6.946592
+  tip_chord: 2.431307
+  taper_ratio: 0.35
+  sweep: 39
   arm: null
   rudder_area_ratio: null
 flaps:

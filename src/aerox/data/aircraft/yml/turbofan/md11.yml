@@ -26,7 +26,7 @@ pax:
   high: 323
   low: 285
 fuselage:
-  length: 61.2
+  length: 58.65
   height: 6.02
   width: 6.02
 wing:
@@ -41,24 +41,24 @@ wing:
   aspect_ratio: 7.93858
   dihedral: null
 horizontal_tail:
-  area: null
+  area: 85.5
   span: 18.0
-  mac: null
-  root_chord: null
-  tip_chord: null
-  taper_ratio: null
-  sweep: null
+  mac: 5.065136
+  root_chord: 6.869125
+  tip_chord: 2.630875
+  taper_ratio: 0.383
+  sweep: 35
   dihedral: null
   arm: null
   elevator_area_ratio: null
 vertical_tail:
-  area: null
-  height: null
-  mac: null
-  root_chord: null
-  tip_chord: null
-  taper_ratio: null
-  sweep: null
+  area: 56.2
+  height: 11.16
+  mac: 5.39246
+  root_chord: 7.356965
+  tip_chord: 2.71472
+  taper_ratio: 0.369
+  sweep: 40
   arm: null
   rudder_area_ratio: null
 flaps:
@@ -79,8 +79,8 @@ engine:
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean
-  geometry_tier: B-observed-core-scaled-tails
-  confidence: medium-low
+  geometry_tier: A-observed-core-and-tails
+  confidence: medium
   reference_altitude_ft: 34205.2
   reference_mach: 0.83
   reference_unit_reynolds_number_per_m: 6701847.5
