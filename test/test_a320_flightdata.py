@@ -3,6 +3,11 @@ from datetime import datetime
 import numpy as np
 import pytest
 
+from aerox.flightdata.a320_configuration import (
+    A320_FLAP_RAW_DETENTS,
+    A320FlapConfiguration,
+    decode_a320_flap_configuration,
+)
 from aerox.flightdata.a320_qar import (
     A320_CHANNELS,
     DecodeStatus,
@@ -53,3 +58,41 @@ def test_provisional_channels_require_explicit_opt_in():
     np.testing.assert_array_equal(
         flight.channel("pitch", allow_provisional=True), [0.1]
     )
+
+
+def test_flap_configuration_decoder_maps_detents_and_one_quantum_jitter():
+    time = np.arange(7.0)
+    raw = np.array(
+        [
+            A320_FLAP_RAW_DETENTS[A320FlapConfiguration.CLEAN],
+            np.nan,
+            A320_FLAP_RAW_DETENTS[A320FlapConfiguration.CONF_1] + 1.40625,
+            140.625,
+            np.nan,
+            np.nan,
+            np.nan,
+        ]
+    )
+
+    decoded = decode_a320_flap_configuration(raw, time)
+
+    np.testing.assert_allclose(
+        decoded,
+        [
+            A320FlapConfiguration.CLEAN,
+            A320FlapConfiguration.CLEAN,
+            A320FlapConfiguration.CONF_1,
+            A320FlapConfiguration.CONF_1,
+            A320FlapConfiguration.CONF_1,
+            np.nan,
+            np.nan,
+        ],
+        equal_nan=True,
+    )
+
+
+def test_flap_configuration_decoder_rejects_invalid_shapes_and_tolerance():
+    with pytest.raises(ValueError, match="equal-length"):
+        decode_a320_flap_configuration([0.0], [0.0, 1.0])
+    with pytest.raises(ValueError, match="non-negative"):
+        decode_a320_flap_configuration([0.0], [0.0], tolerance=-1.0)
