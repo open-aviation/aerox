@@ -400,13 +400,14 @@ LEGACY PARAMETERS
 
 DRAG MODEL
   Active Aerox physical drag model and reference-condition polar snapshot.
-  Scaled or substituted geometry fields: horizontal_tail.mac, vertical_tail.mac
+  Scaled or substituted geometry fields: horizontal_tail.mac, vertical_tail.mac, wing.root_chord, horizontal_tail.sweep, vertical_tail.sweep, engine.nacelle_max_diameter, engine.nacelle_length
 
 FIELD drag.model
-  Value: aerox-geometry-drag-v1
+  Value: aerox-geometry-drag-v2
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9525; unresolved/resolved=0.2300
+  Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9525; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
+  Zero-lift terms at reference (drag counts): wing=55.53; fuselage=60.54; horizontal_tail=23.38; vertical_tail=17.22; nacelles=17.29; pylons=2.66; fuselage_upsweep=5.14; control_surface_gaps=1.40; nacelle_base=2.63; roughness_excrescence=16.72
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -452,7 +453,13 @@ FIELD drag.span_efficiency_factor
   Applicability: Physical model input; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.unresolved_fraction_of_resolved_drag
-  Value: 0.23
+  Value: null
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Physical model input; geometry-tier uncertainty applies.
+END FIELD
+FIELD drag.roughness_excrescence_fraction
+  Value: 0.09
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Physical model input; geometry-tier uncertainty applies.

@@ -77,7 +77,7 @@ engine:
   - 1 x 600 SHP PWC PT6A-114 turboprop with 3 blade propeller
   - 1 x 675 SHP PWC PT6A-114A turboprop with 3 blade propeller
 drag:
-  model: aerox-geometry-drag-v1
+  model: aerox-geometry-drag-v2
   configuration: clean
   geometry_tier: D-class-scaled
   confidence: low
@@ -86,6 +86,7 @@ drag:
   reference_unit_reynolds_number_per_m: 3301512.2
   span_efficiency_factor: 0.95
   unresolved_fraction_of_resolved_drag: 0.28
+  roughness_excrescence_fraction: null
   wave_drag_model: null
   wave_drag_source_tier: not-applicable
   wave_drag_confidence: not-applicable

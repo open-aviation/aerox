@@ -39,7 +39,7 @@ def test_load_aircraft_from_dict_with_nested_sections():
                 "options": ["PWC PW124B"],
             },
             "drag": {
-                "model": "aerox-geometry-drag-v1",
+                "model": "aerox-geometry-drag-v2",
                 "configuration": "clean",
                 "geometry_tier": "D-class-scaled",
                 "confidence": "low",
@@ -68,7 +68,7 @@ def test_load_aircraft_from_dict_with_nested_sections():
     assert aircraft.engines_for_subtype("ATR 72-212A") == ["PW127M"]
     assert aircraft.engines_for_subtype("ATR 72-600F") == []
     assert isinstance(aircraft.drag, DragModelConfig)
-    assert aircraft.drag.model == "aerox-geometry-drag-v1"
+    assert aircraft.drag.model == "aerox-geometry-drag-v2"
     assert aircraft.drag.wave_drag_model is None
     assert isinstance(aircraft.kinematic, KinematicParameters)
     assert aircraft.icao == "AT72"

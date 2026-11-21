@@ -76,7 +76,7 @@ engine:
   options:
   - CFM56/F108
 drag:
-  model: aerox-geometry-drag-v1
+  model: aerox-geometry-drag-v2
   configuration: clean
   geometry_tier: X-special-scaled
   confidence: low
@@ -84,7 +84,8 @@ drag:
   reference_mach: 0.85
   reference_unit_reynolds_number_per_m: 6672988.1
   span_efficiency_factor: 0.95
-  unresolved_fraction_of_resolved_drag: 0.23
+  unresolved_fraction_of_resolved_drag: null
+  roughness_excrescence_fraction: 0.09
   wave_drag_model: null
   wave_drag_source_tier: not-applicable
   wave_drag_confidence: not-applicable

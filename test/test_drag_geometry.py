@@ -23,7 +23,12 @@ def test_a320_geometry_model_has_explicit_components_and_plausible_polar():
         "vertical_tail",
     )
     assert result.parasite[0] == pytest.approx(0.01776675, rel=1e-5)
-    assert result.unresolved_parasite[0] > 0.0
+    assert tuple(result.parasite_increments) == ("unresolved",)
+    assert result.increment_parasite[0] > 0.0
+    np.testing.assert_allclose(
+        result.parasite,
+        result.resolved_parasite + result.parasite_increments["unresolved"],
+    )
     assert result.span_induced[0] == 0.0
     assert result.lift_dependent_profile[1] > 0.0
     effective_k = (result.total[1] - result.total[0]) / 0.5**2

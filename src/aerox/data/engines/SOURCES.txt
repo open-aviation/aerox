@@ -38,3 +38,44 @@ Aircraft subtype mappings
   Only engine identifiers present in generated engines.csv may appear in a
   non-null aircraft subtypes mapping. The aircraft TCDS establishes subtype
   applicability; the ICAO EEDB establishes the query identifier spelling.
+
+Nacelle geometry
+  File: nacelles.csv
+  Use: nacelle, pylon, and nacelle-base terms of the turbofan drag build-up
+    in aerox.models.drag.builder.
+  Matching: engine_pattern is a regular expression searched in the aircraft
+    record's engine.default designation. The first matching row applies.
+  Units: metres. fan_diameter_m is the fan (tip) diameter.
+    nacelle_max_diameter_m is the largest nacelle cross-section.
+    nacelle_length_m runs from the inlet lip to the fan-nozzle exit for a
+    short-duct (separate-flow) nacelle and to the common nozzle exit for a
+    long-duct (mixed-flow) nacelle.
+  Tiers:
+    A-measured-nacelle: maximum diameter and length read from Airbus
+      "Aircraft Characteristics - Airport and Maintenance Planning" drawings,
+      chapter 2-12-0 (figure numbers in nacelle_source). The drawings are
+      marked as approximate dimensions. The Trent XWB values come from the
+      A350-900 preliminary issue and are also applied to the Trent XWB-97.
+    B-fan-diameter-ratio: published fan diameter; nacelle dimensions are
+      derived at run time with D_max = 1.25 D_fan and L = 1.95 D_fan (short
+      duct) or 3.1 D_fan (long duct). The ratios come from the A-tier drawings
+      (D_max/D_fan 1.21-1.31; L/D_fan 1.8-2.1 short duct, 3.0-3.3 long duct)
+      and NASA NTRS 20140001089, Table 1 (D_max/D_fan 1.22-1.23).
+    C-estimated-fan-diameter (no row): engines without a published fan
+      diameter in this file. The builder estimates D_fan = 0.00827
+      sqrt(MTOW / engine count), MTOW in kg, and applies the short-duct
+      ratios. 0.00827 is the median over the A- and B-tier turbofan records.
+  Fan-diameter sources: EASA engine TCDS where they state the fan diameter
+    or the fan size in the series designation; GE and CFM product sheets;
+    otherwise secondary compilations (public engine family summaries, and the
+    engine data file B of Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft
+    Design). Secondary values are marked as such in fan_diameter_source.
+  Known limitations:
+    - Jenkinson data-file values for small engines may be overall engine
+      diameters rather than fan diameters. Rows where its two tables disagree
+      (BR710, Tay) are not used and fall back to tier C.
+    - The FJ44-1 value is not applied to FJ44-2, -3, or -4 engines.
+    - Duct type for the small-engine rows is not documented in the collected
+      sources; those rows use the short-duct default.
+    - No pylon dimensions are published; pylons are 20 % of the nacelle
+      friction and form drag.

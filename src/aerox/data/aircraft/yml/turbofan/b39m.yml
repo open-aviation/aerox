@@ -79,7 +79,7 @@ engine:
   - LEAP-1B28B1
   - LEAP-1B28BBJ1
 drag:
-  model: aerox-geometry-drag-v1
+  model: aerox-geometry-drag-v2
   configuration: clean
   geometry_tier: A-observed-core-and-tails
   confidence: medium
@@ -87,7 +87,8 @@ drag:
   reference_mach: 0.79
   reference_unit_reynolds_number_per_m: 6037716.7
   span_efficiency_factor: 0.950962
-  unresolved_fraction_of_resolved_drag: 0.23
+  unresolved_fraction_of_resolved_drag: null
+  roughness_excrescence_fraction: 0.09
   wave_drag_model: aerox-korn-lock-wave-v1
   wave_drag_source_tier: D-class-scaled
   wave_drag_confidence: low

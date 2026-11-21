@@ -77,7 +77,7 @@ engine:
   - 160 HP Lycoming O-320-A2B piston engine with 2 blade propeller
   - 180 HP Lycoming O-360-A4M piston engine with 2 blade propeller
 drag:
-  model: aerox-geometry-drag-v1
+  model: aerox-geometry-drag-v2
   configuration: clean
   geometry_tier: D-class-scaled
   confidence: low
@@ -86,6 +86,7 @@ drag:
   reference_unit_reynolds_number_per_m: 3198851.1
   span_efficiency_factor: 0.95
   unresolved_fraction_of_resolved_drag: 0.35
+  roughness_excrescence_fraction: null
   wave_drag_model: null
   wave_drag_source_tier: not-applicable
   wave_drag_confidence: not-applicable

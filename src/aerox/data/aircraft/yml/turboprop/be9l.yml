@@ -79,7 +79,7 @@ engine:
   - P&W PT6A -21
   - P&W PT6A -34
 drag:
-  model: aerox-geometry-drag-v1
+  model: aerox-geometry-drag-v2
   configuration: clean
   geometry_tier: D-class-scaled
   confidence: low
@@ -88,6 +88,7 @@ drag:
   reference_unit_reynolds_number_per_m: 4563969.4
   span_efficiency_factor: 0.95
   unresolved_fraction_of_resolved_drag: 0.28
+  roughness_excrescence_fraction: null
   wave_drag_model: null
   wave_drag_source_tier: not-applicable
   wave_drag_confidence: not-applicable

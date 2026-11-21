@@ -6,11 +6,20 @@ records using frozen, class-scaled dimensionless defaults, then evaluates the
 physical model at a documented representative cruise condition. The stored
 fields are independent inputs; ``CD0`` and ``k`` are derived only when a
 low-order reference-polar projection is requested.
+
+Civil turbofans use a component build-up: exposed wing, fuselage, tails,
+nacelles, pylons, upsweep, control-surface gaps, nacelle base, and one
+published roughness and excrescence allowance. Turboprop, piston, and
+high-speed aircraft keep one lumped unresolved fraction of the resolved drag.
 """
 
 from __future__ import annotations
 
+import csv
+import re
 from dataclasses import dataclass
+from functools import lru_cache
+from pathlib import Path
 
 import numpy as np
 
@@ -18,6 +27,16 @@ from aerox import aero
 from aerox.aircraft import Aircraft
 from aerox.models.atmosphere import isa_atmosphere, unit_reynolds_number
 
+from .components import (
+    ParasiteDragComponent,
+    control_surface_gap_drag_area,
+    exposed_wing_area,
+    fuselage_upsweep_drag_area,
+    nacelle_base_drag_area,
+    nacelle_form_factor,
+    nacelle_wetted_area,
+    trapezoidal_root_chord,
+)
 from .core import DragCondition
 from .geometry import (
     GeometryDragModel,
@@ -27,10 +46,48 @@ from .geometry import (
 from .polar import ParabolicDragPolar, project_parabolic_polar
 from .wave import KornLockWaveDrag
 
-GEOMETRY_DRAG_MODEL_ID = "aerox-geometry-drag-v1"
+GEOMETRY_DRAG_MODEL_ID = "aerox-geometry-drag-v2"
 KORN_LOCK_WAVE_DRAG_MODEL_ID = "aerox-korn-lock-wave-v1"
 _HIGH_SPEED_AIRCRAFT = frozenset({"F15", "F16", "HAWK", "T38"})
 _SPECIAL_AIRCRAFT = _HIGH_SPEED_AIRCRAFT | frozenset({"C17", "K35R"})
+NACELLE_DATA_PATH = (
+    Path(__file__).resolve().parents[2] / "data" / "engines" / "nacelles.csv"
+)
+
+# Turbofan component build-up. Sources are given as quoted in the evidence
+# collected for this model; "via Scholz" means Scholz, Aircraft Design,
+# ch. 13, which quotes Raymer (1992).
+#
+# Roughness, excrescence, leakage, and miscellaneous items: one published
+# allowance on the sum of all computed terms. 0.09 follows Kroo, AA241 notes
+# (6-9 % roughness markup on skin friction plus 1.5 % miscellaneous items).
+# Published range: 0.03 (Raymer, 2-5 % leakage and protuberance) to 0.13
+# (Boeing 737 excrescence, 7 % of total drag; Goldhammer and Plendl, Boeing
+# AERO Q1 2013).
+ROUGHNESS_EXCRESCENCE_FRACTION = 0.09
+# Nacelle interference Q (Raymer via Scholz Table 13.4): 1.3 within about one
+# nacelle diameter of the wing, 1.5 mounted directly on the fuselage or wing.
+NACELLE_INTERFERENCE_WING_MOUNTED = 1.3
+NACELLE_INTERFERENCE_FUSELAGE_MOUNTED = 1.5
+# Pylons: 20 % of the nacelle friction and form drag (SUAVE
+# parasite_drag_pylon, also RCAIDE).
+PYLON_FRACTION_OF_NACELLE_DRAG = 0.20
+# Tail interference Q = 1.04 for a conventional empennage (Raymer via Scholz
+# Table 13.4; 1.08 and 1.03 there are H-tail and V-tail layouts).
+TAIL_INTERFERENCE_FACTOR = 1.04
+# Kroo control-surface gap class values: affected area is 0.3 S_wing,
+# 1.0 S_horizontal, and 0.9 S_vertical when no layout data is available.
+_GAP_AFFECTED_AREA_RATIOS = (0.3, 1.0, 0.9)
+# Nacelle ratios from Airbus airport-planning drawings and NASA (Guynn et al.,
+# NTRS 20140001089): D_max = 1.25 D_fan; L = 1.95 D_fan (short duct, inlet lip
+# to fan-nozzle exit) or 3.1 D_fan (long duct, inlet lip to common nozzle).
+NACELLE_MAX_DIAMETER_TO_FAN = 1.25
+NACELLE_LENGTH_TO_FAN = {"short": 1.95, "long": 3.1}
+# Lowest tier: D_fan = c sqrt(MTOW / engines), MTOW in kg. The square root
+# follows from fan area scaling with thrust and thrust with weight. ``c`` is
+# the median of D_fan / sqrt(MTOW / engines) over the bundled turbofan records
+# whose default engine has a published fan diameter in nacelles.csv.
+FAN_DIAMETER_PER_SQRT_MTOW_PER_ENGINE = 0.00827
 
 
 @dataclass(frozen=True)
@@ -48,7 +105,7 @@ class GeometryScalingDefaults:
     vertical_tail_area_ratio: float
     vertical_tail_mac_ratio: float
     span_efficiency_factor: float
-    unresolved_fraction_of_resolved_drag: float
+    unresolved_fraction_of_resolved_drag: float | None
     reference_ceiling_fraction: float
     maximum_reference_altitude_ft: float
     default_reference_altitude_ft: float
@@ -71,7 +128,8 @@ _DEFAULTS = {
         vertical_tail_area_ratio=0.166,
         vertical_tail_mac_ratio=0.854,
         span_efficiency_factor=0.95,
-        unresolved_fraction_of_resolved_drag=0.23,
+        # Civil turbofans use the component build-up, not a lumped fraction.
+        unresolved_fraction_of_resolved_drag=None,
         reference_ceiling_fraction=0.85,
         maximum_reference_altitude_ft=35_000.0,
         default_reference_altitude_ft=35_000.0,
@@ -136,6 +194,20 @@ _HIGH_SPEED_DEFAULTS = GeometryScalingDefaults(
 
 
 @dataclass(frozen=True)
+class NacelleGeometry:
+    """Nacelle dimensions resolved from the default engine designation."""
+
+    engine: str | None
+    family: str | None
+    fan_diameter_m: float
+    max_diameter_m: float
+    length_m: float
+    duct: str
+    tier: str
+    imputed_fields: tuple[str, ...]
+
+
+@dataclass(frozen=True)
 class ResolvedDragGeometry:
     """Observed and scaled geometry used for one aircraft drag model."""
 
@@ -156,6 +228,13 @@ class ResolvedDragGeometry:
     confidence: str
     defaults: GeometryScalingDefaults
     span_efficiency_factor: float
+    component_buildup: bool = False
+    wing_exposed_area_m2: float | None = None
+    horizontal_tail_sweep_deg: float | None = None
+    vertical_tail_sweep_deg: float | None = None
+    engine_count: int | None = None
+    nacelle_interference_factor: float | None = None
+    nacelle: NacelleGeometry | None = None
 
     @property
     def aspect_ratio(self) -> float:
@@ -172,6 +251,15 @@ class ReferenceDragCondition:
 
 
 @dataclass(frozen=True)
+class DragTerm:
+    """One zero-lift drag term at the reference condition."""
+
+    name: str
+    value: float
+    method: str
+
+
+@dataclass(frozen=True)
 class DragBuildReport:
     """Generated configuration and diagnostics for one aircraft drag model."""
 
@@ -185,12 +273,15 @@ class DragBuildReport:
     reference_mach: float
     reference_unit_reynolds_number_per_m: float
     span_efficiency_factor: float
-    unresolved_fraction_of_resolved_drag: float
+    unresolved_fraction_of_resolved_drag: float | None
+    roughness_excrescence_fraction: float | None
     wave_drag_model: str | None
     wave_drag_source_tier: str
     wave_drag_confidence: str
     wave_drag_technology_factor: float | None
     imputed_fields: tuple[str, ...]
+    parasite_terms: tuple[DragTerm, ...]
+    nacelle_geometry_tier: str | None
 
 
 def _wave_drag_config(
@@ -243,6 +334,121 @@ def _scaling_defaults_for_aircraft(
         raise ValueError(
             f"aircraft {aircraft.icao or '<unknown>'} has no supported engine class"
         ) from exc
+
+
+def uses_component_buildup(aircraft: Aircraft) -> bool:
+    """Return whether the turbofan component build-up applies to a record.
+
+    Only civil-class turbofans (including the C17 and K35R) use it. Turboprop,
+    piston, and high-speed records keep the lumped unresolved fraction.
+    """
+
+    defaults, _ = _scaling_defaults_for_aircraft(aircraft)
+    return defaults is _DEFAULTS["turbofan"]
+
+
+@lru_cache(maxsize=1)
+def _nacelle_table() -> tuple[dict[str, str], ...]:
+    with NACELLE_DATA_PATH.open(encoding="utf-8", newline="") as stream:
+        return tuple(csv.DictReader(stream))
+
+
+def resolve_nacelle_geometry(aircraft: Aircraft) -> NacelleGeometry:
+    """Resolve one nacelle of the default engine with its evidence tier.
+
+    Tier ``A-measured-nacelle`` uses manufacturer drawing dimensions. Tier
+    ``B-fan-diameter-ratio`` scales a published fan diameter with the nacelle
+    ratios. Tier ``C-estimated-fan-diameter`` first estimates the fan diameter
+    from MTOW per engine and then applies the short-duct ratios.
+    """
+
+    engine = aircraft.engine.default if aircraft.engine is not None else None
+    designation = str(engine or "").strip()
+    row = next(
+        (
+            item
+            for item in _nacelle_table()
+            if designation and re.search(item["engine_pattern"], designation)
+        ),
+        None,
+    )
+    if row is not None and row["nacelle_max_diameter_m"] and row["nacelle_length_m"]:
+        return NacelleGeometry(
+            engine=engine,
+            family=row["family"],
+            fan_diameter_m=float(row["fan_diameter_m"]),
+            max_diameter_m=float(row["nacelle_max_diameter_m"]),
+            length_m=float(row["nacelle_length_m"]),
+            duct=row["duct"],
+            tier=row["geometry_tier"],
+            imputed_fields=(),
+        )
+    if row is not None:
+        fan_diameter = float(row["fan_diameter_m"])
+        duct = row["duct"]
+        family = row["family"]
+        tier = row["geometry_tier"]
+        imputed: tuple[str, ...] = (
+            "engine.nacelle_max_diameter",
+            "engine.nacelle_length",
+        )
+    else:
+        mtow = _positive(aircraft.mtow)
+        count = aircraft.engine.number if aircraft.engine is not None else None
+        if mtow is None or not count:
+            raise ValueError(
+                f"aircraft {aircraft.icao or '<unknown>'} needs MTOW and engine "
+                "count to estimate nacelle geometry"
+            )
+        fan_diameter = FAN_DIAMETER_PER_SQRT_MTOW_PER_ENGINE * np.sqrt(mtow / count)
+        duct = "short"
+        family = None
+        tier = "C-estimated-fan-diameter"
+        imputed = (
+            "engine.fan_diameter",
+            "engine.nacelle_max_diameter",
+            "engine.nacelle_length",
+        )
+    return NacelleGeometry(
+        engine=engine,
+        family=family,
+        fan_diameter_m=float(fan_diameter),
+        max_diameter_m=float(NACELLE_MAX_DIAMETER_TO_FAN * fan_diameter),
+        length_m=float(NACELLE_LENGTH_TO_FAN[duct] * fan_diameter),
+        duct=duct,
+        tier=tier,
+        imputed_fields=imputed,
+    )
+
+
+def nacelle_interference_factor(mount: str | None, engine_count: int) -> float:
+    """Return the mean nacelle interference factor for the engine layout.
+
+    Wing-mounted nacelles use 1.3 and fuselage-mounted nacelles 1.5. A layout
+    with wing nacelles and a fin-integrated engine counts the centre engine as
+    fuselage mounted.
+    """
+
+    text = str(mount or "").lower()
+    wing = "wing" in text
+    body = "fuselage" in text or "fin" in text or text.strip() == "rear"
+    if engine_count < 1:
+        raise ValueError("engine count must be positive")
+    if wing and body:
+        wing_count = engine_count - 1
+    elif wing:
+        wing_count = engine_count
+    elif body:
+        wing_count = 0
+    else:
+        raise ValueError(f"unsupported engine mount: {mount!r}")
+    return float(
+        (
+            wing_count * NACELLE_INTERFERENCE_WING_MOUNTED
+            + (engine_count - wing_count) * NACELLE_INTERFERENCE_FUSELAGE_MOUNTED
+        )
+        / engine_count
+    )
 
 
 def resolve_drag_geometry(aircraft: Aircraft) -> ResolvedDragGeometry:
@@ -356,6 +562,39 @@ def resolve_drag_geometry(aircraft: Aircraft) -> ResolvedDragGeometry:
     else:
         tier, confidence = "D-class-scaled", "low"
 
+    buildup: dict[str, object] = {}
+    if uses_component_buildup(aircraft):
+        root_chord = _positive(aircraft.wing.root_chord)
+        if root_chord is None:
+            root_chord = trapezoidal_root_chord(area, span, mac)
+            missing.append("wing.root_chord")
+        tail_sweeps = []
+        for name, tail in (
+            ("horizontal_tail", aircraft.horizontal_tail),
+            ("vertical_tail", aircraft.vertical_tail),
+        ):
+            tail_sweep = None if tail is None else tail.sweep
+            if tail_sweep is None or not np.isfinite(float(tail_sweep)):
+                tail_sweep = sweep
+                missing.append(f"{name}.sweep")
+            tail_sweeps.append(float(tail_sweep))
+        count = aircraft.engine.number if aircraft.engine is not None else None
+        if not count:
+            raise ValueError(f"aircraft {aircraft.icao} has no engine count")
+        nacelle = resolve_nacelle_geometry(aircraft)
+        missing.extend(nacelle.imputed_fields)
+        buildup = {
+            "component_buildup": True,
+            "wing_exposed_area_m2": exposed_wing_area(area, span, width, root_chord),
+            "horizontal_tail_sweep_deg": tail_sweeps[0],
+            "vertical_tail_sweep_deg": tail_sweeps[1],
+            "engine_count": int(count),
+            "nacelle_interference_factor": nacelle_interference_factor(
+                aircraft.engine.mount, int(count)
+            ),
+            "nacelle": nacelle,
+        }
+
     engine_type = aircraft.engine.type if aircraft.engine is not None else None
     span_efficiency = defaults.span_efficiency_factor
     if engine_type == "turbofan" and not special:
@@ -383,6 +622,7 @@ def resolve_drag_geometry(aircraft: Aircraft) -> ResolvedDragGeometry:
         confidence=confidence,
         defaults=defaults,
         span_efficiency_factor=float(span_efficiency),
+        **buildup,
     )
 
 
@@ -459,42 +699,174 @@ def derive_reference_drag_condition(
     return ReferenceDragCondition(float(altitude_ft), mach, unit_reynolds)
 
 
+def _turbofan_buildup_terms(
+    geometry: ResolvedDragGeometry,
+) -> tuple[tuple[ParasiteDragComponent, ...], tuple[tuple[str, float], ...]]:
+    """Return nacelle and pylon components and the constant drag areas."""
+
+    nacelle = geometry.nacelle
+    count = geometry.engine_count
+    interference = geometry.nacelle_interference_factor
+    if nacelle is None or count is None or interference is None:
+        raise ValueError("turbofan build-up requires resolved nacelle geometry")
+    wetted = count * nacelle_wetted_area(nacelle.max_diameter_m, nacelle.length_m)
+    form_factor = nacelle_form_factor(nacelle.max_diameter_m, nacelle.length_m)
+    components = (
+        ParasiteDragComponent(
+            name="nacelles",
+            wetted_area_m2=wetted,
+            characteristic_length_m=nacelle.length_m,
+            form_factor=form_factor,
+            interference_factor=interference,
+        ),
+        ParasiteDragComponent(
+            name="pylons",
+            wetted_area_m2=PYLON_FRACTION_OF_NACELLE_DRAG * wetted,
+            characteristic_length_m=nacelle.length_m,
+            form_factor=form_factor,
+        ),
+    )
+    wing_ratio, horizontal_ratio, vertical_ratio = _GAP_AFFECTED_AREA_RATIOS
+    gap_surfaces = (
+        (
+            wing_ratio * geometry.wing_area_m2,
+            float(np.deg2rad(geometry.wing_sweep_deg)),
+        ),
+        (
+            horizontal_ratio * geometry.horizontal_tail_area_m2,
+            float(np.deg2rad(geometry.horizontal_tail_sweep_deg)),
+        ),
+        (
+            vertical_ratio * geometry.vertical_tail_area_m2,
+            float(np.deg2rad(geometry.vertical_tail_sweep_deg)),
+        ),
+    )
+    drag_areas = (
+        (
+            "fuselage_upsweep",
+            fuselage_upsweep_drag_area(
+                geometry.fuselage_width_m, geometry.fuselage_height_m
+            ),
+        ),
+        ("control_surface_gaps", control_surface_gap_drag_area(gap_surfaces)),
+        # The nozzle exit diameter is approximated by the fan diameter.
+        ("nacelle_base", count * nacelle_base_drag_area(nacelle.fan_diameter_m)),
+    )
+    return components, drag_areas
+
+
 def _build_subcritical_geometry_model(
     geometry: ResolvedDragGeometry,
     reference_mach: float,
     reference_unit_reynolds_number_per_m: float,
     *,
     span_efficiency_factor: float | None = None,
-    unresolved_fraction_of_resolved_drag: float | None = None,
+    allowance_fraction: float | None = None,
 ) -> GeometryDragModel:
     span_efficiency = (
         geometry.span_efficiency_factor
         if span_efficiency_factor is None
         else float(span_efficiency_factor)
     )
-    unresolved_fraction = (
-        geometry.defaults.unresolved_fraction_of_resolved_drag
-        if unresolved_fraction_of_resolved_drag is None
-        else float(unresolved_fraction_of_resolved_drag)
-    )
+    dimensions = {
+        "wing_area_m2": geometry.wing_area_m2,
+        "wing_span_m": geometry.wing_span_m,
+        "wing_mean_aerodynamic_chord_m": geometry.wing_mac_m,
+        "wing_thickness_to_chord_ratio": geometry.wing_thickness_to_chord_ratio,
+        "wing_sweep_rad": float(np.deg2rad(geometry.wing_sweep_deg)),
+        "fuselage_length_m": geometry.fuselage_length_m,
+        "fuselage_width_m": geometry.fuselage_width_m,
+        "fuselage_height_m": geometry.fuselage_height_m,
+        "horizontal_tail_area_m2": geometry.horizontal_tail_area_m2,
+        "horizontal_tail_mean_aerodynamic_chord_m": geometry.horizontal_tail_mac_m,
+        "vertical_tail_area_m2": geometry.vertical_tail_area_m2,
+        "vertical_tail_mean_aerodynamic_chord_m": geometry.vertical_tail_mac_m,
+        "reference_mach": reference_mach,
+        "reference_unit_reynolds_number_per_m": reference_unit_reynolds_number_per_m,
+        "span_efficiency_factor": span_efficiency,
+    }
+    if geometry.component_buildup:
+        components, drag_areas = _turbofan_buildup_terms(geometry)
+        return geometry_drag_model_from_dimensions(
+            **dimensions,
+            wing_wetted_planform_area_m2=geometry.wing_exposed_area_m2,
+            tail_interference_factor=TAIL_INTERFERENCE_FACTOR,
+            additional_components=components,
+            additional_drag_areas_m2=drag_areas,
+            allowance_fraction=(
+                ROUGHNESS_EXCRESCENCE_FRACTION
+                if allowance_fraction is None
+                else float(allowance_fraction)
+            ),
+            allowance_name="roughness_excrescence",
+        )
+    # Turboprop, piston, and high-speed classes: gross wing area, Q = 1, and
+    # one lumped unresolved fraction of the resolved component drag.
     return geometry_drag_model_from_dimensions(
-        wing_area_m2=geometry.wing_area_m2,
-        wing_span_m=geometry.wing_span_m,
-        wing_mean_aerodynamic_chord_m=geometry.wing_mac_m,
-        wing_thickness_to_chord_ratio=(geometry.wing_thickness_to_chord_ratio),
-        wing_sweep_rad=float(np.deg2rad(geometry.wing_sweep_deg)),
-        fuselage_length_m=geometry.fuselage_length_m,
-        fuselage_width_m=geometry.fuselage_width_m,
-        fuselage_height_m=geometry.fuselage_height_m,
-        horizontal_tail_area_m2=geometry.horizontal_tail_area_m2,
-        horizontal_tail_mean_aerodynamic_chord_m=(geometry.horizontal_tail_mac_m),
-        vertical_tail_area_m2=geometry.vertical_tail_area_m2,
-        vertical_tail_mean_aerodynamic_chord_m=geometry.vertical_tail_mac_m,
-        reference_mach=reference_mach,
-        reference_unit_reynolds_number_per_m=(reference_unit_reynolds_number_per_m),
-        span_efficiency_factor=span_efficiency,
-        unresolved_fraction_of_resolved_drag=unresolved_fraction,
+        **dimensions,
+        allowance_fraction=(
+            geometry.defaults.unresolved_fraction_of_resolved_drag
+            if allowance_fraction is None
+            else float(allowance_fraction)
+        ),
+        allowance_name="unresolved",
     )
+
+
+def _term_methods(geometry: ResolvedDragGeometry) -> dict[str, str]:
+    friction = "fully turbulent Cf(Re, M) x FF x Q x Swet / Sref"
+    if not geometry.component_buildup:
+        return {
+            "wing": f"{friction}; Swet = 2 S_gross (1 + 0.25 t/c); Q = 1",
+            "fuselage": f"{friction}; fineness-ratio FF; Q = 1",
+            "horizontal_tail": f"{friction}; t/c 0.10; Q = 1",
+            "vertical_tail": f"{friction}; t/c 0.10; Q = 1",
+            "unresolved": (
+                f"{geometry.defaults.unresolved_fraction_of_resolved_drag:g} x "
+                "resolved sum at reference (lumped class prior)"
+            ),
+        }
+    nacelle = geometry.nacelle
+    assert nacelle is not None
+    return {
+        "wing": (
+            f"{friction}; Swet = 2 S_exposed (1 + 0.25 t/c); S_exposed = S minus "
+            "trapezoid inside fuselage width; Q = 1.0"
+        ),
+        "fuselage": f"{friction}; fineness-ratio FF; Q = 1",
+        "horizontal_tail": (
+            f"{friction}; t/c 0.10; Q = {TAIL_INTERFERENCE_FACTOR} "
+            "(Raymer conventional tail, via Scholz Table 13.4)"
+        ),
+        "vertical_tail": (
+            f"{friction}; t/c 0.10; Q = {TAIL_INTERFERENCE_FACTOR} "
+            "(Raymer conventional tail, via Scholz Table 13.4)"
+        ),
+        "nacelles": (
+            f"{geometry.engine_count} x Cf(Re_L) (1 + 0.35 D/L) (Raymer) x "
+            "2.8 D L (FLOPS) x Q "
+            f"{geometry.nacelle_interference_factor:.3g} (Raymer, by mount); "
+            f"D {nacelle.max_diameter_m:.3f} m, L {nacelle.length_m:.3f} m, "
+            f"{nacelle.duct} duct, {nacelle.tier}"
+        ),
+        "pylons": (
+            f"{PYLON_FRACTION_OF_NACELLE_DRAG:g} x nacelle friction and form drag "
+            "(SUAVE)"
+        ),
+        "fuselage_upsweep": "0.006 x fuselage frontal area / Sref (Kroo)",
+        "control_surface_gaps": (
+            "0.0002 cos^2(sweep) S_affected / Sref (Kroo); S_affected = "
+            "0.3 S_wing + 1.0 S_h + 0.9 S_v (Kroo class values)"
+        ),
+        "nacelle_base": (
+            "engines x 0.5 in x pi D_exit x 0.2 / Sref (Kroo); "
+            "D_exit approximated by the fan diameter"
+        ),
+        "roughness_excrescence": (
+            f"{ROUGHNESS_EXCRESCENCE_FRACTION:g} x sum of computed terms at "
+            "reference (Kroo; published range 0.03 Raymer to 0.13 Boeing 737)"
+        ),
+    }
 
 
 def build_drag_report(aircraft: Aircraft) -> DragBuildReport:
@@ -520,6 +892,15 @@ def build_drag_report(aircraft: Aircraft) -> DragBuildReport:
         raise ValueError(
             f"aircraft {aircraft.icao or '<unknown>'} produced an implausible model"
         )
+    breakdown = model.breakdown_at(0.0, condition)
+    methods = _term_methods(geometry)
+    terms = tuple(
+        DragTerm(name, float(np.asarray(value).item()), methods[name])
+        for name, value in (
+            *breakdown.component_parasite.items(),
+            *breakdown.parasite_increments.items(),
+        )
+    )
     wave_model, wave_tier, wave_confidence, technology_factor = _wave_drag_config(
         aircraft
     )
@@ -537,11 +918,18 @@ def build_drag_report(aircraft: Aircraft) -> DragBuildReport:
         unresolved_fraction_of_resolved_drag=(
             geometry.defaults.unresolved_fraction_of_resolved_drag
         ),
+        roughness_excrescence_fraction=(
+            ROUGHNESS_EXCRESCENCE_FRACTION if geometry.component_buildup else None
+        ),
         wave_drag_model=wave_model,
         wave_drag_source_tier=wave_tier,
         wave_drag_confidence=wave_confidence,
         wave_drag_technology_factor=technology_factor,
         imputed_fields=geometry.imputed_fields,
+        parasite_terms=terms,
+        nacelle_geometry_tier=(
+            None if geometry.nacelle is None else geometry.nacelle.tier
+        ),
     )
 
 
@@ -554,29 +942,31 @@ def _build_subcritical_drag_model(aircraft: Aircraft) -> GeometryDragModel:
             f"aircraft {aircraft.icao or '<unknown>'} has no supported "
             "active drag model"
         )
+    geometry = resolve_drag_geometry(aircraft)
+    if geometry.component_buildup:
+        allowance_field = "roughness_excrescence_fraction"
+        allowance = drag.roughness_excrescence_fraction
+    else:
+        allowance_field = "unresolved_fraction_of_resolved_drag"
+        allowance = drag.unresolved_fraction_of_resolved_drag
     required = {
         "reference_mach": drag.reference_mach,
         "reference_unit_reynolds_number_per_m": (
             drag.reference_unit_reynolds_number_per_m
         ),
         "span_efficiency_factor": drag.span_efficiency_factor,
-        "unresolved_fraction_of_resolved_drag": (
-            drag.unresolved_fraction_of_resolved_drag
-        ),
+        allowance_field: allowance,
     }
     missing = [name for name, value in required.items() if value is None]
     if missing:
         raise ValueError("active drag model is missing: " + ", ".join(missing))
 
-    geometry = resolve_drag_geometry(aircraft)
     return _build_subcritical_geometry_model(
         geometry,
         float(drag.reference_mach),
         float(drag.reference_unit_reynolds_number_per_m),
         span_efficiency_factor=float(drag.span_efficiency_factor),
-        unresolved_fraction_of_resolved_drag=float(
-            drag.unresolved_fraction_of_resolved_drag
-        ),
+        allowance_fraction=float(allowance),
     )
 
 

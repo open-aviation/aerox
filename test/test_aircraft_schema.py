@@ -20,6 +20,8 @@ from tools.update_aircraft_geometry import GEOMETRY_UNITS
 ROOT = Path("src/aerox/data/aircraft/yml")
 SOURCE_ROOT = Path("src/aerox/data/aircraft/sources")
 FILES = sorted(ROOT.glob("*/*.yml"))
+
+
 @pytest.fixture(scope="module")
 def records():
     return [(path, yaml.safe_load(path.read_text(encoding="utf-8"))) for path in FILES]
@@ -153,6 +155,7 @@ def test_only_compact_certification_and_geometry_extensions_were_added(records):
             "reference_unit_reynolds_number_per_m",
             "span_efficiency_factor",
             "unresolved_fraction_of_resolved_drag",
+            "roughness_excrescence_fraction",
             "wave_drag_model",
             "wave_drag_source_tier",
             "wave_drag_confidence",

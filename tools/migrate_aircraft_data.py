@@ -106,6 +106,7 @@ SIMPLE_TEMPLATE: dict[str, Any] = {
         "reference_unit_reynolds_number_per_m": None,
         "span_efficiency_factor": None,
         "unresolved_fraction_of_resolved_drag": None,
+        "roughness_excrescence_fraction": None,
         "wave_drag_model": None,
         "wave_drag_source_tier": None,
         "wave_drag_confidence": None,
@@ -180,7 +181,9 @@ def _first(*values: Any) -> Any:
     return next((value for value in values if value is not None), None)
 
 
-def _ordered_like_template(data: Mapping[str, Any], template: Mapping[str, Any]) -> dict[str, Any]:
+def _ordered_like_template(
+    data: Mapping[str, Any], template: Mapping[str, Any]
+) -> dict[str, Any]:
     result: dict[str, Any] = {}
     for key, empty in template.items():
         value = data.get(key)
@@ -220,7 +223,11 @@ def _derive_geometry(document: dict[str, Any]) -> None:
     """Fill only definition-safe ratios from values stored in the same record."""
 
     wing = document["wing"]
-    if wing["aspect_ratio"] is None and wing["span"] is not None and wing["area"] is not None:
+    if (
+        wing["aspect_ratio"] is None
+        and wing["span"] is not None
+        and wing["area"] is not None
+    ):
         wing["aspect_ratio"] = round(float(wing["span"]) ** 2 / float(wing["area"]), 6)
 
     for section_name in ("wing", "horizontal_tail", "vertical_tail"):
@@ -277,7 +284,9 @@ def simple_from_canonical(data: Mapping[str, Any]) -> dict[str, Any]:
         "low": _get(data, "capacity.minimum_passengers"),
     }
     result["fuselage"] = {
-        "length": _first(_get(data, "geometry.overall_length"), _get(data, "fuselage.length")),
+        "length": _first(
+            _get(data, "geometry.overall_length"), _get(data, "fuselage.length")
+        ),
         "height": _get(data, "fuselage.outside_height"),
         "width": _get(data, "fuselage.outside_width"),
     }
@@ -307,7 +316,9 @@ def simple_from_canonical(data: Mapping[str, Any]) -> dict[str, Any]:
     }
     result["vertical_tail"] = {
         "area": _get(data, "vertical_tail.area"),
-        "height": _first(_get(data, "vertical_tail.height"), _get(data, "vertical_tail.span")),
+        "height": _first(
+            _get(data, "vertical_tail.height"), _get(data, "vertical_tail.span")
+        ),
         "mac": _get(data, "vertical_tail.mean_aerodynamic_chord"),
         "root_chord": _get(data, "vertical_tail.root_chord"),
         "tip_chord": _get(data, "vertical_tail.tip_chord"),
@@ -330,7 +341,10 @@ def simple_from_canonical(data: Mapping[str, Any]) -> dict[str, Any]:
         "mount": _get(data, "propulsion.installation_position"),
         "number": _get(data, "propulsion.engine_count"),
         "default": _get(data, "propulsion.default_engine_designation"),
-        "options": [item.get("designation") for item in options if item.get("designation")] or None,
+        "options": [
+            item.get("designation") for item in options if item.get("designation")
+        ]
+        or None,
     }
     result["drag"] = {
         "model": "imported-static-polar-v1",
@@ -342,6 +356,7 @@ def simple_from_canonical(data: Mapping[str, Any]) -> dict[str, Any]:
         "reference_unit_reynolds_number_per_m": None,
         "span_efficiency_factor": None,
         "unresolved_fraction_of_resolved_drag": None,
+        "roughness_excrescence_fraction": None,
         "wave_drag_model": None,
         "wave_drag_source_tier": None,
         "wave_drag_confidence": None,
@@ -362,7 +377,9 @@ def simple_from_canonical(data: Mapping[str, Any]) -> dict[str, Any]:
         "cruise_range_nm": _get(data, "performance.cruise.range"),
         "cruise_tas": _get(data, "performance.cruise.true_airspeed"),
         "descent_to_fl240_mach": _get(data, "performance.descent.from_fl240_mach"),
-        "descent_to_fl240_vs": _get(data, "performance.descent.from_fl240_vertical_rate"),
+        "descent_to_fl240_vs": _get(
+            data, "performance.descent.from_fl240_vertical_rate"
+        ),
         "descent_to_fl100_ias": _get(data, "performance.descent.to_fl100_ias"),
         "descent_to_fl100_vs": _get(data, "performance.descent.to_fl100_vertical_rate"),
         "approach_ias": _get(data, "performance.approach.indicated_airspeed"),
@@ -396,7 +413,10 @@ def render_source_notes(
     old = parse_old_provenance(old_text)
     fields = old["fields"]
     reviewed = old["header"].get("last_reviewed", "2026-08-05")
-    applicability = _get(canonical, "certification.model_applicability") or "Exact model or variant scope remains unresolved."
+    applicability = (
+        _get(canonical, "certification.model_applicability")
+        or "Exact model or variant scope remains unresolved."
+    )
     lines = [
         "AEROX AIRCRAFT SOURCE NOTES",
         f"Aircraft: {simple['aircraft'] or '-'}",
@@ -415,7 +435,13 @@ def render_source_notes(
     for simple_path, canonical_path in CANONICAL_PATHS.items():
         value = _get(simple, simple_path)
         metadata = fields.get(canonical_path, {})
-        lines.extend(["", f"FIELD {simple_path}", f"  Value: {value if value is not None else 'null'}"])
+        lines.extend(
+            [
+                "",
+                f"FIELD {simple_path}",
+                f"  Value: {value if value is not None else 'null'}",
+            ]
+        )
         if simple_path in UNITS:
             lines.append(f"  Unit: {UNITS[simple_path]}")
         lines.extend(
@@ -465,7 +491,9 @@ def validate_simple(document: Any) -> list[str]:
                 issues.append(f"{path}: expected mapping")
                 return
             if list(value) != list(template):
-                issues.append(f"{path or '<root>'}: fields/order differ from compact format")
+                issues.append(
+                    f"{path or '<root>'}: fields/order differ from compact format"
+                )
             for key, child in template.items():
                 if key in value:
                     walk(value[key], child, f"{path}.{key}" if path else key)
@@ -497,7 +525,9 @@ def validate_simple(document: Any) -> list[str]:
             for index, item in enumerate(subtypes):
                 item_path = f"subtypes[{index}]"
                 if not isinstance(item, Mapping) or len(item) != 1:
-                    issues.append(f"{item_path}: expected one subtype-to-engine mapping")
+                    issues.append(
+                        f"{item_path}: expected one subtype-to-engine mapping"
+                    )
                     continue
                 subtype, engines = next(iter(item.items()))
                 if not isinstance(subtype, str) or not subtype.strip():
@@ -512,7 +542,10 @@ def validate_simple(document: Any) -> list[str]:
                 elif isinstance(engines, list):
                     if len(engines) < 2:
                         issues.append(f"{item_path}: use a scalar for one engine")
-                    elif any(not isinstance(value, str) or not value.strip() for value in engines):
+                    elif any(
+                        not isinstance(value, str) or not value.strip()
+                        for value in engines
+                    ):
                         issues.append(f"{item_path}: expected non-empty engine strings")
                     elif len(engines) != len(set(engines)):
                         issues.append(f"{item_path}: duplicate engine designation")
@@ -540,9 +573,18 @@ def validate_simple(document: Any) -> list[str]:
                 issues.append(f"{path}: expected finite number")
 
         for field_name in (
-            "area", "span", "height", "mac", "root_chord", "tip_chord",
-            "taper_ratio", "aspect_ratio", "arm", "elevator_area_ratio",
-            "rudder_area_ratio", "t/c",
+            "area",
+            "span",
+            "height",
+            "mac",
+            "root_chord",
+            "tip_chord",
+            "taper_ratio",
+            "aspect_ratio",
+            "arm",
+            "elevator_area_ratio",
+            "rudder_area_ratio",
+            "t/c",
         ):
             value = section.get(field_name)
             if isinstance(value, (int, float)) and value <= 0:
@@ -561,11 +603,15 @@ def validate_simple(document: Any) -> list[str]:
         for field_name in ("sweep", "dihedral"):
             value = section.get(field_name)
             if isinstance(value, (int, float)) and not -90 < float(value) < 90:
-                issues.append(f"{section_name}.{field_name}: angle must be in (-90, 90) deg")
+                issues.append(
+                    f"{section_name}.{field_name}: angle must be in (-90, 90) deg"
+                )
 
     wing = document.get("wing", {})
     if isinstance(wing, Mapping):
-        if all(wing.get(field) is not None for field in ("span", "area", "aspect_ratio")):
+        if all(
+            wing.get(field) is not None for field in ("span", "area", "aspect_ratio")
+        ):
             expected = float(wing["span"]) ** 2 / float(wing["area"])
             if not math.isclose(float(wing["aspect_ratio"]), expected, rel_tol=2e-6):
                 issues.append("wing.aspect_ratio: does not match span^2 / area")
@@ -585,16 +631,24 @@ def validate_simple(document: Any) -> list[str]:
     drag = document.get("drag", {})
     if isinstance(drag, Mapping):
         for field_name in (
-            "model", "configuration", "geometry_tier", "confidence",
-            "wave_drag_model", "wave_drag_source_tier", "wave_drag_confidence",
+            "model",
+            "configuration",
+            "geometry_tier",
+            "confidence",
+            "wave_drag_model",
+            "wave_drag_source_tier",
+            "wave_drag_confidence",
         ):
             value = drag.get(field_name)
             if value is not None and not isinstance(value, str):
                 issues.append(f"drag.{field_name}: expected string or null")
         numeric_fields = (
             "reference_altitude_ft",
-            "reference_mach", "reference_unit_reynolds_number_per_m",
-            "span_efficiency_factor", "unresolved_fraction_of_resolved_drag",
+            "reference_mach",
+            "reference_unit_reynolds_number_per_m",
+            "span_efficiency_factor",
+            "unresolved_fraction_of_resolved_drag",
+            "roughness_excrescence_fraction",
             "wave_drag_technology_factor",
         )
         for field_name in numeric_fields:
@@ -609,7 +663,7 @@ def validate_simple(document: Any) -> list[str]:
             for required in ("model", "configuration", "geometry_tier", "confidence"):
                 if not drag.get(required):
                     issues.append(f"drag.{required}: required for populated model")
-        if drag.get("model") == "aerox-geometry-drag-v1":
+        if drag.get("model") == "aerox-geometry-drag-v2":
             if drag.get("configuration") != "clean":
                 issues.append("drag.configuration: geometry model requires clean")
             for required in (
@@ -617,10 +671,22 @@ def validate_simple(document: Any) -> list[str]:
                 "reference_mach",
                 "reference_unit_reynolds_number_per_m",
                 "span_efficiency_factor",
-                "unresolved_fraction_of_resolved_drag",
             ):
                 if drag.get(required) is None:
                     issues.append(f"drag.{required}: required for geometry model")
+            allowances = [
+                drag.get(field) is not None
+                for field in (
+                    "unresolved_fraction_of_resolved_drag",
+                    "roughness_excrescence_fraction",
+                )
+            ]
+            if sum(allowances) != 1:
+                issues.append(
+                    "drag: geometry model requires exactly one of "
+                    "unresolved_fraction_of_resolved_drag and "
+                    "roughness_excrescence_fraction"
+                )
         wave_model = drag.get("wave_drag_model")
         if wave_model is not None:
             if wave_model != "aerox-korn-lock-wave-v1":
@@ -633,15 +699,14 @@ def validate_simple(document: Any) -> list[str]:
                 if drag.get(required) is None:
                     issues.append(f"drag.{required}: required for wave model")
         elif drag.get("wave_drag_technology_factor") is not None:
-            issues.append(
-                "drag.wave_drag_model: required with wave technology factor"
-            )
+            issues.append("drag.wave_drag_model: required with wave technology factor")
         bounds = {
             "reference_altitude_ft": (-2000.0, 70000.0),
             "reference_mach": (0.0, 1.0),
             "reference_unit_reynolds_number_per_m": (0.0, float("inf")),
             "span_efficiency_factor": (0.3, 1.2),
             "unresolved_fraction_of_resolved_drag": (0.0, 1.0),
+            "roughness_excrescence_fraction": (0.0, 1.0),
             "wave_drag_technology_factor": (0.5, 1.1),
         }
         for field_name, (lower, upper) in bounds.items():
@@ -651,7 +716,9 @@ def validate_simple(document: Any) -> list[str]:
     return issues
 
 
-def normalize_bundle(document: Mapping[str, Any], sidecar_text: str) -> tuple[dict[str, Any], str]:
+def normalize_bundle(
+    document: Mapping[str, Any], sidecar_text: str
+) -> tuple[dict[str, Any], str]:
     if document.get("schema_version") == "2.0.0":
         simple = simple_from_canonical(document)
         sidecar = render_source_notes(simple, document, sidecar_text)
@@ -660,7 +727,11 @@ def normalize_bundle(document: Mapping[str, Any], sidecar_text: str) -> tuple[di
         simple["subtypes"] = _compact_subtypes(simple["subtypes"])
         sidecar = sidecar_text
     issue_date = simple["certification"]["issue_date"]
-    if issue_date is not None and not isinstance(issue_date, str) and hasattr(issue_date, "isoformat"):
+    if (
+        issue_date is not None
+        and not isinstance(issue_date, str)
+        and hasattr(issue_date, "isoformat")
+    ):
         simple["certification"]["issue_date"] = issue_date.isoformat()
     _derive_geometry(simple)
     return simple, sidecar
@@ -681,7 +752,8 @@ def main() -> int:
     selected = {value.upper() for value in args.icao}
     changes: list[tuple[Path, str, Path, str]] = []
     files = [
-        path for path in sorted(args.root.glob("*/*.yml"))
+        path
+        for path in sorted(args.root.glob("*/*.yml"))
         if not selected or path.stem.upper() in selected
     ]
     sources_root = (
@@ -693,7 +765,9 @@ def main() -> int:
         original = path.read_text(encoding="utf-8")
         document = yaml.safe_load(original)
         sidecar_path = sources_root / path.parent.name / f"{path.stem}.txt"
-        old_sidecar = sidecar_path.read_text(encoding="utf-8") if sidecar_path.exists() else ""
+        old_sidecar = (
+            sidecar_path.read_text(encoding="utf-8") if sidecar_path.exists() else ""
+        )
         normalized, sidecar = normalize_bundle(document, old_sidecar)
         issues = validate_simple(normalized)
         if issues:
@@ -706,7 +780,9 @@ def main() -> int:
             path.write_text(rendered, encoding="utf-8")
             sidecar_path.parent.mkdir(parents=True, exist_ok=True)
             sidecar_path.write_text(sidecar, encoding="utf-8")
-    print(f"aircraft={len(files)} changed={len(changes)} mode={'write' if args.write else 'check'}")
+    print(
+        f"aircraft={len(files)} changed={len(changes)} mode={'write' if args.write else 'check'}"
+    )
     return 1 if args.check and changes else 0
 
 

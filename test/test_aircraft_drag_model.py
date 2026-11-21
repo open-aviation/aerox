@@ -13,6 +13,7 @@ from aerox.models.drag import (
     build_reference_drag_polar,
 )
 
+
 def test_all_aircraft_have_one_uniform_finite_active_drag_model():
     codes = get_available_aircraft()
 
@@ -31,11 +32,15 @@ def test_all_aircraft_have_one_uniform_finite_active_drag_model():
                 stored.reference_mach,
                 stored.reference_unit_reynolds_number_per_m,
                 stored.span_efficiency_factor,
-                stored.unresolved_fraction_of_resolved_drag,
             ],
             dtype=float,
         )
         assert np.all(np.isfinite(values)), code
+        allowances = (
+            stored.unresolved_fraction_of_resolved_drag,
+            stored.roughness_excrescence_fraction,
+        )
+        assert sum(value is not None for value in allowances) == 1, code
 
 
 def test_wave_model_is_explicitly_scoped_to_subsonic_civil_turbofans():
@@ -133,10 +138,11 @@ def test_a320_model_uses_observed_geometry_and_poll_span_only_term():
     )
 
     assert parameters.geometry_tier == "A-observed-core-and-tails"
-    assert parameters.imputed_fields == ()
+    assert parameters.imputed_fields == ("wing.root_chord",)
+    assert parameters.nacelle_geometry_tier == "A-measured-nacelle"
     assert parameters.span_efficiency_factor == pytest.approx(expected_span_efficiency)
-    assert parameters.cd0 == pytest.approx(0.01962633, rel=1e-6)
-    assert parameters.k == pytest.approx(0.04345381, rel=1e-6)
+    assert parameters.cd0 == pytest.approx(0.01892916, rel=1e-6)
+    assert parameters.k == pytest.approx(0.04316397, rel=1e-6)
     assert parameters.reference_unit_reynolds_number_per_m == pytest.approx(
         5.4436e6, rel=2e-5
     )

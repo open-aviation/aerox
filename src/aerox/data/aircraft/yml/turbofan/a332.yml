@@ -93,7 +93,7 @@ engine:
   - PW4170
   - Trent 772
 drag:
-  model: aerox-geometry-drag-v1
+  model: aerox-geometry-drag-v2
   configuration: clean
   geometry_tier: B-observed-core-scaled-tails
   confidence: medium-low
@@ -101,7 +101,8 @@ drag:
   reference_mach: 0.81
   reference_unit_reynolds_number_per_m: 5261564.6
   span_efficiency_factor: 0.954657
-  unresolved_fraction_of_resolved_drag: 0.23
+  unresolved_fraction_of_resolved_drag: null
+  roughness_excrescence_fraction: 0.09
   wave_drag_model: aerox-korn-lock-wave-v1
   wave_drag_source_tier: D-class-scaled
   wave_drag_confidence: low

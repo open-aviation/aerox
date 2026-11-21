@@ -76,7 +76,7 @@ engine:
   options:
   - P&W PT6A-42A turboprop with Hartzell 3 blade constant speed propeller
 drag:
-  model: aerox-geometry-drag-v1
+  model: aerox-geometry-drag-v2
   configuration: clean
   geometry_tier: D-class-scaled
   confidence: low
@@ -85,6 +85,7 @@ drag:
   reference_unit_reynolds_number_per_m: 4675395.0
   span_efficiency_factor: 0.95
   unresolved_fraction_of_resolved_drag: 0.28
+  roughness_excrescence_fraction: null
   wave_drag_model: null
   wave_drag_source_tier: not-applicable
   wave_drag_confidence: not-applicable

@@ -59,6 +59,7 @@ SOURCE_FIELDS = (
     "reference_unit_reynolds_number_per_m",
     "span_efficiency_factor",
     "unresolved_fraction_of_resolved_drag",
+    "roughness_excrescence_fraction",
     "wave_drag_model",
     "wave_drag_source_tier",
     "wave_drag_confidence",
@@ -78,8 +79,11 @@ def _rounded_parameters(parameters: DragBuildReport) -> dict[str, Any]:
             parameters.reference_unit_reynolds_number_per_m, 1
         ),
         "span_efficiency_factor": round(parameters.span_efficiency_factor, 6),
-        "unresolved_fraction_of_resolved_drag": round(
+        "unresolved_fraction_of_resolved_drag": _optional_round(
             parameters.unresolved_fraction_of_resolved_drag, 4
+        ),
+        "roughness_excrescence_fraction": _optional_round(
+            parameters.roughness_excrescence_fraction, 4
         ),
         "wave_drag_model": parameters.wave_drag_model,
         "wave_drag_source_tier": parameters.wave_drag_source_tier,
@@ -90,6 +94,10 @@ def _rounded_parameters(parameters: DragBuildReport) -> dict[str, Any]:
             else round(parameters.wave_drag_technology_factor, 6)
         ),
     }
+
+
+def _optional_round(value: float | None, digits: int) -> float | None:
+    return None if value is None else round(value, digits)
 
 
 def _source_section(parameters: DragBuildReport) -> str:
@@ -112,14 +120,29 @@ def _source_section(parameters: DragBuildReport) -> str:
             ]
         )
         if field == "model":
+            if parameters.roughness_excrescence_fraction is None:
+                allowance = (
+                    "unresolved/resolved="
+                    f"{parameters.unresolved_fraction_of_resolved_drag:.4f}"
+                )
+            else:
+                allowance = (
+                    "roughness_excrescence/computed="
+                    f"{parameters.roughness_excrescence_fraction:.4f}; "
+                    f"nacelle_tier={parameters.nacelle_geometry_tier}"
+                )
             lines.append(
                 "  Inputs: "
                 f"configuration={parameters.configuration}; "
                 f"tier={parameters.geometry_tier}; confidence={parameters.confidence}; "
                 f"e_span={parameters.span_efficiency_factor:.4f}; "
-                "unresolved/resolved="
-                f"{parameters.unresolved_fraction_of_resolved_drag:.4f}"
+                f"{allowance}"
             )
+            terms = "; ".join(
+                f"{term.name}={1.0e4 * term.value:.2f}"
+                for term in parameters.parasite_terms
+            )
+            lines.append(f"  Zero-lift terms at reference (drag counts): {terms}")
             lines.append(
                 "  Applicability: Active clean model; geometry-tier "
                 "uncertainty applies."
@@ -145,6 +168,7 @@ def _source_section(parameters: DragBuildReport) -> str:
         elif field in {
             "span_efficiency_factor",
             "unresolved_fraction_of_resolved_drag",
+            "roughness_excrescence_fraction",
             "wave_drag_technology_factor",
         }:
             lines.append(
@@ -216,6 +240,9 @@ def _row(
         "unresolved_fraction_of_resolved_drag": (
             parameters.unresolved_fraction_of_resolved_drag
         ),
+        "roughness_excrescence_fraction": parameters.roughness_excrescence_fraction,
+        "nacelle_geometry_tier": parameters.nacelle_geometry_tier,
+        **{f"cd0_{term.name}": term.value for term in parameters.parasite_terms},
         "wave_drag_model": parameters.wave_drag_model,
         "wave_drag_source_tier": parameters.wave_drag_source_tier,
         "wave_drag_confidence": parameters.wave_drag_confidence,
@@ -239,7 +266,8 @@ def _previous_rows() -> dict[str, dict[str, Any]]:
 def _write_csv(rows: list[dict[str, Any]]) -> None:
     REPORT_CSV.parent.mkdir(parents=True, exist_ok=True)
     with REPORT_CSV.open("w", encoding="utf-8", newline="") as stream:
-        writer = csv.DictWriter(stream, fieldnames=list(rows[0]))
+        fieldnames = list(dict.fromkeys(key for row in rows for key in row))
+        writer = csv.DictWriter(stream, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)
 
@@ -252,7 +280,7 @@ def _summary(rows: list[dict[str, Any]]) -> dict[str, Any]:
     return {
         "schema_version": 1,
         "status": "active-aircraft-geometry-drag-model",
-        "model": "aerox-geometry-drag-v1",
+        "model": "aerox-geometry-drag-v2",
         "aircraft_total": len(rows),
         "previous_polar_coverage": len(previous),
         "active_model_coverage": len(rows),
@@ -328,7 +356,12 @@ At each aircraft's documented reference condition, a clean polar projection is
 `CD = CD0 + k CL^2`,
 
 with component parasite drag from Reynolds-dependent skin friction, form
-factors, wetted geometry, and an explicit unresolved component allowance. The
+factors, and wetted geometry. Civil turbofans use a component build-up:
+exposed wing, fuselage, tails with interference factor 1.04, nacelles with
+Raymer form and mount-dependent interference factors, pylons at 20 % of the
+nacelle drag, Kroo upsweep, gap, and nacelle-base terms, and a published
+roughness and excrescence allowance of 9 % of the computed sum. Turboprop,
+piston, and high-speed aircraft keep one lumped unresolved allowance. The
 effective quadratic coefficient combines span-induced and lift-dependent
 profile drag. `CD0`, `k`, and the old effective Oswald
 `e = 1 / (pi AR k)` are therefore derived, not independent parameters, and are

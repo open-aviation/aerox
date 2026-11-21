@@ -28,8 +28,9 @@ class GeometryDragBreakdown:
     """Detailed subcritical drag components."""
 
     component_parasite: Mapping[str, FloatArray]
+    parasite_increments: Mapping[str, FloatArray]
     resolved_parasite: FloatArray
-    unresolved_parasite: FloatArray
+    increment_parasite: FloatArray
     parasite: FloatArray
     span_induced: FloatArray
     lift_dependent_profile: FloatArray
@@ -38,14 +39,19 @@ class GeometryDragBreakdown:
 
 @dataclass(frozen=True)
 class GeometryDragModel:
-    """Condition-aware subcritical drag model derived from aircraft geometry."""
+    """Condition-aware subcritical drag model derived from aircraft geometry.
+
+    ``components`` vary with Reynolds and Mach number. ``parasite_increments``
+    are named constant zero-lift coefficients (for example upsweep, gaps, or
+    a published allowance) that are fixed at the reference condition.
+    """
 
     reference_area_m2: float
     wing_span_m: float
     components: tuple[ParasiteDragComponent, ...]
     span_efficiency_factor: float
     profile_lift_drag_multiplier: float
-    unresolved_zero_lift_drag_coefficient: float
+    parasite_increments: tuple[tuple[str, float], ...]
     reference_unit_reynolds_number_per_m: float
     parasite_scale: float = 1.0
     induced_scale: float = 1.0
@@ -57,7 +63,6 @@ class GeometryDragModel:
                 self.wing_span_m,
                 self.span_efficiency_factor,
                 self.profile_lift_drag_multiplier,
-                self.unresolved_zero_lift_drag_coefficient,
                 self.reference_unit_reynolds_number_per_m,
                 self.parasite_scale,
                 self.induced_scale,
@@ -66,24 +71,27 @@ class GeometryDragModel:
         )
         if np.any(~np.isfinite(values)):
             raise ValueError("geometry drag parameters must be finite")
-        if min(values[[0, 1, 2, 5, 6, 7]]) <= 0.0:
+        if min(values[[0, 1, 2, 4, 5, 6]]) <= 0.0:
             raise ValueError(
                 "geometry, Reynolds, and scale parameters must be positive"
             )
         if self.profile_lift_drag_multiplier < 0.0:
             raise ValueError("profile_lift_drag_multiplier must be non-negative")
-        if self.unresolved_zero_lift_drag_coefficient < 0.0:
-            raise ValueError(
-                "unresolved_zero_lift_drag_coefficient must be non-negative"
-            )
+        for _, increment in self.parasite_increments:
+            if not np.isfinite(increment) or increment < 0.0:
+                raise ValueError("parasite increments must be finite and non-negative")
         if not 0.3 <= self.span_efficiency_factor <= 1.2:
             raise ValueError("span_efficiency_factor is outside model support")
         if not self.components:
             raise ValueError("at least one parasite-drag component is required")
-        if len({component.name for component in self.components}) != len(
-            self.components
-        ):
-            raise ValueError("component names must be unique")
+        names = [component.name for component in self.components]
+        names.extend(name for name, _ in self.parasite_increments)
+        if len(set(names)) != len(names):
+            raise ValueError("component and increment names must be unique")
+
+    @property
+    def parasite_increment_coefficient(self) -> float:
+        return float(sum(value for _, value in self.parasite_increments))
 
     @property
     def aspect_ratio(self) -> float:
@@ -115,11 +123,14 @@ class GeometryDragModel:
             for component in self.components
         }
         resolved = np.sum(np.stack(tuple(component_parasite.values())), axis=0)
-        unresolved = np.full_like(
-            resolved,
-            self.parasite_scale * self.unresolved_zero_lift_drag_coefficient,
+        parasite_increments = {
+            name: np.full_like(resolved, self.parasite_scale * value)
+            for name, value in self.parasite_increments
+        }
+        increment = np.full_like(
+            resolved, self.parasite_scale * self.parasite_increment_coefficient
         )
-        parasite = resolved + unresolved
+        parasite = resolved + increment
         span_induced = self.span_induced_drag_factor * lift**2
         profile = (
             self.induced_scale * self.profile_lift_drag_multiplier * parasite * lift**2
@@ -127,8 +138,9 @@ class GeometryDragModel:
         total = parasite + span_induced + profile
         return GeometryDragBreakdown(
             component_parasite=component_parasite,
+            parasite_increments=parasite_increments,
             resolved_parasite=resolved,
-            unresolved_parasite=unresolved,
+            increment_parasite=increment,
             parasite=parasite,
             span_induced=span_induced,
             lift_dependent_profile=profile,
@@ -187,7 +199,7 @@ class GeometryDragModel:
                 "geometry drag model is currently supported only when clean"
             )
         parasite = self.parasite_scale * (
-            self.unresolved_zero_lift_drag_coefficient
+            self.parasite_increment_coefficient
             + sum(
                 component.drag_coefficient_scalar(
                     unit_reynolds,
@@ -217,8 +229,9 @@ class TransonicGeometryDragBreakdown:
     """Geometry-derived drag components plus the canonical wave increment."""
 
     component_parasite: Mapping[str, FloatArray]
+    parasite_increments: Mapping[str, FloatArray]
     resolved_parasite: FloatArray
-    unresolved_parasite: FloatArray
+    increment_parasite: FloatArray
     parasite: FloatArray
     span_induced: FloatArray
     lift_dependent_profile: FloatArray
@@ -276,8 +289,9 @@ class TransonicGeometryDragModel:
         wave, critical = self.wave_drag.evaluate(mach, lift)
         return TransonicGeometryDragBreakdown(
             component_parasite=base.component_parasite,
+            parasite_increments=base.parasite_increments,
             resolved_parasite=base.resolved_parasite,
-            unresolved_parasite=base.unresolved_parasite,
+            increment_parasite=base.increment_parasite,
             parasite=base.parasite,
             span_induced=base.span_induced,
             lift_dependent_profile=base.lift_dependent_profile,
@@ -346,6 +360,7 @@ def _tail_component_from_dimensions(
     mean_aerodynamic_chord_m: float | None,
     *,
     thickness_to_chord_ratio: float,
+    interference_factor: float = 1.0,
 ) -> ParasiteDragComponent | None:
     if area_m2 is None and mean_aerodynamic_chord_m is None:
         return None
@@ -358,6 +373,7 @@ def _tail_component_from_dimensions(
         wetted_area_m2=lifting_surface_wetted_area(area, thickness_to_chord_ratio),
         characteristic_length_m=chord,
         form_factor=lifting_surface_form_factor(thickness_to_chord_ratio),
+        interference_factor=interference_factor,
     )
 
 
@@ -379,7 +395,12 @@ def geometry_drag_model_from_dimensions(
     vertical_tail_area_m2: float | None = None,
     vertical_tail_mean_aerodynamic_chord_m: float | None = None,
     tail_thickness_to_chord_ratio: float = 0.10,
-    unresolved_fraction_of_resolved_drag: float = 0.10,
+    wing_wetted_planform_area_m2: float | None = None,
+    tail_interference_factor: float = 1.0,
+    additional_components: tuple[ParasiteDragComponent, ...] = (),
+    additional_drag_areas_m2: tuple[tuple[str, float], ...] = (),
+    allowance_fraction: float = 0.10,
+    allowance_name: str = "unresolved",
     parasite_scale: float = 1.0,
     induced_scale: float = 1.0,
 ) -> GeometryDragModel:
@@ -387,12 +408,15 @@ def geometry_drag_model_from_dimensions(
 
     This is the common construction boundary for directly sourced geometry and
     aircraft records whose missing dimensions have first been scaled explicitly.
+    The wing wetted area uses ``wing_wetted_planform_area_m2`` (for example
+    the exposed area) and falls back to the gross reference area.
+    ``additional_drag_areas_m2`` are constant drag areas ``D/q`` divided by
+    the reference area. The named allowance is ``allowance_fraction`` times
+    the sum of all computed terms at the reference condition.
     """
 
-    if not 0.0 <= unresolved_fraction_of_resolved_drag <= 1.0:
-        raise ValueError(
-            "unresolved_fraction_of_resolved_drag must lie between zero and one"
-        )
+    if not 0.0 <= allowance_fraction <= 1.0:
+        raise ValueError("allowance_fraction must lie between zero and one")
     wing_area = _required_positive(wing_area_m2, "wing.area")
     wing_span = _required_positive(wing_span_m, "wing.span")
     wing_chord = _required_positive(wing_mean_aerodynamic_chord_m, "wing.mac")
@@ -400,10 +424,15 @@ def geometry_drag_model_from_dimensions(
     fuselage_length = _required_positive(fuselage_length_m, "fuselage.length")
     fuselage_width = _required_positive(fuselage_width_m, "fuselage.width")
     fuselage_height = _required_positive(fuselage_height_m, "fuselage.height")
+    wing_planform = (
+        wing_area
+        if wing_wetted_planform_area_m2 is None
+        else _required_positive(wing_wetted_planform_area_m2, "wing.exposed_area")
+    )
     components: list[ParasiteDragComponent] = [
         ParasiteDragComponent(
             name="wing",
-            wetted_area_m2=lifting_surface_wetted_area(wing_area, wing_thickness),
+            wetted_area_m2=lifting_surface_wetted_area(wing_planform, wing_thickness),
             characteristic_length_m=wing_chord,
             form_factor=lifting_surface_form_factor(wing_thickness),
         ),
@@ -435,18 +464,24 @@ def geometry_drag_model_from_dimensions(
             area,
             chord,
             thickness_to_chord_ratio=tail_thickness_to_chord_ratio,
+            interference_factor=tail_interference_factor,
         )
         if component is not None:
             components.append(component)
+    components.extend(additional_components)
+    increments = [
+        (name, float(area) / wing_area) for name, area in additional_drag_areas_m2
+    ]
 
-    resolved_reference = sum(
+    computed_reference = sum(
         component.drag_coefficient_scalar(
             reference_unit_reynolds_number_per_m,
             reference_mach,
             wing_area,
         )
         for component in components
-    )
+    ) + sum(value for _, value in increments)
+    increments.append((allowance_name, allowance_fraction * computed_reference))
     profile_multiplier = 0.80 * (1.0 - 0.53 * np.cos(wing_sweep_rad))
     return GeometryDragModel(
         reference_area_m2=wing_area,
@@ -454,9 +489,7 @@ def geometry_drag_model_from_dimensions(
         components=tuple(components),
         span_efficiency_factor=span_efficiency_factor,
         profile_lift_drag_multiplier=float(profile_multiplier),
-        unresolved_zero_lift_drag_coefficient=(
-            unresolved_fraction_of_resolved_drag * resolved_reference
-        ),
+        parasite_increments=tuple(increments),
         reference_unit_reynolds_number_per_m=(reference_unit_reynolds_number_per_m),
         parasite_scale=parasite_scale,
         induced_scale=induced_scale,
@@ -475,9 +508,9 @@ def geometry_drag_model_from_aircraft(
 ) -> GeometryDragModel:
     """Build a transparent clean-aircraft model from available Aerox geometry.
 
-    The unresolved term covers components not yet represented in the aircraft
-    schema. It is computed at the reference Reynolds condition and remains
-    explicit in all breakdowns.
+    This direct path uses the gross wing area and one lumped unresolved term
+    for all components not represented here. The term is computed at the
+    reference Reynolds condition and remains explicit in all breakdowns.
     """
 
     if aircraft.wing is None or aircraft.fuselage is None:
@@ -520,7 +553,7 @@ def geometry_drag_model_from_aircraft(
         reference_unit_reynolds_number_per_m=(reference_unit_reynolds_number_per_m),
         span_efficiency_factor=span_efficiency_factor,
         tail_thickness_to_chord_ratio=tail_thickness_to_chord_ratio,
-        unresolved_fraction_of_resolved_drag=(unresolved_fraction_of_resolved_drag),
+        allowance_fraction=unresolved_fraction_of_resolved_drag,
         parasite_scale=parasite_scale,
         induced_scale=induced_scale,
     )
