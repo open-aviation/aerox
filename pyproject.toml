@@ -59,6 +59,7 @@ norecursedirs = [
     "old",
     ".venv",
     "docs",
+    "agent-modeling",
 ]
 
 [build-system]

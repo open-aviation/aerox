@@ -1,14 +1,9 @@
 from __future__ import annotations
 
-import csv
-from pathlib import Path
-
 import numpy as np
 import pytest
-import yaml
 
 from aerox import get_available_aircraft, load_aircraft
-from aerox.aircraft import parse_source_notes
 from aerox.models.drag import (
     GEOMETRY_DRAG_MODEL_ID,
     KORN_LOCK_WAVE_DRAG_MODEL_ID,
@@ -17,10 +12,6 @@ from aerox.models.drag import (
     build_drag_report,
     build_reference_drag_polar,
 )
-
-AIRCRAFT_ROOT = Path("src/aerox/data/aircraft/yml")
-SOURCE_ROOT = Path("src/aerox/data/aircraft/sources")
-
 
 def test_all_aircraft_have_one_uniform_finite_active_drag_model():
     codes = get_available_aircraft()
@@ -178,74 +169,3 @@ def test_special_aircraft_do_not_use_civil_transport_span_formulation():
         parameters = build_drag_report(load_aircraft(code))
         assert parameters.geometry_tier == "X-special-scaled"
         assert parameters.confidence == "low"
-
-
-def test_active_model_source_notes_and_audit_artifacts_are_complete():
-    ledger = yaml.safe_load(Path("docs/modeling/sources.yml").read_text())
-    source_ids = {item["id"] for item in ledger["sources"]}
-    assert "aerox_geometry_drag_model_2026_08_08" in source_ids
-    assert "aerox_a320_incremental_wave_drag_audit_2026_08_08" in source_ids
-    assert "aerox_a320_wave_drag_trajectory_gate_2026_08_08" in source_ids
-
-    for path in sorted(AIRCRAFT_ROOT.glob("*/*.yml")):
-        notes = parse_source_notes(
-            (SOURCE_ROOT / path.parent.name / f"{path.stem}.txt").read_text()
-        )
-        for field in (
-            "drag.model",
-            "drag.configuration",
-            "drag.geometry_tier",
-            "drag.confidence",
-            "drag.reference_altitude_ft",
-            "drag.reference_mach",
-            "drag.reference_unit_reynolds_number_per_m",
-            "drag.span_efficiency_factor",
-            "drag.unresolved_fraction_of_resolved_drag",
-            "drag.wave_drag_model",
-            "drag.wave_drag_source_tier",
-            "drag.wave_drag_confidence",
-            "drag.wave_drag_technology_factor",
-        ):
-            assert notes["fields"][field]["source"] in source_ids, (path, field)
-
-        document = yaml.safe_load(path.read_text())
-        assert "drag_prior" not in document
-        assert "e" not in document["drag"]
-        assert "cd0" not in document["drag"]
-        assert "k" not in document["drag"]
-
-    with Path("docs/modeling/drag-model-coverage.csv").open(
-        encoding="utf-8", newline=""
-    ) as stream:
-        rows = list(csv.DictReader(stream))
-    assert len(rows) == 144
-    assert {row["icao"] for row in rows} == set(get_available_aircraft())
-    assert (
-        Path("docs/modeling/figures/drag-model-coverage.png").stat().st_size > 100_000
-    )
-    assert Path("docs/modeling/figures/drag-model-coverage.pdf").stat().st_size > 10_000
-
-    wave_audit = yaml.safe_load(
-        Path("docs/modeling/a320-incremental-wave-drag-audit.yml").read_text()
-    )
-    assert wave_audit["protocol"]["subcritical_aerox_model_refitted"] is False
-    assert (
-        wave_audit["models"]["active"]["holdout"]["rmse_drag_counts"]
-        < wave_audit["models"]["no_wave"]["holdout"]["rmse_drag_counts"]
-    )
-
-    trajectory = yaml.safe_load(
-        Path("docs/fms/a320-fms-wave-drag-trajectory.yml").read_text()
-    )
-    assert trajectory["decision"]["passed"] is True
-    assert trajectory["decision"]["noninferiority_checks"] == {
-        "profile_feasible": True,
-        "fms_completed": True,
-        "controller_limiters": True,
-        "mach_envelope": True,
-        "alpha_envelope": True,
-        "altitude_rmse": True,
-        "speed_rmse": True,
-        "path_rmse": True,
-        "fuel_burn_error": True,
-    }

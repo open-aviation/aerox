@@ -2,7 +2,7 @@ AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Airbus A320-214
 ICAO: A320
 Last reviewed: 2026-08-06
-Source ledger: docs/modeling/sources.yml
+Source ledger: agent-modeling/modeling/sources.yml
 
 CERTIFICATION SCOPE
   Model or family: A320-214
@@ -211,7 +211,7 @@ FIELD wing.dihedral
   Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A320_WTF-May-2012.zip
   Document title: Airbus A320 wing-tip-fence AutoCAD 3-view aircraft drawing
   Revision date: 2012-05
-  Page or section: Front-view vector entities C277/C374/C39D; docs/modeling/a320-cad-geometry-measurements.csv
+  Page or section: Front-view vector entities C277/C374/C39D; agent-modeling/modeling/a320-cad-geometry-measurements.csv
   Formula: atan2(vertical rise,horizontal run)
   Inputs: C277 endpoints (63195.914,44044.715) and (53260.473,43258.777) mm plus lower-contour checks
   Applicability: A320-200 wing-tip-fence exposed wing; not sharklet geometry
@@ -227,7 +227,7 @@ FIELD horizontal_tail.area
   Source URL: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A320_WTF-May-2012.zip
   Document title: Airbus A320 wing-tip-fence AutoCAD 3-view aircraft drawing
   Revision date: 2012-05
-  Page or section: Top-view tail leading/trailing-edge vector entities; docs/modeling/a320-cad-geometry-measurements.csv
+  Page or section: Top-view tail leading/trailing-edge vector entities; agent-modeling/modeling/a320-cad-geometry-measurements.csv
   Formula: S = b*(c_root+c_tip)/2
   Inputs: b=12.45 m; c_root=3.7268917 m; c_tip=1.2278758 m
   Applicability: Gross straight-edge trapezoid extrapolated to aircraft centerline; includes fixed tail and elevator planform
@@ -275,7 +275,7 @@ FIELD horizontal_tail.root_chord
   Revision date: 2012-05
   Page or section: Top-view entities 5653/31F and 55DF/55E2
   Formula: centerline intersection of straight leading- and trailing-edge extensions
-  Inputs: Published vector endpoints listed in docs/modeling/a320-cad-geometry-measurements.csv
+  Inputs: Published vector endpoints listed in agent-modeling/modeling/a320-cad-geometry-measurements.csv
   Applicability: Gross centerline-reference root chord
   Uncertainty: 3.5769 to 3.8769 m engineering bound
   Notes: Not a manufacturer-tabulated chord.
@@ -339,7 +339,7 @@ FIELD horizontal_tail.dihedral
   Revision date: 2012-05
   Page or section: Front-view horizontal-tail entities B96F/B978
   Formula: atan2(vertical rise,horizontal run)
-  Inputs: B96F and B978 endpoints in docs/modeling/a320-cad-geometry-measurements.csv
+  Inputs: B96F and B978 endpoints in agent-modeling/modeling/a320-cad-geometry-measurements.csv
   Applicability: Exposed horizontal-tail front-view reference
   Uncertainty: 6.1317 to 6.4317 deg engineering bound
   Notes: Drawing projection and surface thickness introduce model-form uncertainty.
@@ -434,7 +434,7 @@ FIELD vertical_tail.root_chord
   Revision date: 2012-05
   Page or section: Side-view entities A553/A5DA
   Formula: root-reference intersection of straight leading/trailing edges
-  Inputs: A553 and A5DA endpoints in docs/modeling/a320-cad-geometry-measurements.csv
+  Inputs: A553 and A5DA endpoints in agent-modeling/modeling/a320-cad-geometry-measurements.csv
   Applicability: Gross fin root chord at stated drawing reference
   Uncertainty: 5.2803 to 5.5803 m engineering bound
   Notes: Not a manufacturer-tabulated chord.
@@ -617,7 +617,7 @@ FIELD subtypes
   Source: easa_a064_issue_62 | icao_eedb_issue_32
   Page or section: Section 1 III.5; PDF pp.37-38 | Section 1 III.5; PDF p.37 | Section 1 III.5; PDF pp.37-40
   Applicability: Certified subtype applicability with query identifiers normalized to ICAO EEDB Issue 32.
-  Evidence inventory: docs/aircraft-data/airbus-subtype-engine-mapping.tsv
+  Evidence inventory: agent-modeling/aircraft-data/airbus-subtype-engine-mapping.tsv
   Engine table: src/aerox/data/engines/engines.csv
   Mappings:
     A320-211:

@@ -2,7 +2,7 @@ AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Embraer E175 long wing
 ICAO: E75L
 Last reviewed: 2026-08-05
-Source ledger: docs/modeling/sources.yml
+Source ledger: agent-modeling/modeling/sources.yml
 
 CERTIFICATION SCOPE
   Model or family: ERJ 170-200, long-wing configuration unresolved

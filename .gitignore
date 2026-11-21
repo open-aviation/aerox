@@ -6,6 +6,7 @@ old/
 
 # Research documentation and generated outputs remain local for now.
 /docs/
+/agent-modeling/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -103,3 +104,9 @@ ENV/
 
 #vs code
 .vscode
+
+# Local build products, paper and reports
+.DS_Store
+/output/
+/reports/
+/paper/

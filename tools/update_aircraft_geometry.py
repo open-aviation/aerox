@@ -37,8 +37,8 @@ except ModuleNotFoundError:  # package-style import used by tests
     )
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-SOURCE_LEDGER = PROJECT_ROOT / "docs/modeling/sources.yml"
-DEFAULT_EXCLUSIONS = PROJECT_ROOT / "docs/aircraft-data/geometry-runtime-exclusions.txt"
+SOURCE_LEDGER = PROJECT_ROOT / "agent-modeling/modeling/sources.yml"
+DEFAULT_EXCLUSIONS = PROJECT_ROOT / "agent-modeling/aircraft-data/geometry-runtime-exclusions.txt"
 
 GEOMETRY_UNITS = {
     "wing.area": "m2",

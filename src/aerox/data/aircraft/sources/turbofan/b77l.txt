@@ -2,7 +2,7 @@ AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Boeing 777-200LRF/LR
 ICAO: B77L
 Last reviewed: 2026-08-06
-Source ledger: docs/modeling/sources.yml
+Source ledger: agent-modeling/modeling/sources.yml
 
 CERTIFICATION SCOPE
   Model or family: -

@@ -2,7 +2,7 @@ AEROX AIRCRAFT SOURCE NOTES
 Aircraft: BAe HS 125/700-800/Hawker 800
 ICAO: H25B
 Last reviewed: 2026-08-05
-Source ledger: docs/modeling/sources.yml
+Source ledger: agent-modeling/modeling/sources.yml
 
 CERTIFICATION SCOPE
   Model or family: -

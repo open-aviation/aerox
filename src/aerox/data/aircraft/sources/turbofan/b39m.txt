@@ -2,7 +2,7 @@ AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Boeing 737 MAX 9
 ICAO: B39M
 Last reviewed: 2026-08-06
-Source ledger: docs/modeling/sources.yml
+Source ledger: agent-modeling/modeling/sources.yml
 
 CERTIFICATION SCOPE
   Model or family: 737-9

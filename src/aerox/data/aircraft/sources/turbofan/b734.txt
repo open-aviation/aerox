@@ -2,7 +2,7 @@ AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Boeing 737-400
 ICAO: B734
 Last reviewed: 2026-08-06
-Source ledger: docs/modeling/sources.yml
+Source ledger: agent-modeling/modeling/sources.yml
 
 CERTIFICATION SCOPE
   Model or family: 737-400
@@ -202,7 +202,7 @@ FIELD horizontal_tail.area
   Inputs: span=12.700000 m; root=3.832015 m; tip=1.123464 m
   Applicability: Gross centerline-reference straight-edge horizontal stabilizer; 737-400 baseline drawing
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-1.91 m2; sweep +/-1 deg
-  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/aircraft-data/boeing-cad-geometry-measurements.csv; Geometry agrees with B733 within CAD precision after a 48-unit longitudinal translation; not certified.
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in agent-modeling/aircraft-data/boeing-cad-geometry-measurements.csv; Geometry agrees with B733 within CAD precision after a 48-unit longitudinal translation; not certified.
 END FIELD
 
 FIELD horizontal_tail.span
@@ -231,7 +231,7 @@ FIELD horizontal_tail.mac
   Inputs: span=12.700000 m; root=3.832015 m; tip=1.123464 m
   Applicability: Gross centerline-reference straight-edge horizontal stabilizer; 737-400 baseline drawing
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-1.91 m2; sweep +/-1 deg
-  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/aircraft-data/boeing-cad-geometry-measurements.csv; Geometry agrees with B733 within CAD precision after a 48-unit longitudinal translation; not certified.
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in agent-modeling/aircraft-data/boeing-cad-geometry-measurements.csv; Geometry agrees with B733 within CAD precision after a 48-unit longitudinal translation; not certified.
 END FIELD
 
 FIELD horizontal_tail.root_chord
@@ -246,7 +246,7 @@ FIELD horizontal_tail.root_chord
   Inputs: span=12.700000 m; root=3.832015 m; tip=1.123464 m
   Applicability: Gross centerline-reference straight-edge horizontal stabilizer; 737-400 baseline drawing
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-1.91 m2; sweep +/-1 deg
-  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/aircraft-data/boeing-cad-geometry-measurements.csv; Geometry agrees with B733 within CAD precision after a 48-unit longitudinal translation; not certified.
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in agent-modeling/aircraft-data/boeing-cad-geometry-measurements.csv; Geometry agrees with B733 within CAD precision after a 48-unit longitudinal translation; not certified.
 END FIELD
 
 FIELD horizontal_tail.tip_chord
@@ -261,7 +261,7 @@ FIELD horizontal_tail.tip_chord
   Inputs: span=12.700000 m; root=3.832015 m; tip=1.123464 m
   Applicability: Gross centerline-reference straight-edge horizontal stabilizer; 737-400 baseline drawing
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-1.91 m2; sweep +/-1 deg
-  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/aircraft-data/boeing-cad-geometry-measurements.csv; Geometry agrees with B733 within CAD precision after a 48-unit longitudinal translation; not certified.
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in agent-modeling/aircraft-data/boeing-cad-geometry-measurements.csv; Geometry agrees with B733 within CAD precision after a 48-unit longitudinal translation; not certified.
 END FIELD
 
 FIELD horizontal_tail.taper_ratio
@@ -286,7 +286,7 @@ FIELD horizontal_tail.sweep
   Inputs: span=12.700000 m; root=3.832015 m; tip=1.123464 m
   Applicability: Gross centerline-reference straight-edge horizontal stabilizer; 737-400 baseline drawing
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-1.91 m2; sweep +/-1 deg
-  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in docs/aircraft-data/boeing-cad-geometry-measurements.csv; Geometry agrees with B733 within CAD precision after a 48-unit longitudinal translation; not certified.
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in agent-modeling/aircraft-data/boeing-cad-geometry-measurements.csv; Geometry agrees with B733 within CAD precision after a 48-unit longitudinal translation; not certified.
 END FIELD
 
 FIELD horizontal_tail.dihedral

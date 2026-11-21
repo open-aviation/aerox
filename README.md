@@ -10,7 +10,8 @@ YAML files and exposes typed Python helpers for loading them.
 - `aerox.aero` NumPy atmosphere and IAS/CAS/TAS/Mach conversions ported from a
   pinned OpenAP implementation
 - `aerox.fms` local spatial waypoint, altitude/speed profile, wind-correction,
-  and online look-ahead guidance primitives
+  online look-ahead guidance primitives, and executable intent-driven guidance
+  programs
 - bundled aircraft YAML data under `src/aerox/data/aircraft/yml`
 - a local Flask editor for maintaining the aircraft YAML files
 
@@ -18,10 +19,11 @@ Experimental QAR decoding, kinematic replay, identification, translational
 force reconstruction, effective propulsion/lift/fuel calibration, a bounded
 commanded-N1 actuator, a 10 Hz longitudinal replay model, and a pitch–bank–
 thrust 3D point-mass model live under `aerox.flightdata`, `aerox.models`,
-`aerox.modeling`, `aerox.guidance`, and `tools/`; their evidence and limitations
-are tracked in `docs/modeling`. The point-mass model has completed its first A320
-QAR panel replay: short-window longitudinal behavior improves, while bank-only
-heading propagation fails the multi-hour open-loop boundary. A subsequent
+`aerox.modeling` and `aerox.guidance`. In a research checkout, ignored scripts
+and evidence live under the local `agent-modeling/` workspace. The point-mass
+model has completed its first A320 QAR panel replay: short-window longitudinal
+behavior improves, while bank-only heading propagation fails the multi-hour
+open-loop boundary. A subsequent
 observed yaw-rate audit strongly improves replay, but inconsistent effective
 rate scales limit that branch to diagnostics rather than a physical yaw-control
 model. The replay-only adapter is implemented with an explicit implied turn-
@@ -45,11 +47,12 @@ its first kinematic AOA-decoding experiment.
 The first deterministic FMS milestone converts local waypoint intent with
 altitude and speed constraints into online references for the A320
 pitch–bank–realized-net-thrust plant. Its architecture, comparison trajectory,
-gates, and limitations are recorded in `docs/fms`. A leakage-safe multi-flight
-gate also releases a small phase-conditioned CAS/Mach target surrogate for the
-TOC/TOD trajectory layer. Its first unchanged-plant integration now includes a
-generated fuel/mass planning iteration; target inference transfers, but the
-closed-loop profile remains held on speed/energy timing and climb feasibility.
+gates, and limitations are recorded in the local modeling workspace. A
+leakage-safe multi-flight gate also releases a small phase-conditioned CAS/Mach
+target surrogate for the TOC/TOD trajectory layer. Its first unchanged-plant
+integration now includes a generated fuel/mass planning iteration; target
+inference transfers, but the closed-loop profile remains held on speed/energy
+timing and climb feasibility.
 
 The only OpenAP-derived fuel behavior currently included is a pinned,
 dependency-light diagnostic curve. General emissions, BADA, CasADi
@@ -76,8 +79,8 @@ uv run --extra editor tools/web_editor.py
 Then open `http://localhost:5000`.
 
 Research scripts that use pandas, PyArrow, or Matplotlib can be run with the
-`research` extra. A normal Aerox installation includes only runtime modeling
-dependencies.
+`research` extra when the local `agent-modeling/` workspace is present. A normal
+Aerox installation includes only runtime modeling dependencies.
 
 ## Tests
 

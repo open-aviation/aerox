@@ -37,10 +37,10 @@ from tools.migrate_aircraft_data import (  # noqa: E402
     validate_simple,
 )
 
-REPORT_CSV = PROJECT_ROOT / "docs/modeling/drag-model-coverage.csv"
-REPORT_YAML = PROJECT_ROOT / "docs/modeling/drag-model-coverage.yml"
-REPORT_MD = PROJECT_ROOT / "docs/modeling/drag-model-coverage.md"
-FIGURE_DIR = PROJECT_ROOT / "docs/modeling/figures"
+REPORT_CSV = PROJECT_ROOT / "agent-modeling/modeling/drag-model-coverage.csv"
+REPORT_YAML = PROJECT_ROOT / "agent-modeling/modeling/drag-model-coverage.yml"
+REPORT_MD = PROJECT_ROOT / "agent-modeling/modeling/drag-model-coverage.md"
+FIGURE_DIR = PROJECT_ROOT / "agent-modeling/modeling/figures"
 FIGURE_PNG = FIGURE_DIR / "drag-model-coverage.png"
 FIGURE_PDF = FIGURE_DIR / "drag-model-coverage.pdf"
 

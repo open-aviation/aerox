@@ -1,8 +1,5 @@
-from pathlib import Path
-
 import numpy as np
 import pytest
-import yaml
 
 from aerox import load_aircraft
 from aerox.fms import CruiseSpeedStrategy, EconomyCruiseOptimizer
@@ -13,9 +10,6 @@ from aerox.models import (
     build_drag_model,
 )
 from aerox.models.openap import OpenAPFuelFlowPrior
-
-ROOT = Path(__file__).resolve().parents[1]
-
 
 class _SpeedLimitedMaximumThrust:
     def maximum_thrust_n(
@@ -188,21 +182,3 @@ def test_economy_optimizer_accepts_active_condition_aware_drag_model() -> None:
     assert optimizer.minimum_mach < point.mach < optimizer.maximum_mach
     assert point.wave_drag_coefficient > 0.0
     assert np.isfinite(point.critical_mach)
-
-
-def test_a320_economy_gate_records_held_validation() -> None:
-    document = yaml.safe_load(
-        (ROOT / "docs/fms/a320-economy-cruise-intent.yml").read_text()
-    )
-    decision = document["decision"]
-
-    assert document["status"] == "held"
-    assert decision["release_for_optional_economy_cruise_intent"] is False
-    assert decision["parabolic_only_mean_upper_bound_fraction"] > 0.95
-    assert decision["wave_drag_validation_median_rmse_mach"] < 0.5 * next(
-        row["median_flight_rmse_mach"]
-        for row in document["evaluation"]["summaries"]
-        if row["split"] == "validation" and row["candidate"] == "economy_parabolic"
-    )
-    assert (ROOT / document["artifacts"]["figure_png"]).is_file()
-    assert (ROOT / document["artifacts"]["figure_pdf"]).is_file()

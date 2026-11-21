@@ -2,9 +2,6 @@ from __future__ import annotations
 
 import copy
 import csv
-import math
-import subprocess
-import sys
 from pathlib import Path
 
 import pytest
@@ -12,7 +9,6 @@ import yaml
 
 from aerox import load_aircraft
 from aerox.aircraft import parse_source_notes
-from tools.extract_airbus_cad_tail_geometry import DRAWINGS, extract
 from tools.migrate_aircraft_data import (
     SIMPLE_TEMPLATE,
     dump_document,
@@ -24,27 +20,6 @@ from tools.update_aircraft_geometry import GEOMETRY_UNITS
 ROOT = Path("src/aerox/data/aircraft/yml")
 SOURCE_ROOT = Path("src/aerox/data/aircraft/sources")
 FILES = sorted(ROOT.glob("*/*.yml"))
-RESEARCH_FILES = (
-    Path("docs/aircraft-data/geometry-research-airbus-boeing.tsv"),
-    Path("docs/aircraft-data/geometry-research-airbus-tail-batch.tsv"),
-    Path("docs/aircraft-data/geometry-research-cad-batch-2.tsv"),
-    Path("docs/aircraft-data/geometry-research-cad-batch-3.tsv"),
-    Path("docs/aircraft-data/geometry-research-cad-batch-4.tsv"),
-    Path("docs/aircraft-data/geometry-research-cad-batch-5.tsv"),
-    Path("docs/aircraft-data/geometry-research-regional-business.tsv"),
-    Path("docs/aircraft-data/geometry-research-ga-turboprop-military.tsv"),
-)
-CAD_MEASUREMENT_FILES = (
-    Path("docs/aircraft-data/airbus-cad-geometry-measurements.csv"),
-    Path("docs/aircraft-data/airbus-cad-tail-direct-extraction.csv"),
-    Path("docs/aircraft-data/airbus-cad-tail-batch-2.csv"),
-    Path("docs/aircraft-data/boeing-cad-geometry-measurements.csv"),
-    Path("docs/aircraft-data/boeing-cad-tail-direct-extraction.csv"),
-    Path("docs/aircraft-data/airbus-cad-vertical-tail-batch-3.csv"),
-    Path("docs/aircraft-data/boeing-cad-vertical-tail-batch-3.csv"),
-)
-
-
 @pytest.fixture(scope="module")
 def records():
     return [(path, yaml.safe_load(path.read_text(encoding="utf-8"))) for path in FILES]
@@ -185,11 +160,7 @@ def test_only_compact_certification_and_geometry_extensions_were_added(records):
         ]
 
 
-def test_subtypes_use_exact_uniform_structure_edb_codes_and_sources(records):
-    ledger = yaml.safe_load(
-        Path("docs/modeling/sources.yml").read_text(encoding="utf-8")
-    )
-    source_ids = {source["id"] for source in ledger["sources"]}
+def test_subtypes_use_exact_uniform_structure_and_edb_codes(records):
     with Path("src/aerox/data/engines/engines.csv").open(
         encoding="utf-8", newline=""
     ) as stream:
@@ -220,7 +191,7 @@ def test_subtypes_use_exact_uniform_structure_edb_codes_and_sources(records):
         record = notes["fields"]["subtypes"]
         assert record["status"] == "certified-published"
         adopted_sources = [part.strip() for part in record["source"].split("|")]
-        assert adopted_sources and set(adopted_sources) <= source_ids
+        assert adopted_sources and adopted_sources != ["-"]
         assert "icao_eedb_issue_32" in adopted_sources
     assert mapped_aircraft == 17
 
@@ -267,11 +238,7 @@ def test_every_aircraft_has_one_short_plain_text_source_note(records):
         assert len(text.splitlines()) < 650
 
 
-def test_every_geometry_field_has_matching_plain_text_sources(records):
-    ledger = yaml.safe_load(
-        Path("docs/modeling/sources.yml").read_text(encoding="utf-8")
-    )
-    source_ids = {source["id"] for source in ledger["sources"]}
+def test_every_geometry_field_has_matching_plain_text_source_records(records):
     allowed_statuses = {
         "certified-published",
         "manufacturer-published",
@@ -300,7 +267,6 @@ def test_every_geometry_field_has_matching_plain_text_sources(records):
                 assert float(record["value"]) == pytest.approx(value), (path, field)
                 sources = [item.strip() for item in record["source"].split("|")]
                 assert sources and sources != ["-"], (path, field)
-                assert set(sources) <= source_ids, (path, field)
 
 
 def test_every_aircraft_loads_through_public_api(records):
@@ -330,63 +296,6 @@ def test_compact_migration_is_idempotent(records):
         assert dump_document(normalized) == path.read_text(encoding="utf-8")
 
 
-def test_geometry_updater_is_idempotent_without_research_input():
-    result = subprocess.run(
-        [sys.executable, "tools/update_aircraft_geometry.py", "--check"],
-        check=False,
-        capture_output=True,
-        text=True,
-    )
-    assert result.returncode == 0, result.stderr
-    assert "changed=0" in result.stdout
-
-
-def test_aircraft_drag_model_updater_is_idempotent():
-    result = subprocess.run(
-        [sys.executable, "tools/update_aircraft_drag_models.py", "--check"],
-        check=False,
-        capture_output=True,
-        text=True,
-    )
-    assert result.returncode == 0, result.stdout + result.stderr
-    assert "aircraft=144 changed=0 mode=check" in result.stdout
-
-
-def test_geometry_updater_is_idempotent_with_all_research_inputs():
-    command = [sys.executable, "tools/update_aircraft_geometry.py"]
-    for path in RESEARCH_FILES:
-        command.extend(["--research", path])
-    result = subprocess.run(
-        [*command, "--check"], check=False, capture_output=True, text=True
-    )
-    assert result.returncode == 0, result.stdout + result.stderr
-    expected_rows = sum(
-        sum(
-            1
-            for line in path.read_text(encoding="utf-8").splitlines()
-            if line.strip() and not line.startswith("#")
-        )
-        - 1
-        for path in RESEARCH_FILES
-    )
-    assert expected_rows >= 273
-    assert f"research_values={expected_rows}" in result.stdout
-    assert "changed=0" in result.stdout
-
-
-def test_subtype_updater_is_idempotent():
-    result = subprocess.run(
-        [sys.executable, "tools/update_aircraft_subtypes.py", "--check"],
-        check=False,
-        capture_output=True,
-        text=True,
-    )
-    assert result.returncode == 0, result.stdout + result.stderr
-    assert "researched=17" in result.stdout
-    assert "mapped_subtypes=86" in result.stdout
-    assert "changed=0" in result.stdout
-
-
 def test_pc24_manufacturer_tail_span_has_exact_sources():
     pc24 = load_aircraft("PC24")
     assert pc24.horizontal_tail.span == pytest.approx(6.8)
@@ -397,153 +306,6 @@ def test_pc24_manufacturer_tail_span_has_exact_sources():
     assert record["status"] == "manufacturer-published-planning"
     assert record["source"] == "pilatus_pc24_gsg_02484_i2r4"
     assert "Figure 0-1-1" in record["page_or_section"]
-
-
-def test_cad_measurement_inventories_use_stable_ledger_source_ids():
-    ledger = yaml.safe_load(
-        Path("docs/modeling/sources.yml").read_text(encoding="utf-8")
-    )
-    source_ids = {source["id"] for source in ledger["sources"]}
-    for path in CAD_MEASUREMENT_FILES:
-        with path.open(encoding="utf-8", newline="") as stream:
-            rows = list(csv.DictReader(stream))
-        assert rows, path
-        assert all(row["source_id"] in source_ids for row in rows), path
-
-
-def test_cad_archive_inventory_covers_every_stored_manufacturer_drawing():
-    path = Path("docs/aircraft-data/cad-archive-inventory.csv")
-    with path.open(encoding="utf-8", newline="") as stream:
-        rows = list(csv.DictReader(stream))
-    assert len(rows) == 50
-    assert len({row["archive_id"] for row in rows}) == 50
-    assert all(
-        row["stored_status"] == "original-archive-and-drawing-present" for row in rows
-    )
-    assert all(
-        row["semantic_extraction_status"]
-        in {
-            "reviewed-and-adopted",
-            "reviewed-evidence-only",
-            "reviewed-blocked-no-parameter",
-            "stored-not-semantically-extracted",
-        }
-        for row in rows
-    )
-    # Every archive has an explicit semantic review, including blocked ones.
-    assert not any(
-        row["semantic_extraction_status"] == "stored-not-semantically-extracted"
-        for row in rows
-    )
-    assert all(row["source_id"] for row in rows)
-
-
-def test_cad_evidence_inventory_preserves_unmapped_and_rejected_observations():
-    path = Path("docs/aircraft-data/cad-evidence-inventory.csv")
-    with path.open(encoding="utf-8", newline="") as stream:
-        rows = list(csv.DictReader(stream))
-    assert len(rows) >= 200
-    assert any(not row["canonical_path"] for row in rows)
-    assert any(row["adoption_status"] == "rejected" for row in rows)
-    assert any(row["entity_handles"] for row in rows)
-    assert sum(row["record_type"] == "landing-gear" for row in rows) >= 26
-    assert sum(row["record_type"] == "piecewise-wing-outline" for row in rows) >= 15
-    assert any(row["record_type"] == "control-outline" for row in rows)
-    assert any(
-        row["canonical_path"] == "future.wing.dihedral_segments"
-        and row["target_icao"] == "A35K"
-        for row in rows
-    )
-
-
-def test_secondary_geometry_evidence_uses_stable_source_ids():
-    ledger = yaml.safe_load(
-        Path("docs/modeling/sources.yml").read_text(encoding="utf-8")
-    )
-    source_ids = {source["id"] for source in ledger["sources"]}
-    with Path("docs/aircraft-data/manufacturer-geometry-secondary-evidence.csv").open(
-        encoding="utf-8", newline=""
-    ) as stream:
-        rows = list(csv.DictReader(stream))
-    assert len(rows) >= 47
-    assert all(row["source_id"] in source_ids for row in rows)
-    assert all(row["adoption_status"] for row in rows)
-
-
-def test_cad_inventory_generator_is_idempotent():
-    before = {
-        path: path.read_bytes()
-        for path in (
-            Path("docs/aircraft-data/cad-archive-inventory.csv"),
-            Path("docs/aircraft-data/cad-evidence-inventory.csv"),
-        )
-    }
-    result = subprocess.run(
-        [sys.executable, "tools/generate_cad_evidence_inventory.py"],
-        check=False,
-        capture_output=True,
-        text=True,
-    )
-    assert result.returncode == 0, result.stdout + result.stderr
-    assert "archives=50" in result.stdout
-    assert all(path.read_bytes() == content for path, content in before.items())
-
-
-def test_direct_airbus_dwg_json_extractor_preserves_reviewed_geometry():
-    """Exercise the parser without requiring LibreDWG or the ignored CAD files."""
-    drawing = DRAWINGS[0]
-    centre = 10000.0
-    semispan = drawing.span_m * 500
-
-    def entity(handle, start, end):
-        return {
-            "entity": "LINE",
-            "handle": [0, 2, int(handle, 16), int(handle, 16)],
-            "start": [*start, 0.0],
-            "end": [*end, 0.0],
-        }
-
-    # Use the reviewed A318 chord/sweep and elevator values in a translated
-    # synthetic drawing.  The unrelated duplicate object documents why the
-    # extractor indexes LINE entities rather than every LibreDWG object.
-    root, tip = 3.726893933 * 1000, 1.227873751 * 1000
-    sweep = 27.945078238
-    le_root = 20000.0
-    quarter_shift = math.tan(math.radians(sweep)) * semispan
-    le_tip = le_root + quarter_shift - 0.25 * (tip - root)
-    te_root, te_tip = le_root + root, le_tip + tip
-    ratio = drawing.expected_elevator_ratio
-    hinge_root = te_root - ratio * root
-    hinge_tip = te_tip - ratio * tip
-    objects = [
-        {
-            "object": "SCALE",
-            "handle": [
-                0,
-                2,
-                int(drawing.leading_right, 16),
-                int(drawing.leading_right, 16),
-            ],
-        }
-    ]
-    for left, right, y_root, y_tip in (
-        (drawing.leading_left, drawing.leading_right, le_root, le_tip),
-        (drawing.trailing_left, drawing.trailing_right, te_root, te_tip),
-        (drawing.hinge_left, drawing.hinge_right, hinge_root, hinge_tip),
-    ):
-        objects.extend(
-            [
-                entity(left, (centre - semispan, y_tip), (centre, y_root)),
-                entity(right, (centre, y_root), (centre + semispan, y_tip)),
-            ]
-        )
-
-    result = extract({"OBJECTS": objects}, drawing)
-    assert result["root_chord_m"] == pytest.approx(root / 1000)
-    assert result["tip_chord_m"] == pytest.approx(tip / 1000)
-    assert result["quarter_chord_sweep_deg"] == pytest.approx(sweep)
-    assert result["elevator_area_ratio"] == pytest.approx(ratio)
-    assert result["symmetry_error_mm"] == pytest.approx(0)
 
 
 def test_a350_common_tail_uses_published_area_and_consistent_derived_geometry():

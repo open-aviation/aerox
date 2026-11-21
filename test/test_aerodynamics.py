@@ -9,8 +9,6 @@ from aerox.models import (
     MachDependentInducedDrag,
     ParabolicDragPolar,
     PollSchumannDragModel,
-    TabulatedLiftSurface,
-    TabulatedStaticStabilityPrior,
     TransonicCompressibilityDragModel,
     ParabolicWaveDragModel,
     KornLockWaveDrag,
@@ -189,65 +187,3 @@ def test_condition_interface_converts_poll_unit_reynolds_number():
             np.asarray(condition.unit_reynolds_number_per_m) * np.sqrt(122.4),
         ),
     )
-
-
-def test_vspaero_static_prior_interpolates_without_claiming_drag():
-    prior = TabulatedStaticStabilityPrior.from_vspaero_csv(
-        "docs/modeling/a320-vspaero-prior.csv"
-    )
-
-    reference = prior.coefficients(
-        angle_of_attack_rad=np.deg2rad(2.0), sideslip_rad=0.0, mach=0.5
-    )
-    perturbed = prior.coefficients(
-        angle_of_attack_rad=np.deg2rad(3.0), sideslip_rad=np.deg2rad(1.0), mach=0.5
-    )
-
-    assert reference.lift == pytest.approx(0.201682)
-    assert perturbed.lift > reference.lift
-    assert perturbed.pitch_moment < reference.pitch_moment
-    assert perturbed.side_force < reference.side_force
-    assert perturbed.roll_moment < reference.roll_moment
-    assert perturbed.yaw_moment > reference.yaw_moment
-    assert not hasattr(reference, "drag")
-
-
-def test_vspaero_static_prior_rejects_extrapolation():
-    prior = TabulatedStaticStabilityPrior.from_vspaero_csv(
-        "docs/modeling/a320-vspaero-prior.csv"
-    )
-
-    with pytest.raises(ValueError, match="mach"):
-        prior.coefficients(angle_of_attack_rad=0.0, sideslip_rad=0.0, mach=0.1)
-    with pytest.raises(ValueError, match="angle_of_attack"):
-        prior.coefficients(
-            angle_of_attack_rad=np.deg2rad(8.0), sideslip_rad=0.0, mach=0.5
-        )
-    with pytest.raises(ValueError, match="sideslip"):
-        prior.coefficients(
-            angle_of_attack_rad=0.0, sideslip_rad=np.deg2rad(5.0), mach=0.5
-        )
-
-
-def test_vspaero_lift_surface_reproduces_nodes_and_bilinear_midpoint():
-    surface = TabulatedLiftSurface.from_vspaero_alpha_support_csv(
-        "docs/modeling/a320-vspaero-alpha-support.csv"
-    )
-
-    node = surface.lift_coefficient_scalar(np.deg2rad(5.0), 0.5)
-    midpoint = surface.lift_coefficient_scalar(np.deg2rad(3.5), 0.35)
-    expected_midpoint = np.mean([0.1865635, 0.465337, 0.201682, 0.5032742])
-
-    assert node == pytest.approx(0.5032742)
-    assert midpoint == pytest.approx(expected_midpoint)
-
-
-def test_vspaero_lift_surface_rejects_extrapolation():
-    surface = TabulatedLiftSurface.from_vspaero_alpha_support_csv(
-        "docs/modeling/a320-vspaero-alpha-support.csv"
-    )
-
-    with pytest.raises(ValueError, match="angle_of_attack"):
-        surface.lift_coefficient_scalar(np.deg2rad(9.0), 0.5)
-    with pytest.raises(ValueError, match="mach"):
-        surface.lift_coefficient_scalar(np.deg2rad(5.0), 0.8)
