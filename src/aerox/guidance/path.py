@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import Literal
 
 import numpy as np
 
@@ -12,6 +13,8 @@ from aerox.navigation import (
     horizontal_ground_speed_mps,
     wind_corrected_path,
 )
+
+SpeedGuidanceMode = Literal["PROFILE", "CAS_MACH", "MACH_CAS", "SPEED_HOLD"]
 
 
 def _wrapped_angle_delta(target_rad: float, actual_rad: float) -> float:
@@ -40,7 +43,12 @@ class GuidanceTarget:
     predicted_groundspeed_mps: float
     altitude_error_feedback_gain_scale: float
     vertical_mode: str
+    speed_guidance_mode: SpeedGuidanceMode
     speed_mode: str
+    thrust_mode: str = "AUTO"
+    available_thrust_fraction: float | None = None
+    configuration_mode: str = "CLEAN"
+    drag_coefficient_increment: float = 0.0
 
 
 @dataclass
@@ -277,5 +285,6 @@ class SpatialPathGuidance:
             predicted_groundspeed_mps=float(groundspeed),
             altitude_error_feedback_gain_scale=1.0,
             vertical_mode="PROFILE",
+            speed_guidance_mode="PROFILE",
             speed_mode="PROFILE",
         )

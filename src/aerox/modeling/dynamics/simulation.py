@@ -39,6 +39,7 @@ def _simulate_point_mass_zoh(
     wind_north_mps: ArrayLike | None = None,
     wind_east_mps: ArrayLike | None = None,
     wind_down_mps: ArrayLike | None = None,
+    drag_coefficient_increment: ArrayLike | None = None,
     initial_north_position_m: float = 0.0,
     initial_east_position_m: float = 0.0,
     integration_rate_hz: int = 10,
@@ -84,6 +85,13 @@ def _simulate_point_mass_zoh(
         time,
         "wind_down_mps",
     )
+    drag_increment = _sample_array(
+        zeros if drag_coefficient_increment is None else drag_coefficient_increment,
+        time,
+        "drag_coefficient_increment",
+    )
+    if np.any(drag_increment < 0.0):
+        raise ValueError("drag_coefficient_increment must be non-negative")
 
     initial_state = PointMassState(
         true_airspeed_mps=initial_true_airspeed_mps,
@@ -111,6 +119,7 @@ def _simulate_point_mass_zoh(
             wind_north_mps=float(wind_north[index]),
             wind_east_mps=float(wind_east[index]),
             wind_down_mps=float(wind_down[index]),
+            drag_coefficient_increment=float(drag_increment[index]),
         )
 
     for index in range(len(time)):
@@ -172,6 +181,7 @@ def simulate_point_mass_zoh(
     wind_north_mps: ArrayLike | None = None,
     wind_east_mps: ArrayLike | None = None,
     wind_down_mps: ArrayLike | None = None,
+    drag_coefficient_increment: ArrayLike | None = None,
     initial_north_position_m: float = 0.0,
     initial_east_position_m: float = 0.0,
     integration_rate_hz: int = 10,
@@ -194,6 +204,7 @@ def simulate_point_mass_zoh(
         wind_north_mps=wind_north_mps,
         wind_east_mps=wind_east_mps,
         wind_down_mps=wind_down_mps,
+        drag_coefficient_increment=drag_coefficient_increment,
         initial_north_position_m=initial_north_position_m,
         initial_east_position_m=initial_east_position_m,
         integration_rate_hz=integration_rate_hz,

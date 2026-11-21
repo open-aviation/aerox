@@ -12,6 +12,7 @@ from aerox.fms.performance import MaximumThrustModel, MinimumThrustModel
 from aerox.fms.route import SpatialTrajectory
 from aerox.guidance.inverse import InverseFlightMechanicsController
 from aerox.guidance.path import SpatialPathGuidance
+from aerox.guidance.program import IntentDrivenGuidance
 from aerox.guidance.selected_altitude import SelectedAltitudeGuidance
 from aerox.modeling.dynamics import (
     PitchBankThrustInput,
@@ -40,7 +41,15 @@ class FMSSimulationResult:
     reference_air_heading_rad: FloatArray
     reference_air_flight_path_angle_rad: FloatArray
     vertical_mode: NDArray[np.str_]
+    speed_guidance_mode: NDArray[np.str_]
     speed_mode: NDArray[np.str_]
+    thrust_mode: NDArray[np.str_]
+    available_thrust_fraction: FloatArray
+    configuration_mode: NDArray[np.str_]
+    drag_coefficient_increment: FloatArray
+    operational_thrust_limit_n: FloatArray
+    generation_minimum_thrust_n: FloatArray
+    generation_maximum_thrust_n: FloatArray
     static_temperature_k: FloatArray
     wind_north_mps: FloatArray
     wind_east_mps: FloatArray
@@ -49,6 +58,7 @@ class FMSSimulationResult:
     pitch_limited: NDArray[np.bool_]
     bank_limited: NDArray[np.bool_]
     thrust_limited: NDArray[np.bool_]
+    energy_limited: NDArray[np.bool_]
     completed: bool
 
     def waypoint_minimum_distance_m(self) -> FloatArray:
@@ -69,7 +79,7 @@ def simulate_fms_trajectory_zoh(
     *,
     plant: PointMassModel,
     controller: InverseFlightMechanicsController,
-    guidance: SpatialPathGuidance | SelectedAltitudeGuidance,
+    guidance: SpatialPathGuidance | SelectedAltitudeGuidance | IntentDrivenGuidance,
     maximum_time_s: float,
     static_temperature_k: float,
     initial_mass_kg: float,
@@ -177,7 +187,15 @@ def simulate_fms_trajectory_zoh(
     reference_heading: list[float] = []
     reference_gamma: list[float] = []
     vertical_mode: list[str] = []
+    speed_guidance_mode: list[str] = []
     speed_mode: list[str] = []
+    thrust_mode: list[str] = []
+    thrust_fraction: list[float] = []
+    configuration_mode: list[str] = []
+    drag_coefficient_increment: list[float] = []
+    operational_thrust_limit: list[float] = []
+    generation_minimum_thrust: list[float] = []
+    generation_maximum_thrust: list[float] = []
     temperature_history: list[float] = []
     wind_north_history: list[float] = []
     wind_east_history: list[float] = []
@@ -186,6 +204,7 @@ def simulate_fms_trajectory_zoh(
     pitch_limited: list[bool] = []
     bank_limited: list[bool] = []
     thrust_limited: list[bool] = []
+    energy_limited: list[bool] = []
     previous_control = initial_control
     completed = False
 
@@ -223,34 +242,6 @@ def simulate_fms_trajectory_zoh(
             wind_east_mps=current_wind_east_mps,
             wind_down_mps=current_wind_down_mps,
         )
-        command = controller.command(
-            plant=plant,
-            state=state,
-            reference_true_airspeed_mps=target.reference_true_airspeed_mps,
-            reference_true_airspeed_rate_mps2=target.reference_true_airspeed_rate_mps2,
-            reference_flight_path_angle_rad=(
-                target.reference_air_flight_path_angle_rad
-            ),
-            # The moving spatial target is a state reference, not a measured
-            # trajectory derivative. Differentiating it injects corner and
-            # segment-transition impulses, so feedback performs capture while
-            # the spatial speed gradient remains analytic feed-forward.
-            reference_flight_path_angle_rate_rad_s=0.0,
-            reference_heading_rad=target.reference_air_heading_rad,
-            reference_heading_rate_rad_s=0.0,
-            reference_pressure_altitude_m=target.reference_altitude_m,
-            altitude_error_feedback_gain_scale=(
-                target.altitude_error_feedback_gain_scale
-            ),
-            static_temperature_k=current_temperature_k,
-            previous_control=previous_control,
-            command_step_s=command_step_s,
-            wind_north_mps=current_wind_north_mps,
-            wind_east_mps=current_wind_east_mps,
-            wind_down_mps=current_wind_down_mps,
-        )
-        control = command.control
-        conditioned_thrust_limited = False
         conditioned_minimum_thrust = (
             minimum_thrust_model.minimum_thrust_n(
                 pressure_altitude_m=state.pressure_altitude_m,
@@ -283,6 +274,82 @@ def simulate_fms_trajectory_zoh(
                 )
         if conditioned_minimum_thrust >= conditioned_maximum_thrust:
             raise ValueError("conditioned maximum thrust must exceed minimum thrust")
+        controller_minimum_thrust = conditioned_minimum_thrust
+        controller_maximum_thrust = conditioned_maximum_thrust
+        controller_operational_thrust = None
+        active_thrust_fraction = np.nan
+        active_operational_thrust = np.nan
+        if target.thrust_mode in {
+            "THRUST_FRACTION",
+            "THRUST_CEILING_FRACTION",
+        }:
+            if maximum_thrust_model is None or minimum_thrust_model is None:
+                raise ValueError(
+                    "normalized thrust-fraction guidance requires minimum and "
+                    "maximum thrust models"
+                )
+            if (
+                target.available_thrust_fraction is None
+                or not np.isfinite(target.available_thrust_fraction)
+                or not 0.0 <= target.available_thrust_fraction <= 1.0
+            ):
+                raise ValueError(
+                    "normalized thrust-fraction guidance requires a fraction "
+                    "from zero to one"
+                )
+            active_thrust_fraction = target.available_thrust_fraction
+            active_operational_thrust = conditioned_minimum_thrust + (
+                active_thrust_fraction
+                * (conditioned_maximum_thrust - conditioned_minimum_thrust)
+            )
+            if target.thrust_mode == "THRUST_FRACTION":
+                controller_operational_thrust = active_operational_thrust
+            else:
+                # The thrust command states whether the normalized value is a
+                # controller target or an available-thrust ceiling. Its meaning
+                # does not depend on the active speed or vertical mode.
+                controller_maximum_thrust = active_operational_thrust
+        elif target.thrust_mode != "AUTO":
+            raise ValueError(f"unsupported online thrust mode: {target.thrust_mode}")
+        command = controller.command(
+            plant=plant,
+            state=state,
+            reference_true_airspeed_mps=target.reference_true_airspeed_mps,
+            reference_true_airspeed_rate_mps2=target.reference_true_airspeed_rate_mps2,
+            reference_flight_path_angle_rad=(
+                target.reference_air_flight_path_angle_rad
+            ),
+            # The moving spatial target is a state reference, not a measured
+            # trajectory derivative. Differentiating it injects corner and
+            # segment-transition impulses, so feedback performs capture while
+            # the spatial speed gradient remains analytic feed-forward.
+            reference_flight_path_angle_rate_rad_s=0.0,
+            reference_heading_rad=target.reference_air_heading_rad,
+            reference_heading_rate_rad_s=0.0,
+            reference_pressure_altitude_m=target.reference_altitude_m,
+            altitude_error_feedback_gain_scale=(
+                target.altitude_error_feedback_gain_scale
+            ),
+            static_temperature_k=current_temperature_k,
+            speed_guidance_mode=target.speed_guidance_mode,
+            minimum_available_thrust_n=(
+                controller_minimum_thrust if minimum_thrust_model is not None else None
+            ),
+            maximum_available_thrust_n=(
+                controller_maximum_thrust if maximum_thrust_model is not None else None
+            ),
+            operational_thrust_target_n=controller_operational_thrust,
+            drag_coefficient_increment=target.drag_coefficient_increment,
+            maximum_speed_acceleration_mps2=(route.intent.maximum_acceleration_mps2),
+            maximum_speed_deceleration_mps2=(route.intent.maximum_deceleration_mps2),
+            previous_control=previous_control,
+            command_step_s=command_step_s,
+            wind_north_mps=current_wind_north_mps,
+            wind_east_mps=current_wind_east_mps,
+            wind_down_mps=current_wind_down_mps,
+        )
+        control = command.control
+        conditioned_thrust_limited = False
         bounded_thrust = float(
             np.clip(
                 control.net_thrust_n,
@@ -319,9 +386,17 @@ def simulate_fms_trajectory_zoh(
         reference_speed.append(target.reference_true_airspeed_mps)
         reference_track.append(target.reference_ground_track_rad)
         reference_heading.append(target.reference_air_heading_rad)
-        reference_gamma.append(target.reference_air_flight_path_angle_rad)
+        reference_gamma.append(command.effective_reference_flight_path_angle_rad)
         vertical_mode.append(target.vertical_mode)
+        speed_guidance_mode.append(target.speed_guidance_mode)
         speed_mode.append(target.speed_mode)
+        thrust_mode.append(target.thrust_mode)
+        thrust_fraction.append(active_thrust_fraction)
+        configuration_mode.append(target.configuration_mode)
+        drag_coefficient_increment.append(target.drag_coefficient_increment)
+        operational_thrust_limit.append(active_operational_thrust)
+        generation_minimum_thrust.append(conditioned_minimum_thrust)
+        generation_maximum_thrust.append(conditioned_maximum_thrust)
         temperature_history.append(current_temperature_k)
         wind_north_history.append(current_wind_north_mps)
         wind_east_history.append(current_wind_east_mps)
@@ -330,6 +405,7 @@ def simulate_fms_trajectory_zoh(
         pitch_limited.append(command.pitch_limited)
         bank_limited.append(command.bank_limited)
         thrust_limited.append(command.thrust_limited or conditioned_thrust_limited)
+        energy_limited.append(command.energy_limited)
         previous_control = control
 
         destination_distance = float(
@@ -387,7 +463,15 @@ def simulate_fms_trajectory_zoh(
         reference_air_heading_rad=np.asarray(reference_heading),
         reference_air_flight_path_angle_rad=np.asarray(reference_gamma),
         vertical_mode=np.asarray(vertical_mode),
+        speed_guidance_mode=np.asarray(speed_guidance_mode),
         speed_mode=np.asarray(speed_mode),
+        thrust_mode=np.asarray(thrust_mode),
+        available_thrust_fraction=np.asarray(thrust_fraction),
+        configuration_mode=np.asarray(configuration_mode),
+        drag_coefficient_increment=np.asarray(drag_coefficient_increment),
+        operational_thrust_limit_n=np.asarray(operational_thrust_limit),
+        generation_minimum_thrust_n=np.asarray(generation_minimum_thrust),
+        generation_maximum_thrust_n=np.asarray(generation_maximum_thrust),
         static_temperature_k=np.asarray(temperature_history),
         wind_north_mps=np.asarray(wind_north_history),
         wind_east_mps=np.asarray(wind_east_history),
@@ -396,6 +480,7 @@ def simulate_fms_trajectory_zoh(
         pitch_limited=np.asarray(pitch_limited, dtype=bool),
         bank_limited=np.asarray(bank_limited, dtype=bool),
         thrust_limited=np.asarray(thrust_limited, dtype=bool),
+        energy_limited=np.asarray(energy_limited, dtype=bool),
         completed=completed,
     )
 

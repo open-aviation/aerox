@@ -6,7 +6,9 @@ from aerox.fms import (
     FlightIntent,
     LateralWaypoint,
     SelectedAltitudeIntent,
+    SelectedSpeedGuidanceIntent,
     SelectedSpeedIntent,
+    SelectedThrustIntent,
     SpeedConstraint,
     SpeedTarget,
     SpatialEnvironmentProfile,
@@ -27,6 +29,7 @@ from aerox.navigation import (
 from aerox.modeling.dynamics import (
     PitchBankThrustInput,
     PointMassModel,
+    PointMassState,
 )
 from aerox.models import EffectiveLiftMap, ParabolicDragPolar
 from aerox.models.atmosphere import (
@@ -34,7 +37,7 @@ from aerox.models.atmosphere import (
     true_airspeed_from_mach,
 )
 from aerox.models.openap import OpenAPFuelFlowPrior
-from aerox.models.thrust import PressureScaledMinimumThrust
+from aerox.models.thrust import ConstantMaximumThrust, PressureScaledMinimumThrust
 from aerox.simulation import simulate_fms_trajectory_zoh
 
 
@@ -225,7 +228,9 @@ def test_selected_altitude_guidance_commands_climb_capture_hold_and_descent() ->
         **common, pressure_altitude_m=1_000.0, simulation_time_s=0.0
     )
     capture = guidance.update(
-        **common, pressure_altitude_m=1_900.0, simulation_time_s=10.0
+        **(common | {"flight_path_angle_rad": np.deg2rad(1.0)}),
+        pressure_altitude_m=1_900.0,
+        simulation_time_s=10.0,
     )
     hold = guidance.update(
         **common, pressure_altitude_m=2_000.0, simulation_time_s=10.0
@@ -235,13 +240,272 @@ def test_selected_altitude_guidance_commands_climb_capture_hold_and_descent() ->
     )
 
     assert climb.vertical_mode == "CLIMB"
-    assert climb.reference_air_flight_path_angle_rad > 0.0
+    assert climb.reference_air_flight_path_angle_rad > np.deg2rad(3.5)
     assert capture.vertical_mode == "CAPTURE"
     assert hold.vertical_mode == "ALT_HOLD"
     assert descent.vertical_mode == "DESCENT"
-    assert descent.reference_air_flight_path_angle_rad < 0.0
+    assert descent.reference_air_flight_path_angle_rad < -np.deg2rad(3.5)
     assert descent.reference_altitude_m == pytest.approx(500.0)
     assert descent.altitude_error_feedback_gain_scale == 0.0
+
+
+def test_selected_speed_guidance_latches_directional_crossover_modes() -> None:
+    route = SpatialTrajectory.from_intent(
+        FlightIntent(
+            waypoints=(
+                LateralWaypoint(0.0, 0.0),
+                LateralWaypoint(20_000.0, 0.0),
+            ),
+            departure=TerminalConstraint(1_000.0, SpeedTarget("TAS", 100.0)),
+            arrival=TerminalConstraint(1_000.0, SpeedTarget("TAS", 100.0)),
+        )
+    )
+    speed_intent = SelectedSpeedIntent(
+        np.array([0.0]), np.array([140.0]), np.array([0.76])
+    )
+    crossover = speed_intent.target_at(
+        0.0, pressure_altitude_m=1_000.0, static_temperature_k=270.0
+    ).crossover_altitude_m
+    guidance = SelectedAltitudeGuidance(
+        lateral_guidance=SpatialPathGuidance(route),
+        altitude_intent=SelectedAltitudeIntent(
+            np.array([0.0, 20.0]),
+            np.array([crossover + 2_000.0, crossover - 2_000.0]),
+        ),
+        speed_intent=speed_intent,
+        maximum_flight_path_command_rate_rad_s=np.deg2rad(10.0),
+    )
+    common = {
+        "north_m": 0.0,
+        "east_m": 0.0,
+        "true_airspeed_mps": 200.0,
+        "flight_path_angle_rad": 0.0,
+        "static_temperature_k": 270.0,
+        "elapsed_time_s": 1.0,
+    }
+
+    climb_cas = guidance.update(
+        **common,
+        pressure_altitude_m=crossover - 500.0,
+        simulation_time_s=0.0,
+    )
+    climb_mach = guidance.update(
+        **common,
+        pressure_altitude_m=crossover + 500.0,
+        simulation_time_s=1.0,
+    )
+    climb_latched = guidance.update(
+        **common,
+        pressure_altitude_m=crossover - 500.0,
+        simulation_time_s=2.0,
+    )
+    level_hold = guidance.update(
+        **common,
+        pressure_altitude_m=crossover + 2_000.0,
+        simulation_time_s=3.0,
+    )
+    descent_mach = guidance.update(
+        **common,
+        pressure_altitude_m=crossover + 500.0,
+        simulation_time_s=20.0,
+    )
+    descent_cas = guidance.update(
+        **common,
+        pressure_altitude_m=crossover - 500.0,
+        simulation_time_s=21.0,
+    )
+    descent_latched = guidance.update(
+        **common,
+        pressure_altitude_m=crossover + 500.0,
+        simulation_time_s=22.0,
+    )
+
+    assert climb_cas.speed_mode == "CAS"
+    assert climb_cas.speed_guidance_mode == "CAS_MACH"
+    assert climb_mach.speed_mode == "MACH"
+    assert climb_mach.speed_guidance_mode == "CAS_MACH"
+    assert climb_latched.speed_mode == "MACH"
+    assert climb_latched.speed_guidance_mode == "CAS_MACH"
+    assert level_hold.speed_mode == "MACH"
+    assert level_hold.speed_guidance_mode == "SPEED_HOLD"
+    assert descent_mach.speed_mode == "MACH"
+    assert descent_mach.speed_guidance_mode == "MACH_CAS"
+    assert descent_cas.speed_mode == "CAS"
+    assert descent_cas.speed_guidance_mode == "MACH_CAS"
+    assert descent_latched.speed_mode == "CAS"
+    assert descent_latched.speed_guidance_mode == "MACH_CAS"
+
+
+def test_selected_speed_guidance_keeps_mode_and_selector_independent() -> None:
+    route = SpatialTrajectory.from_intent(
+        FlightIntent(
+            waypoints=(
+                LateralWaypoint(0.0, 0.0),
+                LateralWaypoint(20_000.0, 0.0),
+            ),
+            departure=TerminalConstraint(1_000.0, SpeedTarget("TAS", 100.0)),
+            arrival=TerminalConstraint(1_000.0, SpeedTarget("TAS", 100.0)),
+        )
+    )
+    guidance = SelectedAltitudeGuidance(
+        lateral_guidance=SpatialPathGuidance(route),
+        altitude_intent=SelectedAltitudeIntent(np.array([0.0]), np.array([12_000.0])),
+        speed_intent=SelectedSpeedIntent(
+            np.array([0.0]), np.array([140.0]), np.array([0.76])
+        ),
+        speed_guidance_intent=SelectedSpeedGuidanceIntent(
+            np.array([0.0]), ("CAS_MACH",), ("MACH",)
+        ),
+        maximum_flight_path_command_rate_rad_s=np.deg2rad(10.0),
+    )
+
+    target = guidance.update(
+        north_m=0.0,
+        east_m=0.0,
+        true_airspeed_mps=200.0,
+        flight_path_angle_rad=0.0,
+        pressure_altitude_m=1_000.0,
+        simulation_time_s=0.0,
+        static_temperature_k=270.0,
+        elapsed_time_s=1.0,
+    )
+
+    assert target.speed_guidance_mode == "CAS_MACH"
+    assert target.speed_mode == "MACH"
+
+
+def test_selected_speed_guidance_differentiates_constant_cas_target() -> None:
+    route = SpatialTrajectory.from_intent(
+        FlightIntent(
+            waypoints=(
+                LateralWaypoint(0.0, 0.0),
+                LateralWaypoint(20_000.0, 0.0),
+            ),
+            departure=TerminalConstraint(1_000.0, SpeedTarget("TAS", 100.0)),
+            arrival=TerminalConstraint(1_000.0, SpeedTarget("TAS", 100.0)),
+        )
+    )
+    guidance = SelectedAltitudeGuidance(
+        lateral_guidance=SpatialPathGuidance(route),
+        altitude_intent=SelectedAltitudeIntent(np.array([0.0]), np.array([12_000.0])),
+        speed_intent=SelectedSpeedIntent(
+            np.array([0.0]), np.array([140.0]), np.array([0.76])
+        ),
+        maximum_flight_path_command_rate_rad_s=np.deg2rad(10.0),
+    )
+    common = {
+        "north_m": 0.0,
+        "east_m": 0.0,
+        "true_airspeed_mps": 180.0,
+        "flight_path_angle_rad": 0.0,
+        "static_temperature_k": 270.0,
+        "elapsed_time_s": 1.0,
+    }
+
+    first = guidance.update(
+        **common, pressure_altitude_m=1_000.0, simulation_time_s=0.0
+    )
+    second = guidance.update(
+        **common, pressure_altitude_m=1_100.0, simulation_time_s=1.0
+    )
+
+    assert first.speed_mode == "CAS"
+    assert first.reference_true_airspeed_rate_mps2 == 0.0
+    assert second.speed_mode == "CAS"
+    assert second.reference_true_airspeed_mps > first.reference_true_airspeed_mps
+    assert second.reference_true_airspeed_rate_mps2 > 0.0
+
+
+def test_performance_speed_modes_protect_speed_with_flight_path_angle() -> None:
+    plant = PointMassModel(
+        wing_area_m2=100.0,
+        lift_map=EffectiveLiftMap("linear_alpha", np.array([0.50, 0.10])),
+        drag_model=ParabolicDragPolar(0.02, 0.04),
+        fuel_flow_prior=OpenAPFuelFlowPrior(
+            engine_count=2,
+            rated_thrust_n_per_engine=100_000.0,
+            c1=1.0,
+            c2=2.0,
+            c3=1.0,
+        ),
+    )
+    controller = InverseFlightMechanicsController(
+        speed_error_gain_per_s=0.05,
+        flight_path_angle_error_gain_per_s=0.25,
+        heading_error_gain_per_s=0.08,
+        altitude_to_flight_path_gain_rad_per_m=2e-4,
+        minimum_pitch_rad=np.deg2rad(-2.0),
+        maximum_pitch_rad=np.deg2rad(12.0),
+        maximum_bank_rad=np.deg2rad(25.0),
+        minimum_thrust_n=0.0,
+        maximum_thrust_n=200_000.0,
+        maximum_pitch_rate_rad_s=np.deg2rad(10.0),
+        maximum_bank_rate_rad_s=np.deg2rad(10.0),
+        maximum_thrust_rate_n_s=200_000.0,
+    )
+    state = PointMassState(
+        true_airspeed_mps=200.0,
+        flight_path_angle_rad=0.0,
+        heading_rad=0.0,
+        north_position_m=0.0,
+        east_position_m=0.0,
+        pressure_altitude_m=6_000.0,
+        mass_kg=60_000.0,
+    )
+    common = {
+        "plant": plant,
+        "state": state,
+        "reference_true_airspeed_mps": 200.0,
+        "reference_true_airspeed_rate_mps2": 0.0,
+        "reference_flight_path_angle_rate_rad_s": 0.0,
+        "reference_heading_rad": 0.0,
+        "reference_heading_rate_rad_s": 0.0,
+        "reference_pressure_altitude_m": 6_000.0,
+        "altitude_error_feedback_gain_scale": 0.0,
+        "static_temperature_k": 250.0,
+    }
+
+    climb = controller.command(
+        **common,
+        reference_flight_path_angle_rad=np.deg2rad(3.0),
+        speed_guidance_mode="CAS_MACH",
+        maximum_available_thrust_n=45_000.0,
+    )
+    descent = controller.command(
+        **common,
+        reference_flight_path_angle_rad=np.deg2rad(-3.0),
+        speed_guidance_mode="MACH_CAS",
+        minimum_available_thrust_n=30_000.0,
+    )
+
+    assert climb.energy_limited
+    assert climb.effective_reference_flight_path_angle_rad < np.deg2rad(3.0)
+    assert climb.control.net_thrust_n <= 45_000.0
+    assert climb.control.net_thrust_n == pytest.approx(45_000.0, rel=0.01)
+    assert descent.energy_limited
+    assert descent.effective_reference_flight_path_angle_rad > np.deg2rad(-3.0)
+    assert descent.control.net_thrust_n >= 30_000.0
+    assert descent.control.net_thrust_n == pytest.approx(30_000.0, rel=0.01)
+
+    speed_priority = controller.command(
+        **(common | {"reference_true_airspeed_mps": 260.0}),
+        reference_flight_path_angle_rad=np.deg2rad(3.0),
+        speed_guidance_mode="CAS_MACH",
+        maximum_available_thrust_n=45_000.0,
+    )
+    shared = controller.command(
+        **(common | {"reference_true_airspeed_mps": 260.0}),
+        reference_flight_path_angle_rad=np.deg2rad(3.0),
+        speed_guidance_mode="CAS_MACH",
+        maximum_available_thrust_n=45_000.0,
+        maximum_speed_acceleration_mps2=0.25,
+    )
+
+    assert shared.energy_limited
+    assert (
+        shared.effective_reference_flight_path_angle_rad
+        > speed_priority.effective_reference_flight_path_angle_rad
+    )
 
 
 def test_route_projection_has_signed_cross_track_error() -> None:
@@ -556,3 +820,129 @@ def test_fms_simulation_applies_conditioned_minimum_thrust() -> None:
     )
     assert np.all(result.trajectory.net_thrust_n >= conditioned_minimum)
     assert np.all(result.thrust_limited)
+
+
+def test_fms_simulation_applies_normalized_climb_thrust_rule() -> None:
+    plant = PointMassModel(
+        wing_area_m2=100.0,
+        lift_map=EffectiveLiftMap("linear_alpha", np.array([0.50, 0.10])),
+        drag_model=ParabolicDragPolar(0.02, 0.04),
+        fuel_flow_prior=OpenAPFuelFlowPrior(
+            engine_count=2,
+            rated_thrust_n_per_engine=100_000.0,
+            c1=1.0,
+            c2=2.0,
+            c3=1.0,
+        ),
+    )
+    controller = InverseFlightMechanicsController(
+        speed_error_gain_per_s=0.05,
+        flight_path_angle_error_gain_per_s=0.25,
+        heading_error_gain_per_s=0.08,
+        altitude_to_flight_path_gain_rad_per_m=2e-4,
+        minimum_pitch_rad=np.deg2rad(-2.0),
+        maximum_pitch_rad=np.deg2rad(12.0),
+        maximum_bank_rad=np.deg2rad(25.0),
+        minimum_thrust_n=0.0,
+        maximum_thrust_n=200_000.0,
+        maximum_pitch_rate_rad_s=np.deg2rad(1.0),
+        maximum_bank_rate_rad_s=np.deg2rad(2.0),
+        maximum_thrust_rate_n_s=200_000.0,
+    )
+    guidance = SelectedAltitudeGuidance(
+        SpatialPathGuidance(_route()),
+        SelectedAltitudeIntent(np.array([0.0]), np.array([10_000.0])),
+        SelectedSpeedIntent(
+            np.array([0.0]),
+            np.array([140.0]),
+            np.array([0.76]),
+        ),
+        SelectedSpeedGuidanceIntent(np.array([0.0]), ("CAS",)),
+        SelectedThrustIntent(
+            np.array([0.0]),
+            ("THRUST_CEILING_FRACTION",),
+            np.array([0.25]),
+        ),
+    )
+
+    result = simulate_fms_trajectory_zoh(
+        plant=plant,
+        controller=controller,
+        guidance=guidance,
+        maximum_time_s=1.0,
+        static_temperature_k=250.0,
+        initial_mass_kg=60_000.0,
+        maximum_thrust_model=ConstantMaximumThrust(200_000.0),
+        minimum_thrust_model=PressureScaledMinimumThrust(0.0, 0.5),
+    )
+
+    assert result.thrust_mode.tolist() == [
+        "THRUST_CEILING_FRACTION",
+        "THRUST_CEILING_FRACTION",
+    ]
+    assert result.available_thrust_fraction == pytest.approx([0.25, 0.25])
+    assert result.operational_thrust_limit_n == pytest.approx([50_000.0, 50_000.0])
+    assert result.generation_minimum_thrust_n == pytest.approx([0.0, 0.0])
+    assert result.generation_maximum_thrust_n == pytest.approx([200_000.0, 200_000.0])
+    assert np.all(result.trajectory.net_thrust_n <= 50_000.0 + 1e-9)
+
+
+def test_fms_simulation_uses_normalized_descent_thrust_as_energy_target() -> None:
+    plant = PointMassModel(
+        wing_area_m2=100.0,
+        lift_map=EffectiveLiftMap("linear_alpha", np.array([0.50, 0.10])),
+        drag_model=ParabolicDragPolar(0.02, 0.04),
+        fuel_flow_prior=OpenAPFuelFlowPrior(
+            engine_count=2,
+            rated_thrust_n_per_engine=100_000.0,
+            c1=1.0,
+            c2=2.0,
+            c3=1.0,
+        ),
+    )
+    controller = InverseFlightMechanicsController(
+        speed_error_gain_per_s=0.05,
+        flight_path_angle_error_gain_per_s=0.25,
+        heading_error_gain_per_s=0.08,
+        altitude_to_flight_path_gain_rad_per_m=2e-4,
+        minimum_pitch_rad=np.deg2rad(-12.0),
+        maximum_pitch_rad=np.deg2rad(12.0),
+        maximum_bank_rad=np.deg2rad(25.0),
+        minimum_thrust_n=0.0,
+        maximum_thrust_n=200_000.0,
+        maximum_pitch_rate_rad_s=np.deg2rad(20.0),
+        maximum_bank_rate_rad_s=np.deg2rad(20.0),
+        maximum_thrust_rate_n_s=200_000.0,
+    )
+    guidance = SelectedAltitudeGuidance(
+        SpatialPathGuidance(_route()),
+        SelectedAltitudeIntent(np.array([0.0]), np.array([0.0])),
+        SelectedSpeedIntent(
+            np.array([0.0]),
+            np.array([140.0]),
+            np.array([0.76]),
+        ),
+        SelectedSpeedGuidanceIntent(np.array([0.0]), ("CAS",)),
+        SelectedThrustIntent(
+            np.array([0.0]),
+            ("THRUST_FRACTION",),
+            np.array([0.25]),
+        ),
+    )
+
+    result = simulate_fms_trajectory_zoh(
+        plant=plant,
+        controller=controller,
+        guidance=guidance,
+        maximum_time_s=1.0,
+        static_temperature_k=250.0,
+        initial_mass_kg=60_000.0,
+        initial_pressure_altitude_m=10_000.0,
+        maximum_thrust_model=ConstantMaximumThrust(200_000.0),
+        minimum_thrust_model=PressureScaledMinimumThrust(0.0, 0.5),
+    )
+
+    assert result.speed_guidance_mode.tolist() == ["SPEED_HOLD", "SPEED_HOLD"]
+    assert result.operational_thrust_limit_n == pytest.approx([50_000.0, 50_000.0])
+    assert np.max(np.abs(result.trajectory.net_thrust_n - 50_000.0)) < 250.0
+    assert np.all(result.reference_air_flight_path_angle_rad < 0.0)

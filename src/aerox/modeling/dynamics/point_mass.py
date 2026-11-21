@@ -84,11 +84,14 @@ class PointMassState:
 
 @dataclass(frozen=True)
 class PitchBankThrustInput:
-    """One held attitude/thrust sample plus environmental forcing.
+    """One held attitude/thrust/configuration sample plus environmental forcing.
 
     ``net_thrust_n`` is total realized propulsive force resolved along the
     air-relative flight path. It excludes aerodynamic drag. Pitch and bank are
-    actual attitudes, not elevator/aileron commands.
+    actual attitudes, not elevator/aileron commands. The non-negative drag
+    increment is an effective configuration term. It can represent deployed
+    drag devices or unresolved configuration drag without assigning a specific
+    physical device.
     """
 
     pitch_angle_rad: float
@@ -98,6 +101,7 @@ class PitchBankThrustInput:
     wind_north_mps: float = 0.0
     wind_east_mps: float = 0.0
     wind_down_mps: float = 0.0
+    drag_coefficient_increment: float = 0.0
 
     def __post_init__(self) -> None:
         values = (
@@ -108,11 +112,14 @@ class PitchBankThrustInput:
             self.wind_north_mps,
             self.wind_east_mps,
             self.wind_down_mps,
+            self.drag_coefficient_increment,
         )
         if any(not np.isfinite(value) for value in values):
             raise ValueError("pitch-bank-thrust input values must be finite")
         if self.net_thrust_n < 0.0:
             raise ValueError("net_thrust_n must be non-negative")
+        if self.drag_coefficient_increment < 0.0:
+            raise ValueError("drag_coefficient_increment must be non-negative")
         if self.static_temperature_k <= 0.0:
             raise ValueError("static_temperature_k must be positive")
         if abs(self.bank_angle_rad) >= np.deg2rad(85.0):
@@ -262,6 +269,7 @@ class PointMassModel:
             mach,
             unit_reynolds_number_per_m=reynolds_per_metre,
         )
+        drag_coefficient += control.drag_coefficient_increment
         lift = dynamic_pressure * self.wing_area_m2 * lift_coefficient
         drag = dynamic_pressure * self.wing_area_m2 * drag_coefficient
         fuel_flow = self.fuel_flow_prior.fuel_flow_scalar(control.net_thrust_n)

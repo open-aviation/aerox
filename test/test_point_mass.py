@@ -89,6 +89,31 @@ def test_direct_net_thrust_trim_has_zero_speed_and_path_angle_rates():
     assert derivative[6] < 0.0
 
 
+def test_effective_drag_increment_adds_dynamic_pressure_drag() -> None:
+    plant = _plant()
+    clean = PitchBankThrustInput(
+        pitch_angle_rad=np.deg2rad(4.0),
+        bank_angle_rad=0.0,
+        net_thrust_n=0.0,
+        static_temperature_k=aero.T0,
+    )
+    configured = PitchBankThrustInput(
+        pitch_angle_rad=clean.pitch_angle_rad,
+        bank_angle_rad=clean.bank_angle_rad,
+        net_thrust_n=clean.net_thrust_n,
+        static_temperature_k=clean.static_temperature_k,
+        drag_coefficient_increment=0.01,
+    )
+
+    added_drag = (
+        plant.forces(_state(), configured).drag_n - plant.forces(_state(), clean).drag_n
+    )
+
+    assert added_drag == pytest.approx(
+        0.5 * aero.rho0 * SPEED_MPS**2 * WING_AREA_M2 * 0.01
+    )
+
+
 def test_single_zoh_step_matches_the_two_node_trajectory_integrator() -> None:
     plant = _plant()
     control = _trim_control(plant)

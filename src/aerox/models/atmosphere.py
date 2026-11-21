@@ -58,7 +58,8 @@ def isa_atmosphere(pressure_altitude_m: ArrayLike) -> AtmosphereState:
     ):
         raise ValueError(
             f"pressure altitude must be within {MIN_SUPPORTED_ALTITUDE_M:g} "
-            f"and {MAX_SUPPORTED_ALTITUDE_M:g} m"
+            f"and {MAX_SUPPORTED_ALTITUDE_M:g} m; received range "
+            f"{np.min(altitude):g} to {np.max(altitude):g} m"
         )
 
     pressure, density, temperature = aero.atmos(altitude)
