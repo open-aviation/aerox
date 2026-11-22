@@ -1,3 +1,5 @@
+import inspect
+from dataclasses import dataclass
 from pathlib import Path
 
 import numpy as np
@@ -169,6 +171,33 @@ def test_cl_keyword_and_cd_shorthand_on_every_model():
         assert model.breakdown(cl=cl, mach=mach).total == pytest.approx(expected)
     polar = ParabolicDragPolar(cd0=0.02, k=0.04)
     assert polar.cd(cl=0.5) == pytest.approx(0.03)
+    for name, model in _all_models().items():
+        mach = 0.75 if name == "transonic_compressibility" else 0.7
+        assert model._drag_coefficient_scalar(
+            cl=0.45, condition=DragCondition(mach)
+        ) == pytest.approx(model.cd(cl=0.45, mach=mach)), name
+
+
+def test_cd_follows_a_subclass_override_of_drag_coefficient():
+    @dataclass(frozen=True)
+    class ShiftedPolar(ParabolicDragPolar):
+        def drag_coefficient(
+            self, cl, mach=None, reynolds_per_m=None, *, condition=None
+        ):
+            return (
+                super().drag_coefficient(cl, mach, reynolds_per_m, condition=condition)
+                + 0.01
+            )
+
+    polar = ShiftedPolar(cd0=0.02, k=0.04)
+    assert polar.drag_coefficient(cl=0.5) == pytest.approx(0.04)
+    assert polar.cd(cl=0.5) == pytest.approx(0.04)
+    assert list(inspect.signature(polar.cd).parameters) == [
+        "cl",
+        "mach",
+        "reynolds_per_m",
+        "condition",
+    ]
 
 
 def test_drag_model_protocol_requires_breakdown():

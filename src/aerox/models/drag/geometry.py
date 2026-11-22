@@ -16,7 +16,13 @@ from .components import (
     lifting_surface_form_factor,
     lifting_surface_wetted_area,
 )
-from .core import DragCondition, FloatArray, require_clean, resolve_condition
+from .core import (
+    CdShorthand,
+    DragCondition,
+    FloatArray,
+    require_clean,
+    resolve_condition,
+)
 from .wave import KornLockWaveDrag
 
 if TYPE_CHECKING:
@@ -38,7 +44,7 @@ class GeometryDragBreakdown:
 
 
 @dataclass(frozen=True)
-class GeometryDragModel:
+class GeometryDragModel(CdShorthand):
     """Condition-aware subcritical drag model derived from aircraft geometry.
 
     ``components`` vary with Reynolds and Mach number. ``parasite_increments``
@@ -160,8 +166,6 @@ class GeometryDragModel:
     ) -> FloatArray:
         return self.breakdown(cl, mach, reynolds_per_m, condition=condition).total
 
-    cd = drag_coefficient  # shorthand
-
     def _drag_coefficient_scalar(self, cl: float, condition: DragCondition) -> float:
         condition = condition.with_default_reynolds(self.reference_reynolds_per_m)
         values = (
@@ -178,7 +182,7 @@ class GeometryDragModel:
             float(value) for value in values
         )
         if not np.isfinite(lift):
-            raise ValueError("cl must be finite")
+            raise ValueError("lift coefficient (cl) must be finite")
         if not np.isfinite(mach) or mach < 0.0:
             raise ValueError("mach must be finite and non-negative")
         if not np.isfinite(unit_reynolds) or unit_reynolds <= 0.0:
@@ -224,7 +228,7 @@ class TransonicGeometryDragBreakdown:
 
 
 @dataclass(frozen=True)
-class TransonicGeometryDragModel:
+class TransonicGeometryDragModel(CdShorthand):
     """Condition-aware geometry model composed with Korn/Lock wave drag."""
 
     base_model: GeometryDragModel
@@ -298,8 +302,6 @@ class TransonicGeometryDragModel:
         condition: DragCondition | None = None,
     ) -> FloatArray:
         return self.breakdown(cl, mach, reynolds_per_m, condition=condition).total
-
-    cd = drag_coefficient  # shorthand
 
     def _drag_coefficient_scalar(self, cl: float, condition: DragCondition) -> float:
         if np.ndim(condition.mach) != 0:

@@ -12,6 +12,7 @@ import numpy as np
 from numpy.typing import ArrayLike
 
 from .core import (
+    CdShorthand,
     DragBreakdown,
     DragCondition,
     FloatArray,
@@ -70,8 +71,8 @@ class MachDependentInducedDrag:
             raise ValueError("induced-drag compressibility correction is singular")
         return self.reference_induced_drag_factor * lift**2 / denominator
 
-    def drag_coefficient_scalar(self, lift_coefficient: float, mach: float) -> float:
-        return float(self.drag_coefficient(lift_coefficient, mach))
+    def drag_coefficient_scalar(self, cl: float, mach: float) -> float:
+        return float(self.drag_coefficient(cl, mach))
 
 
 @dataclass(frozen=True)
@@ -148,7 +149,7 @@ class HyperbolicTangentWaveDrag:
 
 
 @dataclass(frozen=True)
-class TransonicCompressibilityDragModel:
+class TransonicCompressibilityDragModel(CdShorthand):
     """Constant parasite, Mach-dependent induced, and wave drag components."""
 
     cd0: float
@@ -192,14 +193,12 @@ class TransonicCompressibilityDragModel:
     ) -> FloatArray:
         return self.breakdown(cl, mach, reynolds_per_m, condition=condition).total
 
-    cd = drag_coefficient  # shorthand
-
     def _drag_coefficient_scalar(self, cl: float, condition: DragCondition) -> float:
         return float(self.drag_coefficient(cl, condition=condition))
 
 
 @dataclass(frozen=True)
-class PollSchumannDragModel:
+class PollSchumannDragModel(CdShorthand):
     """Reynolds-aware clean transport-aircraft drag model.
 
     This implements Equations 30--45 of Poll and Schumann (2025), DOI
@@ -408,8 +407,6 @@ class PollSchumannDragModel:
         condition: DragCondition | None = None,
     ) -> FloatArray:
         return self.breakdown(cl, mach, reynolds_per_m, condition=condition).total
-
-    cd = drag_coefficient  # shorthand
 
     def _drag_coefficient_scalar(self, cl: float, condition: DragCondition) -> float:
         return float(self.drag_coefficient(cl, condition=condition))

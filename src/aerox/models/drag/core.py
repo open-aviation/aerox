@@ -52,7 +52,7 @@ class DragCondition:
             np.asarray(self.spoiler_deflection_rad, dtype=float),
         )
         if np.any(~np.isfinite(lift)):
-            raise ValueError("lift_coefficient must be finite")
+            raise ValueError("lift coefficient (cl) must be finite")
         if np.any(~np.isfinite(mach)) or np.any(mach < 0.0):
             raise ValueError("mach must be finite and non-negative")
         if reynolds_given and (
@@ -99,6 +99,28 @@ class DragBreakdownLike(Protocol):
 
     @property
     def total(self) -> FloatArray: ...
+
+
+class CdShorthand:
+    """Adds ``cd(...)`` as a shorthand for ``drag_coefficient(...)``.
+
+    ``cd`` calls ``self.drag_coefficient`` so that a subclass overriding
+    ``drag_coefficient`` also changes ``cd``.
+    """
+
+    def cd(
+        self,
+        cl: ArrayLike,
+        mach: ArrayLike | None = None,
+        reynolds_per_m: ArrayLike | None = None,
+        *,
+        condition: DragCondition | None = None,
+    ) -> FloatArray:
+        """Return the drag coefficient; shorthand for ``drag_coefficient``."""
+
+        return self.drag_coefficient(  # type: ignore[attr-defined]
+            cl, mach, reynolds_per_m, condition=condition
+        )
 
 
 @runtime_checkable

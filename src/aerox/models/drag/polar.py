@@ -8,6 +8,7 @@ import numpy as np
 from numpy.typing import ArrayLike
 
 from .core import (
+    CdShorthand,
     DragBreakdown,
     DragCondition,
     DragModel,
@@ -19,7 +20,7 @@ from .wave import KornLockWaveDrag
 
 
 @dataclass(frozen=True)
-class ParabolicDragPolar:
+class ParabolicDragPolar(CdShorthand):
     """Conventional clean parabolic drag polar ``CD = cd0 + k CL²``.
 
     The polar has no Mach or Reynolds number effect, so ``mach`` is optional.
@@ -65,8 +66,6 @@ class ParabolicDragPolar:
     ) -> FloatArray:
         return self.breakdown(cl, mach, reynolds_per_m, condition=condition).total
 
-    cd = drag_coefficient  # shorthand
-
     def _drag_coefficient_scalar(self, cl: float, condition: DragCondition) -> float:
         lift, _, _, flap, gear, spoiler = condition.broadcast_with(cl)
         if lift.ndim != 0:
@@ -76,7 +75,7 @@ class ParabolicDragPolar:
 
 
 @dataclass(frozen=True)
-class ParabolicWaveDragModel:
+class ParabolicWaveDragModel(CdShorthand):
     """Clean parabolic polar plus an explicit transonic wave-drag component."""
 
     base_polar: ParabolicDragPolar
@@ -113,8 +112,6 @@ class ParabolicWaveDragModel:
         condition: DragCondition | None = None,
     ) -> FloatArray:
         return self.breakdown(cl, mach, reynolds_per_m, condition=condition).total
-
-    cd = drag_coefficient  # shorthand
 
     def _drag_coefficient_scalar(self, cl: float, condition: DragCondition) -> float:
         mach = float(condition.mach)

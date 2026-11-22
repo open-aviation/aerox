@@ -7,8 +7,9 @@ All inputs and outputs are in SI units: altitude in m, speed in m/s, pressure
 in Pa, density in kg/m³, temperature in K. Every function accepts scalars or
 NumPy arrays. All arguments can be passed by name, with the names shown in
 the tables below. The optional argument `dT` is the temperature offset from ISA, in
-K. It is limited to the range −25 K to +15 K: a larger offset gives the same
-result as the limit.
+K. In the atmosphere and speed functions it is limited to the range −25 K to
++15 K: a larger offset gives the same result as the limit. `h_isa` and
+`crossover_alt` do not limit `dT`. This is the same behaviour as in OpenAP.
 
 ```python
 from aerox import aero
