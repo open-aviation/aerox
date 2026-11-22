@@ -169,6 +169,28 @@ can be off by more than 10 % for small aircraft flown far from their reference
 condition, because it keeps the reference Reynolds number. Use
 `build_drag_model` when these effects matter.
 
+## Full model in CasADi, JAX, or other math libraries
+
+`model.expression()` returns the full model as a closed-form formula of the
+lift coefficient, the Mach number, and the Reynolds number per metre. All the
+aircraft-specific values are constants computed when the model is built.
+Evaluate it with any math library that has `log`, `sqrt`, and `maximum`:
+
+```python
+import jax.numpy as jnp
+
+expr = build_drag_model(ac).expression()
+re = aero.reynolds_per_m(mach=0.78, h=11_000)
+
+expr.cd(cl=0.55, mach=0.78, reynolds_per_m=re)              # NumPy
+expr.cd(cl=0.55, mach=0.78, reynolds_per_m=re, xp=jnp)      # JAX
+```
+
+For CasADi, pass an object whose `maximum` is `casadi.fmax`. The result equals
+`model.cd()`, but the expression does not check its inputs, and the lift and
+Mach limits of the model do not apply. Use it for optimization and automatic
+differentiation, and `model.cd()` otherwise.
+
 ## Comparison models
 
 `aerox.models.drag.reference` has published drag models for comparison, for

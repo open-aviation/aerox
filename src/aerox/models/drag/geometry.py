@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import TYPE_CHECKING
 
 import numpy as np
@@ -23,6 +23,7 @@ from .core import (
     require_clean,
     resolve_condition,
 )
+from .expression import DragExpression
 from .wave import KornLockWaveDrag
 
 if TYPE_CHECKING:
@@ -107,6 +108,31 @@ class GeometryDragModel(CdShorthand):
     def span_induced_drag_factor(self) -> float:
         return self.induced_scale / (
             np.pi * self.aspect_ratio * self.span_efficiency_factor
+        )
+
+    def expression(self) -> DragExpression:
+        """The model as a closed-form expression for any math backend."""
+
+        return DragExpression(
+            lengths_m=tuple(float(c.characteristic_length_m) for c in self.components),
+            weights=tuple(
+                float(
+                    self.parasite_scale
+                    * c.form_factor
+                    * c.interference_factor
+                    * c.wetted_area_m2
+                    / self.reference_area_m2
+                )
+                for c in self.components
+            ),
+            laminar_fractions=tuple(float(c.laminar_fraction) for c in self.components),
+            parasite_increment=float(
+                self.parasite_scale * self.parasite_increment_coefficient
+            ),
+            span_induced_factor=float(self.span_induced_drag_factor),
+            profile_factor=float(
+                self.induced_scale * self.profile_lift_drag_multiplier
+            ),
         )
 
     def breakdown(
@@ -272,6 +298,23 @@ class TransonicGeometryDragModel(CdShorthand):
 
     def critical_mach(self, lift_coefficient: ArrayLike) -> FloatArray:
         return self.wave_drag.critical_mach(lift_coefficient)
+
+    def expression(self) -> DragExpression:
+        """The model as a closed-form expression for any math backend.
+
+        The lift and Mach limits of this model are not part of the expression.
+        """
+
+        cosine = float(np.cos(self.wave_drag.wing_sweep_rad))
+        return replace(
+            self.base_model.expression(),
+            critical_mach_zero_lift=(
+                self.wave_drag.technology_factor / cosine
+                - self.wave_drag.thickness_to_chord_ratio / cosine**2
+                - 0.108
+            ),
+            critical_mach_slope=-0.1 / cosine**3,
+        )
 
     def breakdown(
         self,

@@ -23,12 +23,14 @@ Updated: 2026-11-22
 
 ## Planned work
 
-1. **Drag increase with Mach below the drag rise.** Measured drag at a fixed
+1. **Deployed configuration (next).** Drag increments for flaps, slats, and
+   landing gear. OpenAP needs them to move its `nonclean()` drag onto Aerox;
+   until then OpenAP adds its own flap and gear increments to the Aerox clean
+   drag.
+2. **Drag increase with Mach below the drag rise.** Measured drag at a fixed
    lift coefficient rises 8 to 12 % from Mach 0.6 to 0.8. This term will be
    added together with a lower base drag, so that cruise drag stays correct
    and drag at lower Mach numbers improves.
-2. **Deployed configuration.** Drag increments for flaps, slats, and landing
-   gear.
 3. **Wing reference areas.** Confirmed sources for the open values listed
    above.
 4. **One aircraft data schema.** One declarative schema for the aircraft

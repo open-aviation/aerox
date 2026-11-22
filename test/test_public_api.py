@@ -75,6 +75,7 @@ def test_drag_package_exports_only_the_public_interface():
     assert set(drag.__all__) == {
         "DragBuildReport",
         "DragCondition",
+        "DragExpression",
         "DragModel",
         "GeometryDragModel",
         "ParabolicDragPolar",
