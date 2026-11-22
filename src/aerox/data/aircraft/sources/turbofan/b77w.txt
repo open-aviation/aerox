@@ -2,7 +2,7 @@ AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Boeing 777-300ER
 ICAO: B77W
 Last reviewed: 2026-08-06
-Source ledger: agent-modeling/modeling/sources.yml
+Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
   Model or family: 777-300ER

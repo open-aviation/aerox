@@ -2,7 +2,7 @@ AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Swearingen SA-227AT Merlin 4
 ICAO: SW4
 Last reviewed: 2026-08-05
-Source ledger: agent-modeling/modeling/sources.yml
+Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
   Model or family: SA227-AT Merlin IVC

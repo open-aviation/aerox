@@ -422,7 +422,7 @@ def render_source_notes(
         f"Aircraft: {simple['aircraft'] or '-'}",
         f"ICAO: {simple['icao'] or '-'}",
         f"Last reviewed: {reviewed}",
-        "Source ledger: agent-modeling/modeling/sources.yml",
+        "Source ledger: sources/sources.yml",
         "",
         "CERTIFICATION SCOPE",
         f"  Model or family: {simple['certification']['model'] or '-'}",

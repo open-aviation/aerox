@@ -35,9 +35,10 @@ except ModuleNotFoundError:  # package-style import used by tests
     )
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-SOURCE_LEDGER = PROJECT_ROOT / "agent-modeling/modeling/sources.yml"
+SOURCE_LEDGER = PROJECT_ROOT / "sources/sources.yml"
 DEFAULT_RESEARCH = (
-    PROJECT_ROOT / "agent-modeling/aircraft-data/airbus-subtype-engine-mapping.tsv",
+    PROJECT_ROOT
+    / "sources/geometry/airbus-subtype-engine-mapping.tsv",
 )
 ENGINE_TABLE = PROJECT_ROOT / "src/aerox/data/engines/engines.csv"
 OLD_SECTION_MARKER = "MODEL AND ENGINE APPLICABILITY\n"
@@ -67,7 +68,9 @@ def load_research(paths: list[Path]) -> list[dict[str, Any]]:
         )
         if header_index is None:
             raise ValueError(f"{path}: missing tab-separated icao header")
-        reader = csv.DictReader(io.StringIO("\n".join(lines[header_index:])), delimiter="\t")
+        reader = csv.DictReader(
+            io.StringIO("\n".join(lines[header_index:])), delimiter="\t"
+        )
         for line_number, row in enumerate(reader, start=header_index + 2):
             if not row or not (row.get("icao") or "").strip():
                 continue
@@ -81,7 +84,9 @@ def load_research(paths: list[Path]) -> list[dict[str, Any]]:
                     "subtype": (row.get("subtype") or "").strip(),
                     "engines": _split_engines(engine_text),
                     "source_id": source_id,
-                    "page_or_section": (row.get("page_or_section", row.get("page/section", "")) or "").strip(),
+                    "page_or_section": (
+                        row.get("page_or_section", row.get("page/section", "")) or ""
+                    ).strip(),
                     "applicability": (row.get("applicability") or "").strip(),
                     "notes": (row.get("notes") or "").strip(),
                     "input": path.relative_to(PROJECT_ROOT).as_posix(),
@@ -141,7 +146,9 @@ def render_sources(old_text: str, rows: list[dict[str, Any]], mapping: Any) -> s
         lines.extend(f"      - {engine}" for engine in engines)
     lines.extend(["END FIELD", ""])
     rendered = f"{base}\n\n" + "\n".join(lines)
-    rendered = rendered.replace("Last reviewed: 2026-08-05", f"Last reviewed: {REVIEW_DATE}")
+    rendered = rendered.replace(
+        "Last reviewed: 2026-08-05", f"Last reviewed: {REVIEW_DATE}"
+    )
     return rendered
 
 
@@ -184,7 +191,9 @@ def main() -> int:
         {engine for row in rows for engine in row["engines"]} - edb_engine_ids()
     )
     if unknown_engines:
-        raise ValueError(f"subtype mappings use non-ICAO-EEDB engines: {unknown_engines}")
+        raise ValueError(
+            f"subtype mappings use non-ICAO-EEDB engines: {unknown_engines}"
+        )
 
     changed: list[tuple[Path, str, Path, str]] = []
     for icao, path in by_icao.items():

@@ -2,7 +2,7 @@ AEROX AIRCRAFT SOURCE NOTES
 Aircraft: ATR 42-500
 ICAO: AT45
 Last reviewed: 2026-08-05
-Source ledger: agent-modeling/modeling/sources.yml
+Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
   Model or family: ATR-42-500

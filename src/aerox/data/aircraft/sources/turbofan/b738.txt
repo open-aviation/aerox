@@ -2,7 +2,7 @@ AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Boeing 737-800
 ICAO: B738
 Last reviewed: 2026-08-06
-Source ledger: agent-modeling/modeling/sources.yml
+Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
   Model or family: 737-800
@@ -215,7 +215,7 @@ FIELD horizontal_tail.area
   Inputs: span=14.350000 m; root=3.838279 m; tip=0.749220 m
   Applicability: 737-800 baseline gross centerline-reference straight-edge horizontal stabilizer; rounded terminal cap excluded
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-2.15 m2; sweep +/-1 deg
-  Notes: Official Boeing planning CAD result; NASA reference geometry independently gives area 32.78 m2, taper 0.203, and quarter-chord sweep 30 deg, which agree within drawing/model-form uncertainty; exact CAD stations remain in agent-modeling/aircraft-data/boeing-cad-geometry-measurements.csv; not certified.
+  Notes: Official Boeing planning CAD result; NASA reference geometry independently gives area 32.78 m2, taper 0.203, and quarter-chord sweep 30 deg, which agree within drawing/model-form uncertainty; exact CAD stations remain in sources/geometry/boeing-cad-geometry-measurements.csv; not certified.
 END FIELD
 
 FIELD horizontal_tail.span
@@ -244,7 +244,7 @@ FIELD horizontal_tail.mac
   Inputs: span=14.350000 m; root=3.838279 m; tip=0.749220 m
   Applicability: 737-800 baseline gross centerline-reference straight-edge horizontal stabilizer; rounded terminal cap excluded
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-2.15 m2; sweep +/-1 deg
-  Notes: Official Boeing planning CAD result; NASA reference geometry independently gives area 32.78 m2, taper 0.203, and quarter-chord sweep 30 deg, which agree within drawing/model-form uncertainty; exact CAD stations remain in agent-modeling/aircraft-data/boeing-cad-geometry-measurements.csv; not certified.
+  Notes: Official Boeing planning CAD result; NASA reference geometry independently gives area 32.78 m2, taper 0.203, and quarter-chord sweep 30 deg, which agree within drawing/model-form uncertainty; exact CAD stations remain in sources/geometry/boeing-cad-geometry-measurements.csv; not certified.
 END FIELD
 
 FIELD horizontal_tail.root_chord
@@ -259,7 +259,7 @@ FIELD horizontal_tail.root_chord
   Inputs: span=14.350000 m; root=3.838279 m; tip=0.749220 m
   Applicability: 737-800 baseline gross centerline-reference straight-edge horizontal stabilizer; rounded terminal cap excluded
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-2.15 m2; sweep +/-1 deg
-  Notes: Official Boeing planning CAD result; NASA reference geometry independently gives area 32.78 m2, taper 0.203, and quarter-chord sweep 30 deg, which agree within drawing/model-form uncertainty; exact CAD stations remain in agent-modeling/aircraft-data/boeing-cad-geometry-measurements.csv; not certified.
+  Notes: Official Boeing planning CAD result; NASA reference geometry independently gives area 32.78 m2, taper 0.203, and quarter-chord sweep 30 deg, which agree within drawing/model-form uncertainty; exact CAD stations remain in sources/geometry/boeing-cad-geometry-measurements.csv; not certified.
 END FIELD
 
 FIELD horizontal_tail.tip_chord
@@ -274,7 +274,7 @@ FIELD horizontal_tail.tip_chord
   Inputs: span=14.350000 m; root=3.838279 m; tip=0.749220 m
   Applicability: 737-800 baseline gross centerline-reference straight-edge horizontal stabilizer; rounded terminal cap excluded
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-2.15 m2; sweep +/-1 deg
-  Notes: Official Boeing planning CAD result; NASA reference geometry independently gives area 32.78 m2, taper 0.203, and quarter-chord sweep 30 deg, which agree within drawing/model-form uncertainty; exact CAD stations remain in agent-modeling/aircraft-data/boeing-cad-geometry-measurements.csv; not certified.
+  Notes: Official Boeing planning CAD result; NASA reference geometry independently gives area 32.78 m2, taper 0.203, and quarter-chord sweep 30 deg, which agree within drawing/model-form uncertainty; exact CAD stations remain in sources/geometry/boeing-cad-geometry-measurements.csv; not certified.
 END FIELD
 
 FIELD horizontal_tail.taper_ratio
@@ -299,7 +299,7 @@ FIELD horizontal_tail.sweep
   Inputs: span=14.350000 m; root=3.838279 m; tip=0.749220 m
   Applicability: 737-800 baseline gross centerline-reference straight-edge horizontal stabilizer; rounded terminal cap excluded
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-2.15 m2; sweep +/-1 deg
-  Notes: Official Boeing planning CAD result; NASA reference geometry independently gives area 32.78 m2, taper 0.203, and quarter-chord sweep 30 deg, which agree within drawing/model-form uncertainty; exact CAD stations remain in agent-modeling/aircraft-data/boeing-cad-geometry-measurements.csv; not certified.
+  Notes: Official Boeing planning CAD result; NASA reference geometry independently gives area 32.78 m2, taper 0.203, and quarter-chord sweep 30 deg, which agree within drawing/model-form uncertainty; exact CAD stations remain in sources/geometry/boeing-cad-geometry-measurements.csv; not certified.
 END FIELD
 
 FIELD horizontal_tail.dihedral

@@ -2,7 +2,7 @@ AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Airbus A350-900
 ICAO: A359
 Last reviewed: 2026-08-06
-Source ledger: agent-modeling/modeling/sources.yml
+Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
   Model or family: A350-941
@@ -563,7 +563,7 @@ FIELD subtypes
   Source: easa_a151_issue_33 | icao_eedb_issue_32
   Page or section: A350-900 III.1.2; PDF p.10
   Applicability: Certified subtype applicability with query identifiers normalized to ICAO EEDB Issue 32.
-  Evidence inventory: agent-modeling/aircraft-data/airbus-subtype-engine-mapping.tsv
+  Evidence inventory: sources/geometry/airbus-subtype-engine-mapping.tsv
   Engine table: src/aerox/data/engines/engines.csv
   Mappings:
     A350-941:

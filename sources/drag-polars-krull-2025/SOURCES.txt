@@ -1,0 +1,27 @@
+PUBLISHED DRAG POLARS OF 16 PASSENGER AIRCRAFT (KRULL 2025)
+
+Dataset
+  Krull, Marlis (2025), "Identifying Wave Drag for the Generic Drag Polar
+  Equation – Unveiling Polars of 16 Passenger Aircraft", Harvard Dataverse.
+  DOI: https://doi.org/10.7910/DVN/2UBNIE
+  Dataset publication date: 2025-03-22
+  Terms of use: GNU General Public License, version 3
+
+Imported file
+  HyperbolicTangent.xlsx
+  Harvard Dataverse file ID: 11015270
+  MD5: 219286b978a47f1a5a57476c0ec99ecc
+  Downloaded: 2026-08-08
+
+Supporting report
+  https://www.fzt.haw-hamburg.de/pers/Scholz/arbeiten/TextKrullMaster.pdf
+
+Upstream graphical data
+  Obert, Ed (2009), Aerodynamic Design of Transport Aircraft, IOS Press,
+  Chapter 24. The spreadsheet contains Krull's digitization and regression;
+  Aerox does not redistribute the original book figure.
+
+Aerox use
+  The A320 worksheet serves as a cross-check of the transonic drag increase.
+  It is not used to fit the drag model. Values derived from the workbook
+  retain GPL-3.0 terms.

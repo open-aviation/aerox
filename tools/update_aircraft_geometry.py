@@ -37,8 +37,8 @@ except ModuleNotFoundError:  # package-style import used by tests
     )
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-SOURCE_LEDGER = PROJECT_ROOT / "agent-modeling/modeling/sources.yml"
-DEFAULT_EXCLUSIONS = PROJECT_ROOT / "agent-modeling/aircraft-data/geometry-runtime-exclusions.txt"
+SOURCE_LEDGER = PROJECT_ROOT / "sources/sources.yml"
+DEFAULT_EXCLUSIONS = PROJECT_ROOT / "tools/geometry-runtime-exclusions.txt"
 
 GEOMETRY_UNITS = {
     "wing.area": "m2",
@@ -154,8 +154,12 @@ def load_research(paths: list[Path]) -> dict[tuple[str, str], dict[str, str]]:
                     )
                 key = (icao, field)
                 if key in records:
-                    raise ValueError(f"{path}:{line_number}: duplicate value for {icao} {field}")
-                records[key] = {name: (value or "").strip() for name, value in row.items()}
+                    raise ValueError(
+                        f"{path}:{line_number}: duplicate value for {icao} {field}"
+                    )
+                records[key] = {
+                    name: (value or "").strip() for name, value in row.items()
+                }
     return records
 
 
@@ -184,7 +188,9 @@ def load_exclusions(path: Path | None) -> dict[tuple[str, str], dict[str, str]]:
         lines = (line for line in stream if line.strip() and not line.startswith("#"))
         reader = csv.DictReader(lines, delimiter="\t")
         if reader.fieldnames != EXCLUSION_COLUMNS:
-            raise ValueError(f"{path}: unexpected exclusion columns {reader.fieldnames}")
+            raise ValueError(
+                f"{path}: unexpected exclusion columns {reader.fieldnames}"
+            )
         for line_number, row in enumerate(reader, start=2):
             icao = row["icao"].strip().upper()
             field = row["field"].strip()
@@ -192,14 +198,20 @@ def load_exclusions(path: Path | None) -> dict[tuple[str, str], dict[str, str]]:
                 raise ValueError(f"{path}:{line_number}: unsupported field {field}")
             key = (icao, field)
             if key in records:
-                raise ValueError(f"{path}:{line_number}: duplicate exclusion for {icao} {field}")
+                raise ValueError(
+                    f"{path}:{line_number}: duplicate exclusion for {icao} {field}"
+                )
             records[key] = {name: (value or "").strip() for name, value in row.items()}
     return records
 
 
 def _source_ids(metadata: Mapping[str, str]) -> list[str]:
     source = metadata.get("source", metadata.get("source_id", ""))
-    return [item.strip() for item in source.split("|") if item.strip() and item.strip() != "-"]
+    return [
+        item.strip()
+        for item in source.split("|")
+        if item.strip() and item.strip() != "-"
+    ]
 
 
 def _input_metadata(
@@ -227,7 +239,8 @@ def _derived_metadata(
             if source_id not in source_ids:
                 source_ids.append(source_id)
     published = statuses and all(
-        status in {
+        status
+        in {
             "certified-published",
             "manufacturer-published",
             "manufacturer-published-planning",
@@ -235,8 +248,10 @@ def _derived_metadata(
         }
         for status in statuses
     )
-    inferred = statuses and all(status != "legacy-unverified" for status in statuses) and any(
-        status == "inferred-with-uncertainty" for status in statuses
+    inferred = (
+        statuses
+        and all(status != "legacy-unverified" for status in statuses)
+        and any(status == "inferred-with-uncertainty" for status in statuses)
     )
     return {
         "status": (
@@ -272,9 +287,15 @@ def derive_geometry(
         )
         prior_record = metadata.get("wing.aspect_ratio", {})
         for key in (
-            "source_url", "document_title", "revision_date",
-            "page_or_section", "applicability", "uncertainty",
-            "searched_source", "search_record", "notes",
+            "source_url",
+            "document_title",
+            "revision_date",
+            "page_or_section",
+            "applicability",
+            "uncertainty",
+            "searched_source",
+            "search_record",
+            "notes",
         ):
             if prior_record.get(key):
                 record[key] = prior_record[key]
@@ -282,9 +303,13 @@ def derive_geometry(
             if prior_record.get(key):
                 record[key] = prior_record[key]
         previous = original_values.get("wing.aspect_ratio")
-        if previous is not None and not math.isclose(float(previous), derived, rel_tol=2e-6):
+        if previous is not None and not math.isclose(
+            float(previous), derived, rel_tol=2e-6
+        ):
             record["previous_value"] = f"{previous} nondimensional"
-            record["correction_reason"] = "Recalculated after a cited wing span or area correction."
+            record["correction_reason"] = (
+                "Recalculated after a cited wing span or area correction."
+            )
         metadata["wing.aspect_ratio"] = record
 
     for section_name in ("wing", "horizontal_tail", "vertical_tail"):
@@ -309,9 +334,15 @@ def derive_geometry(
             )
             prior_record = metadata.get(path, {})
             for key in (
-                "source_url", "document_title", "revision_date",
-                "page_or_section", "applicability", "uncertainty",
-                "searched_source", "search_record", "notes",
+                "source_url",
+                "document_title",
+                "revision_date",
+                "page_or_section",
+                "applicability",
+                "uncertainty",
+                "searched_source",
+                "search_record",
+                "notes",
             ):
                 if prior_record.get(key):
                     record[key] = prior_record[key]
@@ -319,9 +350,13 @@ def derive_geometry(
                 if prior_record.get(key):
                     record[key] = prior_record[key]
             previous = original_values.get(path)
-            if previous is not None and not math.isclose(float(previous), derived, rel_tol=3e-6):
+            if previous is not None and not math.isclose(
+                float(previous), derived, rel_tol=3e-6
+            ):
                 record["previous_value"] = f"{previous} nondimensional"
-                record["correction_reason"] = "Recalculated after a cited chord correction."
+                record["correction_reason"] = (
+                    "Recalculated after a cited chord correction."
+                )
             metadata[path] = record
 
 
@@ -350,7 +385,9 @@ def _certification_search_source(fields: Mapping[str, Mapping[str, str]]) -> str
 
 
 def render_geometry_section(
-    document: Mapping[str, Any], old_text: str, metadata: Mapping[str, Mapping[str, str]]
+    document: Mapping[str, Any],
+    old_text: str,
+    metadata: Mapping[str, Mapping[str, str]],
 ) -> str:
     marker = "WING AND TAIL GEOMETRY\n"
     legacy_marker = "LEGACY PARAMETERS\n"
@@ -382,7 +419,13 @@ def render_geometry_section(
             )
             record.setdefault("searched_source", searched_source)
 
-        lines.extend([f"FIELD {path}", f"  Value: {value if value is not None else 'null'}", f"  Unit: {unit}"])
+        lines.extend(
+            [
+                f"FIELD {path}",
+                f"  Value: {value if value is not None else 'null'}",
+                f"  Unit: {unit}",
+            ]
+        )
         for key, label in RENDER_KEYS:
             if record.get(key):
                 lines.append(f"  {label}: {record[key]}")
@@ -515,8 +558,12 @@ def main() -> int:
             for key in ("previous_value", "correction_reason"):
                 if prior_record.get(key):
                     record[key] = prior_record[key]
-            if previous is not None and replacement is not None and not math.isclose(
-                float(previous), float(replacement), rel_tol=1e-12, abs_tol=1e-12
+            if (
+                previous is not None
+                and replacement is not None
+                and not math.isclose(
+                    float(previous), float(replacement), rel_tol=1e-12, abs_tol=1e-12
+                )
             ):
                 record["previous_value"] = f"{previous} {GEOMETRY_UNITS[field]}"
                 record["correction_reason"] = (
@@ -539,9 +586,7 @@ def main() -> int:
         for field in GEOMETRY_UNITS:
             if _get(document, field) is None and searched_sources:
                 record = metadata.setdefault(field, {})
-                combined = _source_ids(
-                    {"source": record.get("searched_source", "")}
-                )
+                combined = _source_ids({"source": record.get("searched_source", "")})
                 for source_id in searched_sources:
                     if source_id not in combined:
                         combined.append(source_id)
@@ -552,15 +597,23 @@ def main() -> int:
         for (icao, field), exclusion in exclusions.items():
             if icao != path.stem.upper() or (icao, field) not in research:
                 continue
-            if _parse_number(exclusion["restore_value"]) is None and _get(document, field) is not None:
+            if (
+                _parse_number(exclusion["restore_value"]) is None
+                and _get(document, field) is not None
+            ):
                 candidate = research[(icao, field)]
                 record = metadata[field]
-                record["applicability"] = "Bundled record; calculated from restored legacy values."
+                record["applicability"] = (
+                    "Bundled record; calculated from restored legacy values."
+                )
                 record["searched_source"] = candidate["source_id"]
                 record["notes"] = exclusion["reason"]
                 for key in (
-                    "source_url", "document_title", "revision_date",
-                    "page_or_section", "uncertainty",
+                    "source_url",
+                    "document_title",
+                    "revision_date",
+                    "page_or_section",
+                    "uncertainty",
                 ):
                     record.pop(key, None)
         issues = validate_simple(document)
@@ -576,9 +629,13 @@ def main() -> int:
             path.write_text(rendered, encoding="utf-8")
             sidecar_path.write_text(sidecar, encoding="utf-8")
     mode = "write" if args.write else "check"
-    print(f"aircraft={len(files)} research_values={len(research)} changed={len(changed)} mode={mode}")
+    print(
+        f"aircraft={len(files)} research_values={len(research)} changed={len(changed)} mode={mode}"
+    )
     if changed and not args.write:
-        print("changed_files=" + ",".join(path.stem.upper() for path, _, _, _ in changed))
+        print(
+            "changed_files=" + ",".join(path.stem.upper() for path, _, _, _ in changed)
+        )
     return 1 if args.check and changed else 0
 
 

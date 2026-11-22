@@ -1,89 +1,90 @@
 # Aerox
 
-Aerox is a new aircraft performance data library and the successor project to
-OpenAP. The first version is intentionally small: it packages curated aircraft
-YAML files and exposes typed Python helpers for loading them.
-
-## Current Scope
-
-- `aerox.aircraft` dataclasses for aircraft configuration data
-- `aerox.aero` NumPy atmosphere and IAS/CAS/TAS/Mach conversions ported from a
-  pinned OpenAP implementation
-- `aerox.fms` local spatial waypoint, altitude/speed profile, wind-correction,
-  online look-ahead guidance primitives, and executable intent-driven guidance
-  programs
-- bundled aircraft YAML data under `src/aerox/data/aircraft/yml`
-- a local Flask editor for maintaining the aircraft YAML files
-
-Experimental QAR decoding, kinematic replay, identification, translational
-force reconstruction, effective propulsion/lift/fuel calibration, a bounded
-commanded-N1 actuator, a 10 Hz longitudinal replay model, and a pitch–bank–
-thrust 3D point-mass model live under `aerox.flightdata`, `aerox.models`,
-`aerox.modeling` and `aerox.guidance`. In a research checkout, ignored scripts
-and evidence live under the local `agent-modeling/` workspace. The point-mass
-model has completed its first A320 QAR panel replay: short-window longitudinal
-behavior improves, while bank-only heading propagation fails the multi-hour
-open-loop boundary. A subsequent
-observed yaw-rate audit strongly improves replay, but inconsistent effective
-rate scales limit that branch to diagnostics rather than a physical yaw-control
-model. The replay-only adapter is implemented with an explicit implied turn-
-force residual; bank remains the trajectory-generation control. Lateral-
-acceleration and beta-proxy attribution do not pass the physical release gate,
-so A320 lateral dynamics now require direct sideslip data or an external prior.
-The first public-source prior gate added an EASA-certified A320-214 identity,
-mass limits, and corrected span/MAC to the compact aircraft record. External
-geometry and higher-order priors remain modeling artifacts rather than hundreds
-of mostly empty runtime YAML fields; generic NASA transport coefficients remain
-reference values rather than A320 parameters.
-The subsequent OpenVSP/VSPAERO gate now provides a mesh-converged, CAD-planform
-static derivative prior and a directly inspectable A320 development model. It
-remains inviscid and omits proprietary airfoils, twist, fuselage/nacelle
-interference, aeroelasticity, and control laws, so it does not replace the
-viscous drag polar or constitute a released physical six-degree-of-freedom
-aircraft model.
-The same documentation also includes the RJ85/DASHlink archive/cadence audit and
-its first kinematic AOA-decoding experiment.
-
-The first deterministic FMS milestone converts local waypoint intent with
-altitude and speed constraints into online references for the A320
-pitch–bank–realized-net-thrust plant. Its architecture, comparison trajectory,
-gates, and limitations are recorded in the local modeling workspace. A
-leakage-safe multi-flight gate also releases a small phase-conditioned CAS/Mach
-target surrogate for the TOC/TOD trajectory layer. Its first unchanged-plant
-integration now includes a generated fuel/mass planning iteration; target
-inference transfers, but the closed-loop profile remains held on speed/energy
-timing and climb feasibility.
-
-The only OpenAP-derived fuel behavior currently included is a pinned,
-dependency-light diagnostic curve. General emissions, BADA, CasADi
-optimization, geodetic FMS legs, and four-dimensional arrival-time planning
-are not yet part of the runtime package.
-
-## Usage
-
-```python
-from aerox import load_aircraft
-
-aircraft = load_aircraft("AT72")
-print(aircraft.mtow)
-```
-
-## Data Editor
-
-From the repository root:
+Aerox is an open aircraft performance library and the successor to OpenAP. It
+gives you aircraft data and performance models for 144 aircraft types, built
+from open sources.
 
 ```bash
-uv run --extra editor tools/web_editor.py
+pip install aerox
 ```
 
-Then open `http://localhost:5000`.
+## Quick start
 
-Research scripts that use pandas, PyArrow, or Matplotlib can be run with the
-`research` extra when the local `agent-modeling/` workspace is present. A normal
-Aerox installation includes only runtime modeling dependencies.
+Load an aircraft:
 
-## Tests
+```python
+from aerox import load_aircraft, get_available_aircraft
+
+ac = load_aircraft("A320")
+print(ac.mtow, ac.wing.area, ac.wing.span)
+
+print(get_available_aircraft())
+```
+
+Get a drag polar, `CD = CD0 + k CL²`:
+
+```python
+from aerox.models.drag import build_reference_drag_polar
+
+polar = build_reference_drag_polar(ac)
+print(polar.zero_lift_drag_coefficient, polar.induced_drag_factor)
+print(polar.drag_coefficient(0.55))
+```
+
+Get drag at a flight condition, with the Mach and Reynolds number effects:
+
+```python
+from aerox.models.drag import DragCondition, build_drag_model, build_drag_report
+
+model = build_drag_model(ac)
+condition = DragCondition(mach=0.78, unit_reynolds_number_per_m=5.5e6)
+print(model.drag_coefficient_at(0.55, condition))
+
+# The contribution of each aircraft part to the zero-lift drag
+for term in build_drag_report(ac).parasite_terms:
+    print(term)
+```
+
+Atmosphere and speed conversions, in SI units:
+
+```python
+from aerox import aero
+
+p, rho, T = aero.atmos(10_000)        # altitude in m
+cas = aero.mach2cas(0.78, 10_000)     # m/s
+```
+
+## What is included
+
+- **Aircraft data.** One YAML record per type with geometry, mass limits, and
+  engine data. Each value has a source note under
+  `src/aerox/data/aircraft/sources`.
+- **Drag.** A clean-configuration drag model that is computed from the aircraft
+  geometry: skin friction and form factors for the wing, fuselage, tails,
+  nacelles, and pylons, plus wave drag and induced drag. No value is fitted to
+  another performance model.
+- **Atmosphere and speeds.** `aerox.aero`, ISA atmosphere and
+  CAS/TAS/EAS/Mach conversions.
+- **Flight management.** `aerox.fms`, route, altitude and speed intent, and
+  guidance primitives.
+
+## Accuracy and limits
+
+- The drag model agrees with a reference performance model within 5 % at
+  cruise for most jet transports. At lower Mach numbers (about 0.6) it is 4 to
+  12 % too high.
+- Drag is for the clean configuration only. Flap, slat, and landing gear
+  increments are not included yet.
+- The modules for thrust, lift, flight dynamics, and simulation are
+  experimental. Their interfaces can change.
+
+## Development
 
 ```bash
 uv run pytest -q
+uv run --extra editor tools/web_editor.py   # local editor for aircraft records
 ```
+
+## Licence
+
+GNU Lesser General Public License v3. See `LICENSE`.

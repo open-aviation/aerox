@@ -1,5 +1,5 @@
-Aerox local manufacturer CAD source collection
-==============================================
+Aerox manufacturer CAD source collection
+========================================
 
 Last checked and downloaded: 2026-08-06
 
@@ -11,9 +11,9 @@ overall-aircraft geometry for the bundled Aerox aircraft records.
 
 Directory layout
 ----------------
-airbus/archives/   Original Airbus ZIP downloads
+airbus/archives/   Original Airbus ZIP downloads (not in Git; see the landing pages)
 airbus/drawings/   Extracted Airbus DWG files, grouped by archive name
-boeing/archives/   Original Boeing ZIP downloads
+boeing/archives/   Original Boeing ZIP downloads (not in Git; see the landing pages)
 boeing/drawings/   Extracted Boeing DXF/DWG files, grouped by archive name
 SHA256SUMS.txt     Checksums of all original archives
 
@@ -55,9 +55,8 @@ CAD entity must be recorded as inferred-with-uncertainty. Values calculated
 from measured planform inputs must retain the input measurements, formula, and
 uncertainty. Do not label drawing-derived values as certified.
 
-The manufacturers' copyright and reuse terms apply. The repository's broad
-data/ ignore rule deliberately keeps this local external-source collection out
-of Git until redistribution rights and repository-size policy are reviewed.
+The manufacturers' copyright and reuse terms apply to the archives and
+drawings in this directory.
 
 Airbus downloads and Aerox applicability
 -----------------------------------------

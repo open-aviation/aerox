@@ -2,9 +2,7 @@
 
 These dependency-light NumPy ports preserve the relevant fuel-flow and thrust
 equations from OpenAP 2.6.0 at commit
-``472ab3e48d52ae62f9586d2e75e143ea4182a9e9``. Source and licensing provenance
-are recorded in ``agent-modeling/modeling/openap-fuel-port.md``,
-``agent-modeling/modeling/openap-thrust-port.md``, and ``agent-modeling/modeling/sources.yml``.
+``472ab3e48d52ae62f9586d2e75e143ea4182a9e9``. OpenAP is licensed under the GNU LGPL v3.
 """
 
 from __future__ import annotations

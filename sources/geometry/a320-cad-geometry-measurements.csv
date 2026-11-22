@@ -1,0 +1,25 @@
+feature,view,entity_handle,entity_type,x1_mm,y1_mm,x2_mm,y2_mm,interpretation
+horizontal_tail_leading_edge_left,top,5653,LINE,40910.78125,31976.142578125,45541.21484375,29055.064453125,straight exposed leading-edge segment
+horizontal_tail_leading_edge_right,top,31F,LINE,53038.34375,31976.14453125,48407.91015625,29055.06640625,symmetric straight exposed leading-edge segment
+horizontal_tail_trailing_edge_left,top,55DF,LINE,40907.7890625,33269.42578125,45543.53125,32206.009765625,straight exposed trailing-edge segment
+horizontal_tail_trailing_edge_right,top,55E2,LINE,48405.59375,32206.01171875,53041.3359375,33269.42578125,symmetric straight exposed trailing-edge segment
+elevator_hinge_left,top,5006,LINE,45556.82421875,30685.638671875,41004.80859375,32607.580078125,visible elevator forward boundary
+elevator_hinge_right,top,501A,LINE,48392.30078125,30685.640625,52944.31640625,32607.58203125,visible elevator forward boundary
+vertical_tail_leading_edge,side,A553,LINE,15201.302734375,46379.66796875,19137.537109375,51006.875,straight fin leading-edge segment
+vertical_tail_trailing_edge,side,A5DA,LINE,21243.470703125,51247.796875,19697.298828125,45044.03125,straight fin trailing-edge segment
+rudder_hinge,side,A5B8,LWPOLYLINE,18188.794921875,45465.35546875,20565.052734375,50996.140625,first and last vertices of nearly straight visible rudder forward boundary
+aileron_hinge_right,top,4CFE,LINE,60338.0390625,16940.357421875,63242.86328125,17979.064453125,visible outboard aileron forward boundary
+wing_leading_edge_outboard_right,top,65A1,LWPOLYLINE,63243.87109375,16775.58203125,53308.19140625,11632.5478515625,first and last vertices of outboard wing leading edge
+wing_trailing_edge_outboard_right,top,5CE1,LWPOLYLINE,53308.2265625,15369.3876953125,63242.4453125,18409.634765625,first and last vertices of outboard wing trailing edge
+wing_leading_edge_inboard_right,top,6599,LWPOLYLINE,52372.546875,11146.0537109375,49203.65234375,9502.6630859375,first and last vertices of inboard wing leading edge
+wing_trailing_edge_inboard_right,top,5CEE,LWPOLYLINE,48950.12109375,15369.2275390625,53308.2265625,15369.4150390625,first and last vertices of inboard wing trailing edge
+wing_upper_outboard_right,front,C277,LWPOLYLINE,63195.9140625,44044.71484375,53260.47265625,43258.77734375,first and last vertices of outboard upper wing contour used for exposed-wing dihedral
+wing_lower_outboard_inboard,front,C374,LWPOLYLINE,53260.48828125,42812.47265625,55092.62890625,43020.1328125,first and last vertices of inboard portion of outboard lower wing contour
+wing_lower_outboard_tip,front,C39D,LWPOLYLINE,59006.2109375,43434.8203125,63195.8828125,43865.375,first and last vertices of tip portion of outboard lower wing contour
+wing_upper_root_right,front,C88C,LWPOLYLINE,53260.47265625,43258.765625,49048.1171875,43009.57421875,first and last vertices of upper wing contour at the fuselage edge
+wing_lower_root_right,front,C8EC,LWPOLYLINE,48929.57421875,42036.828125,51792.13671875,42598.9140625,first and last vertices of lower wing/fairing contour at the fuselage edge
+horizontal_tail_lower_right,front,B96F,LWPOLYLINE,48782.87890625,44385.671875,52999.0625,44935.09765625,first and last vertices of lower horizontal-tail contour
+horizontal_tail_upper_right,front,B978,LWPOLYLINE,52985.55859375,45063.5546875,48653.01171875,44674.30859375,first and last vertices of upper horizontal-tail contour
+top_view_nose_left,top,5B45,LWPOLYLINE,46164.55078125,-3451.4970703125,46974.5625,-2701.392578125,entity bounding-box extrema used only to establish nose station
+top_view_nose_right,top,5BB2,LWPOLYLINE,46974.5625,-3451.4970703125,47784.57421875,-2701.392578125,entity bounding-box extrema used only to establish nose station
+side_view_nose_upper,side,8108,LWPOLYLINE,-15599.033203125,41872.84375,-14849.021484375,42654.66796875,entity bounding-box extrema used only to establish nose station

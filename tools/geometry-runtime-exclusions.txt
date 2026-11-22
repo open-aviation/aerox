@@ -1,0 +1,39 @@
+# Candidate evidence retained in the geometry-research TSV files but deliberately
+# excluded from the compact runtime YAML.  restore_value is the pre-research
+# bundled value; "null" means that no exact-scope runtime value is adopted.
+icao	field	restore_value	reason
+DA40	wing.span	11.63	Candidate is DA40 NG-only, while the bundled record includes Lycoming-powered DA40 configurations and has no exact certified-model scope.
+B350	wing.span	17.7	Candidate is the current King Air 360; the bundled record is a King Air 350 with PT6A-60A engines.
+B350	wing.area	28	Candidate is the current King Air 360; the bundled record is a King Air 350 with PT6A-60A engines.
+B350	wing.aspect_ratio	null	Candidate ratio is derived from King Air 360 inputs and is not adopted for the King Air 350 record.
+BE20	wing.span	16.6	Candidate is the current King Air 260; the bundled record represents the older King Air B200 with PT6A-42 engines.
+E50P	wing.span	12.3	Candidate is explicitly the Phenom 100EX; the bundled EMB-500 commercial generation is unresolved.
+E55P	wing.span	16.2	Candidate is explicitly the current Phenom 300E; the bundled EMB-505 commercial generation is unresolved.
+PC12	wing.span	16.24584	Candidate is the PC-12 NGX; the bundled record uses the earlier PT6A-67B installation and has no exact certified-model scope.
+PC12	wing.area	null	Candidate is the PC-12 NGX; the bundled record uses the earlier PT6A-67B installation and has no exact certified-model scope.
+PC12	wing.aspect_ratio	null	Candidate ratio is derived from PC-12 NGX inputs and is not adopted for the earlier bundled configuration.
+PC12	horizontal_tail.span	null	Candidate is the PC-12 NGX; exact applicability to the earlier bundled configuration was not established.
+F15	wing.area	null	NASA TM-72861 describes F-15 airplane number 8, a reconfigured test prototype; the bundled F-15 model is unresolved.
+F15	wing.span	13.0	The legacy family-level span is retained; the more precise NASA value belongs to F-15 airplane number 8.
+F15	wing.mac	null	NASA TM-72861 describes F-15 airplane number 8, not an exact bundled production model.
+F15	wing.taper_ratio	null	NASA TM-72861 describes F-15 airplane number 8, not an exact bundled production model.
+F15	wing.aspect_ratio	null	NASA TM-72861 describes F-15 airplane number 8, not an exact bundled production model.
+F15	wing.dihedral	null	NASA TM-72861 describes F-15 airplane number 8, not an exact bundled production model.
+F15	wing.root_chord	null	Derived reference-trapezoid value applies only to the NASA test airframe evidence definition.
+F15	wing.tip_chord	null	Derived reference-trapezoid value applies only to the NASA test airframe evidence definition.
+F15	wing.sweep	null	Derived quarter-chord sweep applies only to the NASA test airframe evidence definition.
+F15	horizontal_tail.area	null	NASA test-airframe stabilator area cannot be combined with its full span and exposed-panel chords as one compact trapezoid.
+F15	horizontal_tail.span	null	NASA test-airframe full stabilator span includes the fuselage gap and is not combinable with exposed-panel chords.
+F15	horizontal_tail.root_chord	null	NASA value is an exposed-panel chord for a specific test airframe.
+F15	horizontal_tail.tip_chord	null	NASA value is an exposed-panel chord for a specific test airframe.
+F15	horizontal_tail.taper_ratio	null	NASA value is an exposed-panel ratio for a specific test airframe.
+F15	horizontal_tail.mac	null	Derived exposed-panel MAC applies only to a specific NASA test airframe.
+F15	horizontal_tail.dihedral	null	NASA value applies only to a specific test airframe.
+F15	vertical_tail.area	null	NASA area is the total for two fins, while its height and chord dimensions are per fin; the compact schema has no fin-count qualifier.
+F15	vertical_tail.height	null	NASA dimension is per fin on a specific test airframe and cannot be combined with the total twin-fin area in the compact schema.
+F15	vertical_tail.root_chord	null	NASA value is a per-fin exposed chord for a specific test airframe.
+F15	vertical_tail.tip_chord	null	NASA value is a per-fin chord for a specific test airframe.
+F15	vertical_tail.taper_ratio	null	NASA value is a per-fin ratio for a specific test airframe.
+F15	vertical_tail.mac	null	Derived value is a per-fin MAC for a specific NASA test airframe.
+F15	vertical_tail.sweep	null	Derived value is a per-fin quarter-chord sweep for a specific NASA test airframe.
+F15	vertical_tail.rudder_area_ratio	null	NASA ratio applies to the twin-fin/twin-rudder test-airframe geometry and is not generic F-15 data.

@@ -2,7 +2,7 @@ AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Boeing 777-200
 ICAO: B772
 Last reviewed: 2026-08-06
-Source ledger: agent-modeling/modeling/sources.yml
+Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
   Model or family: 777-200
@@ -216,7 +216,7 @@ FIELD horizontal_tail.area
   Inputs: span=21.526500 m; root=7.129297 m; tip=2.400322 m
   Applicability: Gross centerline-reference straight-edge horizontal stabilizer; rounded tip excluded
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-3.23 m2; sweep +/-1 deg
-  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in agent-modeling/aircraft-data/boeing-cad-geometry-measurements.csv; Printed span converts to 21.5265 m and rounds to current YAML 21.53 m; not certified.
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in sources/geometry/boeing-cad-geometry-measurements.csv; Printed span converts to 21.5265 m and rounds to current YAML 21.53 m; not certified.
 END FIELD
 
 FIELD horizontal_tail.span
@@ -245,7 +245,7 @@ FIELD horizontal_tail.mac
   Inputs: span=21.526500 m; root=7.129297 m; tip=2.400322 m
   Applicability: Gross centerline-reference straight-edge horizontal stabilizer; rounded tip excluded
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-3.23 m2; sweep +/-1 deg
-  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in agent-modeling/aircraft-data/boeing-cad-geometry-measurements.csv; Printed span converts to 21.5265 m and rounds to current YAML 21.53 m; not certified.
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in sources/geometry/boeing-cad-geometry-measurements.csv; Printed span converts to 21.5265 m and rounds to current YAML 21.53 m; not certified.
 END FIELD
 
 FIELD horizontal_tail.root_chord
@@ -260,7 +260,7 @@ FIELD horizontal_tail.root_chord
   Inputs: span=21.526500 m; root=7.129297 m; tip=2.400322 m
   Applicability: Gross centerline-reference straight-edge horizontal stabilizer; rounded tip excluded
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-3.23 m2; sweep +/-1 deg
-  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in agent-modeling/aircraft-data/boeing-cad-geometry-measurements.csv; Printed span converts to 21.5265 m and rounds to current YAML 21.53 m; not certified.
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in sources/geometry/boeing-cad-geometry-measurements.csv; Printed span converts to 21.5265 m and rounds to current YAML 21.53 m; not certified.
 END FIELD
 
 FIELD horizontal_tail.tip_chord
@@ -275,7 +275,7 @@ FIELD horizontal_tail.tip_chord
   Inputs: span=21.526500 m; root=7.129297 m; tip=2.400322 m
   Applicability: Gross centerline-reference straight-edge horizontal stabilizer; rounded tip excluded
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-3.23 m2; sweep +/-1 deg
-  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in agent-modeling/aircraft-data/boeing-cad-geometry-measurements.csv; Printed span converts to 21.5265 m and rounds to current YAML 21.53 m; not certified.
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in sources/geometry/boeing-cad-geometry-measurements.csv; Printed span converts to 21.5265 m and rounds to current YAML 21.53 m; not certified.
 END FIELD
 
 FIELD horizontal_tail.taper_ratio
@@ -300,7 +300,7 @@ FIELD horizontal_tail.sweep
   Inputs: span=21.526500 m; root=7.129297 m; tip=2.400322 m
   Applicability: Gross centerline-reference straight-edge horizontal stabilizer; rounded tip excluded
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-3.23 m2; sweep +/-1 deg
-  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in agent-modeling/aircraft-data/boeing-cad-geometry-measurements.csv; Printed span converts to 21.5265 m and rounds to current YAML 21.53 m; not certified.
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in sources/geometry/boeing-cad-geometry-measurements.csv; Printed span converts to 21.5265 m and rounds to current YAML 21.53 m; not certified.
 END FIELD
 
 FIELD horizontal_tail.dihedral

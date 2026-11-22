@@ -2,7 +2,7 @@ AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Airbus A319
 ICAO: A319
 Last reviewed: 2026-08-06
-Source ledger: agent-modeling/modeling/sources.yml
+Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
   Model or family: -
@@ -213,7 +213,7 @@ FIELD horizontal_tail.area
   Inputs: span=12.45 m
   Applicability: A319-100 WTF; gross centerline-extrapolated trapezoid
   Uncertainty: engineering bound +/-5 percent
-  Notes: Official Airbus airport-planning vector drawing; exact endpoints are retained in agent-modeling/aircraft-data/airbus-cad-geometry-measurements.csv; not certified.
+  Notes: Official Airbus airport-planning vector drawing; exact endpoints are retained in sources/geometry/airbus-cad-geometry-measurements.csv; not certified.
 END FIELD
 
 FIELD horizontal_tail.span
@@ -243,7 +243,7 @@ FIELD horizontal_tail.mac
   Inputs: exact entity endpoints recorded in the Airbus CAD measurement inventory
   Applicability: A319-100 WTF idealized trapezoid
   Uncertainty: engineering bound +/-0.15 m
-  Notes: Official Airbus airport-planning vector drawing; exact endpoints are retained in agent-modeling/aircraft-data/airbus-cad-geometry-measurements.csv; not certified.
+  Notes: Official Airbus airport-planning vector drawing; exact endpoints are retained in sources/geometry/airbus-cad-geometry-measurements.csv; not certified.
 END FIELD
 
 FIELD horizontal_tail.root_chord
@@ -259,7 +259,7 @@ FIELD horizontal_tail.root_chord
   Inputs: centerline x=44269.5703125; source span=12.45 m
   Applicability: A319-100 WTF; span independently published in current A319 ACAP
   Uncertainty: engineering bound +/-0.15 m
-  Notes: Official Airbus airport-planning vector drawing; exact endpoints are retained in agent-modeling/aircraft-data/airbus-cad-geometry-measurements.csv; not certified.
+  Notes: Official Airbus airport-planning vector drawing; exact endpoints are retained in sources/geometry/airbus-cad-geometry-measurements.csv; not certified.
 END FIELD
 
 FIELD horizontal_tail.tip_chord
@@ -275,7 +275,7 @@ FIELD horizontal_tail.tip_chord
   Inputs: tip station x=38044.5703125; source span=12.45 m
   Applicability: A319-100 WTF; span independently published in current A319 ACAP
   Uncertainty: engineering bound +/-0.15 m
-  Notes: Official Airbus airport-planning vector drawing; exact endpoints are retained in agent-modeling/aircraft-data/airbus-cad-geometry-measurements.csv; not certified.
+  Notes: Official Airbus airport-planning vector drawing; exact endpoints are retained in sources/geometry/airbus-cad-geometry-measurements.csv; not certified.
 END FIELD
 
 FIELD horizontal_tail.taper_ratio
@@ -301,7 +301,7 @@ FIELD horizontal_tail.sweep
   Inputs: exact entity endpoints recorded in the Airbus CAD measurement inventory
   Applicability: A319-100 WTF idealized trapezoid
   Uncertainty: engineering bound +/-1 deg
-  Notes: Official Airbus airport-planning vector drawing; exact endpoints are retained in agent-modeling/aircraft-data/airbus-cad-geometry-measurements.csv; not certified.
+  Notes: Official Airbus airport-planning vector drawing; exact endpoints are retained in sources/geometry/airbus-cad-geometry-measurements.csv; not certified.
 END FIELD
 
 FIELD horizontal_tail.dihedral
@@ -335,7 +335,7 @@ FIELD horizontal_tail.elevator_area_ratio
   Inputs: exact entity endpoints recorded in the Airbus CAD measurement inventory
   Applicability: A319-100 WTF physical-surface geometry only; not control-law effectiveness
   Uncertainty: engineering bound +/-0.04
-  Notes: Official Airbus airport-planning vector drawing; exact endpoints are retained in agent-modeling/aircraft-data/airbus-cad-geometry-measurements.csv; not certified.
+  Notes: Official Airbus airport-planning vector drawing; exact endpoints are retained in sources/geometry/airbus-cad-geometry-measurements.csv; not certified.
 END FIELD
 
 FIELD vertical_tail.area
@@ -523,7 +523,7 @@ FIELD subtypes
   Source: easa_a064_issue_62 | icao_eedb_issue_32
   Page or section: Section 3 III.5; PDF pp.138-140 | Section 3 III.5; PDF p.138 | Section 3 III.5; PDF p.139
   Applicability: Certified subtype applicability with query identifiers normalized to ICAO EEDB Issue 32.
-  Evidence inventory: agent-modeling/aircraft-data/airbus-subtype-engine-mapping.tsv
+  Evidence inventory: sources/geometry/airbus-subtype-engine-mapping.tsv
   Engine table: src/aerox/data/engines/engines.csv
   Mappings:
     A319-111:

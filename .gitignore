@@ -3,6 +3,7 @@ tmp
 old/
 .claude/
 .venv/
+debug/
 
 # Research documentation and generated outputs remain local for now.
 /docs/
@@ -110,3 +111,6 @@ ENV/
 /output/
 /reports/
 /paper/
+
+# CAD archives are the original downloads; the extracted drawings are tracked.
+/sources/cad/*/archives/

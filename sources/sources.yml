@@ -1,0 +1,2652 @@
+# Register of the sources cited by the aircraft source notes.
+schema_version: 1
+sources:
+- id: aerox_legacy_aircraft_database
+  title: Aerox bundled aircraft database, original compact format
+  organization: Aerox project
+  location: src/aerox/data/aircraft/yml
+  document_number: null
+  issue: compact-legacy
+  publication_date: null
+  accessed: 2026-08-05
+  evidence_type: legacy-unverified
+  aircraft:
+    scope: 144 bundled ICAO records across turbofan, turboprop, and piston categories
+  license: project-data
+  redistribution: project-repository
+  notes:
+  - This ID identifies original Aerox values, not a certification or manufacturer source.
+  - Legacy values remain in the compact runtime records and are labelled legacy-unverified
+    until qualified evidence establishes their definition and model or variant applicability.
+- id: easa_a064_issue_62
+  title: EASA Type Certificate Data Sheet EASA.A.064, Issue 62
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa064-airbus-a318-a319-a320-a321-single-aisle
+  issue: 62
+  issue_date: 2026-06-26
+  accessed: 2026-08-05
+  evidence_type: certified-published
+  aircraft:
+    model: Airbus A320-214
+    type_design_definition: AI/EA-S 413.0150/95 (00D000A0006/C21)
+    engines:
+    - CFM56-5B4
+    - CFM56-5B4/2
+  license: EASA-copyright
+  notes:
+  - Supplies maximum certified masses, principal external dimensions, datum, and 4.1935 m
+    mean aerodynamic chord for the A320 series.
+  - Maximum A320-214/-232/-233 masses are 78,000 kg takeoff, 66,000 kg landing, and 62,500
+    kg zero fuel; minimum weight is 37,230 kg.
+  - Configuration-specific mass limitations depend on the applicable AFM weight variant.
+  - The CG range is not printed and is referred to the approved AFM.
+  - It does not publish the tail/control planforms or inertia tensor needed by the proposed
+    lateral-directional model.
+- id: airbus_a320_acap_2026_07
+  title: A320 Aircraft Characteristics - Airport and Maintenance Planning
+  organization: Airbus
+  url: https://www.aircraft.airbus.com/en/customer-care/fleet-wide-care/airport-operations-and-aircraft-characteristics/aircraft-characteristics
+  revision: 46
+  revision_date: 2026-07-01
+  accessed: 2026-08-05
+  evidence_type: manufacturer-published-planning
+  aircraft:
+    family: Airbus A320
+  license: Airbus-copyright
+  notes:
+  - Independently supports the 37.57 m length, 34.10 m wing-tip-fence span, 35.80 m sharklet
+    span, 12.45 m horizontal-stabilizer span, and other external dimensions.
+  - The drawings expose a 5.87 m vertical-tail height above the horizontal- stabilizer reference
+    and use 26.5 percent MAC as a planning-reference CG in ground-clearance configurations.
+  - The reference CG is not an operational measurement or certified flight envelope, and the
+    document does not supply complete aerodynamic tail/ control geometry or an inertia tensor.
+- id: airbus_a320_autocad_wtf_2012_05
+  title: Airbus A320 wing-tip-fence AutoCAD 3-view aircraft drawing
+  organization: Airbus
+  url: https://www.aircraft.airbus.com/en/customer-care/fleet-wide-care/airport-operations-and-aircraft-characteristics/autocad-3-view-aircraft-drawings
+  download_url: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A320_WTF-May-2012.zip
+  revision_date: 2012-05
+  accessed: 2026-08-05
+  evidence_type: manufacturer-published-planning-vector-drawing
+  aircraft:
+    family: Airbus A320-200
+    configuration: wing-tip fence
+  sha256_dwg: 1e6c85334d0e24bba3bbbefe143a83f6962e30db087d53b4a427554839ab6912
+  license: Airbus-copyright
+  redistribution: raw-drawing-not-redistributed-by-aerox
+  notes:
+  - Airbus states that the airport-planning three-view drawings are accurate to within 10
+    cm.
+  - Aerox retains only a small table of measured vector endpoints and derived engineering
+    priors; the source archive and DWG are external.
+  - The wing-tip-fence configuration is used because the QAR aircraft were recorded in 2011,
+    before the later A320 sharklet drawing revision.
+- id: airbus_a319_autocad_wtf_2012_05
+  title: Airbus A319 wing-tip-fence AutoCAD 3-view aircraft drawing
+  organization: Airbus
+  url: https://www.aircraft.airbus.com/en/customer-care/fleet-wide-care/airport-operations-and-aircraft-characteristics/autocad-3-view-aircraft-drawings
+  download_url: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A319_WTF-May-2012.zip
+  document_number: null
+  issue_revision: 2012-05
+  publication_date: null
+  access_date: 2026-08-06
+  applicable_aircraft: Airbus A319-100 wing-tip-fence configuration
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  relevant_pages: top-view CAD entity handles recorded in the matching CAD measurement CSV
+  sha256_drawing: 5a843bc688e33b01317224010c9b02d317b00d91230d224c47f172fcb777e228
+  limitations: Airbus states +/-0.10 m drawing accuracy; vector measurements are inferred,
+    not certified.
+- id: airbus_a318_autocad_wtf_2012_05
+  title: Airbus A318 wing-tip-fence AutoCAD 3-view aircraft drawing
+  organization: Airbus
+  url: https://www.aircraft.airbus.com/en/customer-care/fleet-wide-care/airport-operations-and-aircraft-characteristics/autocad-3-view-aircraft-drawings
+  download_url: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A318_WTF-May-2012.zip
+  issue_revision: 2012-05
+  access_date: 2026-08-06
+  applicable_aircraft: Airbus A318-100 wing-tip-fence configuration
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  relevant_pages: direct LibreDWG JSON entity handles recorded in the matching CAD measurement
+    CSV
+  sha256_drawing: e43209a3ed12e04b0a0466ea96e860332bc4d3283d20f5954070bfd33b21ccd4
+  limitations: Airbus states +/-0.10 m drawing accuracy; vector measurements are inferred,
+    not certified.
+- id: airbus_a321_autocad_wtf_2012_05
+  title: Airbus A321 wing-tip-fence AutoCAD 3-view aircraft drawing
+  organization: Airbus
+  url: https://www.aircraft.airbus.com/en/customer-care/fleet-wide-care/airport-operations-and-aircraft-characteristics/autocad-3-view-aircraft-drawings
+  download_url: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A321_WTF-May-2012.zip
+  issue_revision: 2012-05
+  access_date: 2026-08-06
+  applicable_aircraft: Airbus A321-200 wing-tip-fence configuration
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  relevant_pages: direct LibreDWG JSON entity handles recorded in the matching CAD measurement
+    CSV
+  sha256_drawing: cfe769379f71ffb0d116d47faa31a5e0aa2b76a2f19906f0752f7fa33e02abf0
+  limitations: Airbus states +/-0.10 m drawing accuracy; vector measurements are inferred,
+    not certified.
+- id: airbus_a319_autocad_sharklet_2014_07
+  title: Airbus A319 sharklet AutoCAD 3-view aircraft drawing
+  organization: Airbus
+  url: https://www.aircraft.airbus.com/en/customer-care/fleet-wide-care/airport-operations-and-aircraft-characteristics/autocad-3-view-aircraft-drawings
+  download_url: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/A319_sharklet-001-Jul-2014.zip
+  issue_revision: 2014-07
+  access_date: 2026-08-06
+  applicable_aircraft: Airbus A319 sharklet configuration; A19N only as conditional outer-geometry
+    evidence
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  relevant_pages: direct LibreDWG JSON entity handles recorded in the matching CAD measurement
+    CSV
+  sha256_drawing: d05a6915528fbb45ac3fce77b3395638d31a9476f8a7b2e69bfbfb2aa4891ad4
+  limitations: Archive is labelled A319 sharklet rather than A319neo; use for A19N only with
+    current ACAP span corroboration.
+- id: airbus_a320_autocad_sharklet_2014_07
+  title: Airbus A320 sharklet AutoCAD 3-view aircraft drawing
+  organization: Airbus
+  url: https://www.aircraft.airbus.com/en/customer-care/fleet-wide-care/airport-operations-and-aircraft-characteristics/autocad-3-view-aircraft-drawings
+  download_url: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/A320_sharklet-001-Jul-2014%20%281%29.zip
+  document_number: null
+  issue_revision: 2014-07
+  publication_date: null
+  access_date: 2026-08-06
+  applicable_aircraft: Airbus A320 sharklet configuration; A20N only as conditional outer-geometry
+    evidence
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  relevant_pages: top-view CAD entity handles recorded in the matching CAD measurement CSV
+  sha256_drawing: 537758aff2edb5c869c452bceb9860927656a37ddff0c48cf166da9da4593319
+  limitations: Archive is labelled A320 sharklet rather than A320neo; do not infer NEO applicability
+    beyond independently corroborated outer geometry.
+- id: airbus_a321_autocad_sharklet_2014_07
+  title: Airbus A321 sharklet AutoCAD 3-view aircraft drawing
+  organization: Airbus
+  url: https://www.aircraft.airbus.com/en/customer-care/fleet-wide-care/airport-operations-and-aircraft-characteristics/autocad-3-view-aircraft-drawings
+  download_url: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/A321_sharklet-001-Jul-2014.zip
+  issue_revision: 2014-07
+  access_date: 2026-08-06
+  applicable_aircraft: Airbus A321 sharklet configuration; A21N only as conditional outer-geometry
+    evidence
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  relevant_pages: direct LibreDWG JSON entity handles recorded in the matching CAD measurement
+    CSV
+  sha256_drawing: 686ffe6329b34a092701b36f8cd0d8dd90f681453d32618a4f3529c0759f8020
+  limitations: Archive is labelled A321 sharklet rather than A321neo; use for A21N only with
+    current ACAP span corroboration.
+- id: airbus_a350_common_htp_2016_02
+  title: Airbus Getafe delivers the first A350-1000 horizontal tail plane
+  organization: Airbus
+  url: https://www.airbus.com/en/newsroom/news/2016-02-airbus-getafe-spain-production-facility-delivers-the-first-a350-1000
+  publication_date: 2016-02-10
+  access_date: 2026-08-06
+  applicable_aircraft: Airbus A350-900 and A350-1000
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: manufacturer-published
+  licensing_redistribution: Airbus copyright; link and short factual extraction only
+  relevant_pages: webpage body, A350 horizontal tail plane dimensions
+  limitations: Publishes rounded 19 m span and 82 m2 surface area; states that the A350-900
+    and A350-1000 HTPs are identical.
+- id: airbus_a350_900_autocad_2012_05
+  title: Airbus A350-900 AutoCAD 3-view aircraft drawing
+  organization: Airbus
+  url: https://www.aircraft.airbus.com/en/customer-care/fleet-wide-care/airport-operations-and-aircraft-characteristics/autocad-3-view-aircraft-drawings
+  download_url: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A350-900-May-2012.zip
+  issue_revision: 2012-05
+  access_date: 2026-08-06
+  applicable_aircraft: Airbus A350-900 early external planform drawing
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  relevant_pages: direct LibreDWG JSON entity handles recorded in the matching CAD measurement
+    CSV
+  sha256_drawing: 47d42362a719bb3bfebc563f28a1a33502f937fb5f0ce9820903079a0d461f9d
+  limitations: Early 2012 drawing predates entry into service; use only for approximate planform
+    corroboration, not certified dimensions.
+- id: airbus_a220_acp_i009_2025
+  title: A220 Aircraft Characteristics Publication, Issue 009
+  organization: Airbus Canada Limited Partnership
+  download_url: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2025-05/A220-ACP-Issue009-00-24Apr2025.PDF
+  document_number: BD500-3AB48-13800-00
+  issue_revision: Issue 009
+  publication_date: 2025-04-24
+  access_date: 2026-08-06
+  applicable_aircraft: BD-500-1A10 and BD-500-1A11 (A220-100/-300)
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: manufacturer-published-planning
+  licensing_redistribution: Airbus copyright; link and factual extraction only
+  relevant_pages: A220-300 DM 12AAB locator table page 4 and figure page 8
+  limitations: Planning publication; displayed metric values are rounded from the dimension
+    table.
+- id: airbus_a350_1000_autocad_2016_04
+  title: Airbus A350-1000 AutoCAD 3-view aircraft drawing
+  organization: Airbus
+  url: https://www.aircraft.airbus.com/en/customer-care/fleet-wide-care/airport-operations-and-aircraft-characteristics/autocad-3-view-aircraft-drawings
+  download_url: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus-A350-1000-Apr-2016.zip
+  document_number: null
+  issue_revision: 2016-04
+  publication_date: null
+  access_date: 2026-08-06
+  applicable_aircraft: Airbus A350-1000 baseline external planform
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  relevant_pages: top-view CAD entity handles recorded in the matching CAD measurement CSV
+  sha256_drawing: 42836de463b860175819721f61fbab393572f55f46e7a43352c027ebbff00c26
+  limitations: Airbus states +/-0.10 m drawing accuracy; equivalent trapezoid values exclude
+    the rounded physical tip and are inferred, not certified.
+- id: boeing_737_300_cad_3view
+  title: Boeing 737-300 3-view CAD drawing
+  organization: Boeing
+  url: https://www.boeing.com/commercial/airports/3-view
+  download_url: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7373.zip
+  document_number: null
+  issue_revision: null
+  publication_date: null
+  access_date: 2026-08-06
+  applicable_aircraft: 737-300
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  relevant_pages: top-view CAD entity handles recorded in the matching CAD measurement CSV
+  sha256_drawing: 271ed6e20cf5ab4db501f97096307ded960f16d56d475cad3b8f6eb1c9be69f4
+  limitations: Boeing states +/-6 inch drawing accuracy; straight-edge reference-trapezoid
+    measurements are inferred, not certified.
+- id: boeing_737_400_cad_3view
+  title: Boeing 737-400 3-view CAD drawing
+  organization: Boeing
+  url: https://www.boeing.com/commercial/airports/3-view
+  download_url: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7374.zip
+  document_number: null
+  issue_revision: null
+  publication_date: null
+  access_date: 2026-08-06
+  applicable_aircraft: 737-400
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  relevant_pages: top-view CAD entity handles recorded in the matching CAD measurement CSV
+  sha256_drawing: f1a3f6d1cb6496486dbe54e5cdf2e06e4584bef76f0781007c1412b141ce62cc
+  limitations: Boeing states +/-6 inch drawing accuracy; straight-edge reference-trapezoid
+    measurements are inferred, not certified.
+- id: boeing_737_800_cad_3view
+  title: Boeing 737-800 3-view CAD drawing
+  organization: Boeing
+  url: https://www.boeing.com/commercial/airports/3-view
+  download_url: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7378.zip
+  document_number: null
+  issue_revision: null
+  publication_date: null
+  access_date: 2026-08-06
+  applicable_aircraft: 737-800 baseline without winglets
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  relevant_pages: top-view CAD entity handles recorded in the matching CAD measurement CSV
+  sha256_drawing: cae0eda253a9b7f6a6d024b5f84d529844437024069dfa54801dfeabadbc2193
+  limitations: Boeing states +/-6 inch drawing accuracy; straight-edge reference-trapezoid
+    measurements are inferred, not certified.
+- id: boeing_747_400_cad_3view
+  title: Boeing 747-400 3-view CAD drawing
+  organization: Boeing
+  url: https://www.boeing.com/commercial/airports/3-view
+  download_url: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7474.zip
+  document_number: null
+  issue_revision: null
+  publication_date: null
+  access_date: 2026-08-06
+  applicable_aircraft: 747-400 baseline
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  relevant_pages: top-view CAD entity handles recorded in the matching CAD measurement CSV
+  sha256_drawing: 8f497c741674a7ab8b75dc92792cacfc428892d7d6b1c710c94dd7e68de932a2
+  limitations: Boeing states +/-6 inch drawing accuracy; straight-edge reference-trapezoid
+    measurements are inferred, not certified.
+- id: boeing_757_200_cad_3view
+  title: Boeing 757-200 3-view CAD drawing
+  organization: Boeing
+  url: https://www.boeing.com/commercial/airports/3-view
+  download_url: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7572.zip
+  document_number: null
+  issue_revision: null
+  publication_date: null
+  access_date: 2026-08-06
+  applicable_aircraft: 757-200 baseline
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  relevant_pages: top-view CAD entity handles recorded in the matching CAD measurement CSV
+  sha256_drawing: c241444966bf96e384f24cc3e728a0270d40417152ab86966f3e053a1306709d
+  limitations: Boeing states +/-6 inch drawing accuracy; straight-edge reference-trapezoid
+    measurements are inferred, not certified.
+- id: boeing_757_300_cad_3view
+  title: Boeing 757-300 3-view CAD drawing
+  organization: Boeing
+  url: https://www.boeing.com/commercial/airports/3-view
+  download_url: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7573.zip
+  document_number: null
+  issue_revision: null
+  publication_date: null
+  access_date: 2026-08-06
+  applicable_aircraft: 757-300 baseline
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  relevant_pages: top-view CAD entity handles recorded in the matching CAD measurement CSV
+  sha256_drawing: 87def1431cac5d5bbbe604b00de66ad9eed2dc45696f483686b22677226b96eb
+  limitations: Boeing states +/-6 inch drawing accuracy; straight-edge reference-trapezoid
+    measurements are inferred, not certified.
+- id: boeing_767_200_cad_3view
+  title: Boeing 767-200 3-view CAD drawing
+  organization: Boeing
+  url: https://www.boeing.com/commercial/airports/3-view
+  download_url: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7672.zip
+  document_number: null
+  issue_revision: null
+  publication_date: null
+  access_date: 2026-08-06
+  applicable_aircraft: 767-200 baseline
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  relevant_pages: top-view CAD entity handles recorded in the matching CAD measurement CSV
+  sha256_drawing: 6e38efe14a79cc5290bd1a3af42c93def7769e4cc926b5f5647d70273dce21a4
+  limitations: Boeing states +/-6 inch drawing accuracy; straight-edge reference-trapezoid
+    measurements are inferred, not certified.
+- id: boeing_767_300_cad_3view
+  title: Boeing 767-300 3-view CAD drawing
+  organization: Boeing
+  url: https://www.boeing.com/commercial/airports/3-view
+  download_url: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7673.zip
+  document_number: null
+  issue_revision: null
+  publication_date: null
+  access_date: 2026-08-06
+  applicable_aircraft: 767-300 baseline without winglets
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  relevant_pages: top-view CAD entity handles recorded in the matching CAD measurement CSV
+  sha256_drawing: 5db44a180a455e59041caaf083003036720b9561d79bd43ea1ac20d070722a85
+  limitations: Boeing states +/-6 inch drawing accuracy; straight-edge reference-trapezoid
+    measurements are inferred, not certified.
+- id: boeing_767_400_cad_3view
+  title: Boeing 767-400ER 3-view CAD drawing
+  organization: Boeing
+  url: https://www.boeing.com/commercial/airports/3-view
+  download_url: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7674.zip
+  document_number: null
+  issue_revision: null
+  publication_date: null
+  access_date: 2026-08-06
+  applicable_aircraft: 767-400ER baseline raked-wingtip configuration
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  relevant_pages: top-view CAD entity handles recorded in the matching CAD measurement CSV
+  sha256_drawing: a3ee47cc6a6cd78d68f0695cee284b44c08f2ec84350715798d6e7551e9f2c6f
+  limitations: Boeing states +/-6 inch drawing accuracy; straight-edge reference-trapezoid
+    measurements are inferred, not certified.
+- id: boeing_777_200_cad_3view
+  title: Boeing 777-200 3-view CAD drawing
+  organization: Boeing
+  url: https://www.boeing.com/commercial/airports/3-view
+  download_url: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7772.zip
+  document_number: null
+  issue_revision: null
+  publication_date: null
+  access_date: 2026-08-06
+  applicable_aircraft: 777-200 baseline
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  relevant_pages: top-view CAD entity handles recorded in the matching CAD measurement CSV
+  sha256_drawing: 334a0ebde06cd9a8e4384b4073b98a07831acdeed2cf1e051b09294afb3fe8e5
+  limitations: Boeing states +/-6 inch drawing accuracy; straight-edge reference-trapezoid
+    measurements are inferred, not certified.
+- id: boeing_777_300_cad_3view
+  title: Boeing 777-300 3-view CAD drawing
+  organization: Boeing
+  url: https://www.boeing.com/commercial/airports/3-view
+  download_url: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7773.zip
+  document_number: null
+  issue_revision: null
+  publication_date: null
+  access_date: 2026-08-06
+  applicable_aircraft: 777-300 baseline
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  relevant_pages: top-view CAD entity handles recorded in the matching CAD measurement CSV
+  sha256_drawing: f9e8056b17deaabbf9a4cafb9355a8462b5f029e43abcf477714193505c6e29c
+  limitations: Boeing states +/-6 inch drawing accuracy; straight-edge reference-trapezoid
+    measurements are inferred, not certified.
+- id: airbus_a300_600_autocad_2012_05
+  title: Airbus A300-600 AutoCAD 3-view aircraft drawing
+  organization: Airbus
+  url: https://www.aircraft.airbus.com/en/customer-care/fleet-wide-care/airport-operations-and-aircraft-characteristics/autocad-3-view-aircraft-drawings
+  download_url: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A300-600-May-2012.zip
+  issue_revision: 2012-05
+  access_date: 2026-08-06
+  applicable_aircraft: A300-600 external planning geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  sha256_drawing: 5d8774578c753ea2f9a42dd58442dd062586bd371248e424b1429f7334eabbd8
+  limitations: Airbus states +/-0.10 m drawing accuracy; measured geometry is inferred, not
+    certified.
+- id: airbus_a330_200_vtp88_autocad_2012_05
+  title: Airbus A330-200 VTP88 AutoCAD 3-view aircraft drawing
+  organization: Airbus
+  download_url: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A330_200_VTP88-May-2012.zip
+  issue_revision: 2012-05
+  access_date: 2026-08-06
+  applicable_aircraft: A330-200 VTP88 configuration
+  evidence_type: manufacturer-published-planning-vector-drawing
+  sha256_drawing: 1f6b47b0f9690458aa3d8bbcdf7b40afb56f34dec6261c9007258b5fe599d45f
+  limitations: Horizontal-tail geometry is common with the VTP93 drawing; vertical-tail values
+    must not be merged.
+- id: airbus_a330_200_vtp93_autocad_2012_05
+  title: Airbus A330-200 VTP93 AutoCAD 3-view aircraft drawing
+  organization: Airbus
+  download_url: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A330_200_VTP93-May-2012.zip
+  issue_revision: 2012-05
+  access_date: 2026-08-06
+  applicable_aircraft: A330-200 VTP93 configuration
+  evidence_type: manufacturer-published-planning-vector-drawing
+  sha256_drawing: 9a8388241e1b4c3f7c547893f835765d61047408e53c81b84b613ec1ca10c708
+  limitations: Horizontal-tail geometry is common with the VTP88 drawing; vertical-tail values
+    must not be merged.
+- id: airbus_a330_300_autocad_2012_05
+  title: Airbus A330-300 AutoCAD 3-view aircraft drawing
+  organization: Airbus
+  download_url: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A330_300-May-2012.zip
+  issue_revision: 2012-05
+  access_date: 2026-08-06
+  applicable_aircraft: A330-300 external planning geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  sha256_drawing: 2712c2fac64b324f2ace1c0de17477be0706fb385ea3911ace7035a34c826051
+  limitations: Airbus states +/-0.10 m drawing accuracy; measured geometry is inferred, not
+    certified.
+- id: airbus_a330_900_autocad_2016_08
+  title: Airbus A330-900 preliminary AutoCAD 3-view aircraft drawing
+  organization: Airbus
+  download_url: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A330-900-Aug-2016.zip
+  issue_revision: 2016-08 preliminary
+  access_date: 2026-08-06
+  applicable_aircraft: A330-900 preliminary external planning geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  sha256_drawing: 8f1b692febc9ee11c91cfb9a3436c097137450a2888a03477930f314b08811da
+  limitations: Drawing is explicitly preliminary; measured geometry is inferred, not certified.
+- id: airbus_a340_300_autocad_2012_05
+  title: Airbus A340-300 AutoCAD 3-view aircraft drawing
+  organization: Airbus
+  download_url: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A340-300-May-2012.zip
+  issue_revision: 2012-05
+  access_date: 2026-08-06
+  applicable_aircraft: A340-300 external planning geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  sha256_drawing: abce2941ae3730e19eb239d1e181e8d66bb4fec4f665ffa59f6b84b5047412c9
+  limitations: Airbus states +/-0.10 m drawing accuracy; measured geometry is inferred, not
+    certified.
+- id: airbus_a380_800_autocad_2012_05
+  title: Airbus A380-800 AutoCAD 3-view aircraft drawing
+  organization: Airbus
+  download_url: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-08/Airbus_A380-800-May-2012.zip
+  issue_revision: 2012-05
+  access_date: 2026-08-06
+  applicable_aircraft: A380-800 external planning geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  sha256_drawing: d2269f6aa3f3c69f0b44565373a9a261887c732c5137430cc64209726d6a38d8
+  limitations: The drawing unit header is inconsistent; published span closure is used instead.
+- id: boeing_717_cad_3view
+  title: Boeing 717 3-view CAD drawing
+  organization: Boeing
+  url: https://www.boeing.com/commercial/airports/3-view
+  download_url: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/717.zip
+  document_number: null
+  issue_revision: null
+  publication_date: null
+  access_date: 2026-08-06
+  applicable_aircraft: 717-200 baseline
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  relevant_pages: top-view CAD entity handles recorded in the CAD evidence inventory
+  sha256_drawing: 078e8637f37e37f1c0971e0e09178acbada466fdd7d283987968959c4f6c1fb7
+  limitations: Boeing states +/-6 inch drawing accuracy; straight-edge equivalent-planform
+    measurements are inferred, not certified.
+- id: boeing_777_300er_cad_3view
+  title: Boeing 777-300ER 3-view CAD drawing
+  organization: Boeing
+  url: https://www.boeing.com/commercial/airports/3-view
+  download_url: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7773er.zip
+  document_number: null
+  issue_revision: null
+  publication_date: null
+  access_date: 2026-08-06
+  applicable_aircraft: 777-300ER baseline
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  relevant_pages: top-view CAD entity handles recorded in the CAD evidence inventory
+  sha256_drawing: 9de3dcf902bb2089c73b28d425b278d58400308b9f3d970fe604b7fe8062939e
+  limitations: Boeing states +/-6 inch drawing accuracy; straight-edge equivalent-planform
+    measurements are inferred, not certified.
+- id: boeing_787_8_cad_3view
+  title: Boeing 787-8 3-view CAD drawing
+  organization: Boeing
+  url: https://www.boeing.com/commercial/airports/3-view
+  download_url: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7878.zip
+  document_number: null
+  issue_revision: null
+  publication_date: null
+  access_date: 2026-08-06
+  applicable_aircraft: 787-8 baseline
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  relevant_pages: top-view CAD spline and line handles recorded in the CAD evidence inventory
+  sha256_drawing: 690354e214211ac3edab1469d5151b2ba2e0d3a20a75173a8613315647623245
+  limitations: Boeing states +/-6 inch drawing accuracy; blended-spline equivalent-planform
+    measurements are inferred, not certified.
+- id: boeing_747_8_passenger_cad_3view
+  title: Boeing 747-8 passenger 3-view CAD drawing
+  organization: Boeing
+  download_url: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7478p.zip
+  access_date: 2026-08-06
+  applicable_aircraft: 747-8 passenger configuration
+  evidence_type: manufacturer-published-planning-vector-drawing
+  sha256_drawing: 3dbae51b93fbde274ba6abda7cf7589faddcd622f92c048966289d09ac88c169
+  limitations: Boeing states +/-6 inch drawing accuracy; measured geometry is inferred, not
+    certified.
+- id: boeing_737_max7_cad_3view
+  title: Boeing 737-7 3-view CAD drawing
+  organization: Boeing
+  download_url: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/737_max7.zip
+  access_date: 2026-08-06
+  applicable_aircraft: 737-7 external planning geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  sha256_drawing: 5cc1328473e3250018073a8fa2c03020874d315c1a257d8bee615fe6f971a125
+  limitations: Boeing states +/-6 inch drawing accuracy; measured geometry is inferred, not
+    certified.
+- id: boeing_737_max8_cad_3view
+  title: Boeing 737-8 3-view CAD drawing
+  organization: Boeing
+  download_url: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/737_max8.zip
+  access_date: 2026-08-06
+  applicable_aircraft: 737-8 external planning geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  sha256_drawing: 459e10639c6b13b1709d5811e83ad2619172bc8d19c7e10b4c5bb4f646b5e289
+  limitations: Internal block is misnamed 787-8 but exact-model drawing context and 737 geometry
+    are unambiguous.
+- id: boeing_737_max9_cad_3view
+  title: Boeing 737-9 3-view CAD drawing
+  organization: Boeing
+  download_url: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/737_max9.zip
+  access_date: 2026-08-06
+  applicable_aircraft: 737-9 external planning geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  sha256_drawing: 9166b4cfcfa3962150d32620cc8b0a26a52c6288c23dd181bd204654c5ac6c92
+  limitations: Boeing states +/-6 inch drawing accuracy; measured geometry is inferred, not
+    certified.
+- id: boeing_737_max10_cad_3view
+  title: Boeing 737-10 3-view CAD drawing
+  organization: Boeing
+  download_url: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/737_max10.zip
+  access_date: 2026-08-06
+  applicable_aircraft: 737-10 external planning geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  sha256_drawing: 7a6e3c0d36b74dc603194c92170abe2c26dff768721f6ab99cfb127978dab484
+  limitations: 737-10 planning data must not be labelled a certified type-design value.
+- id: boeing_747_8_freighter_cad_3view
+  title: Boeing 747-8 freighter 3-view CAD drawing
+  organization: Boeing
+  download_url: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7478f.zip
+  access_date: 2026-08-06
+  applicable_aircraft: 747-8F freighter configuration
+  evidence_type: manufacturer-published-planning-vector-drawing
+  sha256_drawing: 672bbfd207af75f89abaa2160006afb47f8d5ebb5f4a1f2b962aec99414d3626
+  limitations: Independently corroborates the passenger drawing tail; measured geometry is
+    inferred, not certified.
+- id: boeing_777_200lr_cad_3view
+  title: Boeing 777-200LR 3-view CAD drawing
+  organization: Boeing
+  download_url: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7772lr.zip
+  access_date: 2026-08-06
+  applicable_aircraft: 777-200LR passenger configuration
+  evidence_type: manufacturer-published-planning-vector-drawing
+  sha256_drawing: 66e91548bb89f26479596669a2841f1f84cd478b0fe5796bd58935953ce99d95
+  limitations: The bundled B77L record also covers freighter semantics; configuration provenance
+    must remain explicit.
+- id: boeing_777_freighter_cad_3view
+  title: Boeing 777 Freighter 3-view CAD drawing
+  organization: Boeing
+  download_url: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/777f.zip
+  access_date: 2026-08-06
+  applicable_aircraft: 777F freighter configuration
+  evidence_type: manufacturer-published-planning-vector-drawing
+  sha256_drawing: 05ff72b87726c49962a1246347d95364d12c1d1c7cda302f91f4b2af7d0fc605
+  limitations: Independently corroborates the LR tail planform within planning-drawing uncertainty.
+- id: boeing_787_10_cad_3view
+  title: Boeing 787-10 3-view CAD drawing
+  organization: Boeing
+  download_url: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/78710.zip
+  access_date: 2026-08-06
+  applicable_aircraft: 787-10 external planning geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  sha256_drawing: 7e5b3dcab54138950c6bf63d86f3519860cd74cf654ef249924ccfe0ea81b910
+  limitations: Blended outline is reduced to an explicitly equivalent straight-edge trapezoid;
+    not certified.
+- id: nasa_tm_2011_217264_b738_reference_geometry
+  title: An Evaluation of Performance Metrics for High Efficiency Tube-and-Wing Aircraft Entering
+    Service in 2030 to 2035
+  organization: NASA Glenn Research Center
+  url: https://ntrs.nasa.gov/citations/20110023439
+  download_url: https://ntrs.nasa.gov/api/citations/20110023439/downloads/20110023439.pdf
+  document_number: NASA/TM-2011-217264
+  issue_revision: final technical memorandum
+  publication_date: 2011-11-01
+  access_date: 2026-08-06
+  applicable_aircraft: Boeing 737-800 reference vehicle geometry
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: government-technical-report-reference-geometry
+  licensing_redistribution: public use permitted; link rather than redistribute
+  relevant_pages: Appendix A, page 7, Reference Vehicle (Boeing 737-800) Detailed Geometry
+  limitations: Reference-vehicle geometry independently corroborates the CAD planform but
+    is not a Boeing certification or exact-airframe type-design source.
+- id: easa_a172_issue_08
+  title: 'EASA Type Certificate Data Sheet EASA.A.172: Airbus A300, A310, A300-600'
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa172-airbus-a300
+  direct_document_url: https://www.easa.europa.eu/en/downloads/17110/en
+  document_number: EASA.A.172
+  issue_revision: 08
+  publication_date: 2026-02-01
+  accessed: 2026-08-05
+  aircraft:
+  - A300
+  - A310
+  - A300-600
+  engines: Model-specific approved installations enumerated in the TCDS
+  evidence_type: certified-published
+  license: EASA-copyright
+  redistribution: link-only
+  limitations: Proprietary; copies are uncontrolled; confirm revision and weight-variant applicability
+- id: easa_a004_issue_69
+  title: 'EASA Type Certificate Data Sheet EASA.A.004: Airbus A330'
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa004-airbus-a330
+  direct_document_url: https://www.easa.europa.eu/en/downloads/7518/en
+  document_number: EASA.A.004
+  issue_revision: '69'
+  publication_date: 2025-12-19
+  accessed: 2026-08-05
+  aircraft:
+  - A330-200
+  - A330-300
+  - A330-800
+  - A330-900
+  engines: CF6-80E1, PW4000, Trent 700, and Trent 7000 installations as applicable by model
+  evidence_type: certified-published
+  license: EASA-copyright
+  redistribution: link-only
+  limitations: Proprietary; model and weight-variant applicability must be retained
+- id: easa_a015_issue_28
+  title: 'EASA Type Certificate Data Sheet EASA.A.015: Airbus A340'
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa015-airbus-a340
+  direct_document_url: https://www.easa.europa.eu/en/downloads/19823/en
+  document_number: EASA.A.015
+  issue_revision: '28'
+  publication_date: 2026-01-15
+  accessed: 2026-08-05
+  aircraft:
+  - A340-200
+  - A340-300
+  - A340-500
+  - A340-600
+  engines: Model-specific CFM56-5C and Trent 500 installations enumerated in the TCDS
+  evidence_type: certified-published
+  license: EASA-copyright
+  redistribution: link-only
+  limitations: Proprietary; copies are uncontrolled
+- id: easa_a151_issue_33
+  title: 'EASA Type Certificate Data Sheet EASA.A.151: Airbus A350'
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa151-airbus-a350
+  direct_document_url: https://www.easa.europa.eu/en/downloads/17736/en
+  document_number: EASA.A.151
+  issue_revision: '33'
+  publication_date: 2026-07-01
+  accessed: 2026-08-05
+  aircraft:
+  - A350-941
+  - A350-1041
+  engines: Rolls-Royce Trent XWB installations as applicable by model
+  evidence_type: certified-published
+  license: EASA-copyright
+  redistribution: link-only
+  limitations: Proprietary; configuration and weight-variant applicability must be retained
+- id: easa_a110_issue_17
+  title: 'EASA Type Certificate Data Sheet EASA.A.110: Airbus A380'
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa110-airbus-a380
+  direct_document_url: https://www.easa.europa.eu/en/downloads/7309/en
+  document_number: EASA.A.110
+  issue_revision: '17'
+  publication_date: 2026-08-05
+  accessed: 2026-08-05
+  aircraft:
+  - A380-841
+  - A380-842
+  - A380-861
+  engines: Trent 900 for A380-841/-842 and GP7200 for A380-861
+  evidence_type: certified-published
+  license: EASA-copyright
+  redistribution: link-only
+  limitations: Proprietary; do not merge the Rolls-Royce and Engine Alliance model data
+- id: easa_a084_issue_14
+  title: 'EASA Type Certificate Data Sheet EASA.A.084: ATR 42 / ATR 72'
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa084-atr-42atr-72
+  direct_document_url: https://www.easa.europa.eu/en/downloads/7358/en
+  document_number: EASA.A.084
+  issue_revision: '14'
+  publication_date: 2026-02-23
+  accessed: 2026-08-05
+  aircraft:
+  - ATR-42
+  - ATR-72
+  engines: PW120/PW121/PW121A/PW127 variants as explicitly applicable by certified model and
+    modification
+  evidence_type: certified-published
+  license: EASA-copyright
+  redistribution: link-only
+  limitations: Proprietary; commercial -200/-500 designations are not themselves certified
+    model identifiers
+- id: easa_ima120_issue_29
+  title: 'EASA Type Certificate Data Sheet IM.A.120: Boeing 737'
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaima120-boeing-737
+  direct_document_url: https://www.easa.europa.eu/en/downloads/7297/en
+  document_number: EASA.IM.A.120
+  issue_revision: '29'
+  publication_date: 2025-12-16
+  accessed: 2026-08-05
+  aircraft:
+  - Boeing-737
+  engines: JT8D, CFM56-3, CFM56-7B, and LEAP-1B installations as applicable by model
+  evidence_type: certified-published-validation
+  license: EASA-copyright
+  redistribution: link-only
+  limitations: EASA validation sheet references FAA TCDS A16WE; reviewed issue lists 737-8/-9/-8200
+    but not 737-7 or 737-10
+- id: easa_ima211_issue_03
+  title: 'EASA Type Certificate Data Sheet IM.A.211: MD-90-30, B717-200'
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaima211-md-90-30
+  direct_document_url: https://www.easa.europa.eu/en/downloads/7240/en
+  document_number: EASA.IM.A.211
+  issue_revision: '3.0'
+  publication_date: 2025-07-04
+  accessed: 2026-08-05
+  aircraft:
+  - 717-200
+  - MD-90-30
+  engines: BR715 installations for 717-200 as enumerated in the TCDS
+  evidence_type: certified-published-validation
+  license: EASA-copyright
+  redistribution: link-only
+  limitations: EASA validation sheet references FAA TCDS A6WE
+- id: easa_ima196_issue_19
+  title: 'EASA Type Certificate Data Sheet IM.A.196: Boeing 747'
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaima196-boeing-747
+  direct_document_url: https://www.easa.europa.eu/en/downloads/7250/en
+  document_number: EASA.IM.A.196
+  issue_revision: '19'
+  publication_date: 2024-12-17
+  accessed: 2026-08-05
+  aircraft:
+  - Boeing-747
+  engines: Model-specific CF6, PW4000, RB211-524, and GEnx-2B installations
+  evidence_type: certified-published-validation
+  license: EASA-copyright
+  redistribution: link-only
+  limitations: EASA validation sheet references FAA TCDS A20WE; passenger, freighter, and
+    BCF applicability are separate
+- id: easa_ima205_issue_06
+  title: 'EASA Type Certificate Data Sheet IM.A.205: Boeing 757'
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaima205-boeing-757
+  direct_document_url: https://www.easa.europa.eu/en/downloads/7246/en
+  document_number: EASA.IM.A.205
+  issue_revision: '06'
+  publication_date: 2024-11-06
+  accessed: 2026-08-05
+  aircraft:
+  - 757-200
+  - 757-200PF
+  - 757-300
+  engines: RB211-535 and PW2000 installations as applicable by model
+  evidence_type: certified-published-validation
+  license: EASA-copyright
+  redistribution: link-only
+  limitations: EASA validation sheet frequently refers limits to FAA TCDS A2NM and the approved
+    AFM
+- id: easa_ima035_issue_11
+  title: 'EASA Type Certificate Data Sheet IM.A.035: Boeing 767'
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaima035-boeing-767
+  direct_document_url: https://www.easa.europa.eu/en/downloads/7454/en
+  document_number: EASA.IM.A.035
+  issue_revision: '11'
+  publication_date: 2025-02-04
+  accessed: 2026-08-05
+  aircraft:
+  - 767-200
+  - 767-300
+  - 767-300F
+  - 767-300BCF
+  - 767-400ER
+  engines: CF6, JT9D, PW4000, and RB211 installations as applicable
+  evidence_type: certified-published-validation
+  license: EASA-copyright
+  redistribution: link-only
+  limitations: EASA validation sheet references FAA TCDS A1NM; BCF is a major design change
+- id: easa_ima003_issue_20
+  title: 'EASA Type Certificate Data Sheet IM.A.003: Boeing 777'
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaima003-boeing-777
+  direct_document_url: https://www.easa.europa.eu/en/downloads/7521/en
+  document_number: EASA.IM.A.003
+  issue_revision: '20.0'
+  publication_date: 2026-05-13
+  accessed: 2026-08-05
+  aircraft:
+  - 777-200
+  - 777-200LR
+  - 777-300
+  - 777-300ER
+  - 777F
+  engines: PW4000, GE90, and Trent 800 installations as applicable by model
+  evidence_type: certified-published-validation
+  license: EASA-copyright
+  redistribution: link-only
+  limitations: EASA validation sheet references FAA TCDS T00001SE; 777-200LR and 777F are
+    separate models
+- id: easa_ima115_issue_30
+  title: 'EASA Type Certificate Data Sheet IM.A.115: Boeing 787'
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaima115-boeing-787
+  direct_document_url: https://www.easa.europa.eu/en/downloads/7302/en
+  document_number: EASA.IM.A.115
+  issue_revision: '30'
+  publication_date: 2025-12-17
+  accessed: 2026-08-05
+  aircraft:
+  - 787-8
+  - 787-9
+  - 787-10
+  engines: GEnx-1B and Trent 1000 installations as applicable
+  evidence_type: certified-published-validation
+  license: EASA-copyright
+  redistribution: link-only
+  limitations: EASA validation sheet references FAA TCDS T00021SE; weight variants must remain
+    explicit
+- id: easa_ima210_issue_02
+  title: 'EASA Type Certificate Data Sheet IM.A.210: DC-10 / MD-11'
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaima210-boeing-dc-10
+  direct_document_url: https://www.easa.europa.eu/en/downloads/7242/en
+  document_number: EASA.IM.A.210
+  issue_revision: '2'
+  publication_date: 2024-11-14
+  accessed: 2026-08-05
+  aircraft:
+  - MD-11
+  - MD-11F
+  - DC-10
+  engines: CF6-80C2 and PW4460/PW4462 installations as applicable
+  evidence_type: certified-published-validation
+  license: EASA-copyright
+  redistribution: link-only
+  limitations: EASA validation sheet references FAA TCDS A22WE; MD-11 and MD-11F are separate
+    models
+- id: airbus_a300_600_acap_rev13_2009_12
+  title: A300-600 Airplane Characteristics for Airport Planning
+  organization: Airbus
+  url: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus-Commercial-Aircraft-AC-A300-600-Dec-2009.pdf
+  direct_document_url: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus-Commercial-Aircraft-AC-A300-600-Dec-2009.pdf
+  document_number: AC-A300-600
+  issue_revision: '13'
+  publication_date: 2009-12-01
+  accessed: 2026-08-05
+  aircraft:
+  - A300-600
+  engines: Model-specific planning configurations
+  evidence_type: manufacturer-published-planning
+  license: Airbus-copyright
+  redistribution: link-only
+  limitations: Planning data; document restricts reproduction; not customized or contractual
+- id: airbus_a318_acap_2026_07
+  title: A318 Aircraft Characteristics - Airport and Maintenance Planning
+  organization: Airbus
+  url: https://mediaassets.airbus.com/pm_38_916_916233-ndc78dwuma.pdf?fileName=aca31801-jul-2026.pdf
+  direct_document_url: https://mediaassets.airbus.com/pm_38_916_916233-ndc78dwuma.pdf?fileName=aca31801-jul-2026.pdf
+  document_number: AC-A318
+  issue_revision: '28'
+  publication_date: 2026-07-01
+  accessed: 2026-08-05
+  aircraft:
+  - A318
+  engines: Model-specific planning configurations
+  evidence_type: manufacturer-published-planning
+  license: Airbus-copyright
+  redistribution: link-only
+  limitations: Planning data; document restricts reproduction; not customized or contractual
+- id: airbus_a319_acap_2026_07
+  title: A319 Aircraft Characteristics - Airport and Maintenance Planning
+  organization: Airbus
+  url: https://mediaassets.airbus.com/pm_38_916_916263-0hxcf0237y.pdf?fileName=aca31901-jul-2026-2.pdf
+  direct_document_url: https://mediaassets.airbus.com/pm_38_916_916263-0hxcf0237y.pdf?fileName=aca31901-jul-2026-2.pdf
+  document_number: AC-A319
+  issue_revision: '30'
+  publication_date: 2026-07-01
+  accessed: 2026-08-05
+  aircraft:
+  - A319
+  - A319neo
+  engines: CFM56/V2500/LEAP-1A/PW1100G planning configurations as applicable
+  evidence_type: manufacturer-published-planning
+  license: Airbus-copyright
+  redistribution: link-only
+  limitations: Planning data; configuration-specific; document restricts reproduction
+- id: airbus_a321_acap_2026_07
+  title: A321 Aircraft Characteristics - Airport and Maintenance Planning
+  organization: Airbus
+  url: https://mediaassets.airbus.com/pm_38_916_916230-7u6neg4lfg.pdf?fileName=aca32101-jul-2026.pdf
+  direct_document_url: https://mediaassets.airbus.com/pm_38_916_916230-7u6neg4lfg.pdf?fileName=aca32101-jul-2026.pdf
+  document_number: AC-A321
+  issue_revision: '35'
+  publication_date: 2026-07-01
+  accessed: 2026-08-05
+  aircraft:
+  - A321
+  - A321neo
+  engines: CFM56/V2500/LEAP-1A/PW1100G planning configurations as applicable
+  evidence_type: manufacturer-published-planning
+  license: Airbus-copyright
+  redistribution: link-only
+  limitations: Planning data; standard, LR, and XLR applicability must remain separate
+- id: airbus_a330_acap_2025_12
+  title: A330 Aircraft Characteristics - Airport and Maintenance Planning
+  organization: Airbus
+  url: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2025-12/AC_A330_20251201.pdf
+  direct_document_url: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2025-12/AC_A330_20251201.pdf
+  document_number: AC-A330
+  issue_revision: '34'
+  publication_date: 2025-12-01
+  accessed: 2026-08-05
+  aircraft:
+  - A330-200
+  - A330-300
+  - A330-800
+  - A330-900
+  engines: Model-specific planning configurations
+  evidence_type: manufacturer-published-planning
+  license: Airbus-copyright
+  redistribution: link-only
+  limitations: Planning data; basic versions and weight variants must remain distinct
+- id: airbus_a340_200_300_acap_2025_12
+  title: A340-200/-300 Aircraft Characteristics - Airport and Maintenance Planning
+  organization: Airbus
+  url: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2025-12/AC_A340-200-300_20251201.pdf
+  direct_document_url: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2025-12/AC_A340-200-300_20251201.pdf
+  document_number: AC-A340-200-300
+  issue_revision: '33'
+  publication_date: 2025-12-01
+  accessed: 2026-08-05
+  aircraft:
+  - A340-200
+  - A340-300
+  engines: CFM56-5C planning configurations
+  evidence_type: manufacturer-published-planning
+  license: Airbus-copyright
+  redistribution: link-only
+  limitations: Planning data; document restricts reproduction
+- id: airbus_a350_acap_2026_07
+  title: A350 Aircraft Characteristics - Airport and Maintenance Planning
+  organization: Airbus
+  url: https://mediaassets.airbus.com/pm_38_916_916746-gxtwm2qvq4.pdf?fileName=a350-aircraft-characteristics-airport-and-maintenance-planning.pdf
+  direct_document_url: https://mediaassets.airbus.com/pm_38_916_916746-gxtwm2qvq4.pdf?fileName=a350-aircraft-characteristics-airport-and-maintenance-planning.pdf
+  document_number: AC-A350
+  issue_revision: '17'
+  publication_date: 2026-07-01
+  accessed: 2026-08-05
+  aircraft:
+  - A350-900
+  - A350-1000
+  engines: Trent XWB planning configurations
+  evidence_type: manufacturer-published-planning
+  license: Airbus-copyright
+  redistribution: link-only
+  limitations: Planning data; baseline, ULR, Standard 2022, and weight variants must remain
+    distinct
+- id: airbus_a380_acap_2025_12
+  title: A380 Aircraft Characteristics - Airport and Maintenance Planning
+  organization: Airbus
+  url: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2025-12/AC_A380_20251201.pdf
+  direct_document_url: https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2025-12/AC_A380_20251201.pdf
+  document_number: AC-A380
+  issue_revision: '20'
+  publication_date: 2025-12-01
+  accessed: 2026-08-05
+  aircraft:
+  - A380-800
+  engines: Trent 900 and GP7200 planning configurations
+  evidence_type: manufacturer-published-planning
+  license: Airbus-copyright
+  redistribution: link-only
+  limitations: Planning data; engine options and weight variants must not be merged
+- id: boeing_717_acap_rev_b_2014_11
+  title: 717 Airplane Characteristics for Airport Planning
+  organization: Boeing
+  url: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/717.pdf
+  direct_document_url: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/717.pdf
+  document_number: D6-58330
+  issue_revision: B
+  publication_date: 2014-11-01
+  accessed: 2026-08-05
+  aircraft:
+  - 717
+  engines: BR715 planning configurations
+  evidence_type: manufacturer-published-planning
+  license: Boeing-copyright
+  redistribution: link-only
+  limitations: Typical planning airplanes; options may change characteristics
+- id: boeing_737_classic_acap_rev_e_2023_11
+  title: 737-100 through 737-500 Airplane Characteristics for Airport Planning
+  organization: Boeing
+  url: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/737CL_REV_E.pdf
+  direct_document_url: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/737CL_REV_E.pdf
+  document_number: D6-58325-6
+  issue_revision: E
+  publication_date: 2023-11-01
+  accessed: 2026-08-05
+  aircraft:
+  - 737-100
+  - 737-200
+  - 737-300
+  - 737-400
+  - 737-500
+  engines: Model-specific JT8D and CFM56-3 planning configurations
+  evidence_type: manufacturer-published-planning
+  license: Boeing-copyright
+  redistribution: link-only
+  limitations: Typical planning airplanes; options and conversions must remain explicit
+- id: boeing_737_ng_acap_rev_c_2025_10
+  title: 737-600 through 737-900 Airplane Characteristics for Airport Planning
+  organization: Boeing
+  url: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/737NG_REV_C.pdf
+  direct_document_url: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/737NG_REV_C.pdf
+  document_number: D6-58325-7
+  issue_revision: C
+  publication_date: 2025-10-01
+  accessed: 2026-08-05
+  aircraft:
+  - 737-600
+  - 737-700
+  - 737-800
+  - 737-900
+  - 737-900ER
+  engines: CFM56-7B planning configurations
+  evidence_type: manufacturer-published-planning
+  license: Boeing-copyright
+  redistribution: link-only
+  limitations: Typical planning airplanes; baseline, ER, BBJ, freighter, and winglet applicability
+    differ
+- id: boeing_737_max_acap_rev_k_2025_07
+  title: 737 MAX Airplane Characteristics for Airport Planning
+  organization: Boeing
+  url: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/737MAX_RevK.pdf
+  direct_document_url: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/737MAX_RevK.pdf
+  document_number: D6-38A004
+  issue_revision: K
+  publication_date: 2025-07-01
+  accessed: 2026-08-05
+  aircraft:
+  - 737-7
+  - 737-8
+  - 737-9
+  - 737-10
+  engines: LEAP-1B planning configurations
+  evidence_type: manufacturer-published-planning
+  license: Boeing-copyright
+  redistribution: link-only
+  limitations: Planning coverage is not certification evidence for 737-7 or 737-10
+- id: boeing_747_400_acap_rev_f_2024_12
+  title: 747-400/400ER Airplane Characteristics for Airport Planning
+  organization: Boeing
+  url: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/747-400_Rev_F.pdf
+  direct_document_url: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/747-400_Rev_F.pdf
+  document_number: D6-58326-1
+  issue_revision: F
+  publication_date: 2024-12-01
+  accessed: 2026-08-05
+  aircraft:
+  - 747-400
+  - 747-400ER
+  engines: CF6-80C2, PW4000, and RB211-524 planning configurations
+  evidence_type: manufacturer-published-planning
+  license: Boeing-copyright
+  redistribution: link-only
+  limitations: Passenger, freighter, ER, and conversion configurations differ
+- id: boeing_747_8_acap_rev_e_2026_01
+  title: 747-8 / 747-8F Airplane Characteristics for Airport Planning
+  organization: Boeing
+  url: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/747-8_Rev_E.pdf
+  direct_document_url: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/747-8_Rev_E.pdf
+  document_number: D6-58326-3
+  issue_revision: E
+  publication_date: 2026-01-01
+  accessed: 2026-08-05
+  aircraft:
+  - 747-8
+  - 747-8F
+  engines: GEnx-2B planning configurations
+  evidence_type: manufacturer-published-planning
+  license: Boeing-copyright
+  redistribution: link-only
+  limitations: Passenger and freighter data must remain separate
+- id: boeing_757_acap_rev_h_2024_12
+  title: 757-200/-300 Airplane Characteristics for Airport Planning
+  organization: Boeing
+  url: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/757_Rev_H.pdf
+  direct_document_url: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/757_Rev_H.pdf
+  document_number: D6-58327
+  issue_revision: H
+  publication_date: 2024-12-01
+  accessed: 2026-08-05
+  aircraft:
+  - 757-200
+  - 757-200PF
+  - 757-300
+  engines: RB211-535 and PW2000 planning configurations
+  evidence_type: manufacturer-published-planning
+  license: Boeing-copyright
+  redistribution: link-only
+  limitations: Typical planning airplanes; passenger and PF applicability differ
+- id: boeing_767_acap_rev_k_2024_12
+  title: 767 Airplane Characteristics for Airport Planning
+  organization: Boeing
+  url: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/767_REV_K.pdf
+  direct_document_url: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/767_REV_K.pdf
+  document_number: D6-58328
+  issue_revision: K
+  publication_date: 2024-12-01
+  accessed: 2026-08-05
+  aircraft:
+  - 767-200
+  - 767-300
+  - 767-300F
+  - 767-400ER
+  engines: Model-specific CF6, JT9D, PW4000, and RB211 planning configurations
+  evidence_type: manufacturer-published-planning
+  license: Boeing-copyright
+  redistribution: link-only
+  limitations: Typical planning airplanes; ER, winglet, freighter, and conversion applicability
+    differ
+- id: boeing_777_classic_acap_rev_e_2024_12
+  title: 777-200/200ER/300 Airplane Characteristics for Airport Planning
+  organization: Boeing
+  url: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/777-200-200ER-300_Rev_E.pdf
+  direct_document_url: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/777-200-200ER-300_Rev_E.pdf
+  document_number: D6-58329
+  issue_revision: E
+  publication_date: 2024-12-01
+  accessed: 2026-08-05
+  aircraft:
+  - 777-200
+  - 777-200ER
+  - 777-300
+  engines: PW4000, GE90, and Trent 800 planning configurations as applicable
+  evidence_type: manufacturer-published-planning
+  license: Boeing-copyright
+  redistribution: link-only
+  limitations: Typical planning airplanes; marketed ER scope and weight variants differ
+- id: boeing_777_lr_er_f_acap_rev_g_2024_12
+  title: 777-200LR/300ER/777F Airplane Characteristics for Airport Planning
+  organization: Boeing
+  url: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/777-200LR-300ER-F_Rev_G.pdf
+  direct_document_url: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/777-200LR-300ER-F_Rev_G.pdf
+  document_number: D6-58329-2
+  issue_revision: G
+  publication_date: 2024-12-01
+  accessed: 2026-08-05
+  aircraft:
+  - 777-200LR
+  - 777-300ER
+  - 777F
+  engines: GE90-110/115B planning configurations as applicable
+  evidence_type: manufacturer-published-planning
+  license: Boeing-copyright
+  redistribution: link-only
+  limitations: 777-200LR and 777F are separate aircraft models
+- id: boeing_787_acap_rev_q_2025_10
+  title: 787-8/-9/-10 Airplane Characteristics for Airport Planning
+  organization: Boeing
+  url: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/787_ACAP_Rev_Q.pdf
+  direct_document_url: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/787_ACAP_Rev_Q.pdf
+  document_number: D6-58333
+  issue_revision: Q
+  publication_date: 2025-10-01
+  accessed: 2026-08-05
+  aircraft:
+  - 787-8
+  - 787-9
+  - 787-10
+  engines: GEnx-1B and Trent 1000 planning configurations
+  evidence_type: manufacturer-published-planning
+  license: Boeing-copyright
+  redistribution: link-only
+  limitations: Typical planning airplanes; weight variants and VIP configurations differ
+- id: boeing_md11_acap_rev_f_2011_05
+  title: MD-11 Airplane Characteristics for Airport Planning
+  organization: Boeing
+  url: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/MD11.pdf
+  direct_document_url: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/MD11.pdf
+  document_number: MDC-K0388
+  issue_revision: F
+  publication_date: 2011-05-01
+  accessed: 2026-08-05
+  aircraft:
+  - MD-11
+  engines: CF6-80C2 and PW4460/PW4462 planning configurations
+  evidence_type: manufacturer-published-planning
+  license: Boeing-copyright
+  redistribution: link-only
+  limitations: Legacy scan; passenger, freighter, and convertible configurations differ
+- id: atr_42_300_datasheet
+  title: ATR 42-300
+  organization: ATR
+  url: https://www.atr-aircraft.com/wp-content/uploads/2020/07/42-300.pdf
+  direct_document_url: https://www.atr-aircraft.com/wp-content/uploads/2020/07/42-300.pdf
+  document_number: null
+  issue_revision: null
+  publication_date: null
+  accessed: 2026-08-05
+  aircraft:
+  - ATR-42-300
+  engines:
+  - PW120
+  evidence_type: manufacturer-published-planning
+  license: ATR-copyright
+  redistribution: link-only
+  limitations: Marketing/planning sheet; basic and optional weights are distinct
+- id: atr_42_500_datasheet
+  title: ATR 42-500
+  organization: ATR
+  url: https://www.atr-aircraft.com/wp-content/uploads/2020/07/42-500.pdf
+  direct_document_url: https://www.atr-aircraft.com/wp-content/uploads/2020/07/42-500.pdf
+  document_number: null
+  issue_revision: null
+  publication_date: null
+  accessed: 2026-08-05
+  aircraft:
+  - ATR-42-500
+  engines: PW127 variants by configuration
+  evidence_type: manufacturer-published-planning
+  license: ATR-copyright
+  redistribution: link-only
+  limitations: Marketing/planning sheet; engine and weight options must remain explicit
+- id: atr_72_200_datasheet
+  title: ATR 72-200
+  organization: ATR
+  url: https://www.atr-aircraft.com/wp-content/uploads/2020/07/72-200.pdf
+  direct_document_url: https://www.atr-aircraft.com/wp-content/uploads/2020/07/72-200.pdf
+  document_number: null
+  issue_revision: null
+  publication_date: null
+  accessed: 2026-08-05
+  aircraft:
+  - ATR-72-200
+  engines:
+  - PW124B
+  evidence_type: manufacturer-published-planning
+  license: ATR-copyright
+  redistribution: link-only
+  limitations: Commercial-series planning sheet; maps to more than one certified model
+- id: atr_72_500_datasheet
+  title: ATR 72-500
+  organization: ATR
+  url: https://www.atr-aircraft.com/wp-content/uploads/2020/07/72-500.pdf
+  direct_document_url: https://www.atr-aircraft.com/wp-content/uploads/2020/07/72-500.pdf
+  document_number: null
+  issue_revision: null
+  publication_date: null
+  accessed: 2026-08-05
+  aircraft:
+  - ATR-72-500
+  engines:
+  - PW127F
+  - PW127M
+  evidence_type: manufacturer-published-planning
+  license: ATR-copyright
+  redistribution: link-only
+  limitations: Commercial designation normally maps to ATR 72-212A; basic and optional weights
+    are distinct
+- id: tcca_a236_bd500_oe_r3_2024
+  title: BD-500 Operational Evaluation Report
+  organization: Transport Canada Civil Aviation
+  url: https://tc.canada.ca/en/aviation/commercial-air-services/operational-evaluation-reports/bd500
+  document_number: TCDS A-236 supporting operational-evaluation record
+  issue_revision: Revision 3
+  publication_date: '2024-05-03'
+  accessed_on: '2026-08-05'
+  applicable_aircraft:
+  - BD-500-1A10
+  - BD-500-1A11
+  applicable_engines: []
+  evidence_type: certification-authority-operational-evaluation
+  licensing_redistribution: Publicly accessible government page; redistribution terms not
+    independently verified.
+  relevant_locations: Model-identification and type-certificate sections.
+  limitations: Establishes certification scope; use the applicable TCDS for certified numerical
+    limitations.
+- id: airbus_a220_100_app_i032_2023
+  title: A220-100 Airport Planning Publication
+  organization: Airbus
+  url: https://aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-11/A220-100APP-Issue032-00-19Oct2023.pdf
+  document_number: A220-100 APP
+  issue_revision: Issue 032
+  publication_date: '2023-10-19'
+  accessed_on: '2026-08-05'
+  applicable_aircraft:
+  - BD-500-1A10
+  - A220-100
+  applicable_engines:
+  - PW1519G
+  - PW1521G
+  - PW1524G
+  evidence_type: manufacturer-airport-planning-manual
+  licensing_redistribution: Airbus copyright; link only, no document redistribution intended.
+  relevant_locations: Aircraft characteristics DM BD500-A-J00-00-00-12AAA-030A-A, displayed
+    pages 2-6.
+  limitations: Planning data; values are not classified as certified-published solely because
+    they appear in this document.
+- id: airbus_a220_300_app_i031_2023
+  title: A220-300 Airport Planning Publication
+  organization: Airbus
+  url: https://aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-11/A220-300APP-Issue031-00-19Oct2023.pdf
+  document_number: A220-300 APP
+  issue_revision: Issue 031
+  publication_date: '2023-10-19'
+  accessed_on: '2026-08-05'
+  applicable_aircraft:
+  - BD-500-1A11
+  - A220-300
+  applicable_engines:
+  - PW1521G
+  - PW1524G
+  evidence_type: manufacturer-airport-planning-manual
+  licensing_redistribution: Airbus copyright; link only, no document redistribution intended.
+  relevant_locations: Aircraft characteristics DM BD500-A-J00-00-00-12AAB-030A-A, displayed
+    page 3 and general-dimensions section.
+  limitations: Planning data; engine and weight-option applicability must remain explicit.
+- id: tcca_a276_crj_oe_r5_2024
+  title: CRJ Series Operational Evaluation Report
+  organization: Transport Canada Civil Aviation
+  url: https://tc.canada.ca/en/aviation/commercial-air-services/operational-evaluation-reports/crj-series
+  document_number: TCDS A-276 supporting operational-evaluation record
+  issue_revision: Revision 5
+  publication_date: '2024-07-12'
+  accessed_on: '2026-08-05'
+  applicable_aircraft:
+  - CL-600-2B19
+  - CL-600-2C10
+  - CL-600-2C11
+  - CL-600-2D15
+  - CL-600-2D24
+  - CL-600-2E25
+  applicable_engines: []
+  evidence_type: certification-authority-operational-evaluation
+  licensing_redistribution: Publicly accessible government page; redistribution terms not
+    independently verified.
+  relevant_locations: Aircraft-model designation table and TCDS transfer/revision discussion.
+  limitations: Establishes model mapping, not a substitute for the TCDS or aircraft-specific
+    AFM.
+- id: bombardier_crj200_apm_csp_a020_r8
+  title: CRJ100/200 Airport Planning Manual
+  organization: Bombardier
+  url: https://customer.aero.bombardier.com/webd/BAG/CustSite/BRAD/RACSDocument.nsf/51aae8b2b3bfdf6685256c300045ff31/ec63f8639ff3ab9d85257c1500635bd8/%24FILE/ATT1ES4H.pdf/CRJ200APMR8.pdf
+  document_number: CSP A-020
+  issue_revision: Revision 8
+  publication_date: '2016-01-10'
+  accessed_on: '2026-08-05'
+  applicable_aircraft:
+  - CRJ100
+  - CRJ200
+  applicable_engines:
+  - CF34-3A1
+  - CF34-3B1
+  evidence_type: manufacturer-airport-planning-manual
+  licensing_redistribution: Bombardier copyright; link only, no document redistribution intended.
+  relevant_locations: Table 00-02-01, page 2.
+  limitations: Base, ER and LR columns are incompatible weight/fuel configurations and must
+    not be merged.
+- id: bombardier_crj700_apm_csp_b020_r15
+  title: CRJ700 Airport Planning Manual
+  organization: Bombardier
+  url: https://customer.aero.bombardier.com/webd/BAG/CustSite/BRAD/RACSDocument.nsf/51aae8b2b3bfdf6685256c300045ff31/ec63f8639ff3ab9d85257c1500635bd8/%24FILE/ATTE8Q23.pdf/CRJ700APMR15.pdf
+  document_number: CSP B-020
+  issue_revision: Revision 15
+  publication_date: null
+  accessed_on: '2026-08-05'
+  applicable_aircraft:
+  - CL-600-2C10
+  - CRJ700
+  applicable_engines:
+  - CF34-8C5
+  evidence_type: manufacturer-airport-planning-manual
+  licensing_redistribution: Bombardier copyright; link only, no document redistribution intended.
+  relevant_locations: Aircraft characteristics 00-02-01, pages 1-2.
+  limitations: Planning values; later approved weight options may require additional applicability
+    records.
+- id: bombardier_crj900_apm_csp_c020_r11
+  title: CRJ900 Airport Planning Manual
+  organization: Bombardier
+  url: https://customer.aero.bombardier.com/webd/BAG/CustSite/BRAD/RACSDocument.nsf/51aae8b2b3bfdf6685256c300045ff31/ec63f8639ff3ab9d85257c1500635bd8/%24FILE/ATTQF1EY.pdf
+  document_number: CSP C-020
+  issue_revision: Revision 11
+  publication_date: '2015-12-17'
+  accessed_on: '2026-08-05'
+  applicable_aircraft:
+  - CL-600-2D15
+  - CL-600-2D24
+  - CRJ705
+  - CRJ900
+  applicable_engines: []
+  evidence_type: manufacturer-airport-planning-manual
+  licensing_redistribution: Bombardier copyright; link only, no document redistribution intended.
+  relevant_locations: Table 00-02-01, pages 1-2.
+  limitations: Maximum masses differ by certified model and aircraft serial range.
+- id: bombardier_dhc8_100_apm
+  title: DHC-8-100 Airport Planning Manual
+  organization: Bombardier
+  url: https://customer.aero.bombardier.com/webd/BAG/CustSite/BRAD/RACSDocument.nsf/51aae8b2b3bfdf6685256c300045ff31/ec63f8639ff3ab9d85257c1500635bd8/%24FILE/ATT19ELL.pdf/D8100-APM.pdf
+  document_number: D8100-APM
+  issue_revision: null
+  publication_date: null
+  accessed_on: '2026-08-05'
+  applicable_aircraft:
+  - DHC-8-100 series
+  applicable_engines: []
+  evidence_type: manufacturer-airport-planning-manual
+  licensing_redistribution: Bombardier copyright; link only, no document redistribution intended.
+  relevant_locations: Scanned document; quantitative extraction remains pending.
+  limitations: Retrieved copy requires OCR and manual visual verification before adopting
+    values.
+- id: bombardier_dhc8_400_apm_r4
+  title: DHC-8-400 Airport Planning Manual
+  organization: Bombardier
+  url: https://customer.aero.bombardier.com/webd/BAG/CustSite/BRAD/RACSDocument.nsf/51aae8b2b3bfdf6685256c300045ff31/ec63f8639ff3ab9d85257c1500635bd8/%24FILE/ATTNBEOB.pdf/D8400-APM.pdf
+  document_number: D8400-APM
+  issue_revision: Revision 4 in retrieved copy
+  publication_date: '2014-12-05'
+  accessed_on: '2026-08-05'
+  applicable_aircraft:
+  - DHC-8-400 series
+  applicable_engines:
+  - PW150A
+  evidence_type: manufacturer-airport-planning-manual
+  licensing_redistribution: Bombardier copyright; link only, no document redistribution intended.
+  relevant_locations: Chapter 2, aircraft characteristics, page 3.
+  limitations: Basic, intermediate and high-gross mass configurations are distinct.
+- id: tcca_a234_cl30_oe
+  title: Bombardier CL30 Challenger 300 and 350 Operational Evaluation Report
+  organization: Transport Canada Civil Aviation
+  url: https://tc.canada.ca/en/aviation/commercial-air-services/operational-evaluation-reports/bombardier-cl30-challenger-300-350
+  document_number: TCDS A-234 supporting operational-evaluation record
+  issue_revision: Current web revision at access date
+  publication_date: null
+  accessed_on: '2026-08-05'
+  applicable_aircraft:
+  - BD-100-1A10
+  - Challenger 300
+  - Challenger 350
+  applicable_engines: []
+  evidence_type: certification-authority-operational-evaluation
+  licensing_redistribution: Publicly accessible government page; redistribution terms not
+    independently verified.
+  relevant_locations: Model description and Challenger 300/350 differences.
+  limitations: Does not by itself resolve every production weight or modification configuration.
+- id: tcca_a131_cl64_oe_r6_2026
+  title: Bombardier CL64 Challenger 604, 605 and 650 Operational Evaluation Report
+  organization: Transport Canada Civil Aviation
+  url: https://tc.canada.ca/en/aviation/commercial-air-services/operational-evaluation-reports/bombardier-cl64-challenger-604-605-650
+  document_number: TCDS A-131 supporting operational-evaluation record
+  issue_revision: Revision 6
+  publication_date: '2026-03-10'
+  accessed_on: '2026-08-05'
+  applicable_aircraft:
+  - CL-600-2B16
+  - Challenger 604
+  - Challenger 605
+  - Challenger 650
+  applicable_engines: []
+  evidence_type: certification-authority-operational-evaluation
+  licensing_redistribution: Publicly accessible government page; redistribution terms not
+    independently verified.
+  relevant_locations: Model and serial-number differentiation sections.
+  limitations: Does not cover all Challenger 600/601 configurations represented by the bundled
+    CL60 label.
+- id: anac_ct_transfer_portaria_7380_2022
+  title: Portaria No. 7.380/SAR transferring Embraer type certificates
+  organization: Agencia Nacional de Aviacao Civil
+  url: https://www.anac.gov.br/assuntos/legislacao/legislacao-1/portarias/2022/portaria-7380
+  document_number: Portaria 7.380/SAR
+  issue_revision: Original order
+  publication_date: '2022-02-24'
+  accessed_on: '2026-08-05'
+  applicable_aircraft:
+  - EMB-120
+  - EMB-135
+  - EMB-145
+  - ERJ 170-100
+  - ERJ 170-200
+  - ERJ 190-100
+  - ERJ 190-200
+  - EMB-500
+  - EMB-505
+  applicable_engines: []
+  evidence_type: certification-authority-order
+  licensing_redistribution: Publicly accessible government page; redistribution terms not
+    independently verified.
+  relevant_locations: Certificate transfer tables including CT8505, CT9606, CT2003T05 and
+    CT2005T13.
+  limitations: Establishes certificate/model scope; numerical aircraft characteristics must
+    come from the TCDS or qualified manufacturer documents.
+- id: embraer_e190_apm_1901_r24
+  title: Embraer 190 Airport Planning Manual
+  organization: Embraer
+  url: https://embraer.com/media/jwsj1u1u/e190apm_apm_190-1.pdf
+  document_number: APM 1901
+  issue_revision: Revision 24
+  publication_date: '2024-11-29'
+  accessed_on: '2026-08-05'
+  applicable_aircraft:
+  - ERJ 190-100 STD
+  - ERJ 190-100 LR
+  - ERJ 190-100 AR
+  applicable_engines:
+  - CF34-10E series
+  evidence_type: manufacturer-airport-planning-manual
+  licensing_redistribution: Embraer copyright; link only, no document redistribution intended.
+  relevant_locations: Section 2 geometry pages, last revised with Revision 21 on 2022-05-27.
+  limitations: Overall span is explicitly over winglets; the published reference aspect ratio
+    uses a different aerodynamic span definition.
+- id: embraer_e195_apm_1997_r17
+  title: Embraer 195 Airport Planning Manual
+  organization: Embraer
+  url: https://www.embraercommercialaviation.com/download/51/apm/3583/apm_e195.pdf
+  document_number: APM 1997
+  issue_revision: Revision 17
+  publication_date: '2021-11-26'
+  accessed_on: '2026-08-05'
+  applicable_aircraft:
+  - ERJ 190-200 STD
+  - ERJ 190-200 LR
+  - ERJ 190-200 AR
+  applicable_engines:
+  - CF34-10 series
+  evidence_type: manufacturer-airport-planning-manual
+  licensing_redistribution: Embraer copyright; link only, no document redistribution intended.
+  relevant_locations: Section 2, table 2.1 and general dimensions, pages 1-2 of 19.
+  limitations: STD, LR and AR mass rows are distinct; basic operating weight is configuration-dependent.
+- id: easa_a068_saab340_i26_2023
+  title: EASA.A.068 Saab SF340A Type Certificate Data Sheet
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa068-saab-sf340a
+  document_number: EASA.A.068
+  issue_revision: Issue 26
+  publication_date: '2023-12-20'
+  accessed_on: '2026-08-05'
+  applicable_aircraft:
+  - SF340A
+  - SF340B
+  applicable_engines:
+  - CT7-5A2
+  - CT7-9B
+  evidence_type: certification-authority-tcds
+  licensing_redistribution: EASA public document; reuse subject to EASA copyright notice.
+  relevant_locations: SF340A pages 8-12 and SF340B pages 18-23 in Issue 26.
+  limitations: Mass, span and propulsion values are model- and modification-specific.
+- id: easa_ima665_sd3_i1_2019
+  title: EASA.IM.A.665 SD3 Series Type Certificate Data Sheet
+  organization: European Union Aviation Safety Agency, hosted by UK Civil Aviation Authority
+  url: https://www.caa.co.uk/Documents/Download/3934/ca692457-336e-4190-840e-cd26cf498935/2887
+  document_number: EASA.IM.A.665
+  issue_revision: Issue 1
+  publication_date: '2019-06-28'
+  accessed_on: '2026-08-05'
+  applicable_aircraft:
+  - SD3-30
+  - SD3-60
+  - SD3-SHERPA
+  - SD3-60-SHERPA
+  applicable_engines:
+  - PT6A-65R
+  - PT6A-65AR
+  - PT6A-67R
+  evidence_type: certification-authority-tcds
+  licensing_redistribution: Public certification document; redistribution terms not independently
+    verified.
+  relevant_locations: SD3-60 section, pages 23-29.
+  limitations: Engine, propeller and mass values depend on named modifications; AFM remains
+    controlling where referenced.
+- id: faa_a10ce_r68_2024_historical
+  title: FAA Type Certificate Data Sheet A10CE
+  organization: Federal Aviation Administration
+  url: https://drs.faa.gov/browse/excelExternalWindow/DRSDOCID194068616920241223191740.0001
+  document_number: A10CE
+  issue_revision: Revision 68, marked historical by FAA DRS
+  publication_date: '2024-10-10'
+  accessed_on: '2026-08-05'
+  applicable_aircraft:
+  - Learjet 31 series
+  - Learjet 35 series
+  - Learjet 36 series
+  applicable_engines: []
+  evidence_type: certification-authority-tcds-historical-revision
+  licensing_redistribution: Public U.S. government record.
+  relevant_locations: Model-specific sections in Revision 68.
+  limitations: Retrieve the latest non-historical revision before adopting numerical limitations.
+- id: easa_ima020_learjet45_i17
+  title: EASA.IM.A.020 Learjet 45 Type Certificate Data Sheet
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaima020-learjet-45
+  document_number: EASA.IM.A.020
+  issue_revision: Issue 17
+  publication_date: null
+  accessed_on: '2026-08-05'
+  applicable_aircraft:
+  - Learjet Model 45
+  - Learjet 40
+  - Learjet 45
+  - Learjet 70
+  - Learjet 75
+  applicable_engines: []
+  evidence_type: certification-authority-tcds
+  licensing_redistribution: EASA public document; reuse subject to EASA copyright notice.
+  relevant_locations: Model 45 definition and modification/configuration sections.
+  limitations: Commercial Learjet designations are configuration variants of certified Model
+    45 and require explicit applicability.
+- id: easa_ima212_learjet60_i4_2024
+  title: EASA.IM.A.212 Learjet M60 Type Certificate Data Sheet
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/sites/default/files/dfu/EASA.IM_.A.212.pdf
+  document_number: EASA.IM.A.212
+  issue_revision: Issue 4
+  publication_date: '2024-11-12'
+  accessed_on: '2026-08-05'
+  applicable_aircraft:
+  - Learjet Model 60
+  applicable_engines: []
+  evidence_type: certification-authority-tcds
+  licensing_redistribution: EASA public document; reuse subject to EASA copyright notice.
+  relevant_locations: Model M60 certification and limitation sections.
+  limitations: Weight and modification applicability must still be selected for the bundled
+    record.
+- id: usn_t45_fact_file_2021
+  title: T-45A Goshawk Training Aircraft Fact File
+  organization: United States Navy
+  url: https://www.navy.mil/Resources/Fact-Files/Display-FactFiles/Article/2166516/t-45a-goshawk-training-aircraft/
+  document_number: Navy fact file
+  issue_revision: Updated public page
+  publication_date: '2021-10-08'
+  accessed_on: '2026-08-05'
+  applicable_aircraft:
+  - T-45C
+  applicable_engines:
+  - F405-RR-401
+  evidence_type: government-operator-fact-sheet
+  licensing_redistribution: Public U.S. government page.
+  relevant_locations: General characteristics, performance and propulsion tables.
+  limitations: Government/operator-published characteristics, not civil certification limits;
+    older Navy history pages conflict on some values.
+- id: easa_certified_products_be400_a16sw
+  title: EASA list of certified products identifying Beech Model 400 family and FAA A16SW
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/downloads/136197/en
+  document_number: Certified products list
+  issue_revision: Current public list at access date
+  publication_date: null
+  accessed_on: '2026-08-05'
+  applicable_aircraft:
+  - Beech Model 400
+  - Beech Model 400A
+  - Beech Model 400T
+  - MU-300-10
+  applicable_engines: []
+  evidence_type: certification-authority-product-list
+  licensing_redistribution: EASA public document; reuse subject to EASA copyright notice.
+  relevant_locations: Model 400 family entry referencing FAA A16SW.
+  limitations: Model-identification evidence only; current FAA TCDS was not retrieved during
+    this batch.
+- id: tcca_type_designators_42140
+  title: Standard 421.40 Aircraft Type Designators
+  organization: Transport Canada Civil Aviation
+  url: https://tc.canada.ca/en/aviation/licensing-pilots-personnel/flight-crew-licences-permits-ratings/aircraft-type-designation/standard-42140-aircraft-type-designators-individual-type-ratings-transport-canada-tcca
+  document_number: Standard 421.40
+  issue_revision: Current web edition at access date
+  publication_date: null
+  accessed_on: '2026-08-05'
+  applicable_aircraft:
+  - Challenger family
+  - HS.125 and Hawker family
+  applicable_engines: []
+  evidence_type: certification-authority-type-designator-list
+  licensing_redistribution: Publicly accessible government page; redistribution terms not
+    independently verified.
+  relevant_locations: CL60, CL64 and applicable Hawker/HS.125 type-designator rows.
+  limitations: Type-rating/model inventory only; not a numerical certification source.
+- id: faa_sa227_aging_airplane_rule_table
+  title: Aging Airplane Safety Interim Final Rule supporting certificate/model table
+  organization: Federal Aviation Administration
+  url: https://www.faa.gov/sites/faa.gov/files/aircraft/air_cert/design_approvals/transport/AgingAirplaneSafetyInterimFinalRule.pdf
+  document_number: Aging-airplane rule supporting document
+  issue_revision: Public FAA edition at access date
+  publication_date: null
+  accessed_on: '2026-08-05'
+  applicable_aircraft:
+  - SA227-AT and SA227 family
+  applicable_engines: []
+  evidence_type: certification-authority-regulatory-model-table
+  licensing_redistribution: Public U.S. government document.
+  relevant_locations: Certificate/model table identifying SA227 variants and certificate numbers.
+  limitations: Qualified primary search record only; current FAA A5SW TCDS was not retrieved
+    and no values are adopted from this rule document.
+- id: faa_drs_tcds_model_search
+  title: FAA Dynamic Regulatory System - Type Certificate Data Sheet Model Search
+  organization: Federal Aviation Administration
+  url: https://drs.faa.gov/browse/TCDSMODEL/doctypeDetails
+  document_number: null
+  issue_revision: current web index
+  publication_date: null
+  access_date: 2026-08-05
+  applicable_aircraft: US type-certificated aircraft
+  applicable_engine: null
+  evidence_type: certification-authority-index
+  licensing_redistribution: US government publication; link to current record
+  relevant_pages: model and TCDS search results
+  limitations: Search index only; a direct TCDS and its current revision control quantitative
+    adoption.
+- id: nz_caa_type_acceptance_index
+  title: Type acceptance reports
+  organization: Civil Aviation Authority of New Zealand
+  url: https://www.aviation.govt.nz/aircraft/airworthiness/type-acceptance-reports/
+  document_number: null
+  issue_revision: current web index
+  publication_date: null
+  access_date: 2026-08-05
+  applicable_aircraft: Foreign aircraft types validated in New Zealand
+  applicable_engine: null
+  evidence_type: certification-authority-validation-index
+  licensing_redistribution: Verify before redistribution; link preferred
+  relevant_pages: individual type-acceptance report links
+  limitations: Reports can lag the State-of-Design TCDS and are not substitutes for its current
+    issue.
+- id: nz_caa_beech_bonanza_33_35_36_r2
+  title: Type Acceptance Report - Beech 33/35/36 Debonair and Bonanza Series
+  organization: Civil Aviation Authority of New Zealand
+  url: https://www.aviation.govt.nz/assets/aircraft/type-acceptance-reports/Beech_Bonanza.pdf
+  document_number: TAR 3/21B/30
+  issue_revision: Revision 2
+  publication_date: 2025-04-17
+  access_date: 2026-08-05
+  applicable_aircraft: Beech models 33, 35, and 36 accepted under FAA TC 3A15
+  applicable_engine: model-specific
+  evidence_type: certification-authority-validation-report
+  licensing_redistribution: Verify before redistribution; link preferred
+  relevant_pages: executive summary and model appendices
+  limitations: Exact model suffix, serial number, and modification applicability remain necessary.
+- id: nz_caa_beech_95_55_56_58_r2
+  title: Type Acceptance Report - Beech 95/55/56/58 Series
+  organization: Civil Aviation Authority of New Zealand
+  url: https://www.aviation.govt.nz/assets/aircraft/type-acceptance-reports/Beech_95-55-56-58_Series.pdf
+  document_number: TAR 8/21B/25
+  issue_revision: Revision 2
+  publication_date: 2019-02-28
+  access_date: 2026-08-05
+  applicable_aircraft: Beech 95, 55, 56, and 58 series under FAA TC 3A16
+  applicable_engine: model-specific
+  evidence_type: certification-authority-validation-report
+  licensing_redistribution: Verify before redistribution; link preferred
+  relevant_pages: executive summary and model appendices
+  limitations: Pressurized and turbocharged 58 variants may be covered by a different TC.
+- id: nz_caa_beech_1900_r1
+  title: Type Acceptance Report - Beech 1900C and 1900D
+  organization: Civil Aviation Authority of New Zealand
+  url: https://www.aviation.govt.nz/assets/aircraft/type-acceptance-reports/Beech_1900C_and_D.pdf
+  document_number: TAR 98/07
+  issue_revision: Revision 1
+  publication_date: 2022-03-10
+  access_date: 2026-08-05
+  applicable_aircraft: Beech 1900, 1900C, and 1900D under FAA TC A24CE
+  applicable_engine: PT6A-65B and PT6A-67D as model-specific
+  evidence_type: certification-authority-validation-report
+  licensing_redistribution: Verify before redistribution; link preferred
+  relevant_pages: pages 1-2 and model tables
+  limitations: Optional weight-increase kits must be represented separately.
+- id: nz_caa_cessna_172_r3
+  title: Type Acceptance Report - Cessna 172 Series
+  organization: Civil Aviation Authority of New Zealand
+  url: https://www.aviation.govt.nz/assets/aircraft/type-acceptance-reports/cessna-172-series.pdf
+  document_number: null
+  issue_revision: Revision 3
+  publication_date: 2018-09-28
+  access_date: 2026-08-05
+  applicable_aircraft: Cessna 172 series under FAA TC 3A12
+  applicable_engine: model-specific
+  evidence_type: certification-authority-validation-report
+  licensing_redistribution: Verify before redistribution; link preferred
+  relevant_pages: certification summary and model history
+  limitations: Repository record does not establish an exact suffix or model year.
+- id: nz_caa_cessna_310_r1
+  title: Type Acceptance Report - Cessna 310 Series
+  organization: Civil Aviation Authority of New Zealand
+  url: https://www.aviation.govt.nz/assets/aircraft/type-acceptance-reports/Cessna-310-Series.pdf
+  document_number: null
+  issue_revision: Revision 1
+  publication_date: 2017-08-24
+  access_date: 2026-08-05
+  applicable_aircraft: Cessna 310 series under FAA TC 3A10
+  applicable_engine: model-specific
+  evidence_type: certification-authority-validation-report
+  licensing_redistribution: Verify before redistribution; link preferred
+  relevant_pages: certification summary and model applicability
+  limitations: Exact suffix, serial, and engine installation are unresolved.
+- id: nz_caa_cessna_320_335_340
+  title: Type Acceptance Report - Cessna 320/335/340 Series
+  organization: Civil Aviation Authority of New Zealand
+  url: https://www.aviation.govt.nz/assets/aircraft/type-acceptance-reports/Cessna-320-335-340.pdf
+  document_number: null
+  issue_revision: Revision 0
+  publication_date: 2018-09-08
+  access_date: 2026-08-05
+  applicable_aircraft: Cessna 320, 335, and 340 series under FAA TC 3A25
+  applicable_engine: model-specific
+  evidence_type: certification-authority-validation-report
+  licensing_redistribution: Verify before redistribution; link preferred
+  relevant_pages: certification summary and model applicability
+  limitations: Repository record does not distinguish 340 from 340A.
+- id: nz_caa_cessna_400_series_r1
+  title: Type Acceptance Report - Cessna 400 Series
+  organization: Civil Aviation Authority of New Zealand
+  url: https://www.aviation.govt.nz/assets/aircraft/type-acceptance-reports/Cessna_400_Series.pdf
+  document_number: TAR 6/21B/14
+  issue_revision: Revision 1
+  publication_date: 2018-05-22
+  access_date: 2026-08-05
+  applicable_aircraft: Cessna 401, 402, 411, 414, 421, and 425 variants under FAA TC A7CE
+  applicable_engine: model-specific
+  evidence_type: certification-authority-validation-report
+  licensing_redistribution: Verify before redistribution; link preferred
+  relevant_pages: pages 1-5 and model appendices
+  limitations: Values cannot be collapsed across pressurized, unpressurized, piston, and turbine
+    models.
+- id: nz_caa_cessna_441
+  title: Type Acceptance Report - Cessna 441 Conquest
+  organization: Civil Aviation Authority of New Zealand
+  url: https://www.aviation.govt.nz/assets/aircraft/type-acceptance-reports/Cessna_441.pdf
+  document_number: TAR 1/21B/17
+  issue_revision: initial report
+  publication_date: 2001-04-27
+  access_date: 2026-08-05
+  applicable_aircraft: Cessna model 441 under FAA TC A28CE
+  applicable_engine: Garrett TPE331-8 series
+  evidence_type: certification-authority-validation-report
+  licensing_redistribution: Verify before redistribution; link preferred
+  relevant_pages: page 1
+  limitations: Report is historical; current State-of-Design TCDS controls later changes.
+- id: nz_caa_cessna_680_r1
+  title: Type Acceptance Report - Cessna 680
+  organization: Civil Aviation Authority of New Zealand
+  url: https://www.aviation.govt.nz/assets/aircraft/type-acceptance-reports/Cessna_680.pdf
+  document_number: null
+  issue_revision: Revision 1
+  publication_date: 2015-12-14
+  access_date: 2026-08-05
+  applicable_aircraft: Cessna model 680 Sovereign
+  applicable_engine: PW306C series
+  evidence_type: certification-authority-validation-report
+  licensing_redistribution: Verify before redistribution; link preferred
+  relevant_pages: certification summary and model history
+  limitations: Model 680A Latitude is not interchangeable with model 680.
+- id: nz_caa_piper_pa28_r2
+  title: Type Acceptance Report - Piper PA-28
+  organization: Civil Aviation Authority of New Zealand
+  url: https://www.aviation.govt.nz/assets/aircraft/type-acceptance-reports/Piper_PA-28.pdf
+  document_number: null
+  issue_revision: Revision 2
+  publication_date: 2019-07-08
+  access_date: 2026-08-05
+  applicable_aircraft: Piper PA-28 family under FAA TC 2A13
+  applicable_engine: model-specific
+  evidence_type: certification-authority-validation-report
+  licensing_redistribution: Verify before redistribution; link preferred
+  relevant_pages: certification summary and model tables
+  limitations: Fixed-gear and retractable variants require exact suffixes.
+- id: nz_caa_piper_pa44_r3
+  title: Type Acceptance Report - Piper PA-44-180
+  organization: Civil Aviation Authority of New Zealand
+  url: https://www.aviation.govt.nz/assets/aircraft/type-acceptance-reports/Piper_PA-44-180.pdf
+  document_number: null
+  issue_revision: Revision 3
+  publication_date: 2025-06-18
+  access_date: 2026-08-05
+  applicable_aircraft: Piper PA-44-180 and PA-44-180T under FAA TC A19SO
+  applicable_engine: model-specific
+  evidence_type: certification-authority-validation-report
+  licensing_redistribution: Verify before redistribution; link preferred
+  relevant_pages: page 1 and model tables
+  limitations: Naturally aspirated and turbocharged models remain distinct.
+- id: nz_caa_mooney_m20_r3
+  title: Type Acceptance Report - Mooney M20 Series
+  organization: Civil Aviation Authority of New Zealand
+  url: https://www.aviation.govt.nz/assets/aircraft/type-acceptance-reports/Mooney_M20-Rev3.pdf
+  document_number: null
+  issue_revision: Revision 3
+  publication_date: 2011-09-13
+  access_date: 2026-08-05
+  applicable_aircraft: Mooney M20 models under FAA TC 2A3
+  applicable_engine: model-specific
+  evidence_type: certification-authority-validation-report
+  licensing_redistribution: Verify before redistribution; link preferred
+  relevant_pages: page 4 and model history
+  limitations: ICAO M20P spans models beyond the repository's named M20C.
+- id: easa_tbm700_a010_i7
+  title: Type-Certificate Data Sheet EASA.A.010 - TBM700
+  organization: European Aviation Safety Agency
+  url: https://www.easa.europa.eu/sites/default/files/dfu/EASA-TCDS-A.010_TBM700-07-25032009.pdf
+  document_number: EASA.A.010
+  issue_revision: Issue 07
+  publication_date: 2009-03-25
+  access_date: 2026-08-05
+  applicable_aircraft: TBM700 A, B, C1, C2, and N
+  applicable_engine: PT6A-64 and PT6A-66D by variant
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: PDF pages 4-8
+  limitations: A newer issue exists; this issue is retained because its extracted locators
+    were directly audited.
+- id: easa_cirrus_a007
+  title: EASA.IM.A.007 - Cirrus Design SR20, SR22 and SR22T
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaima007-cirrus
+  document_number: EASA.IM.A.007
+  issue_revision: Issue 19 at access
+  publication_date: null
+  access_date: 2026-08-05
+  applicable_aircraft: Cirrus SR20, SR22, and SR22T
+  applicable_engine: model and generation specific
+  evidence_type: type-certificate-data-sheet-page
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: aircraft TCDS download
+  limitations: Generations and serial-number changes still require explicit applicability.
+- id: easa_sf50_a615
+  title: EASA.IM.A.615 - Cirrus SF50
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaima615-cirrus
+  document_number: EASA.IM.A.615
+  issue_revision: Issue 06 at access
+  publication_date: null
+  access_date: 2026-08-05
+  applicable_aircraft: Cirrus SF50
+  applicable_engine: Williams FJ33-5A variants by configuration
+  evidence_type: type-certificate-data-sheet-page
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: aircraft TCDS download
+  limitations: G1 through G3 changes require serial and modification applicability.
+- id: easa_c525_a078
+  title: EASA.IM.A.078 - Cessna 525 Citation Jet
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaima078-525-citation
+  document_number: EASA.IM.A.078
+  issue_revision: Issue 19 at access
+  publication_date: null
+  access_date: 2026-08-05
+  applicable_aircraft: Cessna 525, 525A, 525B, and 525C
+  applicable_engine: model and serial specific
+  evidence_type: type-certificate-data-sheet-page
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: aircraft TCDS download
+  limitations: M2, CJ1, CJ2, CJ3, and CJ4 are commercial/configuration names tied to certified
+    models.
+- id: easa_citation_500_560_a207
+  title: EASA.IM.A.207 - Cessna 500, 550, S550, 560 and 560XL
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaima207-cessna-500
+  document_number: EASA.IM.A.207
+  issue_revision: Issue 10 at access
+  publication_date: 2023-09-07
+  access_date: 2026-08-05
+  applicable_aircraft: Cessna 500, 550, S550, 560, and 560XL
+  applicable_engine: model and serial specific
+  evidence_type: type-certificate-data-sheet-page
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: aircraft TCDS download
+  limitations: Marketing subvariants cannot share unnamed values.
+- id: easa_c750_a097
+  title: EASA.IM.A.097 - Cessna 750 Citation X
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaima097-cessna-750
+  document_number: EASA.IM.A.097
+  issue_revision: Issue 03
+  publication_date: 2016-01-07
+  access_date: 2026-08-05
+  applicable_aircraft: Cessna model 750
+  applicable_engine: serial and service-bulletin specific
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: Section 1, model and variant definition
+  limitations: TCDS defines serial and service-bulletin configuration variants.
+- id: easa_pc12_a089
+  title: EASA.A.089 - PC-12 and variants
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa089-pc-12-and
+  document_number: EASA.A.089
+  issue_revision: Issue 11 at access
+  publication_date: null
+  access_date: 2026-08-05
+  applicable_aircraft: PC-12, PC-12/45, PC-12/47, PC-12/47E, and PC-12/47G
+  applicable_engine: variant-specific
+  evidence_type: type-certificate-data-sheet-page
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: aircraft TCDS download
+  limitations: Repository record is family-level and cannot adopt one variant's values globally.
+- id: easa_pc24_a594
+  title: EASA.A.594 - PC-24
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa594-pc-24
+  document_number: EASA.A.594
+  issue_revision: Issue 08 at access
+  publication_date: null
+  access_date: 2026-08-05
+  applicable_aircraft: Pilatus PC-24
+  applicable_engine: Williams FJ44-4A-QPM
+  evidence_type: type-certificate-data-sheet-page
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: aircraft TCDS download
+  limitations: Weight and performance revisions require configuration applicability.
+- id: pilatus_pc24_gsg_02484_i2r4
+  title: PC-24 Ground Servicing Guide
+  organization: Pilatus Aircraft Ltd
+  url: https://www.pilatus-aircraft.com/assets/files/Technical-Publications/Ground-Servicing-Guide_PC-24.pdf
+  document_number: 02484
+  issue_revision: Issue 002 Revision 04
+  publication_date: 2025-02-27
+  access_date: 2026-08-06
+  applicable_aircraft: Pilatus PC-24
+  applicable_engine: all configurations covered by the guide
+  evidence_type: manufacturer-ground-servicing-guide
+  licensing_redistribution: Pilatus copyright; link rather than redistribute
+  relevant_pages: Figure 0-1-1, page 0-1-3, issue date 2023-01-31
+  limitations: The guide explicitly states that it is not an authority-approved document;
+    the dimension is manufacturer-published planning information.
+- id: easa_falcon_2000_a008
+  title: EASA.A.008 - Dassault Falcon 2000
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa008-dassault-falcon-2000
+  document_number: EASA.A.008
+  issue_revision: Issue 12 at access
+  publication_date: null
+  access_date: 2026-08-05
+  applicable_aircraft: Falcon 2000 and 2000EX derivative family
+  applicable_engine: variant-specific
+  evidence_type: type-certificate-data-sheet-page
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: aircraft TCDS download
+  limitations: Repository ICAO record does not establish the commercial or modification variant.
+- id: easa_falcon_50_900_a062
+  title: EASA.A.062 - Dassault Falcon MF50, MF900, F900EX
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa062-dassault
+  document_number: EASA.A.062
+  issue_revision: Issue 09 at access
+  publication_date: null
+  access_date: 2026-08-05
+  applicable_aircraft: Mystere Falcon 50, Mystere Falcon 900, and Falcon 900EX
+  applicable_engine: variant-specific
+  evidence_type: type-certificate-data-sheet-page
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: aircraft TCDS download
+  limitations: Commercial variants and modifications require explicit applicability.
+- id: easa_falcon_7x_a155
+  title: EASA.A.155 - Falcon 7X
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa155-falcon-7x
+  document_number: EASA.A.155
+  issue_revision: Issue 17 at access
+  publication_date: null
+  access_date: 2026-08-05
+  applicable_aircraft: Falcon 7X, including separately controlled production modifications
+  applicable_engine: PW307A; modification-specific alternatives excluded
+  evidence_type: type-certificate-data-sheet-page
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: aircraft TCDS and explanatory annex
+  limitations: Falcon 8X production modification M1000 must not be silently treated as baseline
+    7X.
+- id: easa_gulfstream_gii_gv_a070
+  title: EASA.IM.A.070 - Gulfstream GII, GIII, GIV, GV
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaima070-gulfstream-gii-giii-giv-gv
+  document_number: EASA.IM.A.070
+  issue_revision: Issue 12 at access
+  publication_date: 2026-03-30
+  access_date: 2026-08-05
+  applicable_aircraft: Gulfstream GII, GIII, GIV, and GV certified families
+  applicable_engine: model and modification specific
+  evidence_type: type-certificate-data-sheet-page
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: aircraft TCDS and explanatory note
+  limitations: Marketing names such as G400, G500, and G550 must be mapped to certified models
+    and modifications.
+- id: easa_gulfstream_g200_a013
+  title: EASA.IM.A.013 - Gulfstream 200
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/downloads/7500/en
+  document_number: EASA.IM.A.013
+  issue_revision: Issue 05
+  publication_date: 2025-05-26
+  access_date: 2026-08-05
+  applicable_aircraft: Galaxy and Gulfstream 200 under FAA TC A6IL
+  applicable_engine: PW306A series by configuration
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: model definition and technical limitations
+  limitations: Commercial naming transition and serial applicability must be retained.
+- id: easa_honda_ha420_a352
+  title: EASA.IM.A.352 - HA-420
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaima352-ha-420
+  document_number: EASA.IM.A.352
+  issue_revision: Issue 09 at access
+  publication_date: null
+  access_date: 2026-08-05
+  applicable_aircraft: Honda HA-420
+  applicable_engine: GE Honda HF120; rating/configuration specific
+  evidence_type: type-certificate-data-sheet-page
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: aircraft TCDS download
+  limitations: Base, Elite, and Elite II share a certified model but have materially different
+    weights.
+- id: easa_da40_ima022
+  title: EASA.IM.A.022 - Diamond DA 40
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates
+  document_number: EASA.IM.A.022
+  issue_revision: Issue 24 at access
+  publication_date: null
+  access_date: 2026-08-05
+  applicable_aircraft: Diamond DA40 certified variants
+  applicable_engine: variant-specific piston or compression-ignition installation
+  evidence_type: certification-authority-index-result
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: EASA TCDS index result for IM.A.022
+  limitations: DA40, DA40F, DA40 XLT, and DA40 NG values are not interchangeable.
+- id: easa_gulfstream_lp_index
+  title: Gulfstream Aerospace LP - EASA manufacturer record
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/manufacturers-list/gulfstream-lp
+  document_number: null
+  issue_revision: current web index
+  publication_date: null
+  access_date: 2026-08-05
+  applicable_aircraft: Gulfstream G200, G150, and G280
+  applicable_engine: model-specific
+  evidence_type: certification-authority-manufacturer-index
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: IM.A.013, IM.A.228, and IM.A.348 entries
+  limitations: Open the individual TCDS before adopting quantitative data.
+- id: easa_legacy_falcon20_ad_index
+  title: EASA Safety Publications - Mystere-Falcon 20 model records
+  organization: European Union Aviation Safety Agency
+  url: https://ad.easa.europa.eu/ad/2019-0201
+  document_number: EASA AD 2019-0201
+  issue_revision: superseded record retained for model-scope evidence
+  publication_date: 2019-08-20
+  access_date: 2026-08-05
+  applicable_aircraft: Mystere-Falcon 20C5, 20D5, 20E5, and 20F5
+  applicable_engine: model-specific
+  evidence_type: certification-authority-airworthiness-record
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: approval-holder and type-designation fields
+  limitations: Establishes model names but is not a quantitative TCDS.
+- id: usaf_c17_fact_sheet
+  title: C-17 Globemaster III
+  organization: United States Air Force
+  url: https://www.af.mil/About-Us/Fact-Sheets/Display/Article/1529726/c-17-globemaster-iii/
+  document_number: null
+  issue_revision: current fact sheet at access
+  publication_date: null
+  access_date: 2026-08-05
+  applicable_aircraft: USAF C-17A
+  applicable_engine: Pratt & Whitney F117-PW-100
+  evidence_type: government-published-aircraft-fact-sheet
+  licensing_redistribution: US government publication
+  relevant_pages: characteristics section
+  limitations: Operational fact sheet, not a civil type-certificate source.
+- id: usaf_f15_fact_sheet
+  title: F-15 Eagle
+  organization: United States Air Force
+  url: https://www.af.mil/About-Us/Fact-Sheets/Display/Article/104501/f-15-eagle/
+  document_number: null
+  issue_revision: current fact sheet at access
+  publication_date: null
+  access_date: 2026-08-05
+  applicable_aircraft: USAF F-15 family; numerical entries identify C/D where applicable
+  applicable_engine: F100-PW-100, -220, or -229 by aircraft configuration
+  evidence_type: government-published-aircraft-fact-sheet
+  licensing_redistribution: US government publication
+  relevant_pages: characteristics section
+  limitations: Repository F15 variant is unresolved; C/D values cannot be applied family-wide.
+- id: usaf_f16_fact_sheet
+  title: F-16 Fighting Falcon
+  organization: United States Air Force
+  url: https://www.af.mil/About-Us/Fact-Sheets/Display/Article/104505/f-16-fighting-falcon/force_isolation/f-16-fighting-falcon/
+  document_number: null
+  issue_revision: current fact sheet at access
+  publication_date: null
+  access_date: 2026-08-05
+  applicable_aircraft: USAF F-16C and F-16D
+  applicable_engine: listed F100 and F110 options by block/configuration
+  evidence_type: government-published-aircraft-fact-sheet
+  licensing_redistribution: US government publication
+  relevant_pages: characteristics section
+  limitations: Block and engine option remain unresolved in the repository record.
+- id: usaf_kc135_fact_sheet
+  title: KC-135 Stratotanker
+  organization: United States Air Force
+  url: https://www.af.mil/About-Us/Fact-Sheets/Display/Article/977523/kc-135-stratotanker/
+  document_number: null
+  issue_revision: April 2025 fact sheet
+  publication_date: 2025-04-01
+  access_date: 2026-08-05
+  applicable_aircraft: KC-135R and KC-135T
+  applicable_engine: CFM56/F108
+  evidence_type: government-published-aircraft-fact-sheet
+  licensing_redistribution: US government publication
+  relevant_pages: characteristics section
+  limitations: Operational fact sheet, not a civil type-certificate source.
+- id: usaf_t38_fact_sheet
+  title: T-38 Talon
+  organization: United States Air Force
+  url: https://www.af.mil/About-Us/Fact-Sheets/Display/Article/104569/t-38-talon/%20/lang/t-38-talon/
+  document_number: null
+  issue_revision: current fact sheet at access
+  publication_date: null
+  access_date: 2026-08-05
+  applicable_aircraft: USAF T-38 family, principally current T-38C configuration
+  applicable_engine: General Electric J85-GE-5
+  evidence_type: government-published-aircraft-fact-sheet
+  licensing_redistribution: US government publication
+  relevant_pages: characteristics section
+  limitations: Modification state and performance-modification-program applicability must
+    be recorded.
+- id: usaf_c130_fact_sheet
+  title: C-130 Hercules
+  organization: United States Air Force
+  url: https://www.af.mil/About-Us/Fact-Sheets/Display/Article/1555054/c-130-hercules/%20/lang/c-130-hercules/
+  document_number: null
+  issue_revision: current fact sheet at access
+  publication_date: null
+  access_date: 2026-08-05
+  applicable_aircraft: C-130E, C-130H, C-130J, and C-130J-30 as separately stated
+  applicable_engine: T56-A-15 or AE2100D3 by model
+  evidence_type: government-published-aircraft-fact-sheet
+  licensing_redistribution: US government publication
+  relevant_pages: characteristics section
+  limitations: Values are model-specific and cannot be collapsed into a generic C-130 record.
+- id: usn_t45_fact_sheet
+  title: T-45A Goshawk Training Aircraft
+  organization: United States Navy
+  url: https://www.navy.mil/Resources/Fact-Files/Display-FactFiles/Article/2166516/t-45a-goshawk-training-aircraft/
+  document_number: null
+  issue_revision: current fact file at access
+  publication_date: null
+  access_date: 2026-08-05
+  applicable_aircraft: T-45A and upgraded T-45C
+  applicable_engine: Rolls-Royce/Turbomeca F405-RR-401
+  evidence_type: government-published-aircraft-fact-sheet
+  licensing_redistribution: US government publication
+  relevant_pages: characteristics and upgrade-status sections
+  limitations: Repository ICAO HAWK must not be populated with generic BAe Hawk-family values.
+- id: tc_bd700_operational_evaluation
+  title: Bombardier BD-700-1A10 and BD-700-1A11 Global Express and Global 5000
+  organization: Transport Canada Civil Aviation
+  url: https://tc.canada.ca/en/aviation/commercial-air-services/operational-evaluation-reports/bombardier-bd-700-1a10-bd-700-1a11-global-express-global-5000
+  document_number: Transport Canada operational evaluation report
+  issue_revision: current official web edition at access
+  publication_date: null
+  access_date: 2026-08-05
+  applicable_aircraft: BD-700-1A10 Global Express and BD-700-1A11 Global 5000
+  applicable_engine: model-specific; not adopted from this report
+  evidence_type: certification-authority-operational-evaluation-report
+  licensing_redistribution: Government of Canada publication; link preferred
+  relevant_pages: background and model-identification sections
+  limitations: Establishes certified-model scope under A-177 but is not the current TCDS;
+    no quantitative technical value is adopted.
+- id: cirrus_sr_series_specs_accessed_2026_08_05
+  title: Cirrus SR Series
+  organization: Cirrus Aircraft
+  url: https://cirrusaircraft.com/aircraft/sr-series/
+  publication_date: null
+  accessed: 2026-08-05
+  aircraft:
+  - SR20
+  - SR22
+  - SR22T
+  evidence_type: manufacturer-published
+  redistribution: link-only
+  limitations: Current-production specifications; generation and configuration applicability
+    must remain explicit.
+- id: easa_ima188_emb120_issue02_2022_01_31
+  title: EASA Type-Certificate Data Sheet EASA.IM.A.188, EMB-120, Issue 02
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/downloads/127185/en
+  document_number: EASA.IM.A.188
+  issue_revision: '02'
+  publication_date: 2022-01-31
+  accessed: 2026-08-05
+  aircraft:
+  - EMB-120
+  evidence_type: certified-published
+  redistribution: link-only
+  limitations: Model and modification applicability follows the TCDS.
+- id: easa_ima191_dhc8_issue16_2023_02_03
+  title: EASA Type-Certificate Data Sheet EASA.IM.A.191, DHC-8, Issue 16
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/downloads/7257/en
+  document_number: EASA.IM.A.191
+  issue_revision: '16'
+  publication_date: 2023-02-03
+  accessed: 2026-08-05
+  aircraft:
+  - DHC-8
+  evidence_type: certified-published
+  redistribution: link-only
+  limitations: Series 100 and 400 geometry is model-specific.
+- id: piper_archer_tx_spec_sheet_2024_05
+  title: Archer TX specification sheet
+  organization: Piper Aircraft
+  url: https://www.piper.com/wp-content/uploads/2024/05/Archer-TX.pdf
+  publication_date: 2024-05
+  accessed: 2026-08-05
+  aircraft:
+  - PA-28-181 Archer TX
+  evidence_type: manufacturer-published
+  redistribution: link-only
+  limitations: Current Archer TX; not generic to every PA-28 model.
+- id: piper_seminole_brochure_2019_05
+  title: Seminole 2019 Specifications
+  organization: Piper Aircraft
+  url: https://www.piper.com/wp-content/uploads/2019/05/Seminole-Brochure-2019.pdf
+  publication_date: 2019-05
+  accessed: 2026-08-05
+  aircraft:
+  - PA-44-180 Seminole
+  evidence_type: manufacturer-published
+  redistribution: link-only
+  limitations: Brochure configuration and publication precision apply.
+- id: saab_340_product_page_accessed_2026_08_05
+  title: Saab 340B
+  organization: Saab
+  url: https://www.saab.com/products/saab-340
+  publication_date: null
+  accessed: 2026-08-05
+  aircraft:
+  - Saab 340B
+  evidence_type: manufacturer-published
+  redistribution: link-only
+  limitations: Standard-tip 340B configuration; extended-tip modifications are separate.
+- id: textron_beechcraft_baron_product_card_2023_11
+  title: Beechcraft Baron product card
+  organization: Textron Aviation
+  url: https://beechcraft.txtav.com/-/media/beechcraft/files/product-card/baron_product_card.ashx
+  publication_date: 2023-11-03
+  accessed: 2026-08-05
+  aircraft:
+  - Beechcraft Baron G58
+  evidence_type: manufacturer-published
+  redistribution: link-only
+  limitations: Current G58 configuration; not transferable to all Baron 55/58 models.
+- id: textron_beechcraft_bonanza_product_card_2023_09
+  title: Beechcraft Bonanza product card
+  organization: Textron Aviation
+  url: https://beechcraft.txtav.com/-/media/beechcraft/files/product-card/bonanza_product_card.ashx
+  publication_date: 2023-09-26
+  accessed: 2026-08-05
+  aircraft:
+  - Beechcraft Bonanza G36
+  evidence_type: manufacturer-published
+  redistribution: link-only
+  limitations: Current G36 configuration; not transferable to every Model 33/36.
+- id: textron_cessna_caravan_specs_accessed_2026_08_05
+  title: Cessna Caravan
+  organization: Textron Aviation
+  url: https://cessna.txtav.com/en/turboprop/caravan
+  publication_date: null
+  accessed: 2026-08-05
+  aircraft:
+  - Cessna 208 Caravan
+  evidence_type: manufacturer-published
+  redistribution: link-only
+  limitations: Current production configuration and displayed precision apply.
+- id: textron_cessna_skyhawk_specs_accessed_2026_08_05
+  title: Cessna Skyhawk
+  organization: Textron Aviation
+  url: https://cessna.txtav.com/en/piston/cessna-skyhawk
+  publication_date: null
+  accessed: 2026-08-05
+  aircraft:
+  - Cessna 172S Skyhawk
+  evidence_type: manufacturer-published
+  redistribution: link-only
+  limitations: Current 172S configuration; historical 172 variants differ.
+- id: textron_cessna_skylane_specs_accessed_2026_08_05
+  title: Cessna Skylane
+  organization: Textron Aviation
+  url: https://cessna.txtav.com/en/piston/cessna-skylane
+  publication_date: null
+  accessed: 2026-08-05
+  aircraft:
+  - Cessna 182T Skylane
+  evidence_type: manufacturer-published
+  redistribution: link-only
+  limitations: Current 182T configuration; historical 182 variants differ.
+- id: easa_im_a570_issue_24
+  title: EASA Type Certificate Data Sheet EASA.IM.A.570, BD-500, Issue 24
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaima570-bd-500
+  direct_document_url: https://www.easa.europa.eu/en/downloads/20964/en
+  document_number: EASA.IM.A.570
+  issue_revision: '24'
+  publication_date: 2026-02-20
+  accessed: 2026-08-06
+  evidence_type: certified-published
+  aircraft:
+    holder: Airbus Canada Limited Partnership
+    models:
+    - BD-500-1A10
+    - BD-500-1A11
+    commercial_designations:
+    - A220-100
+    - A220-300
+  relevant_sections:
+  - Section 1 III.5, PDF page 10
+  - Section 2 III.5, PDF page 20
+  license: EASA-copyright
+  redistribution: link-only
+  limitations:
+  - Printed or downloaded copies are uncontrolled; confirm the current revision on the EASA
+    document page.
+- id: icao_eedb_issue_32
+  title: ICAO Aircraft Engine Emissions Databank, Issue 32
+  organization: International Civil Aviation Organization
+  host_organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/domains/environment/icao-aircraft-engine-emissions-databank
+  direct_document_url: https://www.easa.europa.eu/en/downloads/131424/en
+  issue_revision: '32'
+  publication_date: 2026-03-20
+  accessed: 2026-08-06
+  evidence_type: certified-published-engine-emissions-data
+  scope:
+  - Production turbojet and turbofan engines regulated by ICAO Annex 16, Volume II
+  - Rated static thrust generally greater than 26.7 kN
+  local_copy: src/aerox/data/engines/icao-edb-issue-32.xlsx
+  generated_query_table: src/aerox/data/engines/engines.csv
+  license: ICAO-and-EASA-terms-apply
+  redistribution: verify-before-external-redistribution
+  limitations:
+  - Engine manufacturers are responsible for the submitted data accuracy.
+  - Absence does not invalidate engines outside the databank scope, including smaller business-jet
+    engines, turboprops, piston engines, and several military engines.
+- id: gur_mason_schetz_full_configuration_drag_2010
+  title: Full-Configuration Drag Estimation
+  authors:
+  - O. Gur
+  - W. H. Mason
+  - J. A. Schetz
+  organization: American Institute of Aeronautics and Astronautics
+  location: https://doi.org/10.2514/1.47557
+  publication_date: 2010
+  accessed: 2026-08-07
+  evidence_type: primary-method-reference
+  license: publisher-controlled
+  redistribution: citation-only
+  notes:
+  - Supplies the critical-Mach relation used by the experimental OpenAP wave-drag option;
+    it is not an A320-specific calibration.
+- id: openap_experimental_wave_drag_472ab3e
+  title: OpenAP experimental wave-drag implementation
+  organization: OpenAP project
+  location: https://github.com/junzis/openap (openap/drag.py)
+  accessed: 2026-08-07
+  evidence_type: pinned-open-source-implementation
+  source_commit: 472ab3e48d52ae62f9586d2e75e143ea4182a9e9
+  parent_sources:
+  - gur_mason_schetz_full_configuration_drag_2010
+  license: GNU-LGPL-3.0
+  redistribution: ported-equations-with-attribution
+  notes:
+  - OpenAP documents the option as experimental.
+  - Aerox ports the critical-Mach and Lock fourth-power increment into src/aerox/models/lift/core.py
+    as an explicit opt-in component shared by the plant, profile planner, and ECON optimizer.
+- id: poll_schumann_transport_drag_model_2025
+  title: Fuel-burn performance of civil transport aircraft - Part 3
+  authors:
+  - D. I. A. Poll
+  - U. Schumann
+  organization: Royal Aeronautical Society and German Aerospace Center
+  location: https://doi.org/10.1017/aer.2024.141
+  open_copy: https://elib.dlr.de/212199/
+  publication_date: 2025
+  accessed: 2026-08-08
+  evidence_type: published-reynolds-and-transonic-transport-drag-model
+  aircraft: Airbus A320
+  model_support:
+    lift_coefficient:
+    - 0.3
+    - 0.7
+    mach:
+    - 0.0
+    - 0.82
+  license: CC-BY-4.0
+  redistribution: permitted-with-attribution
+  notes:
+  - Equations 30 through 45 separate Reynolds-dependent zero-lift drag, lift-dependent drag,
+    drag creep, and transonic drag rise.
+  - The paper supplies an A320 parameter row with wing area 122.4 m2, span 34.1 m, fuselage
+    width 3.95 m, sweep 25 degrees, design Mach 0.753, design CL 0.590, and design Reynolds
+    number 5.59e7.
+  - This is Aerox's leading public A320 candidate because its stated lift support includes
+    the representative QAR cruise envelope.
+- id: nasa_openvsp_parasite_drag_tool
+  title: OpenVSP Parasite Drag Tool
+  organization: NASA
+  location: https://www.nasa.gov/reference/openvsp-parasite-drag-tool/
+  accessed: 2026-08-08
+  evidence_type: official-software-method-documentation
+  result:
+    relevant_method: component parasite-drag build-up
+    geometry_analysis: CompGeom wetted-area calculation
+    supported_inputs:
+    - skin-friction correlation
+    - form factor
+    - interference factor
+    - excrescence drag
+  license: public-web-documentation
+  redistribution: link-and-derived-summary
+- id: nita_scholz_oswald_factor_2012
+  title: Estimating the Oswald Factor from Basic Aircraft Geometrical Parameters
+  authors:
+  - Mihaela Nita
+  - Dieter Scholz
+  publication_date: 2012-09-10
+  location: https://doi.org/10.48441/4427.2602
+  accessed: 2026-08-08
+  evidence_type: primary-academic-method
+  result:
+    relevant_method: geometry-derived effective induced-drag prior
+    use_in_aerox: provenance and model-form cross-check
+  license: see-source
+  redistribution: link-and-derived-summary
+- id: aerox_geometry_drag_model_2026_08_08
+  title: Aerox aircraft geometry drag model
+  organization: Aerox project
+  publication_date: 2026-08-08
+  accessed: 2026-08-08
+  evidence_type: aircraft-geometry-build-up-with-explicit-scaled-defaults
+  parent_sources:
+  - nasa_openvsp_parasite_drag_tool
+  - nita_scholz_oswald_factor_2012
+  - poll_schumann_transport_drag_model_2025
+  - gur_mason_schetz_full_configuration_drag_2010
+  - openap_experimental_wave_drag_472ab3e
+  method:
+    model: aerox-geometry-drag-v2
+    configuration: clean
+    parasite_drag: component skin-friction, wetted-area, form-factor build-up for wing, fuselage,
+      tails, nacelles and pylons, with fuselage upsweep, control-surface gap, nacelle base,
+      and roughness and excrescence terms
+    civil_turbofan_span_efficiency: Poll-Schumann pure-vortex geometry branch
+    transonic_wave_model: aerox-korn-lock-wave-v1
+    reproducer: tools/update_aircraft_drag_models.py
+  license: project-documentation-and-code
+  redistribution: repository-artifacts
+  notes:
+  - Derived CD0, k, and effective Oswald e were removed from aircraft YAML; the span-efficiency
+    factor remains as an independent physical input.
+  - Piston, turboprop, and special-aircraft models remain low confidence.
+  - The wave technology factor is low-confidence for all current aircraft; type-specific public
+    evidence should replace the class value when available.
+  - Deployed-configuration drag increments remain outside this clean-model release.
+- id: poll_schumann_2021_part2
+  title: An estimation method for the fuel burn and other performance characteristics of civil
+    transport aircraft in the cruise. Part 2
+  authors:
+  - D. I. A. Poll
+  - U. Schumann
+  organization: The Aeronautical Journal 125(1284)
+  url: https://doi.org/10.1017/aer.2020.124
+  publication_date: 2021
+  evidence_type: peer-reviewed-secondary-compilation
+  relevant_locations: Table 1, wing reference areas
+- id: jenkinson_simpkin_rhodes_1999_data_a
+  title: 'Civil Jet Aircraft Design, Data A: Aircraft Data File'
+  authors:
+  - L. R. Jenkinson
+  - P. Simpkin
+  - D. Rhodes
+  organization: Butterworth-Heinemann (Elsevier)
+  url: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-1/table.htm
+  publication_date: 1999
+  evidence_type: textbook-secondary-compilation
+- id: embraer_emb135_apm_1238_r14
+  title: EMB-135 Airport Planning Manual APM-145/1238, Revision 14
+  organization: Embraer
+  url: https://www.embraer.com/media/5q5owkk0/erj-emb-135_apm_135.pdf
+  evidence_type: manufacturer-published-planning
+- id: embraer_emb145_apm_1100_r16
+  title: EMB-145 Airport Planning Manual APM-145/1100, Revision 16
+  organization: Embraer
+  url: https://www.embraer.com/media/2q1d040a/erj-emb-145_apm_140.pdf
+  evidence_type: manufacturer-published-planning

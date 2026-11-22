@@ -2,7 +2,7 @@ AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Boeing 737-300
 ICAO: B733
 Last reviewed: 2026-08-06
-Source ledger: agent-modeling/modeling/sources.yml
+Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
   Model or family: 737-300
@@ -213,7 +213,7 @@ FIELD horizontal_tail.area
   Inputs: span=12.700000 m; root=3.832013 m; tip=1.123465 m
   Applicability: Gross centerline-reference straight-edge horizontal stabilizer; 737-300 baseline drawing
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-1.91 m2; sweep +/-1 deg
-  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in agent-modeling/aircraft-data/boeing-cad-geometry-measurements.csv; Boeing airport-planning CAD; measured values are not certified; not certified.
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in sources/geometry/boeing-cad-geometry-measurements.csv; Boeing airport-planning CAD; measured values are not certified; not certified.
 END FIELD
 
 FIELD horizontal_tail.span
@@ -242,7 +242,7 @@ FIELD horizontal_tail.mac
   Inputs: span=12.700000 m; root=3.832013 m; tip=1.123465 m
   Applicability: Gross centerline-reference straight-edge horizontal stabilizer; 737-300 baseline drawing
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-1.91 m2; sweep +/-1 deg
-  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in agent-modeling/aircraft-data/boeing-cad-geometry-measurements.csv; Boeing airport-planning CAD; measured values are not certified; not certified.
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in sources/geometry/boeing-cad-geometry-measurements.csv; Boeing airport-planning CAD; measured values are not certified; not certified.
 END FIELD
 
 FIELD horizontal_tail.root_chord
@@ -257,7 +257,7 @@ FIELD horizontal_tail.root_chord
   Inputs: span=12.700000 m; root=3.832013 m; tip=1.123465 m
   Applicability: Gross centerline-reference straight-edge horizontal stabilizer; 737-300 baseline drawing
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-1.91 m2; sweep +/-1 deg
-  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in agent-modeling/aircraft-data/boeing-cad-geometry-measurements.csv; Boeing airport-planning CAD; measured values are not certified; not certified.
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in sources/geometry/boeing-cad-geometry-measurements.csv; Boeing airport-planning CAD; measured values are not certified; not certified.
 END FIELD
 
 FIELD horizontal_tail.tip_chord
@@ -272,7 +272,7 @@ FIELD horizontal_tail.tip_chord
   Inputs: span=12.700000 m; root=3.832013 m; tip=1.123465 m
   Applicability: Gross centerline-reference straight-edge horizontal stabilizer; 737-300 baseline drawing
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-1.91 m2; sweep +/-1 deg
-  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in agent-modeling/aircraft-data/boeing-cad-geometry-measurements.csv; Boeing airport-planning CAD; measured values are not certified; not certified.
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in sources/geometry/boeing-cad-geometry-measurements.csv; Boeing airport-planning CAD; measured values are not certified; not certified.
 END FIELD
 
 FIELD horizontal_tail.taper_ratio
@@ -297,7 +297,7 @@ FIELD horizontal_tail.sweep
   Inputs: span=12.700000 m; root=3.832013 m; tip=1.123465 m
   Applicability: Gross centerline-reference straight-edge horizontal stabilizer; 737-300 baseline drawing
   Uncertainty: root/tip/MAC +/-0.15 m; area +/-1.91 m2; sweep +/-1 deg
-  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in agent-modeling/aircraft-data/boeing-cad-geometry-measurements.csv; Boeing airport-planning CAD; measured values are not certified; not certified.
+  Notes: Official Boeing airport-planning vector drawing; exact reference stations are retained in sources/geometry/boeing-cad-geometry-measurements.csv; Boeing airport-planning CAD; measured values are not certified; not certified.
 END FIELD
 
 FIELD horizontal_tail.dihedral

@@ -2,7 +2,7 @@ AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Airbus A321
 ICAO: A321
 Last reviewed: 2026-08-06
-Source ledger: agent-modeling/modeling/sources.yml
+Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
   Model or family: -
@@ -523,7 +523,7 @@ FIELD subtypes
   Source: easa_a064_issue_62 | icao_eedb_issue_32
   Page or section: Section 2 III.5; PDF pp.92-95 | Section 2 III.5; PDF p.92 | Section 2 III.5; PDF p.93
   Applicability: Certified subtype applicability with query identifiers normalized to ICAO EEDB Issue 32.
-  Evidence inventory: agent-modeling/aircraft-data/airbus-subtype-engine-mapping.tsv
+  Evidence inventory: sources/geometry/airbus-subtype-engine-mapping.tsv
   Engine table: src/aerox/data/engines/engines.csv
   Mappings:
     A321-111:
