@@ -115,10 +115,12 @@ class GeometryDragModel(CdShorthand):
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
+        h: ArrayLike | None = None,
+        dT: ArrayLike | None = None,
         condition: DragCondition | None = None,
     ) -> GeometryDragBreakdown:
         condition = resolve_condition(
-            mach, reynolds_per_m, condition
+            mach, reynolds_per_m, condition, h=h, dT=dT
         ).with_default_reynolds(self.reference_reynolds_per_m)
         lift, mach, unit_reynolds, flap, gear, spoiler = condition.broadcast_with(cl)
         require_clean(flap, gear, spoiler)
@@ -162,9 +164,13 @@ class GeometryDragModel(CdShorthand):
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
+        h: ArrayLike | None = None,
+        dT: ArrayLike | None = None,
         condition: DragCondition | None = None,
     ) -> FloatArray:
-        return self.breakdown(cl, mach, reynolds_per_m, condition=condition).total
+        return self.breakdown(
+            cl, mach, reynolds_per_m, h=h, dT=dT, condition=condition
+        ).total
 
     def _drag_coefficient_scalar(self, cl: float, condition: DragCondition) -> float:
         condition = condition.with_default_reynolds(self.reference_reynolds_per_m)
@@ -273,9 +279,11 @@ class TransonicGeometryDragModel(CdShorthand):
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
+        h: ArrayLike | None = None,
+        dT: ArrayLike | None = None,
         condition: DragCondition | None = None,
     ) -> TransonicGeometryDragBreakdown:
-        condition = resolve_condition(mach, reynolds_per_m, condition)
+        condition = resolve_condition(mach, reynolds_per_m, condition, h=h, dT=dT)
         lift, mach, *_ = condition.broadcast_with(cl)
         self._validate_envelope(lift, mach)
         base = self.base_model.breakdown(lift, condition=condition)
@@ -299,9 +307,13 @@ class TransonicGeometryDragModel(CdShorthand):
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
+        h: ArrayLike | None = None,
+        dT: ArrayLike | None = None,
         condition: DragCondition | None = None,
     ) -> FloatArray:
-        return self.breakdown(cl, mach, reynolds_per_m, condition=condition).total
+        return self.breakdown(
+            cl, mach, reynolds_per_m, h=h, dT=dT, condition=condition
+        ).total
 
     def _drag_coefficient_scalar(self, cl: float, condition: DragCondition) -> float:
         if np.ndim(condition.mach) != 0:

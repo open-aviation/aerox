@@ -39,11 +39,13 @@ class ParabolicDragPolar(CdShorthand):
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
+        h: ArrayLike | None = None,
+        dT: ArrayLike | None = None,
         condition: DragCondition | None = None,
     ) -> DragBreakdown:
-        if condition is None and mach is None:
+        if condition is None and mach is None and h is None:
             mach = 0.0
-        condition = resolve_condition(mach, reynolds_per_m, condition)
+        condition = resolve_condition(mach, reynolds_per_m, condition, h=h, dT=dT)
         lift, mach_array, _, flap, gear, spoiler = condition.broadcast_with(cl)
         require_clean(flap, gear, spoiler)
         parasite = np.full_like(lift, self.cd0)
@@ -62,9 +64,13 @@ class ParabolicDragPolar(CdShorthand):
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
+        h: ArrayLike | None = None,
+        dT: ArrayLike | None = None,
         condition: DragCondition | None = None,
     ) -> FloatArray:
-        return self.breakdown(cl, mach, reynolds_per_m, condition=condition).total
+        return self.breakdown(
+            cl, mach, reynolds_per_m, h=h, dT=dT, condition=condition
+        ).total
 
     def _drag_coefficient_scalar(self, cl: float, condition: DragCondition) -> float:
         lift, _, _, flap, gear, spoiler = condition.broadcast_with(cl)
@@ -87,9 +93,11 @@ class ParabolicWaveDragModel(CdShorthand):
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
+        h: ArrayLike | None = None,
+        dT: ArrayLike | None = None,
         condition: DragCondition | None = None,
     ) -> DragBreakdown:
-        condition = resolve_condition(mach, reynolds_per_m, condition)
+        condition = resolve_condition(mach, reynolds_per_m, condition, h=h, dT=dT)
         lift, mach_array, _, flap, gear, spoiler = condition.broadcast_with(cl)
         require_clean(flap, gear, spoiler)
         parasite = np.full_like(lift, self.base_polar.cd0)
@@ -109,9 +117,13 @@ class ParabolicWaveDragModel(CdShorthand):
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
+        h: ArrayLike | None = None,
+        dT: ArrayLike | None = None,
         condition: DragCondition | None = None,
     ) -> FloatArray:
-        return self.breakdown(cl, mach, reynolds_per_m, condition=condition).total
+        return self.breakdown(
+            cl, mach, reynolds_per_m, h=h, dT=dT, condition=condition
+        ).total
 
     def _drag_coefficient_scalar(self, cl: float, condition: DragCondition) -> float:
         mach = float(condition.mach)

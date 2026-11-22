@@ -56,8 +56,10 @@ only and have no entry in the table.
 
 Every record has a source note in `src/aerox/data/aircraft/sources/`. The note
 lists the source of each value. The cited documents are listed in
-`sources/sources.yml`. The CAD drawings and the measurement tables behind the
-geometry values are in `sources/` as well.
+`sources/sources.yml` at the root of the repository. The CAD drawings and the
+measurement tables behind the geometry values are in the same `sources/`
+folder. These files are in the repository only, not in the installed
+package.
 
 `src/aerox/data/aircraft/aircraft-parameter-availability.csv` shows which
 parameters each record contains.

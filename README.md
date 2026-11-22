@@ -1,8 +1,7 @@
 # Aerox
 
-Aerox is an open aircraft performance library and the successor to OpenAP. It
-gives you aircraft data and performance models for 144 aircraft types, built
-from open sources.
+Aerox is an open aircraft performance toolbox (similar but differs to OpenAP). It
+gives you comprehensive aircraft data and performance models for 144 aircraft types, built with physical models from open sources.
 
 ```bash
 pip install aerox
@@ -16,6 +15,8 @@ pip install .
 
 ## Quick start
 
+### Aircraft
+
 Load an aircraft:
 
 ```python
@@ -27,27 +28,32 @@ print(ac.mtow, ac.wing.area, ac.wing.span)
 print(get_available_aircraft())
 ```
 
-Aerox gives drag in two forms. Both have the method `cd()`, an alias of
-`drag_coefficient()`, so either one can be passed where a drag model is
-expected.
+![Wing and tail planforms of four aircraft, drawn from the records](docs/figures/planforms.png)
+
+### Drag model
+
+Aerox gives drag in two forms. Both have the method `cd()` (an alias of
+`drag_coefficient()`) to obtain the drag coefficient at different flight conditions.
 
 | | `build_drag_model(ac)` | `build_parabolic_polar(ac)` |
 | --- | --- | --- |
 | Returns | the full drag model | `CD = cd0 + k CL²` |
 | Changes with Mach and Reynolds number | yes | no, fixed at the reference condition of the record |
-| Wave drag | yes, for civil turbofans | no |
+| Wave drag | yes | no |
 | Use it for | performance at a flight condition | quick estimates and closed-form analysis |
 
 The full model, at a flight condition:
 
 ```python
-from aerox import aero
 from aerox.models.drag import build_drag_model
 
 model = build_drag_model(ac)
-reynolds = aero.reynolds_per_m(mach=0.78, h=11_000)   # per metre
-print(model.cd(cl=0.55, mach=0.78, reynolds_per_m=reynolds))
+print(model.cd(cl=0.55, mach=0.78, h=11_000))   # altitude in m, ISA
 ```
+
+With the altitude `h`, the model computes the Reynolds number from the ISA
+atmosphere. Add `dT=` for a temperature offset from ISA, or pass
+`reynolds_per_m=` instead of `h` to give the Reynolds number yourself.
 
 The parabolic polar, the same at every flight condition:
 
@@ -63,6 +69,18 @@ Near the reference cruise condition of the record, the two agree within a few
 percent at cruise lift coefficients. Away from that condition, or at high lift
 coefficients where wave drag appears, use the full model. See
 [the drag docs](docs/drag.md) for details.
+
+![A320 drag polar at three Mach numbers, with the parabolic polar](docs/figures/drag-polar.png)
+
+![Drag rise with Mach number for the A320, B738, B789 and A388](docs/figures/drag-rise.png)
+
+The breakdown shows what each aircraft part contributes:
+
+![Drag breakdown by aircraft part for five aircraft](docs/figures/drag-breakdown.png)
+
+The maximum lift-to-drag ratio of every turbofan aircraft in the database:
+
+![Maximum lift-to-drag ratio against wing aspect ratio for turbofan aircraft](docs/figures/fleet-lift-to-drag.png)
 
 Atmosphere and speed conversions, in SI units:
 
@@ -87,15 +105,30 @@ cas = aero.mach2cas(mach=0.78, h=10_000)   # m/s
 - **Flight management.** `aerox.fms`, route, altitude and speed intent, and
   guidance primitives.
 
-## Accuracy and limits
+## Current accuracy and limits
 
 - The drag model agrees with a reference performance model within 5 % at
-  cruise for most jet transports. At lower Mach numbers (about 0.6) it is 4 to
+  cruise for most jet transports. But at lower Mach numbers (about 0.6) it is 4 to
   12 % too high.
 - Drag is for the clean configuration only. Flap, slat, and landing gear
   increments are not included yet.
 - The modules for thrust, lift, flight dynamics, and simulation are
   experimental. Their interfaces can change.
+
+## Sources
+
+- **Aircraft data.** Type certificate data sheets (EASA, FAA, Transport
+  Canada, CAA New Zealand), manufacturer airport planning documents, and
+  manufacturer CAD drawings (Airbus, Boeing), from which the wing and tail
+  geometry is measured. Every value in a record has a source note under
+  `src/aerox/data/aircraft/sources`. The cited documents are listed in
+  `sources/sources.yml`, and the drawings and measurement tables are in
+  `sources/`. Values not yet traced to such a document are marked
+  `legacy-unverified`.
+- **Drag methods.** Component drag build-up after Raymer, Kroo, and Scholz,
+  nacelle and pylon terms after FLOPS and SUAVE, and wave drag from the Korn
+  equation with Lock's fourth-power law.
+- **Atmosphere.** `aerox.aero` is ported from `openap.aero` (OpenAP 2.6.0).
 
 ## Documentation
 
@@ -107,6 +140,7 @@ atmosphere functions, and the roadmap.
 ```bash
 uv run pytest -q
 uv run --extra editor tools/web_editor.py   # local editor for aircraft records
+uv run --extra research tools/make_readme_figures.py   # figures in docs/figures
 ```
 
 ## Licence

@@ -10,7 +10,7 @@ geometry. No value is fitted to another performance model.
 | Returns | the full model, `GeometryDragModel` or `TransonicGeometryDragModel` | `ParabolicDragPolar`, `CD = cd0 + k CL²` |
 | Zero-lift drag | changes with the Mach and Reynolds number | constant |
 | Wave drag | yes, for the aircraft that have it (see below) | no |
-| Arguments | `cl`, `mach`, optional `reynolds_per_m` | `cl` only |
+| Arguments | `cl`, `mach`, and optionally `h` and `dT`, or `reynolds_per_m` | `cl` only |
 | Use it for | performance at a flight condition, Mach sweeps, cruise near the drag rise | quick estimates, closed-form analysis such as the best lift-to-drag ratio, optimisation |
 
 The parabolic polar is derived from the full model: `cd0` and `k` are the full
@@ -60,20 +60,32 @@ from aerox.models.drag import build_drag_model
 ac = load_aircraft("A320")
 model = build_drag_model(ac)
 
-reynolds = aero.reynolds_per_m(mach=0.78, h=11_000)   # about 5.9e6 per metre
-cd = model.drag_coefficient(cl=0.55, mach=0.78, reynolds_per_m=reynolds)
-cd = model.cd(cl=0.55, mach=0.78, reynolds_per_m=reynolds)   # the same, shorter
+cd = model.drag_coefficient(cl=0.55, mach=0.78, h=11_000)
+cd = model.cd(cl=0.55, mach=0.78, h=11_000)            # the same, shorter
+cd = model.cd(cl=0.55, mach=0.78, h=11_000, dT=10)     # ISA + 10 K
 ```
 
-`drag_coefficient(cl, mach, reynolds_per_m)`, or its shorthand `cd(...)`, takes
-the lift coefficient, the Mach number, and the Reynolds number per metre. Each aircraft part applies its own reference length
-to the Reynolds number per metre. All three arguments accept NumPy arrays and
-broadcast against each other.
+`drag_coefficient`, or its shorthand `cd`, takes the lift coefficient `cl` and
+the Mach number `mach`. The Reynolds number can be given in one of three ways:
 
-`aero.reynolds_per_m(mach, h)` gives the Reynolds number per metre in the ISA
-atmosphere, with Sutherland's law for the viscosity. Without `reynolds_per_m`,
-the model uses the reference value stored in the aircraft record
-(`drag.reference_reynolds_per_m`).
+- `h=`, the altitude in m, and optionally `dT=`, the temperature offset from
+  ISA in K. The model computes the Reynolds number per metre in the ISA
+  atmosphere with `aero.reynolds_per_m(mach, h, dT)`, which uses Sutherland's
+  law for the viscosity.
+- `reynolds_per_m=`, the Reynolds number per metre, if you have it from
+  another source:
+
+  ```python
+  reynolds = aero.reynolds_per_m(mach=0.78, h=11_000)   # about 5.9e6 per metre
+  cd = model.cd(cl=0.55, mach=0.78, reynolds_per_m=reynolds)
+  ```
+
+- Neither: the model uses the reference value stored in the aircraft record
+  (`drag.reference_reynolds_per_m`).
+
+Giving both `h` and `reynolds_per_m` raises `TypeError`. Each aircraft part
+applies its own reference length to the Reynolds number per metre. All
+arguments accept NumPy arrays and broadcast against each other.
 
 The flight condition can also be passed as one object:
 
@@ -93,7 +105,7 @@ Mach number or Reynolds number.
 `breakdown` takes the same arguments and returns each part of the drag:
 
 ```python
-b = model.breakdown(cl=0.55, mach=0.78, reynolds_per_m=reynolds)
+b = model.breakdown(cl=0.55, mach=0.78, h=11_000)
 print(b.component_parasite)    # zero-lift drag of each aircraft part
 print(b.parasite_increments)   # the fixed increments, by name
 print(b.parasite)              # total zero-lift drag

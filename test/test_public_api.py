@@ -182,12 +182,12 @@ def test_cd_follows_a_subclass_override_of_drag_coefficient():
     @dataclass(frozen=True)
     class ShiftedPolar(ParabolicDragPolar):
         def drag_coefficient(
-            self, cl, mach=None, reynolds_per_m=None, *, condition=None
+            self, cl, mach=None, reynolds_per_m=None, *, h=None, dT=None, condition=None
         ):
-            return (
-                super().drag_coefficient(cl, mach, reynolds_per_m, condition=condition)
-                + 0.01
+            base = super().drag_coefficient(
+                cl, mach, reynolds_per_m, h=h, dT=dT, condition=condition
             )
+            return base + 0.01
 
     polar = ShiftedPolar(cd0=0.02, k=0.04)
     assert polar.drag_coefficient(cl=0.5) == pytest.approx(0.04)
@@ -196,6 +196,8 @@ def test_cd_follows_a_subclass_override_of_drag_coefficient():
         "cl",
         "mach",
         "reynolds_per_m",
+        "h",
+        "dT",
         "condition",
     ]
 
@@ -250,3 +252,31 @@ def test_migration_tool_upgrades_the_legacy_reynolds_key():
     assert "reference_unit_reynolds_number_per_m" not in normalized["drag"]
     assert validate_simple(normalized) == []
     assert sidecar == notes
+
+
+def test_altitude_gives_the_isa_reynolds_number():
+    for name, model in _all_models().items():
+        mach = 0.75 if name == "transonic_compressibility" else 0.7
+        for dT in (None, 10.0):
+            reynolds = aero.reynolds_per_m(mach=mach, h=9_000, dT=dT or 0)
+            expected = model.cd(cl=0.45, mach=mach, reynolds_per_m=reynolds)
+            assert model.cd(cl=0.45, mach=mach, h=9_000, dT=dT) == pytest.approx(
+                expected
+            ), name
+            assert model.breakdown(
+                cl=0.45, mach=mach, h=9_000, dT=dT
+            ).total == pytest.approx(expected), name
+
+
+def test_altitude_conflicts_raise():
+    model = build_drag_model(load_aircraft("A320"))
+    with pytest.raises(TypeError):
+        model.cd(cl=0.5, mach=0.78, h=11_000, reynolds_per_m=5e6)
+    with pytest.raises(TypeError):
+        model.cd(cl=0.5, h=11_000, condition=DragCondition(0.78))
+    with pytest.raises(TypeError):
+        model.cd(cl=0.5, mach=0.78, dT=5.0)
+    with pytest.raises(TypeError):
+        model.cd(cl=0.5, h=11_000)
+    with pytest.raises(TypeError):
+        ParabolicDragPolar(0.02, 0.04).cd(cl=0.5, h=11_000)

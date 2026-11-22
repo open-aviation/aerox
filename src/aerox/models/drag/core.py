@@ -8,6 +8,8 @@ from typing import Protocol, runtime_checkable
 import numpy as np
 from numpy.typing import ArrayLike, NDArray
 
+from ...aero import reynolds_per_m as isa_reynolds_per_m
+
 FloatArray = NDArray[np.float64]
 
 
@@ -82,15 +84,31 @@ def resolve_condition(
     mach: ArrayLike | None,
     reynolds_per_m: ArrayLike | None,
     condition: DragCondition | None,
+    *,
+    h: ArrayLike | None = None,
+    dT: ArrayLike | None = None,
 ) -> DragCondition:
-    """Return the condition given either as arguments or as a ``DragCondition``."""
+    """Return the condition given as arguments or as a ``DragCondition``.
+
+    With the altitude ``h`` in metres, and optionally the ISA temperature
+    offset ``dT`` in K, the Reynolds number per metre is computed with
+    :func:`aerox.aero.reynolds_per_m`.
+    """
 
     if condition is not None:
-        if mach is not None or reynolds_per_m is not None:
-            raise TypeError("give either mach and reynolds_per_m, or condition")
+        if mach is not None or reynolds_per_m is not None or h is not None:
+            raise TypeError("give either mach with h or reynolds_per_m, or condition")
+        if dT is not None:
+            raise TypeError("dT is used only with h")
         return condition
     if mach is None:
         raise TypeError("mach is required")
+    if h is not None:
+        if reynolds_per_m is not None:
+            raise TypeError("give either h or reynolds_per_m, not both")
+        reynolds_per_m = isa_reynolds_per_m(mach, h, 0 if dT is None else dT)
+    elif dT is not None:
+        raise TypeError("dT is used only with h")
     return DragCondition(mach=mach, reynolds_per_m=reynolds_per_m)
 
 
@@ -114,12 +132,14 @@ class CdShorthand:
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
+        h: ArrayLike | None = None,
+        dT: ArrayLike | None = None,
         condition: DragCondition | None = None,
     ) -> FloatArray:
         """Return the drag coefficient; shorthand for ``drag_coefficient``."""
 
         return self.drag_coefficient(  # type: ignore[attr-defined]
-            cl, mach, reynolds_per_m, condition=condition
+            cl, mach, reynolds_per_m, h=h, dT=dT, condition=condition
         )
 
 
@@ -127,8 +147,9 @@ class CdShorthand:
 class DragModel(Protocol):
     """Drag-coefficient model used by the flight mechanics.
 
-    Every model is evaluated as ``drag_coefficient(cl, mach, reynolds_per_m)``
-    or with ``condition=DragCondition(...)``. The Aerox models also have the
+    Every model is evaluated as ``drag_coefficient(cl, mach, reynolds_per_m)``,
+    as ``drag_coefficient(cl, mach, h=..., dT=...)`` with the Reynolds number
+    from the ISA atmosphere, or with ``condition=DragCondition(...)``. The Aerox models also have the
     shorthand ``cd(...)``. ``breakdown`` takes the same arguments and returns
     the drag parts. ``_drag_coefficient_scalar`` is a fast path
     for scalar conditions used inside integrators.
@@ -140,6 +161,8 @@ class DragModel(Protocol):
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
+        h: ArrayLike | None = None,
+        dT: ArrayLike | None = None,
         condition: DragCondition | None = None,
     ) -> DragBreakdownLike: ...
 
@@ -149,6 +172,8 @@ class DragModel(Protocol):
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
+        h: ArrayLike | None = None,
+        dT: ArrayLike | None = None,
         condition: DragCondition | None = None,
     ) -> FloatArray: ...
 

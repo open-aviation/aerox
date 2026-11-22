@@ -166,9 +166,11 @@ class TransonicCompressibilityDragModel(CdShorthand):
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
+        h: ArrayLike | None = None,
+        dT: ArrayLike | None = None,
         condition: DragCondition | None = None,
     ) -> DragBreakdown:
-        condition = resolve_condition(mach, reynolds_per_m, condition)
+        condition = resolve_condition(mach, reynolds_per_m, condition, h=h, dT=dT)
         lift, mach_array, _, flap, gear, spoiler = condition.broadcast_with(cl)
         require_clean(flap, gear, spoiler)
         critical_mach = self.wave_drag.critical_mach(lift)
@@ -189,9 +191,13 @@ class TransonicCompressibilityDragModel(CdShorthand):
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
+        h: ArrayLike | None = None,
+        dT: ArrayLike | None = None,
         condition: DragCondition | None = None,
     ) -> FloatArray:
-        return self.breakdown(cl, mach, reynolds_per_m, condition=condition).total
+        return self.breakdown(
+            cl, mach, reynolds_per_m, h=h, dT=dT, condition=condition
+        ).total
 
     def _drag_coefficient_scalar(self, cl: float, condition: DragCondition) -> float:
         return float(self.drag_coefficient(cl, condition=condition))
@@ -366,6 +372,8 @@ class PollSchumannDragModel(CdShorthand):
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
+        h: ArrayLike | None = None,
+        dT: ArrayLike | None = None,
         condition: DragCondition | None = None,
     ) -> DragBreakdown:
         """Evaluate the model.
@@ -377,7 +385,7 @@ class PollSchumannDragModel(CdShorthand):
         ``reynolds_per_m = aircraft_reynolds / sqrt(reference_area_m2)``.
         """
 
-        condition = resolve_condition(mach, reynolds_per_m, condition)
+        condition = resolve_condition(mach, reynolds_per_m, condition, h=h, dT=dT)
         lift, mach_array, unit_reynolds, flap, gear, spoiler = condition.broadcast_with(
             cl
         )
@@ -404,9 +412,13 @@ class PollSchumannDragModel(CdShorthand):
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
+        h: ArrayLike | None = None,
+        dT: ArrayLike | None = None,
         condition: DragCondition | None = None,
     ) -> FloatArray:
-        return self.breakdown(cl, mach, reynolds_per_m, condition=condition).total
+        return self.breakdown(
+            cl, mach, reynolds_per_m, h=h, dT=dT, condition=condition
+        ).total
 
     def _drag_coefficient_scalar(self, cl: float, condition: DragCondition) -> float:
         return float(self.drag_coefficient(cl, condition=condition))
