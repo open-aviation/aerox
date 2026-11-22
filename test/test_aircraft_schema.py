@@ -370,20 +370,27 @@ def test_new_vertical_tail_and_dihedral_priors_are_scoped():
         assert aircraft.vertical_tail.rudder_area_ratio is None
 
 
-def test_variant_mismatched_geometry_remains_evidence_only():
+def test_fighter_planforms_come_from_nasa_geometry_tables():
     f15 = load_aircraft("F15")
-    assert f15.wing.span == 13.0
-    assert f15.wing.area is None
-    assert f15.horizontal_tail.area is None
-    assert f15.vertical_tail.area is None
+    assert f15.wing.span == 13.05
+    assert f15.wing.area == 56.61
+    # The fin area is the total of the two fins; the chords are per fin, so
+    # the per-fin height is not stored.
+    assert f15.vertical_tail.area == 11.63
+    assert f15.vertical_tail.height is None
+
+    f16 = load_aircraft("F16")
+    # Theoretical span; the USAF fact sheet span includes the tip missiles.
+    assert f16.wing.span == pytest.approx(9.144)
+    assert f16.wing.area == pytest.approx(27.870912)
+    assert f16.horizontal_tail.dihedral == -10.0
 
     notes = parse_source_notes(
         (SOURCE_ROOT / "turbofan/f15.txt").read_text(encoding="utf-8")
     )
     record = notes["fields"]["vertical_tail.area"]
-    assert record["status"] == "unresolved"
-    assert record["source"] == "-"
-    assert "nasa_tm_72861" in record["searched_source"]
+    assert record["status"] == "inferred-with-uncertainty"
+    assert record["source"] == "nasa_tm_72861_f15_precision_controllability_1979_05"
     assert "two fins" in record["notes"]
 
 

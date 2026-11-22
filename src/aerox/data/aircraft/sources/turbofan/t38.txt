@@ -394,14 +394,14 @@ LEGACY PARAMETERS
 
 DRAG MODEL
   Active Aerox physical drag model and reference-condition polar snapshot.
-  Scaled or substituted geometry fields: horizontal_tail.area, horizontal_tail.mac, vertical_tail.area, vertical_tail.mac
+  Scaled or substituted geometry fields: fuselage.width, fuselage.height, horizontal_tail.area, horizontal_tail.mac, vertical_tail.area, vertical_tail.mac
 
 FIELD drag.model
   Value: aerox-geometry-drag-v2
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=X-special-scaled; confidence=low; e_span=0.8500; unresolved/resolved=0.3000
-  Zero-lift terms at reference (drag counts): wing=59.78; fuselage=108.43; horizontal_tail=14.10; vertical_tail=10.83; unresolved=57.94
+  Zero-lift terms at reference (drag counts): wing=59.78; fuselage=88.45; horizontal_tail=14.10; vertical_tail=10.83; unresolved=51.95
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration

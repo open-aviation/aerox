@@ -105,121 +105,155 @@ END FIELD
 WING AND TAIL GEOMETRY
 
 FIELD wing.area
-  Value: null
+  Value: 27.870912
   Unit: m2
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: usaf_f16_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Status: calculated-from-published-inputs
+  Source: nasa_tp_3355_f16c_model_1993
+  Source URL: https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf
+  Document title: NASA TP-3355, Supersonic aerodynamic characteristics of an advanced F-16 derivative aircraft configuration, 1993
+  Page or section: Table II Geometric characteristics of F-16C model, p. 11
+  Formula: ft2 * 0.09290304
+  Inputs: Model theoretical area 1.3333 ft2 x 225 = 300 ft2
+  Applicability: F-16C (Block 15 and later enlarged stabilator); full scale from the 1/15-scale model, lengths x15, areas x225
+  Notes: Theoretical reference area.
 END FIELD
 
 FIELD wing.span
-  Value: 9.9568
+  Value: 9.144
   Unit: m
   Status: calculated-from-published-inputs
-  Source: usaf_f16_fact_sheet
-  Source URL: https://www.af.mil/About-Us/Fact-Sheets/Display/Article/104505/f-16-fighting-falcon/force_isolation/f-16-fighting-falcon/
-  Document title: F-16 Fighting Falcon
-  Revision date: 2021-09
-  Page or section: General Characteristics, Wingspan
-  Formula: m = (12*ft + in)*0.0254
-  Inputs: 32 ft 8 in; page also prints 9.8 m
-  Applicability: F-16C/D family-level fact-sheet configuration; block/store configuration not specified
-  Uncertainty: Exact unit conversion; source's metric value conflicts by 0.1568 m
-  Previous value: 9.8 m
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
-  Notes: Government-published, not civil certified or manufacturer-published. Use exact original-unit conversion rather than the inconsistent rounded metric.
+  Source: nasa_tp_3355_f16c_model_1993
+  Source URL: https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf
+  Document title: NASA TP-3355, Supersonic aerodynamic characteristics of an advanced F-16 derivative aircraft configuration, 1993
+  Page or section: Table II Geometric characteristics of F-16C model, p. 11
+  Formula: ft * 0.3048
+  Inputs: Model span 24.000 in x 15 = 30 ft
+  Applicability: F-16C (Block 15 and later enlarged stabilator); full scale from the 1/15-scale model, lengths x15, areas x225
+  Previous value: 9.9568 m
+  Correction reason: Replaced with the NASA geometry table value.
+  Notes: Theoretical span without wingtip launchers or missiles. The USAF fact sheet 32 ft 8 in includes the tip missiles.
 END FIELD
 
 FIELD wing.mac
-  Value: null
+  Value: 3.450336
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: usaf_f16_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Status: calculated-from-published-inputs
+  Source: nasa_tp_3355_f16c_model_1993
+  Source URL: https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf
+  Document title: NASA TP-3355, Supersonic aerodynamic characteristics of an advanced F-16 derivative aircraft configuration, 1993
+  Page or section: Table II Geometric characteristics of F-16C model, p. 11
+  Formula: ft * 0.3048
+  Inputs: Model MAC 9.056 in x 15 = 11.32 ft
+  Applicability: F-16C (Block 15 and later enlarged stabilator); full scale from the 1/15-scale model, lengths x15, areas x225
+  Notes: Matches the trapezoid formula.
 END FIELD
 
 FIELD wing.sweep
-  Value: null
+  Value: 32.18
   Unit: deg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: usaf_f16_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Status: calculated-from-published-inputs
+  Source: nasa_tp_3355_f16c_model_1993
+  Source URL: https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf
+  Document title: NASA TP-3355, Supersonic aerodynamic characteristics of an advanced F-16 derivative aircraft configuration, 1993
+  Page or section: Table II Geometric characteristics of F-16C model, p. 11
+  Formula: atan(tan(LE sweep) - (root_chord - tip_chord) / (2*span))
+  Inputs: LE sweep 40 deg; TE sweep 0 deg; root_chord=4.966191 m; tip_chord=1.129809 m
+  Applicability: F-16C (Block 15 and later enlarged stabilator); full scale from the 1/15-scale model, lengths x15, areas x225
+  Notes: Quarter-chord sweep of the reference trapezoid.
 END FIELD
 
 FIELD wing.t/c
-  Value: null
+  Value: 0.04
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: usaf_f16_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Status: calculated-from-published-inputs
+  Source: nasa_tp_3355_f16c_model_1993
+  Source URL: https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf
+  Document title: NASA TP-3355, Supersonic aerodynamic characteristics of an advanced F-16 derivative aircraft configuration, 1993
+  Page or section: Table II Geometric characteristics of F-16C model, p. 11
+  Inputs: Airfoil NACA 64A204, root and tip
+  Applicability: F-16C (Block 15 and later enlarged stabilator); full scale from the 1/15-scale model, lengths x15, areas x225
 END FIELD
 
 FIELD wing.root_chord
-  Value: null
+  Value: 4.966191
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: usaf_f16_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Status: calculated-from-published-inputs
+  Source: nasa_tp_3355_f16c_model_1993
+  Source URL: https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf
+  Document title: NASA TP-3355, Supersonic aerodynamic characteristics of an advanced F-16 derivative aircraft configuration, 1993
+  Page or section: Table II Geometric characteristics of F-16C model, p. 11
+  Formula: 2*area / (span*(1+taper))
+  Inputs: area=27.870912 m2; span=9.144 m; taper=0.2275
+  Applicability: F-16C (Block 15 and later enlarged stabilator); full scale from the 1/15-scale model, lengths x15, areas x225
+  Notes: Reference trapezoid extended to the centreline.
 END FIELD
 
 FIELD wing.tip_chord
-  Value: null
+  Value: 1.129809
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: usaf_f16_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Status: calculated-from-published-inputs
+  Source: nasa_tp_3355_f16c_model_1993
+  Source URL: https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf
+  Document title: NASA TP-3355, Supersonic aerodynamic characteristics of an advanced F-16 derivative aircraft configuration, 1993
+  Page or section: Table II Geometric characteristics of F-16C model, p. 11
+  Formula: taper * root_chord
+  Inputs: taper=0.2275; root_chord=4.966191 m
+  Applicability: F-16C (Block 15 and later enlarged stabilator); full scale from the 1/15-scale model, lengths x15, areas x225
+  Notes: Reference trapezoid.
 END FIELD
 
 FIELD wing.taper_ratio
-  Value: null
+  Value: 0.2275
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: usaf_f16_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Status: calculated-from-published-inputs
+  Source: nasa_tp_3355_f16c_model_1993
+  Source URL: https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf
+  Document title: NASA TP-3355, Supersonic aerodynamic characteristics of an advanced F-16 derivative aircraft configuration, 1993
+  Page or section: Table II Geometric characteristics of F-16C model, p. 11
+  Formula: tip_chord / root_chord
+  Inputs: Taper ratio 0.2275
+  Applicability: F-16C (Block 15 and later enlarged stabilator); full scale from the 1/15-scale model, lengths x15, areas x225
 END FIELD
 
 FIELD wing.aspect_ratio
-  Value: null
+  Value: 3.0
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: usaf_f16_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Status: calculated-from-published-inputs
+  Source: nasa_tp_3355_f16c_model_1993
+  Source URL: https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf
+  Document title: NASA TP-3355, Supersonic aerodynamic characteristics of an advanced F-16 derivative aircraft configuration, 1993
+  Page or section: Table II Geometric characteristics of F-16C model, p. 11
+  Formula: span^2 / area
+  Inputs: span=9.144 m; area=27.870912 m2
+  Applicability: F-16C (Block 15 and later enlarged stabilator); full scale from the 1/15-scale model, lengths x15, areas x225
+  Notes: Table prints 3.0.
 END FIELD
 
 FIELD wing.dihedral
-  Value: null
+  Value: 0.0
   Unit: deg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: usaf_f16_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Status: calculated-from-published-inputs
+  Source: nasa_tp_3355_f16c_model_1993
+  Source URL: https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf
+  Document title: NASA TP-3355, Supersonic aerodynamic characteristics of an advanced F-16 derivative aircraft configuration, 1993
+  Page or section: Table II Geometric characteristics of F-16C model, p. 11
+  Inputs: No dihedral angle printed for the wing
+  Applicability: F-16C (Block 15 and later enlarged stabilator); full scale from the 1/15-scale model, lengths x15, areas x225
+  Notes: Drawn flat in the model drawings; 0 deg assumed.
 END FIELD
 
 FIELD horizontal_tail.area
-  Value: null
+  Value: 5.915601
   Unit: m2
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: usaf_f16_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Status: calculated-from-published-inputs
+  Source: nasa_tp_3355_f16c_model_1993
+  Source URL: https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf
+  Document title: NASA TP-3355, Supersonic aerodynamic characteristics of an advanced F-16 derivative aircraft configuration, 1993
+  Page or section: Table II Geometric characteristics of F-16C model, p. 11
+  Formula: model ft2 * 225 * 0.09290304
+  Inputs: Model exposed area 0.283 ft2 (both sides) x 225 = 63.7 ft2
+  Applicability: F-16C (Block 15 and later enlarged stabilator); full scale from the 1/15-scale model, lengths x15, areas x225
+  Notes: Exposed area; the tip-to-tip span is not printed, so span is not stored.
 END FIELD
 
 FIELD horizontal_tail.span
@@ -233,63 +267,83 @@ FIELD horizontal_tail.span
 END FIELD
 
 FIELD horizontal_tail.mac
-  Value: null
+  Value: 1.800225
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: usaf_f16_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Status: calculated-from-published-inputs
+  Source: nasa_tp_3355_f16c_model_1993
+  Source URL: https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf
+  Document title: NASA TP-3355, Supersonic aerodynamic characteristics of an advanced F-16 derivative aircraft configuration, 1993
+  Page or section: Table II Geometric characteristics of F-16C model, p. 11
+  Formula: 2/3*root*(1+taper+taper^2)/(1+taper)
+  Inputs: Model MAC 4.725 in x 15
+  Applicability: F-16C (Block 15 and later enlarged stabilator); full scale from the 1/15-scale model, lengths x15, areas x225
 END FIELD
 
 FIELD horizontal_tail.root_chord
-  Value: null
+  Value: 2.473237
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: usaf_f16_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Status: calculated-from-published-inputs
+  Source: nasa_tp_3355_f16c_model_1993
+  Source URL: https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf
+  Document title: NASA TP-3355, Supersonic aerodynamic characteristics of an advanced F-16 derivative aircraft configuration, 1993
+  Page or section: Table II Geometric characteristics of F-16C model, p. 11
+  Formula: trapezoid with the tabulated area, semispan and MAC
+  Inputs: Model exposed area 0.283 ft2, semispan 4.642 in, MAC 4.725 in, scaled x15
+  Applicability: F-16C (Block 15 and later enlarged stabilator); full scale from the 1/15-scale model, lengths x15, areas x225
+  Notes: Exposed panel; derived, the table gives no chords.
 END FIELD
 
 FIELD horizontal_tail.tip_chord
-  Value: null
+  Value: 0.871552
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: usaf_f16_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Status: calculated-from-published-inputs
+  Source: nasa_tp_3355_f16c_model_1993
+  Source URL: https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf
+  Document title: NASA TP-3355, Supersonic aerodynamic characteristics of an advanced F-16 derivative aircraft configuration, 1993
+  Page or section: Table II Geometric characteristics of F-16C model, p. 11
+  Formula: trapezoid with the tabulated area, semispan and MAC
+  Inputs: as for the root chord
+  Applicability: F-16C (Block 15 and later enlarged stabilator); full scale from the 1/15-scale model, lengths x15, areas x225
+  Notes: Exposed panel; derived.
 END FIELD
 
 FIELD horizontal_tail.taper_ratio
-  Value: null
+  Value: 0.3523934
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: usaf_f16_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Status: calculated-from-published-inputs
+  Source: nasa_tp_3355_f16c_model_1993
+  Source URL: https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf
+  Document title: NASA TP-3355, Supersonic aerodynamic characteristics of an advanced F-16 derivative aircraft configuration, 1993
+  Page or section: Table II Geometric characteristics of F-16C model, p. 11
+  Formula: tip_chord / root_chord
+  Inputs: derived chords
+  Applicability: F-16C (Block 15 and later enlarged stabilator); full scale from the 1/15-scale model, lengths x15, areas x225
 END FIELD
 
 FIELD horizontal_tail.sweep
-  Value: null
+  Value: 31.5
   Unit: deg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: usaf_f16_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Status: calculated-from-published-inputs
+  Source: nasa_tp_3355_f16c_model_1993
+  Source URL: https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf
+  Document title: NASA TP-3355, Supersonic aerodynamic characteristics of an advanced F-16 derivative aircraft configuration, 1993
+  Page or section: Table II Geometric characteristics of F-16C model, p. 11
+  Formula: atan(tan(LE sweep) - 0.25*(root-tip)/exposed semispan)
+  Inputs: LE sweep 40 deg; model exposed semispan 4.642 in x 15
+  Applicability: F-16C (Block 15 and later enlarged stabilator); full scale from the 1/15-scale model, lengths x15, areas x225
+  Notes: Quarter-chord sweep of the exposed panel.
 END FIELD
 
 FIELD horizontal_tail.dihedral
-  Value: null
+  Value: -10.0
   Unit: deg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: usaf_f16_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Status: calculated-from-published-inputs
+  Source: nasa_tp_3355_f16c_model_1993
+  Source URL: https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf
+  Document title: NASA TP-3355, Supersonic aerodynamic characteristics of an advanced F-16 derivative aircraft configuration, 1993
+  Page or section: Table II Geometric characteristics of F-16C model, p. 11
+  Inputs: Dihedral -10 deg
+  Applicability: F-16C (Block 15 and later enlarged stabilator); full scale from the 1/15-scale model, lengths x15, areas x225
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -313,73 +367,98 @@ FIELD horizontal_tail.elevator_area_ratio
 END FIELD
 
 FIELD vertical_tail.area
-  Value: null
+  Value: 5.079474
   Unit: m2
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: usaf_f16_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Status: calculated-from-published-inputs
+  Source: nasa_tp_3355_f16c_model_1993
+  Source URL: https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf
+  Document title: NASA TP-3355, Supersonic aerodynamic characteristics of an advanced F-16 derivative aircraft configuration, 1993
+  Page or section: Table II Geometric characteristics of F-16C model, p. 11
+  Formula: model ft2 * 225 * 0.09290304
+  Inputs: Model area 0.243 ft2 x 225 = 54.7 ft2
+  Applicability: F-16C (Block 15 and later enlarged stabilator); full scale from the 1/15-scale model, lengths x15, areas x225
+  Notes: Ventral fins (16.0 ft2 for both) are not included.
 END FIELD
 
 FIELD vertical_tail.height
-  Value: null
+  Value: 2.565273
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: usaf_f16_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Status: calculated-from-published-inputs
+  Source: nasa_tp_3355_f16c_model_1993
+  Source URL: https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf
+  Document title: NASA TP-3355, Supersonic aerodynamic characteristics of an advanced F-16 derivative aircraft configuration, 1993
+  Page or section: Table II Geometric characteristics of F-16C model, p. 11
+  Formula: model in * 15 * 0.0254
+  Inputs: Model exposed span 6.733 in x 15
+  Applicability: F-16C (Block 15 and later enlarged stabilator); full scale from the 1/15-scale model, lengths x15, areas x225
 END FIELD
 
 FIELD vertical_tail.mac
-  Value: null
+  Value: 2.08407
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: usaf_f16_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Status: calculated-from-published-inputs
+  Source: nasa_tp_3355_f16c_model_1993
+  Source URL: https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf
+  Document title: NASA TP-3355, Supersonic aerodynamic characteristics of an advanced F-16 derivative aircraft configuration, 1993
+  Page or section: Table II Geometric characteristics of F-16C model, p. 11
+  Formula: 2/3*root*(1+taper+taper^2)/(1+taper)
+  Inputs: Model MAC 5.470 in x 15
+  Applicability: F-16C (Block 15 and later enlarged stabilator); full scale from the 1/15-scale model, lengths x15, areas x225
 END FIELD
 
 FIELD vertical_tail.root_chord
-  Value: null
+  Value: 2.766007
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: usaf_f16_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Status: calculated-from-published-inputs
+  Source: nasa_tp_3355_f16c_model_1993
+  Source URL: https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf
+  Document title: NASA TP-3355, Supersonic aerodynamic characteristics of an advanced F-16 derivative aircraft configuration, 1993
+  Page or section: Table II Geometric characteristics of F-16C model, p. 11
+  Formula: trapezoid with the tabulated area, span and MAC
+  Inputs: model area 0.243 ft2, exposed span 6.733 in, MAC 5.470 in, scaled x15
+  Applicability: F-16C (Block 15 and later enlarged stabilator); full scale from the 1/15-scale model, lengths x15, areas x225
+  Notes: Derived; the table gives no chords.
 END FIELD
 
 FIELD vertical_tail.tip_chord
-  Value: null
+  Value: 1.194175
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: usaf_f16_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Status: calculated-from-published-inputs
+  Source: nasa_tp_3355_f16c_model_1993
+  Source URL: https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf
+  Document title: NASA TP-3355, Supersonic aerodynamic characteristics of an advanced F-16 derivative aircraft configuration, 1993
+  Page or section: Table II Geometric characteristics of F-16C model, p. 11
+  Formula: trapezoid with the tabulated area, span and MAC
+  Inputs: as for the root chord
+  Applicability: F-16C (Block 15 and later enlarged stabilator); full scale from the 1/15-scale model, lengths x15, areas x225
+  Notes: Derived.
 END FIELD
 
 FIELD vertical_tail.taper_ratio
-  Value: null
+  Value: 0.4317323
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: usaf_f16_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Status: calculated-from-published-inputs
+  Source: nasa_tp_3355_f16c_model_1993
+  Source URL: https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf
+  Document title: NASA TP-3355, Supersonic aerodynamic characteristics of an advanced F-16 derivative aircraft configuration, 1993
+  Page or section: Table II Geometric characteristics of F-16C model, p. 11
+  Formula: tip_chord / root_chord
+  Inputs: derived chords
+  Applicability: F-16C (Block 15 and later enlarged stabilator); full scale from the 1/15-scale model, lengths x15, areas x225
 END FIELD
 
 FIELD vertical_tail.sweep
-  Value: null
+  Value: 43.17
   Unit: deg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: usaf_f16_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Status: calculated-from-published-inputs
+  Source: nasa_tp_3355_f16c_model_1993
+  Source URL: https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf
+  Document title: NASA TP-3355, Supersonic aerodynamic characteristics of an advanced F-16 derivative aircraft configuration, 1993
+  Page or section: Table II Geometric characteristics of F-16C model, p. 11
+  Formula: atan(tan(LE sweep) - 0.25*(root-tip)/height)
+  Inputs: LE sweep 47.5 deg
+  Applicability: F-16C (Block 15 and later enlarged stabilator); full scale from the 1/15-scale model, lengths x15, areas x225
+  Notes: Quarter-chord sweep.
 END FIELD
 
 FIELD vertical_tail.arm
@@ -408,14 +487,14 @@ LEGACY PARAMETERS
 
 DRAG MODEL
   Active Aerox physical drag model and reference-condition polar snapshot.
-  Scaled or substituted geometry fields: wing.area, wing.mac, wing.t/c, wing.sweep, fuselage.width, fuselage.height, horizontal_tail.area, horizontal_tail.mac, vertical_tail.area, vertical_tail.mac
+  Scaled or substituted geometry fields: fuselage.width, fuselage.height
 
 FIELD drag.model
   Value: aerox-geometry-drag-v2
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=X-special-scaled; confidence=low; e_span=0.8500; unresolved/resolved=0.3000
-  Zero-lift terms at reference (drag counts): wing=54.87; fuselage=46.32; horizontal_tail=12.59; vertical_tail=9.69; unresolved=37.04
+  Zero-lift terms at reference (drag counts): wing=53.78; fuselage=54.92; horizontal_tail=14.31; vertical_tail=12.01; unresolved=40.50
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration

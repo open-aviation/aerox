@@ -27,8 +27,8 @@ pax:
   low: null
 fuselage:
   length: 11.98
-  height: 4.27
-  width: 0.9
+  height: null
+  width: null
 wing:
   area: 16
   span: 9.398

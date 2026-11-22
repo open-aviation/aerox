@@ -226,8 +226,10 @@ def test_report_terms_sum_to_cd0_for_every_record():
         # Values of the lumped model before the turbofan build-up was added.
         ("C172", 0.024368311377929015, 0.05393909107716087),
         ("AT72", 0.021866690727840428, 0.036155148216331645),
-        ("F16", 0.01605237299344407, 0.13209398706035375),
-        ("T38", 0.025107994109102232, 0.11151857728705869),
+        # F16 with the NASA TP-3355 planform (wing area, span and tails).
+        ("F16", 0.017551759616638428, 0.13257010624186477),
+        # T38 with the fuselage size estimated (the record had the overall height).
+        ("T38", 0.02251096230484595, 0.1104468946455015),
     ],
 )
 def test_non_turbofan_and_high_speed_classes_keep_lumped_model(code, cd0, k):

@@ -105,49 +105,58 @@ END FIELD
 WING AND TAIL GEOMETRY
 
 FIELD wing.area
-  Value: null
+  Value: 56.61
   Unit: m2
-  Status: unresolved
-  Source: -
-  Applicability: NASA test F-15 number 8; clean/prototype research configuration described on report pages 4-5
-  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
-  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
-  Notes: NASA TM-72861 describes F-15 airplane number 8, a reconfigured test prototype; the bundled F-15 model is unresolved.
+  Status: inferred-with-uncertainty
+  Source: nasa_tm_72861_f15_precision_controllability_1979_05
+  Source URL: https://ntrs.nasa.gov/api/citations/19790015808/downloads/19790015808.pdf
+  Document title: Sisk, Precision controllability of the F-15 airplane, NASA TM-72861, 1979
+  Page or section: Table 1 F-15 dimensions, pp. 15-16
+  Inputs: Area (reference) 56.61 m2
+  Applicability: F-15A planform as measured on NASA F-15 airplane number 8; used for the unresolved F15 record as the same-family planform (wing, stabilator and fins are common to F-15A to E)
+  Notes: Published value 609 ft2 in other NASA reports (TM-4604 gives 608 ft2).
 END FIELD
 
 FIELD wing.span
-  Value: 13.0
+  Value: 13.05
   Unit: m
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
-  Applicability: NASA test F-15 number 8; source says wingtips were raked as in production configuration
-  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05
-  Notes: The legacy family-level span is retained; the more precise NASA value belongs to F-15 airplane number 8.
+  Status: inferred-with-uncertainty
+  Source: nasa_tm_72861_f15_precision_controllability_1979_05
+  Source URL: https://ntrs.nasa.gov/api/citations/19790015808/downloads/19790015808.pdf
+  Document title: Sisk, Precision controllability of the F-15 airplane, NASA TM-72861, 1979
+  Page or section: Table 1 F-15 dimensions, pp. 15-16
+  Inputs: Span 13.05 m
+  Applicability: F-15A planform as measured on NASA F-15 airplane number 8; used for the unresolved F15 record as the same-family planform (wing, stabilator and fins are common to F-15A to E)
+  Previous value: 13.0 m
+  Correction reason: Replaced with the NASA geometry table value.
+  Notes: Raked tips included; the F-15 has no wingtip launchers.
 END FIELD
 
 FIELD wing.mac
-  Value: null
+  Value: 4.86
   Unit: m
-  Status: unresolved
-  Source: -
-  Applicability: NASA test F-15 number 8
-  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
-  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
-  Notes: NASA TM-72861 describes F-15 airplane number 8, not an exact bundled production model.
+  Status: inferred-with-uncertainty
+  Source: nasa_tm_72861_f15_precision_controllability_1979_05
+  Source URL: https://ntrs.nasa.gov/api/citations/19790015808/downloads/19790015808.pdf
+  Document title: Sisk, Precision controllability of the F-15 airplane, NASA TM-72861, 1979
+  Page or section: Table 1 F-15 dimensions, pp. 15-16
+  Inputs: Mean aerodynamic chord 4.86 m
+  Applicability: F-15A planform as measured on NASA F-15 airplane number 8; used for the unresolved F15 record as the same-family planform (wing, stabilator and fins are common to F-15A to E)
+  Notes: Matches the trapezoid formula (4.858 m).
 END FIELD
 
 FIELD wing.sweep
-  Value: null
+  Value: 38.68
   Unit: deg
-  Status: unresolved
-  Source: -
-  Applicability: F-15 reference trapezoid used by the NASA dimensional table
-  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
-  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
-  Notes: Derived quarter-chord sweep applies only to the NASA test airframe evidence definition.
+  Status: inferred-with-uncertainty
+  Source: nasa_tm_72861_f15_precision_controllability_1979_05
+  Source URL: https://ntrs.nasa.gov/api/citations/19790015808/downloads/19790015808.pdf
+  Document title: Sisk, Precision controllability of the F-15 airplane, NASA TM-72861, 1979
+  Page or section: Table 1 F-15 dimensions, pp. 15-16
+  Formula: atan(tan(LE sweep) - (root_chord - tip_chord) / (2*span))
+  Inputs: LE sweep 45.0 deg; root_chord=6.94069 m; tip_chord=1.735172 m; span=13.05 m
+  Applicability: F-15A planform as measured on NASA F-15 airplane number 8; used for the unresolved F15 record as the same-family planform (wing, stabilator and fins are common to F-15A to E)
+  Notes: Quarter-chord sweep of the reference trapezoid.
 END FIELD
 
 FIELD wing.t/c
@@ -161,75 +170,83 @@ FIELD wing.t/c
 END FIELD
 
 FIELD wing.root_chord
-  Value: null
+  Value: 6.94069
   Unit: m
-  Status: unresolved
-  Source: -
-  Applicability: F-15 reference trapezoid used by the NASA dimensional table
-  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
-  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
-  Notes: Derived reference-trapezoid value applies only to the NASA test airframe evidence definition.
+  Status: inferred-with-uncertainty
+  Source: nasa_tm_72861_f15_precision_controllability_1979_05
+  Source URL: https://ntrs.nasa.gov/api/citations/19790015808/downloads/19790015808.pdf
+  Document title: Sisk, Precision controllability of the F-15 airplane, NASA TM-72861, 1979
+  Page or section: Table 1 F-15 dimensions, pp. 15-16
+  Formula: 2*area / (span*(1+taper))
+  Inputs: area=56.61 m2; span=13.05 m; taper=0.25
+  Applicability: F-15A planform as measured on NASA F-15 airplane number 8; used for the unresolved F15 record as the same-family planform (wing, stabilator and fins are common to F-15A to E)
+  Notes: Reference trapezoid extended to the centreline.
 END FIELD
 
 FIELD wing.tip_chord
-  Value: null
+  Value: 1.735172
   Unit: m
-  Status: unresolved
-  Source: -
-  Applicability: F-15 reference trapezoid used by the NASA dimensional table
-  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
-  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
-  Notes: Derived reference-trapezoid value applies only to the NASA test airframe evidence definition.
+  Status: inferred-with-uncertainty
+  Source: nasa_tm_72861_f15_precision_controllability_1979_05
+  Source URL: https://ntrs.nasa.gov/api/citations/19790015808/downloads/19790015808.pdf
+  Document title: Sisk, Precision controllability of the F-15 airplane, NASA TM-72861, 1979
+  Page or section: Table 1 F-15 dimensions, pp. 15-16
+  Formula: taper * root_chord
+  Inputs: taper=0.25; root_chord=6.94069 m
+  Applicability: F-15A planform as measured on NASA F-15 airplane number 8; used for the unresolved F15 record as the same-family planform (wing, stabilator and fins are common to F-15A to E)
+  Notes: Reference trapezoid.
 END FIELD
 
 FIELD wing.taper_ratio
-  Value: null
+  Value: 0.25
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Applicability: NASA test F-15 number 8
-  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
-  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
-  Notes: NASA TM-72861 describes F-15 airplane number 8, not an exact bundled production model.
+  Status: inferred-with-uncertainty
+  Source: nasa_tm_72861_f15_precision_controllability_1979_05
+  Source URL: https://ntrs.nasa.gov/api/citations/19790015808/downloads/19790015808.pdf
+  Document title: Sisk, Precision controllability of the F-15 airplane, NASA TM-72861, 1979
+  Page or section: Table 1 F-15 dimensions, pp. 15-16
+  Formula: tip_chord / root_chord
+  Inputs: Taper ratio 0.25
+  Applicability: F-15A planform as measured on NASA F-15 airplane number 8; used for the unresolved F15 record as the same-family planform (wing, stabilator and fins are common to F-15A to E)
 END FIELD
 
 FIELD wing.aspect_ratio
-  Value: null
+  Value: 3.0083466
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Applicability: NASA test F-15 number 8
-  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
-  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
-  Notes: NASA TM-72861 describes F-15 airplane number 8, not an exact bundled production model.
+  Status: inferred-with-uncertainty
+  Source: nasa_tm_72861_f15_precision_controllability_1979_05
+  Source URL: https://ntrs.nasa.gov/api/citations/19790015808/downloads/19790015808.pdf
+  Document title: Sisk, Precision controllability of the F-15 airplane, NASA TM-72861, 1979
+  Page or section: Table 1 F-15 dimensions, pp. 15-16
+  Formula: span^2 / area
+  Inputs: span=13.05 m; area=56.61 m2
+  Applicability: F-15A planform as measured on NASA F-15 airplane number 8; used for the unresolved F15 record as the same-family planform (wing, stabilator and fins are common to F-15A to E)
+  Notes: Table prints 3.0.
 END FIELD
 
 FIELD wing.dihedral
-  Value: null
+  Value: -1.0
   Unit: deg
-  Status: unresolved
-  Source: -
-  Applicability: NASA test F-15 number 8
-  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
-  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
-  Notes: NASA TM-72861 describes F-15 airplane number 8, not an exact bundled production model.
+  Status: inferred-with-uncertainty
+  Source: nasa_tm_72861_f15_precision_controllability_1979_05
+  Source URL: https://ntrs.nasa.gov/api/citations/19790015808/downloads/19790015808.pdf
+  Document title: Sisk, Precision controllability of the F-15 airplane, NASA TM-72861, 1979
+  Page or section: Table 1 F-15 dimensions, pp. 15-16
+  Inputs: Dihedral -1.0 deg
+  Applicability: F-15A planform as measured on NASA F-15 airplane number 8; used for the unresolved F15 record as the same-family planform (wing, stabilator and fins are common to F-15A to E)
 END FIELD
 
 FIELD horizontal_tail.area
-  Value: null
+  Value: 11.15
   Unit: m2
-  Status: unresolved
-  Source: -
-  Applicability: Twin all-moving horizontal stabilators on NASA test F-15 number 8
-  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
-  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
-  Notes: NASA test-airframe stabilator area cannot be combined with its full span and exposed-panel chords as one compact trapezoid.
+  Status: inferred-with-uncertainty
+  Source: nasa_tm_72861_f15_precision_controllability_1979_05
+  Source URL: https://ntrs.nasa.gov/api/citations/19790015808/downloads/19790015808.pdf
+  Document title: Sisk, Precision controllability of the F-15 airplane, NASA TM-72861, 1979
+  Page or section: Table 1 F-15 dimensions, pp. 15-16
+  Inputs: Area (total) 11.15 m2
+  Applicability: F-15A planform as measured on NASA F-15 airplane number 8; used for the unresolved F15 record as the same-family planform (wing, stabilator and fins are common to F-15A to E)
+  Notes: Exposed area of both stabilator panels: it agrees with the printed aspect ratio 2.046 and exposed chords. The span 8.61 m tip to tip includes the fuselage gap and is not stored.
 END FIELD
 
 FIELD horizontal_tail.span
@@ -245,73 +262,82 @@ FIELD horizontal_tail.span
 END FIELD
 
 FIELD horizontal_tail.mac
-  Value: null
+  Value: 2.519199
   Unit: m
-  Status: unresolved
-  Source: -
-  Applicability: Exposed trapezoidal stabilator panel
-  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
-  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
-  Notes: Derived exposed-panel MAC applies only to a specific NASA test airframe.
+  Status: inferred-with-uncertainty
+  Source: nasa_tm_72861_f15_precision_controllability_1979_05
+  Source URL: https://ntrs.nasa.gov/api/citations/19790015808/downloads/19790015808.pdf
+  Document title: Sisk, Precision controllability of the F-15 airplane, NASA TM-72861, 1979
+  Page or section: Table 1 F-15 dimensions, pp. 15-16
+  Formula: 2/3*root*(1+taper+taper^2)/(1+taper)
+  Inputs: root 3.48 m; tip 1.18 m
+  Applicability: F-15A planform as measured on NASA F-15 airplane number 8; used for the unresolved F15 record as the same-family planform (wing, stabilator and fins are common to F-15A to E)
+  Notes: Exposed panel.
 END FIELD
 
 FIELD horizontal_tail.root_chord
-  Value: null
+  Value: 3.48
   Unit: m
-  Status: unresolved
-  Source: -
-  Applicability: Each exposed stabilator panel on NASA test F-15 number 8
-  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
-  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
-  Notes: NASA value is an exposed-panel chord for a specific test airframe.
+  Status: inferred-with-uncertainty
+  Source: nasa_tm_72861_f15_precision_controllability_1979_05
+  Source URL: https://ntrs.nasa.gov/api/citations/19790015808/downloads/19790015808.pdf
+  Document title: Sisk, Precision controllability of the F-15 airplane, NASA TM-72861, 1979
+  Page or section: Table 1 F-15 dimensions, pp. 15-16
+  Inputs: Root chord (exposed) 3.48 m
+  Applicability: F-15A planform as measured on NASA F-15 airplane number 8; used for the unresolved F15 record as the same-family planform (wing, stabilator and fins are common to F-15A to E)
+  Notes: Exposed panel root chord.
 END FIELD
 
 FIELD horizontal_tail.tip_chord
-  Value: null
+  Value: 1.18
   Unit: m
-  Status: unresolved
-  Source: -
-  Applicability: Each stabilator panel on NASA test F-15 number 8
-  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
-  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
-  Notes: NASA value is an exposed-panel chord for a specific test airframe.
+  Status: inferred-with-uncertainty
+  Source: nasa_tm_72861_f15_precision_controllability_1979_05
+  Source URL: https://ntrs.nasa.gov/api/citations/19790015808/downloads/19790015808.pdf
+  Document title: Sisk, Precision controllability of the F-15 airplane, NASA TM-72861, 1979
+  Page or section: Table 1 F-15 dimensions, pp. 15-16
+  Inputs: Tip chord 1.18 m
+  Applicability: F-15A planform as measured on NASA F-15 airplane number 8; used for the unresolved F15 record as the same-family planform (wing, stabilator and fins are common to F-15A to E)
 END FIELD
 
 FIELD horizontal_tail.taper_ratio
-  Value: null
+  Value: 0.3390805
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Applicability: Each exposed stabilator panel on NASA test F-15 number 8
-  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
-  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
-  Notes: NASA value is an exposed-panel ratio for a specific test airframe.
+  Status: inferred-with-uncertainty
+  Source: nasa_tm_72861_f15_precision_controllability_1979_05
+  Source URL: https://ntrs.nasa.gov/api/citations/19790015808/downloads/19790015808.pdf
+  Document title: Sisk, Precision controllability of the F-15 airplane, NASA TM-72861, 1979
+  Page or section: Table 1 F-15 dimensions, pp. 15-16
+  Formula: tip_chord / root_chord
+  Inputs: root 3.48 m; tip 1.18 m
+  Applicability: F-15A planform as measured on NASA F-15 airplane number 8; used for the unresolved F15 record as the same-family planform (wing, stabilator and fins are common to F-15A to E)
+  Notes: Table prints 0.34 (exposed).
 END FIELD
 
 FIELD horizontal_tail.sweep
-  Value: null
+  Value: 43.57
   Unit: deg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: usaf_f15_fact_sheet | nasa_tm_72861_f15_precision_controllability_1979_05
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
+  Status: inferred-with-uncertainty
+  Source: nasa_tm_72861_f15_precision_controllability_1979_05
+  Source URL: https://ntrs.nasa.gov/api/citations/19790015808/downloads/19790015808.pdf
+  Document title: Sisk, Precision controllability of the F-15 airplane, NASA TM-72861, 1979
+  Page or section: Table 1 F-15 dimensions, pp. 15-16
+  Formula: atan(tan(LE sweep) - 0.25*(root-tip)/exposed semispan)
+  Inputs: LE sweep 50.0 deg; exposed semispan = area/(root+tip) = 2.3927 m
+  Applicability: F-15A planform as measured on NASA F-15 airplane number 8; used for the unresolved F15 record as the same-family planform (wing, stabilator and fins are common to F-15A to E)
+  Notes: Quarter-chord sweep of the exposed panel.
 END FIELD
 
 FIELD horizontal_tail.dihedral
-  Value: null
+  Value: 0.0
   Unit: deg
-  Status: unresolved
-  Source: -
-  Applicability: Twin all-moving horizontal stabilators on NASA test F-15 number 8
-  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
-  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
-  Notes: NASA value applies only to a specific test airframe.
+  Status: inferred-with-uncertainty
+  Source: nasa_tm_72861_f15_precision_controllability_1979_05
+  Source URL: https://ntrs.nasa.gov/api/citations/19790015808/downloads/19790015808.pdf
+  Document title: Sisk, Precision controllability of the F-15 airplane, NASA TM-72861, 1979
+  Page or section: Table 1 F-15 dimensions, pp. 15-16
+  Inputs: Dihedral 0 deg
+  Applicability: F-15A planform as measured on NASA F-15 airplane number 8; used for the unresolved F15 record as the same-family planform (wing, stabilator and fins are common to F-15A to E)
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -335,15 +361,16 @@ FIELD horizontal_tail.elevator_area_ratio
 END FIELD
 
 FIELD vertical_tail.area
-  Value: null
+  Value: 11.63
   Unit: m2
-  Status: unresolved
-  Source: -
-  Applicability: Twin vertical stabilizers, total planform area
-  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
-  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
-  Notes: NASA area is the total for two fins, while its height and chord dimensions are per fin; the compact schema has no fin-count qualifier.
+  Status: inferred-with-uncertainty
+  Source: nasa_tm_72861_f15_precision_controllability_1979_05
+  Source URL: https://ntrs.nasa.gov/api/citations/19790015808/downloads/19790015808.pdf
+  Document title: Sisk, Precision controllability of the F-15 airplane, NASA TM-72861, 1979
+  Page or section: Table 1 F-15 dimensions, pp. 15-16
+  Inputs: Area 11.63 m2
+  Applicability: F-15A planform as measured on NASA F-15 airplane number 8; used for the unresolved F15 record as the same-family planform (wing, stabilator and fins are common to F-15A to E)
+  Notes: Total of the two fins; the height and chords are per fin, so height is not stored (the schema has no fin count). Each fin: 3.15 m exposed span, 2.92 m root, 0.78 m tip.
 END FIELD
 
 FIELD vertical_tail.height
@@ -359,63 +386,71 @@ FIELD vertical_tail.height
 END FIELD
 
 FIELD vertical_tail.mac
-  Value: null
+  Value: 2.056288
   Unit: m
-  Status: unresolved
-  Source: -
-  Applicability: Each exposed trapezoidal fin panel
-  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
-  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
-  Notes: Derived value is a per-fin MAC for a specific NASA test airframe.
+  Status: inferred-with-uncertainty
+  Source: nasa_tm_72861_f15_precision_controllability_1979_05
+  Source URL: https://ntrs.nasa.gov/api/citations/19790015808/downloads/19790015808.pdf
+  Document title: Sisk, Precision controllability of the F-15 airplane, NASA TM-72861, 1979
+  Page or section: Table 1 F-15 dimensions, pp. 15-16
+  Formula: 2/3*root*(1+taper+taper^2)/(1+taper)
+  Inputs: root 2.92 m; tip 0.78 m
+  Applicability: F-15A planform as measured on NASA F-15 airplane number 8; used for the unresolved F15 record as the same-family planform (wing, stabilator and fins are common to F-15A to E)
+  Notes: Per fin.
 END FIELD
 
 FIELD vertical_tail.root_chord
-  Value: null
+  Value: 2.92
   Unit: m
-  Status: unresolved
-  Source: -
-  Applicability: Each exposed fin on NASA test F-15 number 8
-  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
-  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
-  Notes: NASA value is a per-fin exposed chord for a specific test airframe.
+  Status: inferred-with-uncertainty
+  Source: nasa_tm_72861_f15_precision_controllability_1979_05
+  Source URL: https://ntrs.nasa.gov/api/citations/19790015808/downloads/19790015808.pdf
+  Document title: Sisk, Precision controllability of the F-15 airplane, NASA TM-72861, 1979
+  Page or section: Table 1 F-15 dimensions, pp. 15-16
+  Inputs: Root chord (exposed) 2.92 m
+  Applicability: F-15A planform as measured on NASA F-15 airplane number 8; used for the unresolved F15 record as the same-family planform (wing, stabilator and fins are common to F-15A to E)
+  Notes: Per fin.
 END FIELD
 
 FIELD vertical_tail.tip_chord
-  Value: null
+  Value: 0.78
   Unit: m
-  Status: unresolved
-  Source: -
-  Applicability: Each fin on NASA test F-15 number 8
-  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
-  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
-  Notes: NASA value is a per-fin chord for a specific test airframe.
+  Status: inferred-with-uncertainty
+  Source: nasa_tm_72861_f15_precision_controllability_1979_05
+  Source URL: https://ntrs.nasa.gov/api/citations/19790015808/downloads/19790015808.pdf
+  Document title: Sisk, Precision controllability of the F-15 airplane, NASA TM-72861, 1979
+  Page or section: Table 1 F-15 dimensions, pp. 15-16
+  Inputs: Tip chord 0.78 m
+  Applicability: F-15A planform as measured on NASA F-15 airplane number 8; used for the unresolved F15 record as the same-family planform (wing, stabilator and fins are common to F-15A to E)
+  Notes: Per fin.
 END FIELD
 
 FIELD vertical_tail.taper_ratio
-  Value: null
+  Value: 0.2671233
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Applicability: Each exposed fin on NASA test F-15 number 8
-  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
-  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
-  Notes: NASA value is a per-fin ratio for a specific test airframe.
+  Status: inferred-with-uncertainty
+  Source: nasa_tm_72861_f15_precision_controllability_1979_05
+  Source URL: https://ntrs.nasa.gov/api/citations/19790015808/downloads/19790015808.pdf
+  Document title: Sisk, Precision controllability of the F-15 airplane, NASA TM-72861, 1979
+  Page or section: Table 1 F-15 dimensions, pp. 15-16
+  Formula: tip_chord / root_chord
+  Inputs: root 2.92 m; tip 0.78 m
+  Applicability: F-15A planform as measured on NASA F-15 airplane number 8; used for the unresolved F15 record as the same-family planform (wing, stabilator and fins are common to F-15A to E)
+  Notes: Table prints 0.27.
 END FIELD
 
 FIELD vertical_tail.sweep
-  Value: null
+  Value: 27.44
   Unit: deg
-  Status: unresolved
-  Source: -
-  Applicability: Each exposed trapezoidal fin panel
-  Reason unavailable: A public candidate was found but was not adopted because its model or configuration does not match the bundled record.
-  Searched source: nasa_tm_72861_f15_precision_controllability_1979_05 | usaf_f15_fact_sheet
-  Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
-  Notes: Derived value is a per-fin quarter-chord sweep for a specific NASA test airframe.
+  Status: inferred-with-uncertainty
+  Source: nasa_tm_72861_f15_precision_controllability_1979_05
+  Source URL: https://ntrs.nasa.gov/api/citations/19790015808/downloads/19790015808.pdf
+  Document title: Sisk, Precision controllability of the F-15 airplane, NASA TM-72861, 1979
+  Page or section: Table 1 F-15 dimensions, pp. 15-16
+  Formula: atan(tan(LE sweep) - 0.25*(root-tip)/height)
+  Inputs: LE sweep 34.57 deg; exposed span 3.15 m per fin
+  Applicability: F-15A planform as measured on NASA F-15 airplane number 8; used for the unresolved F15 record as the same-family planform (wing, stabilator and fins are common to F-15A to E)
+  Notes: Quarter-chord sweep of one fin.
 END FIELD
 
 FIELD vertical_tail.arm
@@ -446,14 +481,14 @@ LEGACY PARAMETERS
 
 DRAG MODEL
   Active Aerox physical drag model and reference-condition polar snapshot.
-  Scaled or substituted geometry fields: wing.area, wing.mac, wing.t/c, wing.sweep, fuselage.width, fuselage.height, horizontal_tail.area, horizontal_tail.mac, vertical_tail.area, vertical_tail.mac
+  Scaled or substituted geometry fields: wing.t/c, fuselage.width, fuselage.height
 
 FIELD drag.model
   Value: aerox-geometry-drag-v2
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=X-special-scaled; confidence=low; e_span=0.8500; unresolved/resolved=0.3000
-  Zero-lift terms at reference (drag counts): wing=52.73; fuselage=45.14; horizontal_tail=12.09; vertical_tail=9.31; unresolved=35.78
+  Zero-lift terms at reference (drag counts): wing=53.26; fuselage=44.91; horizontal_tail=12.60; vertical_tail=13.56; unresolved=37.30
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration

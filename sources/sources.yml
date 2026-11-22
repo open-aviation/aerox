@@ -2254,6 +2254,34 @@ sources:
   licensing_redistribution: US government publication
   relevant_pages: characteristics section
   limitations: Repository F15 variant is unresolved; C/D values cannot be applied family-wide.
+- id: nasa_tm_72861_f15_precision_controllability_1979_05
+  title: Precision controllability of the F-15 airplane
+  organization: NASA Dryden Flight Research Center
+  url: https://ntrs.nasa.gov/api/citations/19790015808/downloads/19790015808.pdf
+  document_number: NASA TM-72861
+  issue_revision: null
+  publication_date: 1979-05
+  access_date: 2026-11-22
+  applicable_aircraft: F-15 airplane number 8 (F-15A, production planform with raked wingtips)
+  applicable_engine: F100-PW-100
+  evidence_type: government-research-report
+  licensing_redistribution: US government publication
+  relevant_pages: Table 1 F-15 dimensions, pp. 15-16
+  limitations: One test airframe; wing, stabilator and fin planforms are common to the F-15 family. Stabilator and fin chords are exposed-panel values; the fin area is the total of two fins.
+- id: nasa_tp_3355_f16c_model_1993
+  title: Supersonic aerodynamic characteristics of an advanced F-16 derivative aircraft configuration
+  organization: NASA Langley Research Center
+  url: https://ntrs.nasa.gov/api/citations/19930022544/downloads/19930022544.pdf
+  document_number: NASA TP-3355
+  issue_revision: null
+  publication_date: 1993
+  access_date: 2026-11-22
+  applicable_aircraft: F-16C, 1/15-scale wind-tunnel model
+  applicable_engine: not applicable
+  evidence_type: government-research-report
+  licensing_redistribution: US government publication
+  relevant_pages: Table II Geometric characteristics of F-16C model, p. 11
+  limitations: Model-scale values; full-scale values are lengths x15 and areas x225. Tail areas are exposed areas.
 - id: usaf_f16_fact_sheet
   title: F-16 Fighting Falcon
   organization: United States Air Force
