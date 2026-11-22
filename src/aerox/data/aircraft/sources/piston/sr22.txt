@@ -103,13 +103,13 @@ END FIELD
 WING AND TAIL GEOMETRY
 
 FIELD wing.area
-  Value: null
+  Value: 13.46
   Unit: m2
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_cirrus_a007 | cirrus_sr_series_specs_accessed_2026_08_05
-  Search record: current Cirrus SR Series product page searched; common current-product span is retained per named current model, with generation ambiguity explicit.
+  Status: certified-published
+  Source: easa_cirrus_a007
+  Document title: EASA.IM.A.007 - Cirrus Design SR20, SR22 and SR22T
+  Revision date: 2026-04-22
+  Page or section: Section B: SR 22, item 4 Dimensions (Wing Area 13.46 m2, 144.90 ft2)
 END FIELD
 
 FIELD wing.span
@@ -188,13 +188,12 @@ FIELD wing.taper_ratio
 END FIELD
 
 FIELD wing.aspect_ratio
-  Value: null
+  Value: 10.135394
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_cirrus_a007 | cirrus_sr_series_specs_accessed_2026_08_05
-  Search record: current Cirrus SR Series product page searched; common current-product span is retained per named current model, with generation ambiguity explicit.
+  Status: calculated-from-published-inputs
+  Source: cirrus_sr_series_specs_accessed_2026_08_05 | easa_cirrus_a007
+  Page or section: Derived from the wing span and the EASA TCDS wing area
+  Formula: span^2 / area
 END FIELD
 
 FIELD wing.dihedral
@@ -403,14 +402,14 @@ LEGACY PARAMETERS
 
 DRAG MODEL
   Active Aerox physical drag model and reference-condition polar snapshot.
-  Scaled or substituted geometry fields: wing.area, wing.mac, wing.t/c, wing.sweep, fuselage.width, fuselage.height, horizontal_tail.area, horizontal_tail.mac, vertical_tail.area, vertical_tail.mac
+  Scaled or substituted geometry fields: wing.mac, wing.t/c, wing.sweep, fuselage.width, fuselage.height, horizontal_tail.area, horizontal_tail.mac, vertical_tail.area, vertical_tail.mac
 
 FIELD drag.model
   Value: aerox-geometry-drag-v2
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=D-class-scaled; confidence=low; e_span=0.9500; unresolved/resolved=0.3500
-  Zero-lift terms at reference (drag counts): wing=85.09; fuselage=44.02; horizontal_tail=17.99; vertical_tail=10.95; unresolved=55.32
+  Zero-lift terms at reference (drag counts): wing=89.46; fuselage=59.80; horizontal_tail=18.95; vertical_tail=11.52; unresolved=62.91
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration

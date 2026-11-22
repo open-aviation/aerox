@@ -494,6 +494,8 @@ def aircraft_geometry(aircraft: Aircraft, coarse: bool = False) -> AircraftGeome
     # Nacelles
     nacelle_faces, propeller_faces = [], []
     propeller = aircraft.engine.type in ("turboprop", "piston")
+    if propeller and engines == 1 and not mount:
+        mount = "nose"  # a single propeller engine without a recorded mount
     if propeller and "nose" in mount:
         propeller_faces.append(_disc(-0.05, 0.0, 0.0, 1.3 * height))
     if engines and not fighter and "in fuselage" not in mount and "nose" not in mount:

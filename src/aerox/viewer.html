@@ -71,6 +71,8 @@
     padding: 5px 10px;
   }
   select { max-width: min(340px, 100%); }
+  .picker { display: inline-flex; gap: 4px; }
+  .picker button { padding: 5px 9px; }
   button:disabled { opacity: 0.5; }
   .modes { display: inline-flex; }
   .modes button { border-radius: 0; }
@@ -140,20 +142,24 @@
 <body>
 <header>
   <h1>Aerox aircraft viewer</h1>
-  <select id="aircraft" aria-label="Aircraft"></select>
-  <div class="modes" role="group" aria-label="View">
-    <button id="mode3d" aria-pressed="true">3D</button>
-    <button id="mode2d" aria-pressed="false">2D three-view</button>
+  <div class="picker">
+    <button id="prev" title="Previous aircraft (←)" aria-label="Previous aircraft">‹</button>
+    <select id="aircraft" aria-label="Aircraft"></select>
+    <button id="next" title="Next aircraft (→)" aria-label="Next aircraft">›</button>
   </div>
-  <button id="reset">Reset view</button>
-  <label class="toggle"><input type="checkbox" id="dims" checked> Dimensions</label>
+  <div class="modes" role="group" aria-label="View">
+    <button id="mode3d" aria-pressed="true" title="3D view (3)">3D</button>
+    <button id="mode2d" aria-pressed="false" title="2D three-view (2)">2D three-view</button>
+  </div>
+  <button id="reset" title="Reset view (R)">Reset view</button>
+  <label class="toggle" title="Show dimensions (D)"><input type="checkbox" id="dims" checked> Dimensions</label>
   <div class="legend" id="legend"></div>
 </header>
 <div class="body">
   <main id="stage">
     <canvas id="canvas"></canvas>
     <svg class="overlay" id="overlay"></svg>
-    <div class="hint" id="hint">Click a part for its dimensions. Drag to rotate, scroll to zoom, right-drag to pan.</div>
+    <div class="hint" id="hint">Click a part for its dimensions. Drag to rotate, scroll to zoom, right-drag to pan. ← → change aircraft.</div>
   </main>
   <aside id="panel" aria-live="polite"></aside>
 </div>
@@ -684,6 +690,30 @@ function setMode(next) {
 }
 
 select.addEventListener("change", () => load(select.value));
+
+function step(delta) {
+  const i = (codes.indexOf(select.value) + delta + codes.length) % codes.length;
+  select.value = codes[i];
+  load(select.value);
+}
+document.getElementById("prev").addEventListener("click", () => step(-1));
+document.getElementById("next").addEventListener("click", () => step(1));
+
+// Keyboard shortcuts, ignored while typing in a form field.
+window.addEventListener("keydown", (e) => {
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  if (e.target.closest && e.target.closest("input, select, textarea")) return;
+  const key = e.key.toLowerCase();
+  if (key === "arrowleft" || key === "arrowup" || key === "k") step(-1);
+  else if (key === "arrowright" || key === "arrowdown" || key === "j") step(1);
+  else if (key === "3") setMode("3d");
+  else if (key === "2") setMode("2d");
+  else if (key === "r" && mode === "3d") resetCamera();
+  else if (key === "d") dimsBox.checked = !dimsBox.checked;
+  else if (key === "escape") select_(null);
+  else return;
+  e.preventDefault();
+});
 btn3d.addEventListener("click", () => setMode("3d"));
 btn2d.addEventListener("click", () => setMode("2d"));
 document.getElementById("reset").addEventListener("click", resetCamera);
