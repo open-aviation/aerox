@@ -535,6 +535,22 @@ sources:
   sha256_drawing: 690354e214211ac3edab1469d5151b2ba2e0d3a20a75173a8613315647623245
   limitations: Boeing states +/-6 inch drawing accuracy; blended-spline equivalent-planform
     measurements are inferred, not certified.
+- id: boeing_787_9_cad_3view
+  title: Boeing 787-9 3-view CAD drawing (preliminary)
+  organization: Boeing
+  url: https://www.boeing.com/commercial/airports/3-view
+  download_url: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7879.zip
+  document_number: null
+  issue_revision: preliminary data prior to aircraft certification
+  publication_date: null
+  access_date: 2026-08-06
+  applicable_aircraft: 787-9
+  applicable_engine: not applicable to external tail geometry
+  evidence_type: manufacturer-published-planning-vector-drawing
+  relevant_pages: front and side views only; side-view fin outline splines 7382/7383 and crown spline 7309
+  sha256_drawing: 91c6b0029dbe91e012fd7b01380019aa15f0add7b87398874b8d2faf85f9793f
+  limitations: Marked preliminary by Boeing; no top view. The side-view fin outline is identical to
+    the 787-8 drawing (rigid translation, zero point deviation).
 - id: boeing_747_8_passenger_cad_3view
   title: Boeing 747-8 passenger 3-view CAD drawing
   organization: Boeing

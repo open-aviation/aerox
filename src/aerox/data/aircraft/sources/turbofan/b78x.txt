@@ -101,10 +101,19 @@ END FIELD
 WING AND TAIL GEOMETRY
 
 FIELD wing.area
-  Value: 377
+  Value: 360
   Unit: m2
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: inferred-with-uncertainty
+  Source: poll_schumann_2021_part2
+  Source URL: https://doi.org/10.1017/aer.2020.124
+  Document title: Poll and Schumann, An estimation method for the fuel burn and other performance characteristics of civil transport aircraft in the cruise. Part 2, The Aeronautical Journal 125(1284), 2021
+  Page or section: Table 1, row B789, p. 306
+  Inputs: Sref (m2) 360.0 for the 787-9
+  Applicability: 787-10, which uses the 787-9 wing (same published span 60.12 m); Airbus reference-area definition as in the source
+  Uncertainty: Peer-reviewed secondary compilation; area +/-2 percent
+  Previous value: 377 m2 (legacy-unverified)
+  Correction reason: No source supports the legacy value; the sister-variant 787-9 reference area is adopted.
+  Notes: The source table has no 787-10 row.
 END FIELD
 
 FIELD wing.span
@@ -122,17 +131,39 @@ FIELD wing.span
 END FIELD
 
 FIELD wing.mac
-  Value: 6.27
+  Value: 7.142502
   Unit: m
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: inferred-with-uncertainty
+  Source: boeing_787_8_cad_3view | poll_schumann_2021_part2 | boeing_787_acap_rev_q_2025_10
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7878.zip
+  Document title: Boeing 787-8 3-view CAD drawing; Poll and Schumann (2021) reference area; 787 ACAP Revision Q
+  Revision date: 2025-10-01
+  Page or section: 787-8 top view: wing LE spline 7FED, TE spline 7FEE; H-tail tips 7ECD/7ECE for scale
+  Formula: (2/3)*root*(1+taper+taper^2)/(1+taper)
+  Inputs: scale 0.025399 m/unit (ACAP H-tail span 19.81 m); outer-panel straight fits, y 500-950 units from the 787-8 drawing; four fit windows agree within 0.015 m in tip chord; S=360 m2; b=60.12 m
+  Applicability: 787-10 wing, which is the 787-9 wing; measured on the 787-8 drawing
+  Uncertainty: +/-0.2 m
+  Previous value: 6.27 (legacy-unverified)
+  Correction reason: Replaced with a value traced to the manufacturer drawing.
+  Notes: Equivalent trapezoid of the outer panel extended to the centreline; the real wing has an inboard trailing-edge extension. Not a certified value.
 END FIELD
 
 FIELD wing.sweep
-  Value: 32
+  Value: 31.7472
   Unit: deg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: inferred-with-uncertainty
+  Source: boeing_787_8_cad_3view | poll_schumann_2021_part2 | boeing_787_acap_rev_q_2025_10
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7878.zip
+  Document title: Boeing 787-8 3-view CAD drawing; Poll and Schumann (2021) reference area; 787 ACAP Revision Q
+  Revision date: 2025-10-01
+  Page or section: 787-8 top view: wing LE spline 7FED, TE spline 7FEE; H-tail tips 7ECD/7ECE for scale
+  Formula: atan(tan(LE sweep) - (1-taper)/(AR (1+taper))); LE sweep 34.78 deg from the outer-panel fit
+  Inputs: scale 0.025399 m/unit (ACAP H-tail span 19.81 m); outer-panel straight fits, y 500-950 units from the 787-8 drawing; four fit windows agree within 0.015 m in tip chord; S=360 m2; b=60.12 m
+  Applicability: 787-10 wing, which is the 787-9 wing; measured on the 787-8 drawing
+  Uncertainty: +/-1 deg
+  Previous value: 32 (legacy-unverified)
+  Correction reason: Replaced with a value traced to the manufacturer drawing.
+  Notes: Equivalent trapezoid of the outer panel extended to the centreline; the real wing has an inboard trailing-edge extension. Not a certified value.
 END FIELD
 
 FIELD wing.t/c
@@ -143,39 +174,60 @@ FIELD wing.t/c
 END FIELD
 
 FIELD wing.root_chord
-  Value: null
+  Value: 10.542048
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10 | boeing_787_10_cad_3view
+  Status: inferred-with-uncertainty
+  Source: boeing_787_8_cad_3view | poll_schumann_2021_part2 | boeing_787_acap_rev_q_2025_10
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7878.zip
+  Document title: Boeing 787-8 3-view CAD drawing; Poll and Schumann (2021) reference area; 787 ACAP Revision Q
+  Revision date: 2025-10-01
+  Page or section: 787-8 top view: wing LE spline 7FED, TE spline 7FEE; H-tail tips 7ECD/7ECE for scale
+  Formula: 2*S/b - tip_chord (centreline chord of the reference trapezoid with the reference area)
+  Inputs: scale 0.025399 m/unit (ACAP H-tail span 19.81 m); outer-panel straight fits, y 500-950 units from the 787-8 drawing; four fit windows agree within 0.015 m in tip chord; S=360 m2; b=60.12 m
+  Applicability: 787-10 wing, which is the 787-9 wing; measured on the 787-8 drawing
+  Uncertainty: +/-0.3 m
+  Notes: Equivalent trapezoid of the outer panel extended to the centreline; the real wing has an inboard trailing-edge extension. Not a certified value.
 END FIELD
 
 FIELD wing.tip_chord
-  Value: null
+  Value: 1.434000
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10 | boeing_787_10_cad_3view
+  Status: inferred-with-uncertainty
+  Source: boeing_787_8_cad_3view | poll_schumann_2021_part2 | boeing_787_acap_rev_q_2025_10
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7878.zip
+  Document title: Boeing 787-8 3-view CAD drawing; Poll and Schumann (2021) reference area; 787 ACAP Revision Q
+  Revision date: 2025-10-01
+  Page or section: 787-8 top view: wing LE spline 7FED, TE spline 7FEE; H-tail tips 7ECD/7ECE for scale
+  Formula: TE minus LE of outer-panel straight fits at the published semispan
+  Inputs: scale 0.025399 m/unit (ACAP H-tail span 19.81 m); outer-panel straight fits, y 500-950 units from the 787-8 drawing; four fit windows agree within 0.015 m in tip chord; S=360 m2; b=60.12 m
+  Applicability: 787-10 wing, which is the 787-9 wing; measured on the 787-8 drawing
+  Uncertainty: +/-0.15 m
+  Notes: Equivalent trapezoid of the outer panel extended to the centreline; the real wing has an inboard trailing-edge extension. Not a certified value.
 END FIELD
 
 FIELD wing.taper_ratio
-  Value: null
+  Value: 0.1360267
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10 | boeing_787_10_cad_3view
+  Status: inferred-with-uncertainty
+  Source: boeing_787_8_cad_3view | poll_schumann_2021_part2 | boeing_787_acap_rev_q_2025_10
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7878.zip
+  Document title: Boeing 787-8 3-view CAD drawing; Poll and Schumann (2021) reference area; 787 ACAP Revision Q
+  Revision date: 2025-10-01
+  Page or section: 787-8 top view: wing LE spline 7FED, TE spline 7FEE; H-tail tips 7ECD/7ECE for scale
+  Formula: tip_chord / root_chord
+  Inputs: scale 0.025399 m/unit (ACAP H-tail span 19.81 m); outer-panel straight fits, y 500-950 units from the 787-8 drawing; four fit windows agree within 0.015 m in tip chord; S=360 m2; b=60.12 m
+  Applicability: 787-10 wing, which is the 787-9 wing; measured on the 787-8 drawing
+  Uncertainty: +/-0.015
+  Notes: Equivalent trapezoid of the outer panel extended to the centreline; the real wing has an inboard trailing-edge extension. Not a certified value.
 END FIELD
 
 FIELD wing.aspect_ratio
-  Value: 9.587306
+  Value: 10.040040
   Unit: nondimensional
-  Status: legacy-unverified
-  Source: boeing_787_acap_rev_q_2025_10 | aerox_legacy_aircraft_database
+  Status: inferred-with-uncertainty
+  Source: boeing_787_acap_rev_q_2025_10 | poll_schumann_2021_part2
   Formula: span^2 / area
-  Inputs: span=60.12 m; area=377 m2
+  Inputs: span=60.12 m; area=360 m2
 END FIELD
 
 FIELD wing.dihedral
@@ -319,66 +371,115 @@ FIELD horizontal_tail.elevator_area_ratio
 END FIELD
 
 FIELD vertical_tail.area
-  Value: null
+  Value: 47.050586
   Unit: m2
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10 | boeing_787_10_cad_3view
+  Status: inferred-with-uncertainty
+  Source: boeing_787_8_cad_3view | boeing_787_9_cad_3view | boeing_787_acap_rev_q_2025_10
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7878.zip
+  Document title: Boeing 787-8 and 787-9 3-view CAD drawings and 787 ACAP Revision Q
+  Revision date: 2025-10-01
+  Page or section: 787-8 side view: fin LE spline 7ADB, TE spline 7ADC, crown spline 7A53
+  Formula: height*(root_chord+tip_chord)/2
+  Inputs: scale 0.025399 m/unit from ACAP H-tail span 19.81 m over 779.95 units; four fit windows agree within 0.03 m2 and 0.07 deg
+  Applicability: 787-10 exposed fin, inferred from the identical 787-8 and 787-9 fins
+  Uncertainty: height +/-0.5 m (sloping crown); root/tip/MAC +/-0.15 m; area +/-3.0 m2; sweep +/-1 deg
+  Notes: The 787-10 DWG cannot be read (malformed after conversion). The 787-8 and 787-9 drawings show the same fin, adopted here for the sister variant 787-10.
 END FIELD
 
 FIELD vertical_tail.height
-  Value: null
+  Value: 9.251
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10 | boeing_787_10_cad_3view
+  Status: inferred-with-uncertainty
+  Source: boeing_787_8_cad_3view | boeing_787_9_cad_3view | boeing_787_acap_rev_q_2025_10
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7878.zip
+  Document title: Boeing 787-8 and 787-9 3-view CAD drawings and 787 ACAP Revision Q
+  Revision date: 2025-10-01
+  Page or section: 787-8 side view: fin LE spline 7ADB, TE spline 7ADC, crown spline 7A53
+  Formula: (z_tip - z_root)*drawing_scale; z_root = mean of the leading- and trailing-edge crown intersections
+  Inputs: scale 0.025399 m/unit from ACAP H-tail span 19.81 m over 779.95 units; four fit windows agree within 0.03 m2 and 0.07 deg
+  Applicability: 787-10 exposed fin, inferred from the identical 787-8 and 787-9 fins
+  Uncertainty: height +/-0.5 m (sloping crown); root/tip/MAC +/-0.15 m; area +/-3.0 m2; sweep +/-1 deg
+  Notes: The 787-10 DWG cannot be read (malformed after conversion). The 787-8 and 787-9 drawings show the same fin, adopted here for the sister variant 787-10.
 END FIELD
 
 FIELD vertical_tail.mac
-  Value: null
+  Value: 5.597995
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10 | boeing_787_10_cad_3view
+  Status: inferred-with-uncertainty
+  Source: boeing_787_8_cad_3view | boeing_787_9_cad_3view | boeing_787_acap_rev_q_2025_10
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7878.zip
+  Document title: Boeing 787-8 and 787-9 3-view CAD drawings and 787 ACAP Revision Q
+  Revision date: 2025-10-01
+  Page or section: 787-8 side view: fin LE spline 7ADB, TE spline 7ADC, crown spline 7A53
+  Formula: (2/3)*root*(1+taper+taper^2)/(1+taper)
+  Inputs: scale 0.025399 m/unit from ACAP H-tail span 19.81 m over 779.95 units; four fit windows agree within 0.03 m2 and 0.07 deg
+  Applicability: 787-10 exposed fin, inferred from the identical 787-8 and 787-9 fins
+  Uncertainty: height +/-0.5 m (sloping crown); root/tip/MAC +/-0.15 m; area +/-3.0 m2; sweep +/-1 deg
+  Notes: The 787-10 DWG cannot be read (malformed after conversion). The 787-8 and 787-9 drawings show the same fin, adopted here for the sister variant 787-10.
 END FIELD
 
 FIELD vertical_tail.root_chord
-  Value: null
+  Value: 7.881
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10 | boeing_787_10_cad_3view
+  Status: inferred-with-uncertainty
+  Source: boeing_787_8_cad_3view | boeing_787_9_cad_3view | boeing_787_acap_rev_q_2025_10
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7878.zip
+  Document title: Boeing 787-8 and 787-9 3-view CAD drawings and 787 ACAP Revision Q
+  Revision date: 2025-10-01
+  Page or section: 787-8 side view: fin LE spline 7ADB, TE spline 7ADC, crown spline 7A53
+  Formula: TE minus LE of linear principal-edge fits at z_root
+  Inputs: scale 0.025399 m/unit from ACAP H-tail span 19.81 m over 779.95 units; four fit windows agree within 0.03 m2 and 0.07 deg
+  Applicability: 787-10 exposed fin, inferred from the identical 787-8 and 787-9 fins
+  Uncertainty: height +/-0.5 m (sloping crown); root/tip/MAC +/-0.15 m; area +/-3.0 m2; sweep +/-1 deg
+  Notes: The 787-10 DWG cannot be read (malformed after conversion). The 787-8 and 787-9 drawings show the same fin, adopted here for the sister variant 787-10.
 END FIELD
 
 FIELD vertical_tail.tip_chord
-  Value: null
+  Value: 2.291
   Unit: m
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10 | boeing_787_10_cad_3view
+  Status: inferred-with-uncertainty
+  Source: boeing_787_8_cad_3view | boeing_787_9_cad_3view | boeing_787_acap_rev_q_2025_10
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7878.zip
+  Document title: Boeing 787-8 and 787-9 3-view CAD drawings and 787 ACAP Revision Q
+  Revision date: 2025-10-01
+  Page or section: 787-8 side view: fin LE spline 7ADB, TE spline 7ADC, crown spline 7A53
+  Formula: TE minus LE of linear principal-edge fits at the fin tip
+  Inputs: scale 0.025399 m/unit from ACAP H-tail span 19.81 m over 779.95 units; four fit windows agree within 0.03 m2 and 0.07 deg
+  Applicability: 787-10 exposed fin, inferred from the identical 787-8 and 787-9 fins
+  Uncertainty: height +/-0.5 m (sloping crown); root/tip/MAC +/-0.15 m; area +/-3.0 m2; sweep +/-1 deg
+  Notes: The 787-10 DWG cannot be read (malformed after conversion). The 787-8 and 787-9 drawings show the same fin, adopted here for the sister variant 787-10.
 END FIELD
 
 FIELD vertical_tail.taper_ratio
-  Value: null
+  Value: 0.290699
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10 | boeing_787_10_cad_3view
+  Status: inferred-with-uncertainty
+  Source: boeing_787_8_cad_3view | boeing_787_9_cad_3view | boeing_787_acap_rev_q_2025_10
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7878.zip
+  Document title: Boeing 787-8 and 787-9 3-view CAD drawings and 787 ACAP Revision Q
+  Revision date: 2025-10-01
+  Page or section: 787-8 side view: fin LE spline 7ADB, TE spline 7ADC, crown spline 7A53
+  Formula: tip_chord / root_chord
+  Inputs: scale 0.025399 m/unit from ACAP H-tail span 19.81 m over 779.95 units; four fit windows agree within 0.03 m2 and 0.07 deg
+  Applicability: 787-10 exposed fin, inferred from the identical 787-8 and 787-9 fins
+  Uncertainty: height +/-0.5 m (sloping crown); root/tip/MAC +/-0.15 m; area +/-3.0 m2; sweep +/-1 deg
+  Notes: The 787-10 DWG cannot be read (malformed after conversion). The 787-8 and 787-9 drawings show the same fin, adopted here for the sister variant 787-10.
 END FIELD
 
 FIELD vertical_tail.sweep
-  Value: null
+  Value: 40.01
   Unit: deg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10 | boeing_787_10_cad_3view
+  Status: inferred-with-uncertainty
+  Source: boeing_787_8_cad_3view | boeing_787_9_cad_3view | boeing_787_acap_rev_q_2025_10
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7878.zip
+  Document title: Boeing 787-8 and 787-9 3-view CAD drawings and 787 ACAP Revision Q
+  Revision date: 2025-10-01
+  Page or section: 787-8 side view: fin LE spline 7ADB, TE spline 7ADC, crown spline 7A53
+  Formula: atan2(quarter-chord longitudinal offset, height)
+  Inputs: scale 0.025399 m/unit from ACAP H-tail span 19.81 m over 779.95 units; four fit windows agree within 0.03 m2 and 0.07 deg
+  Applicability: 787-10 exposed fin, inferred from the identical 787-8 and 787-9 fins
+  Uncertainty: height +/-0.5 m (sloping crown); root/tip/MAC +/-0.15 m; area +/-3.0 m2; sweep +/-1 deg
+  Notes: The 787-10 DWG cannot be read (malformed after conversion). The 787-8 and 787-9 drawings show the same fin, adopted here for the sister variant 787-10.
 END FIELD
 
 FIELD vertical_tail.arm
@@ -405,14 +506,14 @@ LEGACY PARAMETERS
 
 DRAG MODEL
   Active Aerox physical drag model and reference-condition polar snapshot.
-  Scaled or substituted geometry fields: vertical_tail.area, vertical_tail.mac, wing.root_chord, vertical_tail.sweep, engine.nacelle_max_diameter, engine.nacelle_length
+  Scaled or substituted geometry fields: none
 
 FIELD drag.model
   Value: aerox-geometry-drag-v2
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9538; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
-  Zero-lift terms at reference (drag counts): wing=51.61; fuselage=52.21; horizontal_tail=12.98; vertical_tail=10.22; nacelles=10.94; pylons=1.68; fuselage_upsweep=4.16; control_surface_gaps=0.91; nacelle_base=1.19; roughness_excrescence=13.13
+  Inputs: configuration=clean; tier=A-observed-core-and-tails; confidence=medium; e_span=0.9538; roughness_excrescence/computed=0.0900; nacelle_tier=A-measured-nacelle
+  Zero-lift terms at reference (drag counts): wing=46.61; fuselage=54.34; horizontal_tail=13.49; vertical_tail=7.94; nacelles=12.60; pylons=1.94; fuselage_upsweep=4.36; control_surface_gaps=0.85; nacelle_base=1.25; roughness_excrescence=12.90
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -422,19 +523,19 @@ FIELD drag.configuration
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.geometry_tier
-  Value: B-observed-core-scaled-tails
+  Value: A-observed-core-and-tails
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.confidence
-  Value: medium-low
+  Value: medium
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 40436.0
+  Value: 39476.0
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -446,10 +547,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 5269764.2
+  Value: 5518616.7
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=40436.0 ft; Mach=0.860000; ISA temperature and density
+  Inputs: altitude=39476.0 ft; Mach=0.860000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.953814

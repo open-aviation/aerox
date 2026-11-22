@@ -465,6 +465,9 @@ def _write_figure(rows: list[dict[str, Any]]) -> None:
                     label=engine,
                 )
         values = [row[key] for row in comparable for key in (old_key, new_key)]
+        if not values:
+            ax.set_visible(False)
+            continue
         low, high = min(values), max(values)
         margin = 0.06 * (high - low)
         ax.plot(

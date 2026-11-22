@@ -129,8 +129,9 @@ def test_every_component_buildup_record_resolves_nacelle_geometry():
         tiers[geometry.nacelle.tier] = tiers.get(geometry.nacelle.tier, 0) + 1
 
     assert tiers == {
-        "A-measured-nacelle": 12,
-        "B-fan-diameter-ratio": 42,
+        "A-measured-nacelle": 13,
+        "A-sister-measured-nacelle": 2,
+        "B-fan-diameter-ratio": 39,
         "C-estimated-fan-diameter": 38,
     }
 

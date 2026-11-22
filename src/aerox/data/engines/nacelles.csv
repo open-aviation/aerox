@@ -4,9 +4,10 @@ CFM56-5C,^CFM56-5C,1.836,2.43,5.69,long,A-measured-nacelle,CFM56 family data 72.
 PW1100G-JM,^PW11\d\dG,2.057,2.67,3.65,short,A-measured-nacelle,PW1000G family data 81 in (secondary compilation); EASA TCDS E.093 fan case 2.224 m,Airbus A321 AC 2-12-0 Fig. 991-049 (PW1100G): width 2.67 m; 0.66 + 1.46 + 1.53 m to reverser exit
 Trent 700,^Trent 7\d\d\b,2.474,3.08,7.32,long,A-measured-nacelle,Rolls-Royce Trent 700 data 97.4 in (secondary compilation),Airbus A330 AC 2-12-0 Fig. 991-006 (Trent 700): section B-B 3.08 m; length 7.32 m
 Trent XWB,^Trent XWB,3.000,3.94,6.40,short,A-measured-nacelle,EASA TCDS E.111 (fan diameter 3.00 m),Airbus A350-900 preliminary AC 2-12-0 Fig. 991-001: width 3.94 m; inlet lip to fan nozzle exit 6.40 m
-Trent 1000/7000,^Trent ?(1000|7000),2.850,,,short,B-fan-diameter-ratio,EASA TCDS E.036 (fan diameter 2.85 m),ratio
+Trent 1000,^Trent ?1000,2.850,3.82,5.56,short,A-sister-measured-nacelle,EASA TCDS E.036 (fan diameter 2.85 m),"Boeing 787-8 3-view CAD (GEnx-1B nacelle with chevrons): front-view width 3.82 m (height 3.88 m); inlet lip to fan nozzle exit 5.56 m; adopted for the Trent 1000 on the same airframe (fan 2.85 vs 2.82 m)"
+Trent 7000,^Trent ?7000,2.850,,,short,B-fan-diameter-ratio,EASA TCDS E.036 (fan diameter 2.85 m),ratio
 CF6-80C2,^CF6-80C2,2.362,,,short,B-fan-diameter-ratio,GE CF6-80C2 product sheet (fan tip diameter 93 in),ratio
-GEnx-1B,^GEnx-1B,2.822,,,short,B-fan-diameter-ratio,GE GEnx product sheet (fan diameter 111.1 in),ratio
+GEnx-1B,^GEnx-1B,2.822,3.82,5.56,short,A-measured-nacelle,GE GEnx product sheet (fan diameter 111.1 in),"Boeing 787-8 3-view CAD: front-view width 3.82 m (height 3.88 m); inlet lip to fan nozzle exit (mid-chevron) 5.56 m"
 GEnx-2B,^GEnx-2B,2.659,,,short,B-fan-diameter-ratio,GE GEnx product sheet (fan diameter 104.7 in),ratio
 LEAP-1B,^LEAP-1B,1.753,,,short,B-fan-diameter-ratio,CFM LEAP brochure 2017 (fan diameter 69 in),ratio
 PW4000-94,^PW40[56]\d,2.388,,,short,B-fan-diameter-ratio,EASA TCDS E.050 series designation PW4000-94 in,ratio
