@@ -315,15 +315,17 @@ def _planform_shapes(ac):
 def fig_planforms():
     codes = ["E190", "A320", "B789", "A388"]
     aircraft = [load_aircraft(c) for c in codes]
-    fig, ax = plt.subplots(figsize=(10, 3.8))
     gap = 6.0
+    length = max(ac.fuselage.length for ac in aircraft)
+    width = sum(ac.wing.span for ac in aircraft) + gap * (len(aircraft) - 1)
+    x_range = (-1.0, width + 1.0)
+    y_range = (-length - 9.0, 7.0)
+    aspect = (y_range[1] - y_range[0]) / (x_range[1] - x_range[0])
+    fig, ax = plt.subplots(figsize=(10, 10 * aspect + 0.4))
     x0 = 0.0
-    placed_any = False
     for ac in aircraft:
-        semi = ac.wing.span / 2
-        centre = x0 + semi
-        shapes, placed = _planform_shapes(ac)
-        placed_any |= placed
+        centre = x0 + ac.wing.span / 2
+        shapes, _ = _planform_shapes(ac)
         for outline, color, alpha in shapes:
             ax.add_patch(
                 Polygon(
@@ -347,22 +349,14 @@ def fig_planforms():
     # scale bar
     ax.plot([0, 10], [4, 4], color=INK, linewidth=2)
     ax.annotate("10 m", (5, 4.5), ha="center", va="bottom", fontsize=9, color=INK)
-    length = max(ac.fuselage.length for ac in aircraft)
-    ax.set_xlim(-2, x0)
-    ax.set_ylim(-length - 12, 8)
+    ax.set_xlim(*x_range)
+    ax.set_ylim(*y_range)
     ax.set_aspect("equal")
     ax.axis("off")
-    title = "Wings and horizontal tails drawn from the records, to scale"
-    ax.set_title(title, loc="left")
-    if placed_any:
-        fig.text(
-            0.01,
-            0.0,
-            "Where a record has no tail arm, the tail is drawn at the end of the "
-            "fuselage. The wing position along the fuselage is approximate.",
-            fontsize=8,
-            color=INK2,
-        )
+    ax.set_title(
+        "Wings and horizontal tails drawn from the records, to scale", loc="left"
+    )
+    fig.subplots_adjust(left=0, right=1, bottom=0, top=0.92)
     save(fig, "planforms.png")
 
 
