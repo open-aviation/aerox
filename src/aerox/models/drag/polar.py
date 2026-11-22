@@ -34,7 +34,7 @@ class ParabolicDragPolar:
 
     def breakdown(
         self,
-        lift_coefficient: ArrayLike,
+        cl: ArrayLike,
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
@@ -43,9 +43,7 @@ class ParabolicDragPolar:
         if condition is None and mach is None:
             mach = 0.0
         condition = resolve_condition(mach, reynolds_per_m, condition)
-        lift, mach_array, _, flap, gear, spoiler = condition.broadcast_with(
-            lift_coefficient
-        )
+        lift, mach_array, _, flap, gear, spoiler = condition.broadcast_with(cl)
         require_clean(flap, gear, spoiler)
         parasite = np.full_like(lift, self.cd0)
         induced = self.k * lift**2
@@ -59,24 +57,22 @@ class ParabolicDragPolar:
 
     def drag_coefficient(
         self,
-        lift_coefficient: ArrayLike,
+        cl: ArrayLike,
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
         condition: DragCondition | None = None,
     ) -> FloatArray:
-        return self.breakdown(
-            lift_coefficient, mach, reynolds_per_m, condition=condition
-        ).total
+        return self.breakdown(cl, mach, reynolds_per_m, condition=condition).total
 
-    def _drag_coefficient_scalar(
-        self, lift_coefficient: float, condition: DragCondition
-    ) -> float:
-        lift, _, _, flap, gear, spoiler = condition.broadcast_with(lift_coefficient)
+    cd = drag_coefficient  # shorthand
+
+    def _drag_coefficient_scalar(self, cl: float, condition: DragCondition) -> float:
+        lift, _, _, flap, gear, spoiler = condition.broadcast_with(cl)
         if lift.ndim != 0:
             raise ValueError("scalar drag evaluation requires scalar condition values")
         require_clean(flap, gear, spoiler)
-        return float(self.cd0 + self.k * float(lift_coefficient) ** 2)
+        return float(self.cd0 + self.k * float(cl) ** 2)
 
 
 @dataclass(frozen=True)
@@ -88,16 +84,14 @@ class ParabolicWaveDragModel:
 
     def breakdown(
         self,
-        lift_coefficient: ArrayLike,
+        cl: ArrayLike,
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
         condition: DragCondition | None = None,
     ) -> DragBreakdown:
         condition = resolve_condition(mach, reynolds_per_m, condition)
-        lift, mach_array, _, flap, gear, spoiler = condition.broadcast_with(
-            lift_coefficient
-        )
+        lift, mach_array, _, flap, gear, spoiler = condition.broadcast_with(cl)
         require_clean(flap, gear, spoiler)
         parasite = np.full_like(lift, self.base_polar.cd0)
         induced = self.base_polar.k * lift**2
@@ -112,23 +106,21 @@ class ParabolicWaveDragModel:
 
     def drag_coefficient(
         self,
-        lift_coefficient: ArrayLike,
+        cl: ArrayLike,
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
         condition: DragCondition | None = None,
     ) -> FloatArray:
-        return self.breakdown(
-            lift_coefficient, mach, reynolds_per_m, condition=condition
-        ).total
+        return self.breakdown(cl, mach, reynolds_per_m, condition=condition).total
 
-    def _drag_coefficient_scalar(
-        self, lift_coefficient: float, condition: DragCondition
-    ) -> float:
+    cd = drag_coefficient  # shorthand
+
+    def _drag_coefficient_scalar(self, cl: float, condition: DragCondition) -> float:
         mach = float(condition.mach)
         return self.base_polar._drag_coefficient_scalar(
-            lift_coefficient, condition
-        ) + self.wave_drag.drag_coefficient_increment_scalar(mach, lift_coefficient)
+            cl, condition
+        ) + self.wave_drag.drag_coefficient_increment_scalar(mach, cl)
 
 
 def project_parabolic_polar(

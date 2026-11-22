@@ -44,12 +44,13 @@ from aerox.models.drag import build_drag_model
 ac = load_aircraft("A320")
 model = build_drag_model(ac)
 
-reynolds = aero.reynolds_per_m(0.78, 11_000)   # about 5.9e6 per metre
-cd = model.drag_coefficient(0.55, mach=0.78, reynolds_per_m=reynolds)
+reynolds = aero.reynolds_per_m(mach=0.78, h=11_000)   # about 5.9e6 per metre
+cd = model.drag_coefficient(cl=0.55, mach=0.78, reynolds_per_m=reynolds)
+cd = model.cd(cl=0.55, mach=0.78, reynolds_per_m=reynolds)   # the same, shorter
 ```
 
-`drag_coefficient(lift_coefficient, mach, reynolds_per_m)` takes the lift
-coefficient, the Mach number, and the Reynolds number per metre. Each aircraft part applies its own reference length
+`drag_coefficient(cl, mach, reynolds_per_m)`, or its shorthand `cd(...)`, takes
+the lift coefficient, the Mach number, and the Reynolds number per metre. Each aircraft part applies its own reference length
 to the Reynolds number per metre. All three arguments accept NumPy arrays and
 broadcast against each other.
 
@@ -64,7 +65,7 @@ The flight condition can also be passed as one object:
 from aerox.models.drag import DragCondition
 
 condition = DragCondition(mach=0.78, reynolds_per_m=reynolds)
-cd = model.drag_coefficient(0.55, condition=condition)
+cd = model.cd(cl=0.55, condition=condition)
 ```
 
 The model covers the clean configuration only. A condition with deployed
@@ -76,7 +77,7 @@ Mach number or Reynolds number.
 `breakdown` takes the same arguments and returns each part of the drag:
 
 ```python
-b = model.breakdown(0.55, mach=0.78, reynolds_per_m=reynolds)
+b = model.breakdown(cl=0.55, mach=0.78, reynolds_per_m=reynolds)
 print(b.component_parasite)    # zero-lift drag of each aircraft part
 print(b.parasite_increments)   # the fixed increments, by name
 print(b.parasite)              # total zero-lift drag
@@ -117,7 +118,7 @@ from aerox.models.drag import build_reference_drag_polar
 
 polar = build_reference_drag_polar(ac)
 print(polar.cd0, polar.k)
-print(polar.drag_coefficient(0.55))
+print(polar.cd(cl=0.55))
 ```
 
 The polar leaves out wave drag, and it has no Mach or Reynolds number effects.

@@ -159,11 +159,16 @@ def test_every_model_rejects_a_deployed_configuration(name, deployed):
         model._drag_coefficient_scalar(0.4, condition)
 
 
-def test_lift_coefficient_can_be_passed_by_keyword():
-    model = build_drag_model(load_aircraft("A320"))
-    assert model.drag_coefficient(lift_coefficient=0.5, mach=0.7) == pytest.approx(
-        model.drag_coefficient(0.5, 0.7)
-    )
+def test_cl_keyword_and_cd_shorthand_on_every_model():
+    for name, model in _all_models().items():
+        mach = 0.75 if name == "transonic_compressibility" else 0.7
+        cl = 0.45
+        expected = model.drag_coefficient(cl, mach)
+        assert model.drag_coefficient(cl=cl, mach=mach) == pytest.approx(expected)
+        assert model.cd(cl=cl, mach=mach) == pytest.approx(expected), name
+        assert model.breakdown(cl=cl, mach=mach).total == pytest.approx(expected)
+    polar = ParabolicDragPolar(cd0=0.02, k=0.04)
+    assert polar.cd(cl=0.5) == pytest.approx(0.03)
 
 
 def test_drag_model_protocol_requires_breakdown():

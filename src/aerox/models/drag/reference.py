@@ -51,11 +51,9 @@ class MachDependentInducedDrag:
         if self.compressibility_exponent <= 0.0 or self.compressibility_mach <= 0.0:
             raise ValueError("compressibility exponent and Mach must be positive")
 
-    def drag_coefficient(
-        self, lift_coefficient: ArrayLike, mach: ArrayLike
-    ) -> FloatArray:
+    def drag_coefficient(self, cl: ArrayLike, mach: ArrayLike) -> FloatArray:
         lift, mach_array = np.broadcast_arrays(
-            np.asarray(lift_coefficient, dtype=float),
+            np.asarray(cl, dtype=float),
             np.asarray(mach, dtype=float),
         )
         if np.any(~np.isfinite(lift)) or np.any(~np.isfinite(mach_array)):
@@ -163,16 +161,14 @@ class TransonicCompressibilityDragModel:
 
     def breakdown(
         self,
-        lift_coefficient: ArrayLike,
+        cl: ArrayLike,
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
         condition: DragCondition | None = None,
     ) -> DragBreakdown:
         condition = resolve_condition(mach, reynolds_per_m, condition)
-        lift, mach_array, _, flap, gear, spoiler = condition.broadcast_with(
-            lift_coefficient
-        )
+        lift, mach_array, _, flap, gear, spoiler = condition.broadcast_with(cl)
         require_clean(flap, gear, spoiler)
         critical_mach = self.wave_drag.critical_mach(lift)
         parasite = np.full_like(lift, self.cd0)
@@ -188,20 +184,18 @@ class TransonicCompressibilityDragModel:
 
     def drag_coefficient(
         self,
-        lift_coefficient: ArrayLike,
+        cl: ArrayLike,
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
         condition: DragCondition | None = None,
     ) -> FloatArray:
-        return self.breakdown(
-            lift_coefficient, mach, reynolds_per_m, condition=condition
-        ).total
+        return self.breakdown(cl, mach, reynolds_per_m, condition=condition).total
 
-    def _drag_coefficient_scalar(
-        self, lift_coefficient: float, condition: DragCondition
-    ) -> float:
-        return float(self.drag_coefficient(lift_coefficient, condition=condition))
+    cd = drag_coefficient  # shorthand
+
+    def _drag_coefficient_scalar(self, cl: float, condition: DragCondition) -> float:
+        return float(self.drag_coefficient(cl, condition=condition))
 
 
 @dataclass(frozen=True)
@@ -369,7 +363,7 @@ class PollSchumannDragModel:
 
     def breakdown(
         self,
-        lift_coefficient: ArrayLike,
+        cl: ArrayLike,
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
@@ -386,7 +380,7 @@ class PollSchumannDragModel:
 
         condition = resolve_condition(mach, reynolds_per_m, condition)
         lift, mach_array, unit_reynolds, flap, gear, spoiler = condition.broadcast_with(
-            lift_coefficient
+            cl
         )
         require_clean(flap, gear, spoiler)
         if condition.reynolds_per_m is None:
@@ -407,17 +401,15 @@ class PollSchumannDragModel:
 
     def drag_coefficient(
         self,
-        lift_coefficient: ArrayLike,
+        cl: ArrayLike,
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
         condition: DragCondition | None = None,
     ) -> FloatArray:
-        return self.breakdown(
-            lift_coefficient, mach, reynolds_per_m, condition=condition
-        ).total
+        return self.breakdown(cl, mach, reynolds_per_m, condition=condition).total
 
-    def _drag_coefficient_scalar(
-        self, lift_coefficient: float, condition: DragCondition
-    ) -> float:
-        return float(self.drag_coefficient(lift_coefficient, condition=condition))
+    cd = drag_coefficient  # shorthand
+
+    def _drag_coefficient_scalar(self, cl: float, condition: DragCondition) -> float:
+        return float(self.drag_coefficient(cl, condition=condition))

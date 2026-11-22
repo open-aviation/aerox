@@ -34,7 +34,7 @@ from aerox.models.drag import build_reference_drag_polar
 
 polar = build_reference_drag_polar(ac)
 print(polar.cd0, polar.k)
-print(polar.drag_coefficient(0.55))
+print(polar.drag_coefficient(cl=0.55))   # or polar.cd(cl=0.55)
 ```
 
 Get drag at a flight condition, with the Mach and Reynolds number effects:
@@ -44,8 +44,8 @@ from aerox import aero
 from aerox.models.drag import build_drag_model, build_drag_report
 
 model = build_drag_model(ac)
-reynolds = aero.reynolds_per_m(0.78, 11_000)    # per metre, at Mach 0.78 and 11 km
-print(model.drag_coefficient(0.55, mach=0.78, reynolds_per_m=reynolds))
+reynolds = aero.reynolds_per_m(mach=0.78, h=11_000)   # per metre
+print(model.cd(cl=0.55, mach=0.78, reynolds_per_m=reynolds))
 
 # The contribution of each aircraft part to the zero-lift drag
 for term in build_drag_report(ac).parasite_terms:
@@ -57,8 +57,8 @@ Atmosphere and speed conversions, in SI units:
 ```python
 from aerox import aero
 
-p, rho, T = aero.atmos(10_000)        # altitude in m
-cas = aero.mach2cas(0.78, 10_000)     # m/s
+p, rho, T = aero.atmos(h=10_000)           # altitude in m
+cas = aero.mach2cas(mach=0.78, h=10_000)   # m/s
 ```
 
 ## What is included

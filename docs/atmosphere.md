@@ -5,15 +5,17 @@ equations and function names are the same as in `openap.aero`.
 
 All inputs and outputs are in SI units: altitude in m, speed in m/s, pressure
 in Pa, density in kg/m³, temperature in K. Every function accepts scalars or
-NumPy arrays. The optional argument `dT` is the temperature offset from ISA, in
+NumPy arrays. All arguments can be passed by name, with the names shown in
+the tables below. The optional argument `dT` is the temperature offset from ISA, in
 K. It is limited to the range −25 K to +15 K: a larger offset gives the same
 result as the limit.
 
 ```python
 from aerox import aero
 
-p, rho, T = aero.atmos(10_000)
-tas = aero.cas2tas(250 * aero.kts, 3_000)
+p, rho, T = aero.atmos(h=10_000)
+tas = aero.cas2tas(v_cas=250 * aero.kts, h=3_000)
+re = aero.reynolds_per_m(mach=0.78, h=11_000)
 ```
 
 ## Atmosphere

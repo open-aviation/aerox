@@ -105,7 +105,7 @@ class GeometryDragModel:
 
     def breakdown(
         self,
-        lift_coefficient: ArrayLike,
+        cl: ArrayLike,
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
@@ -114,9 +114,7 @@ class GeometryDragModel:
         condition = resolve_condition(
             mach, reynolds_per_m, condition
         ).with_default_reynolds(self.reference_reynolds_per_m)
-        lift, mach, unit_reynolds, flap, gear, spoiler = condition.broadcast_with(
-            lift_coefficient
-        )
+        lift, mach, unit_reynolds, flap, gear, spoiler = condition.broadcast_with(cl)
         require_clean(flap, gear, spoiler)
         component_parasite = {
             component.name: self.parasite_scale
@@ -154,22 +152,20 @@ class GeometryDragModel:
 
     def drag_coefficient(
         self,
-        lift_coefficient: ArrayLike,
+        cl: ArrayLike,
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
         condition: DragCondition | None = None,
     ) -> FloatArray:
-        return self.breakdown(
-            lift_coefficient, mach, reynolds_per_m, condition=condition
-        ).total
+        return self.breakdown(cl, mach, reynolds_per_m, condition=condition).total
 
-    def _drag_coefficient_scalar(
-        self, lift_coefficient: float, condition: DragCondition
-    ) -> float:
+    cd = drag_coefficient  # shorthand
+
+    def _drag_coefficient_scalar(self, cl: float, condition: DragCondition) -> float:
         condition = condition.with_default_reynolds(self.reference_reynolds_per_m)
         values = (
-            lift_coefficient,
+            cl,
             condition.mach,
             condition.reynolds_per_m,
             condition.flap_angle_rad,
@@ -182,7 +178,7 @@ class GeometryDragModel:
             float(value) for value in values
         )
         if not np.isfinite(lift):
-            raise ValueError("lift_coefficient must be finite")
+            raise ValueError("cl must be finite")
         if not np.isfinite(mach) or mach < 0.0:
             raise ValueError("mach must be finite and non-negative")
         if not np.isfinite(unit_reynolds) or unit_reynolds <= 0.0:
@@ -269,14 +265,14 @@ class TransonicGeometryDragModel:
 
     def breakdown(
         self,
-        lift_coefficient: ArrayLike,
+        cl: ArrayLike,
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
         condition: DragCondition | None = None,
     ) -> TransonicGeometryDragBreakdown:
         condition = resolve_condition(mach, reynolds_per_m, condition)
-        lift, mach, *_ = condition.broadcast_with(lift_coefficient)
+        lift, mach, *_ = condition.broadcast_with(cl)
         self._validate_envelope(lift, mach)
         base = self.base_model.breakdown(lift, condition=condition)
         wave, critical = self.wave_drag.evaluate(mach, lift)
@@ -295,22 +291,20 @@ class TransonicGeometryDragModel:
 
     def drag_coefficient(
         self,
-        lift_coefficient: ArrayLike,
+        cl: ArrayLike,
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
         condition: DragCondition | None = None,
     ) -> FloatArray:
-        return self.breakdown(
-            lift_coefficient, mach, reynolds_per_m, condition=condition
-        ).total
+        return self.breakdown(cl, mach, reynolds_per_m, condition=condition).total
 
-    def _drag_coefficient_scalar(
-        self, lift_coefficient: float, condition: DragCondition
-    ) -> float:
+    cd = drag_coefficient  # shorthand
+
+    def _drag_coefficient_scalar(self, cl: float, condition: DragCondition) -> float:
         if np.ndim(condition.mach) != 0:
             raise ValueError("scalar drag evaluation requires scalar Mach")
-        lift = float(lift_coefficient)
+        lift = float(cl)
         mach = float(condition.mach)
         self._validate_envelope(np.asarray(lift), np.asarray(mach))
         base = self.base_model._drag_coefficient_scalar(lift, condition)

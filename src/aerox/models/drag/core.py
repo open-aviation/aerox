@@ -105,16 +105,16 @@ class DragBreakdownLike(Protocol):
 class DragModel(Protocol):
     """Drag-coefficient model used by the flight mechanics.
 
-    Every model is evaluated as
-    ``drag_coefficient(lift_coefficient, mach, reynolds_per_m)`` or with
-    ``condition=DragCondition(...)``. ``breakdown`` takes the same arguments
-    and returns the drag parts. ``_drag_coefficient_scalar`` is a fast path
+    Every model is evaluated as ``drag_coefficient(cl, mach, reynolds_per_m)``
+    or with ``condition=DragCondition(...)``. The Aerox models also have the
+    shorthand ``cd(...)``. ``breakdown`` takes the same arguments and returns
+    the drag parts. ``_drag_coefficient_scalar`` is a fast path
     for scalar conditions used inside integrators.
     """
 
     def breakdown(
         self,
-        lift_coefficient: ArrayLike,
+        cl: ArrayLike,
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
@@ -123,7 +123,7 @@ class DragModel(Protocol):
 
     def drag_coefficient(
         self,
-        lift_coefficient: ArrayLike,
+        cl: ArrayLike,
         mach: ArrayLike | None = None,
         reynolds_per_m: ArrayLike | None = None,
         *,
@@ -131,7 +131,7 @@ class DragModel(Protocol):
     ) -> FloatArray: ...
 
     def _drag_coefficient_scalar(
-        self, lift_coefficient: float, condition: DragCondition
+        self, cl: float, condition: DragCondition
     ) -> float: ...
 
 
