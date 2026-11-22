@@ -15,6 +15,8 @@ from typing import Any, Mapping
 
 import yaml
 
+from aerox.aircraft import upgrade_legacy_keys, upgrade_legacy_source_notes
+
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 AIRCRAFT_ROOT = PROJECT_ROOT / "src/aerox/data/aircraft/yml"
 SOURCES_ROOT = PROJECT_ROOT / "src/aerox/data/aircraft/sources"
@@ -719,6 +721,8 @@ def validate_simple(document: Any) -> list[str]:
 def normalize_bundle(
     document: Mapping[str, Any], sidecar_text: str
 ) -> tuple[dict[str, Any], str]:
+    document = upgrade_legacy_keys(dict(document))
+    sidecar_text = upgrade_legacy_source_notes(sidecar_text)
     if document.get("schema_version") == "2.0.0":
         simple = simple_from_canonical(document)
         sidecar = render_source_notes(simple, document, sidecar_text)

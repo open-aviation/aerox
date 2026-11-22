@@ -92,24 +92,16 @@ class EconomyCruiseOptimizer:
         mach: FloatArray,
         reynolds_per_m: FloatArray,
     ) -> tuple[FloatArray, FloatArray, FloatArray]:
-        """Return total, wave, and critical-Mach arrays from shared models."""
+        """Return total, wave, and critical-Mach arrays from shared models.
+
+        Wave drag and critical Mach are NaN for models without them.
+        """
 
         condition = DragCondition(
             mach=mach,
             reynolds_per_m=reynolds_per_m,
         )
-        breakdown_method = getattr(self.drag_model, "breakdown", None)
-        if breakdown_method is None:
-            total = self.drag_model.drag_coefficient(
-                lift_coefficient, condition=condition
-            )
-            shape = np.broadcast_shapes(lift_coefficient.shape, mach.shape)
-            return (
-                total,
-                np.full(shape, np.nan, dtype=float),
-                np.full(shape, np.nan, dtype=float),
-            )
-        breakdown = breakdown_method(lift_coefficient, condition=condition)
+        breakdown = self.drag_model.breakdown(lift_coefficient, condition=condition)
         total = np.asarray(breakdown.total, dtype=float)
         wave = getattr(breakdown, "wave", np.full_like(total, np.nan))
         critical = getattr(

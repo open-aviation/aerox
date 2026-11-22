@@ -68,6 +68,16 @@ class DragCondition:
         return lift, mach, reynolds, flap, gear, spoiler
 
 
+def require_clean(flap: FloatArray, gear: FloatArray, spoiler: FloatArray) -> None:
+    """Reject a deployed configuration in a clean-configuration model."""
+
+    if np.any(flap > 0.0) or np.any(gear > 0.0) or np.any(spoiler > 0.0):
+        raise ValueError(
+            "this drag model is supported only when clean: "
+            "flaps, landing gear, and spoilers must be retracted"
+        )
+
+
 def resolve_condition(
     mach: ArrayLike | None,
     reynolds_per_m: ArrayLike | None,
@@ -84,14 +94,32 @@ def resolve_condition(
     return DragCondition(mach=mach, reynolds_per_m=reynolds_per_m)
 
 
+class DragBreakdownLike(Protocol):
+    """Any drag breakdown: it has at least the total drag coefficient."""
+
+    @property
+    def total(self) -> FloatArray: ...
+
+
 @runtime_checkable
 class DragModel(Protocol):
     """Drag-coefficient model used by the flight mechanics.
 
-    Every model is evaluated as ``drag_coefficient(cl, mach, reynolds_per_m)``
-    or with ``condition=DragCondition(...)``. ``_drag_coefficient_scalar`` is a
-    fast path for scalar conditions used inside integrators.
+    Every model is evaluated as
+    ``drag_coefficient(lift_coefficient, mach, reynolds_per_m)`` or with
+    ``condition=DragCondition(...)``. ``breakdown`` takes the same arguments
+    and returns the drag parts. ``_drag_coefficient_scalar`` is a fast path
+    for scalar conditions used inside integrators.
     """
+
+    def breakdown(
+        self,
+        lift_coefficient: ArrayLike,
+        mach: ArrayLike | None = None,
+        reynolds_per_m: ArrayLike | None = None,
+        *,
+        condition: DragCondition | None = None,
+    ) -> DragBreakdownLike: ...
 
     def drag_coefficient(
         self,

@@ -16,7 +16,7 @@ from .components import (
     lifting_surface_form_factor,
     lifting_surface_wetted_area,
 )
-from .core import DragCondition, FloatArray, resolve_condition
+from .core import DragCondition, FloatArray, require_clean, resolve_condition
 from .wave import KornLockWaveDrag
 
 if TYPE_CHECKING:
@@ -117,10 +117,7 @@ class GeometryDragModel:
         lift, mach, unit_reynolds, flap, gear, spoiler = condition.broadcast_with(
             lift_coefficient
         )
-        if np.any(flap > 0.0) or np.any(gear > 0.0) or np.any(spoiler > 0.0):
-            raise ValueError(
-                "geometry drag model is currently supported only when clean"
-            )
+        require_clean(flap, gear, spoiler)
         component_parasite = {
             component.name: self.parasite_scale
             * component.drag_coefficient(
@@ -195,9 +192,7 @@ class GeometryDragModel:
         if flap < 0.0 or not 0.0 <= gear <= 1.0 or spoiler < 0.0:
             raise ValueError("configuration values are outside physical bounds")
         if any(value > 0.0 for value in (flap, gear, spoiler)):
-            raise ValueError(
-                "geometry drag model is currently supported only when clean"
-            )
+            require_clean(np.asarray(flap), np.asarray(gear), np.asarray(spoiler))
         parasite = self.parasite_scale * (
             self.parasite_increment_coefficient
             + sum(

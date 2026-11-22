@@ -12,6 +12,7 @@ from .core import (
     DragCondition,
     DragModel,
     FloatArray,
+    require_clean,
     resolve_condition,
 )
 from .wave import KornLockWaveDrag
@@ -42,7 +43,10 @@ class ParabolicDragPolar:
         if condition is None and mach is None:
             mach = 0.0
         condition = resolve_condition(mach, reynolds_per_m, condition)
-        lift, mach_array, *_ = condition.broadcast_with(lift_coefficient)
+        lift, mach_array, _, flap, gear, spoiler = condition.broadcast_with(
+            lift_coefficient
+        )
+        require_clean(flap, gear, spoiler)
         parasite = np.full_like(lift, self.cd0)
         induced = self.k * lift**2
         return DragBreakdown(
@@ -68,12 +72,11 @@ class ParabolicDragPolar:
     def _drag_coefficient_scalar(
         self, lift_coefficient: float, condition: DragCondition
     ) -> float:
-        if not np.isfinite(lift_coefficient):
-            raise ValueError("lift_coefficient must be finite")
-        mach = float(condition.mach)
-        if not np.isfinite(mach) or mach < 0.0:
-            raise ValueError("mach must be finite and non-negative")
-        return float(self.cd0 + self.k * lift_coefficient**2)
+        lift, _, _, flap, gear, spoiler = condition.broadcast_with(lift_coefficient)
+        if lift.ndim != 0:
+            raise ValueError("scalar drag evaluation requires scalar condition values")
+        require_clean(flap, gear, spoiler)
+        return float(self.cd0 + self.k * float(lift_coefficient) ** 2)
 
 
 @dataclass(frozen=True)
@@ -92,7 +95,10 @@ class ParabolicWaveDragModel:
         condition: DragCondition | None = None,
     ) -> DragBreakdown:
         condition = resolve_condition(mach, reynolds_per_m, condition)
-        lift, mach_array, *_ = condition.broadcast_with(lift_coefficient)
+        lift, mach_array, _, flap, gear, spoiler = condition.broadcast_with(
+            lift_coefficient
+        )
+        require_clean(flap, gear, spoiler)
         parasite = np.full_like(lift, self.base_polar.cd0)
         induced = self.base_polar.k * lift**2
         wave, critical = self.wave_drag.evaluate(mach_array, lift)

@@ -441,6 +441,43 @@ def _source_ids(provenance: Dict[str, Any], path: str) -> List[str]:
     )
 
 
+# Record keys renamed after earlier releases: {old key: current key} per group.
+LEGACY_KEYS: Dict[str, Dict[str, str]] = {
+    "drag": {"reference_unit_reynolds_number_per_m": "reference_reynolds_per_m"},
+}
+
+
+def upgrade_legacy_keys(data: Dict[str, Any]) -> Dict[str, Any]:
+    """Return a copy of an aircraft record with renamed keys updated.
+
+    A value stored under an old key is kept unless the current key also has a
+    value.
+    """
+
+    upgraded = dict(data)
+    for group, renames in LEGACY_KEYS.items():
+        section = upgraded.get(group)
+        if not isinstance(section, dict):
+            continue
+        section = dict(section)
+        for old, new in renames.items():
+            if old in section:
+                value = section.pop(old)
+                if section.get(new) is None:
+                    section[new] = value
+        upgraded[group] = section
+    return upgraded
+
+
+def upgrade_legacy_source_notes(text: str) -> str:
+    """Return source-note text with renamed field paths updated."""
+
+    for group, renames in LEGACY_KEYS.items():
+        for old, new in renames.items():
+            text = text.replace(f"{group}.{old}", f"{group}.{new}")
+    return text
+
+
 def load_aircraft_from_dict(
     data: Dict[str, Any], provenance: Optional[Dict[str, Any]] = None
 ) -> Aircraft:
@@ -453,7 +490,15 @@ def load_aircraft_from_dict(
     Returns:
         Aircraft: Populated aircraft data class
     """
+    data = upgrade_legacy_keys(data)
     provenance = provenance or {"header": {}, "fields": {}}
+    fields = provenance.get("fields") or {}
+    for group, renames in LEGACY_KEYS.items():
+        for old, new in renames.items():
+            if f"{group}.{old}" in fields and f"{group}.{new}" not in fields:
+                fields = dict(fields)
+                fields[f"{group}.{new}"] = fields.pop(f"{group}.{old}")
+    provenance = {**provenance, "fields": fields}
     pax = _load_nested_dataclass(data.get("pax"), Pax)
     fuselage = _load_nested_dataclass(data.get("fuselage"), Fuselage)
     wing = _load_nested_dataclass(data.get("wing"), Wing)

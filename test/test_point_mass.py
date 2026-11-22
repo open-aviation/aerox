@@ -192,6 +192,11 @@ class _ConditionAwareDragSpy:
         self.last_condition = condition
         return np.full_like(np.asarray(lift_coefficient, dtype=float), 0.03)
 
+    def breakdown(
+        self, lift_coefficient, mach=None, reynolds_per_m=None, *, condition=None
+    ):
+        raise NotImplementedError
+
     def _drag_coefficient_scalar(
         self, lift_coefficient: float, condition: DragCondition
     ) -> float:

@@ -47,8 +47,10 @@ The main groups of a record, with their units:
 The wing thickness ratio is stored as `t/c` in YAML and as `wing.t_c` in
 Python.
 
-Engine names in `engine.options` refer to the engine table in
-`src/aerox/data/engines/engines.csv`.
+`src/aerox/data/engines/engines.csv` is a table of turbofan engines. Most
+turbofan names in `engine.options` match the `name` column of this table, but
+not all. The engine names of turboprop and piston aircraft are descriptions
+only and have no entry in the table.
 
 ## Sources
 

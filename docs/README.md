@@ -20,6 +20,12 @@ performance models for 144 aircraft types, built from open sources.
 pip install aerox
 ```
 
+Or, from a copy of the repository:
+
+```bash
+pip install .
+```
+
 The runtime needs NumPy, SciPy, and PyYAML. Two extras are available:
 
 - `aerox[editor]` adds Flask for the local editor of aircraft records.

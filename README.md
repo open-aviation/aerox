@@ -8,6 +8,12 @@ from open sources.
 pip install aerox
 ```
 
+Or, from a copy of the repository:
+
+```bash
+pip install .
+```
+
 ## Quick start
 
 Load an aircraft:

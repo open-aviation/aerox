@@ -6,7 +6,8 @@ equations and function names are the same as in `openap.aero`.
 All inputs and outputs are in SI units: altitude in m, speed in m/s, pressure
 in Pa, density in kg/m³, temperature in K. Every function accepts scalars or
 NumPy arrays. The optional argument `dT` is the temperature offset from ISA, in
-K.
+K. It is limited to the range −25 K to +15 K: a larger offset gives the same
+result as the limit.
 
 ```python
 from aerox import aero

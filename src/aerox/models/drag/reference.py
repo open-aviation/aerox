@@ -11,7 +11,13 @@ from dataclasses import dataclass
 import numpy as np
 from numpy.typing import ArrayLike
 
-from .core import DragBreakdown, DragCondition, FloatArray, resolve_condition
+from .core import (
+    DragBreakdown,
+    DragCondition,
+    FloatArray,
+    require_clean,
+    resolve_condition,
+)
 
 
 @dataclass(frozen=True)
@@ -164,7 +170,10 @@ class TransonicCompressibilityDragModel:
         condition: DragCondition | None = None,
     ) -> DragBreakdown:
         condition = resolve_condition(mach, reynolds_per_m, condition)
-        lift, mach_array, *_ = condition.broadcast_with(lift_coefficient)
+        lift, mach_array, _, flap, gear, spoiler = condition.broadcast_with(
+            lift_coefficient
+        )
+        require_clean(flap, gear, spoiler)
         critical_mach = self.wave_drag.critical_mach(lift)
         parasite = np.full_like(lift, self.cd0)
         induced = self.induced_drag.drag_coefficient(lift, mach_array)
@@ -370,15 +379,16 @@ class PollSchumannDragModel:
 
         The source model uses the aircraft Reynolds number based on
         ``sqrt(reference_area_m2)``. It is computed from ``reynolds_per_m``;
-        without it, ``reference_reynolds_number`` is used.
+        without it, ``reference_reynolds_number`` is used. To pass a known
+        aircraft Reynolds number, use
+        ``reynolds_per_m = aircraft_reynolds / sqrt(reference_area_m2)``.
         """
 
         condition = resolve_condition(mach, reynolds_per_m, condition)
         lift, mach_array, unit_reynolds, flap, gear, spoiler = condition.broadcast_with(
             lift_coefficient
         )
-        if np.any(flap > 0.0) or np.any(gear > 0.0) or np.any(spoiler > 0.0):
-            raise ValueError("Poll-Schumann is currently supported only when clean")
+        require_clean(flap, gear, spoiler)
         if condition.reynolds_per_m is None:
             reynolds = np.full_like(lift, self.reference_reynolds_number)
         else:
