@@ -30,7 +30,9 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Sync dev environment
-        run: uv sync --all-extras --group dev
+        # The research extra is left out: its fastmeteo dependency pulls in
+        # numcodecs, which has no wheel for every Python version tested here.
+        run: uv sync --extra plot --extra editor --group dev
 
       - name: Run pytest
         run: uv run pytest -q
