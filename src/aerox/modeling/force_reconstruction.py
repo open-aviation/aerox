@@ -8,7 +8,7 @@ import numpy as np
 from numpy.lib.stride_tricks import sliding_window_view
 from numpy.typing import ArrayLike, NDArray
 
-from aerox.models.atmosphere import G0
+from aerox.models._atmosphere import G0
 
 FloatArray = NDArray[np.float64]
 
@@ -71,8 +71,8 @@ def reconstruct_translational_forces(
     mass_kg: ArrayLike,
     dynamic_pressure_pa: ArrayLike,
     wing_area_m2: float,
-    zero_lift_drag_coefficient: float,
-    induced_drag_factor: float,
+    cd0: float,
+    k: float,
     derivative_window: int = 11,
 ) -> TranslationalForces:
     """Reconstruct effective lift, ``T-D``, and prior-implied thrust.
@@ -102,7 +102,7 @@ def reconstruct_translational_forces(
         raise ValueError("speed must be non-negative; mass and q must be positive")
     if wing_area_m2 <= 0:
         raise ValueError("wing_area_m2 must be positive")
-    if zero_lift_drag_coefficient < 0 or induced_drag_factor < 0:
+    if cd0 < 0 or k < 0:
         raise ValueError("drag-polar coefficients must be non-negative")
     if np.any(np.abs(np.cos(bank)) < 0.1):
         raise ValueError("bank angle is too close to 90 degrees")
@@ -112,9 +112,7 @@ def reconstruct_translational_forces(
     net_force = mass * (speed_rate + G0 * np.sin(gamma))
     lift = mass * (speed * gamma_rate + G0 * np.cos(gamma)) / np.cos(bank)
     lift_coefficient = lift / (dynamic_pressure * wing_area_m2)
-    drag_coefficient = (
-        zero_lift_drag_coefficient + induced_drag_factor * lift_coefficient**2
-    )
+    drag_coefficient = cd0 + k * lift_coefficient**2
     drag = dynamic_pressure * wing_area_m2 * drag_coefficient
     implied_thrust = net_force + drag
     specific_excess_power = speed * net_force / (mass * G0)

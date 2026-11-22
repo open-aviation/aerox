@@ -11,7 +11,7 @@ from aerox.fms.performance import (
     MaximumThrustModel,
     MinimumThrustModel,
 )
-from aerox.models.atmosphere import (
+from aerox.models._atmosphere import (
     G0,
     atmosphere_at_pressure_altitude,
     unit_reynolds_number,
@@ -78,7 +78,7 @@ class PointMassProfilePerformance:
         drag_coefficient = self.plant.drag_coefficient_scalar(
             lift_coefficient,
             mach,
-            unit_reynolds_number_per_m=reynolds_per_metre,
+            reynolds_per_m=reynolds_per_metre,
         )
         drag = dynamic_pressure * self.plant.wing_area_m2 * drag_coefficient
         maximum_thrust = self.maximum_thrust_model.maximum_thrust_n(

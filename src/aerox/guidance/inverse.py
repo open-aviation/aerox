@@ -13,7 +13,7 @@ import numpy as np
 from numpy.typing import ArrayLike
 
 from aerox.guidance.path import SpeedGuidanceMode
-from aerox.models.atmosphere import G0, atmosphere_at_pressure_altitude
+from aerox.models._atmosphere import G0, atmosphere_at_pressure_altitude
 from aerox.modeling.dynamics import (
     PitchAwareLiftModel,
     PitchBankThrustInput,

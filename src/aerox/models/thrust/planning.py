@@ -6,7 +6,7 @@ from dataclasses import dataclass
 
 import numpy as np
 
-from aerox.models.atmosphere import (
+from aerox.models._atmosphere import (
     SEA_LEVEL_PRESSURE_PA,
     atmosphere_at_pressure_altitude,
 )

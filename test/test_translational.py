@@ -30,8 +30,8 @@ def test_steady_level_flight_recovers_weight_lift_and_prior_drag():
         mass_kg=mass,
         dynamic_pressure_pa=dynamic_pressure,
         wing_area_m2=120.0,
-        zero_lift_drag_coefficient=0.02,
-        induced_drag_factor=0.04,
+        cd0=0.02,
+        k=0.04,
         derivative_window=5,
     )
 

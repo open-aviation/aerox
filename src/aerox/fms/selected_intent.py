@@ -9,7 +9,7 @@ import numpy as np
 from numpy.typing import ArrayLike, NDArray
 
 from aerox import aero
-from aerox.models.atmosphere import (
+from aerox.models._atmosphere import (
     true_airspeed_from_calibrated_airspeed,
     true_airspeed_from_mach,
 )

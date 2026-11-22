@@ -97,6 +97,17 @@ class Aero:
         """Compute speed of sound in m/s."""
         return np.sqrt(gamma * R * self.temperature(h, dT=dT))
 
+    def viscosity(self, h: Any, dT: Any = 0) -> Any:
+        """Compute dynamic viscosity in Pa s, with Sutherland's law."""
+        temperature = self.temperature(h, dT=dT)
+        return 1.458e-6 * temperature**1.5 / (temperature + 110.4)
+
+    def reynolds_per_m(self, mach: Any, h: Any, dT: Any = 0) -> Any:
+        """Compute the Reynolds number per metre at a Mach number."""
+        _, density_value, _ = self.atmos(h, dT=dT)
+        v_tas = self.mach2tas(mach, h, dT=dT)
+        return density_value * v_tas / self.viscosity(h, dT=dT)
+
     def h_isa(self, p: Any, dT: Any = 0) -> Any:
         """Compute ISA altitude in metres for pressure in pascals."""
         pressure_value = np.asarray(p)
@@ -198,6 +209,14 @@ def density(h: Any, dT: Any = 0) -> Any:
 
 def vsound(h: Any, dT: Any = 0) -> Any:
     return _default_aero.vsound(h, dT)
+
+
+def viscosity(h: Any, dT: Any = 0) -> Any:
+    return _default_aero.viscosity(h, dT)
+
+
+def reynolds_per_m(mach: Any, h: Any, dT: Any = 0) -> Any:
+    return _default_aero.reynolds_per_m(mach, h, dT)
 
 
 def h_isa(p: Any, dT: Any = 0) -> Any:

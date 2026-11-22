@@ -9,10 +9,14 @@ from aerox.models import (
     GuardedHybridLiftModel,
     ParabolicDragPolar,
     TabulatedLiftSurface,
+)
+from aerox.models.drag.polar import (
     ParabolicWaveDragModel,
+)
+from aerox.models.drag.wave import (
     KornLockWaveDrag,
 )
-from aerox.models.atmosphere import unit_reynolds_number
+from aerox.models._atmosphere import unit_reynolds_number
 from aerox.modeling.dynamics import (
     PitchBankThrustInput,
     PointMassModel,
@@ -22,7 +26,7 @@ from aerox.modeling.dynamics import (
 )
 from aerox.models.openap import OpenAPFuelFlowPrior
 from aerox.models.thrust import EffectiveThrustMap, MeasuredN1ThrustAdapter
-from aerox.models.atmosphere import G0
+from aerox.models._atmosphere import G0
 
 MASS_KG = 60_000.0
 SPEED_MPS = 150.0
@@ -182,11 +186,13 @@ class _ConditionAwareDragSpy:
     def __init__(self) -> None:
         self.last_condition: DragCondition | None = None
 
-    def drag_coefficient_at(self, lift_coefficient, condition):
+    def drag_coefficient(
+        self, lift_coefficient, mach=None, reynolds_per_m=None, *, condition=None
+    ):
         self.last_condition = condition
         return np.full_like(np.asarray(lift_coefficient, dtype=float), 0.03)
 
-    def drag_coefficient_scalar_at(
+    def _drag_coefficient_scalar(
         self, lift_coefficient: float, condition: DragCondition
     ) -> float:
         self.last_condition = condition
@@ -212,7 +218,7 @@ def test_point_mass_model_passes_actual_unit_reynolds_to_drag_model() -> None:
     plant.forces(_state(), control)
 
     assert spy.last_condition is not None
-    assert float(spy.last_condition.unit_reynolds_number_per_m) == pytest.approx(
+    assert float(spy.last_condition.reynolds_per_m) == pytest.approx(
         float(unit_reynolds_number(aero.rho0, SPEED_MPS, aero.T0))
     )
 

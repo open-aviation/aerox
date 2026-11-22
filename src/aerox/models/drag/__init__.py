@@ -1,110 +1,31 @@
-"""Condition-aware aircraft drag modeling.
+"""Aircraft drag models.
 
-The package separates the runtime model contract, component and geometry
-equations, aircraft-data construction, low-order polar projections, and
-published comparison formulations.
+Build the drag model of an aircraft with :func:`build_drag_model` and evaluate
+it with ``model.drag_coefficient(cl, mach, reynolds_per_m)``.
+
+The component equations, the wave-drag model, and the published comparison
+models are available from the submodules ``components``, ``wave``,
+``geometry``, ``builder``, and ``reference``.
 """
 
 from .builder import (
-    GEOMETRY_DRAG_MODEL_ID,
-    KORN_LOCK_WAVE_DRAG_MODEL_ID,
-    ROUGHNESS_EXCRESCENCE_FRACTION,
     DragBuildReport,
-    DragTerm,
-    GeometryScalingDefaults,
-    NacelleGeometry,
-    ReferenceDragCondition,
-    ResolvedDragGeometry,
     build_drag_model,
     build_drag_report,
     build_reference_drag_polar,
-    derive_reference_drag_condition,
-    nacelle_interference_factor,
-    resolve_drag_geometry,
-    resolve_nacelle_geometry,
-    uses_component_buildup,
 )
-from .components import (
-    ParasiteDragComponent,
-    control_surface_gap_drag_area,
-    exposed_wing_area,
-    fuselage_form_factor,
-    fuselage_upsweep_drag_area,
-    fuselage_wetted_area,
-    laminar_flat_plate_skin_friction,
-    lifting_surface_form_factor,
-    lifting_surface_wetted_area,
-    nacelle_base_drag_area,
-    nacelle_form_factor,
-    nacelle_wetted_area,
-    trapezoidal_root_chord,
-    turbulent_flat_plate_skin_friction,
-)
-from .core import DragBreakdown, DragCondition, DragModel
-from .geometry import (
-    GeometryDragBreakdown,
-    GeometryDragModel,
-    TransonicGeometryDragBreakdown,
-    TransonicGeometryDragModel,
-    geometry_drag_model_from_aircraft,
-    geometry_drag_model_from_dimensions,
-)
-from .polar import ParabolicDragPolar, ParabolicWaveDragModel, project_parabolic_polar
-from .reference import (
-    HyperbolicTangentWaveDrag,
-    MachDependentInducedDrag,
-    PollSchumannDragModel,
-    TransonicCompressibilityDragModel,
-)
-from .wave import KornLockWaveDrag
+from .core import DragCondition, DragModel
+from .geometry import GeometryDragModel, TransonicGeometryDragModel
+from .polar import ParabolicDragPolar
 
 __all__ = [
-    "GEOMETRY_DRAG_MODEL_ID",
-    "KORN_LOCK_WAVE_DRAG_MODEL_ID",
-    "ROUGHNESS_EXCRESCENCE_FRACTION",
-    "DragBreakdown",
     "DragBuildReport",
-    "DragTerm",
     "DragCondition",
     "DragModel",
-    "GeometryDragBreakdown",
     "GeometryDragModel",
-    "GeometryScalingDefaults",
-    "HyperbolicTangentWaveDrag",
-    "KornLockWaveDrag",
-    "MachDependentInducedDrag",
-    "NacelleGeometry",
     "ParabolicDragPolar",
-    "ParabolicWaveDragModel",
-    "ParasiteDragComponent",
-    "PollSchumannDragModel",
-    "ReferenceDragCondition",
-    "ResolvedDragGeometry",
-    "TransonicCompressibilityDragModel",
-    "TransonicGeometryDragBreakdown",
     "TransonicGeometryDragModel",
     "build_drag_model",
     "build_drag_report",
     "build_reference_drag_polar",
-    "control_surface_gap_drag_area",
-    "derive_reference_drag_condition",
-    "exposed_wing_area",
-    "fuselage_form_factor",
-    "fuselage_upsweep_drag_area",
-    "fuselage_wetted_area",
-    "geometry_drag_model_from_aircraft",
-    "geometry_drag_model_from_dimensions",
-    "laminar_flat_plate_skin_friction",
-    "lifting_surface_form_factor",
-    "lifting_surface_wetted_area",
-    "nacelle_base_drag_area",
-    "nacelle_form_factor",
-    "nacelle_interference_factor",
-    "nacelle_wetted_area",
-    "project_parabolic_polar",
-    "resolve_drag_geometry",
-    "resolve_nacelle_geometry",
-    "trapezoidal_root_chord",
-    "turbulent_flat_plate_skin_friction",
-    "uses_component_buildup",
 ]

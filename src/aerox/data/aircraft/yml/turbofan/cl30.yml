@@ -82,7 +82,7 @@ drag:
   confidence: medium-low
   reference_altitude_ft: 50576.5
   reference_mach: 0.81
-  reference_unit_reynolds_number_per_m: 3048634.0
+  reference_reynolds_per_m: 3048634.0
   span_efficiency_factor: 0.944883
   unresolved_fraction_of_resolved_drag: null
   roughness_excrescence_fraction: 0.09

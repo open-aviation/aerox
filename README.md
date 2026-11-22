@@ -27,18 +27,19 @@ Get a drag polar, `CD = CD0 + k CL²`:
 from aerox.models.drag import build_reference_drag_polar
 
 polar = build_reference_drag_polar(ac)
-print(polar.zero_lift_drag_coefficient, polar.induced_drag_factor)
+print(polar.cd0, polar.k)
 print(polar.drag_coefficient(0.55))
 ```
 
 Get drag at a flight condition, with the Mach and Reynolds number effects:
 
 ```python
-from aerox.models.drag import DragCondition, build_drag_model, build_drag_report
+from aerox import aero
+from aerox.models.drag import build_drag_model, build_drag_report
 
 model = build_drag_model(ac)
-condition = DragCondition(mach=0.78, unit_reynolds_number_per_m=5.5e6)
-print(model.drag_coefficient_at(0.55, condition))
+reynolds = aero.reynolds_per_m(0.78, 11_000)    # per metre, at Mach 0.78 and 11 km
+print(model.drag_coefficient(0.55, mach=0.78, reynolds_per_m=reynolds))
 
 # The contribution of each aircraft part to the zero-lift drag
 for term in build_drag_report(ac).parasite_terms:
@@ -77,6 +78,11 @@ cas = aero.mach2cas(0.78, 10_000)     # m/s
   increments are not included yet.
 - The modules for thrust, lift, flight dynamics, and simulation are
   experimental. Their interfaces can change.
+
+## Documentation
+
+See [`docs/`](docs/README.md) for the aircraft data, the drag model, the
+atmosphere functions, and the roadmap.
 
 ## Development
 

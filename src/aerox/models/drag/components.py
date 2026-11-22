@@ -227,13 +227,12 @@ class ParasiteDragComponent:
             raise ValueError("laminar_fraction must lie between zero and one")
 
     def skin_friction_coefficient(
-        self, unit_reynolds_number_per_m: ArrayLike, mach: ArrayLike
+        self, reynolds_per_m: ArrayLike, mach: ArrayLike
     ) -> FloatArray:
         """Return the blended component-average skin-friction coefficient."""
 
         reynolds = (
-            np.asarray(unit_reynolds_number_per_m, dtype=float)
-            * self.characteristic_length_m
+            np.asarray(reynolds_per_m, dtype=float) * self.characteristic_length_m
         )
         turbulent = turbulent_flat_plate_skin_friction(reynolds, mach)
         if self.laminar_fraction == 0.0:
@@ -245,14 +244,14 @@ class ParasiteDragComponent:
 
     def drag_coefficient(
         self,
-        unit_reynolds_number_per_m: ArrayLike,
+        reynolds_per_m: ArrayLike,
         mach: ArrayLike,
         reference_area_m2: float,
     ) -> FloatArray:
         """Return this component's zero-lift coefficient contribution."""
 
         return (
-            self.skin_friction_coefficient(unit_reynolds_number_per_m, mach)
+            self.skin_friction_coefficient(reynolds_per_m, mach)
             * self.form_factor
             * self.interference_factor
             * self.wetted_area_m2
@@ -261,13 +260,13 @@ class ParasiteDragComponent:
 
     def drag_coefficient_scalar(
         self,
-        unit_reynolds_number_per_m: float,
+        reynolds_per_m: float,
         mach: float,
         reference_area_m2: float,
     ) -> float:
         """Scalar fast path for recursive trajectory integration."""
 
-        reynolds = unit_reynolds_number_per_m * self.characteristic_length_m
+        reynolds = reynolds_per_m * self.characteristic_length_m
         if not np.isfinite(reynolds) or reynolds <= 1.0e5:
             raise ValueError("component reynolds_number must exceed 100,000")
         if not np.isfinite(mach) or mach < 0.0:

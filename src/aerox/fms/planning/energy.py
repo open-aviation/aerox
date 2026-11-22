@@ -5,7 +5,7 @@ from __future__ import annotations
 import numpy as np
 
 from aerox.fms.performance import ProfilePerformance
-from aerox.models.atmosphere import G0
+from aerox.models._atmosphere import G0
 from aerox.navigation import ground_path_angle_from_air_motion
 from ..environment import SpatialEnvironmentProfile
 from ..route import FloatArray, SpatialTrajectory

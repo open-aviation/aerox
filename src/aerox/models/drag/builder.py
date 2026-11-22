@@ -25,7 +25,7 @@ import numpy as np
 
 from aerox import aero
 from aerox.aircraft import Aircraft
-from aerox.models.atmosphere import isa_atmosphere, unit_reynolds_number
+from aerox.models._atmosphere import isa_atmosphere, unit_reynolds_number
 
 from .components import (
     ParasiteDragComponent,
@@ -247,7 +247,7 @@ class ReferenceDragCondition:
 
     pressure_altitude_ft: float
     mach: float
-    unit_reynolds_number_per_m: float
+    reynolds_per_m: float
 
 
 @dataclass(frozen=True)
@@ -271,7 +271,7 @@ class DragBuildReport:
     k: float
     reference_altitude_ft: float
     reference_mach: float
-    reference_unit_reynolds_number_per_m: float
+    reference_reynolds_per_m: float
     span_efficiency_factor: float
     unresolved_fraction_of_resolved_drag: float | None
     roughness_excrescence_fraction: float | None
@@ -758,7 +758,7 @@ def _turbofan_buildup_terms(
 def _build_subcritical_geometry_model(
     geometry: ResolvedDragGeometry,
     reference_mach: float,
-    reference_unit_reynolds_number_per_m: float,
+    reference_reynolds_per_m: float,
     *,
     span_efficiency_factor: float | None = None,
     allowance_fraction: float | None = None,
@@ -782,7 +782,7 @@ def _build_subcritical_geometry_model(
         "vertical_tail_area_m2": geometry.vertical_tail_area_m2,
         "vertical_tail_mean_aerodynamic_chord_m": geometry.vertical_tail_mac_m,
         "reference_mach": reference_mach,
-        "reference_unit_reynolds_number_per_m": reference_unit_reynolds_number_per_m,
+        "reference_reynolds_per_m": reference_reynolds_per_m,
         "span_efficiency_factor": span_efficiency,
     }
     if geometry.component_buildup:
@@ -876,10 +876,10 @@ def build_drag_report(aircraft: Aircraft) -> DragBuildReport:
     reference = derive_reference_drag_condition(aircraft, geometry)
     altitude_ft = reference.pressure_altitude_ft
     mach = reference.mach
-    unit_reynolds = reference.unit_reynolds_number_per_m
+    unit_reynolds = reference.reynolds_per_m
     model = _build_subcritical_geometry_model(geometry, mach, unit_reynolds)
     condition = DragCondition(mach, unit_reynolds)
-    cd0 = model.drag_coefficient_scalar_at(0.0, condition)
+    cd0 = model._drag_coefficient_scalar(0.0, condition)
     k = (
         model.span_induced_drag_factor
         + model.profile_lift_drag_multiplier * cd0 * model.induced_scale
@@ -892,7 +892,7 @@ def build_drag_report(aircraft: Aircraft) -> DragBuildReport:
         raise ValueError(
             f"aircraft {aircraft.icao or '<unknown>'} produced an implausible model"
         )
-    breakdown = model.breakdown_at(0.0, condition)
+    breakdown = model.breakdown(0.0, condition=condition)
     methods = _term_methods(geometry)
     terms = tuple(
         DragTerm(name, float(np.asarray(value).item()), methods[name])
@@ -913,7 +913,7 @@ def build_drag_report(aircraft: Aircraft) -> DragBuildReport:
         k=float(k),
         reference_altitude_ft=altitude_ft,
         reference_mach=mach,
-        reference_unit_reynolds_number_per_m=unit_reynolds,
+        reference_reynolds_per_m=unit_reynolds,
         span_efficiency_factor=geometry.span_efficiency_factor,
         unresolved_fraction_of_resolved_drag=(
             geometry.defaults.unresolved_fraction_of_resolved_drag
@@ -951,9 +951,7 @@ def _build_subcritical_drag_model(aircraft: Aircraft) -> GeometryDragModel:
         allowance = drag.unresolved_fraction_of_resolved_drag
     required = {
         "reference_mach": drag.reference_mach,
-        "reference_unit_reynolds_number_per_m": (
-            drag.reference_unit_reynolds_number_per_m
-        ),
+        "reference_reynolds_per_m": (drag.reference_reynolds_per_m),
         "span_efficiency_factor": drag.span_efficiency_factor,
         allowance_field: allowance,
     }
@@ -964,7 +962,7 @@ def _build_subcritical_drag_model(aircraft: Aircraft) -> GeometryDragModel:
     return _build_subcritical_geometry_model(
         geometry,
         float(drag.reference_mach),
-        float(drag.reference_unit_reynolds_number_per_m),
+        float(drag.reference_reynolds_per_m),
         span_efficiency_factor=float(drag.span_efficiency_factor),
         allowance_fraction=float(allowance),
     )
@@ -1010,13 +1008,13 @@ def build_reference_drag_polar(aircraft: Aircraft) -> ParabolicDragPolar:
     drag = aircraft.drag
     if drag is None or drag.reference_mach is None:
         raise ValueError("active drag model has no reference Mach")
-    if drag.reference_unit_reynolds_number_per_m is None:
+    if drag.reference_reynolds_per_m is None:
         raise ValueError("active drag model has no reference unit Reynolds number")
     # The low-order adapter is intentionally a subcritical projection. Wave
     # drag is Mach- and CL-dependent and cannot be represented by one CD0/k.
     model = _build_subcritical_drag_model(aircraft)
     condition = DragCondition(
         drag.reference_mach,
-        drag.reference_unit_reynolds_number_per_m,
+        drag.reference_reynolds_per_m,
     )
     return project_parabolic_polar(model, condition)

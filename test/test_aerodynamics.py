@@ -5,14 +5,20 @@ from aerox.models import (
     DragCondition,
     DragModel,
     EffectiveLiftMap,
+    ParabolicDragPolar,
+    effective_lift_design,
+)
+from aerox.models.drag.polar import (
+    ParabolicWaveDragModel,
+)
+from aerox.models.drag.reference import (
     HyperbolicTangentWaveDrag,
     MachDependentInducedDrag,
-    ParabolicDragPolar,
     PollSchumannDragModel,
     TransonicCompressibilityDragModel,
-    ParabolicWaveDragModel,
+)
+from aerox.models.drag.wave import (
     KornLockWaveDrag,
-    effective_lift_design,
 )
 
 
@@ -50,7 +56,7 @@ def test_lift_map_and_drag_polar_apply_physical_forms():
         broadcast,
         np.broadcast_to(0.02 + 0.04 * coefficient[:, None] ** 2, (2, 2)),
     )
-    assert polar.drag_coefficient_scalar(0.6, 0.8) == pytest.approx(
+    assert polar._drag_coefficient_scalar(0.6, DragCondition(0.8)) == pytest.approx(
         0.02 + 0.04 * 0.6**2
     )
 
@@ -73,9 +79,9 @@ def test_transonic_drag_model_returns_vectorized_component_breakdown() -> None:
     assert result.wave[-1] > result.wave[1] > 0.0
     np.testing.assert_allclose(model.drag_coefficient(lift, mach), result.total)
     for index in range(len(lift)):
-        assert model.drag_coefficient_scalar(lift[index], mach[index]) == pytest.approx(
-            result.total[index]
-        )
+        assert model._drag_coefficient_scalar(
+            lift[index], DragCondition(mach[index])
+        ) == pytest.approx(result.total[index])
 
 
 def test_mach_dependent_tanh_drag_model_matches_published_equation() -> None:
@@ -109,9 +115,11 @@ def test_mach_dependent_tanh_drag_model_matches_published_equation() -> None:
     np.testing.assert_allclose(
         result.total, 0.020053 + expected_induced + expected_wave
     )
-    assert model.drag_coefficient_scalar(0.4, 0.75) == pytest.approx(result.total[1])
+    assert model._drag_coefficient_scalar(0.4, DragCondition(0.75)) == pytest.approx(
+        result.total[1]
+    )
     with pytest.raises(ValueError, match="outside wave-drag support"):
-        model.drag_coefficient_scalar(0.51, 0.78)
+        model._drag_coefficient_scalar(0.51, DragCondition(0.78))
     with pytest.raises(ValueError, match="below the compressibility-model support"):
         induced.drag_coefficient_scalar(0.4, 0.2)
 
@@ -146,22 +154,24 @@ def test_poll_schumann_a320_model_reproduces_published_equations() -> None:
         [0.0, 13.40737657, 49.33454657],
         rtol=1.0e-7,
     )
-    assert model.drag_coefficient_scalar(0.5, 0.78) == pytest.approx(result.total[1])
+    assert model._drag_coefficient_scalar(0.5, DragCondition(0.78)) == pytest.approx(
+        result.total[1]
+    )
     assert isinstance(model, DragModel)
     with pytest.raises(ValueError, match="lift coefficient"):
-        model.drag_coefficient_scalar(0.2, 0.78)
+        model._drag_coefficient_scalar(0.2, DragCondition(0.78))
     with pytest.raises(ValueError, match="Mach"):
-        model.drag_coefficient_scalar(0.5, 0.83)
+        model._drag_coefficient_scalar(0.5, DragCondition(0.83))
 
 
 def test_condition_interface_converts_poll_unit_reynolds_number():
     polar = ParabolicDragPolar(0.02, 0.04)
     condition = DragCondition(
         mach=np.array([0.7, 0.8]),
-        unit_reynolds_number_per_m=np.array([4.0e6, 5.0e6]),
+        reynolds_per_m=np.array([4.0e6, 5.0e6]),
     )
     np.testing.assert_allclose(
-        polar.drag_coefficient_at(np.array([0.4, 0.5]), condition),
+        polar.drag_coefficient(np.array([0.4, 0.5]), condition=condition),
         polar.drag_coefficient(np.array([0.4, 0.5]), condition.mach),
     )
 
@@ -180,10 +190,8 @@ def test_condition_interface_converts_poll_unit_reynolds_number():
     )
     lift = np.array([0.4, 0.5])
     np.testing.assert_allclose(
-        poll.drag_coefficient_at(lift, condition),
-        poll.drag_coefficient(
-            lift,
-            condition.mach,
-            np.asarray(condition.unit_reynolds_number_per_m) * np.sqrt(122.4),
-        ),
+        poll.drag_coefficient(lift, condition=condition),
+        poll.cd0(np.asarray(condition.reynolds_per_m) * np.sqrt(122.4))
+        + poll.k(np.asarray(condition.reynolds_per_m) * np.sqrt(122.4)) * lift**2
+        + poll.wave_drag_coefficient(lift, condition.mach),
     )

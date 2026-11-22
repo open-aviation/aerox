@@ -45,7 +45,7 @@ def test_load_aircraft_from_dict_with_nested_sections():
                 "confidence": "low",
                 "reference_altitude_ft": 20000.0,
                 "reference_mach": 0.45,
-                "reference_unit_reynolds_number_per_m": 5.0e6,
+                "reference_reynolds_per_m": 5.0e6,
                 "span_efficiency_factor": 0.95,
                 "unresolved_fraction_of_resolved_drag": 0.28,
                 "wave_drag_model": None,

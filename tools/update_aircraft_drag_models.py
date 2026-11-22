@@ -24,11 +24,8 @@ sys.path.insert(0, str(PROJECT_ROOT / "src"))
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from aerox.aircraft import load_aircraft_from_dict  # noqa: E402
-from aerox.models.drag import (  # noqa: E402
-    DragBuildReport,
-    build_drag_report,
-    resolve_drag_geometry,
-)
+from aerox.models.drag import DragBuildReport, build_drag_report  # noqa: E402
+from aerox.models.drag.builder import resolve_drag_geometry  # noqa: E402
 from tools.migrate_aircraft_data import (  # noqa: E402
     AIRCRAFT_ROOT,
     SOURCES_ROOT,
@@ -56,7 +53,7 @@ SOURCE_FIELDS = (
     "confidence",
     "reference_altitude_ft",
     "reference_mach",
-    "reference_unit_reynolds_number_per_m",
+    "reference_reynolds_per_m",
     "span_efficiency_factor",
     "unresolved_fraction_of_resolved_drag",
     "roughness_excrescence_fraction",
@@ -75,9 +72,7 @@ def _rounded_parameters(parameters: DragBuildReport) -> dict[str, Any]:
         "confidence": parameters.confidence,
         "reference_altitude_ft": round(parameters.reference_altitude_ft, 1),
         "reference_mach": round(parameters.reference_mach, 6),
-        "reference_unit_reynolds_number_per_m": round(
-            parameters.reference_unit_reynolds_number_per_m, 1
-        ),
+        "reference_reynolds_per_m": round(parameters.reference_reynolds_per_m, 1),
         "span_efficiency_factor": round(parameters.span_efficiency_factor, 6),
         "unresolved_fraction_of_resolved_drag": _optional_round(
             parameters.unresolved_fraction_of_resolved_drag, 4
@@ -158,7 +153,7 @@ def _source_section(parameters: DragBuildReport) -> str:
             lines.append(
                 "  Applicability: Model metadata; not a measured aircraft coefficient."
             )
-        elif field == "reference_unit_reynolds_number_per_m":
+        elif field == "reference_reynolds_per_m":
             lines.append(
                 f"  Inputs: altitude={parameters.reference_altitude_ft:.1f} ft; "
                 f"Mach={parameters.reference_mach:.6f}; ISA temperature and density"
@@ -233,9 +228,7 @@ def _row(
         "active_k": parameters.k,
         "reference_altitude_ft": parameters.reference_altitude_ft,
         "reference_mach": parameters.reference_mach,
-        "reference_unit_reynolds_number_per_m": (
-            parameters.reference_unit_reynolds_number_per_m
-        ),
+        "reference_reynolds_per_m": (parameters.reference_reynolds_per_m),
         "span_efficiency_factor": parameters.span_efficiency_factor,
         "unresolved_fraction_of_resolved_drag": (
             parameters.unresolved_fraction_of_resolved_drag

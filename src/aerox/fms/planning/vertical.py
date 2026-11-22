@@ -9,7 +9,7 @@ import numpy as np
 
 from aerox import aero
 from aerox.fms.performance import ProfilePerformance
-from aerox.models.atmosphere import (
+from aerox.models._atmosphere import (
     G0,
     true_airspeed_from_calibrated_airspeed,
     true_airspeed_from_mach,

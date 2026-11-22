@@ -1,4 +1,7 @@
-"""Array validation and force-model adapters around :mod:`aerox.aero`.
+"""Internal ISA atmosphere and airspeed helpers with input validation.
+
+The public interface is :mod:`aerox.aero`. These functions wrap it with
+explicit units in their argument names and with input checks.
 
 Pressure altitude is an ISA pressure coordinate.  Keeping pressure recovery
 separate from temperature lets QAR analyses compute dynamic pressure from CAS

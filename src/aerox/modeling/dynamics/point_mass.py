@@ -15,7 +15,7 @@ import numpy as np
 from numpy.typing import ArrayLike, NDArray
 
 from aerox.models.lift import EffectiveLiftMap
-from aerox.models.atmosphere import (
+from aerox.models._atmosphere import (
     G0,
     atmosphere_at_pressure_altitude,
     unit_reynolds_number,
@@ -201,18 +201,18 @@ class PointMassModel:
         lift_coefficient: float,
         mach: float,
         *,
-        unit_reynolds_number_per_m: float,
+        reynolds_per_m: float,
         flap_angle_rad: float = 0.0,
         gear_extension_fraction: float = 0.0,
         spoiler_deflection_rad: float = 0.0,
     ) -> float:
         """Evaluate drag at the complete local aerodynamic condition."""
 
-        return self.drag_model.drag_coefficient_scalar_at(
+        return self.drag_model._drag_coefficient_scalar(
             lift_coefficient,
             DragCondition(
                 mach=mach,
-                unit_reynolds_number_per_m=unit_reynolds_number_per_m,
+                reynolds_per_m=reynolds_per_m,
                 flap_angle_rad=flap_angle_rad,
                 gear_extension_fraction=gear_extension_fraction,
                 spoiler_deflection_rad=spoiler_deflection_rad,
@@ -267,7 +267,7 @@ class PointMassModel:
         drag_coefficient = self.drag_coefficient_scalar(
             lift_coefficient,
             mach,
-            unit_reynolds_number_per_m=reynolds_per_metre,
+            reynolds_per_m=reynolds_per_metre,
         )
         drag_coefficient += control.drag_coefficient_increment
         lift = dynamic_pressure * self.wing_area_m2 * lift_coefficient

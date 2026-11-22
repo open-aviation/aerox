@@ -1,6 +1,6 @@
 import numpy as np
 
-from aerox.models.atmosphere import (
+from aerox.models._atmosphere import (
     atmosphere_at_pressure_altitude,
     calibrated_airspeed_from_true_airspeed,
     dynamic_pressure_from_calibrated_airspeed,

@@ -14,7 +14,7 @@ from dataclasses import dataclass
 import numpy as np
 from numpy.typing import NDArray
 
-from aerox.models.atmosphere import (
+from aerox.models._atmosphere import (
     G0,
     atmosphere_at_pressure_altitude,
     unit_reynolds_number,
@@ -90,24 +90,27 @@ class EconomyCruiseOptimizer:
         self,
         lift_coefficient: FloatArray,
         mach: FloatArray,
-        unit_reynolds_number_per_m: FloatArray,
+        reynolds_per_m: FloatArray,
     ) -> tuple[FloatArray, FloatArray, FloatArray]:
         """Return total, wave, and critical-Mach arrays from shared models."""
 
         condition = DragCondition(
             mach=mach,
-            unit_reynolds_number_per_m=unit_reynolds_number_per_m,
+            reynolds_per_m=reynolds_per_m,
         )
-        total = self.drag_model.drag_coefficient_at(lift_coefficient, condition)
-        breakdown_at = getattr(self.drag_model, "breakdown_at", None)
-        if breakdown_at is None:
+        breakdown_method = getattr(self.drag_model, "breakdown", None)
+        if breakdown_method is None:
+            total = self.drag_model.drag_coefficient(
+                lift_coefficient, condition=condition
+            )
             shape = np.broadcast_shapes(lift_coefficient.shape, mach.shape)
             return (
                 total,
                 np.full(shape, np.nan, dtype=float),
                 np.full(shape, np.nan, dtype=float),
             )
-        breakdown = breakdown_at(lift_coefficient, condition)
+        breakdown = breakdown_method(lift_coefficient, condition=condition)
+        total = np.asarray(breakdown.total, dtype=float)
         wave = getattr(breakdown, "wave", np.full_like(total, np.nan))
         critical = getattr(
             breakdown,

@@ -8,7 +8,7 @@ import numpy as np
 from numpy.typing import NDArray
 
 from aerox.fms.intent import FlightIntent, SpeedTarget
-from aerox.models.atmosphere import (
+from aerox.models._atmosphere import (
     isa_atmosphere,
     true_airspeed_from_calibrated_airspeed,
     true_airspeed_from_mach,

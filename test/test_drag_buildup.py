@@ -7,22 +7,26 @@ import pytest
 
 from aerox import get_available_aircraft, load_aircraft
 from aerox.models.drag import (
-    ROUGHNESS_EXCRESCENCE_FRACTION,
     DragCondition,
     build_drag_model,
     build_drag_report,
     build_reference_drag_polar,
+)
+from aerox.models.drag.builder import (
+    ROUGHNESS_EXCRESCENCE_FRACTION,
+    nacelle_interference_factor,
+    resolve_drag_geometry,
+    resolve_nacelle_geometry,
+    uses_component_buildup,
+)
+from aerox.models.drag.components import (
     control_surface_gap_drag_area,
     exposed_wing_area,
     fuselage_upsweep_drag_area,
     nacelle_base_drag_area,
     nacelle_form_factor,
-    nacelle_interference_factor,
     nacelle_wetted_area,
-    resolve_drag_geometry,
-    resolve_nacelle_geometry,
     trapezoidal_root_chord,
-    uses_component_buildup,
 )
 
 TURBOFAN_TERMS = (
@@ -136,7 +140,7 @@ def test_a320_buildup_terms_match_hand_computation():
     report = build_drag_report(aircraft)
     terms = {term.name: term.value for term in report.parasite_terms}
     mach = report.reference_mach
-    unit_reynolds = report.reference_unit_reynolds_number_per_m
+    unit_reynolds = report.reference_reynolds_per_m
     area = 122.0
 
     assert tuple(terms) == TURBOFAN_TERMS
@@ -243,20 +247,18 @@ def test_every_record_builds_and_runtime_model_reproduces_report():
         polar = build_reference_drag_polar(aircraft)
         condition = DragCondition(
             aircraft.drag.reference_mach,
-            aircraft.drag.reference_unit_reynolds_number_per_m,
+            aircraft.drag.reference_reynolds_per_m,
         )
-        assert polar.zero_lift_drag_coefficient == pytest.approx(
-            report.cd0, rel=1e-5
-        ), code
-        assert polar.induced_drag_factor == pytest.approx(report.k, rel=1e-5), code
-        assert np.isfinite(model.drag_coefficient_scalar_at(0.3, condition)), code
+        assert polar.cd0 == pytest.approx(report.cd0, rel=1e-5), code
+        assert polar.k == pytest.approx(report.k, rel=1e-5), code
+        assert np.isfinite(model._drag_coefficient_scalar(0.3, condition)), code
 
 
 def test_runtime_model_uses_stored_roughness_allowance():
     aircraft = load_aircraft("A320")
-    base = build_reference_drag_polar(aircraft).zero_lift_drag_coefficient
+    base = build_reference_drag_polar(aircraft).cd0
     aircraft.drag.roughness_excrescence_fraction = 0.13
-    raised = build_reference_drag_polar(aircraft).zero_lift_drag_coefficient
+    raised = build_reference_drag_polar(aircraft).cd0
 
     assert raised / base == pytest.approx(1.13 / 1.09)
     aircraft.drag.roughness_excrescence_fraction = None

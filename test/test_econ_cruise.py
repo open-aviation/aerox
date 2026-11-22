@@ -4,12 +4,17 @@ import pytest
 from aerox import load_aircraft
 from aerox.fms import CruiseSpeedStrategy, EconomyCruiseOptimizer
 from aerox.models import (
-    KornLockWaveDrag,
     ParabolicDragPolar,
-    ParabolicWaveDragModel,
     build_drag_model,
 )
+from aerox.models.drag.polar import (
+    ParabolicWaveDragModel,
+)
+from aerox.models.drag.wave import (
+    KornLockWaveDrag,
+)
 from aerox.models.openap import OpenAPFuelFlowPrior
+
 
 class _SpeedLimitedMaximumThrust:
     def maximum_thrust_n(

@@ -8,7 +8,7 @@ import numpy as np
 
 from aerox.fms.performance import ProfilePerformance
 from aerox.fms.intent import AltitudeConstraint
-from aerox.models.atmosphere import G0
+from aerox.models._atmosphere import G0
 from ..environment import SpatialEnvironmentProfile
 from ..route import FloatArray, SpatialTrajectory
 from .conditions import planning_conditions

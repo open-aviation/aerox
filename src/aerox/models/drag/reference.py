@@ -11,7 +11,7 @@ from dataclasses import dataclass
 import numpy as np
 from numpy.typing import ArrayLike
 
-from .core import DragBreakdown, DragCondition, FloatArray
+from .core import DragBreakdown, DragCondition, FloatArray, resolve_condition
 
 
 @dataclass(frozen=True)
@@ -147,24 +147,26 @@ class HyperbolicTangentWaveDrag:
 class TransonicCompressibilityDragModel:
     """Constant parasite, Mach-dependent induced, and wave drag components."""
 
-    zero_lift_drag_coefficient: float
+    cd0: float
     induced_drag: MachDependentInducedDrag
     wave_drag: HyperbolicTangentWaveDrag
 
     def __post_init__(self) -> None:
-        if (
-            not np.isfinite(self.zero_lift_drag_coefficient)
-            or self.zero_lift_drag_coefficient < 0.0
-        ):
+        if not np.isfinite(self.cd0) or self.cd0 < 0.0:
             raise ValueError("zero-lift drag coefficient must be non-negative")
 
-    def breakdown(self, lift_coefficient: ArrayLike, mach: ArrayLike) -> DragBreakdown:
-        lift, mach_array = np.broadcast_arrays(
-            np.asarray(lift_coefficient, dtype=float),
-            np.asarray(mach, dtype=float),
-        )
+    def breakdown(
+        self,
+        lift_coefficient: ArrayLike,
+        mach: ArrayLike | None = None,
+        reynolds_per_m: ArrayLike | None = None,
+        *,
+        condition: DragCondition | None = None,
+    ) -> DragBreakdown:
+        condition = resolve_condition(mach, reynolds_per_m, condition)
+        lift, mach_array, *_ = condition.broadcast_with(lift_coefficient)
         critical_mach = self.wave_drag.critical_mach(lift)
-        parasite = np.full_like(lift, self.zero_lift_drag_coefficient)
+        parasite = np.full_like(lift, self.cd0)
         induced = self.induced_drag.drag_coefficient(lift, mach_array)
         wave = self.wave_drag.drag_coefficient_increment(mach_array, lift)
         return DragBreakdown(
@@ -176,29 +178,21 @@ class TransonicCompressibilityDragModel:
         )
 
     def drag_coefficient(
-        self, lift_coefficient: ArrayLike, mach: ArrayLike
+        self,
+        lift_coefficient: ArrayLike,
+        mach: ArrayLike | None = None,
+        reynolds_per_m: ArrayLike | None = None,
+        *,
+        condition: DragCondition | None = None,
     ) -> FloatArray:
-        return self.breakdown(lift_coefficient, mach).total
+        return self.breakdown(
+            lift_coefficient, mach, reynolds_per_m, condition=condition
+        ).total
 
-    def drag_coefficient_scalar(self, lift_coefficient: float, mach: float) -> float:
-        return float(self.drag_coefficient(lift_coefficient, mach))
-
-    def breakdown_at(
-        self, lift_coefficient: ArrayLike, condition: DragCondition
-    ) -> DragBreakdown:
-        lift, mach, *_ = condition.broadcast_with(lift_coefficient)
-        return self.breakdown(lift, mach)
-
-    def drag_coefficient_at(
-        self, lift_coefficient: ArrayLike, condition: DragCondition
-    ) -> FloatArray:
-        return self.breakdown_at(lift_coefficient, condition).total
-
-    def drag_coefficient_scalar_at(
+    def _drag_coefficient_scalar(
         self, lift_coefficient: float, condition: DragCondition
     ) -> float:
-        condition.broadcast_with(lift_coefficient)
-        return self.drag_coefficient_scalar(lift_coefficient, float(condition.mach))
+        return float(self.drag_coefficient(lift_coefficient, condition=condition))
 
 
 @dataclass(frozen=True)
@@ -297,20 +291,16 @@ class PollSchumannDragModel:
             raise ValueError("reynolds_number must be finite and positive")
         return reynolds
 
-    def zero_lift_drag_coefficient(
-        self, reynolds_number: ArrayLike | None = None
-    ) -> FloatArray:
+    def cd0(self, reynolds_number: ArrayLike | None = None) -> FloatArray:
         """Return ``CD0 = psi0 * 0.0269 / Re**0.14``."""
 
         reynolds = self._reynolds_number(reynolds_number)
         return self.skin_friction_multiplier * 0.0269 / reynolds**0.14
 
-    def induced_drag_factor(
-        self, reynolds_number: ArrayLike | None = None
-    ) -> FloatArray:
+    def k(self, reynolds_number: ArrayLike | None = None) -> FloatArray:
         """Return the geometry- and profile-drag-dependent factor ``K``."""
 
-        zero_lift = self.zero_lift_drag_coefficient(reynolds_number)
+        zero_lift = self.cd0(reynolds_number)
         cosine = np.cos(self.wing_sweep_rad)
         profile_lift_factor = 0.80 * (1.0 - 0.53 * cosine) * zero_lift
         fuselage_correction = 2.0 * (self.fuselage_width_m / self.wing_span_m) ** 2
@@ -371,17 +361,31 @@ class PollSchumannDragModel:
     def breakdown(
         self,
         lift_coefficient: ArrayLike,
-        mach: ArrayLike,
-        reynolds_number: ArrayLike | None = None,
+        mach: ArrayLike | None = None,
+        reynolds_per_m: ArrayLike | None = None,
+        *,
+        condition: DragCondition | None = None,
     ) -> DragBreakdown:
-        lift, mach_array, reynolds = np.broadcast_arrays(
-            np.asarray(lift_coefficient, dtype=float),
-            np.asarray(mach, dtype=float),
-            self._reynolds_number(reynolds_number),
+        """Evaluate the model.
+
+        The source model uses the aircraft Reynolds number based on
+        ``sqrt(reference_area_m2)``. It is computed from ``reynolds_per_m``;
+        without it, ``reference_reynolds_number`` is used.
+        """
+
+        condition = resolve_condition(mach, reynolds_per_m, condition)
+        lift, mach_array, unit_reynolds, flap, gear, spoiler = condition.broadcast_with(
+            lift_coefficient
         )
+        if np.any(flap > 0.0) or np.any(gear > 0.0) or np.any(spoiler > 0.0):
+            raise ValueError("Poll-Schumann is currently supported only when clean")
+        if condition.reynolds_per_m is None:
+            reynolds = np.full_like(lift, self.reference_reynolds_number)
+        else:
+            reynolds = unit_reynolds * np.sqrt(self.reference_area_m2)
         critical_mach = self.crest_critical_mach(lift)
-        parasite = self.zero_lift_drag_coefficient(reynolds)
-        induced = self.induced_drag_factor(reynolds) * lift**2
+        parasite = self.cd0(reynolds)
+        induced = self.k(reynolds) * lift**2
         wave = self.wave_drag_coefficient(lift, mach_array)
         return DragBreakdown(
             parasite=parasite,
@@ -394,37 +398,16 @@ class PollSchumannDragModel:
     def drag_coefficient(
         self,
         lift_coefficient: ArrayLike,
-        mach: ArrayLike,
-        reynolds_number: ArrayLike | None = None,
+        mach: ArrayLike | None = None,
+        reynolds_per_m: ArrayLike | None = None,
+        *,
+        condition: DragCondition | None = None,
     ) -> FloatArray:
-        return self.breakdown(lift_coefficient, mach, reynolds_number).total
+        return self.breakdown(
+            lift_coefficient, mach, reynolds_per_m, condition=condition
+        ).total
 
-    def drag_coefficient_scalar(
-        self,
-        lift_coefficient: float,
-        mach: float,
-        reynolds_number: float | None = None,
+    def _drag_coefficient_scalar(
+        self, lift_coefficient: float, condition: DragCondition
     ) -> float:
-        return float(self.drag_coefficient(lift_coefficient, mach, reynolds_number))
-
-    def drag_coefficient_at(
-        self,
-        lift_coefficient: ArrayLike,
-        condition: DragCondition,
-    ) -> FloatArray:
-        """Evaluate from unit Reynolds number while preserving the source scale."""
-
-        lift, mach, unit_reynolds, flap, gear, spoiler = condition.broadcast_with(
-            lift_coefficient
-        )
-        if np.any(flap > 0.0) or np.any(gear > 0.0) or np.any(spoiler > 0.0):
-            raise ValueError("Poll-Schumann is currently supported only when clean")
-        aircraft_reynolds = unit_reynolds * np.sqrt(self.reference_area_m2)
-        return self.drag_coefficient(lift, mach, aircraft_reynolds)
-
-    def drag_coefficient_scalar_at(
-        self,
-        lift_coefficient: float,
-        condition: DragCondition,
-    ) -> float:
-        return float(self.drag_coefficient_at(lift_coefficient, condition))
+        return float(self.drag_coefficient(lift_coefficient, condition=condition))

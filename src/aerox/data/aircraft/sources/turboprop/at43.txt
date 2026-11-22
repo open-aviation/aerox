@@ -460,7 +460,7 @@ FIELD drag.reference_mach
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
 END FIELD
-FIELD drag.reference_unit_reynolds_number_per_m
+FIELD drag.reference_reynolds_per_m
   Value: 5379169.0
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08

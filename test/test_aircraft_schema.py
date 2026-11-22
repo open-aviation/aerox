@@ -152,7 +152,7 @@ def test_only_compact_certification_and_geometry_extensions_were_added(records):
             "confidence",
             "reference_altitude_ft",
             "reference_mach",
-            "reference_unit_reynolds_number_per_m",
+            "reference_reynolds_per_m",
             "span_efficiency_factor",
             "unresolved_fraction_of_resolved_drag",
             "roughness_excrescence_fraction",

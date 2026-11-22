@@ -6,13 +6,13 @@ from collections.abc import Mapping
 from dataclasses import dataclass
 import numpy as np
 
-from aerox.models.atmosphere import (
+from aerox.models._atmosphere import (
     calibrated_airspeed_from_mach,
     mach_from_calibrated_airspeed,
     true_airspeed_from_calibrated_airspeed,
 )
 from aerox.fms.planning.econ_cruise import EconomyCruiseOptimizer
-from aerox.models.atmosphere import G0
+from aerox.models._atmosphere import G0
 from aerox.navigation import wind_corrected_path
 
 from ..environment import SpatialEnvironmentProfile

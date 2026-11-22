@@ -193,7 +193,7 @@ class DragModelConfig:
     confidence: Optional[str] = None
     reference_altitude_ft: Optional[float] = None
     reference_mach: Optional[float] = None
-    reference_unit_reynolds_number_per_m: Optional[float] = None
+    reference_reynolds_per_m: Optional[float] = None
     span_efficiency_factor: Optional[float] = None
     unresolved_fraction_of_resolved_drag: Optional[float] = None
     roughness_excrescence_fraction: Optional[float] = None

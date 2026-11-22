@@ -6,9 +6,13 @@ from aerox.models.drag import (
     DragCondition,
     DragModel,
     TransonicGeometryDragModel,
-    KornLockWaveDrag,
+)
+from aerox.models.drag.geometry import (
     geometry_drag_model_from_aircraft,
     geometry_drag_model_from_dimensions,
+)
+from aerox.models.drag.wave import (
+    KornLockWaveDrag,
 )
 
 
@@ -41,11 +45,11 @@ def test_geometry_model_uses_component_reynolds_number_and_rejects_configuration
     low_reynolds = DragCondition(0.7, 3.0e6)
     high_reynolds = DragCondition(0.7, 8.0e6)
 
-    assert model.drag_coefficient_scalar_at(0.4, low_reynolds) > (
-        model.drag_coefficient_scalar_at(0.4, high_reynolds)
+    assert model._drag_coefficient_scalar(0.4, low_reynolds) > (
+        model._drag_coefficient_scalar(0.4, high_reynolds)
     )
     with pytest.raises(ValueError, match="only when clean"):
-        model.drag_coefficient_scalar_at(
+        model._drag_coefficient_scalar(
             0.4,
             DragCondition(0.7, 5.0e6, gear_extension_fraction=1.0),
         )
@@ -95,11 +99,11 @@ def test_dimension_builder_is_the_single_geometry_construction_path():
         vertical_tail_area_m2=aircraft.vertical_tail.area,
         vertical_tail_mean_aerodynamic_chord_m=aircraft.vertical_tail.mac,
         reference_mach=aircraft.kinematic.cruise_mach,
-        reference_unit_reynolds_number_per_m=5.05e6,
+        reference_reynolds_per_m=5.05e6,
         span_efficiency_factor=0.95,
     )
     condition = DragCondition(0.78, 5.05e6)
 
-    assert dimensions.drag_coefficient_scalar_at(0.5, condition) == pytest.approx(
-        direct.drag_coefficient_scalar_at(0.5, condition)
+    assert dimensions._drag_coefficient_scalar(0.5, condition) == pytest.approx(
+        direct._drag_coefficient_scalar(0.5, condition)
     )

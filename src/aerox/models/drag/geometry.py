@@ -16,7 +16,7 @@ from .components import (
     lifting_surface_form_factor,
     lifting_surface_wetted_area,
 )
-from .core import DragCondition, FloatArray
+from .core import DragCondition, FloatArray, resolve_condition
 from .wave import KornLockWaveDrag
 
 if TYPE_CHECKING:
@@ -52,7 +52,7 @@ class GeometryDragModel:
     span_efficiency_factor: float
     profile_lift_drag_multiplier: float
     parasite_increments: tuple[tuple[str, float], ...]
-    reference_unit_reynolds_number_per_m: float
+    reference_reynolds_per_m: float
     parasite_scale: float = 1.0
     induced_scale: float = 1.0
 
@@ -63,7 +63,7 @@ class GeometryDragModel:
                 self.wing_span_m,
                 self.span_efficiency_factor,
                 self.profile_lift_drag_multiplier,
-                self.reference_unit_reynolds_number_per_m,
+                self.reference_reynolds_per_m,
                 self.parasite_scale,
                 self.induced_scale,
             ],
@@ -103,9 +103,17 @@ class GeometryDragModel:
             np.pi * self.aspect_ratio * self.span_efficiency_factor
         )
 
-    def breakdown_at(
-        self, lift_coefficient: ArrayLike, condition: DragCondition
+    def breakdown(
+        self,
+        lift_coefficient: ArrayLike,
+        mach: ArrayLike | None = None,
+        reynolds_per_m: ArrayLike | None = None,
+        *,
+        condition: DragCondition | None = None,
     ) -> GeometryDragBreakdown:
+        condition = resolve_condition(
+            mach, reynolds_per_m, condition
+        ).with_default_reynolds(self.reference_reynolds_per_m)
         lift, mach, unit_reynolds, flap, gear, spoiler = condition.broadcast_with(
             lift_coefficient
         )
@@ -147,34 +155,26 @@ class GeometryDragModel:
             total=total,
         )
 
-    def breakdown(
+    def drag_coefficient(
         self,
         lift_coefficient: ArrayLike,
-        mach: ArrayLike,
-        unit_reynolds_number_per_m: ArrayLike | None = None,
-    ) -> GeometryDragBreakdown:
-        condition = DragCondition(
-            mach=mach,
-            unit_reynolds_number_per_m=(
-                self.reference_unit_reynolds_number_per_m
-                if unit_reynolds_number_per_m is None
-                else unit_reynolds_number_per_m
-            ),
-        )
-        return self.breakdown_at(lift_coefficient, condition)
-
-    def drag_coefficient_at(
-        self, lift_coefficient: ArrayLike, condition: DragCondition
+        mach: ArrayLike | None = None,
+        reynolds_per_m: ArrayLike | None = None,
+        *,
+        condition: DragCondition | None = None,
     ) -> FloatArray:
-        return self.breakdown_at(lift_coefficient, condition).total
+        return self.breakdown(
+            lift_coefficient, mach, reynolds_per_m, condition=condition
+        ).total
 
-    def drag_coefficient_scalar_at(
+    def _drag_coefficient_scalar(
         self, lift_coefficient: float, condition: DragCondition
     ) -> float:
+        condition = condition.with_default_reynolds(self.reference_reynolds_per_m)
         values = (
             lift_coefficient,
             condition.mach,
-            condition.unit_reynolds_number_per_m,
+            condition.reynolds_per_m,
             condition.flap_angle_rad,
             condition.gear_extension_fraction,
             condition.spoiler_deflection_rad,
@@ -189,7 +189,7 @@ class GeometryDragModel:
         if not np.isfinite(mach) or mach < 0.0:
             raise ValueError("mach must be finite and non-negative")
         if not np.isfinite(unit_reynolds) or unit_reynolds <= 0.0:
-            raise ValueError("unit_reynolds_number_per_m must be finite and positive")
+            raise ValueError("reynolds_per_m must be finite and positive")
         if any(not np.isfinite(value) for value in (flap, gear, spoiler)):
             raise ValueError("configuration values must be finite")
         if flap < 0.0 or not 0.0 <= gear <= 1.0 or spoiler < 0.0:
@@ -214,14 +214,6 @@ class GeometryDragModel:
             self.induced_scale * self.profile_lift_drag_multiplier * parasite * lift**2
         )
         return float(parasite + span_induced + profile)
-
-    def drag_coefficient(
-        self, lift_coefficient: ArrayLike, mach: ArrayLike
-    ) -> FloatArray:
-        return self.breakdown(lift_coefficient, mach).total
-
-    def drag_coefficient_scalar(self, lift_coefficient: float, mach: float) -> float:
-        return float(self.drag_coefficient(lift_coefficient, mach))
 
 
 @dataclass(frozen=True)
@@ -280,12 +272,18 @@ class TransonicGeometryDragModel:
     def critical_mach(self, lift_coefficient: ArrayLike) -> FloatArray:
         return self.wave_drag.critical_mach(lift_coefficient)
 
-    def breakdown_at(
-        self, lift_coefficient: ArrayLike, condition: DragCondition
+    def breakdown(
+        self,
+        lift_coefficient: ArrayLike,
+        mach: ArrayLike | None = None,
+        reynolds_per_m: ArrayLike | None = None,
+        *,
+        condition: DragCondition | None = None,
     ) -> TransonicGeometryDragBreakdown:
+        condition = resolve_condition(mach, reynolds_per_m, condition)
         lift, mach, *_ = condition.broadcast_with(lift_coefficient)
         self._validate_envelope(lift, mach)
-        base = self.base_model.breakdown_at(lift, condition)
+        base = self.base_model.breakdown(lift, condition=condition)
         wave, critical = self.wave_drag.evaluate(mach, lift)
         return TransonicGeometryDragBreakdown(
             component_parasite=base.component_parasite,
@@ -300,28 +298,19 @@ class TransonicGeometryDragModel:
             total=base.total + wave,
         )
 
-    def breakdown(
+    def drag_coefficient(
         self,
         lift_coefficient: ArrayLike,
-        mach: ArrayLike,
-        unit_reynolds_number_per_m: ArrayLike | None = None,
-    ) -> TransonicGeometryDragBreakdown:
-        condition = DragCondition(
-            mach=mach,
-            unit_reynolds_number_per_m=(
-                self.base_model.reference_unit_reynolds_number_per_m
-                if unit_reynolds_number_per_m is None
-                else unit_reynolds_number_per_m
-            ),
-        )
-        return self.breakdown_at(lift_coefficient, condition)
-
-    def drag_coefficient_at(
-        self, lift_coefficient: ArrayLike, condition: DragCondition
+        mach: ArrayLike | None = None,
+        reynolds_per_m: ArrayLike | None = None,
+        *,
+        condition: DragCondition | None = None,
     ) -> FloatArray:
-        return self.breakdown_at(lift_coefficient, condition).total
+        return self.breakdown(
+            lift_coefficient, mach, reynolds_per_m, condition=condition
+        ).total
 
-    def drag_coefficient_scalar_at(
+    def _drag_coefficient_scalar(
         self, lift_coefficient: float, condition: DragCondition
     ) -> float:
         if np.ndim(condition.mach) != 0:
@@ -329,23 +318,9 @@ class TransonicGeometryDragModel:
         lift = float(lift_coefficient)
         mach = float(condition.mach)
         self._validate_envelope(np.asarray(lift), np.asarray(mach))
-        base = self.base_model.drag_coefficient_scalar_at(lift, condition)
+        base = self.base_model._drag_coefficient_scalar(lift, condition)
         wave = self.wave_drag.drag_coefficient_increment_scalar(mach, lift)
         return float(base + wave)
-
-    def drag_coefficient(
-        self, lift_coefficient: ArrayLike, mach: ArrayLike
-    ) -> FloatArray:
-        return self.breakdown(lift_coefficient, mach).total
-
-    def drag_coefficient_scalar(self, lift_coefficient: float, mach: float) -> float:
-        condition = DragCondition(
-            mach=mach,
-            unit_reynolds_number_per_m=(
-                self.base_model.reference_unit_reynolds_number_per_m
-            ),
-        )
-        return self.drag_coefficient_scalar_at(lift_coefficient, condition)
 
 
 def _required_positive(value: float | None, path: str) -> float:
@@ -388,7 +363,7 @@ def geometry_drag_model_from_dimensions(
     fuselage_width_m: float,
     fuselage_height_m: float,
     reference_mach: float,
-    reference_unit_reynolds_number_per_m: float,
+    reference_reynolds_per_m: float,
     span_efficiency_factor: float,
     horizontal_tail_area_m2: float | None = None,
     horizontal_tail_mean_aerodynamic_chord_m: float | None = None,
@@ -475,7 +450,7 @@ def geometry_drag_model_from_dimensions(
 
     computed_reference = sum(
         component.drag_coefficient_scalar(
-            reference_unit_reynolds_number_per_m,
+            reference_reynolds_per_m,
             reference_mach,
             wing_area,
         )
@@ -490,7 +465,7 @@ def geometry_drag_model_from_dimensions(
         span_efficiency_factor=span_efficiency_factor,
         profile_lift_drag_multiplier=float(profile_multiplier),
         parasite_increments=tuple(increments),
-        reference_unit_reynolds_number_per_m=(reference_unit_reynolds_number_per_m),
+        reference_reynolds_per_m=(reference_reynolds_per_m),
         parasite_scale=parasite_scale,
         induced_scale=induced_scale,
     )
@@ -499,7 +474,7 @@ def geometry_drag_model_from_dimensions(
 def geometry_drag_model_from_aircraft(
     aircraft: Aircraft,
     *,
-    reference_unit_reynolds_number_per_m: float = 5.05e6,
+    reference_reynolds_per_m: float = 5.05e6,
     span_efficiency_factor: float = 0.95,
     tail_thickness_to_chord_ratio: float = 0.10,
     unresolved_fraction_of_resolved_drag: float = 0.10,
@@ -550,7 +525,7 @@ def geometry_drag_model_from_aircraft(
             None if vertical_tail is None else vertical_tail.mac
         ),
         reference_mach=reference_mach,
-        reference_unit_reynolds_number_per_m=(reference_unit_reynolds_number_per_m),
+        reference_reynolds_per_m=(reference_reynolds_per_m),
         span_efficiency_factor=span_efficiency_factor,
         tail_thickness_to_chord_ratio=tail_thickness_to_chord_ratio,
         allowance_fraction=unresolved_fraction_of_resolved_drag,

@@ -5,12 +5,14 @@ import pytest
 
 from aerox import get_available_aircraft, load_aircraft
 from aerox.models.drag import (
-    GEOMETRY_DRAG_MODEL_ID,
-    KORN_LOCK_WAVE_DRAG_MODEL_ID,
     DragCondition,
     build_drag_model,
     build_drag_report,
     build_reference_drag_polar,
+)
+from aerox.models.drag.builder import (
+    GEOMETRY_DRAG_MODEL_ID,
+    KORN_LOCK_WAVE_DRAG_MODEL_ID,
 )
 
 
@@ -30,7 +32,7 @@ def test_all_aircraft_have_one_uniform_finite_active_drag_model():
             [
                 stored.reference_altitude_ft,
                 stored.reference_mach,
-                stored.reference_unit_reynolds_number_per_m,
+                stored.reference_reynolds_per_m,
                 stored.span_efficiency_factor,
             ],
             dtype=float,
@@ -87,20 +89,18 @@ def test_active_model_reconstructs_snapshot_and_varies_with_reynolds_number():
     generated = build_drag_report(aircraft)
     reference = DragCondition(
         stored.reference_mach,
-        stored.reference_unit_reynolds_number_per_m,
+        stored.reference_reynolds_per_m,
     )
     low_reynolds = DragCondition(
         stored.reference_mach,
-        0.7 * stored.reference_unit_reynolds_number_per_m,
+        0.7 * stored.reference_reynolds_per_m,
     )
 
-    assert polar.zero_lift_drag_coefficient == pytest.approx(generated.cd0, abs=1e-7)
-    assert polar.induced_drag_factor == pytest.approx(generated.k, abs=1e-7)
-    assert model.drag_coefficient_scalar_at(0.0, reference) == pytest.approx(
-        polar.zero_lift_drag_coefficient
-    )
-    assert model.drag_coefficient_scalar_at(0.4, low_reynolds) > (
-        model.drag_coefficient_scalar_at(0.4, reference)
+    assert polar.cd0 == pytest.approx(generated.cd0, abs=1e-7)
+    assert polar.k == pytest.approx(generated.k, abs=1e-7)
+    assert model._drag_coefficient_scalar(0.0, reference) == pytest.approx(polar.cd0)
+    assert model._drag_coefficient_scalar(0.4, low_reynolds) > (
+        model._drag_coefficient_scalar(0.4, reference)
     )
 
 
@@ -109,9 +109,9 @@ def test_a320_wave_increment_is_derived_and_reference_polar_stays_subcritical():
     model = build_drag_model(aircraft)
     condition = DragCondition(
         0.79,
-        aircraft.drag.reference_unit_reynolds_number_per_m,
+        aircraft.drag.reference_reynolds_per_m,
     )
-    breakdown = model.breakdown_at(0.55, condition)
+    breakdown = model.breakdown(0.55, condition=condition)
     polar = build_reference_drag_polar(aircraft)
     generated = build_drag_report(aircraft)
 
@@ -126,8 +126,8 @@ def test_a320_wave_increment_is_derived_and_reference_polar_stays_subcritical():
         + breakdown.lift_dependent_profile
         + breakdown.wave
     )
-    assert polar.zero_lift_drag_coefficient == pytest.approx(generated.cd0)
-    assert polar.induced_drag_factor == pytest.approx(generated.k)
+    assert polar.cd0 == pytest.approx(generated.cd0)
+    assert polar.k == pytest.approx(generated.k)
 
 
 def test_a320_model_uses_observed_geometry_and_poll_span_only_term():
@@ -143,9 +143,7 @@ def test_a320_model_uses_observed_geometry_and_poll_span_only_term():
     assert parameters.span_efficiency_factor == pytest.approx(expected_span_efficiency)
     assert parameters.cd0 == pytest.approx(0.01892916, rel=1e-6)
     assert parameters.k == pytest.approx(0.04316397, rel=1e-6)
-    assert parameters.reference_unit_reynolds_number_per_m == pytest.approx(
-        5.4436e6, rel=2e-5
-    )
+    assert parameters.reference_reynolds_per_m == pytest.approx(5.4436e6, rel=2e-5)
 
 
 def test_scaled_defaults_are_explicit_and_do_not_mutate_source_geometry():

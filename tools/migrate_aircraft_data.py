@@ -103,7 +103,7 @@ SIMPLE_TEMPLATE: dict[str, Any] = {
         "confidence": None,
         "reference_altitude_ft": None,
         "reference_mach": None,
-        "reference_unit_reynolds_number_per_m": None,
+        "reference_reynolds_per_m": None,
         "span_efficiency_factor": None,
         "unresolved_fraction_of_resolved_drag": None,
         "roughness_excrescence_fraction": None,
@@ -353,7 +353,7 @@ def simple_from_canonical(data: Mapping[str, Any]) -> dict[str, Any]:
         "confidence": "low",
         "reference_altitude_ft": None,
         "reference_mach": None,
-        "reference_unit_reynolds_number_per_m": None,
+        "reference_reynolds_per_m": None,
         "span_efficiency_factor": None,
         "unresolved_fraction_of_resolved_drag": None,
         "roughness_excrescence_fraction": None,
@@ -645,7 +645,7 @@ def validate_simple(document: Any) -> list[str]:
         numeric_fields = (
             "reference_altitude_ft",
             "reference_mach",
-            "reference_unit_reynolds_number_per_m",
+            "reference_reynolds_per_m",
             "span_efficiency_factor",
             "unresolved_fraction_of_resolved_drag",
             "roughness_excrescence_fraction",
@@ -669,7 +669,7 @@ def validate_simple(document: Any) -> list[str]:
             for required in (
                 "reference_altitude_ft",
                 "reference_mach",
-                "reference_unit_reynolds_number_per_m",
+                "reference_reynolds_per_m",
                 "span_efficiency_factor",
             ):
                 if drag.get(required) is None:
@@ -703,7 +703,7 @@ def validate_simple(document: Any) -> list[str]:
         bounds = {
             "reference_altitude_ft": (-2000.0, 70000.0),
             "reference_mach": (0.0, 1.0),
-            "reference_unit_reynolds_number_per_m": (0.0, float("inf")),
+            "reference_reynolds_per_m": (0.0, float("inf")),
             "span_efficiency_factor": (0.3, 1.2),
             "unresolved_fraction_of_resolved_drag": (0.0, 1.0),
             "roughness_excrescence_fraction": (0.0, 1.0),
