@@ -1,0 +1,86 @@
+name: Build and publish aerox
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Full test suite
+    uses: ./.github/workflows/test.yml
+
+  build:
+    name: Build wheel and sdist
+    needs: [quality]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+
+      - name: Build
+        run: uv build
+
+      - name: Verify tag matches package version
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          PROJECT_VERSION="$(python -c 'import tomllib; print(tomllib.load(open("pyproject.toml", "rb"))["project"]["version"])')"
+          test "$TAG_VERSION" = "$PROJECT_VERSION" || {
+            echo "Tag v$TAG_VERSION does not match pyproject version $PROJECT_VERSION" >&2
+            exit 1
+          }
+
+      - name: Smoke-test the built wheel
+        # Install the wheel into a fresh environment, outside the source tree,
+        # and check that the bundled data loads and the command runs.
+        run: |
+          WHEEL="$(ls dist/aerox-*.whl)"
+          cd "$RUNNER_TEMP"
+          uv run --isolated --no-project --with "$GITHUB_WORKSPACE/$WHEEL" python -c "
+          from aerox import load_aircraft, get_available_aircraft
+          from aerox.models.drag import build_drag_model
+          assert len(get_available_aircraft()) > 100
+          ac = load_aircraft('A320')
+          print(ac.icao, build_drag_model(ac).cd(cl=0.55, mach=0.78, h=11_000))
+          "
+          uv run --isolated --no-project --with "$GITHUB_WORKSPACE/$WHEEL" aerox --help
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/*
+
+  publish:
+    needs: [build]
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+      contents: write
+    if: startsWith(github.ref, 'refs/tags/v')
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        # OIDC trusted publishing: no API token is stored. Configure it at
+        # https://pypi.org/manage/account/publishing/ (pending publisher for a
+        # new project): owner open-aviation, repository aerox, workflow
+        # build-publish.yml, environment pypi.
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: dist/*

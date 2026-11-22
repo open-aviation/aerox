@@ -64,9 +64,7 @@ def decode_a320_flap_configuration(
     values = np.asarray(raw, dtype=float)
     time = np.asarray(time_s, dtype=float)
     if values.ndim != 1 or time.ndim != 1 or len(values) != len(time):
-        raise ValueError(
-            "raw and time_s must be equal-length one-dimensional arrays"
-        )
+        raise ValueError("raw and time_s must be equal-length one-dimensional arrays")
     if tolerance < 0.0:
         raise ValueError("tolerance must be non-negative")
     configurations = np.asarray(list(A320_FLAP_RAW_DETENTS), dtype=float)

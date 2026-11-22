@@ -37,8 +37,7 @@ except ModuleNotFoundError:  # package-style import used by tests
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 SOURCE_LEDGER = PROJECT_ROOT / "sources/sources.yml"
 DEFAULT_RESEARCH = (
-    PROJECT_ROOT
-    / "sources/geometry/airbus-subtype-engine-mapping.tsv",
+    PROJECT_ROOT / "sources/geometry/airbus-subtype-engine-mapping.tsv",
 )
 ENGINE_TABLE = PROJECT_ROOT / "src/aerox/data/engines/engines.csv"
 OLD_SECTION_MARKER = "MODEL AND ENGINE APPLICABILITY\n"

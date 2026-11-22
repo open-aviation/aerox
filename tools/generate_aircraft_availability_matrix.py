@@ -29,8 +29,7 @@ except ModuleNotFoundError:  # package-style import used by tests
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT = (
-    PROJECT_ROOT
-    / "src/aerox/data/aircraft/aircraft-parameter-availability.csv"
+    PROJECT_ROOT / "src/aerox/data/aircraft/aircraft-parameter-availability.csv"
 )
 IDENTIFIER_PATHS = {"aircraft", "icao"}
 SUMMARY_COLUMNS = [
@@ -140,7 +139,10 @@ def main() -> int:
     args = build_parser().parse_args()
     rendered = render_matrix(args.aircraft_root)
     if args.check:
-        if not args.output.exists() or args.output.read_text(encoding="utf-8") != rendered:
+        if (
+            not args.output.exists()
+            or args.output.read_text(encoding="utf-8") != rendered
+        ):
             print(f"stale aircraft availability matrix: {args.output}")
             return 1
         print(f"aircraft availability matrix is current: {args.output}")
