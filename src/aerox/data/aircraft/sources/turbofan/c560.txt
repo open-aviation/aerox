@@ -101,17 +101,36 @@ END FIELD
 WING AND TAIL GEOMETRY
 
 FIELD wing.area
-  Value: 32
+  Value: 31.83
   Unit: m2
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_citation_500_560_a207
+  Source URL: https://www.easa.europa.eu/en/downloads/7244/en
+  Document title: EASA.IM.A.207 Cessna 500, 550, S550, 560 and 560XL Type-Certificate Data Sheet
+  Revision date: 2022-07-06
+  Page or section: Issue 10, section 4 model 560, III.4.1, p. 36
+  Inputs: Wing Area 342.6 sq ft (31.83 sq m)
+  Applicability: Model 560 Citation V and Citation Ultra; the Citation Encore and Encore+ have 29.94 m2 and 16.48 m (III.4.3)
+  Uncertainty: Source rounded to 0.01 m2
+  Previous value: 32 m2 (legacy-unverified)
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Source label is Wing Area.
 END FIELD
 
 FIELD wing.span
-  Value: 13.8
+  Value: 15.9
   Unit: m
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_citation_500_560_a207
+  Source URL: https://www.easa.europa.eu/en/downloads/7244/en
+  Document title: EASA.IM.A.207 Cessna 500, 550, S550, 560 and 560XL Type-Certificate Data Sheet
+  Revision date: 2022-07-06
+  Page or section: Issue 10, section 4 model 560, III.4.1, p. 36
+  Inputs: Span 52 ft 2 in (15.90 m)
+  Applicability: Model 560 Citation V and Citation Ultra; the Citation Encore and Encore+ have 29.94 m2 and 16.48 m (III.4.3)
+  Uncertainty: Source rounded to 0.01 m
+  Previous value: 13.8 m (legacy-unverified)
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
 END FIELD
 
 FIELD wing.mac
@@ -129,7 +148,7 @@ FIELD wing.mac
   Uncertainty: Source resolution 0.01 in; exact unit conversion
   Previous value: 2.1 m
   Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
-  Notes: TCDS calls this the reference MAC for the basic wing without leading-edge cuff and tip; span/area vary by commercial configuration and are withheld.
+  Notes: TCDS calls this the reference MAC for the basic wing without leading-edge cuff and tip; span and area vary by commercial configuration; wing.area and wing.span hold the Citation V/Ultra values.
 END FIELD
 
 FIELD wing.sweep
@@ -177,12 +196,14 @@ FIELD wing.taper_ratio
 END FIELD
 
 FIELD wing.aspect_ratio
-  Value: 5.95125
+  Value: 7.942507
   Unit: nondimensional
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: calculated-from-published-inputs
+  Source: easa_citation_500_560_a207
   Formula: span^2 / area
-  Inputs: span=13.8 m; area=32 m2
+  Inputs: span=15.9 m; area=31.83 m2
+  Previous value: 5.95125 nondimensional
+  Notes: Derived only from the cited inputs; not a separately published ratio.
 END FIELD
 
 FIELD wing.dihedral
@@ -397,8 +418,8 @@ FIELD drag.model
   Value: aerox-geometry-drag-v2
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9502; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
-  Zero-lift terms at reference (drag counts): wing=74.40; fuselage=46.69; horizontal_tail=21.77; vertical_tail=13.83; nacelles=12.64; pylons=1.69; fuselage_upsweep=3.14; control_surface_gaps=1.40; nacelle_base=3.44; roughness_excrescence=16.11
+  Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9552; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
+  Zero-lift terms at reference (drag counts): wing=73.57; fuselage=46.94; horizontal_tail=21.77; vertical_tail=13.83; nacelles=12.71; pylons=1.69; fuselage_upsweep=3.16; control_surface_gaps=1.40; nacelle_base=3.46; roughness_excrescence=16.07
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -438,7 +459,7 @@ FIELD drag.reference_unit_reynolds_number_per_m
   Inputs: altitude=51098.2 ft; Mach=0.730000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
-  Value: 0.950222
+  Value: 0.955235
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Physical model input; geometry-tier uncertainty applies.

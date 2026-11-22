@@ -101,10 +101,19 @@ END FIELD
 WING AND TAIL GEOMETRY
 
 FIELD wing.area
-  Value: 377
+  Value: 360
   Unit: m2
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: inferred-with-uncertainty
+  Source: poll_schumann_2021_part2
+  Source URL: https://doi.org/10.1017/aer.2020.124
+  Document title: Poll and Schumann, An estimation method for the fuel burn and other performance characteristics of civil transport aircraft in the cruise. Part 2, The Aeronautical Journal 125(1284), 2021
+  Page or section: Table 1, row B789, p. 306
+  Inputs: Sref (m2) 360.0
+  Applicability: 787-9; Sref follows the Airbus definition used by the source: exposed wing plus the rectangle inside the fuselage between the leading- and trailing-edge intersections
+  Uncertainty: Peer-reviewed secondary compilation; area +/-2 percent
+  Previous value: 377 m2 (legacy-unverified)
+  Correction reason: No source supports the legacy value; replaced with the cited reference area.
+  Notes: Boeing publishes no 787 reference area in the reviewed documents. The Lissys Piano 787-8 sample analysis (2005) gives 3870 ft2 (359.5 m2) for the Boeing (Wimpress) definition and 3971 ft2 (368.9 m2) for the Airbus gross definition. No reviewed source supports the legacy 377 m2. wing.mac remains legacy-unverified.
 END FIELD
 
 FIELD wing.span
@@ -170,12 +179,14 @@ FIELD wing.taper_ratio
 END FIELD
 
 FIELD wing.aspect_ratio
-  Value: 9.587306
+  Value: 10.04004
   Unit: nondimensional
-  Status: legacy-unverified
-  Source: boeing_787_acap_rev_q_2025_10 | aerox_legacy_aircraft_database
+  Status: inferred-with-uncertainty
+  Source: boeing_787_acap_rev_q_2025_10 | poll_schumann_2021_part2
   Formula: span^2 / area
-  Inputs: span=60.12 m; area=377 m2
+  Inputs: span=60.12 m; area=360 m2
+  Previous value: 9.587306 nondimensional
+  Notes: Derived only from the cited inputs; not a separately published ratio.
 END FIELD
 
 FIELD wing.dihedral
@@ -376,7 +387,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9538; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
-  Zero-lift terms at reference (drag counts): wing=51.60; fuselage=49.07; horizontal_tail=16.01; vertical_tail=10.22; nacelles=11.14; pylons=1.71; fuselage_upsweep=4.28; control_surface_gaps=1.00; nacelle_base=1.21; roughness_excrescence=13.16
+  Zero-lift terms at reference (drag counts): wing=49.40; fuselage=51.08; horizontal_tail=15.89; vertical_tail=10.15; nacelles=11.59; pylons=1.78; fuselage_upsweep=4.49; control_surface_gaps=1.00; nacelle_base=1.26; roughness_excrescence=13.20
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -398,7 +409,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 39950.2
+  Value: 38990.2
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -410,10 +421,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_unit_reynolds_number_per_m
-  Value: 5331531.8
+  Value: 5583301.1
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=39950.2 ft; Mach=0.850000; ISA temperature and density
+  Inputs: altitude=38990.2 ft; Mach=0.850000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.953814

@@ -101,10 +101,19 @@ END FIELD
 WING AND TAIL GEOMETRY
 
 FIELD wing.area
-  Value: 124
+  Value: 124.6
   Unit: m2
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-2/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 2, column 737-800
+  Inputs: Wing: Area (m2) 124.60
+  Applicability: 737-800 wing reference area without winglets; the source does not state the area definition
+  Uncertainty: Secondary textbook compilation; area +/-1 percent
+  Previous value: 124 m2 (legacy-unverified)
+  Correction reason: No source supports the legacy value; replaced with the cited reference area.
+  Notes: Poll and Schumann (2021, Table 1) list the same 124.6 m2 for the 737-600 to -900ER.
 END FIELD
 
 FIELD wing.span
@@ -175,12 +184,14 @@ FIELD wing.taper_ratio
 END FIELD
 
 FIELD wing.aspect_ratio
-  Value: 9.49889
+  Value: 9.453149
   Unit: nondimensional
-  Status: legacy-unverified
-  Source: boeing_737_ng_acap_rev_c_2025_10 | aerox_legacy_aircraft_database
+  Status: inferred-with-uncertainty
+  Source: boeing_737_ng_acap_rev_c_2025_10 | jenkinson_simpkin_rhodes_1999_data_a
   Formula: span^2 / area
-  Inputs: span=34.32 m; area=124 m2
+  Inputs: span=34.32 m; area=124.6 m2
+  Previous value: 9.49889 nondimensional
+  Notes: Derived only from the cited inputs; not a separately published ratio.
 END FIELD
 
 FIELD wing.dihedral
@@ -450,7 +461,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=C-partially-scaled; confidence=low; e_span=0.9491; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
-  Zero-lift terms at reference (drag counts): wing=52.12; fuselage=61.92; horizontal_tail=18.31; vertical_tail=11.97; nacelles=11.05; pylons=1.70; fuselage_upsweep=5.29; control_surface_gaps=1.11; nacelle_base=1.99; roughness_excrescence=14.89
+  Zero-lift terms at reference (drag counts): wing=52.23; fuselage=61.66; horizontal_tail=18.24; vertical_tail=11.93; nacelles=11.00; pylons=1.69; fuselage_upsweep=5.26; control_surface_gaps=1.11; nacelle_base=1.98; roughness_excrescence=14.86
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -472,7 +483,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 38067.6
+  Value: 38168.0
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -484,10 +495,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_unit_reynolds_number_per_m
-  Value: 5424469.4
+  Value: 5398348.1
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=38067.6 ft; Mach=0.790000; ISA temperature and density
+  Inputs: altitude=38168.0 ft; Mach=0.790000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.949105

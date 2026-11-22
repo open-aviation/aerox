@@ -30,15 +30,15 @@ fuselage:
   height: 1.46
   width: 1.46
 wing:
-  area: 32
-  span: 13.8
+  area: 31.83
+  span: 15.9
   mac: 2.056892
   sweep: 0
   t/c: 0.13
   root_chord: null
   tip_chord: null
   taper_ratio: null
-  aspect_ratio: 5.95125
+  aspect_ratio: 7.942507
   dihedral: null
 horizontal_tail:
   area: null
@@ -83,7 +83,7 @@ drag:
   reference_altitude_ft: 51098.2
   reference_mach: 0.73
   reference_unit_reynolds_number_per_m: 2679501.1
-  span_efficiency_factor: 0.950222
+  span_efficiency_factor: 0.955235
   unresolved_fraction_of_resolved_drag: null
   roughness_excrescence_fraction: 0.09
   wave_drag_model: aerox-korn-lock-wave-v1

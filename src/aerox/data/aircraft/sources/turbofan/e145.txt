@@ -101,17 +101,35 @@ END FIELD
 WING AND TAIL GEOMETRY
 
 FIELD wing.area
-  Value: 51
+  Value: 51.18
   Unit: m2
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: manufacturer-published-planning
+  Source: embraer_emb145_apm_1100_r16
+  Source URL: https://www.embraer.com/media/2q1d040a/erj-emb-145_apm_140.pdf
+  Document title: EMB-145 Airport Planning Manual APM-145/1100, Revision 16
+  Revision date: 2024-11-29
+  Page or section: Section 2.2.2 Wing, page 2-2
+  Inputs: Reference area 51.18 m2 (551 ft2); reference aspect ratio 7.8
+  Applicability: EMB-145EP/ER/EU/MP/MK/LR/LU; the EMB-145XR has a 21.00 m span
+  Uncertainty: Source rounded to 0.01 m2
+  Previous value: 51 m2 (legacy-unverified)
+  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Notes: Source explicitly labels this Reference area.
 END FIELD
 
 FIELD wing.span
   Value: 20.04
   Unit: m
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: manufacturer-published-planning
+  Source: embraer_emb145_apm_1100_r16
+  Source URL: https://www.embraer.com/media/2q1d040a/erj-emb-145_apm_140.pdf
+  Document title: EMB-145 Airport Planning Manual APM-145/1100, Revision 16
+  Revision date: 2024-11-29
+  Page or section: Section 2.2.1 External Dimensions, page 2-2
+  Inputs: Overall span (EMB-145EP/ER/EU/MP/MK/LR/LU) 20.04 m (65 ft 9 in)
+  Applicability: EMB-145EP/ER/EU/MP/MK/LR/LU; the EMB-145XR has a 21.00 m span
+  Uncertainty: Source rounded to 0.01 m
+  Notes: Value unchanged; source added.
 END FIELD
 
 FIELD wing.mac
@@ -166,12 +184,14 @@ FIELD wing.taper_ratio
 END FIELD
 
 FIELD wing.aspect_ratio
-  Value: 7.874541
+  Value: 7.846846
   Unit: nondimensional
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: calculated-from-published-inputs
+  Source: embraer_emb145_apm_1100_r16
   Formula: span^2 / area
-  Inputs: span=20.04 m; area=51 m2
+  Inputs: span=20.04 m; area=51.18 m2
+  Previous value: 7.874541 nondimensional
+  Notes: Derived only from the cited inputs; not a separately published ratio.
 END FIELD
 
 FIELD wing.dihedral
@@ -387,7 +407,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9469; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
-  Zero-lift terms at reference (drag counts): wing=55.98; fuselage=80.16; horizontal_tail=19.12; vertical_tail=12.17; nacelles=17.77; pylons=2.37; fuselage_upsweep=4.85; control_surface_gaps=1.20; nacelle_base=3.46; roughness_excrescence=17.74
+  Zero-lift terms at reference (drag counts): wing=56.07; fuselage=79.91; horizontal_tail=19.13; vertical_tail=12.17; nacelles=17.72; pylons=2.36; fuselage_upsweep=4.83; control_surface_gaps=1.20; nacelle_base=3.45; roughness_excrescence=17.72
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -409,7 +429,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 45342.5
+  Value: 45415.8
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -421,10 +441,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_unit_reynolds_number_per_m
-  Value: 3678650.7
+  Value: 3665712.8
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=45342.5 ft; Mach=0.760000; ISA temperature and density
+  Inputs: altitude=45415.8 ft; Mach=0.760000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.946866

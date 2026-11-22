@@ -45,7 +45,7 @@ fuselage:
   height: 4.14
   width: 3.95
 wing:
-  area: 128
+  area: 122.4
   span: 35.8
   mac: 4.1935
   sweep: 25
@@ -53,7 +53,7 @@ wing:
   root_chord: null
   tip_chord: null
   taper_ratio: null
-  aspect_ratio: 10.012812
+  aspect_ratio: 10.470915
   dihedral: null
 horizontal_tail:
   area: 30.843419
@@ -99,9 +99,9 @@ drag:
   configuration: clean
   geometry_tier: B-observed-core-scaled-tails
   confidence: medium-low
-  reference_altitude_ft: 33907.8
+  reference_altitude_ft: 32954.4
   reference_mach: 0.78
-  reference_unit_reynolds_number_per_m: 6364444.8
+  reference_unit_reynolds_number_per_m: 6580639.1
   span_efficiency_factor: 0.948454
   unresolved_fraction_of_resolved_drag: null
   roughness_excrescence_fraction: 0.09

@@ -101,10 +101,19 @@ END FIELD
 WING AND TAIL GEOMETRY
 
 FIELD wing.area
-  Value: 128
+  Value: 122.4
   Unit: m2
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: inferred-with-uncertainty
+  Source: poll_schumann_2021_part2
+  Source URL: https://doi.org/10.1017/aer.2020.124
+  Document title: Poll and Schumann, An estimation method for the fuel burn and other performance characteristics of civil transport aircraft in the cruise. Part 2, The Aeronautical Journal 125(1284), 2021
+  Page or section: Table 1, row A21N, p. 306
+  Inputs: Sref (m2) 122.4
+  Applicability: A321neo; Sref follows the Airbus definition used by the source: exposed wing plus the rectangle inside the fuselage between the leading- and trailing-edge intersections (the Airbus reference-area definition)
+  Uncertainty: Peer-reviewed secondary compilation; area +/-2 percent
+  Previous value: 128 m2 (legacy-unverified)
+  Correction reason: No source supports the legacy value; replaced with the cited reference area.
+  Notes: Same Sref as the A318-A321 ceo rows of the source; sharklets change the span, not the reference area. Record span stays the 35.80 m ACAP sharklet span.
 END FIELD
 
 FIELD wing.span
@@ -181,12 +190,14 @@ FIELD wing.taper_ratio
 END FIELD
 
 FIELD wing.aspect_ratio
-  Value: 10.012812
+  Value: 10.470915
   Unit: nondimensional
-  Status: legacy-unverified
-  Source: airbus_a321_acap_2026_07 | aerox_legacy_aircraft_database
+  Status: inferred-with-uncertainty
+  Source: airbus_a321_acap_2026_07 | poll_schumann_2021_part2
   Formula: span^2 / area
-  Inputs: span=35.8 m; area=128 m2
+  Inputs: span=35.8 m; area=122.4 m2
+  Previous value: 10.012812 nondimensional
+  Notes: Derived only from the cited inputs; not a separately published ratio.
 END FIELD
 
 FIELD wing.dihedral
@@ -430,7 +441,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9485; roughness_excrescence/computed=0.0900; nacelle_tier=A-measured-nacelle
-  Zero-lift terms at reference (drag counts): wing=51.48; fuselage=73.08; horizontal_tail=16.19; vertical_tail=10.67; nacelles=17.36; pylons=2.67; fuselage_upsweep=6.02; control_surface_gaps=1.11; nacelle_base=2.56; roughness_excrescence=16.30
+  Zero-lift terms at reference (drag counts): wing=50.58; fuselage=76.09; horizontal_tail=16.85; vertical_tail=10.62; nacelles=18.06; pylons=2.78; fuselage_upsweep=6.30; control_surface_gaps=1.13; nacelle_base=2.68; roughness_excrescence=16.66
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -452,7 +463,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 33907.8
+  Value: 32954.4
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -464,10 +475,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_unit_reynolds_number_per_m
-  Value: 6364444.8
+  Value: 6580639.1
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=33907.8 ft; Mach=0.780000; ISA temperature and density
+  Inputs: altitude=32954.4 ft; Mach=0.780000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.948454

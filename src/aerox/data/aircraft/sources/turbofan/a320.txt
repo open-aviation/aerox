@@ -105,16 +105,15 @@ WING AND TAIL GEOMETRY
 FIELD wing.area
   Value: 122.0
   Unit: m2
-  Status: certified-published
-  Source: easa_a064_issue_62
-  Source URL: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa064-airbus-a318-a319-a320-a321-single-aisle
-  Document title: EASA Type Certificate Data Sheet EASA.A.064, Issue 62
-  Revision date: 2026-06-26
-  Page or section: A320 series reference geometry
-  Inputs: 122 m2 published reference area
+  Status: inferred-with-uncertainty
+  Source: poll_schumann_2021_part2
+  Source URL: https://doi.org/10.1017/aer.2020.124
+  Document title: Poll and Schumann, An estimation method for the fuel burn and other performance characteristics of civil transport aircraft in the cruise. Part 2, The Aeronautical Journal 125(1284), 2021
+  Page or section: Table 1, row A320, p. 306
+  Inputs: Sref (m2) 122.4
   Applicability: A320-214 reference wing
-  Uncertainty: Published value; installed modifications remain aircraft-specific
-  Notes: Use as the reference area, not a wetted or exposed area.
+  Uncertainty: Peer-reviewed secondary compilation; area +/-2 percent. The record value is 0.3 percent below the cited value.
+  Notes: Use as the reference area, not a wetted or exposed area. The record keeps 122.0 m2, the value used in the project A320 work. EASA TCDS EASA.A.064 gives the mean aerodynamic chord but no wing area, so the earlier certified-published status was wrong.
 END FIELD
 
 FIELD wing.span
