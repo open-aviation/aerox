@@ -15,11 +15,7 @@ airbus/archives/   Original Airbus ZIP downloads (not in Git; see the landing pa
 airbus/drawings/   Extracted Airbus DWG files, grouped by archive name
 boeing/archives/   Original Boeing ZIP downloads (not in Git; see the landing pages)
 boeing/drawings/   Extracted Boeing DXF/DWG files, grouped by archive name
-SHA256SUMS.txt     Checksums of all original archives
-
-Verify the original downloads from this directory with:
-
-  sha256sum -c SHA256SUMS.txt
+converted/         DXF conversions of the DWG drawings
 
 The collection contains 50 archives and 50 extracted CAD files:
 
