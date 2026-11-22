@@ -15,7 +15,7 @@ from aerox.models.drag import (
     DragModel,
     ParabolicDragPolar,
     build_drag_model,
-    build_reference_drag_polar,
+    build_parabolic_polar,
 )
 from aerox.models.drag.polar import ParabolicWaveDragModel
 from aerox.models.drag.reference import (
@@ -66,7 +66,7 @@ def test_missing_reynolds_number_uses_the_model_reference():
 
 
 def test_reference_polar_uses_cd0_and_k():
-    polar = build_reference_drag_polar(load_aircraft("A320"))
+    polar = build_parabolic_polar(load_aircraft("A320"))
     assert polar.drag_coefficient(0.5) == pytest.approx(polar.cd0 + polar.k * 0.25)
     assert ParabolicDragPolar(cd0=0.02, k=0.04).drag_coefficient(1.0) == 0.06
 
@@ -81,7 +81,7 @@ def test_drag_package_exports_only_the_public_interface():
         "TransonicGeometryDragModel",
         "build_drag_model",
         "build_drag_report",
-        "build_reference_drag_polar",
+        "build_parabolic_polar",
     }
 
 

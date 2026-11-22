@@ -9,7 +9,7 @@ from .drag import (
     TransonicGeometryDragModel,
     build_drag_model,
     build_drag_report,
-    build_reference_drag_polar,
+    build_parabolic_polar,
 )
 from .kinematics import (
     KinematicParameters,
@@ -76,7 +76,7 @@ __all__ = [
     "TransonicGeometryDragModel",
     "build_drag_model",
     "build_drag_report",
-    "build_reference_drag_polar",
+    "build_parabolic_polar",
     "effective_lift_design",
     "fan_speed_fraction",
     "kinematic_parameters_from_aircraft",

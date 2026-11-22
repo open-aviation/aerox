@@ -971,7 +971,12 @@ def _build_subcritical_drag_model(aircraft: Aircraft) -> GeometryDragModel:
 def build_drag_model(
     aircraft: Aircraft,
 ) -> GeometryDragModel | TransonicGeometryDragModel:
-    """Reconstruct the active condition-aware drag model from aircraft data."""
+    """Build the full drag model of an aircraft from its geometry.
+
+    The zero-lift drag changes with the Mach and Reynolds number, and aircraft
+    with a wave drag model also have wave drag above the critical Mach number.
+    For a constant ``CD = cd0 + k CL²``, use :func:`build_parabolic_polar`.
+    """
 
     base = _build_subcritical_drag_model(aircraft)
     drag = aircraft.drag
@@ -997,12 +1002,14 @@ def build_drag_model(
     )
 
 
-def build_reference_drag_polar(aircraft: Aircraft) -> ParabolicDragPolar:
-    """Project the active physical model onto its reference parabolic polar.
+def build_parabolic_polar(aircraft: Aircraft) -> ParabolicDragPolar:
+    """Reduce the drag model to a two-term parabolic polar, ``CD = cd0 + k CL²``.
 
-    This adapter supports low-order analyses without storing derived ``CD0`` or
-    ``k`` values in aircraft data. New simulations should pass the model from
-    :func:`build_drag_model` so Reynolds-number variation is retained.
+    ``cd0`` and ``k`` are taken from the drag model without wave drag, at the
+    reference condition stored in the record (``drag.reference_mach`` and
+    ``drag.reference_reynolds_per_m``). The polar does not change with the
+    Mach or Reynolds number. Use :func:`build_drag_model` when these effects
+    matter.
     """
 
     drag = aircraft.drag

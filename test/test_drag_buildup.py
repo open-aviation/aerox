@@ -10,7 +10,7 @@ from aerox.models.drag import (
     DragCondition,
     build_drag_model,
     build_drag_report,
-    build_reference_drag_polar,
+    build_parabolic_polar,
 )
 from aerox.models.drag.builder import (
     ROUGHNESS_EXCRESCENCE_FRACTION,
@@ -244,7 +244,7 @@ def test_every_record_builds_and_runtime_model_reproduces_report():
         aircraft = load_aircraft(code)
         report = build_drag_report(aircraft)
         model = build_drag_model(aircraft)
-        polar = build_reference_drag_polar(aircraft)
+        polar = build_parabolic_polar(aircraft)
         condition = DragCondition(
             aircraft.drag.reference_mach,
             aircraft.drag.reference_reynolds_per_m,
@@ -256,11 +256,11 @@ def test_every_record_builds_and_runtime_model_reproduces_report():
 
 def test_runtime_model_uses_stored_roughness_allowance():
     aircraft = load_aircraft("A320")
-    base = build_reference_drag_polar(aircraft).cd0
+    base = build_parabolic_polar(aircraft).cd0
     aircraft.drag.roughness_excrescence_fraction = 0.13
-    raised = build_reference_drag_polar(aircraft).cd0
+    raised = build_parabolic_polar(aircraft).cd0
 
     assert raised / base == pytest.approx(1.13 / 1.09)
     aircraft.drag.roughness_excrescence_fraction = None
     with pytest.raises(ValueError, match="roughness_excrescence_fraction"):
-        build_reference_drag_polar(aircraft)
+        build_parabolic_polar(aircraft)

@@ -8,7 +8,7 @@ from aerox.models.drag import (
     DragCondition,
     build_drag_model,
     build_drag_report,
-    build_reference_drag_polar,
+    build_parabolic_polar,
 )
 from aerox.models.drag.builder import (
     GEOMETRY_DRAG_MODEL_ID,
@@ -85,7 +85,7 @@ def test_active_model_reconstructs_snapshot_and_varies_with_reynolds_number():
     aircraft = load_aircraft("A320")
     stored = aircraft.drag
     model = build_drag_model(aircraft)
-    polar = build_reference_drag_polar(aircraft)
+    polar = build_parabolic_polar(aircraft)
     generated = build_drag_report(aircraft)
     reference = DragCondition(
         stored.reference_mach,
@@ -112,7 +112,7 @@ def test_a320_wave_increment_is_derived_and_reference_polar_stays_subcritical():
         aircraft.drag.reference_reynolds_per_m,
     )
     breakdown = model.breakdown(0.55, condition=condition)
-    polar = build_reference_drag_polar(aircraft)
+    polar = build_parabolic_polar(aircraft)
     generated = build_drag_report(aircraft)
 
     assert model.wave_drag.critical_mach(0.0) == pytest.approx(0.7941158832)

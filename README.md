@@ -27,30 +27,42 @@ print(ac.mtow, ac.wing.area, ac.wing.span)
 print(get_available_aircraft())
 ```
 
-Get a drag polar, `CD = CD0 + k CL²`:
+Aerox gives drag in two forms. Both have the method `cd()`, an alias of
+`drag_coefficient()`, so either one can be passed where a drag model is
+expected.
 
-```python
-from aerox.models.drag import build_reference_drag_polar
+| | `build_drag_model(ac)` | `build_parabolic_polar(ac)` |
+| --- | --- | --- |
+| Returns | the full drag model | `CD = cd0 + k CL²` |
+| Changes with Mach and Reynolds number | yes | no, fixed at the reference condition of the record |
+| Wave drag | yes, for civil turbofans | no |
+| Use it for | performance at a flight condition | quick estimates and closed-form analysis |
 
-polar = build_reference_drag_polar(ac)
-print(polar.cd0, polar.k)
-print(polar.drag_coefficient(cl=0.55))   # or polar.cd(cl=0.55)
-```
-
-Get drag at a flight condition, with the Mach and Reynolds number effects:
+The full model, at a flight condition:
 
 ```python
 from aerox import aero
-from aerox.models.drag import build_drag_model, build_drag_report
+from aerox.models.drag import build_drag_model
 
 model = build_drag_model(ac)
 reynolds = aero.reynolds_per_m(mach=0.78, h=11_000)   # per metre
 print(model.cd(cl=0.55, mach=0.78, reynolds_per_m=reynolds))
-
-# The contribution of each aircraft part to the zero-lift drag
-for term in build_drag_report(ac).parasite_terms:
-    print(term)
 ```
+
+The parabolic polar, the same at every flight condition:
+
+```python
+from aerox.models.drag import build_parabolic_polar
+
+polar = build_parabolic_polar(ac)
+print(polar.cd0, polar.k)
+print(polar.cd(cl=0.55))
+```
+
+Near the reference cruise condition of the record, the two agree within a few
+percent at cruise lift coefficients. Away from that condition, or at high lift
+coefficients where wave drag appears, use the full model. See
+[the drag docs](docs/drag.md) for details.
 
 Atmosphere and speed conversions, in SI units:
 
@@ -99,4 +111,4 @@ uv run --extra editor tools/web_editor.py   # local editor for aircraft records
 
 ## Licence
 
-GNU Lesser General Public License v3. See `LICENSE`.
+GNU Lesser General Public License v3 (LGPL v3). See `LICENSE`.

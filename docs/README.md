@@ -7,8 +7,8 @@ performance models for 144 aircraft types, built from open sources.
 
 - [Aircraft data](aircraft-data.md): the aircraft records, their units, how to
   load them, and where each value comes from.
-- [Drag](drag.md): the geometry-based drag model, how to evaluate it, and its
-  accuracy.
+- [Drag](drag.md): the geometry-based drag model and the simpler parabolic
+  polar, how to evaluate them, and their accuracy.
 - [Atmosphere and speeds](atmosphere.md): ISA atmosphere and airspeed
   conversions in `aerox.aero`.
 - [Roadmap](roadmap.md): the state of the current release, its known limits,

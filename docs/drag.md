@@ -3,6 +3,22 @@
 The drag model computes the drag coefficient of the clean aircraft from its
 geometry. No value is fitted to another performance model.
 
+## Two ways to get drag
+
+| | `build_drag_model(ac)` | `build_parabolic_polar(ac)` |
+| --- | --- | --- |
+| Returns | the full model, `GeometryDragModel` or `TransonicGeometryDragModel` | `ParabolicDragPolar`, `CD = cd0 + k CL²` |
+| Zero-lift drag | changes with the Mach and Reynolds number | constant |
+| Wave drag | yes, for the aircraft that have it (see below) | no |
+| Arguments | `cl`, `mach`, optional `reynolds_per_m` | `cl` only |
+| Use it for | performance at a flight condition, Mach sweeps, cruise near the drag rise | quick estimates, closed-form analysis such as the best lift-to-drag ratio, optimisation |
+
+The parabolic polar is derived from the full model: `cd0` and `k` are the full
+model without wave drag, evaluated at the reference condition of the record.
+Both objects have the same methods, `drag_coefficient(cl, ...)`, its shorthand
+`cd(cl, ...)`, and `breakdown(cl, ...)`, so code that takes a drag model
+accepts either one.
+
 ## Model
 
 The drag coefficient has four parts:
@@ -35,7 +51,7 @@ The model is identified as `aerox-geometry-drag-v2` and the wave drag as
 The fixed increments are computed once, at the reference condition of the
 aircraft, and do not change with the Reynolds or Mach number.
 
-## Evaluate drag at a flight condition
+## Full model: drag at a flight condition
 
 ```python
 from aerox import aero, load_aircraft
@@ -107,23 +123,38 @@ does not read the reference condition stored in the record; the tool
 records. The report also lists the geometry fields that were estimated because
 the record has no value for them (`report.imputed_fields`).
 
-## Parabolic polar
+## Parabolic polar: `CD = cd0 + k CL²`
 
-For simple analyses, `build_reference_drag_polar` reduces the model to
-`CD = cd0 + k CL²` at the reference condition stored in the record
-(`drag.reference_mach` and `drag.reference_reynolds_per_m`):
+`build_parabolic_polar` reduces the full model to two numbers:
 
 ```python
-from aerox.models.drag import build_reference_drag_polar
+from aerox.models.drag import build_parabolic_polar
 
-polar = build_reference_drag_polar(ac)
-print(polar.cd0, polar.k)
-print(polar.cd(cl=0.55))
+polar = build_parabolic_polar(ac)
+print(polar.cd0, polar.k)   # A320: 0.0189, 0.0432
+print(polar.cd(cl=0.55))    # 0.0320
 ```
 
-The polar leaves out wave drag, and it has no Mach or Reynolds number effects.
-At high lift coefficients near the reference Mach number it is therefore lower
-than the full model: for the A320 at `CL = 1`, 0.0621 against 0.0678. Use
+`cd0` and `k` come from the full model without wave drag, at the reference
+condition stored in the record (`drag.reference_mach` and
+`drag.reference_reynolds_per_m`; for the A320, Mach 0.79).
+The polar does not take a Mach or Reynolds number: `polar.cd(cl=0.55,
+mach=0.6)` gives the same value as `polar.cd(cl=0.55)`.
+
+How the two compare for the A320:
+
+| Condition | `CL` | Full model | Parabolic polar |
+| --- | --- | --- | --- |
+| Mach 0.78, 11 000 m | 0.55 | 0.0321 | 0.0320 |
+| Mach 0.78, 11 000 m | 1.0 | 0.0660 | 0.0621 |
+| Mach 0.6, 6 000 m | 0.55 | 0.0314 | 0.0320 |
+| Mach 0.3, 500 m | 0.55 | 0.0323 | 0.0320 |
+
+For jet transports near their cruise condition, the two agree within a few
+percent at cruise lift coefficients. The polar is too low at high lift
+coefficients near the cruise Mach number, because it has no wave drag, and it
+can be off by more than 10 % for small aircraft flown far from their reference
+condition, because it keeps the reference Reynolds number. Use
 `build_drag_model` when these effects matter.
 
 ## Comparison models
