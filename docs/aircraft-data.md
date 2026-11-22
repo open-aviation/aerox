@@ -55,7 +55,8 @@ only and have no entry in the table.
 ## Sources
 
 Every record has a source note in `src/aerox/data/aircraft/sources/`. The note
-lists the source of each value. The cited documents are listed in
+lists the source of each value, except the kinematic values, which have no
+source notes yet (see [Kinematics](kinematics.md)). The cited documents are listed in
 `sources/sources.yml` at the root of the repository. The CAD drawings and the
 measurement tables behind the geometry values are in the same `sources/`
 folder. These files are in the repository only, not in the installed

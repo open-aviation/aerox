@@ -110,3 +110,4 @@ ENV/
 
 # CAD archives are the original downloads; the extracted drawings are tracked.
 /sources/cad/*/archives/
+aircraft-viewer.html

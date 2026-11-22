@@ -9,6 +9,8 @@ performance models for 144 aircraft types, built from open sources.
   load them, and where each value comes from.
 - [Drag](drag.md): the geometry-based drag model and the simpler parabolic
   polar, how to evaluate them, and their accuracy.
+- [Kinematics](kinematics.md): the typical speeds and vertical rates of each
+  flight phase, and how to build a simple climb or descent profile from them.
 - [Atmosphere and speeds](atmosphere.md): ISA atmosphere and airspeed
   conversions in `aerox.aero`.
 - [Roadmap](roadmap.md): the state of the current release, its known limits,
@@ -26,14 +28,15 @@ Or, from a copy of the repository:
 pip install .
 ```
 
-The runtime needs NumPy, SciPy, and PyYAML. Two extras are available:
+The runtime needs NumPy, SciPy, and PyYAML. Three extras are available:
 
 - `aerox[editor]` adds Flask for the local editor of aircraft records.
+- `aerox[plot]` adds Matplotlib, to draw aircraft with `aerox.plot`.
 - `aerox[research]` adds pandas, PyArrow, and Matplotlib.
 
 ## Stability
 
 The aircraft data, the drag model, and `aerox.aero` are the supported parts of
 the library. The modules for thrust, lift, flight dynamics, simulation, and
-flight management (`aerox.fms`) are experimental. Their interfaces can change
-between releases.
+flight management (`aerox.fms`) are experimental, and so are the drawings
+(`aerox.plot` and `aerox view`). Their interfaces can change between releases.

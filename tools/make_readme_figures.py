@@ -14,7 +14,6 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
-from matplotlib.patches import Polygon  # noqa: E402
 
 from aerox import aero, get_available_aircraft, load_aircraft  # noqa: E402
 from aerox.models.drag import build_drag_model, build_parabolic_polar  # noqa: E402
@@ -33,30 +32,78 @@ BLUE, ORANGE, AQUA, YELLOW, MAGENTA, GREEN, VIOLET, RED = (
     "#6250d6",
     "#e34948",
 )
-INK, INK2, GRID, SURFACE = "#0b0b0b", "#52514e", "#e4e3df", "#fcfcfb"
+INK, INK2, MUTED, GRID, AXIS, SURFACE = (
+    "#0b0b0b",
+    "#52514e",
+    "#8a8984",
+    "#ebeae6",
+    "#c9c8c2",
+    "#fcfcfb",
+)
 
 plt.rcParams.update(
     {
+        "font.family": ["IBM Plex Sans", "DejaVu Sans"],
+        "font.size": 9.5,
         "figure.facecolor": SURFACE,
         "axes.facecolor": SURFACE,
         "savefig.facecolor": SURFACE,
-        "font.size": 10,
-        "axes.edgecolor": INK2,
-        "axes.labelcolor": INK,
-        "axes.titlesize": 11,
-        "axes.titleweight": "bold",
-        "axes.titlelocation": "left",
+        "axes.edgecolor": AXIS,
+        "axes.linewidth": 0.8,
+        "axes.labelcolor": INK2,
+        "axes.labelsize": 9.5,
         "axes.spines.top": False,
         "axes.spines.right": False,
+        "axes.spines.left": False,
         "axes.grid": True,
+        "axes.grid.axis": "y",
+        "axes.axisbelow": True,
         "grid.color": GRID,
-        "grid.linewidth": 0.8,
+        "grid.linewidth": 0.6,
         "xtick.color": INK2,
         "ytick.color": INK2,
+        "xtick.major.size": 0,
+        "ytick.major.size": 0,
+        "xtick.major.pad": 6,
+        "ytick.major.pad": 6,
         "legend.frameon": False,
+        "legend.fontsize": 9,
+        "legend.labelcolor": INK2,
         "lines.linewidth": 2.0,
+        "lines.solid_capstyle": "round",
+        "lines.solid_joinstyle": "round",
     }
 )
+
+
+def titles(ax, title, subtitle):
+    """A bold title and a secondary subtitle, left-aligned above the plot."""
+
+    ax.text(
+        0,
+        1.12,
+        title,
+        transform=ax.transAxes,
+        fontsize=12,
+        fontweight="semibold",
+        color=INK,
+        va="bottom",
+    )
+    ax.text(
+        0, 1.04, subtitle, transform=ax.transAxes, fontsize=9.5, color=INK2, va="bottom"
+    )
+
+
+def end_label(ax, x, y, text, dx=6, dy=0):
+    ax.annotate(
+        text,
+        (x, y),
+        xytext=(dx, dy),
+        textcoords="offset points",
+        va="center",
+        fontsize=9,
+        color=INK,
+    )
 
 
 def cruise_cl(ac, mass_fraction=0.85):
@@ -68,9 +115,11 @@ def cruise_cl(ac, mass_fraction=0.85):
     return mass_fraction * ac.mtow * aero.g0 / (q * ac.wing.area)
 
 
-def save(fig, name):
+def save(fig, name, tight=True):
     OUT.mkdir(parents=True, exist_ok=True)
-    fig.savefig(OUT / name, dpi=150, bbox_inches="tight")
+    fig.savefig(
+        OUT / name, dpi=150, bbox_inches="tight" if tight else None, pad_inches=0.15
+    )
     plt.close(fig)
     print(OUT / name)
 
@@ -84,23 +133,23 @@ def fig_polar():
 
     fig, ax = plt.subplots(figsize=(7, 4.2))
     for mach, color in [(0.5, BLUE), (0.78, ORANGE), (0.82, AQUA)]:
-        ax.plot(
-            model.cd(cl=cl, mach=mach, h=h),
-            cl,
-            color=color,
-            label=f"full model, Mach {mach}",
-        )
+        cd = model.cd(cl=cl, mach=mach, h=h) * 1e4
+        ax.plot(cd, cl, color=color, label=f"Full model, Mach {mach:.2f}")
+    cd = polar.cd(cl=cl) * 1e4
     ax.plot(
-        polar.cd(cl=cl),
+        cd,
         cl,
         color=INK2,
-        linestyle="--",
+        linestyle=(0, (4, 3)),
         linewidth=1.5,
-        label="parabolic polar, cd0 + k CL²",
+        label="Parabolic polar, CD0 + k CL²",
     )
-    ax.set_xlabel("Drag coefficient CD")
+    ax.set_xlabel("Drag coefficient CD (drag counts)")
     ax.set_ylabel("Lift coefficient CL")
-    ax.set_title("A320 drag polar at 11 000 m")
+    ax.set_ylim(0, 1.05)
+    titles(
+        ax, "A320 drag polar", "Full drag model at 11 000 m against the parabolic polar"
+    )
     ax.legend(loc="lower right")
     save(fig, "drag-polar.png")
 
@@ -114,14 +163,17 @@ def fig_drag_rise():
         model = build_drag_model(ac)
         mach = np.linspace(0.4, ac.mmo + 0.04, 200)
         b = model.breakdown(cl=cl, mach=mach, h=11_000)
-        ax.plot(mach, b.total * 1e4, color=color, label=f"{code}, MMO {ac.mmo:.2f}")
+        total = b.total * 1e4
+        ax.plot(mach, total, color=color, label=f"{code}, MMO {ac.mmo:.2f}")
+        end_label(ax, mach[-1], total[-1], code)
         mcrit = float(np.atleast_1d(b.critical_mach)[0])
         y = float(model.cd(cl=cl, mach=mcrit, h=11_000)) * 1e4
-        ax.plot(mcrit, y, "o", color=color, markersize=7, mec=SURFACE, mew=2)
-    ax.plot([], [], "o", color=INK2, markersize=7, label="critical Mach number")
+        ax.plot(mcrit, y, "o", color=color, markersize=7, mec=SURFACE, mew=1.5)
+    ax.plot([], [], "o", color=MUTED, markersize=7, mec=SURFACE, label="Critical Mach")
     ax.set_xlabel("Mach number")
     ax.set_ylabel("CD (drag counts)")
-    ax.set_title("Drag rise at CL = 0.5, 11 000 m, up to MMO + 0.04")
+    ax.margins(x=0.08)
+    titles(ax, "Drag rise", "CL = 0.5 at 11 000 m, up to MMO + 0.04")
     ax.legend(loc="upper left")
     save(fig, "drag-rise.png")
 
@@ -162,39 +214,52 @@ def fig_breakdown():
             float(b.span_induced + b.lift_dependent_profile)
         )
         values["Wave"].append(float(getattr(b, "wave", 0.0)))
-        labels.append(f"{code}\nM {ac.drag.reference_mach:.2f}")
+        labels.append(f"{code}\nMach {ac.drag.reference_mach:.2f}")
 
     fig, ax = plt.subplots(figsize=(7.5, 4.4))
     x = np.arange(len(codes))
     bottom = np.zeros(len(codes))
+    handles = []
     for name, color in groups:
         v = np.array(values[name]) * 1e4
-        ax.bar(
+        bars = ax.bar(
             x,
             v,
-            0.6,
+            0.42,
             bottom=bottom,
             color=color,
             label=name,
             edgecolor=SURFACE,
-            linewidth=1.5,
+            linewidth=1.0,
         )
+        handles.append(bars)
         bottom += v
     for xi, total in zip(x, bottom, strict=True):
         ax.annotate(
             f"{total:.0f}",
             (xi, total),
-            xytext=(0, 3),
+            xytext=(0, 4),
             textcoords="offset points",
             ha="center",
             color=INK,
             fontsize=9,
+            fontweight="semibold",
         )
     ax.set_xticks(x, labels)
-    ax.grid(axis="x", visible=False)
     ax.set_ylabel("CD (drag counts)")
-    ax.set_title("Drag breakdown at the reference cruise condition")
-    ax.legend(loc="upper left", bbox_to_anchor=(1.0, 1.0))
+    ax.set_ylim(0, bottom.max() * 1.1)
+    titles(
+        ax,
+        "Drag breakdown",
+        "By part, at each aircraft's reference cruise condition",
+    )
+    # Legend in stack order: the top segment first.
+    ax.legend(
+        handles[::-1],
+        [name for name, _ in groups][::-1],
+        loc="upper left",
+        bbox_to_anchor=(1.01, 1.0),
+    )
     save(fig, "drag-breakdown.png")
 
 
@@ -215,149 +280,266 @@ def fig_fleet():
     ax.scatter(
         [r[0] for r in known],
         [r[1] for r in known],
-        s=36,
+        s=34,
         color=BLUE,
         edgecolor=SURFACE,
-        linewidth=1.0,
-        label=f"turbofan aircraft ({len(rows)})",
+        linewidth=1.2,
+        label=f"Wing area from the record ({len(known)})",
+        zorder=3,
     )
     if guessed:
         ax.scatter(
             [r[0] for r in guessed],
             [r[1] for r in guessed],
-            s=36,
-            facecolor="none",
+            s=30,
+            facecolor=SURFACE,
             edgecolor=BLUE,
-            linewidth=1.5,
-            label="wing area estimated",
+            linewidth=1.4,
+            label=f"Wing area estimated ({len(guessed)})",
+            zorder=3,
         )
+    left_labels = {"CRJ9"}
     for aspect, ld, _, code in rows:
         if code in {"A388", "B789", "A320", "B738", "F16", "CRJ9", "B744"}:
             ax.annotate(
                 code,
                 (aspect, ld),
-                xytext=(5, 2),
+                xytext=(-6, 3) if code in left_labels else (6, 3),
+                ha="right" if code in left_labels else "left",
                 textcoords="offset points",
-                fontsize=8,
+                fontsize=8.5,
                 color=INK,
             )
+    ax.grid(axis="x")
     ax.set_xlabel("Wing aspect ratio")
     ax.set_ylabel("Maximum lift-to-drag ratio")
-    ax.set_title("Turbofan aircraft: maximum L/D from the parabolic polar")
-    ax.legend(loc="lower right")
+    titles(
+        ax,
+        "Maximum L/D across the turbofan fleet",
+        f"{len(rows)} aircraft, from each parabolic polar"
+        + ("; hollow markers have an estimated wing area" if guessed else ""),
+    )
     save(fig, "fleet-lift-to-drag.png")
 
 
-def _trapezoid(x_apex, span, area, taper, sweep_c4_deg, mirror=True):
-    """Outline of a trapezoidal planform seen from above, x pointing aft."""
+def fig_phases(code="A320"):
+    """The kinematic data of one aircraft as callouts on a flight profile."""
 
-    root = 2.0 * area / (span * (1.0 + taper))
-    tip = taper * root
-    semi = span / 2.0
-    tan_le = np.tan(np.deg2rad(sweep_c4_deg)) + (root - tip) / (4.0 * semi)
-    x_tip = x_apex + semi * tan_le
-    right = [(x_apex, 0.0), (x_tip, semi), (x_tip + tip, semi), (x_apex + root, 0.0)]
-    if not mirror:
-        return right
-    left = [(x, -y) for x, y in reversed(right)]
-    return right + left
+    ac = load_aircraft(code)
+    k = ac.kinematic
 
+    def kt(v):
+        return f"{v:,.0f} kt"
 
-def _mac_quarter_chord(span, area, taper, sweep_c4_deg):
-    root = 2.0 * area / (span * (1.0 + taper))
-    y_mac = span / 6.0 * (1.0 + 2.0 * taper) / (1.0 + taper)
-    mac = 2.0 / 3.0 * root * (1 + taper + taper**2) / (1 + taper)
-    tan_le = np.tan(np.deg2rad(sweep_c4_deg)) + (root - taper * root) / (2.0 * span)
-    return y_mac * tan_le + 0.25 * mac
+    def fpm(v):
+        return f"{v:,.0f} ft/min"
 
+    # The profile, in schematic distance and 1 000 ft. The cruise level is
+    # schematic; the records do not give one.
+    top = 35
+    climb_x, climb_h = [0, 1.2, 2.0, 3.1, 4.1, 5.2], [0, 0, 5, 15, 24, top]
+    desc_x, desc_h = [8.4, 9.5, 10.6, 11.8, 12.8], [top, 24, 10, 0, 0]
+    x = np.array(climb_x + desc_x)
+    h = np.array(climb_h + desc_h)
 
-def _planform_shapes(ac):
-    """Fuselage, wing and horizontal tail outlines, nose at x = 0, x aft."""
+    def climb_at(alt):
+        return float(np.interp(alt, climb_h[1:], climb_x[1:]))
 
-    wing, ht, fus = ac.wing, ac.horizontal_tail, ac.fuselage
-    taper = wing.taper_ratio or 0.25
-    x_wing_ac = 0.45 * fus.length
-    x_apex = x_wing_ac - _mac_quarter_chord(wing.span, wing.area, taper, wing.sweep)
+    def desc_at(alt):
+        return float(np.interp(-alt, [-a for a in desc_h[:-1]], desc_x[:-1]))
 
-    r = fus.width / 2
-    nose, tail = 2.0 * fus.width, 3.0 * fus.width
-    t = np.linspace(0, np.pi / 2, 20)
-    body = (
-        [(nose - nose * np.cos(a), r * np.sin(a)) for a in t]
-        + [(fus.length - tail, r), (fus.length, 0.15 * r)]
-        + [(fus.length, -0.15 * r), (fus.length - tail, -r)]
-        + [(nose - nose * np.cos(a), -r * np.sin(a)) for a in t[::-1]]
+    fig, ax = plt.subplots(figsize=(11, 4.8))
+    ax.fill_between(x, h, color=BLUE, alpha=0.08, linewidth=0)
+    ax.plot(x, h, color=BLUE, linewidth=2.2, zorder=3)
+    ax.plot([-0.4, 13.2], [0, 0], color=AXIS, linewidth=0.8, zorder=1)
+    corners = [(2.0, 5), (3.1, 15), (4.1, 24), (5.2, top), (8.4, top), (9.5, 24)]
+    corners += [(10.6, 10)]
+    ax.plot(
+        *zip(*corners, strict=True),
+        "o",
+        color=BLUE,
+        markersize=6.5,
+        mec=SURFACE,
+        mew=1.5,
+        zorder=4,
     )
-    shapes = [
-        (body, INK2, 0.3),
-        (_trapezoid(x_apex, wing.span, wing.area, taper, wing.sweep), BLUE, 0.9),
-    ]
-    tail_placed = False
-    if ht.area and ht.span:
-        ht_taper = ht.taper_ratio or 0.35
-        ht_sweep = ht.sweep if ht.sweep is not None else wing.sweep + 5
-        root = 2.0 * ht.area / (ht.span * (1.0 + ht_taper))
-        if ht.arm:
-            x_ht = (
-                x_wing_ac
-                + ht.arm
-                - _mac_quarter_chord(ht.span, ht.area, ht_taper, ht_sweep)
-            )
-        else:
-            x_ht = fus.length - 0.3 * tail - root
-            tail_placed = True
-        shapes.append(
-            (_trapezoid(x_ht, ht.span, ht.area, ht_taper, ht_sweep), AQUA, 0.9)
+    for (cx, alt), label in zip(
+        corners, ["5 000 ft", "FL150", "FL240", "", "", "FL240", "FL100"], strict=True
+    ):
+        if label:
+            ax.text(cx + 0.18, alt - 0.4, label, fontsize=8, color=MUTED, va="top")
+
+    def callout(name, rows, anchor, at, side):
+        """A phase name and its values at ``at``, with a leader to ``anchor``."""
+
+        tx, ty = at
+        ha = "right" if side == "left" else "left"
+        ax.text(
+            tx, ty, name, ha=ha, va="bottom", fontsize=9.5, fontweight="semibold",
+            color=INK,
+        )  # fmt: skip
+        text = "\n".join(f"{label} {value}" for label, value in rows)
+        ax.text(
+            tx, ty - 0.5, text, ha=ha, va="top", fontsize=9, color=INK2,
+            linespacing=1.45,
+        )  # fmt: skip
+        edge = tx + (0.25 if side == "left" else -0.25)
+        ax.plot(
+            [edge, anchor[0]],
+            [ty + 0.6, anchor[1]],
+            color=MUTED,
+            linewidth=0.7,
+            zorder=2,
         )
-    return shapes, tail_placed
+        ax.plot(*anchor, "o", color=MUTED, markersize=2.5, zorder=5)
+
+    def mid(x0, h0, x1, h1):
+        return (0.5 * (x0 + x1), 0.5 * (h0 + h1))
+
+    left = [
+        ("Takeoff", [("V2", kt(k.takeoff_v2)),
+                     ("Distance", f"{k.takeoff_distance_m:,} m")],
+         (0.6, 0), 3.0),
+        ("Initial climb, to 5 000 ft",
+         [("IAS", kt(k.climb_to_fl50_ias)), ("ROC", fpm(k.climb_to_fl50_vs))],
+         mid(1.2, 0, 2.0, 5), 11.5),
+        ("Climb, to FL150",
+         [("IAS", kt(k.climb_to_fl150_ias)), ("ROC", fpm(k.climb_to_fl150_vs))],
+         mid(2.0, 5, 3.1, 15), 20.0),
+        ("Climb, to FL240",
+         [("IAS", kt(k.climb_to_fl240_ias)), ("ROC", fpm(k.climb_to_fl240_vs))],
+         mid(3.1, 15, 4.1, 24), 28.5),
+        ("Mach climb",
+         [("Mach", f"{k.mach_climb_mach:.2f}"), ("ROC", fpm(k.mach_climb_vs))],
+         mid(4.1, 24, 5.2, top), 37.0),
+    ]  # fmt: skip
+    for name, rows, anchor, ty in left:
+        callout(name, rows, anchor, (min(climb_at(ty), 1.2) - 1.3, ty), "left")
+
+    right = [
+        ("Initial descent, to FL240",
+         [("Mach", f"{k.descent_to_fl240_mach:.2f}"),
+          ("ROD", fpm(k.descent_to_fl240_vs))],
+         mid(8.4, top, 9.5, 24), 37.0),
+        ("Descent, to FL100",
+         [("IAS", kt(k.descent_to_fl100_ias)), ("ROD", fpm(k.descent_to_fl100_vs))],
+         mid(9.5, 24, 10.6, 10), 26.0),
+        ("Approach",
+         [("IAS", kt(k.approach_ias)), ("ROD", fpm(k.approach_vs))],
+         mid(10.6, 10, 11.8, 0), 14.5),
+        ("Landing",
+         [("Speed", kt(k.landing_ias)),
+          ("Distance", f"{k.landing_distance_m:,} m")],
+         (12.3, 0), 5.0),
+    ]  # fmt: skip
+    for name, rows, anchor, ty in right:
+        callout(name, rows, anchor, (max(desc_at(ty), 11.8) + 1.3, ty), "right")
+
+    # Cruise: above the level segment.
+    ax.text(
+        6.8, top + 6.2, "Cruise", ha="center", va="bottom", fontsize=9.5,
+        fontweight="semibold", color=INK,
+    )  # fmt: skip
+    ax.text(
+        6.8,
+        top + 5.7,
+        f"Mach {k.cruise_mach:.2f}  ·  TAS {kt(k.cruise_tas)}  ·  "
+        f"range {k.cruise_range_nm:,} nm",
+        ha="center",
+        va="top",
+        fontsize=9,
+        color=INK2,
+    )
+    ax.plot([6.8, 6.8], [top + 3.2, top], color=MUTED, linewidth=0.7)
+    ax.plot(6.8, top, "o", color=MUTED, markersize=2.5, zorder=5)
+
+    ax.set_xlim(-6.2, 18.2)
+    ax.set_ylim(-1.5, top + 12)
+    ax.axis("off")
+    ax.text(
+        -6.2,
+        top + 17.5,
+        f"{ac.aircraft}: speeds and vertical rates by flight phase",
+        fontsize=12,
+        fontweight="semibold",
+        color=INK,
+    )
+    ax.text(
+        -6.2,
+        top + 13.8,
+        "From the kinematic data of the record. The profile is schematic. "
+        "ROC rate of climb, ROD rate of descent.",
+        fontsize=9.5,
+        color=INK2,
+    )
+    save(fig, "kinematics.png")
 
 
-def fig_planforms():
-    codes = ["E190", "A320", "B789", "A388"]
-    aircraft = [load_aircraft(c) for c in codes]
-    gap = 6.0
-    length = max(ac.fuselage.length for ac in aircraft)
-    width = sum(ac.wing.span for ac in aircraft) + gap * (len(aircraft) - 1)
-    x_range = (-1.0, width + 1.0)
-    y_range = (-length - 9.0, 7.0)
-    aspect = (y_range[1] - y_range[0]) / (x_range[1] - x_range[0])
-    fig, ax = plt.subplots(figsize=(10, 10 * aspect + 0.4))
-    x0 = 0.0
-    for ac in aircraft:
-        centre = x0 + ac.wing.span / 2
-        shapes, _ = _planform_shapes(ac)
-        for outline, color, alpha in shapes:
-            ax.add_patch(
-                Polygon(
-                    [(centre + y, -x) for x, y in outline],
-                    closed=True,
-                    facecolor=color,
-                    alpha=alpha,
-                    edgecolor=SURFACE,
-                    linewidth=1.0,
-                )
-            )
-        ax.annotate(
-            f"{ac.icao}\n{ac.wing.span:.1f} m span",
-            (centre, -ac.fuselage.length - 2),
-            ha="center",
-            va="top",
-            fontsize=9,
+GALLERY = [
+    "A388", "B744", "B789", "A359",
+    "B77W", "A333", "B763", "MD11",
+    "A320", "B738", "A21N", "B38M",
+    "BCS3", "E190", "E75L", "CRJ9",
+    "GLF5", "AT72", "DH8D", "C172",
+]  # fmt: skip
+
+
+SHORT_NAMES = {
+    "B789": "Boeing 787-9",
+    "DH8D": "Dash 8-400",
+    "C172": "Cessna 172",
+    "MD11": "McDonnell Douglas MD-11",
+    "A21N": "Airbus A321neo",
+    "E75L": "Embraer E175",
+}
+
+
+def fig_gallery():
+    from aerox.plot import view_3d
+
+    cols = 4
+    rows = len(GALLERY) // cols
+    fig = plt.figure(figsize=(12, 1.8 * rows))
+    cell_w, cell_h = 1 / cols, 1 / rows
+    for i, code in enumerate(GALLERY):
+        ac = load_aircraft(code)
+        r, c = divmod(i, cols)
+        left, bottom = c * cell_w, 1 - (r + 1) * cell_h
+        # The 3D axes is larger than its cell so the aircraft is not cropped;
+        # its background is off, so the overlap does not show.
+        grow = 0.35
+        ax = fig.add_axes(
+            (
+                left - grow * cell_w / 2,
+                bottom - grow * cell_h / 2 + 0.02 * cell_h,
+                cell_w * (1 + grow),
+                cell_h * (1 + grow),
+            ),
+            projection="3d",
+        )
+        view_3d(ac, ax=ax, elev=20, azim=-128)
+        extent = [np.ptp(lim) for lim in (ax.get_xlim(), ax.get_ylim(), ax.get_zlim())]
+        ax.set_box_aspect(extent, zoom=1.25)
+        ax.set_title("", loc="left")
+        ax.patch.set_visible(False)
+        name = SHORT_NAMES.get(code, ac.aircraft)
+        fig.text(
+            left + 0.012,
+            bottom + 0.80 * cell_h,
+            f"{code}  {name}",
+            fontsize=10,
+            fontweight="bold",
             color=INK,
         )
-        x0 += ac.wing.span + gap
-    # scale bar
-    ax.plot([0, 10], [4, 4], color=INK, linewidth=2)
-    ax.annotate("10 m", (5, 4.5), ha="center", va="bottom", fontsize=9, color=INK)
-    ax.set_xlim(*x_range)
-    ax.set_ylim(*y_range)
-    ax.set_aspect("equal")
-    ax.axis("off")
-    ax.set_title(
-        "Wings and horizontal tails drawn from the records, to scale", loc="left"
-    )
-    fig.subplots_adjust(left=0, right=1, bottom=0, top=0.92)
-    save(fig, "planforms.png")
+        fig.text(
+            left + 0.012,
+            bottom + 0.71 * cell_h,
+            f"{ac.wing.span:.1f} m span",
+            fontsize=8.5,
+            color=INK2,
+        )
+    # The 3D axes reach past the figure edge, so a tight crop adds space.
+    save(fig, "gallery.png", tight=False)
 
 
 if __name__ == "__main__":
@@ -365,4 +547,5 @@ if __name__ == "__main__":
     fig_drag_rise()
     fig_breakdown()
     fig_fleet()
-    fig_planforms()
+    fig_phases()
+    fig_gallery()

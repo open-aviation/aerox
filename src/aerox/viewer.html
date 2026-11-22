@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aerox Aircraft Viewer</title>
+<style>
+  :root {
+    --surface: #fcfcfb;
+    --panel: #f3f2ef;
+    --border: #dddcd7;
+    --grid: #e4e3df;
+    --text: #0b0b0b;
+    --text-2: #52514e;
+    --accent: #2a78d6;
+    --tag-record: #1f6fd1;
+    --tag-estimated: #a66a00;
+    --tag-rule: #6b6a66;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --surface: #1a1a19;
+      --panel: #232321;
+      --border: #3a3936;
+      --grid: #2f2e2c;
+      --text: #f0efec;
+      --text-2: #c3c2b7;
+      --accent: #3987e5;
+      --tag-record: #79aef0;
+      --tag-estimated: #e5b24d;
+      --tag-rule: #a9a89f;
+    }
+  }
+  :root[data-theme="dark"] {
+    --surface: #1a1a19;
+    --panel: #232321;
+    --border: #3a3936;
+    --grid: #2f2e2c;
+    --text: #f0efec;
+    --text-2: #c3c2b7;
+    --accent: #3987e5;
+    --tag-record: #79aef0;
+    --tag-estimated: #e5b24d;
+    --tag-rule: #a9a89f;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: var(--surface);
+    color: var(--text);
+    font: 14px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    align-items: center;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    background: var(--panel);
+  }
+  header h1 { font-size: 15px; margin: 0; font-weight: 600; }
+  select, button {
+    font: inherit;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 5px 10px;
+  }
+  select { max-width: min(340px, 100%); }
+  button:disabled { opacity: 0.5; }
+  .modes { display: inline-flex; }
+  .modes button { border-radius: 0; }
+  .modes button:first-child { border-radius: 6px 0 0 6px; }
+  .modes button:last-child { border-radius: 0 6px 6px 0; border-left: none; }
+  .modes button[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  label.toggle { display: inline-flex; gap: 6px; align-items: center; color: var(--text-2); }
+  .legend { display: flex; flex-wrap: wrap; gap: 4px 12px; color: var(--text-2); margin-left: auto; }
+  .legend span::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    margin-right: 5px;
+    background: var(--swatch);
+    vertical-align: -1px;
+  }
+  .body { flex: 1; min-height: 0; display: flex; }
+  main { position: relative; flex: 1; min-width: 0; cursor: crosshair; }
+  canvas { display: block; width: 100%; height: 100%; }
+  svg.overlay { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  svg.overlay line, svg.overlay path { stroke: var(--text-2); stroke-width: 1; fill: none; }
+  svg.overlay .bar { stroke: var(--text); stroke-width: 3; }
+  svg.overlay text { fill: var(--text); font-size: 12px; paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+  svg.overlay text.view { fill: var(--text-2); }
+  .hint {
+    position: absolute;
+    left: 16px;
+    bottom: 10px;
+    color: var(--text-2);
+    font-size: 12px;
+    pointer-events: none;
+  }
+  aside {
+    width: 320px;
+    flex: none;
+    border-left: 1px solid var(--border);
+    background: var(--panel);
+    overflow-y: auto;
+    padding: 14px 16px;
+  }
+  aside h2 { font-size: 15px; margin: 0 0 2px; }
+  aside .sub { color: var(--text-2); font-size: 12px; margin-bottom: 10px; }
+  aside table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  aside td { padding: 4px 0; border-bottom: 1px solid var(--border); vertical-align: top; }
+  aside td.v { text-align: right; white-space: nowrap; padding-left: 8px; font-variant-numeric: tabular-nums; }
+  aside td.v.text { white-space: normal; overflow-wrap: anywhere; }
+  aside td.t { text-align: right; padding-left: 8px; width: 1%; white-space: nowrap; }
+  .tag { font-size: 11px; padding: 0 6px; border-radius: 8px; border: 1px solid currentColor; }
+  .tag.record { color: var(--tag-record); }
+  .tag.estimated { color: var(--tag-estimated); }
+  .tag.rule { color: var(--tag-rule); }
+  aside .back { margin: 0 0 10px; padding: 3px 8px; font-size: 12px; }
+  aside .key { margin-top: 14px; color: var(--text-2); font-size: 12px; display: grid; gap: 4px; }
+  aside h3 { font-size: 13px; margin: 14px 0 4px; color: var(--text-2); font-weight: 600; }
+  @media (max-width: 760px) {
+    /* Stack the page and let it scroll, the panel below the drawing. */
+    html, body { height: auto; }
+    body { min-height: 100vh; }
+    .body { flex: none; flex-direction: column; }
+    main { flex: none; height: 60vh; min-height: 320px; }
+    aside { width: auto; border-left: none; border-top: 1px solid var(--border); overflow: visible; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Aerox aircraft viewer</h1>
+  <select id="aircraft" aria-label="Aircraft"></select>
+  <div class="modes" role="group" aria-label="View">
+    <button id="mode3d" aria-pressed="true">3D</button>
+    <button id="mode2d" aria-pressed="false">2D three-view</button>
+  </div>
+  <button id="reset">Reset view</button>
+  <label class="toggle"><input type="checkbox" id="dims" checked> Dimensions</label>
+  <div class="legend" id="legend"></div>
+</header>
+<div class="body">
+  <main id="stage">
+    <canvas id="canvas"></canvas>
+    <svg class="overlay" id="overlay"></svg>
+    <div class="hint" id="hint">Click a part for its dimensions. Drag to rotate, scroll to zoom, right-drag to pan.</div>
+  </main>
+  <aside id="panel" aria-live="polite"></aside>
+</div>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+const DATA = __AIRCRAFT_DATA__;
+const COLORS = __PART_COLORS__;
+const LABELS = {
+  fuselage: "Fuselage", wing: "Wing", horizontal_tail: "Tails",
+  nacelle: "Nacelles", propeller: "Propellers",
+};
+const SVGNS = "http://www.w3.org/2000/svg";
+const HIGHLIGHT = new THREE.Color(0xf2c230);
+
+const canvas = document.getElementById("canvas");
+const stage = document.getElementById("stage");
+const overlay = document.getElementById("overlay");
+const panel = document.getElementById("panel");
+const select = document.getElementById("aircraft");
+const hint = document.getElementById("hint");
+const btn3d = document.getElementById("mode3d");
+const btn2d = document.getElementById("mode2d");
+const dimsBox = document.getElementById("dims");
+
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setPixelRatio(window.devicePixelRatio);
+const scene = new THREE.Scene();
+scene.add(new THREE.HemisphereLight(0xffffff, 0x8a8a86, 1.6));
+const sun = new THREE.DirectionalLight(0xffffff, 1.6);
+sun.position.set(-30, 60, 40);
+scene.add(sun);
+
+const perspective = new THREE.PerspectiveCamera(35, 1, 0.1, 5000);
+const controls = new OrbitControls(perspective, canvas);
+controls.enableDamping = true;
+
+let mode = "3d";
+let code = null;
+let group = null;
+let helpers = null; // grid and 3D dimension lines
+let selected = null;
+let box = new THREE.Box3();
+let partBoxes = {};
+let grid = { step: 10 };
+
+const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+const fmtLen = (m) => `${m.toFixed(2)} m`; // as in the side panel
+
+function niceStep(x) {
+  const p = Math.pow(10, Math.floor(Math.log10(x)));
+  for (const m of [1, 2, 5, 10]) if (m * p >= x) return m * p;
+  return 10 * p;
+}
+
+// Aircraft list -------------------------------------------------------------
+const codes = Object.keys(DATA).sort();
+for (const c of codes) {
+  const option = document.createElement("option");
+  option.value = c;
+  option.textContent = `${c}  ${DATA[c].name}`;
+  select.appendChild(option);
+}
+let initial = "A320";
+try { initial = localStorage.getItem("aerox-viewer-aircraft") || initial; } catch (e) {}
+select.value = codes.includes(initial) ? initial : codes[0];
+
+const legend = document.getElementById("legend");
+function updateLegend() {
+  legend.replaceChildren();
+  for (const [part, label] of Object.entries(LABELS)) {
+    if (!(part in DATA[code].parts)) continue;
+    const span = document.createElement("span");
+    span.textContent = label;
+    span.style.setProperty("--swatch", COLORS[part]);
+    legend.appendChild(span);
+  }
+}
+
+// Geometry ------------------------------------------------------------------
+function buildGroup() {
+  const g = new THREE.Group();
+  for (const [name, mesh] of Object.entries(DATA[code].parts)) {
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute(
+      "position", new THREE.Float32BufferAttribute(mesh.v.map((x) => x / 100), 3));
+    geometry.setIndex(mesh.i);
+    geometry.computeVertexNormals();
+    const transparent = name === "propeller";
+    const shaded = new THREE.MeshStandardMaterial({
+      color: COLORS[name], roughness: 0.75, metalness: 0, side: THREE.DoubleSide,
+      transparent, opacity: transparent ? 0.35 : 1,
+      flatShading: name !== "fuselage" && name !== "nacelle", depthWrite: !transparent,
+    });
+    const flat = new THREE.MeshBasicMaterial({
+      color: COLORS[name], side: THREE.DoubleSide, transparent,
+      opacity: transparent ? 0.35 : 1, depthWrite: !transparent,
+    });
+    const object = new THREE.Mesh(geometry, shaded);
+    object.userData = { part: name, shaded, flat, base: new THREE.Color(COLORS[name]) };
+    object.renderOrder = transparent ? 1 : 0;
+    g.add(object);
+  }
+  return g;
+}
+
+function applyMaterials() {
+  group?.children.forEach((o) => {
+    const { shaded, flat, base, part } = o.userData;
+    const on = part === selected;
+    // A plain yellow: blending into the part colour gives muddy tones (blue + yellow = khaki).
+    shaded.color.copy(on ? HIGHLIGHT : base);
+    shaded.emissive.set(on ? 0x3a3000 : 0x000000);
+    flat.color.copy(on ? HIGHLIGHT : base);
+    o.material = mode === "3d" ? shaded : flat;
+  });
+}
+
+function makeHelpers() {
+  const h = new THREE.Group();
+  const size = box.getSize(new THREE.Vector3());
+  const c = box.getCenter(new THREE.Vector3());
+  const ground = box.min.y - 0.4;
+  grid.step = niceStep(Math.max(size.x, size.z) / 8);
+  const extent = Math.ceil((Math.max(size.x, size.z) * 1.4) / grid.step) * grid.step;
+  const gridHelper = new THREE.GridHelper(extent, extent / grid.step, css("--border"), css("--grid"));
+  gridHelper.position.set(c.x, ground, c.z);
+  gridHelper.userData.grid = true;
+  h.add(gridHelper);
+
+  const pad = 0.08 * Math.max(size.x, size.z);
+  const wing = partBoxes.wing;
+  const mat = new THREE.LineBasicMaterial({ color: css("--text-2") });
+  const segments = (pairs) => {
+    const geometry = new THREE.BufferGeometry().setFromPoints(pairs.flat());
+    return new THREE.LineSegments(geometry, mat);
+  };
+  const tick = 0.02 * Math.max(size.x, size.z);
+  // Span behind the tail, length along the left side, height at the corner
+  // where they meet: away from the default camera, on the right-front side.
+  const dims = {
+    span: [new THREE.Vector3(box.max.x + pad, ground, wing.min.z), new THREE.Vector3(box.max.x + pad, ground, wing.max.z)],
+    length: [new THREE.Vector3(box.min.x, ground, box.max.z + pad), new THREE.Vector3(box.max.x, ground, box.max.z + pad)],
+    height: [new THREE.Vector3(box.max.x + pad, box.min.y, box.max.z + pad), new THREE.Vector3(box.max.x + pad, box.max.y, box.max.z + pad)],
+  };
+  const lines = [];
+  for (const [a, b] of Object.values(dims)) {
+    lines.push([a, b]);
+    const dir = b.clone().sub(a).normalize();
+    const side = Math.abs(dir.y) > 0.5 ? new THREE.Vector3(1, 0, 0) : new THREE.Vector3(0, 1, 0);
+    for (const p of [a, b]) lines.push([p.clone().addScaledVector(side, -tick), p.clone().addScaledVector(side, tick)]);
+  }
+  const dimLines = segments(lines);
+  dimLines.userData.dims = true;
+  h.add(dimLines);
+  h.userData.dims = dims;
+  return h;
+}
+
+function load(next) {
+  code = next;
+  selected = null;
+  if (group) {
+    scene.remove(group);
+    group.children.forEach((o) => { o.geometry.dispose(); o.userData.shaded.dispose(); o.userData.flat.dispose(); });
+  }
+  if (helpers) scene.remove(helpers);
+  group = buildGroup();
+  scene.add(group);
+  box = new THREE.Box3().setFromObject(group);
+  partBoxes = {};
+  group.children.forEach((o) => { partBoxes[o.userData.part] = new THREE.Box3().setFromObject(o); });
+  helpers = makeHelpers();
+  scene.add(helpers);
+  applyMaterials();
+  resetCamera();
+  updateLegend();
+  showPanel();
+  try { localStorage.setItem("aerox-viewer-aircraft", code); } catch (e) {}
+}
+
+function overall() {
+  const size = box.getSize(new THREE.Vector3());
+  return { span: partBoxes.wing.max.z - partBoxes.wing.min.z, length: size.x, height: size.y };
+}
+
+// Side panel ----------------------------------------------------------------
+const TAG = { record: ["record", "record"], estimated: ["estimated", "estimated"], "drawing rule": ["rule", "drawing rule"] };
+
+function formatValue(value, unit) {
+  if (typeof value === "string") return value;
+  if (unit === "kg" || unit === "ft" || unit === "kt") return `${Math.round(value).toLocaleString("en")} ${unit}`;
+  if (Number.isInteger(value) && unit === "") return String(value);
+  if (unit === "m²") return `${value.toFixed(1)} m²`;
+  if (unit === "°") return `${value.toFixed(1)}°`;
+  if (unit === "m") return `${value.toFixed(2)} m`;
+  return value.toFixed(3);
+}
+
+function table(rows, withTags) {
+  const t = document.createElement("table");
+  for (const row of rows) {
+    const [label, value, unit, origin] = row;
+    const tr = t.insertRow();
+    tr.insertCell().textContent = label;
+    const v = tr.insertCell();
+    v.className = typeof value === "string" ? "v text" : "v";
+    v.textContent = formatValue(value, unit);
+    if (withTags) {
+      const cell = tr.insertCell();
+      cell.className = "t";
+      const [cls, text] = TAG[origin] || ["rule", origin];
+      const tag = document.createElement("span");
+      tag.className = `tag ${cls}`;
+      tag.textContent = text;
+      cell.appendChild(tag);
+    }
+  }
+  return t;
+}
+
+function showPanel() {
+  panel.replaceChildren();
+  const d = DATA[code];
+  if (selected && d.details[selected]) {
+    const back = document.createElement("button");
+    back.className = "back";
+    back.textContent = "← Aircraft summary";
+    back.addEventListener("click", () => select_(null));
+    panel.appendChild(back);
+    const h = document.createElement("h2");
+    h.textContent = d.details[selected].title;
+    panel.appendChild(h);
+    const sub = document.createElement("div");
+    sub.className = "sub";
+    sub.textContent = d.name;
+    panel.appendChild(sub);
+    panel.appendChild(table(d.details[selected].rows, true));
+    const key = document.createElement("div");
+    key.className = "key";
+    key.innerHTML =
+      '<div><span class="tag record">record</span> from the aircraft record or engine tables</div>' +
+      '<div><span class="tag estimated">estimated</span> filled in as in the drag model</div>' +
+      '<div><span class="tag rule">drawing rule</span> an assumption of this drawing</div>';
+    panel.appendChild(key);
+    return;
+  }
+  const h = document.createElement("h2");
+  h.textContent = d.name;
+  panel.appendChild(h);
+  const sub = document.createElement("div");
+  sub.className = "sub";
+  sub.textContent = "Click a part to see its dimensions.";
+  panel.appendChild(sub);
+  const o = overall();
+  const h3 = document.createElement("h3");
+  h3.textContent = "Overall, as drawn";
+  panel.appendChild(h3);
+  panel.appendChild(table([
+    ["Wing span", o.span, "m"], ["Length", o.length, "m"], ["Height, without gear", o.height, "m"],
+  ], false));
+  const h3b = document.createElement("h3");
+  h3b.textContent = "Record";
+  panel.appendChild(h3b);
+  panel.appendChild(table(d.summary, false));
+  const h3c = document.createElement("h3");
+  h3c.textContent = "Parts";
+  panel.appendChild(h3c);
+  const list = document.createElement("div");
+  list.style.cssText = "display:flex;flex-wrap:wrap;gap:6px";
+  for (const [part, info] of Object.entries(d.details)) {
+    const b = document.createElement("button");
+    b.textContent = info.title;
+    b.style.fontSize = "12px";
+    b.addEventListener("click", () => select_(part));
+    list.appendChild(b);
+  }
+  panel.appendChild(list);
+}
+
+function select_(part) {
+  selected = part;
+  applyMaterials();
+  showPanel();
+}
+
+// Cameras and layout -------------------------------------------------------
+function resetCamera() {
+  // Fit a sphere around the aircraft and its dimension lines into the view.
+  const centre = box.getCenter(new THREE.Vector3());
+  const size = box.getSize(new THREE.Vector3()).length();
+  const radius = 0.5 * size + 0.08 * Math.max(box.max.x - box.min.x, box.max.z - box.min.z);
+  const vfov = THREE.MathUtils.degToRad(perspective.fov);
+  const hfov = 2 * Math.atan(Math.tan(vfov / 2) * perspective.aspect);
+  const distance = (0.75 * radius) / Math.sin(Math.min(vfov, hfov) / 2);
+  perspective.position.copy(centre).add(new THREE.Vector3(-0.55, 0.42, -0.75).normalize().multiplyScalar(distance));
+  perspective.near = size / 200;
+  perspective.far = size * 20;
+  perspective.updateProjectionMatrix();
+  controls.target.copy(centre);
+  controls.update();
+}
+
+const views = {
+  top: { cam: new THREE.OrthographicCamera(), label: "Top" },
+  front: { cam: new THREE.OrthographicCamera(), label: "Front" },
+  side: { cam: new THREE.OrthographicCamera(), label: "Side" },
+};
+let scale2d = 1;
+
+function layout2d(width, height) {
+  const size = box.getSize(new THREE.Vector3());
+  const pad = 0.1 * Math.max(size.x, size.z);
+  const ext = box.clone().expandByScalar(pad);
+  const L = ext.max.x - ext.min.x, S = ext.max.z - ext.min.z, H = ext.max.y - ext.min.y;
+  const gap = 0.04 * Math.max(L, S);
+  const scale = 0.94 * Math.min(width / (L + gap + S), (height - 36) / (S + gap + H));
+  scale2d = scale;
+  const ox = (width - scale * (L + gap + S)) / 2;
+  const oy = (height - 36 - scale * (S + gap + H)) / 2;
+  const c = ext.getCenter(new THREE.Vector3());
+  const far = 10 * (L + S + H);
+  const rects = {
+    top: [ox, oy, scale * L, scale * S],
+    front: [ox + scale * (L + gap), oy + scale * (S - H) / 2, scale * S, scale * H],
+    side: [ox, oy + scale * (S + gap), scale * L, scale * H],
+  };
+  const setup = {
+    top: { pos: [c.x, ext.max.y + far / 10, c.z], up: [0, 0, -1] },
+    front: { pos: [ext.min.x - far / 10, c.y, c.z], up: [0, 1, 0] },
+    side: { pos: [c.x, c.y, ext.max.z + far / 10], up: [0, 1, 0] },
+  };
+  for (const [key, view] of Object.entries(views)) {
+    const [x, y, w, h] = rects[key];
+    const cam = view.cam;
+    cam.left = -w / 2 / scale; cam.right = w / 2 / scale;
+    cam.top = h / 2 / scale; cam.bottom = -h / 2 / scale;
+    cam.near = 0.01; cam.far = far;
+    cam.position.set(...setup[key].pos);
+    cam.up.set(...setup[key].up);
+    cam.lookAt(c);
+    cam.updateProjectionMatrix();
+    view.rect = [x, y, w, h];
+  }
+}
+
+function toScreen(point, cam, rect) {
+  const p = point.clone().project(cam);
+  const [x, y, w, h] = rect;
+  return [x + ((p.x + 1) / 2) * w, y + ((1 - p.y) / 2) * h, p.z];
+}
+
+// Overlay: dimension lines, labels, scale ------------------------------------
+function svg(tag, attrs, text) {
+  const el = document.createElementNS(SVGNS, tag);
+  for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
+  if (text != null) el.textContent = text;
+  overlay.appendChild(el);
+  return el;
+}
+
+// A label beside the screen segment a-b, on the side away from the point
+// `away` (the drawing it measures). Labels on the left of a vertical line
+// are turned to run along it, where there is little room.
+function dimLabel(a, b, label, away, turn = true) {
+  const [x1, y1] = a, [x2, y2] = b;
+  const dx = x2 - x1, dy = y2 - y1;
+  const len = Math.hypot(dx, dy) || 1;
+  let nx = -dy / len, ny = dx / len;
+  const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+  if ((away[0] - mx) * nx + (away[1] - my) * ny > 0) { nx = -nx; ny = -ny; }
+  const gap = 8;
+  const x = mx + nx * gap, y = my + ny * gap;
+  if (turn && nx < -0.7) {
+    const xr = mx + nx * 4;
+    svg("text", { x: xr, y, "text-anchor": "middle", transform: `rotate(-90 ${xr} ${y})` }, label);
+    return;
+  }
+  const anchor = nx > 0.4 ? "start" : nx < -0.4 ? "end" : "middle";
+  const baseline = ny > 0.4 ? 10 : ny < -0.4 ? -2 : 4;
+  svg("text", { x, y: y + baseline, "text-anchor": anchor }, label);
+}
+
+function dimension(a, b, label, away) {
+  const [x1, y1] = a, [x2, y2] = b;
+  const dx = x2 - x1, dy = y2 - y1;
+  const len = Math.hypot(dx, dy) || 1;
+  const nx = -dy / len, ny = dx / len;
+  const t = 5;
+  svg("line", { x1, y1, x2, y2 });
+  svg("line", { x1: x1 - nx * t, y1: y1 - ny * t, x2: x1 + nx * t, y2: y1 + ny * t });
+  svg("line", { x1: x2 - nx * t, y1: y2 - ny * t, x2: x2 + nx * t, y2: y2 + ny * t });
+  dimLabel(a, b, label, away);
+}
+
+function scaleBar(pxPerMetre, x, y) {
+  const metres = niceStep(120 / pxPerMetre);
+  const w = metres * pxPerMetre;
+  svg("line", { class: "bar", x1: x, y1: y, x2: x + w, y2: y });
+  svg("line", { x1: x, y1: y - 5, x2: x, y2: y + 5 });
+  svg("line", { x1: x + w, y1: y - 5, x2: x + w, y2: y + 5 });
+  svg("text", { x: x + w / 2, y: y - 8, "text-anchor": "middle" }, `${metres} m`);
+}
+
+function drawOverlay(width, height) {
+  overlay.replaceChildren();
+  const o = overall();
+  const wing = partBoxes.wing;
+  const size = box.getSize(new THREE.Vector3());
+  const pad = 0.05 * Math.max(size.x, size.z);
+  const c = box.getCenter(new THREE.Vector3());
+  if (mode === "2d") {
+    for (const view of Object.values(views)) {
+      svg("text", { class: "view", x: view.rect[0], y: Math.max(12, view.rect[1] + 12) }, view.label);
+    }
+    if (dimsBox.checked) {
+      const T = views.top, F = views.front, S = views.side;
+      const mid = (v) => [v.rect[0] + v.rect[2] / 2, v.rect[1] + v.rect[3] / 2];
+      dimension(
+        toScreen(new THREE.Vector3(box.min.x - pad, 0, wing.min.z), T.cam, T.rect),
+        toScreen(new THREE.Vector3(box.min.x - pad, 0, wing.max.z), T.cam, T.rect),
+        `span ${fmtLen(o.span)}`, mid(T));
+      dimension(
+        toScreen(new THREE.Vector3(box.min.x, box.min.y - pad, 0), S.cam, S.rect),
+        toScreen(new THREE.Vector3(box.max.x, box.min.y - pad, 0), S.cam, S.rect),
+        `length ${fmtLen(o.length)}`, mid(S));
+      dimension(
+        toScreen(new THREE.Vector3(box.max.x + pad, box.min.y, 0), S.cam, S.rect),
+        toScreen(new THREE.Vector3(box.max.x + pad, box.max.y, 0), S.cam, S.rect),
+        `height ${fmtLen(o.height)}`, mid(S));
+      dimension(
+        toScreen(new THREE.Vector3(0, box.min.y - pad, wing.min.z), F.cam, F.rect),
+        toScreen(new THREE.Vector3(0, box.min.y - pad, wing.max.z), F.cam, F.rect),
+        `span ${fmtLen(o.span)}`, mid(F));
+    }
+    scaleBar(scale2d, 20, height - 18);
+    return;
+  }
+  // 3D: labels at the projected midpoints of the 3D dimension lines
+  const rect = [0, 0, width, height];
+  if (dimsBox.checked && helpers) {
+    const centre = toScreen(c, perspective, rect);
+    const labels = { span: `span ${fmtLen(o.span)}`, length: `length ${fmtLen(o.length)}`, height: `height ${fmtLen(o.height)}` };
+    for (const [key, [a, b]] of Object.entries(helpers.userData.dims)) {
+      const pa = toScreen(a, perspective, rect), pb = toScreen(b, perspective, rect);
+      if (pa[2] < 1 && pb[2] < 1) dimLabel(pa, pb, labels[key], centre, false);
+    }
+  }
+  svg("text", { x: 20, y: height - 34 }, `Grid squares ${grid.step} m`);
+}
+
+// Rendering ----------------------------------------------------------------
+function resize() {
+  const { clientWidth: w, clientHeight: h } = stage;
+  renderer.setSize(w, h, false);
+  perspective.aspect = w / h;
+  perspective.updateProjectionMatrix();
+}
+
+function render() {
+  requestAnimationFrame(render);
+  const { clientWidth: w, clientHeight: h } = stage;
+  renderer.setClearColor(new THREE.Color(css("--surface")), 1);
+  renderer.setScissorTest(false);
+  renderer.setViewport(0, 0, w, h);
+  renderer.clear();
+  if (helpers) {
+    helpers.children.forEach((c) => {
+      c.visible = mode === "3d" && (c.userData.grid || dimsBox.checked);
+    });
+  }
+  if (mode === "3d") {
+    controls.update();
+    renderer.render(scene, perspective);
+  } else {
+    layout2d(w, h);
+    renderer.setScissorTest(true);
+    for (const view of Object.values(views)) {
+      const [x, y, vw, vh] = view.rect;
+      const yb = h - y - vh;
+      renderer.setViewport(x, yb, vw, vh);
+      renderer.setScissor(x, yb, vw, vh);
+      renderer.render(scene, view.cam);
+    }
+  }
+  drawOverlay(w, h);
+}
+
+// Picking ------------------------------------------------------------------
+const raycaster = new THREE.Raycaster();
+let down = null;
+canvas.addEventListener("pointerdown", (e) => { down = [e.clientX, e.clientY]; });
+canvas.addEventListener("pointerup", (e) => {
+  if (!down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 5) return;
+  const r = canvas.getBoundingClientRect();
+  const px = e.clientX - r.left, py = e.clientY - r.top;
+  let cam = perspective, rect = [0, 0, r.width, r.height];
+  if (mode === "2d") {
+    const hit = Object.values(views).find(({ rect: [x, y, w, h] }) => px >= x && px <= x + w && py >= y && py <= y + h);
+    if (!hit) return select_(null);
+    cam = hit.cam; rect = hit.rect;
+  }
+  const ndc = new THREE.Vector2(((px - rect[0]) / rect[2]) * 2 - 1, -((py - rect[1]) / rect[3]) * 2 + 1);
+  raycaster.setFromCamera(ndc, cam);
+  const hits = raycaster.intersectObjects(group.children, false);
+  // The see-through propeller disc should not hide the parts behind it.
+  const hit = hits.find((h) => h.object.userData.part !== "propeller") || hits[0];
+  select_(hit ? hit.object.userData.part : null);
+});
+
+function setMode(next) {
+  mode = next;
+  btn3d.setAttribute("aria-pressed", String(mode === "3d"));
+  btn2d.setAttribute("aria-pressed", String(mode === "2d"));
+  controls.enabled = mode === "3d";
+  hint.style.display = mode === "3d" ? "" : "none";
+  document.getElementById("reset").disabled = mode !== "3d";
+  applyMaterials();
+  try { localStorage.setItem("aerox-viewer-mode", mode); } catch (e) {}
+}
+
+select.addEventListener("change", () => load(select.value));
+btn3d.addEventListener("click", () => setMode("3d"));
+btn2d.addEventListener("click", () => setMode("2d"));
+document.getElementById("reset").addEventListener("click", resetCamera);
+window.addEventListener("resize", resize);
+// The grid colours come from the CSS tokens: rebuild it when the theme changes.
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+  if (helpers) scene.remove(helpers);
+  helpers = makeHelpers();
+  scene.add(helpers);
+});
+
+resize();
+load(select.value);
+let savedMode = "3d";
+try { savedMode = localStorage.getItem("aerox-viewer-mode") || "3d"; } catch (e) {}
+setMode(savedMode === "2d" ? "2d" : "3d");
+render();
+</script>
+</body>
+</html>
