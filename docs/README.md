@@ -1,7 +1,7 @@
 # Aerox documentation
 
 Aerox is an open aircraft performance library. It gives you aircraft data and
-performance models for 144 aircraft types, built from open sources.
+performance models for 145 aircraft types, built from open sources.
 
 ## Pages
 

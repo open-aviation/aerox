@@ -30,7 +30,7 @@ def records():
 def test_aircraft_source_notes_use_the_simple_sources_folder():
     assert not Path("src/aerox/data/aircraft/provenance").exists()
     files = sorted(SOURCE_ROOT.glob("*/*.txt"))
-    assert len(files) == len(FILES) == 144
+    assert len(files) == len(FILES) == 145
 
 
 def test_loader_keeps_legacy_custom_provenance_folder_compatibility(tmp_path: Path):
@@ -53,7 +53,7 @@ def test_loader_keeps_legacy_custom_provenance_folder_compatibility(tmp_path: Pa
 
 
 def test_all_aircraft_use_the_original_compact_parameter_layout(records):
-    assert len(records) == 144
+    assert len(records) == 145
     for path, document in records:
         assert not validate_simple(document), path
         assert list(document) == list(SIMPLE_TEMPLATE)

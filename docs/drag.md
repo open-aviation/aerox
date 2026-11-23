@@ -42,7 +42,7 @@ The model is identified as `aerox-geometry-drag-v2` and the wave drag as
 
 ### Two kinds of aircraft
 
-| | Civil turbofans (92 types) | Turboprops, pistons, military jets (52 types) |
+| | Civil turbofans (93 types) | Turboprops, pistons, military jets (52 types) |
 | --- | --- | --- |
 | Parts with skin friction | wing, fuselage, tails, nacelles, pylons | wing, fuselage, tails |
 | Fixed increments | fuselage upsweep, control-surface gaps, nacelle base, roughness and excrescence (9 %) | one `unresolved` term, 28 to 35 % |

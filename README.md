@@ -1,7 +1,7 @@
 # Aerox
 
 Aerox is an open aircraft performance toolbox. It provides detailed aircraft
-data and performance models, such as drag models, for **144 aircraft types**.
+data and performance models, such as drag models, for **145 aircraft types**.
 The models are physical models built from open data.
 
 Aerox is the successor to [OpenAP](https://github.com/junzis/openap). It covers

@@ -19,7 +19,7 @@ from aerox.models.drag.builder import (
 def test_all_aircraft_have_one_uniform_finite_active_drag_model():
     codes = get_available_aircraft()
 
-    assert len(codes) == 144
+    assert len(codes) == 145
     for code in codes:
         aircraft = load_aircraft(code)
         stored = aircraft.drag
@@ -61,7 +61,7 @@ def test_wave_model_is_explicitly_scoped_to_subsonic_civil_turbofans():
             assert drag.wave_drag_confidence == "low"
             assert drag.wave_drag_technology_factor == pytest.approx(0.95)
 
-    assert len(enabled) == 90
+    assert len(enabled) == 91
     assert len(disabled) == 54
     assert {"A320", "B738", "RJ85"} & set(enabled) == {"A320", "B738"}
     assert {"C172", "AT72", "F15", "T38", "C17", "K35R"} <= set(disabled)

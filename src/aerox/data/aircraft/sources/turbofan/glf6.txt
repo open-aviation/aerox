@@ -1,0 +1,590 @@
+AEROX AIRCRAFT SOURCE NOTES
+Aircraft: Gulfstream G650
+ICAO: GLF6
+Last reviewed: 2026-11-23
+Source ledger: sources/sources.yml
+
+CERTIFICATION SCOPE
+  Model or family: GVI (G650)
+  Authority: FAA validated by EASA
+  Type certificate: EASA.IM.A.169; FAA T00015AT
+  Applicability: G650 is the marketed name of the GVI model. G650ER is a GVI with Gulfstream ASC 014 (gross weight increase); the record uses G650 values unless a field states otherwise. G700 and G800 (GVIII) in the same TCDS are excluded.
+
+TYPE-CERTIFICATE AND LIMIT PARAMETERS
+
+FIELD certification.model
+  Value: GVI (G650)
+  Status: certified-published
+  Source: easa_gulfstream_gvi_a169
+  Page or section: Issue 17, section 1, I.1, p. 7
+  Notes: G650 is the commercial designation of the GVI model (TCDS note 1).
+END FIELD
+
+FIELD certification.authority
+  Value: FAA validated by EASA
+  Status: certified-published
+  Source: easa_gulfstream_gvi_a169
+  Page or section: Issue 17, section 1, I.3 and I.8, p. 7
+END FIELD
+
+FIELD certification.type_certificate
+  Value: EASA.IM.A.169; FAA T00015AT
+  Status: certified-published
+  Source: easa_gulfstream_gvi_a169
+  Page or section: Issue 17, cover and section 1, II.2, pp. 1 and 8
+END FIELD
+
+FIELD certification.issue
+  Value: EASA Issue 17
+  Status: certified-published
+  Source: easa_gulfstream_gvi_a169
+  Page or section: Issue 17, page header
+END FIELD
+
+FIELD certification.issue_date
+  Value: 2026-07-14
+  Status: certified-published
+  Source: easa_gulfstream_gvi_a169
+  Page or section: Issue 17, page header
+END FIELD
+
+FIELD mtow
+  Value: 45177
+  Unit: kg
+  Status: certified-published
+  Source: easa_gulfstream_gvi_a169
+  Source URL: https://www.easa.europa.eu/en/downloads/7278/en
+  Document title: EASA.IM.A.169 Gulfstream GVI Type-Certificate Data Sheet
+  Revision date: 2026-07-14
+  Page or section: Issue 17, section 1, III.13, p. 17
+  Applicability: G650 (GVI not fitted with ASC 014); G650ER, G700, and G800 values are not transferred.
+  Notes: 99,600 lb. G650ER (ASC 014) is 46,992 kg and is not adopted.
+END FIELD
+
+FIELD mlw
+  Value: 37874
+  Unit: kg
+  Status: certified-published
+  Source: easa_gulfstream_gvi_a169
+  Source URL: https://www.easa.europa.eu/en/downloads/7278/en
+  Document title: EASA.IM.A.169 Gulfstream GVI Type-Certificate Data Sheet
+  Revision date: 2026-07-14
+  Page or section: Issue 17, section 1, III.13, p. 17
+  Applicability: G650 (GVI not fitted with ASC 014); G650ER, G700, and G800 values are not transferred.
+  Notes: 83,500 lb. The ASC 137 configuration is limited to 29,483 kg.
+END FIELD
+
+FIELD mzfw
+  Value: 27442
+  Unit: kg
+  Status: certified-published
+  Source: easa_gulfstream_gvi_a169
+  Source URL: https://www.easa.europa.eu/en/downloads/7278/en
+  Document title: EASA.IM.A.169 Gulfstream GVI Type-Certificate Data Sheet
+  Revision date: 2026-07-14
+  Page or section: Issue 17, section 1, III.13, p. 17
+  Applicability: G650 (GVI not fitted with ASC 014); G650ER, G700, and G800 values are not transferred.
+  Notes: 60,500 lb.
+END FIELD
+
+FIELD minimum_weight
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: EASA.IM.A.169 Issue 17 does not publish a minimum certified mass for the GVI; it refers to the AFM.
+END FIELD
+
+FIELD vmo
+  Value: 340
+  Unit: kt
+  Status: certified-published
+  Source: easa_gulfstream_gvi_a169
+  Page or section: Issue 17, section 1, III.10, p. 14
+  Notes: VMO/MMO = 340 KCAS / 0.925M.
+END FIELD
+
+FIELD mmo
+  Value: 0.925
+  Unit: Mach
+  Status: certified-published
+  Source: easa_gulfstream_gvi_a169
+  Page or section: Issue 17, section 1, III.10, p. 14
+  Notes: VMO/MMO = 340 KCAS / 0.925M.
+END FIELD
+
+FIELD ceiling
+  Value: 51000
+  Unit: ft
+  Status: certified-published
+  Source: easa_gulfstream_gvi_a169
+  Page or section: Issue 17, section 1, III.11 and III.12.2, pp. 14 and 16
+  Notes: Maximum operating altitude 15,545 m (51,000 ft) pressure altitude.
+END FIELD
+
+OPERATING AND CAPACITY PARAMETERS
+
+FIELD oew
+  Value: 24494
+  Unit: kg
+  Status: manufacturer-published
+  Source: gulfstream_g650er_g650_specifications_web_2020
+  Document title: Gulfstream G650ER and G650 product page, technical specifications
+  Revision date: 2020-10-30
+  Page or section: Weights, Basic Operating (including 4 crew)
+  Applicability: One value published for both the G650 and the G650ER
+  Uncertainty: Theoretical standard outfitting; actual weights depend on outfitting.
+  Notes: 54,000 lb. Archived Gulfstream page; the live page now redirects to the G800.
+END FIELD
+
+FIELD mfc
+  Value: 20048
+  Unit: kg
+  Status: certified-published
+  Source: easa_gulfstream_gvi_a169
+  Page or section: Issue 17, section 1, III.9, p. 14
+  Notes: G650 total fuel 44,200 lb (24,972 L) at 0.8028 kg/L; the G650ER (ASC 014) 21,863 kg is not adopted. Unit follows the documented Aerox field unit (kg).
+END FIELD
+
+FUSELAGE GEOMETRY
+
+FIELD fuselage.length
+  Value: 30.41
+  Unit: m
+  Status: certified-published
+  Source: easa_gulfstream_gvi_a169
+  Source URL: https://www.easa.europa.eu/en/downloads/7278/en
+  Document title: EASA.IM.A.169 Gulfstream GVI Type-Certificate Data Sheet
+  Revision date: 2026-07-14
+  Page or section: Issue 17, section 1, III.4, p. 12
+  Applicability: GVI type, common to the G650 and G650ER; G700 and G800 sections are not transferred.
+  Notes: Source label is Fuselage Length (99.78 ft). Gulfstream gives 30.40 m exterior length.
+END FIELD
+
+FIELD fuselage.height
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public external fuselage height was found. The published cabin height (1.96 m unfinished) is an interior dimension and is not adopted.
+END FIELD
+
+FIELD fuselage.width
+  Value: 2.74
+  Unit: m
+  Status: certified-published
+  Source: easa_gulfstream_gvi_a169
+  Source URL: https://www.easa.europa.eu/en/downloads/7278/en
+  Document title: EASA.IM.A.169 Gulfstream GVI Type-Certificate Data Sheet
+  Revision date: 2026-07-14
+  Page or section: Issue 17, section 1, III.4, p. 12
+  Applicability: GVI type, common to the G650 and G650ER; G700 and G800 sections are not transferred.
+  Notes: Source label is Fuselage Width at Constant Section (9.00 ft). The drag builder scales width and height together while height is null.
+END FIELD
+
+WING AND TAIL GEOMETRY
+
+FIELD wing.area
+  Value: 119.2
+  Unit: m2
+  Status: inferred-with-uncertainty
+  Source: ain_gulfstream_unveils_g650_2008_03 | flightglobal_g650_launch_2008_03 | openap_glf6_aircraft_data_665b3ad
+  Source URL: https://www.ainonline.com/aviation-news/business-aviation/2008-03-25/gulfstream-unveils-g650
+  Document title: AIN, Gulfstream unveils G650 (N. Moll)
+  Revision date: 2008-03-25
+  Page or section: Wing description at launch
+  Inputs: 1,283 sq ft = 119.19 m2
+  Applicability: G650 wing at launch; the G650ER uses the same wing
+  Uncertainty: Trade-press value at programme launch; no Gulfstream or certification source publishes the area.
+  Notes: AIN states 13 percent more wing area (1,283 sq ft) than the G550; FlightGlobal states the same 13 percent increase. OpenAP also uses 119.2 m2. The article bodies were behind publisher paywalls at access.
+END FIELD
+
+FIELD wing.span
+  Value: 30.36
+  Unit: m
+  Status: certified-published
+  Source: easa_gulfstream_gvi_a169
+  Source URL: https://www.easa.europa.eu/en/downloads/7278/en
+  Document title: EASA.IM.A.169 Gulfstream GVI Type-Certificate Data Sheet
+  Revision date: 2026-07-14
+  Page or section: Issue 17, section 1, III.4, p. 12
+  Applicability: GVI type, common to the G650 and G650ER; G700 and G800 sections are not transferred.
+  Uncertainty: Source rounded to 0.01 m
+  Notes: Source label is Wingspan (99.62 ft). Gulfstream gives 30.35 m overall wingspan.
+END FIELD
+
+FIELD wing.mac
+  Value: 4.756
+  Unit: m
+  Status: certified-published
+  Source: easa_gulfstream_gvi_a169
+  Source URL: https://www.easa.europa.eu/en/downloads/7278/en
+  Document title: EASA.IM.A.169 Gulfstream GVI Type-Certificate Data Sheet
+  Revision date: 2026-07-14
+  Page or section: Issue 17, section 1, III.16, p. 18
+  Applicability: GVI type, common to the G650 and G650ER; G700 and G800 sections are not transferred.
+  Notes: 187.24 in.
+END FIELD
+
+FIELD wing.sweep
+  Value: 33
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: flightglobal_g650_launch_2008_03 | aopa_g650_launch_2008_03 | aerox_legacy_aircraft_database
+  Source URL: https://www.flightglobal.com/gulfstream-raises-the-bar-with-g650/79252.article
+  Document title: FlightGlobal, Gulfstream raises the bar with G650
+  Revision date: 2008-03-14
+  Page or section: Wing description at launch
+  Formula: G550 quarter-chord sweep + published increase
+  Inputs: G550 sweep=27 deg (Aerox GLF5 record, legacy-unverified); increase=6 deg
+  Applicability: G650 wing quarter-chord sweep
+  Uncertainty: +/-3 deg; several secondary sources give 36 deg without a reference line, and OpenAP uses 36 deg.
+  Notes: FlightGlobal gives a 6 deg quarter-chord sweep increase; AOPA (2008-03-14) states that wing sweep was increased six degrees over the G450/G550.
+END FIELD
+
+FIELD wing.t/c
+  Value: 0.1
+  Unit: nondimensional
+  Status: legacy-unverified
+  Source: openap_glf6_aircraft_data_665b3ad
+  Document title: OpenAP aircraft data openap/data/aircraft/glf6.yml
+  Notes: OpenAP value; no public G650 thickness ratio was found.
+END FIELD
+
+FIELD wing.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_gulfstream_gvi_a169 | gulfstream_g650er_g650_specifications_web_2020
+END FIELD
+
+FIELD wing.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_gulfstream_gvi_a169 | gulfstream_g650er_g650_specifications_web_2020
+END FIELD
+
+FIELD wing.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_gulfstream_gvi_a169 | gulfstream_g650er_g650_specifications_web_2020
+END FIELD
+
+FIELD wing.aspect_ratio
+  Value: 7.732631
+  Unit: nondimensional
+  Status: inferred-with-uncertainty
+  Source: easa_gulfstream_gvi_a169 | ain_gulfstream_unveils_g650_2008_03
+  Formula: span^2 / area
+  Inputs: span=30.36 m; area=119.2 m2
+  Notes: Status follows the weaker input (wing area).
+END FIELD
+
+FIELD wing.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_gulfstream_gvi_a169 | gulfstream_g650er_g650_specifications_web_2020
+END FIELD
+
+FIELD horizontal_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_gulfstream_gvi_a169 | gulfstream_g650er_g650_specifications_web_2020
+END FIELD
+
+FIELD horizontal_tail.span
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_gulfstream_gvi_a169 | gulfstream_g650er_g650_specifications_web_2020
+END FIELD
+
+FIELD horizontal_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_gulfstream_gvi_a169 | gulfstream_g650er_g650_specifications_web_2020
+END FIELD
+
+FIELD horizontal_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_gulfstream_gvi_a169 | gulfstream_g650er_g650_specifications_web_2020
+END FIELD
+
+FIELD horizontal_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_gulfstream_gvi_a169 | gulfstream_g650er_g650_specifications_web_2020
+END FIELD
+
+FIELD horizontal_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_gulfstream_gvi_a169 | gulfstream_g650er_g650_specifications_web_2020
+END FIELD
+
+FIELD horizontal_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_gulfstream_gvi_a169 | gulfstream_g650er_g650_specifications_web_2020
+END FIELD
+
+FIELD horizontal_tail.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_gulfstream_gvi_a169 | gulfstream_g650er_g650_specifications_web_2020
+END FIELD
+
+FIELD horizontal_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_gulfstream_gvi_a169 | gulfstream_g650er_g650_specifications_web_2020
+END FIELD
+
+FIELD horizontal_tail.elevator_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_gulfstream_gvi_a169 | gulfstream_g650er_g650_specifications_web_2020
+END FIELD
+
+FIELD vertical_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_gulfstream_gvi_a169 | gulfstream_g650er_g650_specifications_web_2020
+END FIELD
+
+FIELD vertical_tail.height
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_gulfstream_gvi_a169 | gulfstream_g650er_g650_specifications_web_2020
+END FIELD
+
+FIELD vertical_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_gulfstream_gvi_a169 | gulfstream_g650er_g650_specifications_web_2020
+END FIELD
+
+FIELD vertical_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_gulfstream_gvi_a169 | gulfstream_g650er_g650_specifications_web_2020
+END FIELD
+
+FIELD vertical_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_gulfstream_gvi_a169 | gulfstream_g650er_g650_specifications_web_2020
+END FIELD
+
+FIELD vertical_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_gulfstream_gvi_a169 | gulfstream_g650er_g650_specifications_web_2020
+END FIELD
+
+FIELD vertical_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_gulfstream_gvi_a169 | gulfstream_g650er_g650_specifications_web_2020
+END FIELD
+
+FIELD vertical_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_gulfstream_gvi_a169 | gulfstream_g650er_g650_specifications_web_2020
+END FIELD
+
+FIELD vertical_tail.rudder_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_gulfstream_gvi_a169 | gulfstream_g650er_g650_specifications_web_2020
+END FIELD
+
+OTHER PARAMETERS
+  Format: field = value; status; source; page or section.
+  iata = null; unresolved; -; no IATA type code for the G650 was found.
+  icao_wtc = medium; certified-published; easa_recat_eu_assignment_2021_12; p. 27, GLF6 row, ICAO legacy WTC M.
+  eu_wtc = lower medium; certified-published; easa_recat_eu_assignment_2021_12; p. 27, GLF6 row, RECAT-EU CAT-E.
+  faa_wtc = null; unresolved; -; no FAA wake category assignment for GLF6 was retrieved.
+  parking_area_m2 = null; unresolved; -; no published value, and the legacy field definition is not documented.
+  pax.max = 19; certified-published; easa_gulfstream_gvi_a169; section 1, III.19, p. 18.
+  pax.high = 18; legacy-unverified; openap_glf6_aircraft_data_665b3ad; aircraft/glf6.yml pax.high.
+  pax.low = 8; legacy-unverified; openap_glf6_aircraft_data_665b3ad; aircraft/glf6.yml pax.low.
+  engine.type = turbofan; certified-published; easa_gulfstream_gvi_a169; section 1, III.5, p. 12.
+  engine.mount = rear fuselage; manufacturer-published; gulfstream_g650er_g650_specifications_web_2020; product page, two aft-mounted BR725.
+  engine.number = 2; certified-published; easa_gulfstream_gvi_a169; section 1, III.5, p. 12.
+  engine.default = BR700-725A1-12; certified-published; easa_gulfstream_gvi_a169; section 1, III.5, p. 12 (engine TC EASA.E.018, 75.2 kN).
+  engine.options = [BR700-725A1-12]; certified-published; easa_gulfstream_gvi_a169; section 1, III.5, p. 12.
+  flaps.type = single-slotted; legacy-unverified; openap_glf6_aircraft_data_665b3ad; aircraft/glf6.yml flaps.
+  flaps.lambda_f = 0.9; legacy-unverified; openap_glf6_aircraft_data_665b3ad; OpenAP flap-model input, not a measured G650 value.
+  flaps.cf/c = 0.15; legacy-unverified; openap_glf6_aircraft_data_665b3ad; OpenAP flap-model input, not a measured G650 value.
+  flaps.Sf/S = 0.15; legacy-unverified; openap_glf6_aircraft_data_665b3ad; OpenAP flap-model input, not a measured G650 value.
+  flaps.area, flaps.bf/b = null; unresolved; -; no public value, and OpenAP gives none.
+  kinematic.takeoff_distance_m = 1786; manufacturer-published; gulfstream_g650er_g650_specifications_web_2020; G650 takeoff distance, SL, ISA, MTOW.
+  kinematic.cruise_mach = 0.85; manufacturer-published; gulfstream_g650er_g650_specifications_web_2020 | openap_glf6_aircraft_data_665b3ad; long-range cruise.
+  kinematic.cruise_range_nm = 7000; manufacturer-published; gulfstream_g650er_g650_specifications_web_2020; G650 NBAA IFR range at Mach 0.85, 8 passengers.
+  Other kinematic fields = null; unresolved; -; EUROCONTROL APD has no GLF6 entry and OpenAP has no GLF6 WRAP file.
+
+LEGACY PARAMETERS
+  This record was added after the original Aerox database and has no original Aerox values.
+  Values labelled legacy-unverified come from the OpenAP GLF6 record named above.
+
+DRAG MODEL
+  Active Aerox physical drag model and reference-condition polar snapshot.
+  Scaled or substituted geometry fields: fuselage.width, fuselage.height, horizontal_tail.area, horizontal_tail.mac, vertical_tail.area, vertical_tail.mac, wing.root_chord, horizontal_tail.sweep, vertical_tail.sweep, engine.fan_diameter, engine.nacelle_max_diameter, engine.nacelle_length
+
+FIELD drag.model
+  Value: aerox-geometry-drag-v2
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Inputs: configuration=clean; tier=C-partially-scaled; confidence=low; e_span=0.9533; roughness_excrescence/computed=0.0900; nacelle_tier=C-estimated-fan-diameter
+  Zero-lift terms at reference (drag counts): wing=54.46; fuselage=45.07; horizontal_tail=18.18; vertical_tail=11.58; nacelles=9.57; pylons=1.28; fuselage_upsweep=3.47; control_surface_gaps=0.98; nacelle_base=1.66; roughness_excrescence=13.16
+  Applicability: Active clean model; geometry-tier uncertainty applies.
+END FIELD
+FIELD drag.configuration
+  Value: clean
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.geometry_tier
+  Value: C-partially-scaled
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.confidence
+  Value: low
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.reference_altitude_ft
+  Value: 51098.2
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Representative clean reference condition.
+END FIELD
+FIELD drag.reference_mach
+  Value: 0.85
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Representative clean reference condition.
+END FIELD
+FIELD drag.reference_reynolds_per_m
+  Value: 3119967.1
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Inputs: altitude=51098.2 ft; Mach=0.850000; ISA temperature and density
+END FIELD
+FIELD drag.span_efficiency_factor
+  Value: 0.953266
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Physical model input; geometry-tier uncertainty applies.
+END FIELD
+FIELD drag.unresolved_fraction_of_resolved_drag
+  Value: null
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Physical model input; geometry-tier uncertainty applies.
+END FIELD
+FIELD drag.roughness_excrescence_fraction
+  Value: 0.09
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Physical model input; geometry-tier uncertainty applies.
+END FIELD
+FIELD drag.wave_drag_model
+  Value: aerox-korn-lock-wave-v1
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.wave_drag_source_tier
+  Value: D-class-scaled
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.wave_drag_confidence
+  Value: low
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.wave_drag_technology_factor
+  Value: 0.95
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Physical model input; geometry-tier uncertainty applies.
+END FIELD
+END DRAG MODEL

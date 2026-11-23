@@ -37,8 +37,8 @@ def test_aircraft_availability_matrix_has_all_aircraft_and_parameters():
         assert reader.fieldnames == [*SUMMARY_COLUMNS, *parameter_paths()]
         rows = list(reader)
 
-    assert len(rows) == 144
-    assert len({row["icao"] for row in rows}) == 144
+    assert len(rows) == 145
+    assert len({row["icao"] for row in rows}) == 145
     assert [row["icao"] for row in rows] == sorted(row["icao"] for row in rows)
 
     for row in rows:

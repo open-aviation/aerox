@@ -366,7 +366,7 @@ For civil turbofans, the span-only term uses the Poll–Schumann geometry branch
 lift-profile contribution `0.80 (1 - 0.53 cos(sweep)) CD0`. This separation is
 intentional: using a conventional effective Oswald factor as `e_span` would
 double-count lift-dependent profile drag. Niţă–Scholz remains the preferred
-planform branch once trustworthy taper ratios are available; none of the 144
+planform branch once trustworthy taper ratios are available; none of the 145
 current YAML records has a published taper ratio.
 
 Civil-turbofan reference pressure is solved from clean lift at 0.8 MTOW,
@@ -395,7 +395,7 @@ and `k={ranges["active_k"]["minimum"]:.4f}–{ranges["active_k"]["maximum"]:.4f}
 ## Interpretation
 
 This is a better *aircraft model system*: it is internally consistent, condition
-referenced, provenance tracked, and complete. It is not evidence that all 144
+referenced, provenance tracked, and complete. It is not evidence that all 145
 aircraft are now more accurate in absolute terms. Tier A/B civil transports
 have the strongest geometry support. Turboprops, piston aircraft, and special
 military layouts remain low-confidence until public geometry or flight data

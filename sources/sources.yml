@@ -2155,6 +2155,103 @@ sources:
   relevant_pages: aircraft TCDS and explanatory note
   limitations: Marketing names such as G400, G500, and G550 must be mapped to certified models
     and modifications.
+- id: easa_gulfstream_gvi_a169
+  title: EASA.IM.A.169 - Gulfstream GVI
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaima169-gulfstream-gvi
+  download_url: https://www.easa.europa.eu/en/downloads/7278/en
+  document_number: EASA.IM.A.169
+  issue_revision: Issue 17
+  publication_date: 2026-07-14
+  access_date: 2026-11-23
+  applicable_aircraft: GVI (G650, and G650ER with ASC 014), GVIII-G700, GVIII-G800; FAA TCDS
+    T00015AT
+  applicable_engine: BR700-725A1-12 for the GVI
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: section 1 GVI, III.4 dimensions, III.5 engines, III.9 fuel, III.10 airspeed,
+    III.11 envelope, III.13 masses, III.16 MAC, III.19 seating (pp. 12-18)
+  limitations: G650ER (ASC 014) and other ASC weight configurations change the certified masses
+    and fuel; GVIII sections are separate models.
+- id: gulfstream_g650er_g650_specifications_web_2020
+  title: Gulfstream G650ER product page with G650 and G650ER technical specifications
+  organization: Gulfstream Aerospace Corporation
+  url: https://web.archive.org/web/20201030010543/https://www.gulfstream.com/en/aircraft/gulfstream-g650er/
+  original_url: https://www.gulfstream.com/en/aircraft/gulfstream-g650er/
+  publication_date: null
+  capture_date: 2020-10-30
+  access_date: 2026-11-23
+  applicable_aircraft: G650 and G650ER
+  evidence_type: manufacturer-published
+  licensing_redistribution: Gulfstream copyright; link only, no document redistribution intended.
+  relevant_pages: Performance, Weights, Systems, Measurements
+  limitations: Internet Archive capture; the live page now redirects to the G800. Weights are based
+    on theoretical standard outfitting.
+- id: ain_gulfstream_unveils_g650_2008_03
+  title: Gulfstream unveils G650
+  authors:
+  - Nigel Moll
+  organization: Aviation International News
+  url: https://www.ainonline.com/aviation-news/business-aviation/2008-03-25/gulfstream-unveils-g650
+  publication_date: 2008-03-25
+  access_date: 2026-11-23
+  applicable_aircraft: G650 at programme launch
+  evidence_type: trade-press-secondary
+  licensing_redistribution: AIN copyright; link only.
+  relevant_pages: wing description (1,283 sq ft wing area, 13 percent more than the G550)
+  limitations: Launch-time value; article body behind a member paywall at access.
+- id: flightglobal_g650_launch_2008_03
+  title: Gulfstream raises the bar with G650
+  organization: FlightGlobal (Flight International)
+  url: https://www.flightglobal.com/gulfstream-raises-the-bar-with-g650/79252.article
+  publication_date: 2008-03-14
+  access_date: 2026-11-23
+  applicable_aircraft: G650 at programme launch
+  evidence_type: trade-press-secondary
+  licensing_redistribution: FlightGlobal copyright; link only.
+  relevant_pages: wing description (area +13 percent, span +1.83 m, quarter-chord sweep +6 deg)
+  limitations: Launch-time values; article body behind a subscription paywall at access.
+- id: aopa_g650_launch_2008_03
+  title: Gulfstream launches 'ultra-ultra' G650
+  authors:
+  - Paul J. Richfield
+  organization: Aircraft Owners and Pilots Association
+  url: https://aopa.org/news-and-media/all-news/2008/march/14/gulfstream-launches-ultra-ultra-g650
+  publication_date: 2008-03-14
+  access_date: 2026-11-23
+  applicable_aircraft: G650 at programme launch
+  evidence_type: trade-press-secondary
+  licensing_redistribution: AOPA copyright; link only.
+  relevant_pages: wing sweep increased six degrees over the G450/G550
+  limitations: Launch-time description; does not name the sweep reference line.
+- id: easa_recat_eu_assignment_2021_12
+  title: Assignment Of Aircraft Types To RECAT-EU Wake Turbulence Categories, Datasheet
+  organization: European Union Aviation Safety Agency, prepared by EUROCONTROL
+  url: https://www.easa.europa.eu/en/downloads/117238/en
+  document_number: TE.GEN.00400-006
+  issue_revision: Issue 2021-12
+  publication_date: 2022-09-07
+  access_date: 2026-11-23
+  applicable_aircraft: ICAO Doc 8643 landplane and helicopter type designators
+  evidence_type: authority-wake-category-datasheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: landplane list, p. 27 (GLF6 ICAO WTC M, RECAT-EU CAT-E)
+  limitations: Confirm the current issue before use.
+- id: openap_glf6_aircraft_data_665b3ad
+  title: OpenAP GLF6 aircraft and drag-polar data
+  organization: OpenAP project
+  location: https://github.com/TUDelft-CNS-ATM/openap (openap/data/aircraft/glf6.yml, openap/data/dragpolar/glf6.yml)
+  accessed: 2026-11-23
+  evidence_type: legacy-unverified
+  source_commit: 665b3ad9668f59c2fe382a032dd4c622dcc394d2
+  aircraft:
+    scope: Gulfstream G650 / 650ER
+  license: GNU-LGPL-3.0
+  redistribution: values-cited-with-attribution
+  notes:
+  - Used only for values with no better public source; these values are labelled legacy-unverified.
+  - OpenAP has no WRAP kinematic file for GLF6. Its clean polar is cd0 0.012 and k 0.047; Aerox
+    does not use it.
 - id: easa_gulfstream_g200_a013
   title: EASA.IM.A.013 - Gulfstream 200
   organization: European Union Aviation Safety Agency

@@ -132,7 +132,7 @@ def test_every_component_buildup_record_resolves_nacelle_geometry():
         "A-measured-nacelle": 13,
         "A-sister-measured-nacelle": 2,
         "B-fan-diameter-ratio": 39,
-        "C-estimated-fan-diameter": 38,
+        "C-estimated-fan-diameter": 39,
     }
 
 
@@ -242,7 +242,7 @@ def test_non_turbofan_and_high_speed_classes_keep_lumped_model(code, cd0, k):
 
 def test_every_record_builds_and_runtime_model_reproduces_report():
     codes = get_available_aircraft()
-    assert len(codes) == 144
+    assert len(codes) == 145
     for code in codes:
         aircraft = load_aircraft(code)
         report = build_drag_report(aircraft)
