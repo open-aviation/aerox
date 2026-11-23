@@ -9,7 +9,7 @@ Usage:
 
     # Get all available aircraft ICAO codes
     icao_codes = get_available_aircraft()
-    print(f"Total aircraft: {len(icao_codes)}")  # 145
+    print(f"Total aircraft: {len(icao_codes)}")
 
     # Load a specific aircraft from YAML
     aircraft = load_aircraft("A320")
@@ -680,8 +680,8 @@ def get_available_aircraft(data_dir: Optional[Path] = None) -> List[str]:
 
     Example:
         >>> icao_codes = get_available_aircraft()
-        >>> print(len(icao_codes))
-        145
+        >>> len(icao_codes) > 140
+        True
         >>> print("A320" in icao_codes)
         True
     """

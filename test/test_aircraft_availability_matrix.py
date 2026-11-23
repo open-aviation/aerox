@@ -5,6 +5,7 @@ import subprocess
 import sys
 from pathlib import Path
 
+from aerox import get_available_aircraft
 from tools.generate_aircraft_availability_matrix import (
     DEFAULT_OUTPUT,
     SUMMARY_COLUMNS,
@@ -37,8 +38,8 @@ def test_aircraft_availability_matrix_has_all_aircraft_and_parameters():
         assert reader.fieldnames == [*SUMMARY_COLUMNS, *parameter_paths()]
         rows = list(reader)
 
-    assert len(rows) == 145
-    assert len({row["icao"] for row in rows}) == 145
+    assert len(rows) == len(get_available_aircraft())
+    assert len({row["icao"] for row in rows}) == len(rows)
     assert [row["icao"] for row in rows] == sorted(row["icao"] for row in rows)
 
     for row in rows:
