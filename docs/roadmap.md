@@ -17,22 +17,22 @@ Updated: 2026-11-22
 
 - Drag agrees with a reference performance model within 5 % at cruise for most
   jet transports. Near Mach 0.6 it is 4 to 12 % too high.
-- Drag covers the clean configuration only.
+- Flap and landing gear drag use simple handbook methods, checked only against
+  A320 gear drag from flight data. Slats add no drag, and spoiler drag is not
+  modelled.
 - Some wing reference areas have no confirmed source: the 737 MAX family, the
   787-10, the 747-8, the A330-900, the A350-1000, and the CRJ200.
 
 ## Planned work
 
-1. **Deployed configuration (next).** Drag increments for flaps, slats, and
-   landing gear. OpenAP needs them to move its `nonclean()` drag onto Aerox;
-   until then OpenAP adds its own flap and gear increments to the Aerox clean
-   drag.
-2. **Drag increase with Mach below the drag rise.** Measured drag at a fixed
+1. **Drag increase with Mach below the drag rise.** Measured drag at a fixed
    lift coefficient rises 8 to 12 % from Mach 0.6 to 0.8. This term will be
    added together with a lower base drag, so that cruise drag stays correct
    and drag at lower Mach numbers improves.
-3. **Wing reference areas.** Confirmed sources for the open values listed
+2. **Wing reference areas.** Confirmed sources for the open values listed
    above.
+3. **Flap data.** Sourced flap chord and span ratios for the records that
+   use the default values, and a check of flap drag against flight data.
 4. **One aircraft data schema.** One declarative schema for the aircraft
    records, their validation, and the web editor.
 5. **Batched performance evaluation.** Evaluation of the atmosphere and the

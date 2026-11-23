@@ -17,7 +17,7 @@ from __future__ import annotations
 
 import csv
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from functools import lru_cache
 from pathlib import Path
 
@@ -38,6 +38,7 @@ from .components import (
     trapezoidal_root_chord,
 )
 from .core import DragCondition
+from .deployed import deployed_drag_from_aircraft
 from .geometry import (
     GeometryDragModel,
     TransonicGeometryDragModel,
@@ -959,13 +960,15 @@ def _build_subcritical_drag_model(aircraft: Aircraft) -> GeometryDragModel:
     if missing:
         raise ValueError("active drag model is missing: " + ", ".join(missing))
 
-    return _build_subcritical_geometry_model(
+    model = _build_subcritical_geometry_model(
         geometry,
         float(drag.reference_mach),
         float(drag.reference_reynolds_per_m),
         span_efficiency_factor=float(drag.span_efficiency_factor),
         allowance_fraction=float(allowance),
     )
+    deployed = deployed_drag_from_aircraft(aircraft, model.reference_area_m2)
+    return replace(model, deployed=deployed)
 
 
 def build_drag_model(
@@ -975,6 +978,8 @@ def build_drag_model(
 
     The zero-lift drag changes with the Mach and Reynolds number, and aircraft
     with a wave drag model also have wave drag above the critical Mach number.
+    Flap and landing gear drag apply when the condition has them deployed
+    (see :mod:`aerox.models.drag.deployed`).
     For a constant ``CD = cd0 + k CL²``, use :func:`build_parabolic_polar`.
     """
 

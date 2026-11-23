@@ -1,7 +1,8 @@
 # Drag
 
-The drag model computes the drag coefficient of the clean aircraft from its
-geometry. No value is fitted to another performance model.
+The drag model computes the drag coefficient of an aircraft from its geometry,
+clean or with flaps and landing gear deployed. No value is fitted to another
+performance model.
 
 ## Two ways to get drag
 
@@ -96,9 +97,46 @@ condition = DragCondition(mach=0.78, reynolds_per_m=reynolds)
 cd = model.cd(cl=0.55, condition=condition)
 ```
 
-The model covers the clean configuration only. A condition with deployed
-flaps, landing gear, or spoilers raises `ValueError`, and so does a negative
-Mach number or Reynolds number.
+A negative Mach number or Reynolds number raises `ValueError`.
+
+## Flaps and landing gear
+
+Give the flap angle in radians and the landing gear extension, from 0
+(retracted) to 1 (down), in a `DragCondition`:
+
+```python
+import numpy as np
+
+condition = DragCondition(
+    mach=0.2,
+    reynolds_per_m=aero.reynolds_per_m(mach=0.2, h=0),
+    flap_angle_rad=np.deg2rad(30),
+    gear_extension_fraction=1.0,
+)
+cd = model.cd(cl=1.5, condition=condition)
+```
+
+Three terms change:
+
+- **Flap profile drag** (McCormick, 1995):
+  `ΔCD0 = λf (cf/c)^1.38 (S_wf/S) sin²δ`. The flap effectiveness `λf`, the
+  flap chord ratio `cf/c`, and the flapped span ratio `bf/b` (used as
+  `S_wf/S`) come from the `flaps` group of the record. When the record has no
+  value: `λf` is 0.9 for slotted flaps and 1.7 for plain or split flaps,
+  `cf/c` is 0.30 or 0.25, and `S_wf/S` is 0.45 for piston aircraft and 0.65
+  for the others.
+- **Induced drag.** The span efficiency factor falls by 0.0025 per degree of
+  flap, so by 0.05 at 20° and 0.10 at 40° (Roskam, Part I).
+- **Landing gear** (Torenbeek, as given by Anderson, 1999):
+  `ΔCD0 = g (MTOW g0 / S) 5.81e-5 MTOW^-0.215`, with the extension fraction
+  `g` and MTOW in kg. For the A320 it gives 0.0322; the value identified from
+  A320 flight data is 0.0299 (Deiler and Fezans, 2025).
+
+The breakdown has the two increments as `b.flap` and `b.gear`. Slats add no
+drag, flap and gear drag do not interact, and flap angles above 60° raise
+`ValueError`. Spoiler drag is not modelled: a condition with deployed spoilers
+raises `ValueError`. The parabolic polar and the comparison models cover the
+clean configuration only.
 
 ## Drag breakdown
 
@@ -185,6 +223,9 @@ re = aero.reynolds_per_m(mach=0.78, h=11_000)
 expr.cd(cl=0.55, mach=0.78, reynolds_per_m=re)              # NumPy
 expr.cd(cl=0.55, mach=0.78, reynolds_per_m=re, xp=jnp)      # JAX
 ```
+
+With flaps or landing gear, add the keyword arguments `flap_angle_rad` and
+`gear_extension_fraction`; the math library then also needs `sin`.
 
 For CasADi, pass an object whose `maximum` is `casadi.fmax`. The result equals
 `model.cd()`, but the expression does not check its inputs, and the lift and

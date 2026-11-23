@@ -73,6 +73,7 @@ def test_reference_polar_uses_cd0_and_k():
 
 def test_drag_package_exports_only_the_public_interface():
     assert set(drag.__all__) == {
+        "DeployedDrag",
         "DragBuildReport",
         "DragCondition",
         "DragExpression",
@@ -153,12 +154,19 @@ def test_scalar_and_array_paths_reject_invalid_conditions(name, condition):
         {"spoiler_deflection_rad": 0.1},
     ],
 )
-def test_every_model_rejects_a_deployed_configuration(name, deployed):
+def test_clean_models_reject_a_deployed_configuration(name, deployed):
     model = _all_models()[name]
     condition = DragCondition(0.7, **deployed)
-    with pytest.raises(ValueError, match="only when clean"):
+    if name.startswith("geometry") and "spoiler_deflection_rad" not in deployed:
+        # The geometry models built from a record have flap and gear drag.
+        assert model._drag_coefficient_scalar(0.4, condition) > (
+            model._drag_coefficient_scalar(0.4, DragCondition(0.7))
+        )
+        return
+    match = "spoiler" if name.startswith("geometry") else "only when clean"
+    with pytest.raises(ValueError, match=match):
         model.drag_coefficient(0.4, condition=condition)
-    with pytest.raises(ValueError, match="only when clean"):
+    with pytest.raises(ValueError, match=match):
         model._drag_coefficient_scalar(0.4, condition)
 
 

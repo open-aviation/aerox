@@ -157,10 +157,10 @@ cas = aero.mach2cas(mach=0.78, h=10_000)   # m/s
 - **Aircraft data.** One YAML record per type with geometry, mass limits, and
   engine data. Each geometry and mass value has a source note under
   `src/aerox/data/aircraft/sources`.
-- **Drag.** A clean-configuration drag model computed from the aircraft
-  geometry: skin friction and form factors for the wing, fuselage, tails,
-  nacelles, and pylons, plus wave drag and induced drag. No value is fitted to
-  another performance model.
+- **Drag.** A drag model computed from the aircraft geometry: skin friction
+  and form factors for the wing, fuselage, tails, nacelles, and pylons, plus
+  wave drag and induced drag, and drag increments for deployed flaps and
+  landing gear. No value is fitted to another performance model.
 - **Drawings.** `aerox view` and `aerox.plot`, 2D and 3D outline drawings of
   each aircraft.
 - **Kinematics.** Typical speeds and vertical rates of each flight phase, for
@@ -175,8 +175,8 @@ cas = aero.mach2cas(mach=0.78, h=10_000)   # m/s
 - At cruise, the drag model agrees with a reference performance model within
   5 % for most jet transports. At lower Mach numbers (about 0.6) it is 4 to
   12 % too high.
-- Drag is for the clean configuration only. Flap, slat, and landing gear
-  increments are not included yet.
+- Flap and landing gear drag come from simple handbook methods. Slats add no
+  drag, and spoiler drag is not modelled.
 - The modules for thrust, lift, flight dynamics, and simulation are
   experimental. Their interfaces can change.
 

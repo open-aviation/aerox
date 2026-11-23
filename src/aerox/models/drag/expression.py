@@ -11,9 +11,16 @@ coefficient, the Mach number, and the Reynolds number per metre:
     CD    = CD0 + k_span * cl^2 + k_profile * CD0 * cl^2
           + 20 * max(M - (Mcrit0 + Mcrit_slope * cl), 0)^4       (wave drag)
 
+With flaps deployed by ``delta`` radians and the landing gear extended by a
+fraction ``g``:
+
+    k_span -> k_span / (1 - r_flap * delta)
+    CD    += c_flap * sin(delta)^2 + g * dCD0_gear
+
 ``DragExpression`` stores these constants and evaluates the formula with the
 functions of a math module passed as ``xp``. NumPy is the default. Any module
-or object with ``log``, ``sqrt``, and ``maximum`` works, for example
+or object with ``log``, ``sqrt``, and ``maximum`` works (and ``sin`` when a
+flap angle is given), for example
 ``jax.numpy`` or OpenAP's CasADi backend, so the same drag model can be used
 in symbolic and differentiable code.
 
@@ -39,7 +46,10 @@ class DragExpression:
     One entry per wetted component in ``lengths_m``, ``weights``, and
     ``laminar_fractions``. ``weights`` already include the form factor, the
     interference factor, the wetted to reference area ratio, and the parasite
-    scale. ``wave`` is ``None`` for models without wave drag.
+    scale. The critical Mach terms are ``None`` for models without wave drag.
+    ``flap_parasite_factor``, ``flap_efficiency_ratio`` (the loss of span
+    efficiency per radian of flap divided by the span efficiency factor), and
+    ``gear_parasite`` are zero for models without flap and gear drag.
     """
 
     lengths_m: tuple[float, ...]
@@ -50,6 +60,9 @@ class DragExpression:
     profile_factor: float
     critical_mach_zero_lift: float | None = None
     critical_mach_slope: float | None = None
+    flap_parasite_factor: float = 0.0
+    flap_efficiency_ratio: float = 0.0
+    gear_parasite: float = 0.0
 
     @property
     def has_wave_drag(self) -> bool:
@@ -89,17 +102,51 @@ class DragExpression:
         return 20.0 * excess**4
 
     def drag_coefficient(
-        self, cl: Any, mach: Any, reynolds_per_m: Any, xp: Any = np
+        self,
+        cl: Any,
+        mach: Any,
+        reynolds_per_m: Any,
+        xp: Any = np,
+        *,
+        flap_angle_rad: Any = None,
+        gear_extension_fraction: Any = None,
     ) -> Any:
-        """Total drag coefficient, evaluated with the functions of ``xp``."""
+        """Total drag coefficient, evaluated with the functions of ``xp``.
+
+        ``flap_angle_rad`` and ``gear_extension_fraction`` default to the clean
+        configuration.
+        """
 
         cd0 = self.parasite(mach, reynolds_per_m, xp)
         lift_squared = cl**2
         induced = self.span_induced_factor * lift_squared
+        if flap_angle_rad is not None:
+            induced = induced / (1.0 - self.flap_efficiency_ratio * flap_angle_rad)
         profile = self.profile_factor * cd0 * lift_squared
-        return cd0 + induced + profile + self.wave(cl, mach, xp)
+        total = cd0 + induced + profile + self.wave(cl, mach, xp)
+        if flap_angle_rad is not None:
+            total = total + self.flap_parasite_factor * xp.sin(flap_angle_rad) ** 2
+        if gear_extension_fraction is not None:
+            total = total + self.gear_parasite * gear_extension_fraction
+        return total
 
-    def cd(self, cl: Any, mach: Any, reynolds_per_m: Any, xp: Any = np) -> Any:
+    def cd(
+        self,
+        cl: Any,
+        mach: Any,
+        reynolds_per_m: Any,
+        xp: Any = np,
+        *,
+        flap_angle_rad: Any = None,
+        gear_extension_fraction: Any = None,
+    ) -> Any:
         """Shorthand for ``drag_coefficient()``."""
 
-        return self.drag_coefficient(cl, mach, reynolds_per_m, xp)
+        return self.drag_coefficient(
+            cl,
+            mach,
+            reynolds_per_m,
+            xp,
+            flap_angle_rad=flap_angle_rad,
+            gear_extension_fraction=gear_extension_fraction,
+        )

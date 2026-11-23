@@ -16,11 +16,13 @@ from .builder import (
     build_parabolic_polar,
 )
 from .core import DragCondition, DragModel
+from .deployed import DeployedDrag
 from .expression import DragExpression
 from .geometry import GeometryDragModel, TransonicGeometryDragModel
 from .polar import ParabolicDragPolar
 
 __all__ = [
+    "DeployedDrag",
     "DragBuildReport",
     "DragCondition",
     "DragExpression",
