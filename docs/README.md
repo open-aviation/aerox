@@ -9,6 +9,8 @@ performance models for 140+ aircraft types, built from open sources.
   load them, and where each value comes from.
 - [Drag](drag.md): the geometry-based drag model and the simpler parabolic
   polar, how to evaluate them, and their accuracy.
+- [Math backends](backends.md): the drag model with JAX and CasADi, for
+  optimization and automatic differentiation.
 - [Kinematics](kinematics.md): the typical speeds and vertical rates of each
   flight phase, and how to build a simple climb or descent profile from them.
 - [Atmosphere and speeds](atmosphere.md): ISA atmosphere and airspeed

@@ -160,7 +160,10 @@ cas = aero.mach2cas(mach=0.78, h=10_000)   # m/s
 - **Drag.** A drag model computed from the aircraft geometry: skin friction
   and form factors for the wing, fuselage, tails, nacelles, and pylons, plus
   wave drag and induced drag, and drag increments for deployed flaps and
-  landing gear. No value is fitted to another performance model.
+  landing gear. No value is fitted to another performance model. The model is
+  also available as a closed-form expression for JAX and CasADi, for
+  optimization and automatic differentiation (see
+  [Math backends](docs/backends.md)).
 - **Drawings.** `aerox view` and `aerox.plot`, 2D and 3D outline drawings of
   each aircraft.
 - **Kinematics.** Typical speeds and vertical rates of each flight phase, for

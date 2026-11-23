@@ -17,12 +17,15 @@ fraction ``g``:
     k_span -> k_span / (1 - r_flap * delta)
     CD    += c_flap * sin(delta)^2 + g * dCD0_gear
 
+Instead of the Reynolds number, the altitude ``h`` (and the ISA temperature
+offset ``dT``) can be given. The Reynolds number then comes from the ISA
+atmosphere and Sutherland's law, the same as :func:`aerox.aero.reynolds_per_m`.
+
 ``DragExpression`` stores these constants and evaluates the formula with the
-functions of a math module passed as ``xp``. NumPy is the default. Any module
-or object with ``log``, ``sqrt``, and ``maximum`` works (and ``sin`` when a
-flap angle is given), for example
-``jax.numpy`` or OpenAP's CasADi backend, so the same drag model can be used
-in symbolic and differentiable code.
+functions of a math module passed as ``xp``. NumPy is the default. ``xp`` can
+be ``jax.numpy``, the ``casadi`` module, or any object with ``log``, ``sqrt``,
+``exp``, ``sin``, and ``maximum`` (or ``fmax``), so the same drag model can be
+used in symbolic and differentiable code.
 
 The expression does not check its inputs. ``drag_coefficient()`` of the drag
 model does, and should be used for NumPy evaluation where errors matter.
@@ -32,11 +35,55 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
+from numbers import Real
 from typing import Any
 
 import numpy as np
 
+from ...aero import R, T0, beta, gamma, rho0
+
 _LN10 = math.log(10.0)
+
+
+class _FmaxMath:
+    """A math module whose maximum is called ``fmax``, such as CasADi."""
+
+    def __init__(self, module: Any) -> None:
+        self._module = module
+        self.maximum = module.fmax
+
+    def __getattr__(self, name: str) -> Any:
+        return getattr(self._module, name)
+
+
+def _math(xp: Any) -> Any:
+    if hasattr(xp, "maximum") or not hasattr(xp, "fmax"):
+        return xp
+    return _FmaxMath(xp)
+
+
+def isa_reynolds_per_m(mach: Any, h: Any, dT: Any = 0.0, xp: Any = np) -> Any:
+    """Reynolds number per metre in the ISA atmosphere, with any math module.
+
+    ``h`` is the altitude in metres and ``dT`` the ISA temperature offset in K.
+    The result equals :func:`aerox.aero.reynolds_per_m`.
+    """
+
+    xp = _math(xp)
+    if isinstance(dT, Real):
+        offset = min(max(float(dT), -25.0), 15.0)
+    else:
+        offset = xp.maximum(-xp.maximum(-dT, -15.0), -25.0)
+    sea_level_temperature = T0 + offset
+    temperature = xp.maximum(sea_level_temperature + beta * h, 216.65 + offset)
+    density = (
+        rho0
+        * (temperature / sea_level_temperature) ** 4.256848030018761
+        * xp.exp(-xp.maximum(h - 11000.0, 0.0) / 6341.552161)
+    )
+    speed = mach * xp.sqrt(gamma * R * temperature)
+    viscosity = 1.458e-6 * temperature**1.5 / (temperature + 110.4)
+    return density * speed / viscosity
 
 
 @dataclass(frozen=True)
@@ -71,6 +118,7 @@ class DragExpression:
     def parasite(self, mach: Any, reynolds_per_m: Any, xp: Any = np) -> Any:
         """Zero-lift drag coefficient CD0 at a Mach and Reynolds number."""
 
+        xp = _math(xp)
         compressibility = (1.0 + 0.144 * mach**2) ** 0.65
         total = self.parasite_increment
         for length, weight, laminar in zip(
@@ -98,24 +146,37 @@ class DragExpression:
 
         if not self.has_wave_drag:
             return 0.0 * mach
-        excess = xp.maximum(mach - self.critical_mach(cl), 0.0)
+        excess = _math(xp).maximum(mach - self.critical_mach(cl), 0.0)
         return 20.0 * excess**4
 
     def drag_coefficient(
         self,
         cl: Any,
         mach: Any,
-        reynolds_per_m: Any,
+        reynolds_per_m: Any = None,
         xp: Any = np,
         *,
+        h: Any = None,
+        dT: Any = 0.0,
         flap_angle_rad: Any = None,
         gear_extension_fraction: Any = None,
     ) -> Any:
         """Total drag coefficient, evaluated with the functions of ``xp``.
 
-        ``flap_angle_rad`` and ``gear_extension_fraction`` default to the clean
-        configuration.
+        Give either ``reynolds_per_m``, the Reynolds number per metre, or
+        ``h``, the altitude in metres, with the optional ISA temperature
+        offset ``dT`` in K. ``flap_angle_rad`` is the flap angle in radians,
+        and ``gear_extension_fraction`` is 0 for the retracted and 1 for the
+        extended landing gear. Both default to the clean configuration.
         """
+
+        xp = _math(xp)
+        if h is not None:
+            if reynolds_per_m is not None:
+                raise TypeError("give either reynolds_per_m or h, not both")
+            reynolds_per_m = isa_reynolds_per_m(mach, h, dT, xp)
+        elif reynolds_per_m is None:
+            raise TypeError("give reynolds_per_m or h")
 
         cd0 = self.parasite(mach, reynolds_per_m, xp)
         lift_squared = cl**2
@@ -134,9 +195,11 @@ class DragExpression:
         self,
         cl: Any,
         mach: Any,
-        reynolds_per_m: Any,
+        reynolds_per_m: Any = None,
         xp: Any = np,
         *,
+        h: Any = None,
+        dT: Any = 0.0,
         flap_angle_rad: Any = None,
         gear_extension_fraction: Any = None,
     ) -> Any:
@@ -147,6 +210,8 @@ class DragExpression:
             mach,
             reynolds_per_m,
             xp,
+            h=h,
+            dT=dT,
             flap_angle_rad=flap_angle_rad,
             gear_extension_fraction=gear_extension_fraction,
         )
