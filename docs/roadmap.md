@@ -1,6 +1,15 @@
 # Roadmap
 
-Updated: 2026-11-22
+Updated: 2026-11-23
+
+## Release 0.2.0
+
+- **Flaps and landing gear.** Drag increments for deployed flaps and landing
+  gear. See [Drag](drag.md#flaps-and-landing-gear).
+- **JAX and CasADi.** The full drag model as a closed-form expression for
+  optimization and automatic differentiation. See
+  [Math backends](backends.md).
+- **Aircraft data.** The Gulfstream G650 (GLF6) is added.
 
 ## Release 0.1.0
 
