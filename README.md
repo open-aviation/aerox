@@ -111,17 +111,17 @@ coefficients, the two agree within a few percent. Away from that condition, or
 at high lift coefficients where wave drag appears, use the full model. See
 [the drag docs](docs/drag.md) for details.
 
-![A320 drag polar at three Mach numbers, with the parabolic polar](docs/figures/drag-polar.png)
+<img src="docs/figures/drag-polar.png" alt="A320 drag polar at three Mach numbers, with the parabolic polar" width="575">
 
-![Drag rise with Mach number for the A320, B738, B789 and A388](docs/figures/drag-rise.png)
+<img src="docs/figures/drag-rise.png" alt="Drag rise with Mach number for the A320, B738, B789 and A388" width="580">
 
 What each part of the aircraft contributes to the drag:
 
-![Drag breakdown by aircraft part for five aircraft](docs/figures/drag-breakdown.png)
+<img src="docs/figures/drag-breakdown.png" alt="Drag breakdown by aircraft part for five aircraft" width="773">
 
 The maximum lift-to-drag ratio of every turbofan aircraft in the database:
 
-![Maximum lift-to-drag ratio against wing aspect ratio for turbofan aircraft](docs/figures/fleet-lift-to-drag.png)
+<img src="docs/figures/fleet-lift-to-drag.png" alt="Maximum lift-to-drag ratio against wing aspect ratio for turbofan aircraft" width="572">
 
 ### Kinematics
 
@@ -139,7 +139,7 @@ print(k.cruise_range_nm)      # 2700 nm
 The A320 values, phase by phase (see [the kinematics docs](docs/kinematics.md)
 for all fields):
 
-![The A320 kinematic data, phase by phase from takeoff to landing, under a schematic flight profile](docs/figures/kinematics.png)
+<img src="docs/figures/kinematics.png" alt="The A320 kinematic data, phase by phase from takeoff to landing, under a schematic flight profile" width="820">
 
 ### Atmosphere and speeds
 
