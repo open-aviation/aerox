@@ -2,7 +2,7 @@
 
 Updated: 2026-11-24
 
-## Release 0.3.0
+## Release 0.3
 
 - **Aircraft data.** Six types are added: A124, A310, AT76, B735, E290, and
   SU95.
