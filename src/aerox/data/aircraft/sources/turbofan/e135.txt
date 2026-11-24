@@ -83,24 +83,42 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 300
+  Value: 320
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_t00011at_rev_38
+  Source URL: https://web.archive.org/web/20220406020756/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/e44ea5dbb7cb644c862587d4004e7a3f/$FILE/T00011AT_Rev38.pdf
+  Document title: FAA Type Certificate Data Sheet T00011AT, Embraer EMB-135 and EMB-145, Revision 38
+  Revision date: 2022-01-21
+  Page or section: Sections 5-8 (EMB-135ER, -135LR, -135KE, -135KL), Airspeed Limits (EAS), p. 10-17
+  Applicability: EMB-135ER, -135LR, -135KE (ERJ-140ER), -135KL (ERJ-140LR)
+  Notes: VMO 250 KEAS from 0 to 8,000 ft, 320 KEAS from 10,000 to 26,300 ft (linear between); 0.78 Mach to 37,000 ft. Values are KEAS. Legacy 600 (EMB-135BJ): 320 KEAS to 27,625 ft and 0.80 Mach (p. 18). Copy of FAA TCDS T00011AT Rev 38; later revisions may differ.
 END FIELD
 
 FIELD mmo
   Value: 0.78
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_t00011at_rev_38
+  Source URL: https://web.archive.org/web/20220406020756/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/e44ea5dbb7cb644c862587d4004e7a3f/$FILE/T00011AT_Rev38.pdf
+  Document title: FAA Type Certificate Data Sheet T00011AT, Embraer EMB-135 and EMB-145, Revision 38
+  Revision date: 2022-01-21
+  Page or section: Sections 5-8 (EMB-135ER, -135LR, -135KE, -135KL), Airspeed Limits (EAS), p. 10-17
+  Applicability: EMB-135ER, -135LR, -135KE, -135KL
+  Notes: Legacy 600 (EMB-135BJ): 0.80 Mach above 27,625 ft. Copy of FAA TCDS T00011AT Rev 38; later revisions may differ.
 END FIELD
 
 FIELD ceiling
   Value: 37000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_t00011at_rev_38
+  Source URL: https://web.archive.org/web/20220406020756/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/e44ea5dbb7cb644c862587d4004e7a3f/$FILE/T00011AT_Rev38.pdf
+  Document title: FAA Type Certificate Data Sheet T00011AT, Embraer EMB-135 and EMB-145, Revision 38
+  Revision date: 2022-01-21
+  Page or section: Data pertinent to all models, Maximum Operating Altitude, p. 37
+  Applicability: EMB-135ER, -135LR, -135KE, -135KL
+  Notes: EMB-135BJ (Legacy): 39,000 ft before S/N 145863, 41,000 ft from S/N 145863 or with SB 145LEG-00-0007. Copy of FAA TCDS T00011AT Rev 38; later revisions may differ.
 END FIELD
 
 WING AND TAIL GEOMETRY

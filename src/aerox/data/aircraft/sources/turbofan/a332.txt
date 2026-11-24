@@ -86,15 +86,27 @@ END FIELD
 FIELD vmo
   Value: 330
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a46nm_rev_31
+  Source URL: https://web.archive.org/web/20220927004823/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/47f429eb1c4a37808625839f0077dd8f/$FILE/A46NM_Rev_31.pdf
+  Document title: FAA Type Certificate Data Sheet A46NM, Airbus A330, Revision 31
+  Revision date: 2019-02-06
+  Page or section: Section V (all A330 models), Airspeed Limits, p. 29
+  Applicability: A330-200 series
+  Notes: VMO/MMO 330 KIAS/0.86; VD 365 KIAS/0.93. Copy of FAA TCDS A46NM Rev 31; later revisions may differ.
 END FIELD
 
 FIELD mmo
   Value: 0.86
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a46nm_rev_31
+  Source URL: https://web.archive.org/web/20220927004823/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/47f429eb1c4a37808625839f0077dd8f/$FILE/A46NM_Rev_31.pdf
+  Document title: FAA Type Certificate Data Sheet A46NM, Airbus A330, Revision 31
+  Revision date: 2019-02-06
+  Page or section: Section V (all A330 models), Airspeed Limits, p. 29
+  Applicability: A330-200 series
+  Notes: Indicated airspeed unless otherwise stated; one Mach value given. Copy of FAA TCDS A46NM Rev 31; later revisions may differ.
 END FIELD
 
 FIELD ceiling

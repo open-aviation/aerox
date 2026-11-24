@@ -86,15 +86,27 @@ END FIELD
 FIELD vmo
   Value: 340
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a12ea_rev_47
+  Source URL: https://web.archive.org/web/20170322205842/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/c4feacd6d313eb6e862580650058d836/$FILE/A12EA_Rev_47.pdf
+  Document title: FAA Type Certificate Data Sheet A12EA, Gulfstream G-1159 series, G-IV, GV, Revision 47
+  Revision date: 2016-11-02
+  Page or section: Section V (Model G-IV), Airspeed Limits refer to the altitude/Mach flight envelope, p. 19 and chart p. 21
+  Applicability: G-IV S/N 1000 and subsequent
+  Notes: Chart: Vc 340 KCAS to 28,000 ft. S/N 1000-1213 with ASC 61: 320 KCAS and Mmo 0.86 (chart p. 22). GIV-X (G350/G450) limits refer to the AFM. Copy of FAA TCDS A12EA Rev 47; later revisions may differ.
 END FIELD
 
 FIELD mmo
   Value: 0.88
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a12ea_rev_47
+  Source URL: https://web.archive.org/web/20170322205842/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/c4feacd6d313eb6e862580650058d836/$FILE/A12EA_Rev_47.pdf
+  Document title: FAA Type Certificate Data Sheet A12EA, Gulfstream G-1159 series, G-IV, GV, Revision 47
+  Revision date: 2016-11-02
+  Page or section: Section V (Model G-IV), altitude/Mach flight envelope chart, p. 21
+  Applicability: G-IV S/N 1000 and subsequent
+  Notes: Chart: Mmo (Mc) 0.85 at 28,000 ft, 0.88 from 34,000 to 43,500 ft, 0.874 at 45,000 ft. Copy of FAA TCDS A12EA Rev 47; later revisions may differ.
 END FIELD
 
 FIELD ceiling

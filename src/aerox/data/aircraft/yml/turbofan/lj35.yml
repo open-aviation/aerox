@@ -8,15 +8,15 @@ certification:
   type_certificate: A10CE
   issue: Latest current revision not retrieved; Revision 68 found but marked historical
   issue_date: null
-mtow: 8300
-mlw: 6500
+mtow: 8301
+mlw: 6940
 mzfw: null
 minimum_weight: null
 oew: 4590
 mfc: 2275
-vmo: 300
+vmo: 350
 mmo: 0.81
-ceiling: 41000
+ceiling: 45000
 icao_wtc: medium
 eu_wtc: light
 faa_wtc: medium
@@ -80,9 +80,9 @@ drag:
   configuration: clean
   geometry_tier: B-observed-core-scaled-tails
   confidence: medium-low
-  reference_altitude_ft: 49712.2
+  reference_altitude_ft: 49709.7
   reference_mach: 0.77
-  reference_reynolds_per_m: 3021013.4
+  reference_reynolds_per_m: 3021377.4
   span_efficiency_factor: 0.94173
   unresolved_fraction_of_resolved_drag: null
   roughness_excrescence_fraction: 0.09

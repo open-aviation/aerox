@@ -86,15 +86,27 @@ END FIELD
 FIELD vmo
   Value: 350
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a2nm_rev_32
+  Source URL: https://web.archive.org/web/20161113002944/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/e114c6bafec130a086257f5b007aeb12/$FILE/A2NM_Rev32.pdf
+  Document title: FAA Type Certificate Data Sheet A2NM, Boeing 757, Revision 32
+  Revision date: 2016-02-16
+  Page or section: Section I (Model 757-200), Airspeed Limits, p. 1
+  Applicability: 757-200 (also 757-200PF, -200CB)
+  Notes: VMO 350 KCAS/0.86 M; no separate indicated value. Copy of FAA TCDS A2NM Rev 32; later revisions may differ.
 END FIELD
 
 FIELD mmo
   Value: 0.86
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a2nm_rev_32
+  Source URL: https://web.archive.org/web/20161113002944/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/e114c6bafec130a086257f5b007aeb12/$FILE/A2NM_Rev32.pdf
+  Document title: FAA Type Certificate Data Sheet A2NM, Boeing 757, Revision 32
+  Revision date: 2016-02-16
+  Page or section: Section I (Model 757-200), Airspeed Limits, p. 1
+  Applicability: 757-200 (also 757-200PF, -200CB)
+  Notes: Copy of FAA TCDS A2NM Rev 32; later revisions may differ.
 END FIELD
 
 FIELD ceiling

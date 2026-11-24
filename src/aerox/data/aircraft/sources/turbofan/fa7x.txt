@@ -83,17 +83,29 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 350
+  Value: 370
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a59nm_rev_2
+  Source URL: https://web.archive.org/web/20161115140856/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/ccecf7321e9ffc9e86257ffb005b50ab/$FILE/A59NM_Rev2.pdf
+  Document title: FAA Type Certificate Data Sheet A59NM, Dassault Falcon 7X, Revision 2
+  Revision date: 2016-06-27
+  Page or section: Section I (Falcon 7X), Airspeed Limits, p. 2
+  Applicability: Falcon 7X
+  Notes: Indicated airspeeds. VMO 350 kt at sea level, straight-line variation to 370 kt at 10,000 ft; 370 kt from 10,000 to 28,000 ft. The stored value is the highest VMO. Copy of FAA TCDS A59NM Rev 2; later revisions may differ.
 END FIELD
 
 FIELD mmo
   Value: 0.9
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a59nm_rev_2
+  Source URL: https://web.archive.org/web/20161115140856/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/ccecf7321e9ffc9e86257ffb005b50ab/$FILE/A59NM_Rev2.pdf
+  Document title: FAA Type Certificate Data Sheet A59NM, Dassault Falcon 7X, Revision 2
+  Revision date: 2016-06-27
+  Page or section: Section I (Falcon 7X), Airspeed Limits, p. 2
+  Applicability: Falcon 7X
+  Notes: MMO 0.90 from 28,000 to 51,000 ft. Copy of FAA TCDS A59NM Rev 2; later revisions may differ.
 END FIELD
 
 FIELD ceiling

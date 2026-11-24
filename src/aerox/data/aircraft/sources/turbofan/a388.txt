@@ -100,8 +100,14 @@ END FIELD
 FIELD ceiling
   Value: 43000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a58nm_rev_6
+  Source URL: https://web.archive.org/web/20161112154218/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/083db0ec0506b38c86257ce500633f91/$FILE/A58NM_Rev_6.pdf
+  Document title: FAA Type Certificate Data Sheet A58NM, Airbus A380, Revision 6
+  Revision date: 2014-05-27
+  Page or section: Maximum Operating Altitude, p. 3
+  Applicability: A380-841, -842, -861
+  Notes: Copy of FAA TCDS A58NM Rev 6; later revisions may differ.
 END FIELD
 
 WING AND TAIL GEOMETRY

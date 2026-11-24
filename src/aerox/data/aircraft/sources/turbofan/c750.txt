@@ -85,15 +85,27 @@ END FIELD
 FIELD vmo
   Value: 350
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_t00007wi_rev_16
+  Source URL: https://web.archive.org/web/20161115071315/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/7c49b3121e0c47b886257ea40054ab1b/$FILE/T00007WI_Rev_16.pdf
+  Document title: FAA Type Certificate Data Sheet T00007WI, Cessna 750 (Citation X), Revision 16
+  Revision date: 2015-07-29
+  Page or section: Section I (Model 750), Airspeed Limits, p. 3
+  Applicability: Model 750, all S/N
+  Notes: VMO 270 KIAS below 8,000 ft; 350 KIAS (350 KCAS) from 8,000 ft to 30,650 ft (to 31,500 ft for S/N 750-0501 and on). The record certification line gives T00009WI; the Model 750 TCDS is T00007WI. Copy of FAA TCDS T00007WI Rev 16; later revisions may differ.
 END FIELD
 
 FIELD mmo
   Value: 0.92
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_t00007wi_rev_16
+  Source URL: https://web.archive.org/web/20161115071315/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/7c49b3121e0c47b886257ea40054ab1b/$FILE/T00007WI_Rev_16.pdf
+  Document title: FAA Type Certificate Data Sheet T00007WI, Cessna 750 (Citation X), Revision 16
+  Revision date: 2015-07-29
+  Page or section: Section I (Model 750), Airspeed Limits, p. 3
+  Applicability: Model 750 S/N 750-0001 to -0500 (record weight scope S/N 750-0173 to -0500)
+  Notes: MMO 0.92 Mach indicated (0.92 calibrated) above 30,650 ft. S/N 750-0501 and on: 0.935 above 31,500 ft. Copy of FAA TCDS T00007WI Rev 16; later revisions may differ.
 END FIELD
 
 FIELD ceiling

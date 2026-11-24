@@ -9,12 +9,12 @@ certification:
   issue: '2'
   issue_date: '2024-11-14'
 mtow: 285990
-mlw: 195000
+mlw: 207745
 mzfw: null
 minimum_weight: null
 oew: 125872
 mfc: 146155
-vmo: 320
+vmo: 365
 mmo: 0.87
 ceiling: 43200
 icao_wtc: heavy

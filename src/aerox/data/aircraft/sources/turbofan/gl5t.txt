@@ -85,15 +85,27 @@ END FIELD
 FIELD vmo
   Value: 340
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_t00003ny_rev_21
+  Source URL: https://web.archive.org/web/20191208204602/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/4f1b4f63f2065cd3862584b8007befe1/$FILE/T00003NY_R21.pdf
+  Document title: FAA Type Certificate Data Sheet T00003NY, Bombardier BD-700, Revision 21
+  Revision date: 2019-11-12
+  Page or section: Section III (BD-700-1A10 and -1A11), Airspeed Limits, p. 7
+  Applicability: BD-700-1A11
+  Notes: VMO 300 kt from sea level to 8,000 ft and 340 kt from 8,000 to 30,267 ft. The TCDS does not state whether the knots are IAS or CAS. Copy of FAA TCDS T00003NY Rev 21; later revisions may differ.
 END FIELD
 
 FIELD mmo
   Value: 0.89
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_t00003ny_rev_21
+  Source URL: https://web.archive.org/web/20191208204602/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/4f1b4f63f2065cd3862584b8007befe1/$FILE/T00003NY_R21.pdf
+  Document title: FAA Type Certificate Data Sheet T00003NY, Bombardier BD-700, Revision 21
+  Revision date: 2019-11-12
+  Page or section: Section III (BD-700-1A10 and -1A11), Airspeed Limits, p. 7
+  Applicability: BD-700-1A11
+  Notes: MMO 0.89 from 30,267 to 35,000 ft, 0.871 at 47,000 ft and 0.855 at 51,000 ft (0.858 and 0.842 with modification 700T01613, Note 8; all BD-700-1A11 have it). Copy of FAA TCDS T00003NY Rev 21; later revisions may differ.
 END FIELD
 
 FIELD ceiling

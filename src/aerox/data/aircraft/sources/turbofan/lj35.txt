@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Bombardier Learjet 35/36
 ICAO: LJ35
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,29 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 8300
+  Value: 8301
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a10ce_rev_67
+  Source URL: https://web.archive.org/web/20161227210050/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/396c71dfcebb3fb186257df2004e83ee/$FILE/A10CE_Rev_67.pdf
+  Document title: FAA Type Certificate Data Sheet A10CE, Learjet 23 to 60 series, Revision 67
+  Revision date: 2015-02-19
+  Page or section: Section IV (Models 35, 36, 35A, 36A), Maximum Weights, p. 10; Note 17, p. 35
+  Applicability: Models 35/36/35A/36A per ECR 2234 or AAK 80-2 (18,300 lb takeoff)
+  Notes: Basic 17,000 lb; 18,000 lb with ECR 1495/1517. The 18,300 lb option is the highest takeoff weight. Copy of FAA TCDS A10CE Rev 67; later revisions may differ.
 END FIELD
 
 FIELD mlw
-  Value: 6500
+  Value: 6940
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a10ce_rev_67
+  Source URL: https://web.archive.org/web/20161227210050/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/396c71dfcebb3fb186257df2004e83ee/$FILE/A10CE_Rev_67.pdf
+  Document title: FAA Type Certificate Data Sheet A10CE, Learjet 23 to 60 series, Revision 67
+  Revision date: 2015-02-19
+  Page or section: Section IV (Models 35, 36, 35A, 36A), Maximum Weights, p. 10; Note 18, p. 35
+  Applicability: Models 35/36/35A/36A per ECR 2233 or AAK 80-3 (15,300 lb landing)
+  Notes: Basic landing weight 14,300 lb (6,486 kg). Copy of FAA TCDS A10CE Rev 67; later revisions may differ.
 END FIELD
 
 FIELD mzfw
@@ -78,24 +90,42 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 300
+  Value: 350
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a10ce_rev_67
+  Source URL: https://web.archive.org/web/20161227210050/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/396c71dfcebb3fb186257df2004e83ee/$FILE/A10CE_Rev_67.pdf
+  Document title: FAA Type Certificate Data Sheet A10CE, Learjet 23 to 60 series, Revision 67
+  Revision date: 2015-02-19
+  Page or section: Section IV (Models 35, 36, 35A, 36A), Airspeed Limits (CAS), p. 9
+  Applicability: Models 35, 36, 35A, 36A
+  Notes: VMO (CAS) basic 300 kt to 14,000 ft and 350 kt from 14,000 to 23,900 ft; with ECR 2342/AAK 83-2 (Note 28) 300 kt to 8,000 ft; with ECR 2498 (Note 29) 350 kt from sea level to 23,900 ft. Note 4: the AFM gives indicated values. Copy of FAA TCDS A10CE Rev 67; later revisions may differ.
 END FIELD
 
 FIELD mmo
   Value: 0.81
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a10ce_rev_67
+  Source URL: https://web.archive.org/web/20161227210050/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/396c71dfcebb3fb186257df2004e83ee/$FILE/A10CE_Rev_67.pdf
+  Document title: FAA Type Certificate Data Sheet A10CE, Learjet 23 to 60 series, Revision 67
+  Revision date: 2015-02-19
+  Page or section: Section IV (Models 35, 36, 35A, 36A), Airspeed Limits (CAS), p. 9
+  Applicability: Models 35, 36, 35A, 36A with autopilot or Mach trim operating
+  Notes: MMO 0.81 from 23,900 to 45,000 ft with autopilot or Mach trim operating; 0.73 otherwise. Copy of FAA TCDS A10CE Rev 67; later revisions may differ.
 END FIELD
 
 FIELD ceiling
-  Value: 41000
+  Value: 45000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a10ce_rev_67
+  Source URL: https://web.archive.org/web/20161227210050/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/396c71dfcebb3fb186257df2004e83ee/$FILE/A10CE_Rev_67.pdf
+  Document title: FAA Type Certificate Data Sheet A10CE, Learjet 23 to 60 series, Revision 67
+  Revision date: 2015-02-19
+  Page or section: Section IV (Models 35, 36, 35A, 36A), Maximum Operating Altitude, p. 10
+  Applicability: Models 35, 36, 35A, 36A
+  Notes: Copy of FAA TCDS A10CE Rev 67; later revisions may differ.
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -409,7 +439,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 49712.2
+  Value: 49709.7
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -421,10 +451,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 3021013.4
+  Value: 3021377.4
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=49712.2 ft; Mach=0.770000; ISA temperature and density
+  Inputs: altitude=49709.7 ft; Mach=0.770000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.94173

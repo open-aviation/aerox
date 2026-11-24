@@ -8,14 +8,14 @@ certification:
   type_certificate: A10CE
   issue: Latest current revision not retrieved; Revision 68 found but marked historical
   issue_date: null
-mtow: 7030
-mlw: 6900
+mtow: 7711
+mlw: 6940
 mzfw: null
 minimum_weight: null
 oew: 4471
 mfc: 1418
 vmo: 300
-mmo: 0.81
+mmo: 0.78
 ceiling: 51000
 icao_wtc: medium
 eu_wtc: light

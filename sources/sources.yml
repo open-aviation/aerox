@@ -3427,3 +3427,363 @@ sources:
   licensing_redistribution: US government publication; copy hosted as an attachment on the EASA certification hub
   relevant_pages: Section I airspeed limits (p. 3), maximum weights and maximum operating altitude (p. 4-5); Section II (Citation VII)
   limitations: Revision 26 may not be the current FAA revision; the FAA DRS copy could not be fetched. Weights and VMO schedule depend on serial number and SB650-32-13.
+- id: faa_a10ce_rev_67
+  title: FAA Type Certificate Data Sheet A10CE, Learjet 23 to 60 series, Revision 67
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20161227210050/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/396c71dfcebb3fb186257df2004e83ee/$FILE/A10CE_Rev_67.pdf
+  original_url: http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/396c71dfcebb3fb186257df2004e83ee/$FILE/A10CE_Rev_67.pdf
+  document_number: A10CE
+  issue_revision: Revision 67
+  publication_date: 2015-02-19
+  capture_date: 2016-12-27
+  access_date: 2026-11-24
+  applicable_aircraft: Learjet 24, 25, 28, 31, 35, 36, 55, 60 series
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Section IV (Models 35/36/35A/36A, p. 9-10), VII (Models 31/31A, p. 20-22), VIII (Model 60, p. 23-25); Notes 17, 18, 29, 30, 40 (p. 35-36)
+  limitations: Archived copy of Revision 67. Revision 68 (2024, faa_a10ce_r68_2024_historical) could not be fetched. Model 31 and Model 60 airspeed limits are charts. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_a12ea_rev_47
+  title: FAA Type Certificate Data Sheet A12EA, Gulfstream G-1159 series, G-IV, GV, Revision 47
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20170322205842/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/c4feacd6d313eb6e862580650058d836/$FILE/A12EA_Rev_47.pdf
+  original_url: http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/c4feacd6d313eb6e862580650058d836/$FILE/A12EA_Rev_47.pdf
+  document_number: A12EA
+  issue_revision: Revision 47
+  publication_date: 2016-11-02
+  capture_date: 2017-03-22
+  access_date: 2026-11-24
+  applicable_aircraft: G-1159, G-1159A, G-1159B, G-IV, GV, GV-SP, GIV-X
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Section V (G-IV) airspeed limits (p. 19) and altitude/Mach flight envelope charts (p. 21-22)
+  limitations: Archived copy of Revision 47; later FAA revisions were not reachable. GV, GV-SP and GIV-X airspeed limits refer to the AFM. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_a16nm_rev_8
+  title: FAA Type Certificate Data Sheet A16NM, IAI 1125 Astra, Gulfstream G100 and G150, Revision 8
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20161228005407/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/c3b99d33d92d16bc862572e300697f82/$FILE/A16NM.pdf
+  original_url: http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/c3b99d33d92d16bc862572e300697f82/$FILE/A16NM.pdf
+  document_number: A16NM
+  issue_revision: Revision 8
+  publication_date: 2007-05-23
+  capture_date: 2016-12-28
+  access_date: 2026-11-24
+  applicable_aircraft: 1125 Westwind Astra, Astra SPX, Gulfstream 100, Gulfstream G150
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Data pertinent to Model Gulfstream G150, airspeed limits (p. 5-6)
+  limitations: Archived copy of Revision 8; later FAA revisions were not reachable. VMO is given in KCAS. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_a16sw_rev_28
+  title: FAA Type Certificate Data Sheet A16SW, Beechcraft MU-300-10, 400, 400A, 400T, Revision 28
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20161228005621/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/df21fb0cd091c33d86257bde00559d21/$FILE/A16SW_Rev_28.pdf
+  original_url: http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/df21fb0cd091c33d86257bde00559d21/$FILE/A16SW_Rev_28.pdf
+  document_number: A16SW
+  issue_revision: Revision 28
+  publication_date: 2013-04-12
+  capture_date: 2016-12-28
+  access_date: 2026-11-24
+  applicable_aircraft: MU-300-10 Diamond II, 400 Beechjet, 400A Beechjet (Hawker 400XP), 400T (T-1A)
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: "Section I (p. 2-4), Section II (Model 400A: airspeed p. 6, weights p. 7, altitude p. 8), Section III (p. 12-13), Note 11 (p. 10)"
+  limitations: Archived copy of Revision 28; later FAA revisions were not reachable. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_a16we_rev_70
+  title: FAA Type Certificate Data Sheet A16WE, Boeing 737, Revision 70
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20220401153200/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/895761b8337eb5db862587d0005b4f8b/$FILE/A16WE_Rev70.pdf
+  original_url: https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/895761b8337eb5db862587d0005b4f8b/$FILE/A16WE_Rev70.pdf
+  document_number: A16WE
+  issue_revision: Revision 70
+  publication_date: 2022-01-20
+  capture_date: 2022-04-01
+  access_date: 2026-11-24
+  applicable_aircraft: Boeing 737-100 to -500, 737-600/-700/-700C/-800/-900/-900ER, 737-8, 737-9, 737-8200
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Sections IV-VI airspeed limits (p. 9, 13, 15); Data pertinent to 737-100 to -500, maximum operating altitude (p. 17); Section VII (p. 24), IX (p. 55), XI (p. 69) airspeed limits
+  limitations: Archived copy of Revision 70; later FAA revisions (737-7 and 737-10) were not reachable. VMO is given in KCAS. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_a1nm_rev_35
+  title: FAA Type Certificate Data Sheet A1NM, Boeing 767, Revision 35
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20161113003005/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/b9e61e631046f10186257fd900588ed4/$FILE/A1NM_Rev35.pdf
+  original_url: http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/b9e61e631046f10186257fd900588ed4/$FILE/A1NM_Rev35.pdf
+  document_number: A1NM
+  issue_revision: Revision 35
+  publication_date: 2016-06-20
+  capture_date: 2016-11-13
+  access_date: 2026-11-24
+  applicable_aircraft: Boeing 767-200, 767-300, 767-300F, 767-400ER
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Section I (p. 1), II (p. 3), IV (p. 5) airspeed limits
+  limitations: Archived copy of Revision 35; later FAA revisions (767-2C) were not reachable. VMO is given in KCAS. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_a21ea_rev_47
+  title: FAA Type Certificate Data Sheet A21EA, Bombardier CL-600 (Challenger and CRJ), Revision 47
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20210506234943/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/18868b39ce48f2528625848100781661/$FILE/A21EA_R47.pdf
+  original_url: https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/18868b39ce48f2528625848100781661/$FILE/A21EA_R47.pdf
+  document_number: A21EA
+  issue_revision: Revision 47
+  publication_date: 2019-09-18
+  capture_date: 2021-05-06
+  access_date: 2026-11-24
+  applicable_aircraft: CL-600-1A11, -2A12, -2B16, -2B19, -2C10, -2C11, -2D15, -2D24, -2E25
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Section IV (CL-600-2B19, p. 11), V (CL-600-2C10, p. 13), VIII (CL-600-2D24, p. 20) airspeed limits
+  limitations: Archived copy of Revision 47. Revision 49 (2019-11-26) moved the CRJ models to TCDS A21EA-1; no copy of A21EA-1 was found. VMO is given in KCAS. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_a22we_rev_13
+  title: FAA Type Certificate Data Sheet A22WE, Boeing (McDonnell Douglas) DC-10, MD-10, MD-11, Revision 13
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20181202202624/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/2cf3306625f6fd1586258281006f6d29/$FILE/A22WE_Rev_13.pdf
+  original_url: https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/2cf3306625f6fd1586258281006f6d29/$FILE/A22WE_Rev_13.pdf
+  document_number: A22WE
+  issue_revision: Revision 13
+  publication_date: 2018-04-30
+  capture_date: 2018-12-02
+  access_date: 2026-11-24
+  applicable_aircraft: DC-10 series, MD-10-10F, MD-10-30F, MD-11, MD-11F
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: "Section VIII (MD-11): airspeed limits (p. 25), maximum weights (p. 26), maximum operating altitude (p. 27)"
+  limitations: Archived copy of Revision 13; later FAA revisions were not reachable. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_a2nm_rev_32
+  title: FAA Type Certificate Data Sheet A2NM, Boeing 757, Revision 32
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20161113002944/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/e114c6bafec130a086257f5b007aeb12/$FILE/A2NM_Rev32.pdf
+  original_url: http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/e114c6bafec130a086257f5b007aeb12/$FILE/A2NM_Rev32.pdf
+  document_number: A2NM
+  issue_revision: Revision 32
+  publication_date: 2016-02-16
+  capture_date: 2016-11-13
+  access_date: 2026-11-24
+  applicable_aircraft: Boeing 757-200, 757-200PF, 757-200CB, 757-300
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Section I airspeed limits (p. 1); Section IV airspeed limits (p. 5)
+  limitations: Archived copy of Revision 32; later FAA revisions were not reachable. VMO is given in KCAS. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_a3eu_rev_43
+  title: FAA Type Certificate Data Sheet A3EU, Hawker 125 series, Revision 43
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20161227134830/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/4b6205df95b2e1f886257f230064f96d/$FILE/A3EU_Rev_43.pdf
+  original_url: http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/4b6205df95b2e1f886257f230064f96d/$FILE/A3EU_Rev_43.pdf
+  document_number: A3EU
+  issue_revision: Revision 43
+  publication_date: 2015-12-22
+  capture_date: 2016-12-27
+  access_date: 2026-11-24
+  applicable_aircraft: DH.125, HS.125, BH.125, BAe.125 series, Hawker 800XP, 850XP, 900XP, 750
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Section XVI (BAe.125 Series 800A) maximum operating altitude (p. 54); Section XVIII (Hawker 800XP) (p. 62)
+  limitations: Archived copy of Revision 43; later FAA revisions were not reachable. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_a43nm_rev_11
+  title: FAA Type Certificate Data Sheet A43NM, Airbus A340, Revision 11
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20161112153904/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/f150941b7c37a02e86257dd30074ae8c/$FILE/A43NM_Rev_11.pdf
+  original_url: http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/f150941b7c37a02e86257dd30074ae8c/$FILE/A43NM_Rev_11.pdf
+  document_number: A43NM
+  issue_revision: Revision 11
+  publication_date: 2015-01-20
+  capture_date: 2016-11-12
+  access_date: 2026-11-24
+  applicable_aircraft: Airbus A340-200, -300, -500 and -600 series
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Section III airspeed limits (p. 6); Section VI airspeed limits (p. 13)
+  limitations: Archived copy of Revision 11; later FAA revisions were not reachable. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_a46nm_rev_31
+  title: FAA Type Certificate Data Sheet A46NM, Airbus A330, Revision 31
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20220927004823/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/47f429eb1c4a37808625839f0077dd8f/$FILE/A46NM_Rev_31.pdf
+  original_url: https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/47f429eb1c4a37808625839f0077dd8f/$FILE/A46NM_Rev_31.pdf
+  document_number: A46NM
+  issue_revision: Revision 31
+  publication_date: 2019-02-06
+  capture_date: 2022-09-27
+  access_date: 2026-11-24
+  applicable_aircraft: Airbus A330-200, A330-200F, A330-300 and A330-900 series
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Section V, airspeed limits (p. 29) and maximum operating altitude (p. 30)
+  limitations: Archived copy of Revision 31; later FAA revisions were not reachable. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_a53nm_rev_8
+  title: FAA Type Certificate Data Sheet A53NM, IAI Galaxy and Gulfstream 200, Revision 8
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20161115140656/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/4f1aa4e304eb92e38625704b00573f4b/$FILE/A53NM.pdf
+  original_url: http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/4f1aa4e304eb92e38625704b00573f4b/$FILE/A53NM.pdf
+  document_number: A53NM
+  issue_revision: Revision 8
+  publication_date: 2005-07-12
+  capture_date: 2016-11-15
+  access_date: 2026-11-24
+  applicable_aircraft: Galaxy, Gulfstream 200
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Data pertinent to all models, airspeed limits (p. 2)
+  limitations: Archived copy of Revision 8; later FAA revisions were not reachable. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_a56nm_rev_10
+  title: FAA Type Certificate Data Sheet A56NM, Embraer ERJ 170, Revision 10
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20161115140823/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/a9b8ba4752766df286257e70006898ff/$FILE/A56NM_Rev_10.pdf
+  original_url: http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/a9b8ba4752766df286257e70006898ff/$FILE/A56NM_Rev_10.pdf
+  document_number: A56NM
+  issue_revision: Revision 10
+  publication_date: 2015-06-26
+  capture_date: 2016-11-15
+  access_date: 2026-11-24
+  applicable_aircraft: ERJ 170-100 STD/LR/SU/SE, ERJ 170-200 STD/LR/SU
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Section I airspeed limits (p. 2); Sections V-VII refer to Section I/II (p. 4-5)
+  limitations: Archived copy of Revision 10; later FAA revisions (ERJ 170-200 LL) were not reachable. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_a57nm_rev_15
+  title: FAA Type Certificate Data Sheet A57NM, Embraer ERJ 190, Revision 15
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20190718214728/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/7afedf7b999161e98625841100646aa1/$FILE/A57NM_Rev_15.pdf
+  original_url: https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/7afedf7b999161e98625841100646aa1/$FILE/A57NM_Rev_15.pdf
+  document_number: A57NM
+  issue_revision: Revision 15
+  publication_date: 2019-04-15
+  capture_date: 2019-07-18
+  access_date: 2026-11-24
+  applicable_aircraft: ERJ 190-100 STD/LR/IGW/ECJ, ERJ 190-200 STD/LR/IGW, ERJ 190-300, ERJ 190-400
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Section I airspeed limits (p. 2); Section V refers to Section II (p. 5)
+  limitations: Archived copy of Revision 15; later FAA revisions were not reachable. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_a58nm_rev_6
+  title: FAA Type Certificate Data Sheet A58NM, Airbus A380, Revision 6
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20161112154218/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/083db0ec0506b38c86257ce500633f91/$FILE/A58NM_Rev_6.pdf
+  original_url: http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/083db0ec0506b38c86257ce500633f91/$FILE/A58NM_Rev_6.pdf
+  document_number: A58NM
+  issue_revision: Revision 6
+  publication_date: 2014-05-27
+  capture_date: 2016-11-12
+  access_date: 2026-11-24
+  applicable_aircraft: Airbus A380-841, A380-842, A380-861
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Maximum operating altitude (p. 3); airspeed limits refer to the AFM (p. 2)
+  limitations: Archived copy of Revision 6; later FAA revisions were not reachable. No VMO/MMO values in the TCDS. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_a59nm_rev_2
+  title: FAA Type Certificate Data Sheet A59NM, Dassault Falcon 7X, Revision 2
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20161115140856/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/ccecf7321e9ffc9e86257ffb005b50ab/$FILE/A59NM_Rev2.pdf
+  original_url: http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/ccecf7321e9ffc9e86257ffb005b50ab/$FILE/A59NM_Rev2.pdf
+  document_number: A59NM
+  issue_revision: Revision 2
+  publication_date: 2016-06-27
+  capture_date: 2016-11-15
+  access_date: 2026-11-24
+  applicable_aircraft: Falcon 7X
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Section I airspeed limits (p. 2)
+  limitations: Archived copy of Revision 2; later FAA revisions were not reachable. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_a6we_rev_30
+  title: FAA Type Certificate Data Sheet A6WE, Boeing (McDonnell Douglas) DC-9, MD-80, MD-90, 717, Revision 30
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20161227184657/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/81bb7f7f3caf760686257ca80068d081/$FILE/A6WE_Rev_30.pdf
+  original_url: http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/81bb7f7f3caf760686257ca80068d081/$FILE/A6WE_Rev_30.pdf
+  document_number: A6WE
+  issue_revision: Revision 30
+  publication_date: 2014-03-25
+  capture_date: 2016-12-27
+  access_date: 2026-11-24
+  applicable_aircraft: DC-9 series, MD-80 series, MD-90-30, 717-200
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Section XVIII (717-200) airspeed limits (p. 66); Data pertinent to all models, maximum operating altitude (p. 67)
+  limitations: Archived copy of Revision 30; later FAA revisions were not reachable. VMO is given in KCAS. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_a7eu_rev_17
+  title: FAA Type Certificate Data Sheet A7EU, Dassault Fan Jet Falcon (Falcon 20) and Mystere-Falcon 200, Revision 17
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20161227193458/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/a25e4b6f73098c31862576fd0060e179/$FILE/A7eu.pdf
+  original_url: http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/a25e4b6f73098c31862576fd0060e179/$FILE/A7eu.pdf
+  document_number: A7EU
+  issue_revision: Revision 17
+  publication_date: 2010-03-02
+  capture_date: 2016-12-27
+  access_date: 2026-11-24
+  applicable_aircraft: Fan Jet Falcon basic, Series C, D, E, F, G, Mystere-Falcon 200, Mystere-Falcon 20-C5/D5/E5/F5
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Section IV (Series E, p. 8-9) and V (Series F, p. 9-10) airspeed limits and maximum weights; Data pertinent to all models, maximum operating altitude (p. 21)
+  limitations: Archived copy of Revision 17; later FAA revisions were not reachable. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_t00001se_rev_45
+  title: FAA Type Certificate Data Sheet T00001SE, Boeing 777, Revision 45
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20220125132451/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/764353a09b837fcf8625877b006642b5/$FILE/T00001SE_Rev45.pdf
+  original_url: https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/764353a09b837fcf8625877b006642b5/$FILE/T00001SE_Rev45.pdf
+  document_number: T00001SE
+  issue_revision: Revision 45
+  publication_date: 2021-10-22
+  capture_date: 2022-01-25
+  access_date: 2026-11-24
+  applicable_aircraft: Boeing 777-200, 777-300, 777-300ER, 777-200LR, 777F
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Section I (p. 2), II (p. 6), III (p. 9), IV (p. 13) airspeed limits
+  limitations: Archived copy of Revision 45; later FAA revisions were not reachable. 777-300ER, 777-200LR and 777F VMO is given in KEAS. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_t00003ny_rev_21
+  title: FAA Type Certificate Data Sheet T00003NY, Bombardier BD-700, Revision 21
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20191208204602/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/4f1b4f63f2065cd3862584b8007befe1/$FILE/T00003NY_R21.pdf
+  original_url: https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/4f1b4f63f2065cd3862584b8007befe1/$FILE/T00003NY_R21.pdf
+  document_number: T00003NY
+  issue_revision: Revision 21
+  publication_date: 2019-11-12
+  capture_date: 2019-12-08
+  access_date: 2026-11-24
+  applicable_aircraft: BD-700-1A10, BD-700-1A11, BD-700-2A12
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Section III (BD-700-1A10 and -1A11) airspeed limits (p. 7)
+  limitations: Archived copy of Revision 21; later FAA revisions were not reachable. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_t00007wi_rev_16
+  title: FAA Type Certificate Data Sheet T00007WI, Cessna 750 (Citation X), Revision 16
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20161115071315/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/7c49b3121e0c47b886257ea40054ab1b/$FILE/T00007WI_Rev_16.pdf
+  original_url: http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/7c49b3121e0c47b886257ea40054ab1b/$FILE/T00007WI_Rev_16.pdf
+  document_number: T00007WI
+  issue_revision: Revision 16
+  publication_date: 2015-07-29
+  capture_date: 2016-11-15
+  access_date: 2026-11-24
+  applicable_aircraft: Model 750, all serial numbers
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Section I airspeed limits (p. 3)
+  limitations: Archived copy of Revision 16; later FAA revisions were not reachable. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_t00011at_rev_38
+  title: FAA Type Certificate Data Sheet T00011AT, Embraer EMB-135 and EMB-145, Revision 38
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20220406020756/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/e44ea5dbb7cb644c862587d4004e7a3f/$FILE/T00011AT_Rev38.pdf
+  original_url: https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/e44ea5dbb7cb644c862587d4004e7a3f/$FILE/T00011AT_Rev38.pdf
+  document_number: T00011AT
+  issue_revision: Revision 38
+  publication_date: 2022-01-21
+  capture_date: 2022-04-06
+  access_date: 2026-11-24
+  applicable_aircraft: EMB-145, -145ER, -145MR, -145LR, -145XR, EMB-135ER, -135LR, -135KE, -135KL, Legacy 600 and 650
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Model sections, airspeed limits (p. 2-23); Data pertinent to all models, maximum operating altitude (p. 37)
+  limitations: Archived copy of Revision 38; later FAA revisions were not reachable. VMO is given in KEAS. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_t00012wi_rev_13
+  title: FAA Type Certificate Data Sheet T00012WI, Cessna 680 and 680A, Revision 13
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20171107024543/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/a59a62810bf35268862580e30066bb5f/$FILE/T00012WI_Rev_13.pdf
+  original_url: http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/a59a62810bf35268862580e30066bb5f/$FILE/T00012WI_Rev_13.pdf
+  document_number: T00012WI
+  issue_revision: Revision 13
+  publication_date: 2017-03-06
+  capture_date: 2017-11-07
+  access_date: 2026-11-24
+  applicable_aircraft: Model 680 Sovereign, Model 680A Latitude
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Section I airspeed limitations (p. 2); maximum operating altitude (p. 4)
+  limitations: Archived copy of Revision 13; later FAA revisions were not reachable. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).

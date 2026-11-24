@@ -86,15 +86,27 @@ END FIELD
 FIELD vmo
   Value: 305
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_t00012wi_rev_13
+  Source URL: https://web.archive.org/web/20171107024543/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/a59a62810bf35268862580e30066bb5f/$FILE/T00012WI_Rev_13.pdf
+  Document title: FAA Type Certificate Data Sheet T00012WI, Cessna 680 and 680A, Revision 13
+  Revision date: 2017-03-06
+  Page or section: Section I (Model 680), Airspeed limitations, p. 2
+  Applicability: Model 680 Sovereign, S/N 680-0001 and on
+  Notes: VMO 270 KIAS below 8,000 ft; 305 KIAS (305 KCAS; 304 KCAS for S/N 680-0501 and on) from 8,000 to 29,833 ft. Model 680A Latitude has the same VMO/MMO. Copy of FAA TCDS T00012WI Rev 13; later revisions may differ.
 END FIELD
 
 FIELD mmo
   Value: 0.8
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_t00012wi_rev_13
+  Source URL: https://web.archive.org/web/20171107024543/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/a59a62810bf35268862580e30066bb5f/$FILE/T00012WI_Rev_13.pdf
+  Document title: FAA Type Certificate Data Sheet T00012WI, Cessna 680 and 680A, Revision 13
+  Revision date: 2017-03-06
+  Page or section: Section I (Model 680), Airspeed limitations, p. 2
+  Applicability: Model 680 Sovereign, all S/N
+  Notes: MMO 0.80 MI (0.80 Mach calibrated) above 29,833 ft. Copy of FAA TCDS T00012WI Rev 13; later revisions may differ.
 END FIELD
 
 FIELD ceiling

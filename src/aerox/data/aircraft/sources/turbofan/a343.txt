@@ -86,15 +86,27 @@ END FIELD
 FIELD vmo
   Value: 330
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a43nm_rev_11
+  Source URL: https://web.archive.org/web/20161112153904/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/f150941b7c37a02e86257dd30074ae8c/$FILE/A43NM_Rev_11.pdf
+  Document title: FAA Type Certificate Data Sheet A43NM, Airbus A340, Revision 11
+  Revision date: 2015-01-20
+  Page or section: Section III (A340-200/-300), Airspeed Limits, p. 6
+  Applicability: A340-300 series
+  Notes: VMO/MMO 330 KIAS/0.86 M. The A340-500/-600 (Section VI) have the same values. Copy of FAA TCDS A43NM Rev 11; later revisions may differ.
 END FIELD
 
 FIELD mmo
   Value: 0.86
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a43nm_rev_11
+  Source URL: https://web.archive.org/web/20161112153904/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/f150941b7c37a02e86257dd30074ae8c/$FILE/A43NM_Rev_11.pdf
+  Document title: FAA Type Certificate Data Sheet A43NM, Airbus A340, Revision 11
+  Revision date: 2015-01-20
+  Page or section: Section III (A340-200/-300), Airspeed Limits, p. 6
+  Applicability: A340-300 series
+  Notes: One Mach value given with the KIAS VMO. Copy of FAA TCDS A43NM Rev 11; later revisions may differ.
 END FIELD
 
 FIELD ceiling

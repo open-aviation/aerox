@@ -86,15 +86,27 @@ END FIELD
 FIELD vmo
   Value: 320
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a56nm_rev_10
+  Source URL: https://web.archive.org/web/20161115140823/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/a9b8ba4752766df286257e70006898ff/$FILE/A56NM_Rev_10.pdf
+  Document title: FAA Type Certificate Data Sheet A56NM, Embraer ERJ 170, Revision 10
+  Revision date: 2015-06-26
+  Page or section: Section I, Airspeed Limits (I.A.S.), p. 2; Sections V-VI (ERJ 170-200 STD/LR) same as ERJ 170-100 LR, p. 4-5
+  Applicability: ERJ 170-200 STD, LR, SU
+  Notes: VMO 300 KIAS from sea level to 8,000 ft, increasing linearly to 320 KIAS at 10,000 ft; 320 KIAS from 10,000 to 28,887 ft; MMO 0.82 from 28,887 to 41,000 ft. Copy of FAA TCDS A56NM Rev 10; later revisions may differ.
 END FIELD
 
 FIELD mmo
   Value: 0.82
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a56nm_rev_10
+  Source URL: https://web.archive.org/web/20161115140823/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/a9b8ba4752766df286257e70006898ff/$FILE/A56NM_Rev_10.pdf
+  Document title: FAA Type Certificate Data Sheet A56NM, Embraer ERJ 170, Revision 10
+  Revision date: 2015-06-26
+  Page or section: Section I, Airspeed Limits (I.A.S.), p. 2; Sections V-VI (ERJ 170-200 STD/LR) same as ERJ 170-100 LR, p. 4-5
+  Applicability: ERJ 170-200 STD, LR, SU
+  Notes: Revision 10 predates the ERJ 170-200 long-wing variant. Copy of FAA TCDS A56NM Rev 10; later revisions may differ.
 END FIELD
 
 FIELD ceiling

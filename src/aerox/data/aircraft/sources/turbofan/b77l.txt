@@ -86,15 +86,27 @@ END FIELD
 FIELD vmo
   Value: 330
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_t00001se_rev_45
+  Source URL: https://web.archive.org/web/20220125132451/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/764353a09b837fcf8625877b006642b5/$FILE/T00001SE_Rev45.pdf
+  Document title: FAA Type Certificate Data Sheet T00001SE, Boeing 777, Revision 45
+  Revision date: 2021-10-22
+  Page or section: Section IV (777-200LR series), Airspeed Limits, p. 13
+  Applicability: 777-200LR series
+  Notes: VMO/MMO 330 KEAS/0.89 M; the TCDS gives VMO as equivalent airspeed. Copy of FAA TCDS T00001SE Rev 45; later revisions may differ.
 END FIELD
 
 FIELD mmo
-  Value: 0.86
+  Value: 0.89
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_t00001se_rev_45
+  Source URL: https://web.archive.org/web/20220125132451/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/764353a09b837fcf8625877b006642b5/$FILE/T00001SE_Rev45.pdf
+  Document title: FAA Type Certificate Data Sheet T00001SE, Boeing 777, Revision 45
+  Revision date: 2021-10-22
+  Page or section: Section IV (777-200LR series), Airspeed Limits, p. 13
+  Applicability: 777-200LR series
+  Notes: Copy of FAA TCDS T00001SE Rev 45; later revisions may differ.
 END FIELD
 
 FIELD ceiling

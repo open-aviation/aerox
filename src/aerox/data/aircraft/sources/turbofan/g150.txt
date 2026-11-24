@@ -84,15 +84,27 @@ END FIELD
 FIELD vmo
   Value: 330
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a16nm_rev_8
+  Source URL: https://web.archive.org/web/20161228005407/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/c3b99d33d92d16bc862572e300697f82/$FILE/A16NM.pdf
+  Document title: FAA Type Certificate Data Sheet A16NM, IAI 1125 Astra, Gulfstream G100 and G150, Revision 8
+  Revision date: 2007-05-23
+  Page or section: Data pertinent to Model Gulfstream G150, Airspeed Limits, p. 6
+  Applicability: Gulfstream G150
+  Notes: VMO 310 KCAS from sea level to 8,000 ft, increasing linearly to 330 KCAS at 29,260 ft. Values are KCAS. Copy of FAA TCDS A16NM Rev 8; later revisions may differ.
 END FIELD
 
 FIELD mmo
   Value: 0.85
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a16nm_rev_8
+  Source URL: https://web.archive.org/web/20161228005407/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/c3b99d33d92d16bc862572e300697f82/$FILE/A16NM.pdf
+  Document title: FAA Type Certificate Data Sheet A16NM, IAI 1125 Astra, Gulfstream G100 and G150, Revision 8
+  Revision date: 2007-05-23
+  Page or section: Data pertinent to Model Gulfstream G150, Airspeed Limits, p. 6
+  Applicability: Gulfstream G150
+  Notes: MMO 0.85 above 29,260 ft; 0.78 with autopilot disengaged and Mach trim inoperative above 24,770 ft. Copy of FAA TCDS A16NM Rev 8; later revisions may differ.
 END FIELD
 
 FIELD ceiling

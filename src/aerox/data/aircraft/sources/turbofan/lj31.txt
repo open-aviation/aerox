@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Bombardier Learjet 31
 ICAO: LJ31
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,29 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 7030
+  Value: 7711
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a10ce_rev_67
+  Source URL: https://web.archive.org/web/20161227210050/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/396c71dfcebb3fb186257df2004e83ee/$FILE/A10CE_Rev_67.pdf
+  Document title: FAA Type Certificate Data Sheet A10CE, Learjet 23 to 60 series, Revision 67
+  Revision date: 2015-02-19
+  Page or section: Section VII (Models 31, 31A), Maximum Weight, p. 22; Note 40, p. 36
+  Applicability: Model 31 with Learjet STC ST00583WI (17,000 lb takeoff)
+  Notes: Basic 15,500 lb (7,031 kg); 16,500 lb per Note 30. Model 31A: 16,500 (Note 33), 17,000 (Note 41) or 17,700 lb (Note 42, 8,029 kg). Copy of FAA TCDS A10CE Rev 67; later revisions may differ.
 END FIELD
 
 FIELD mlw
-  Value: 6900
+  Value: 6940
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a10ce_rev_67
+  Source URL: https://web.archive.org/web/20161227210050/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/396c71dfcebb3fb186257df2004e83ee/$FILE/A10CE_Rev_67.pdf
+  Document title: FAA Type Certificate Data Sheet A10CE, Learjet 23 to 60 series, Revision 67
+  Revision date: 2015-02-19
+  Page or section: Section VII (Models 31, 31A), Maximum Weight, p. 22
+  Applicability: Model 31 (15,300 lb landing)
+  Notes: Model 31A: 16,000 lb (7,257 kg) with ECR 4214 (Note 43). Copy of FAA TCDS A10CE Rev 67; later revisions may differ.
 END FIELD
 
 FIELD mzfw
@@ -80,22 +92,40 @@ END FIELD
 FIELD vmo
   Value: 300
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a10ce_rev_67
+  Source URL: https://web.archive.org/web/20161227210050/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/396c71dfcebb3fb186257df2004e83ee/$FILE/A10CE_Rev_67.pdf
+  Document title: FAA Type Certificate Data Sheet A10CE, Learjet 23 to 60 series, Revision 67
+  Revision date: 2015-02-19
+  Page or section: Section VII (Models 31, 31A), Airspeed/Mach limits chart (IAS), p. 20
+  Applicability: Model 31 basic weights
+  Notes: Read from the Model 31 chart: VMO 300 KIAS from sea level to about 29,000 ft. The Model 31A chart shows about 325 KIAS (unlabelled line). Optional weights refer to AFM FM-112/FM-121. Copy of FAA TCDS A10CE Rev 67; later revisions may differ.
 END FIELD
 
 FIELD mmo
-  Value: 0.81
+  Value: 0.78
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a10ce_rev_67
+  Source URL: https://web.archive.org/web/20161227210050/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/396c71dfcebb3fb186257df2004e83ee/$FILE/A10CE_Rev_67.pdf
+  Document title: FAA Type Certificate Data Sheet A10CE, Learjet 23 to 60 series, Revision 67
+  Revision date: 2015-02-19
+  Page or section: Section VII (Models 31, 31A), Airspeed/Mach limits chart (IAS), p. 20
+  Applicability: Model 31 basic weights
+  Notes: Model 31 chart label MMO (.78 MI). The Model 31A chart shows about 0.81 with autopilot or Mach trim and 0.78 MI with both inoperative. Copy of FAA TCDS A10CE Rev 67; later revisions may differ.
 END FIELD
 
 FIELD ceiling
   Value: 51000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a10ce_rev_67
+  Source URL: https://web.archive.org/web/20161227210050/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/396c71dfcebb3fb186257df2004e83ee/$FILE/A10CE_Rev_67.pdf
+  Document title: FAA Type Certificate Data Sheet A10CE, Learjet 23 to 60 series, Revision 67
+  Revision date: 2015-02-19
+  Page or section: Section VII (Models 31, 31A), Maximum Operating Altitude, p. 22
+  Applicability: Models 31 and 31A
+  Notes: Copy of FAA TCDS A10CE Rev 67; later revisions may differ.
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -387,7 +417,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9469; roughness_excrescence/computed=0.0900; nacelle_tier=C-estimated-fan-diameter
-  Zero-lift terms at reference (drag counts): wing=62.66; fuselage=62.54; horizontal_tail=21.57; vertical_tail=13.70; nacelles=8.90; pylons=1.19; fuselage_upsweep=4.39; control_surface_gaps=1.33; nacelle_base=3.26; roughness_excrescence=16.16
+  Zero-lift terms at reference (drag counts): wing=62.66; fuselage=62.54; horizontal_tail=21.57; vertical_tail=13.70; nacelles=9.68; pylons=1.29; fuselage_upsweep=4.39; control_surface_gaps=1.33; nacelle_base=3.41; roughness_excrescence=16.25
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration

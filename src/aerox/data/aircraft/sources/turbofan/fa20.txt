@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Dassault Falcon/Mystère 20
 ICAO: FA20
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,29 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 13160
+  Value: 13000
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a7eu_rev_17
+  Source URL: https://web.archive.org/web/20161227193458/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/a25e4b6f73098c31862576fd0060e179/$FILE/A7eu.pdf
+  Document title: FAA Type Certificate Data Sheet A7EU, Dassault Fan Jet Falcon (Falcon 20) and Mystere-Falcon 200, Revision 17
+  Revision date: 2010-03-02
+  Page or section: Sections IV (Series E) and V (Series F), Maximum Weights, p. 8 and 10
+  Applicability: Fan Jet Falcon Series E and F (CF700-2D-2 engines)
+  Notes: Maximum ramp and takeoff weight 28,660 lb. Copy of FAA TCDS A7EU Rev 17; later revisions may differ.
 END FIELD
 
 FIELD mlw
-  Value: 12400
+  Value: 12392
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a7eu_rev_17
+  Source URL: https://web.archive.org/web/20161227193458/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/a25e4b6f73098c31862576fd0060e179/$FILE/A7eu.pdf
+  Document title: FAA Type Certificate Data Sheet A7EU, Dassault Fan Jet Falcon (Falcon 20) and Mystere-Falcon 200, Revision 17
+  Revision date: 2010-03-02
+  Page or section: Sections IV (Series E) and V (Series F), Maximum Weights, p. 8 and 10
+  Applicability: Fan Jet Falcon Series E and F (CF700-2D-2 engines)
+  Notes: Maximum landing weight 27,320 lb. Copy of FAA TCDS A7EU Rev 17; later revisions may differ.
 END FIELD
 
 FIELD mzfw
@@ -78,24 +90,42 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 300
+  Value: 390
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a7eu_rev_17
+  Source URL: https://web.archive.org/web/20161227193458/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/a25e4b6f73098c31862576fd0060e179/$FILE/A7eu.pdf
+  Document title: FAA Type Certificate Data Sheet A7EU, Dassault Fan Jet Falcon (Falcon 20) and Mystere-Falcon 200, Revision 17
+  Revision date: 2010-03-02
+  Page or section: Sections IV (Series E) and V (Series F), Airspeed Limits (IAS), p. 8-9
+  Applicability: Fan Jet Falcon Series E and F (CF700-2D-2 engines)
+  Notes: VMO 350 KIAS at sea level, straight-line variation to 390 KIAS at 23,000 ft. The stored value is the highest VMO. Copy of FAA TCDS A7EU Rev 17; later revisions may differ.
 END FIELD
 
 FIELD mmo
-  Value: 0.8
+  Value: 0.88
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a7eu_rev_17
+  Source URL: https://web.archive.org/web/20161227193458/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/a25e4b6f73098c31862576fd0060e179/$FILE/A7eu.pdf
+  Document title: FAA Type Certificate Data Sheet A7EU, Dassault Fan Jet Falcon (Falcon 20) and Mystere-Falcon 200, Revision 17
+  Revision date: 2010-03-02
+  Page or section: Sections IV (Series E) and V (Series F), Airspeed Limits (IAS), p. 8-9
+  Applicability: Fan Jet Falcon Series E and F (CF700-2D-2 engines)
+  Notes: MMO 0.88 at 23,000 ft and above. Copy of FAA TCDS A7EU Rev 17; later revisions may differ.
 END FIELD
 
 FIELD ceiling
   Value: 42000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a7eu_rev_17
+  Source URL: https://web.archive.org/web/20161227193458/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/a25e4b6f73098c31862576fd0060e179/$FILE/A7eu.pdf
+  Document title: FAA Type Certificate Data Sheet A7EU, Dassault Fan Jet Falcon (Falcon 20) and Mystere-Falcon 200, Revision 17
+  Revision date: 2010-03-02
+  Page or section: Data pertinent to all models, Maximum Operating Altitude, p. 21
+  Applicability: All A7EU models
+  Notes: Copy of FAA TCDS A7EU Rev 17; later revisions may differ.
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -387,7 +417,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9332; roughness_excrescence/computed=0.0900; nacelle_tier=C-estimated-fan-diameter
-  Zero-lift terms at reference (drag counts): wing=58.72; fuselage=56.76; horizontal_tail=20.51; vertical_tail=13.04; nacelles=9.24; pylons=1.23; fuselage_upsweep=4.73; control_surface_gaps=1.05; nacelle_base=2.61; roughness_excrescence=15.11
+  Zero-lift terms at reference (drag counts): wing=58.83; fuselage=56.86; horizontal_tail=20.55; vertical_tail=13.06; nacelles=9.16; pylons=1.22; fuselage_upsweep=4.73; control_surface_gaps=1.05; nacelle_base=2.60; roughness_excrescence=15.12
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -409,7 +439,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 50720.2
+  Value: 50974.7
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -421,10 +451,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 2840761.4
+  Value: 2806222.9
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=50720.2 ft; Mach=0.760000; ISA temperature and density
+  Inputs: altitude=50974.7 ft; Mach=0.760000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.933209

@@ -85,22 +85,40 @@ END FIELD
 FIELD vmo
   Value: 340
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a16we_rev_70
+  Source URL: https://web.archive.org/web/20220401153200/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/895761b8337eb5db862587d0005b4f8b/$FILE/A16WE_Rev70.pdf
+  Document title: FAA Type Certificate Data Sheet A16WE, Boeing 737, Revision 70
+  Revision date: 2022-01-20
+  Page or section: Section V (Model 737-400), Airspeed Limits, p. 13
+  Applicability: Model 737-400, all engines
+  Notes: VMO/MMO 340/0.82 given in KCAS; no separate indicated value. Copy of FAA TCDS A16WE Rev 70; later revisions may differ.
 END FIELD
 
 FIELD mmo
   Value: 0.82
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a16we_rev_70
+  Source URL: https://web.archive.org/web/20220401153200/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/895761b8337eb5db862587d0005b4f8b/$FILE/A16WE_Rev70.pdf
+  Document title: FAA Type Certificate Data Sheet A16WE, Boeing 737, Revision 70
+  Revision date: 2022-01-20
+  Page or section: Section V (Model 737-400), Airspeed Limits, p. 13
+  Applicability: Model 737-400, all engines
+  Notes: The TCDS gives one Mach value with the KCAS VMO. Copy of FAA TCDS A16WE Rev 70; later revisions may differ.
 END FIELD
 
 FIELD ceiling
   Value: 37000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a16we_rev_70
+  Source URL: https://web.archive.org/web/20220401153200/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/895761b8337eb5db862587d0005b4f8b/$FILE/A16WE_Rev70.pdf
+  Document title: FAA Type Certificate Data Sheet A16WE, Boeing 737, Revision 70
+  Revision date: 2022-01-20
+  Page or section: Data pertinent to Models 737-100 to -500, Maximum Operating Altitude, p. 17
+  Applicability: Model 737-400
+  Notes: 37,000 ft for the 737-300, -400 and -500; 737-100/-200 are 35,000 ft (37,000 ft if authorized by the AFM). Copy of FAA TCDS A16WE Rev 70; later revisions may differ.
 END FIELD
 
 WING AND TAIL GEOMETRY

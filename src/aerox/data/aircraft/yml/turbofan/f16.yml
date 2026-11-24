@@ -72,9 +72,9 @@ engine:
   type: turbofan
   mount: in fuselage
   number: 1
-  default: F100-PW-100
+  default: F100-PW-200
   options:
-  - F100-PW-100
+  - F100-PW-200
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

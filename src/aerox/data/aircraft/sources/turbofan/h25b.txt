@@ -105,8 +105,14 @@ END FIELD
 FIELD ceiling
   Value: 41000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a3eu_rev_43
+  Source URL: https://web.archive.org/web/20161227134830/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/4b6205df95b2e1f886257f230064f96d/$FILE/A3EU_Rev_43.pdf
+  Document title: FAA Type Certificate Data Sheet A3EU, Hawker 125 series, Revision 43
+  Revision date: 2015-12-22
+  Page or section: Section XVIII (Hawker 800XP), Maximum Operating Altitude, p. 62
+  Applicability: Hawker 800XP; BAe.125 Series 800A/800B (Section XVI, p. 54)
+  Notes: The BAe.125 Series 1000 and Hawker 1000 are 43,000 ft. Copy of FAA TCDS A3EU Rev 43; later revisions may differ.
 END FIELD
 
 WING AND TAIL GEOMETRY

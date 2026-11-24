@@ -84,17 +84,29 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 315
+  Value: 335
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a21ea_rev_47
+  Source URL: https://web.archive.org/web/20210506234943/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/18868b39ce48f2528625848100781661/$FILE/A21EA_R47.pdf
+  Document title: FAA Type Certificate Data Sheet A21EA, Bombardier CL-600 (Challenger and CRJ), Revision 47
+  Revision date: 2019-09-18
+  Page or section: Section VIII (CL-600-2D24), Airspeed Limits (CAS), p. 20
+  Applicability: CL-600-2D24
+  Notes: VMO (CAS) 330 kt from sea level to 8,000 ft, 335 kt from 8,000 to 25,400 ft, 315 kt from 28,300 to 31,400 ft; MMO 0.80 from 25,400 to 28,300 ft and 0.85 from 31,400 to 41,000 ft. The stored value is the highest VMO. Copy of FAA TCDS A21EA Rev 47; later revisions may differ.
 END FIELD
 
 FIELD mmo
   Value: 0.85
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a21ea_rev_47
+  Source URL: https://web.archive.org/web/20210506234943/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/18868b39ce48f2528625848100781661/$FILE/A21EA_R47.pdf
+  Document title: FAA Type Certificate Data Sheet A21EA, Bombardier CL-600 (Challenger and CRJ), Revision 47
+  Revision date: 2019-09-18
+  Page or section: Section VIII (CL-600-2D24), Airspeed Limits (CAS), p. 20
+  Applicability: CL-600-2D24
+  Notes: MMO 0.85 from 31,400 to 41,000 ft; 0.84 from 34,000 to 41,000 ft with M/S 690T002727 (new winglet). Copy of FAA TCDS A21EA Rev 47; later revisions may differ.
 END FIELD
 
 FIELD ceiling

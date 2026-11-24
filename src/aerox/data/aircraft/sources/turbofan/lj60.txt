@@ -99,8 +99,14 @@ END FIELD
 FIELD ceiling
   Value: 51000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a10ce_rev_67
+  Source URL: https://web.archive.org/web/20161227210050/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/396c71dfcebb3fb186257df2004e83ee/$FILE/A10CE_Rev_67.pdf
+  Document title: FAA Type Certificate Data Sheet A10CE, Learjet 23 to 60 series, Revision 67
+  Revision date: 2015-02-19
+  Page or section: Section VIII (Model 60), Maximum Operating Altitude, p. 25
+  Applicability: Learjet Model 60
+  Notes: Copy of FAA TCDS A10CE Rev 67; later revisions may differ.
 END FIELD
 
 WING AND TAIL GEOMETRY

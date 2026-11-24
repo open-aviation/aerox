@@ -83,17 +83,29 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 320
+  Value: 360
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a53nm_rev_8
+  Source URL: https://web.archive.org/web/20161115140656/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/4f1aa4e304eb92e38625704b00573f4b/$FILE/A53NM.pdf
+  Document title: FAA Type Certificate Data Sheet A53NM, IAI Galaxy and Gulfstream 200, Revision 8
+  Revision date: 2005-07-12
+  Page or section: Data pertinent to all models, Airspeed Limits, p. 2
+  Applicability: Galaxy and Gulfstream 200 (identical except designation)
+  Notes: Normal operating weight: VMO 310 KIAS from sea level to 15,000 ft, 360 KIAS from 15,000 to 24,500 ft. Increased operating weight (MOD 7166 and 10082): 310 KIAS to 10,000 ft, 310-330 KIAS to 20,000 ft, 360 KIAS above 20,000 ft. Copy of FAA TCDS A53NM Rev 8; later revisions may differ.
 END FIELD
 
 FIELD mmo
   Value: 0.85
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a53nm_rev_8
+  Source URL: https://web.archive.org/web/20161115140656/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/4f1aa4e304eb92e38625704b00573f4b/$FILE/A53NM.pdf
+  Document title: FAA Type Certificate Data Sheet A53NM, IAI Galaxy and Gulfstream 200, Revision 8
+  Revision date: 2005-07-12
+  Page or section: Data pertinent to all models, Airspeed Limits, p. 2
+  Applicability: Galaxy and Gulfstream 200
+  Notes: MMO 0.85 above 24,500 ft; 0.81 with autopilot disengaged and Mach trim inoperative. Copy of FAA TCDS A53NM Rev 8; later revisions may differ.
 END FIELD
 
 FIELD ceiling

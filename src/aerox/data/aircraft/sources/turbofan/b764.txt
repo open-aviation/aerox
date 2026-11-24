@@ -84,15 +84,27 @@ END FIELD
 FIELD vmo
   Value: 360
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a1nm_rev_35
+  Source URL: https://web.archive.org/web/20161113003005/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/b9e61e631046f10186257fd900588ed4/$FILE/A1NM_Rev35.pdf
+  Document title: FAA Type Certificate Data Sheet A1NM, Boeing 767, Revision 35
+  Revision date: 2016-06-20
+  Page or section: Section IV (Model 767-400ER), Airspeed Limits, p. 5
+  Applicability: 767-400ER
+  Notes: VMO 360 KCAS/0.86 M; VD 420 KCAS to 17,854 ft and 0.91 M above 23,000 ft. Copy of FAA TCDS A1NM Rev 35; later revisions may differ.
 END FIELD
 
 FIELD mmo
   Value: 0.86
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a1nm_rev_35
+  Source URL: https://web.archive.org/web/20161113003005/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/b9e61e631046f10186257fd900588ed4/$FILE/A1NM_Rev35.pdf
+  Document title: FAA Type Certificate Data Sheet A1NM, Boeing 767, Revision 35
+  Revision date: 2016-06-20
+  Page or section: Section IV (Model 767-400ER), Airspeed Limits, p. 5
+  Applicability: 767-400ER
+  Notes: Copy of FAA TCDS A1NM Rev 35; later revisions may differ.
 END FIELD
 
 FIELD ceiling

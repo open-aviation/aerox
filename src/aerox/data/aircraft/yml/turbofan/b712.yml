@@ -15,7 +15,7 @@ minimum_weight: null
 oew: 32000
 mfc: 16000
 vmo: 340
-mmo: 0.76
+mmo: 0.82
 ceiling: 37000
 icao_wtc: medium
 eu_wtc: lower medium

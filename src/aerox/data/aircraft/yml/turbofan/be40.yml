@@ -8,8 +8,8 @@ certification:
   type_certificate: A16SW
   issue: Current revision not retrieved
   issue_date: null
-mtow: 7300
-mlw: 7100
+mtow: 7394
+mlw: 7121
 mzfw: null
 minimum_weight: null
 oew: 5000
@@ -80,9 +80,9 @@ drag:
   configuration: clean
   geometry_tier: B-observed-core-scaled-tails
   confidence: medium-low
-  reference_altitude_ft: 51098.2
+  reference_altitude_ft: 50843.7
   reference_mach: 0.78
-  reference_reynolds_per_m: 2863028.6
+  reference_reynolds_per_m: 2898267.4
   span_efficiency_factor: 0.944568
   unresolved_fraction_of_resolved_drag: null
   roughness_excrescence_fraction: 0.09

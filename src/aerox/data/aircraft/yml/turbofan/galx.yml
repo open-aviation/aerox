@@ -14,7 +14,7 @@ mzfw: null
 minimum_weight: null
 oew: 9100
 mfc: 5400
-vmo: 320
+vmo: 360
 mmo: 0.85
 ceiling: 45000
 icao_wtc: medium

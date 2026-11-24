@@ -84,22 +84,40 @@ END FIELD
 FIELD vmo
   Value: 340
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a6we_rev_30
+  Source URL: https://web.archive.org/web/20161227184657/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/81bb7f7f3caf760686257ca80068d081/$FILE/A6WE_Rev_30.pdf
+  Document title: FAA Type Certificate Data Sheet A6WE, Boeing (McDonnell Douglas) DC-9, MD-80, MD-90, 717, Revision 30
+  Revision date: 2014-03-25
+  Page or section: Section XVIII (Model 717-200), Airspeed Limits, p. 66
+  Applicability: 717-200
+  Notes: VMO 340 KCAS from sea level to 26,000 ft; M 0.82 from 26,000 to 37,000 ft. Copy of FAA TCDS A6WE Rev 30; later revisions may differ.
 END FIELD
 
 FIELD mmo
-  Value: 0.76
+  Value: 0.82
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a6we_rev_30
+  Source URL: https://web.archive.org/web/20161227184657/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/81bb7f7f3caf760686257ca80068d081/$FILE/A6WE_Rev_30.pdf
+  Document title: FAA Type Certificate Data Sheet A6WE, Boeing (McDonnell Douglas) DC-9, MD-80, MD-90, 717, Revision 30
+  Revision date: 2014-03-25
+  Page or section: Section XVIII (Model 717-200), Airspeed Limits, p. 66
+  Applicability: 717-200
+  Notes: Copy of FAA TCDS A6WE Rev 30; later revisions may differ.
 END FIELD
 
 FIELD ceiling
   Value: 37000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a6we_rev_30
+  Source URL: https://web.archive.org/web/20161227184657/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/81bb7f7f3caf760686257ca80068d081/$FILE/A6WE_Rev_30.pdf
+  Document title: FAA Type Certificate Data Sheet A6WE, Boeing (McDonnell Douglas) DC-9, MD-80, MD-90, 717, Revision 30
+  Revision date: 2014-03-25
+  Page or section: Data pertinent to all models, Maximum Operating Altitude, p. 67
+  Applicability: DC-9-81, -82, -83, -87, MD-88, MD-90-30 and 717-200
+  Notes: Copy of FAA TCDS A6WE Rev 30; later revisions may differ.
 END FIELD
 
 WING AND TAIL GEOMETRY
