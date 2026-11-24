@@ -9,8 +9,8 @@ Updated: 2026-11-24
   uses the old names must use the new names.
 - **Verified limits.** Masses, VMO, MMO, and ceilings are checked against
   the FAA data sheets where the EASA data sheet refers to the flight manual.
-  The A320 family ceiling is 39,800 ft. The C650 and MD11 limits and the
-  masses of six piston aircraft are corrected. No record has a landing or
+  The C650 and MD11 limits and the masses of six piston aircraft are
+  corrected. No record has a landing or
   zero-fuel mass above its takeoff mass.
 - **Corrections.** The F15 and F16 engines are swapped to the correct
   types. The C310 default engine is the IO-520-M. The F2TH wing span is the
