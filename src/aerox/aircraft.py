@@ -680,7 +680,7 @@ def get_available_aircraft(data_dir: Optional[Path] = None) -> List[str]:
 
     Example:
         >>> icao_codes = get_available_aircraft()
-        >>> len(icao_codes) > 140
+        >>> len(icao_codes) > 150
         True
         >>> print("A320" in icao_codes)
         True

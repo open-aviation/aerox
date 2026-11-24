@@ -19,7 +19,7 @@ from aerox.models.drag.builder import (
 def test_all_aircraft_have_one_uniform_finite_active_drag_model():
     codes = get_available_aircraft()
 
-    assert len(codes) > 140
+    assert len(codes) > 150
     for code in codes:
         aircraft = load_aircraft(code)
         stored = aircraft.drag

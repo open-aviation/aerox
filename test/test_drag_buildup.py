@@ -243,7 +243,7 @@ def test_non_turbofan_and_high_speed_classes_keep_lumped_model(code, cd0, k):
 
 def test_every_record_builds_and_runtime_model_reproduces_report():
     codes = get_available_aircraft()
-    assert len(codes) > 140
+    assert len(codes) > 150
     for code in codes:
         aircraft = load_aircraft(code)
         report = build_drag_report(aircraft)
