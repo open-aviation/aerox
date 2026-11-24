@@ -72,12 +72,12 @@ engine:
   type: piston
   mount: nose mounted
   number: 1
-  default: Fixed pitch Textron Lycoming O-360-A4M (180HP)F
+  default: O-360-A4M
   options:
-  - Fixed pitch Textron Lycoming O-360-A4M (180HP)F
-  - constants speed propellor Textron Lycoming IO-360 M1A
-  - constant speed FADEC controlled Thielert "Centurion" 135 hp (101 kW) diesel engine
-  - Austro Engine AE 300 turbocharged common-rail injected 2.0 liter diesel engine with 168 HP and EECU single lever control system
+  - O-360-A4M
+  - IO-360-M1A
+  - TAE 125
+  - AE300
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

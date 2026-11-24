@@ -72,10 +72,10 @@ engine:
   type: piston
   mount: front wing leading mounted
   number: 2
-  default: 2 x 180 HP Lycoming O-360-E1AD piston engines with 2 or 3 blade propellers
+  default: O-360-E1AD
   options:
-  - 2 x 180 HP Lycoming O-360-E1AD piston engines with 2 or 3 blade propellers
-  - 2 x 180 HP Lycoming TO-360-E1A6D turbocharged piston engines with 2 blade propellers
+  - O-360-E1AD
+  - TO-360-E1A6D
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

@@ -72,7 +72,7 @@ engine:
   type: turbofan
   mount: underwing
   number: 4
-  default: P&W F117-PW-100 (PW2040)
+  default: F117-PW-100
   options:
   - F117-PW-100
 drag:

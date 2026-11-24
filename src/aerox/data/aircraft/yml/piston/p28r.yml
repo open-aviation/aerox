@@ -72,10 +72,10 @@ engine:
   type: piston
   mount: nose mounted
   number: 1
-  default: 1 x 180 HP Lycoming IO-360-B1E piston engine with two blade propeller
+  default: IO-360-B1E
   options:
-  - 1 x 180 HP Lycoming IO-360-B1E piston engine with two blade propeller
-  - 1 x 200 HP Lycoming IO-360-C1C piston engine with three blade propeller
+  - IO-360-B1E
+  - IO-360-C1C
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

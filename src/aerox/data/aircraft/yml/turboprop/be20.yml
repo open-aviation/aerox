@@ -72,9 +72,9 @@ engine:
   type: turboprop
   mount: front wing leading mounted
   number: 2
-  default: 2 x 850 SHP P&W PT6A-42 turboprops with 3 blade propellers
+  default: PT6A-42
   options:
-  - 2 x 850 SHP P&W PT6A-42 turboprops with 3 blade propellers
+  - PT6A-42
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

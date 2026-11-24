@@ -18,7 +18,7 @@ CFM56-2/F108,F108|^CFM56-2,1.735,,,short,B-fan-diameter-ratio,CFM56 family data 
 GE90-110B/115B,^GE90-11,3.251,,,short,B-fan-diameter-ratio,GE90 family data 128 in (secondary compilation of GE release),ratio
 Trent 800,^Trent 8\d\d\b,2.800,,,short,B-fan-diameter-ratio,Trent 800 family data 280 cm (secondary compilation),ratio
 PW1500G,^PW15\d\dG,1.854,,,short,B-fan-diameter-ratio,PW1000G family data 73 in (secondary compilation),ratio
-PW2000,PW20\d\d,1.994,,,short,B-fan-diameter-ratio,Jenkinson et al. engine data file B (PW2037 1.994 m; secondary),ratio
+PW2000,PW20\d\d|^F117,1.994,,,short,B-fan-diameter-ratio,Jenkinson et al. engine data file B (PW2037 1.994 m; secondary),ratio
 RB211-535,^RB211-535,1.882,,,long,B-fan-diameter-ratio,Jenkinson et al. engine data file B (535E4 1.882 m; secondary),ratio
 BR715,BR700-715,1.530,,,long,B-fan-diameter-ratio,Jenkinson et al. engine data file B (BR715-55 1.53 m; secondary),ratio
 CF34-3,^CF34-3,1.245,,,short,B-fan-diameter-ratio,Jenkinson et al. engine data file B (CF34-3A/3B 1.245 m; secondary),ratio

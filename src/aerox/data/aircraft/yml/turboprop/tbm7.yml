@@ -72,7 +72,7 @@ engine:
   type: turboprop
   mount: nose mounted
   number: 1
-  default: P&W PT6A-64 700 SHP
+  default: PT6A-64
   options:
   - PT6A-64
 drag:

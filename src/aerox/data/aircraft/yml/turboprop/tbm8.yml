@@ -72,7 +72,7 @@ engine:
   type: turboprop
   mount: nose mounted
   number: 1
-  default: P&W PT6A-66D engine flat rated at 850 shp (634 kW)
+  default: PT6A-66D
   options:
   - PT6A-66D
 drag:

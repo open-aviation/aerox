@@ -72,9 +72,9 @@ engine:
   type: piston
   mount: nose mounted
   number: 1
-  default: 300 HP Lycoming IO-540 piston engine with 2 blade propeller
+  default: IO-540
   options:
-  - 300 HP Lycoming IO-540 piston engine with 2 blade propeller
+  - IO-540
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

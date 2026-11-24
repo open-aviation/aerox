@@ -72,9 +72,9 @@ engine:
   type: turbofan
   mount: both sides of rear fuselage
   number: 2
-  default: Williams FJ44-3A
+  default: FJ44-3A
   options:
-  - Williams FJ44-3A
+  - FJ44-3A
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

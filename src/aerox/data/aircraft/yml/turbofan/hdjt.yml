@@ -72,9 +72,9 @@ engine:
   type: turbofan
   mount: over wing mounted
   number: 2
-  default: GE Honda HF-120 turbofan
+  default: HF120
   options:
-  - GE Honda HF-120 turbofan
+  - HF120
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

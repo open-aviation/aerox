@@ -72,9 +72,9 @@ engine:
   type: turbofan
   mount: both sides of rear fuselage
   number: 2
-  default: GE CFE738-1-1B turbofan
+  default: CFE738-1-1B
   options:
-  - GE CFE738-1-1B turbofan
+  - CFE738-1-1B
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

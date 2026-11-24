@@ -72,10 +72,10 @@ engine:
   type: turboprop
   mount: front wing leading mounted
   number: 2
-  default: P&W PT6A-65R turboprops
+  default: PT6A-65R
   options:
-  - P&W PT6A-65R turboprops
-  - P&W PT6A-67R turboprops
+  - PT6A-65R
+  - PT6A-67R
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

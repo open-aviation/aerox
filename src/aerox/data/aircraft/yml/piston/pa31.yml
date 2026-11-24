@@ -72,10 +72,10 @@ engine:
   type: piston
   mount: front wing leading mounted
   number: 2
-  default: 2 x 350 HP Lycoming TIO-540-J2BD turbocharged piston engines with 3 blade propellers
+  default: TIO-540-J2BD
   options:
-  - 2 x 350 HP Lycoming TIO-540-J2BD turbocharged piston engines with 3 blade propellers
-  - 2 x 310 HP Lycoming TIO-540-A turbocharged piston engines with 3 blade propellers
+  - TIO-540-J2BD
+  - TIO-540-A
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

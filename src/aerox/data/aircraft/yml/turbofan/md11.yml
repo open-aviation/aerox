@@ -16,7 +16,7 @@ oew: 125872
 mfc: 146155
 vmo: 320
 mmo: 0.87
-ceiling: 41000
+ceiling: 43200
 icao_wtc: heavy
 eu_wtc: lower heavy
 faa_wtc: heavy

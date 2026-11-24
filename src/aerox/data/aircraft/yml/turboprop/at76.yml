@@ -72,11 +72,11 @@ engine:
   type: turboprop
   mount: front wing leading mounted
   number: 2
-  default: 2 x 2500 SHP PWC PW127M turboprops with 6 blade propellers
+  default: PW127M
   options:
-  - 2 x 2500 SHP PWC PW127M turboprops with 6 blade propellers
-  - 2 x PWC PW127N turboprops with 6 blade propellers
-  - 2 x PWC PW127XT-M turboprops with 6 blade propellers
+  - PW127M
+  - PW127N
+  - PW127XT-M
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

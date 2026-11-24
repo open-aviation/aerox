@@ -74,7 +74,7 @@ engine:
   number: 2
   default: PW150A
   options:
-  - P&W PW150A turboprop
+  - PW150A
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

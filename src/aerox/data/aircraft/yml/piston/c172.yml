@@ -72,13 +72,13 @@ engine:
   type: piston
   mount: nose mounted
   number: 1
-  default: 1 x 145 HP Continental O-300-A
+  default: O-300-A
   options:
-  - 1 x 145 HP Continental O-300-A
-  - 1 x 175 HP Continental GO-300-C
-  - 1 x 145 HP Continental O-300-C
-  - 1 x 160 HP Lycoming O-320-H2AD
-  - 1 x 195 HP Continental IO-360-KB piston engine with 2 blade propeller
+  - O-300-A
+  - GO-300-C
+  - O-300-C
+  - O-320-H2AD
+  - IO-360-KB
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

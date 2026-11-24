@@ -74,8 +74,8 @@ engine:
   number: 2
   default: PW120
   options:
-  - 2 x 1800 SHP PWC PW120 turboprops with 4 blade propellers
-  - 2 x 2100 SHP PWC PW121 turboprops with 4 blade propellers
+  - PW120
+  - PW121
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

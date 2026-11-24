@@ -72,7 +72,7 @@ engine:
   type: turboprop
   mount: wing leading mounted
   number: 4
-  default: 4 x 4.508 SHP Allison T56-A15 turboprops with 4 blade propellers
+  default: T56-A-15
   options:
   - T56-A-15
   - AE2100D3

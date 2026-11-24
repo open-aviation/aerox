@@ -72,9 +72,9 @@ engine:
   type: turbofan
   mount: rear fuselage
   number: 2
-  default: Tay 611-8
+  default: TAY Mk611-8
   options:
-  - Tay 611-8
+  - TAY Mk611-8
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

@@ -72,9 +72,9 @@ engine:
   type: turboprop
   mount: nose mounted
   number: 1
-  default: 1 x 1.200 SHP P&W PT6A-67B turboprop with 4 bladed Hartzell propeller
+  default: PT6A-67B
   options:
-  - 1 x 1.200 SHP P&W PT6A-67B turboprop with 4 bladed Hartzell propeller
+  - PT6A-67B
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

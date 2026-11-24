@@ -72,9 +72,9 @@ engine:
   type: piston
   mount: nose mounted
   number: 1
-  default: 225 HP Continental IO-470-K piston engine with two blade propeller
+  default: IO-470-K
   options:
-  - 225 HP Continental IO-470-K piston engine with two blade propeller
+  - IO-470-K
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

@@ -72,9 +72,9 @@ engine:
   type: turboprop
   mount: nose mounted
   number: 1
-  default: P&W PT6A-42A turboprop with Hartzell 3 blade constant speed propeller
+  default: PT6A-42A
   options:
-  - P&W PT6A-42A turboprop with Hartzell 3 blade constant speed propeller
+  - PT6A-42A
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

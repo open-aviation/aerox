@@ -72,10 +72,10 @@ engine:
   type: piston
   mount: nose
   number: 1
-  default: 300 HP Continental IO-520L piston engine with 3 blade propeller
+  default: IO-520-L
   options:
-  - 300 HP Continental IO-520L piston engine with 3 blade propeller
-  - 310 HP Continental TSIO-520R turbocharged piston engine with 3 blade propeller
+  - IO-520-L
+  - TSIO-520-R
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

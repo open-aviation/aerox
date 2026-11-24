@@ -72,9 +72,9 @@ engine:
   type: piston
   mount: nose mounted
   number: 1
-  default: Continental IO-360-ES, 200 hp (149 kW)
+  default: IO-360-ES
   options:
-  - Continental IO-360-ES, 200 hp (149 kW)
+  - IO-360-ES
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

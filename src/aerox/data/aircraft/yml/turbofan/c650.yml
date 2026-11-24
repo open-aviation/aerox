@@ -8,14 +8,14 @@ certification:
   type_certificate: A9NM
   issue: current revision unresolved
   issue_date: null
-mtow: 14060
-mlw: 7700
+mtow: 9979
+mlw: 9072
 mzfw: null
 minimum_weight: null
 oew: 5357
 mfc: 4940
-vmo: 320
-mmo: 0.83
+vmo: 336
+mmo: 0.851
 ceiling: 51000
 icao_wtc: medium
 eu_wtc: light
@@ -80,9 +80,9 @@ drag:
   configuration: clean
   geometry_tier: B-observed-core-scaled-tails
   confidence: medium-low
-  reference_altitude_ft: 44273.7
+  reference_altitude_ft: 51098.2
   reference_mach: 0.8
-  reference_reynolds_per_m: 4076383.1
+  reference_reynolds_per_m: 2936439.6
   span_efficiency_factor: 0.950816
   unresolved_fraction_of_resolved_drag: null
   roughness_excrescence_fraction: 0.09

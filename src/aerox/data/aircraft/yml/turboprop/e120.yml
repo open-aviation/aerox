@@ -72,9 +72,9 @@ engine:
   type: turboprop
   mount: front wing leading mounted
   number: 2
-  default: PWC PW 118 turboprop 1800 SHP
+  default: PW118
   options:
-  - PWC PW 118 turboprop 1800 SHP
+  - PW118
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

@@ -72,9 +72,9 @@ engine:
   type: turbofan
   mount: both sides of rear fuselage
   number: 2
-  default: Williams FJ44-1AP-21
+  default: FJ44-1AP-21
   options:
-  - Williams FJ44-1AP-21
+  - FJ44-1AP-21
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

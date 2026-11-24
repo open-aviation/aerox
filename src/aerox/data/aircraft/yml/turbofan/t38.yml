@@ -72,7 +72,7 @@ engine:
   type: turbofan
   mount: both sides of fuselage
   number: 2
-  default: GE J85-GE-5 afterburning turbojets
+  default: J85-GE-5
   options:
   - J85-GE-5
 drag:

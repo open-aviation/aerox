@@ -3413,3 +3413,17 @@ sources:
   licensing_redistribution: EASA copyright; link rather than redistribute
   relevant_pages: Items 6, 7 (p. 9) and 9 (p. 10)
   limitations: MMO and weights depend on engine model and service bulletins (notes 8 and 12).
+- id: faa_a9nm_rev_26
+  title: FAA Type Certificate Data Sheet A9NM, Cessna 650 (Citation III, VI, VII), Revision 26
+  organization: Federal Aviation Administration
+  url: https://hub.easa.europa.eu/crt/docs/viewcrdattachment/cid_70920/aid_665/fmd_faa4245eab02ce24aa7e58b3f3df481a
+  direct_document_url: https://hub.easa.europa.eu/crt/docs/viewcrdattachment/cid_70920/aid_665/fmd_faa4245eab02ce24aa7e58b3f3df481a
+  document_number: A9NM
+  issue_revision: Revision 26
+  publication_date: 2000-10-30
+  access_date: 2026-11-24
+  applicable_aircraft: Cessna 650 Citation III, VI and VII
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; copy hosted as an attachment on the EASA certification hub
+  relevant_pages: Section I airspeed limits (p. 3), maximum weights and maximum operating altitude (p. 4-5); Section II (Citation VII)
+  limitations: Revision 26 may not be the current FAA revision; the FAA DRS copy could not be fetched. Weights and VMO schedule depend on serial number and SB650-32-13.

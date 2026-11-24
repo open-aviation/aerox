@@ -72,10 +72,10 @@ engine:
   type: piston
   mount: nose mounted
   number: 1
-  default: 160 HP Lycoming O-320-A2B piston engine with 2 blade propeller
+  default: O-320-A2B
   options:
-  - 160 HP Lycoming O-320-A2B piston engine with 2 blade propeller
-  - 180 HP Lycoming O-360-A4M piston engine with 2 blade propeller
+  - O-320-A2B
+  - O-360-A4M
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

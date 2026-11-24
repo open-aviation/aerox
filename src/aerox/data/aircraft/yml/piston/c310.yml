@@ -72,12 +72,12 @@ engine:
   type: piston
   mount: front wing leading mounted
   number: 2
-  default: 2 x 240 HP Continental IO-470-M
+  default: IO-470-M
   options:
-  - 2 x 240 HP Continental IO-470-M
-  - 2 x 260 HP Continental IO-470-D
-  - 2 x 285 HP Continental IO-520-M
-  - 2 x 285 HP Continental TSIO-520-B (T310 turbocharged)
+  - IO-470-M
+  - IO-470-D
+  - IO-520-M
+  - TSIO-520-B
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

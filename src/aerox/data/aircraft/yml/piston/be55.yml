@@ -72,9 +72,9 @@ engine:
   type: piston
   mount: front wing leading mounted
   number: 2
-  default: 260 HP Continental IO-470-L piston engine with two blade propellers
+  default: IO-470-L
   options:
-  - 260 HP Continental IO-470-L piston engine with two blade propellers
+  - IO-470-L
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

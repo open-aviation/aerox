@@ -72,9 +72,9 @@ engine:
   type: piston
   mount: nose mounted
   number: 1
-  default: 230 Hp Lycoming IO-540-AB1A5 piston engine with 2 blade propeller
+  default: IO-540-AB1A5
   options:
-  - 230 Hp Lycoming IO-540-AB1A5 piston engine with 2 blade propeller
+  - IO-540-AB1A5
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

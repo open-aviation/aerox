@@ -92,10 +92,16 @@ FIELD mmo
 END FIELD
 
 FIELD ceiling
-  Value: 41000
+  Value: 43200
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima210_issue_02
+  Source URL: https://www.easa.europa.eu/en/downloads/7242/en
+  Document title: EASA Type Certificate Data Sheet IM.A.210, DC-10 / MD-11, Issue 2
+  Revision date: 2024-11-14
+  Page or section: Section 2 (MD-11 and MD-11F), item 12.2 Other Limitations, p. 16
+  Applicability: MD-11 and MD-11F
+  Notes: Maximum operating altitude 12,800 m (43,200 ft) pressure altitude. Airspeed limits and certified masses are referred to FAA TCDS A22WE, which was not reachable.
 END FIELD
 
 FUSELAGE GEOMETRY

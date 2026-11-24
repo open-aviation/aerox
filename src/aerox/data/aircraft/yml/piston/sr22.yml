@@ -72,9 +72,9 @@ engine:
   type: piston
   mount: nose
   number: 1
-  default: Continental IO-550-N Six cylinder horizontally opposed aircraft engine, 310 hp (230 kW)
+  default: IO-550-N
   options:
-  - Continental IO-550-N Six cylinder horizontally opposed aircraft engine, 310 hp (230 kW)
+  - IO-550-N
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

@@ -72,9 +72,9 @@ engine:
   type: turboprop
   mount: front wing leading mounted
   number: 2
-  default: GE CT75A2 turboprops with 4 blade propellers
+  default: CT7-5A2
   options:
-  - GE CT75A2 turboprops with 4 blade propellers
+  - CT7-5A2
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

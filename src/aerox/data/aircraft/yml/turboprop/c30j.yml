@@ -72,9 +72,9 @@ engine:
   type: turboprop
   mount: wing leading mounted
   number: 4
-  default: 4 x 4.591 SHP Allison 2100 D3 turboprops with 6 blade propellers
+  default: AE2100D3
   options:
-  - 4 x 4.591 SHP Allison 2100 D3 turboprops with 6 blade propellers
+  - AE2100D3
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

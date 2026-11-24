@@ -73,7 +73,8 @@ engine:
   mount: in fuselage
   number: 2
   default: F100-PW-200
-  options: null
+  options:
+  - F100-PW-200
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

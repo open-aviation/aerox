@@ -72,10 +72,10 @@ engine:
   type: piston
   mount: nose mounted
   number: 1
-  default: 300 HP Continental IO-550-B piston
+  default: IO-550-B
   options:
-  - 300 HP Continental IO-550-B piston
-  - 300 HP Continental TIO-520-UB turbocharged piston
+  - IO-550-B
+  - TIO-520-UB
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

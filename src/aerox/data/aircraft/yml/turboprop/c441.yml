@@ -72,9 +72,9 @@ engine:
   type: turboprop
   mount: wing leading mounted
   number: 2
-  default: Garrett TPE331-8-401S/402S turboprops
+  default: TPE331-8
   options:
-  - Garrett TPE331-8 series
+  - TPE331-8
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

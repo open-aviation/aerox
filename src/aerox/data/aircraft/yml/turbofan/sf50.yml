@@ -72,9 +72,9 @@ engine:
   type: turbofan
   mount: aft fuselage
   number: 1
-  default: Williams FJ33-5A
+  default: FJ33-5A
   options:
-  - Williams FJ33-5A
+  - FJ33-5A
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

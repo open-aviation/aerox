@@ -72,9 +72,9 @@ engine:
   type: turbofan
   mount: both sides of rear fuselage
   number: 2
-  default: Pratt & Whitney Canada PW617F-E turbofan, 7.2 kN (1,695 lbf)
+  default: PW617F-E
   options:
-  - Pratt & Whitney Canada PW617F-E turbofan, 7.2 kN (1,695 lbf)
+  - PW617F-E
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

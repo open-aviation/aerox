@@ -72,9 +72,9 @@ engine:
   type: turbofan
   mount: rear fuselage
   number: 2
-  default: P&W PW545A turbofan
+  default: PW545A
   options:
-  - P&W PW545A turbofan
+  - PW545A
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

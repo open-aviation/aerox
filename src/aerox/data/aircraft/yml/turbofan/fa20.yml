@@ -72,10 +72,10 @@ engine:
   type: turbofan
   mount: both sides of rear fuselage
   number: 2
-  default: GE CF700-2D-2 turbofan
+  default: CF700-2D-2
   options:
-  - GE CF700-2D-2 turbofan
-  - Garrett ATF3-6A-4C turbofan
+  - CF700-2D-2
+  - ATF3-6A-4C
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

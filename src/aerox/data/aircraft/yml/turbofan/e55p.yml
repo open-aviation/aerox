@@ -72,9 +72,9 @@ engine:
   type: turbofan
   mount: both sides of rear fuselage
   number: 2
-  default: Pratt & Whitney Canada PW535E turbofan
+  default: PW535E
   options:
-  - Pratt & Whitney Canada PW535E turbofan
+  - PW535E
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

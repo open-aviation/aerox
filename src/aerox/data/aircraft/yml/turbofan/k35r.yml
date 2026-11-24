@@ -72,9 +72,9 @@ engine:
   type: turbofan
   mount: underwing mounted
   number: 4
-  default: CFMI CFM - F108 turbofan
+  default: F108-CF-100
   options:
-  - CFM56/F108
+  - F108-CF-100
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

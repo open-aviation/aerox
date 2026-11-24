@@ -48,17 +48,29 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 14060
+  Value: 9979
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a9nm_rev_26
+  Source URL: https://hub.easa.europa.eu/crt/docs/viewcrdattachment/cid_70920/aid_665/fmd_faa4245eab02ce24aa7e58b3f3df481a
+  Document title: FAA Type Certificate Data Sheet A9NM, Cessna 650, Revision 26
+  Revision date: 2000-10-30
+  Page or section: Section I (Model 650, Citation III and VI), Maximum Weight, p. 4-5 (22,000 lb on p. 5)
+  Applicability: Citation III/VI S/N 650-0094 through 650-0241 (22,000 lb takeoff, 22,200 lb ramp); record engine TFE731-3
+  Notes: Highest Citation III/VI takeoff weight. Citation VII (Section II, TFE731-4R) is 23,000 lb; S/N 650-0001 to -0093 are 21,000 lb (21,500 lb with SB650-32-13). Rev 26 is the latest revision found in a public copy; newer FAA revisions were not reachable.
 END FIELD
 
 FIELD mlw
-  Value: 7700
+  Value: 9072
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a9nm_rev_26
+  Source URL: https://hub.easa.europa.eu/crt/docs/viewcrdattachment/cid_70920/aid_665/fmd_faa4245eab02ce24aa7e58b3f3df481a
+  Document title: FAA Type Certificate Data Sheet A9NM, Cessna 650, Revision 26
+  Revision date: 2000-10-30
+  Page or section: Section I (Model 650, Citation III and VI), Maximum Weight, p. 5
+  Applicability: Citation III/VI S/N 650-0094 through 650-0241 (20,000 lb landing)
+  Notes: S/N 650-0001 to -0093 are 17,000 lb (19,000 lb with SB650-32-13). Citation VII is 20,000 lb.
 END FIELD
 
 FIELD mzfw
@@ -78,24 +90,42 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 320
+  Value: 336
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a9nm_rev_26
+  Source URL: https://hub.easa.europa.eu/crt/docs/viewcrdattachment/cid_70920/aid_665/fmd_faa4245eab02ce24aa7e58b3f3df481a
+  Document title: FAA Type Certificate Data Sheet A9NM, Cessna 650, Revision 26
+  Revision date: 2000-10-30
+  Page or section: Section I (Model 650, Citation III and VI), Airspeed Limits, p. 3
+  Applicability: Citation III/VI S/N 650-0094 through 650-0241 and earlier S/N with SB650-32-13
+  Notes: VMO 305 KIAS below 8,000 ft; 336 KIAS at 8,000 ft, decreasing linearly to 278 KIAS (0.851 M) at 36,524 ft. The stored value is the maximum VMO above 8,000 ft. S/N 650-0001 to -0093 without SB650-32-13: 346 KIAS at 8,000 ft to 293 KIAS at 34,275 ft. Note 8 gives alternate limits for the optional zero wing fuel weight.
 END FIELD
 
 FIELD mmo
-  Value: 0.83
+  Value: 0.851
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a9nm_rev_26
+  Source URL: https://hub.easa.europa.eu/crt/docs/viewcrdattachment/cid_70920/aid_665/fmd_faa4245eab02ce24aa7e58b3f3df481a
+  Document title: FAA Type Certificate Data Sheet A9NM, Cessna 650, Revision 26
+  Revision date: 2000-10-30
+  Page or section: Section I (Model 650, Citation III and VI), Airspeed Limits, p. 3
+  Applicability: Citation III/VI, all serial numbers
+  Notes: MMO 0.851 above 36,524 ft (above 34,275 ft for S/N 650-0001 to -0093 without SB650-32-13). The TCDS gives one Mach value, not separate indicated and calibrated values. Citation VII is also 0.851.
 END FIELD
 
 FIELD ceiling
   Value: 51000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a9nm_rev_26
+  Source URL: https://hub.easa.europa.eu/crt/docs/viewcrdattachment/cid_70920/aid_665/fmd_faa4245eab02ce24aa7e58b3f3df481a
+  Document title: FAA Type Certificate Data Sheet A9NM, Cessna 650, Revision 26
+  Revision date: 2000-10-30
+  Page or section: Section I (Model 650, Citation III and VI), Max. Operating Altitude, p. 5
+  Applicability: All Model 650 (Citation III, VI, VII)
+  Notes: High-altitude operation above 41,000 ft approved under special condition 25-102-NM-7 (Note 20).
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -387,7 +417,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9508; roughness_excrescence/computed=0.0900; nacelle_tier=C-estimated-fan-diameter
-  Zero-lift terms at reference (drag counts): wing=62.08; fuselage=62.33; horizontal_tail=20.19; vertical_tail=12.84; nacelles=12.99; pylons=1.73; fuselage_upsweep=4.70; control_surface_gaps=0.94; nacelle_base=3.82; roughness_excrescence=16.34
+  Zero-lift terms at reference (drag counts): wing=65.50; fuselage=65.35; horizontal_tail=21.34; vertical_tail=13.55; nacelles=10.03; pylons=1.34; fuselage_upsweep=4.70; control_surface_gaps=0.94; nacelle_base=3.21; roughness_excrescence=16.74
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -409,7 +439,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 44273.7
+  Value: 51098.2
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -421,10 +451,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 4076383.1
+  Value: 2936439.6
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=44273.7 ft; Mach=0.800000; ISA temperature and density
+  Inputs: altitude=51098.2 ft; Mach=0.800000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.950816

@@ -72,10 +72,10 @@ engine:
   type: turboprop
   mount: front wing leading mounted
   number: 2
-  default: 2 x 680 SHP PWC PT6A -28
+  default: PT6A-28
   options:
-  - 2 x 680 SHP PWC PT6A -28
-  - 2 x 715 SHP PWC PT6A -36
+  - PT6A-28
+  - PT6A-36
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean
