@@ -127,14 +127,22 @@ FIELD wing.area
   Uncertainty: Source rounded to 0.01 m2
   Previous value: 46 m2
   Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
-  Notes: Span is withheld because the TCDS publishes 19.238 m baseline and 21.38 m winglet-modified configurations.
+  Notes: The area is the same with and without the M2846 winglets.
 END FIELD
 
 FIELD wing.span
-  Value: 19.32
+  Value: 19.238
   Unit: m
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_falcon_2000_a008
+  Source URL: https://www.easa.europa.eu/en/downloads/7510/en
+  Document title: EASA.A.008 Falcon 2000 Type-Certificate Data Sheet
+  Revision date: 2026-09-15
+  Page or section: Issue 13, sections 2.5.3 (p. 12) and 3.5.3 (p. 23)
+  Applicability: Falcon 2000 and Falcon 2000EX without winglets
+  Previous value: 19.32 m
+  Correction reason: Replaced the legacy Aerox value with the cited baseline value.
+  Notes: With the M2846 winglet modification, the span is 21.38 m (Section 3, p. 46). The record keeps the baseline span, which matches the stored wing area.
 END FIELD
 
 FIELD wing.mac
@@ -198,13 +206,13 @@ FIELD wing.taper_ratio
 END FIELD
 
 FIELD wing.aspect_ratio
-  Value: 7.6176
+  Value: 7.553074
   Unit: nondimensional
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database | easa_falcon_2000_a008
+  Status: calculated-from-published-inputs
+  Source: easa_falcon_2000_a008
   Formula: span^2 / area
-  Inputs: span=19.32 m; area=49.0 m2
-  Previous value: 8.1144 nondimensional
+  Inputs: span=19.238 m; area=49.0 m2
+  Previous value: 7.6176 nondimensional
   Correction reason: Recalculated after a cited wing span or area correction.
 END FIELD
 
@@ -420,8 +428,8 @@ FIELD drag.model
   Value: aerox-geometry-drag-v2
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9438; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
-  Zero-lift terms at reference (drag counts): wing=57.90; fuselage=55.30; horizontal_tail=19.92; vertical_tail=12.67; nacelles=22.70; pylons=3.03; fuselage_upsweep=4.25; control_surface_gaps=1.05; nacelle_base=3.97; roughness_excrescence=16.27
+  Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9435; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
+  Zero-lift terms at reference (drag counts): wing=57.93; fuselage=55.30; horizontal_tail=19.92; vertical_tail=12.67; nacelles=22.70; pylons=3.03; fuselage_upsweep=4.25; control_surface_gaps=1.05; nacelle_base=3.97; roughness_excrescence=16.27
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -461,7 +469,7 @@ FIELD drag.reference_reynolds_per_m
   Inputs: altitude=51098.2 ft; Mach=0.820000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
-  Value: 0.943761
+  Value: 0.943536
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Physical model input; geometry-tier uncertainty applies.

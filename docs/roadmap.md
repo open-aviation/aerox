@@ -2,6 +2,24 @@
 
 Updated: 2026-11-24
 
+## Release 0.4
+
+- **Engine names.** Engine names are bare designations, for example
+  `CFM56-5B4` and `PW1524G`, so that they match engine tables. Code that
+  uses the old names must use the new names.
+- **Verified limits.** Masses, VMO, MMO, and ceilings are checked against
+  the FAA data sheets where the EASA data sheet refers to the flight manual.
+  The A320 family ceiling is 39,800 ft. The C650 and MD11 limits and the
+  masses of six piston aircraft are corrected. No record has a landing or
+  zero-fuel mass above its takeoff mass.
+- **Corrections.** The F15 and F16 engines are swapped to the correct
+  types. The C310 default engine is the IO-520-M. The F2TH wing span is the
+  certified 19.238 m.
+- **Sources.** The notes cite the newest issues of the EASA data sheets
+  A.064, A.008, IM.A.070, and IM.A.570.
+- **Geometry tool.** `tools/update_aircraft_geometry.py` keeps consistent
+  derived values and their notes.
+
 ## Release 0.3
 
 - **Aircraft data.** Six types are added: A124, A310, AT76, B735, E290, and
@@ -42,9 +60,8 @@ Updated: 2026-11-24
   modelled.
 - Some wing reference areas have no confirmed source: the 737 MAX family, the
   787-10, the 747-8, the A330-900, the A350-1000, and the CRJ200.
-- About 57 VMO and MMO values (mostly airliners) and 22 ceilings are not yet
-  verified. For these types, the EASA data sheet refers to the flight manual;
-  the FAA data sheets are the next source to check.
+- The VMO and MMO of the A359, A35K, A388, B37M, B3XM, GLF5, and LJ60, the
+  CL60 limits, and the limits of the military types are not yet verified.
 - The A124 has no public type certificate, so most of its values are
   inferred. The AT76 speed limits and ceiling come from training material.
 
