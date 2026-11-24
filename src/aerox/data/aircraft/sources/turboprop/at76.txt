@@ -1,0 +1,566 @@
+AEROX AIRCRAFT SOURCE NOTES
+Aircraft: ATR 72-600
+ICAO: AT76
+Last reviewed: 2026-11-23
+Source ledger: sources/sources.yml
+
+CERTIFICATION SCOPE
+  Model or family: ATR 72-212A with MOD 5948 (NAS), commercial designation ATR 72-600
+  Authority: EASA
+  Type certificate: EASA.A.084
+  Applicability: EASA.A.084 Issue 14 notes that "ATR 72-600" is the commercial designation of the ATR 72-212A fitted with the New Avionic Suite (MOD 5948); it is not a separate model or variant. The airframe geometry is shared with the ATR 72-500 (also ATR 72-212A). The record uses the highest certified weight variant (MOD 6219 / WV50). The -600F cargo conversion (MOD 7900) is excluded.
+
+TYPE-CERTIFICATE AND LIMIT PARAMETERS
+
+FIELD certification.model
+  Value: ATR 72-212A (MOD 5948, '600 version')
+  Status: certified-published
+  Source: easa_a084_issue_14
+  Page or section: Issue 14, section 2, Notes 1 Designations, pp. 41-42
+  Notes: TCDS requires the designation ATR 72-212A with Mod 5948 or ATR 72-212A '600 version' on approved documentation.
+END FIELD
+
+FIELD certification.authority
+  Value: EASA
+  Status: certified-published
+  Source: easa_a084_issue_14
+  Page or section: Issue 14, cover
+END FIELD
+
+FIELD certification.type_certificate
+  Value: EASA.A.084
+  Status: certified-published
+  Source: easa_a084_issue_14
+  Page or section: Issue 14, cover
+END FIELD
+
+FIELD certification.issue
+  Value: 14
+  Status: certified-published
+  Source: easa_a084_issue_14
+  Page or section: Issue 14, page header
+END FIELD
+
+FIELD certification.issue_date
+  Value: 2026-02-23
+  Status: certified-published
+  Source: easa_a084_issue_14
+  Page or section: Issue 14, page header
+END FIELD
+
+FIELD mtow
+  Value: 23000
+  Unit: kg
+  Status: certified-published
+  Source: easa_a084_issue_14 | atr_72_600_factsheet_2020
+  Source URL: https://www.easa.europa.eu/en/downloads/7358/en
+  Document title: EASA.A.084 ATR 42 / ATR 72 Type-Certificate Data Sheet
+  Revision date: 2026-02-23
+  Page or section: Issue 14, section 2, III.13 b), ATR 72-212A Mod 6219 column and Operational Weight Variant WV50, pp. 36-37
+  Applicability: ATR 72-212A with MOD 6219 (or WV50 under MOD 6852). ATR lists 23,000 kg as the -600 MTOW option and 22,800 kg as basic.
+  Notes: MRW 23,170 kg. The ATR 72-600 factsheet basic MTOW (22,800 kg, MOD 5555) is not adopted.
+END FIELD
+
+FIELD mlw
+  Value: 22350
+  Unit: kg
+  Status: certified-published
+  Source: easa_a084_issue_14 | atr_72_600_factsheet_2020
+  Page or section: Issue 14, section 2, III.13 b), ATR 72-212A Mod 6219 column, p. 36
+  Applicability: ATR 72-212A with MOD 4671, 5213, 5555 or 6219; same as the ATR 72-600 factsheet basic MLW.
+END FIELD
+
+FIELD mzfw
+  Value: 21000
+  Unit: kg
+  Status: certified-published
+  Source: easa_a084_issue_14 | atr_72_600_factsheet_2020
+  Page or section: Issue 14, section 2, III.13 b), ATR 72-212A Mod 6219 column, p. 36
+  Applicability: Weight variant that matches the adopted MTOW (MOD 6219 / WV50); ATR factsheet MZFW option 1.
+  Notes: Basic -600 factsheet MZFW is 20,800 kg (MOD 5555).
+END FIELD
+
+FIELD minimum_weight
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: EASA.A.084 Issue 14 does not publish a minimum certified mass for the ATR 72-212A; it refers to the AFM.
+END FIELD
+
+FIELD vmo
+  Value: 250
+  Unit: kt
+  Status: inferred-with-uncertainty
+  Source: brainscape_atr72_600_limitations | learn_atc_atr72_600
+  Page or section: Brainscape ATR72-600 Limitations, card 13 (Vmo 250 kt); Learn ATC ATR 72-600 page, Performance (VMO 250 kt)
+  Uncertainty: Secondary training material; EASA.A.084 III.10 refers to the AFM and the AFM is not public.
+  Notes: Two independent secondary sources agree. The Brainscape card set also lists MTOW, MLW, MZFW and MRW that match the TCDS MOD 6219 values, which supports its consistency.
+END FIELD
+
+FIELD mmo
+  Value: 0.55
+  Unit: Mach
+  Status: inferred-with-uncertainty
+  Source: brainscape_atr72_600_limitations
+  Page or section: Brainscape ATR72-600 Limitations, card 14 (Mmo 0.55)
+  Uncertainty: Single secondary training source; EASA.A.084 III.10 refers to the AFM.
+  Notes: Learn ATC states that an MMO applies but gives no number.
+END FIELD
+
+FIELD ceiling
+  Value: 25000
+  Unit: ft
+  Status: inferred-with-uncertainty
+  Source: brainscape_atr72_600_limitations | learn_atc_atr72_600 | aerox_legacy_aircraft_database
+  Page or section: Brainscape card 2 (maximum operating altitude 25,000 ft); Learn ATC service ceiling 25,000 ft
+  Uncertainty: Secondary sources; EASA.A.084 III.11 refers to the AFM.
+  Notes: Same value as the Aerox AT75 and AT72 legacy records.
+END FIELD
+
+OPERATING AND CAPACITY PARAMETERS
+
+FIELD oew
+  Value: 13010
+  Unit: kg
+  Status: manufacturer-published-planning
+  Source: atr_72_600_factsheet_2020
+  Page or section: ATR 72-600 standard configuration, Weights, Operational empty weight (Tech. Spec.), printed p. 23
+  Applicability: ATR 72-600, 72-seat standard configuration
+  Notes: ATR gives 13,450 kg as typical in-service OEW; the technical-specification value is adopted.
+END FIELD
+
+FIELD mfc
+  Value: 6360
+  Unit: L
+  Status: certified-published
+  Source: easa_a084_issue_14
+  Page or section: Issue 14, section 2, III.9 Fluid Capacities, p. 35
+  Applicability: All ATR 72 models in section 2
+  Notes: Usable fuel when refuelled up to high-level indication: 5,050 kg / 6,360 L (5,000 kg with pre-selector; 30 kg unusable). Stored in litres, as the existing Aerox records do. ATR factsheet max fuel load is 5,000 kg.
+END FIELD
+
+FUSELAGE GEOMETRY
+
+FIELD fuselage.length
+  Value: 27.166
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: atr_72_600_factsheet_2020
+  Source URL: https://www.atr-aircraft.com/wp-content/uploads/2020/07/Factsheets_-_ATR_72-600.pdf
+  Page or section: ATR 72-600 general arrangement, printed p. 22
+  Notes: Overall length 27.166 m (89 ft 1.5 in) from the drawing.
+END FIELD
+
+FIELD fuselage.height
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public external fuselage height was found. The section is close to circular; the drag builder scales height with width while height is null.
+END FIELD
+
+FIELD fuselage.width
+  Value: 2.87
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: learn_atc_atr72_600 | nita_atr72_design_studies_2008
+  Page or section: Learn ATC ATR 72-600 scale drawing, fuselage width 2.87 m
+  Uncertainty: Secondary source, +/-0.05 m. No ATR or authority document read at access gives the external width.
+  Notes: Consistent with the 2.57 m cabin width (Nita 2008, Table 13.1, original ATR 72) plus wall thickness. A search summary also cited 2.865 m outside diameter from an ATR 72-600 technical specification on Scribd, but the body was not readable and is not adopted.
+END FIELD
+
+WING AND TAIL GEOMETRY
+
+FIELD wing.area
+  Value: 61.0
+  Unit: m2
+  Status: manufacturer-published-planning
+  Source: atr_72_600_factsheet_2020
+  Source URL: https://www.atr-aircraft.com/wp-content/uploads/2020/07/Factsheets_-_ATR_72-600.pdf
+  Document title: ATR 72-600 (ATR family brochure booklet extract)
+  Revision date: 2020-07-29
+  Page or section: General arrangement, printed p. 22
+  Inputs: WING AREA: 61 m2 (657 sq ft)
+  Applicability: ATR 72-600
+  Uncertainty: Published to nearest m2
+END FIELD
+
+FIELD wing.span
+  Value: 27.05
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: atr_72_600_factsheet_2020
+  Source URL: https://www.atr-aircraft.com/wp-content/uploads/2020/07/Factsheets_-_ATR_72-600.pdf
+  Page or section: General arrangement, printed p. 22
+  Inputs: 27.050 m (88 ft 9 in) drawing dimension
+  Applicability: ATR 72-600
+END FIELD
+
+FIELD wing.mac
+  Value: 2.379
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: atr_72_600_factsheet_2020 | seeckt_presto_atr72_redesign_2011
+  Formula: piecewise double-trapezoid MAC; constant-chord inner panel to the kink, linear taper outboard
+  Inputs: area=61.0 m2; span=27.05 m; overall taper=0.419; kink at 0.39 semispan (Seeckt 2011, PDF p. 38, values based on the real ATR 72)
+  Uncertainty: +/-0.1 m. Planform parameters come from a university redesign report; the W&B Manual MAC is not public (EASA.A.084 III.16 refers to it).
+  Notes: Mean geometric chord S/b is 2.255 m.
+END FIELD
+
+FIELD wing.sweep
+  Value: 1
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: seeckt_presto_atr72_redesign_2011
+  Page or section: Section 3.3 wing, PDF p. 37
+  Inputs: Quarter-chord sweep 0 deg inner panel and 1 deg outer panel, set from the original ATR 72
+  Uncertainty: +/-2 deg; little effect at the ATR cruise Mach number.
+END FIELD
+
+FIELD wing.t/c
+  Value: 0.16
+  Unit: nondimensional
+  Status: inferred-with-uncertainty
+  Source: selig_incomplete_guide_airfoil_usage
+  Source URL: https://m-selig.ae.illinois.edu/ads/aircraft.html
+  Formula: linear interpolation of root and tip t/c at the spanwise MAC station
+  Inputs: root RA 1843 (NACA 43018 mod, 0.18); tip RA 1343 (NACA 43013 mod, 0.13); MAC station 0.367 semispan from the double-trapezoid planform
+  Uncertainty: +/-0.01; the thickness distribution between root and tip is not published.
+  Notes: Interpolated value 0.162, rounded to 0.16. Same airfoils listed for the ATR 42 and ATR 72.
+END FIELD
+
+FIELD wing.root_chord
+  Value: 2.740759
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: atr_72_600_factsheet_2020 | seeckt_presto_atr72_redesign_2011
+  Formula: S = 2 cr [y_k + (1 + taper)/2 (b/2 - y_k)]
+  Inputs: area=61.0 m2; span=27.05 m; taper=0.419; y_k=0.39 b/2
+  Notes: Centreline chord of the double-trapezoid planform (inner panel has constant chord).
+END FIELD
+
+FIELD wing.tip_chord
+  Value: 1.148378
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: atr_72_600_factsheet_2020 | seeckt_presto_atr72_redesign_2011
+  Formula: taper x root_chord
+  Inputs: taper=0.419; root_chord=2.740759 m
+END FIELD
+
+FIELD wing.taper_ratio
+  Value: 0.419
+  Unit: nondimensional
+  Status: inferred-with-uncertainty
+  Source: seeckt_presto_atr72_redesign_2011
+  Page or section: Section 3.3, lift and chord distribution, PDF p. 38
+  Notes: Report states the value is based on the real ATR 72.
+END FIELD
+
+FIELD wing.aspect_ratio
+  Value: 11.995123
+  Unit: nondimensional
+  Status: calculated-from-published-inputs
+  Source: atr_72_600_factsheet_2020
+  Formula: span^2 / area
+  Inputs: span=27.05 m; area=61.0 m2
+  Uncertainty: Area rounding implies approximately +/-0.10
+END FIELD
+
+FIELD wing.dihedral
+  Value: 0
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: seeckt_presto_atr72_redesign_2011
+  Page or section: Section 3.3, PDF p. 39
+  Notes: Report sets 0 deg "as for the original ATR 72".
+END FIELD
+
+FIELD horizontal_tail.area
+  Value: 11.73
+  Unit: m2
+  Status: inferred-with-uncertainty
+  Source: nita_atr72_design_studies_2008
+  Page or section: Table 13.1, original ATR 72 column, PDF p. 159
+  Applicability: Original ATR 72 (thesis reference aircraft is the ATR 72-500); the -600 shares the airframe.
+  Uncertainty: Secondary academic source without a primary citation for this value.
+  Notes: The ATR 42 and ATR 72 share the same tailplane (Seeckt 2011, section 3.4).
+END FIELD
+
+FIELD horizontal_tail.span
+  Value: 8.389279
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: nita_atr72_design_studies_2008 | seeckt_presto_atr72_redesign_2011
+  Formula: sqrt(aspect_ratio x area)
+  Inputs: aspect_ratio=6 (Seeckt 2011, Table 3.11, ATR 72 based); area=11.73 m2
+  Uncertainty: +/-0.8 m; the aspect ratio is a redesign input rounded to an integer.
+END FIELD
+
+FIELD horizontal_tail.mac
+  Value: 1.487973
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: nita_atr72_design_studies_2008 | seeckt_presto_atr72_redesign_2011
+  Formula: (2/3) root_chord (1 + taper + taper^2) / (1 + taper)
+  Inputs: root_chord=2.011817 m; taper=0.39
+END FIELD
+
+FIELD horizontal_tail.root_chord
+  Value: 2.011817
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: nita_atr72_design_studies_2008 | seeckt_presto_atr72_redesign_2011
+  Formula: 2 area / (span (1 + taper))
+  Inputs: area=11.73 m2; span=8.389279 m; taper=0.39
+END FIELD
+
+FIELD horizontal_tail.tip_chord
+  Value: 0.784609
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: nita_atr72_design_studies_2008 | seeckt_presto_atr72_redesign_2011
+  Formula: taper x root_chord
+  Inputs: taper=0.39; root_chord=2.011817 m
+END FIELD
+
+FIELD horizontal_tail.taper_ratio
+  Value: 0.39
+  Unit: nondimensional
+  Status: inferred-with-uncertainty
+  Source: seeckt_presto_atr72_redesign_2011
+  Page or section: Table 3.11, PDF p. 42
+  Notes: Selected value; the report states the ATR 72 data are used for the tailplane.
+END FIELD
+
+FIELD horizontal_tail.sweep
+  Value: 6
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: seeckt_presto_atr72_redesign_2011
+  Page or section: Table 3.11, PDF p. 42
+END FIELD
+
+FIELD horizontal_tail.dihedral
+  Value: 0
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: seeckt_presto_atr72_redesign_2011
+  Page or section: Table 3.11, PDF p. 42
+END FIELD
+
+FIELD horizontal_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public value was found.
+  Searched source: easa_a084_issue_14 | atr_72_600_factsheet_2020 | nita_atr72_design_studies_2008 | seeckt_presto_atr72_redesign_2011
+END FIELD
+
+FIELD horizontal_tail.elevator_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: Only a relative elevator chord (0.25, Seeckt 2011 Table 3.11) was found; no area ratio.
+  Searched source: seeckt_presto_atr72_redesign_2011
+END FIELD
+
+FIELD vertical_tail.area
+  Value: 12.48
+  Unit: m2
+  Status: inferred-with-uncertainty
+  Source: nita_atr72_design_studies_2008
+  Page or section: Table 13.1, original ATR 72 column, PDF p. 159
+  Applicability: Original ATR 72; the -600 shares the airframe.
+  Uncertainty: Secondary academic source without a primary citation for this value.
+END FIELD
+
+FIELD vertical_tail.height
+  Value: 3.869884
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: nita_atr72_design_studies_2008 | seeckt_presto_atr72_redesign_2011
+  Formula: sqrt(aspect_ratio x area)
+  Inputs: aspect_ratio=1.2 (Seeckt 2011, Table 3.12); area=12.48 m2
+  Uncertainty: +/-0.4 m
+END FIELD
+
+FIELD vertical_tail.mac
+  Value: 3.292089
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: nita_atr72_design_studies_2008 | seeckt_presto_atr72_redesign_2011
+  Formula: (2/3) root_chord (1 + taper + taper^2) / (1 + taper)
+  Inputs: root_chord=4.031129 m; taper=0.6
+END FIELD
+
+FIELD vertical_tail.root_chord
+  Value: 4.031129
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: nita_atr72_design_studies_2008 | seeckt_presto_atr72_redesign_2011
+  Formula: 2 area / (height (1 + taper))
+  Inputs: area=12.48 m2; height=3.869884 m; taper=0.6
+END FIELD
+
+FIELD vertical_tail.tip_chord
+  Value: 2.418677
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: nita_atr72_design_studies_2008 | seeckt_presto_atr72_redesign_2011
+  Formula: taper x root_chord
+  Inputs: taper=0.6; root_chord=4.031129 m
+END FIELD
+
+FIELD vertical_tail.taper_ratio
+  Value: 0.6
+  Unit: nondimensional
+  Status: inferred-with-uncertainty
+  Source: seeckt_presto_atr72_redesign_2011
+  Page or section: Table 3.12, PDF p. 43
+END FIELD
+
+FIELD vertical_tail.sweep
+  Value: 35
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: seeckt_presto_atr72_redesign_2011
+  Page or section: Table 3.12, PDF p. 43
+  Uncertainty: Reference line not stated in the report.
+END FIELD
+
+FIELD vertical_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public value was found.
+  Searched source: easa_a084_issue_14 | atr_72_600_factsheet_2020 | nita_atr72_design_studies_2008 | seeckt_presto_atr72_redesign_2011
+END FIELD
+
+FIELD vertical_tail.rudder_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: Only a relative rudder chord (0.32, Seeckt 2011 Table 3.12) was found; no area ratio.
+  Searched source: seeckt_presto_atr72_redesign_2011
+END FIELD
+
+OTHER PARAMETERS
+  Format: field = value; status; source; page or section.
+  iata = null; unresolved; -; no distinct IATA code for the -600 was confirmed (AT75 record uses AT7 for the family).
+  icao_wtc = medium; certified-published; easa_recat_eu_assignment_2021_12; p. 8, AT76 (ATR-72-600) row, ICAO WTC M.
+  eu_wtc = lower medium; certified-published; easa_recat_eu_assignment_2021_12; p. 8, AT76 row, RECAT-EU CAT-E.
+  faa_wtc = null; unresolved; -; no FAA wake category assignment was retrieved.
+  parking_area_m2 = null; unresolved; -; no published value.
+  pax.max = 78; certified-published; easa_a084_issue_14; section 2, III.20, with ATR MOD 7289 or 10001 (74 without).
+  pax.high = null; unresolved; -; no published high-density figure other than pax.max.
+  pax.low = 72; manufacturer-published-planning; atr_72_600_factsheet_2020; standard configuration, 72 seats at 29 in pitch.
+  flaps.type = double-slotted; inferred-with-uncertainty; nita_atr72_design_studies_2008 | seeckt_presto_atr72_redesign_2011; Nita Table 13.1, Seeckt section 2.3.
+  other flaps fields = null; unresolved; -; no public value.
+  engine.type = turboprop; certified-published; easa_a084_issue_14; section 2, III.5.
+  engine.mount = front wing leading mounted; manufacturer-published-planning; atr_72_600_factsheet_2020; general arrangement.
+  engine.number = 2; certified-published; easa_a084_issue_14; section 2, III.5.
+  engine.default = PW127M, 2,500 SHP max continuous, 6-blade 568F propeller; manufacturer-published-planning; atr_72_600_factsheet_2020 | easa_a084_issue_14; factsheet standard configuration (PW127M/N; take-off 2,475 SHP, OEI 2,750 SHP); TCDS III.5 and III.7 d).
+  engine.options = PW127M, PW127N (MOD 7079), PW127XT-M (MOD 10016 or 10302); certified-published; easa_a084_issue_14; section 2, III.5. No SHP is given for PW127N and PW127XT-M because no public rating was read.
+  kinematic.* = values copied from the Aerox AT75 record (legacy-unverified, aerox_legacy_aircraft_database); inferred-with-uncertainty; sister type ATR 72-500 with the same airframe and engine class. ATR 72-600 factsheet values for comparison: take-off distance 1,279 m basic / 1,304 m option at MTOW ISA SL; V2 min 116 KCAS; landing field length 915 m at basic MLW; max cruise 275 KTAS; range with max pax 758 NM. These were not substituted, to keep the kinematic set internally consistent.
+
+LEGACY PARAMETERS
+  This record was added after the original Aerox database and has no original Aerox AT76 values.
+  Kinematic values are copied from the AT75 record as a sister-type placeholder.
+
+DRAG MODEL
+  Active Aerox physical drag model and reference-condition polar snapshot.
+  Scaled or substituted geometry fields: fuselage.width, fuselage.height
+
+FIELD drag.model
+  Value: aerox-geometry-drag-v2
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Inputs: configuration=clean; tier=C-partially-scaled; confidence=low; e_span=0.9500; unresolved/resolved=0.2800
+  Zero-lift terms at reference (drag counts): wing=78.94; fuselage=63.93; horizontal_tail=14.30; vertical_tail=13.43; unresolved=47.77
+  Applicability: Active clean model; geometry-tier uncertainty applies.
+END FIELD
+FIELD drag.configuration
+  Value: clean
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.geometry_tier
+  Value: C-partially-scaled
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.confidence
+  Value: low
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.reference_altitude_ft
+  Value: 20000.0
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Representative clean reference condition.
+END FIELD
+FIELD drag.reference_mach
+  Value: 0.45579
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Representative clean reference condition.
+END FIELD
+FIELD drag.reference_reynolds_per_m
+  Value: 5906538.5
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Inputs: altitude=20000.0 ft; Mach=0.455790; ISA temperature and density
+END FIELD
+FIELD drag.span_efficiency_factor
+  Value: 0.95
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Physical model input; geometry-tier uncertainty applies.
+END FIELD
+FIELD drag.unresolved_fraction_of_resolved_drag
+  Value: 0.28
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Physical model input; geometry-tier uncertainty applies.
+END FIELD
+FIELD drag.roughness_excrescence_fraction
+  Value: null
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Physical model input; geometry-tier uncertainty applies.
+END FIELD
+FIELD drag.wave_drag_model
+  Value: null
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.wave_drag_source_tier
+  Value: not-applicable
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.wave_drag_confidence
+  Value: not-applicable
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.wave_drag_technology_factor
+  Value: null
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Physical model input; geometry-tier uncertainty applies.
+END FIELD
+END DRAG MODEL

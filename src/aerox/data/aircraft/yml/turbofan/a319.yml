@@ -25,14 +25,14 @@ certification:
   issue: '62'
   issue_date: '2026-06-26'
 mtow: 76500
-mlw: 61000
+mlw: 62500
 mzfw: null
 minimum_weight: null
 oew: 40800
 mfc: 30190
 vmo: 350
 mmo: 0.82
-ceiling: 39000
+ceiling: 39800
 icao_wtc: medium
 eu_wtc: upper medium
 faa_wtc: medium

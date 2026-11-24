@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Canadair CRJ-700
 ICAO: CRJ7
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -96,8 +96,11 @@ END FIELD
 FIELD ceiling
   Value: 41000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima673_issue_3
+  Page or section: Issue 3.0, Section 3 (CL-600-2C10), item 3 (description), p. 15
+  Applicability: CL-600-2C10
+  Notes: The TCDS states that the aircraft is certified for a maximum altitude of 41,000 ft.
 END FIELD
 
 WING AND TAIL GEOMETRY

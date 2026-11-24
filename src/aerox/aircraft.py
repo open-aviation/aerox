@@ -263,7 +263,7 @@ class Aircraft:
         mtow: Maximum takeoff weight (kg)
         mlw: Maximum landing weight (kg)
         oew: Operating empty weight (kg)
-        mfc: Maximum fuel capacity (kg)
+        mfc: Maximum fuel capacity (L)
         vmo: Maximum operating speed (KIAS)
         mmo: Maximum operating Mach number
         ceiling: Service ceiling (ft)

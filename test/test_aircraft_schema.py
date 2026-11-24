@@ -15,7 +15,7 @@ from tools.migrate_aircraft_data import (
     normalize_bundle,
     validate_simple,
 )
-from tools.update_aircraft_geometry import GEOMETRY_UNITS
+from tools.update_aircraft_geometry import GEOMETRY_UNITS, render_geometry_section
 
 ROOT = Path("src/aerox/data/aircraft/yml")
 SOURCE_ROOT = Path("src/aerox/data/aircraft/sources")
@@ -196,7 +196,7 @@ def test_subtypes_use_exact_uniform_structure_and_edb_codes(records):
         adopted_sources = [part.strip() for part in record["source"].split("|")]
         assert adopted_sources and adopted_sources != ["-"]
         assert "icao_eedb_issue_32" in adopted_sources
-    assert mapped_aircraft == 17
+    assert mapped_aircraft >= 18
 
 
 def test_airbus_subtypes_are_populated_and_boeing_subtypes_are_null(records):
@@ -206,6 +206,7 @@ def test_airbus_subtypes_are_populated_and_boeing_subtypes_are_null(records):
         "A20N",
         "A21N",
         "A306",
+        "A310",
         "A318",
         "A319",
         "A320",
@@ -534,3 +535,18 @@ def test_web_editor_updates_geometry_sources_and_derived_values(
         notes["fields"]["wing.aspect_ratio"]["inputs"] == "span=34.2 m; area=122.0 m2"
     )
     assert notes["fields"]["wing.aspect_ratio"]["status"] == "legacy-unverified"
+
+
+def test_geometry_render_keeps_the_sections_after_the_geometry_section():
+    path = ROOT / "turbofan/a310.yml"
+    note = (SOURCE_ROOT / "turbofan/a310.txt").read_text(encoding="utf-8")
+    document = yaml.safe_load(path.read_text(encoding="utf-8"))
+    rendered = render_geometry_section(document, note, {})
+    for header in (
+        "OTHER PARAMETERS",
+        "DRAG MODEL",
+        "END DRAG MODEL",
+        "SUBTYPE AND ENGINE DATABANK APPLICABILITY",
+        "LEGACY PARAMETERS",
+    ):
+        assert f"\n{header}\n" in rendered

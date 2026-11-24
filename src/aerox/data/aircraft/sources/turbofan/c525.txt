@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Cessna CitationJet/CJ1
 ICAO: C525
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,22 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 4900
+  Value: 4853
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_c525_a078
+  Page or section: Issue 19, Section A (525), item 13, pp. 12-13
+  Applicability: 525 S/N 525-0600 to 525-0701 (CJ1+)
+  Notes: S/N 525-0001 to -0359: 4,717 kg; 525-0360 to -0599: 4,808 kg.
 END FIELD
 
 FIELD mlw
-  Value: 4500
+  Value: 4491
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_c525_a078
+  Page or section: Issue 19, Section A (525), item 13, pp. 12-13
+  Applicability: 525 S/N 525-0600 to 525-0701 (CJ1+)
 END FIELD
 
 FIELD mzfw
@@ -78,24 +83,32 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 260
+  Value: 263
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_c525_a078
+  Page or section: Issue 19, Section A (525), item 10, p. 11
+  Applicability: All model 525 serial numbers
+  Notes: VMO 263 KIAS (260 KCAS) from sea level to 30,500 ft; MMO 0.71 indicated (0.70 Mach calibrated) above 30,500 ft. Indicated values are stored.
 END FIELD
 
 FIELD mmo
   Value: 0.71
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_c525_a078
+  Page or section: Issue 19, Section A (525), item 10, p. 11
+  Applicability: All model 525 serial numbers
+  Notes: VMO 263 KIAS (260 KCAS) from sea level to 30,500 ft; MMO 0.71 indicated (0.70 Mach calibrated) above 30,500 ft. Indicated values are stored.
 END FIELD
 
 FIELD ceiling
   Value: 41000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_c525_a078
+  Page or section: Issue 19, Section A (525), item 11, p. 12
+  Applicability: All model 525 serial numbers
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -425,7 +438,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9511; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
-  Zero-lift terms at reference (drag counts): wing=72.79; fuselage=62.13; horizontal_tail=23.17; vertical_tail=14.70; nacelles=11.64; pylons=1.55; fuselage_upsweep=4.57; control_surface_gaps=1.40; nacelle_base=3.80; roughness_excrescence=17.62
+  Zero-lift terms at reference (drag counts): wing=72.91; fuselage=62.22; horizontal_tail=23.21; vertical_tail=14.73; nacelles=11.66; pylons=1.55; fuselage_upsweep=4.57; control_surface_gaps=1.40; nacelle_base=3.80; roughness_excrescence=17.64
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -447,7 +460,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 50798.5
+  Value: 50999.0
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -459,10 +472,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 2345994.4
+  Value: 2323491.7
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=50798.5 ft; Mach=0.630000; ISA temperature and density
+  Inputs: altitude=50999.0 ft; Mach=0.630000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.951083

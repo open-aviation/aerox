@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Dassault Falcon/Mystère 50
 ICAO: FA50
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -50,15 +50,20 @@ END FIELD
 FIELD mtow
   Value: 18500
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_falcon_50_900_a062_issue_10
+  Page or section: Issue 10, Section 2 (Mystère-Falcon 50), item 2.5.11, p. 15
+  Applicability: Falcon 50 with modification M1230 or SB F50-161 (or M1430 / SB F50-191)
+  Notes: Without M1230: 17,600 kg.
 END FIELD
 
 FIELD mlw
   Value: 16200
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_falcon_50_900_a062_issue_10
+  Page or section: Issue 10, Section 2 (Mystère-Falcon 50), item 2.5.11, p. 15
+  Applicability: All Falcon 50
 END FIELD
 
 FIELD mzfw
@@ -78,24 +83,33 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 320
+  Value: 370
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_falcon_50_900_a062_issue_10
+  Page or section: Issue 10, Section 2 (Mystère-Falcon 50), item 2.5.8, p. 14
+  Applicability: Falcon 50
+  Notes: VMO 350 kt at sea level, 370 kt from 10,000 ft to 24,000 ft; MMO 0.86 above 24,000 ft (indicated).
 END FIELD
 
 FIELD mmo
   Value: 0.86
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_falcon_50_900_a062_issue_10
+  Page or section: Issue 10, Section 2 (Mystère-Falcon 50), item 2.5.8, p. 14
+  Applicability: Falcon 50
+  Notes: VMO 350 kt at sea level, 370 kt from 10,000 ft to 24,000 ft; MMO 0.86 above 24,000 ft (indicated).
 END FIELD
 
 FIELD ceiling
   Value: 49000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_falcon_50_900_a062_issue_10
+  Page or section: Issue 10, Section 2 (Mystère-Falcon 50), item 2.5.9, p. 15
+  Applicability: Falcon 50 with modification M17 or SB F50-0163 (FL490)
+  Notes: Without modification M17: 45,000 ft. FL490 is the ceiling usually quoted for the Falcon 50.
 END FIELD
 
 WING AND TAIL GEOMETRY

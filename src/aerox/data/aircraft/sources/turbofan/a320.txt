@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Airbus A320-214
 ICAO: A320
-Last reviewed: 2026-08-06
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -82,22 +82,25 @@ END FIELD
 FIELD vmo
   Value: 350
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Issue 63, Section 1 (A320), item 10, p. 45
 END FIELD
 
 FIELD mmo
   Value: 0.82
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Issue 63, Section 1 (A320), item 10, p. 45
 END FIELD
 
 FIELD ceiling
-  Value: 39000
+  Value: 39800
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Issue 63, Section 1 (A320), item 11, p. 46; A320 envelope, 39,800 ft with modification 30748, which most aircraft in service have; Basic envelope: 39,100 ft. 41,000 ft with modification 162744, not adopted.
 END FIELD
 
 WING AND TAIL GEOMETRY

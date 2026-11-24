@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: BAe HS 125/700-800/Hawker 800
 ICAO: H25B
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -50,15 +50,20 @@ END FIELD
 FIELD mtow
   Value: 12700
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima085_issue_05
+  Page or section: Issue 05, part XVIII (Hawker 800XP), Maximum Weights, p. 49
+  Applicability: Hawker 800XP (TFE731-5BR engines, the record default)
+  Notes: The BAe.125 Series 800A/800B with modifications 259550 and 253169A have the same value.
 END FIELD
 
 FIELD mlw
-  Value: 10600
+  Value: 10591
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima085_issue_05
+  Page or section: Issue 05, part XVIII (Hawker 800XP), Maximum Weights, p. 49
+  Applicability: Hawker 800XP
 END FIELD
 
 FIELD mzfw
@@ -78,17 +83,23 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 320
+  Value: 335
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima085_issue_05
+  Page or section: Issue 05, part XVIII (Hawker 800XP), Airspeed Limits, p. 48
+  Applicability: Hawker 800XP
+  Notes: VMO 335 KIAS with the ventral tanks empty from sea level to 12,000 ft, decreasing 1 kt per 680 ft to 310 kt at 29,000 ft; 280 kt with fuel in the ventral tank; MMO 0.80.
 END FIELD
 
 FIELD mmo
   Value: 0.8
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima085_issue_05
+  Page or section: Issue 05, part XVIII (Hawker 800XP), Airspeed Limits, p. 48
+  Applicability: Hawker 800XP
+  Notes: VMO 335 KIAS with the ventral tanks empty from sea level to 12,000 ft, decreasing 1 kt per 680 ft to 310 kt at 29,000 ft; 280 kt with fuel in the ventral tank; MMO 0.80.
 END FIELD
 
 FIELD ceiling

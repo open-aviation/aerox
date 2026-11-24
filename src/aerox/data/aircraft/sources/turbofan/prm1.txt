@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Raytheon Premier 1/390 Premier 1
 ICAO: PRM1
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,22 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 5700
+  Value: 5670
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima073_issue_02
+  Page or section: Issue 02, item 13, p. 7
+  Applicability: Beechcraft 390 (Premier I and IA)
 END FIELD
 
 FIELD mlw
-  Value: 5300
+  Value: 5262
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima073_issue_02
+  Page or section: Issue 02, item 13, p. 7
+  Applicability: Beechcraft 390 (Premier I and IA)
+  Notes: 11,600 lb (5,261.6 kg).
 END FIELD
 
 FIELD mzfw
@@ -78,24 +83,32 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 280
+  Value: 320
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima073_issue_02
+  Page or section: Issue 02, item 10, p. 6
+  Applicability: Beechcraft 390
+  Notes: VMO 320 KCAS from sea level to 27,600 ft; MMO 0.80 above 27,600 ft.
 END FIELD
 
 FIELD mmo
   Value: 0.8
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima073_issue_02
+  Page or section: Issue 02, item 10, p. 6
+  Applicability: Beechcraft 390
+  Notes: VMO 320 KCAS from sea level to 27,600 ft; MMO 0.80 above 27,600 ft.
 END FIELD
 
 FIELD ceiling
   Value: 41000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima073_issue_02
+  Page or section: Issue 02, item 11, p. 6
+  Applicability: Beechcraft 390
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -387,7 +400,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9428; roughness_excrescence/computed=0.0900; nacelle_tier=C-estimated-fan-diameter
-  Zero-lift terms at reference (drag counts): wing=62.98; fuselage=64.96; horizontal_tail=21.68; vertical_tail=13.77; nacelles=7.64; pylons=1.02; fuselage_upsweep=4.99; control_surface_gaps=1.30; nacelle_base=3.06; roughness_excrescence=16.33
+  Zero-lift terms at reference (drag counts): wing=62.98; fuselage=64.96; horizontal_tail=21.68; vertical_tail=13.77; nacelles=7.60; pylons=1.01; fuselage_upsweep=4.99; control_surface_gaps=1.30; nacelle_base=3.06; roughness_excrescence=16.32
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration

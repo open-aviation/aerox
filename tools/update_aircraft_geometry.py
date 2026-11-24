@@ -38,6 +38,8 @@ except ModuleNotFoundError:  # package-style import used by tests
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 SOURCE_LEDGER = PROJECT_ROOT / "sources/sources.yml"
+# A source-note section header: a line in capitals, other than END FIELD.
+_SECTION_HEADER = re.compile(r"^(?!END FIELD$)[A-Z][A-Z0-9 ,/()&-]*$", re.MULTILINE)
 DEFAULT_EXCLUSIONS = PROJECT_ROOT / "tools/geometry-runtime-exclusions.txt"
 
 GEOMETRY_UNITS = {
@@ -392,12 +394,16 @@ def render_geometry_section(
     marker = "WING AND TAIL GEOMETRY\n"
     legacy_marker = "LEGACY PARAMETERS\n"
     if marker in old_text:
-        prefix = old_text.split(marker, 1)[0]
-        suffix_source = old_text.split(marker, 1)[1]
-        suffix = legacy_marker + suffix_source.split(legacy_marker, 1)[1]
-    else:
+        # Replace only the geometry section: it ends at the next section
+        # header, so the sections after it are kept.
+        prefix, body = old_text.split(marker, 1)
+        header = _SECTION_HEADER.search(body)
+        suffix = body[header.start() :] if header else ""
+    elif legacy_marker in old_text:
         prefix, suffix_body = old_text.split(legacy_marker, 1)
         suffix = legacy_marker + suffix_body
+    else:
+        prefix, suffix = old_text, ""
 
     existing = parse_old_provenance(old_text)["fields"]
     searched_source = _certification_search_source(existing)

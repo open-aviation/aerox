@@ -8,15 +8,15 @@ certification:
   type_certificate: EASA.IM.A.035
   issue: '11'
   issue_date: '2025-02-04'
-mtow: 179170
-mlw: 117900
+mtow: 179169
+mlw: 136078
 mzfw: null
 minimum_weight: null
 oew: 80500
 mfc: 50600
 vmo: 360
 mmo: 0.86
-ceiling: 45000
+ceiling: 43100
 icao_wtc: heavy
 eu_wtc: lower heavy
 faa_wtc: heavy
@@ -81,9 +81,9 @@ drag:
   configuration: clean
   geometry_tier: B-observed-core-scaled-tails
   confidence: medium-low
-  reference_altitude_ft: 38721.6
+  reference_altitude_ft: 38721.8
   reference_mach: 0.8
-  reference_reynolds_per_m: 5323137.5
+  reference_reynolds_per_m: 5323107.8
   span_efficiency_factor: 0.952662
   unresolved_fraction_of_resolved_drag: null
   roughness_excrescence_fraction: 0.09

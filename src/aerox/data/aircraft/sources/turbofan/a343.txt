@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Airbus A340-300
 ICAO: A343
-Last reviewed: 2026-08-06
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,23 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 275000
+  Value: 276500
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a015_issue_28
+  Page or section: Issue 28, Section 2 (A340-300), item 12, p. 35
+  Applicability: A340-313 (highest A340-300 value)
+  Notes: All other A340-3xx models are 260 t.
 END FIELD
 
 FIELD mlw
-  Value: 190000
+  Value: 192000
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a015_issue_28
+  Page or section: Issue 28, Section 2 (A340-300), item 12, p. 35
+  Applicability: A340-313
+  Notes: All other A340-3xx models are 188 t.
 END FIELD
 
 FIELD mzfw
@@ -92,10 +98,13 @@ FIELD mmo
 END FIELD
 
 FIELD ceiling
-  Value: 41000
+  Value: 41450
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a015_issue_28
+  Page or section: Issue 28, Section 2 (A340-300), item 10.1, p. 35
+  Applicability: All A340-300 models
+  Notes: Maximum flight level 41,450 ft (12,634 m).
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -489,7 +498,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=A-observed-core-and-tails; confidence=medium; e_span=0.9547; roughness_excrescence/computed=0.0900; nacelle_tier=A-measured-nacelle
-  Zero-lift terms at reference (drag counts): wing=47.62; fuselage=48.15; horizontal_tail=12.50; vertical_tail=7.43; nacelles=14.84; pylons=2.28; fuselage_upsweep=4.13; control_surface_gaps=0.89; nacelle_base=1.61; roughness_excrescence=12.55
+  Zero-lift terms at reference (drag counts): wing=47.59; fuselage=48.12; horizontal_tail=12.49; vertical_tail=7.43; nacelles=14.84; pylons=2.28; fuselage_upsweep=4.13; control_surface_gaps=0.89; nacelle_base=1.61; roughness_excrescence=12.54
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -511,7 +520,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 36016.8
+  Value: 35903.4
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -523,10 +532,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 6208230.3
+  Value: 6233466.1
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=36016.8 ft; Mach=0.820000; ISA temperature and density
+  Inputs: altitude=35903.4 ft; Mach=0.820000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.954657

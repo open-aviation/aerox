@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Boeing 777-300
 ICAO: B773
-Last reviewed: 2026-08-06
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -50,15 +50,19 @@ END FIELD
 FIELD mtow
   Value: 299370
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima003_issue_20
+  Page or section: Issue 20.0, Section 3 (-300), item 13, p. 16
+  Applicability: 777-300 (660,000 lb)
 END FIELD
 
 FIELD mlw
-  Value: 237600
+  Value: 237682
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima003_issue_20
+  Page or section: Issue 20.0, Section 3 (-300), item 13, p. 16
+  Applicability: 777-300 (524,000 lb)
 END FIELD
 
 FIELD mzfw
@@ -92,10 +96,13 @@ FIELD mmo
 END FIELD
 
 FIELD ceiling
-  Value: 43000
+  Value: 43100
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima003_issue_20
+  Page or section: Issue 20.0, Section 3 (-300), item 11, p. 16
+  Applicability: 777-300
+  Notes: 13,140 m (43,100 ft) pressure altitude.
 END FIELD
 
 WING AND TAIL GEOMETRY

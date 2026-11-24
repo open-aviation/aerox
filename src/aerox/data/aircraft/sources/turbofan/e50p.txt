@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Embraer 500 Phenom 100
 ICAO: E50P
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,23 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 4750
+  Value: 4855
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima157_issue_09
+  Page or section: Issue 09, item 9, p. 9
+  Applicability: EMB-500 with the weight increase of note 14
+  Notes: Basic: 4,750 kg; note 9: 4,800 kg.
 END FIELD
 
 FIELD mlw
-  Value: 4400
+  Value: 4535
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima157_issue_09
+  Page or section: Issue 09, item 9, p. 9
+  Applicability: EMB-500 with the weight increase of note 14
+  Notes: Basic: 4,430 kg.
 END FIELD
 
 FIELD mzfw
@@ -78,24 +84,32 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 260
+  Value: 275
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima157_issue_09
+  Page or section: Issue 09, item 6, p. 8
+  Applicability: EMB-500
+  Notes: VMO 275 KIAS, MMO 0.7.
 END FIELD
 
 FIELD mmo
-  Value: 0.72
+  Value: 0.7
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima157_issue_09
+  Page or section: Issue 09, item 6, p. 8
+  Applicability: EMB-500
+  Notes: VMO 275 KIAS, MMO 0.7.
 END FIELD
 
 FIELD ceiling
   Value: 41000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima157_issue_09
+  Page or section: Issue 09, item 7, p. 8
+  Applicability: EMB-500
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -390,7 +404,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9436; roughness_excrescence/computed=0.0900; nacelle_tier=C-estimated-fan-diameter
-  Zero-lift terms at reference (drag counts): wing=70.49; fuselage=75.99; horizontal_tail=22.99; vertical_tail=14.58; nacelles=8.51; pylons=1.14; fuselage_upsweep=5.89; control_surface_gaps=1.40; nacelle_base=3.57; roughness_excrescence=18.41
+  Zero-lift terms at reference (drag counts): wing=70.39; fuselage=75.89; horizontal_tail=22.95; vertical_tail=14.56; nacelles=8.67; pylons=1.16; fuselage_upsweep=5.89; control_surface_gaps=1.40; nacelle_base=3.61; roughness_excrescence=18.41
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -412,7 +426,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 51098.2
+  Value: 50917.8
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -424,10 +438,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 2569384.7
+  Value: 2591761.1
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=51098.2 ft; Mach=0.700000; ISA temperature and density
+  Inputs: altitude=50917.8 ft; Mach=0.700000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.943624

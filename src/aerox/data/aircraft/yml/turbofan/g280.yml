@@ -9,12 +9,12 @@ certification:
   issue: current revision unresolved
   issue_date: null
 mtow: 17962
-mlw: 14800
+mlw: 14832
 mzfw: null
 minimum_weight: null
 oew: 11100
 mfc: 6600
-vmo: 320
+vmo: 340
 mmo: 0.85
 ceiling: 45000
 icao_wtc: medium

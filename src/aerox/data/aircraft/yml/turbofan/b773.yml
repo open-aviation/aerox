@@ -9,14 +9,14 @@ certification:
   issue: '20.0'
   issue_date: '2026-05-13'
 mtow: 299370
-mlw: 237600
+mlw: 237682
 mzfw: null
 minimum_weight: null
 oew: 160500
 mfc: 171200
 vmo: 330
 mmo: 0.89
-ceiling: 43000
+ceiling: 43100
 icao_wtc: heavy
 eu_wtc: upper heavy
 faa_wtc: heavy

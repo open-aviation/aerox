@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Bombardier BD-700 Global 5000
 ICAO: GL5T
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -50,15 +50,20 @@ END FIELD
 FIELD mtow
   Value: 41957
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima009_issue_14
+  Page or section: Issue 14, Section 2, Part III item 2.5, p. 12
+  Applicability: BD-700-1A11
+  Notes: See the AFM for configuration-specific limits.
 END FIELD
 
 FIELD mlw
-  Value: 35700
+  Value: 35652
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima009_issue_14
+  Page or section: Issue 14, Section 2, Part III item 2.5, p. 12
+  Applicability: BD-700-1A11
 END FIELD
 
 FIELD mzfw
@@ -94,8 +99,11 @@ END FIELD
 FIELD ceiling
   Value: 51000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima009_issue_14
+  Page or section: Issue 14, Section 2, item 5.4, p. 17
+  Applicability: BD-700-1A10 and BD-700-1A11
+  Notes: 15,545 m (51,000 ft).
 END FIELD
 
 WING AND TAIL GEOMETRY

@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Canadair CRJ-900
 ICAO: CRJ9
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,18 +48,23 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 38330
+  Value: 38329
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima673_issue_3
+  Page or section: Issue 3.0, Section 5 (CL-600-2D24), item 7, p. 36
+  Applicability: CL-600-2D24 option <2005> (highest certified takeoff weight, 84,500 lb)
+  Notes: Type specification: 36,514 kg. Option <2005> has MLW 34,065 kg, adopted as mlw.
 END FIELD
 
 FIELD mlw
-  Value: 33340
+  Value: 34065
   Unit: kg
-  Status: manufacturer-published-planning
-  Source: bombardier_crj900_apm_csp_c020_r11
-  Applicability: CL-600-2D24 aircraft 15001-15990
+  Status: certified-published
+  Source: easa_ima673_issue_3
+  Page or section: Issue 3.0, Section 5 (CL-600-2D24), item 7, p. 36
+  Applicability: CL-600-2D24 option <2005> (the configuration used for mtow)
+  Notes: Previous value 33,340 kg (Bombardier CRJ900 airport planning manual, aircraft 15001-15990).
 END FIELD
 
 FIELD mzfw
@@ -95,8 +100,11 @@ END FIELD
 FIELD ceiling
   Value: 41000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima673_issue_3
+  Page or section: Issue 3.0, Section 5 (CL-600-2D24), item 3 (description), p. 33
+  Applicability: CL-600-2D24
+  Notes: The TCDS states that the aircraft is certified for a maximum altitude of 41,000 ft.
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -433,7 +441,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 41003.7
+  Value: 41004.3
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -445,10 +453,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 4650891.8
+  Value: 4650770.5
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=41003.7 ft; Mach=0.780000; ISA temperature and density
+  Inputs: altitude=41004.3 ft; Mach=0.780000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.949359

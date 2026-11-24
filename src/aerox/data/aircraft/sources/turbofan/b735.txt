@@ -1,0 +1,639 @@
+AEROX AIRCRAFT SOURCE NOTES
+Aircraft: Boeing 737-500
+ICAO: B735
+Last reviewed: 2026-11-23
+Source ledger: sources/sources.yml
+
+CERTIFICATION SCOPE
+  Model or family: 737-500
+  Authority: FAA validated by EASA
+  Type certificate: EASA.IM.A.120; FAA A16WE
+  Applicability: Basic 737-500 (737-5xx customer models) with CFM56-3 engines, no winglets. Masses are the increased design weights listed in the EASA TCDS. The FAA TCDS A16WE could not be retrieved at access; airspeed and altitude limits come from secondary sources as stated below.
+
+TYPE-CERTIFICATE AND LIMIT PARAMETERS
+
+FIELD certification.model
+  Value: 737-500
+  Status: certified-published
+  Source: easa_ima120_issue_30
+  Page or section: Issue 30, section 1, I.1, p. 5
+END FIELD
+
+FIELD certification.authority
+  Value: EASA
+  Status: certified-published
+  Source: easa_ima120_issue_30
+  Page or section: Issue 30, section 1, I.3 and II.1, pp. 5-6
+  Notes: FAA is the certifying authority (TCDS A16WE); EASA accepts the 737-500 under Regulation 1702/2003.
+END FIELD
+
+FIELD certification.type_certificate
+  Value: EASA.IM.A.120
+  Status: certified-published
+  Source: easa_ima120_issue_30
+  Page or section: Issue 30, page header
+  Notes: FAA TCDS A16WE is the reference data sheet.
+END FIELD
+
+FIELD certification.issue
+  Value: 30
+  Status: certified-published
+  Source: easa_ima120_issue_30
+  Page or section: Issue 30, page header
+  Notes: The B733 and B734 records cite Issue 29 (2025-12-16); section 1 values for the 737-500 were read from Issue 30.
+END FIELD
+
+FIELD certification.issue_date
+  Value: 2026-10-28
+  Status: certified-published
+  Source: easa_ima120_issue_30
+  Page or section: Issue 30, page header
+END FIELD
+
+FIELD mtow
+  Value: 61688
+  Unit: kg
+  Status: certified-published
+  Source: easa_ima120_issue_30
+  Source URL: https://www.easa.europa.eu/en/downloads/7297/en
+  Document title: EASA.IM.A.120 Boeing 737 Type-Certificate Data Sheet
+  Revision date: 2026-10-28
+  Page or section: Issue 30, section 1, III.13, p. 8
+  Applicability: 737-500 increased design weight; individual airplanes can have lower AFM weights.
+  Notes: 136,000 lb. Boeing D6-58325-6 Rev E section 2.1.8 lists 115,500 to 136,000 lb (52,390 to 61,689 kg) MTOW options.
+END FIELD
+
+FIELD mlw
+  Value: 49895
+  Unit: kg
+  Status: certified-published
+  Source: easa_ima120_issue_30
+  Source URL: https://www.easa.europa.eu/en/downloads/7297/en
+  Document title: EASA.IM.A.120 Boeing 737 Type-Certificate Data Sheet
+  Revision date: 2026-10-28
+  Page or section: Issue 30, section 1, III.13, p. 8
+  Notes: 110,000 lb. The same value applies to all weight options in Boeing D6-58325-6 Rev E section 2.1.8.
+END FIELD
+
+FIELD mzfw
+  Value: 46720
+  Unit: kg
+  Status: certified-published
+  Source: easa_ima120_issue_30
+  Source URL: https://www.easa.europa.eu/en/downloads/7297/en
+  Document title: EASA.IM.A.120 Boeing 737 Type-Certificate Data Sheet
+  Revision date: 2026-10-28
+  Page or section: Issue 30, section 1, III.13, p. 8
+  Notes: 103,000 lb, for the 136,000 lb MTOW option. Lower weight options use 102,500 lb (46,493 kg).
+END FIELD
+
+FIELD minimum_weight
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: EASA.IM.A.120 Issue 30 refers to the AFM for weights and gives no minimum certified mass.
+END FIELD
+
+FIELD vmo
+  Value: 340
+  Unit: kt
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-2/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 2, column 737-500, Vno/Mmo
+  Inputs: 340/M0.82
+  Uncertainty: Secondary textbook compilation; EASA.IM.A.120 refers to the AFM and the FAA TCDS A16WE could not be retrieved at access.
+  Notes: Same value as the B733 and B734 records (legacy-unverified) and the same table gives 340/M0.82 for the 737-300 and 737-400.
+END FIELD
+
+FIELD mmo
+  Value: 0.82
+  Unit: Mach
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-2/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 2, column 737-500, Vno/Mmo
+  Inputs: 340/M0.82
+  Uncertainty: Secondary textbook compilation; EASA.IM.A.120 refers to the AFM and the FAA TCDS A16WE could not be retrieved at access.
+END FIELD
+
+FIELD ceiling
+  Value: 37000
+  Unit: ft
+  Status: inferred-with-uncertainty
+  Source: eurocontrol_apd_b735_2026_11
+  Source URL: https://contentzone.eurocontrol.int/aircraftperformance/details.aspx?ICAO=B735
+  Document title: EUROCONTROL Aircraft Performance Database, B735
+  Page or section: Cruise, Ceiling FL 370
+  Uncertainty: Database value, not a certified limit; EASA.IM.A.120 refers to the AFM for the maximum operating altitude.
+  Notes: Same value as the B733 and B734 records (legacy-unverified).
+END FIELD
+
+OPERATING AND CAPACITY PARAMETERS
+
+FIELD oew
+  Value: 31311
+  Unit: kg
+  Status: manufacturer-published-planning
+  Source: boeing_737_classic_acap_rev_e_2023_11
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/737CL_REV_E.pdf
+  Document title: 737-100 through 737-500 Airplane Characteristics for Airport Planning, D6-58325-6 Revision E
+  Revision date: 2023-11-01
+  Page or section: Section 2.1.8, page 2-9
+  Applicability: Baseline mixed-class configuration; airline weights vary.
+  Notes: 69,030 lb, the same for all weight options.
+END FIELD
+
+FIELD mfc
+  Value: 20102
+  Unit: L
+  Status: manufacturer-published-planning
+  Source: boeing_737_classic_acap_rev_e_2023_11
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/737CL_REV_E.pdf
+  Document title: 737-100 through 737-500 Airplane Characteristics for Airport Planning, D6-58325-6 Revision E
+  Revision date: 2023-11-01
+  Page or section: Section 2.1.8, page 2-9
+  Applicability: Usable fuel with standard tanks, no auxiliary tank.
+  Notes: 5,311 US gal (16,141 kg). Value stored in litres as in the other Aerox records. With an optional aft-cargo auxiliary tank the usable fuel is 21,578 to 23,827 L.
+END FIELD
+
+FUSELAGE GEOMETRY
+
+FIELD fuselage.length
+  Value: 29.9
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-2/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 2, column 737-500
+  Inputs: Fuselage: Length (m) 29.90
+  Applicability: 737-500 fuselage length (body only, not overall airplane length)
+  Uncertainty: Secondary textbook compilation; +/-0.5 m
+  Notes: The drag build-up uses the body length. The overall airplane length is 31.01 m (101 ft 9 in; Boeing D6-58325-6 Rev E section 2.2.6 and EASA.IM.A.120 III.4).
+END FIELD
+
+FIELD fuselage.height
+  Value: 3.76
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: boeing_737_classic_acap_rev_e_2023_11 | jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/737CL_REV_E.pdf
+  Document title: 737-100 through 737-500 Airplane Characteristics for Airport Planning, D6-58325-6 Revision E
+  Page or section: Section 2.2.6, page 2-15 (plan view, 12 ft 4 in body width)
+  Formula: height = width
+  Applicability: Constant-section fuselage
+  Uncertainty: +/-0.1 m; Jenkinson Data A Table 2 gives equal height and width (3.73 m) for the 737-500.
+  Notes: The 13 ft 2 in (4.01 m) side-view dimension in section 2.2.6 includes the wing-body fairing and is not adopted.
+END FIELD
+
+FIELD fuselage.width
+  Value: 3.76
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: boeing_737_classic_acap_rev_e_2023_11
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/737CL_REV_E.pdf
+  Document title: 737-100 through 737-500 Airplane Characteristics for Airport Planning, D6-58325-6 Revision E
+  Revision date: 2023-11-01
+  Page or section: Section 2.2.6, page 2-15
+  Inputs: 12 ft 4 in (3.76 m)
+  Uncertainty: Published rounded conversion
+  Notes: Jenkinson Data A Table 2 gives 3.73 m, the value of the B733 and B734 records.
+END FIELD
+
+WING AND TAIL GEOMETRY
+
+FIELD wing.area
+  Value: 91.04
+  Unit: m2
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-2/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 2, column 737-500
+  Inputs: Wing: Area (m2) 91.04
+  Applicability: 737-500 wing reference area; the source does not state the area definition
+  Uncertainty: Secondary textbook compilation; area +/-1 percent
+  Notes: 91.04 m2 equals 980 ft2; the source gives the same area for the 737-200/-300/-400/-500, and the B733 and B734 records use it.
+END FIELD
+
+FIELD wing.span
+  Value: 28.88
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: boeing_737_classic_acap_rev_e_2023_11
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/737CL_REV_E.pdf
+  Document title: 737-100 through 737-500 Airplane Characteristics for Airport Planning, D6-58325-6 Revision E
+  Revision date: 2023-11-01
+  Page or section: Section 2.2.6, page 2-15
+  Inputs: 94 ft 9 in (28.88 m)
+  Applicability: 737-500 without winglets
+  Uncertainty: Published rounded conversion
+  Notes: EASA.IM.A.120 Issue 30 III.4 gives 28.88 m for the 737-300/-400/-500.
+END FIELD
+
+FIELD wing.mac
+  Value: 3.73
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-2/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 2, column 737-500
+  Inputs: MAC (m) 3.73
+  Uncertainty: Secondary textbook compilation; +/-0.05 m
+  Notes: The TCDS refers to Boeing D6-15066 for the MAC; that document is not public. Same value as the B733 and B734 records.
+END FIELD
+
+FIELD wing.sweep
+  Value: 25
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-2/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 2, column 737-500
+  Inputs: 1/4 Chord Sweep (deg) 25.00
+  Applicability: Quarter-chord sweep
+  Uncertainty: Secondary textbook compilation; +/-1 deg
+END FIELD
+
+FIELD wing.t/c
+  Value: 0.1289
+  Unit: nondimensional
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-2/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 2, column 737-500
+  Inputs: Average (t/c) % 12.89
+  Applicability: Spanwise average thickness ratio
+  Uncertainty: Secondary textbook compilation; definition of the average not stated
+  Notes: The B733 and B734 records store the same value rounded to 0.129.
+END FIELD
+
+FIELD wing.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted. Jenkinson gives a taper ratio of 0.240, but a straight trapezoid with that ratio does not reproduce the 3.73 m MAC of the cranked 737 wing, so no chord is derived from it.
+  Searched source: easa_ima120_issue_30 | boeing_737_classic_acap_rev_e_2023_11 | jenkinson_simpkin_rhodes_1999_data_a
+END FIELD
+
+FIELD wing.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_30 | boeing_737_classic_acap_rev_e_2023_11 | jenkinson_simpkin_rhodes_1999_data_a
+END FIELD
+
+FIELD wing.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No chord pair has been adopted; Jenkinson gives 0.240 without a reference planform definition. Kept null as in the B733 and B734 records.
+  Searched source: easa_ima120_issue_30 | boeing_737_classic_acap_rev_e_2023_11 | jenkinson_simpkin_rhodes_1999_data_a
+END FIELD
+
+FIELD wing.aspect_ratio
+  Value: 9.161406
+  Unit: nondimensional
+  Status: inferred-with-uncertainty
+  Source: boeing_737_classic_acap_rev_e_2023_11 | jenkinson_simpkin_rhodes_1999_data_a
+  Formula: span^2 / area
+  Inputs: span=28.88 m; area=91.04 m2
+  Notes: Derived only from the cited inputs; not a separately published ratio.
+END FIELD
+
+FIELD wing.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_30 | boeing_737_classic_acap_rev_e_2023_11 | jenkinson_simpkin_rhodes_1999_data_a
+END FIELD
+
+FIELD horizontal_tail.area
+  Value: 31.467291
+  Unit: m2
+  Status: inferred-with-uncertainty
+  Source: boeing_737_400_cad_3view | boeing_737_classic_acap_rev_e_2023_11
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/7374.zip
+  Document title: Boeing 737-400 3-view CAD drawing
+  Page or section: CAD handles LE AA7; TE AA8; tip AA9/AA6
+  Formula: span * (root_chord + tip_chord) / 2
+  Inputs: span=12.700000 m; root=3.832015 m; tip=1.123464 m
+  Applicability: Sister-type value. The 737-300/-400/-500 share the horizontal stabilizer; the 737-500 span (12.70 m, D6-58325-6 section 2.2.6) equals the 737-400 span.
+  Uncertainty: root/tip/MAC +/-0.15 m; area +/-1.91 m2; sweep +/-1 deg
+  Notes: Values copied from the B734 record (CAD measurement); the B733 drawing gives the same geometry within CAD precision. No 737-500 CAD drawing was measured. Jenkinson Data A Table 2 gives 31.31 m2 for all 737 Classic models.
+END FIELD
+
+FIELD horizontal_tail.span
+  Value: 12.7
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: boeing_737_classic_acap_rev_e_2023_11
+  Source URL: https://www.boeing.com/content/dam/boeing/v2/airports/acaps/737CL_REV_E.pdf
+  Document title: 737-100 through 737-500 Airplane Characteristics for Airport Planning, D6-58325-6 Revision E
+  Revision date: 2023-11-01
+  Page or section: Section 2.2.6, page 2-15
+  Inputs: 41 ft 8 in (12.70 m)
+  Applicability: 737-500 horizontal-tail overall span
+  Uncertainty: Published rounded conversion
+END FIELD
+
+FIELD horizontal_tail.mac
+  Value: 2.724478
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: boeing_737_400_cad_3view
+  Page or section: CAD handles LE AA7; TE AA8; tip AA9/AA6
+  Formula: (2/3) * root_chord * (1 + taper + taper^2) / (1 + taper)
+  Inputs: span=12.700000 m; root=3.832015 m; tip=1.123464 m
+  Uncertainty: root/tip/MAC +/-0.15 m; area +/-1.91 m2; sweep +/-1 deg
+  Notes: Sister-type value from the 737-400 drawing; see horizontal_tail.area.
+END FIELD
+
+FIELD horizontal_tail.root_chord
+  Value: 3.832015
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: boeing_737_400_cad_3view
+  Page or section: CAD handles LE AA7; TE AA8; tip AA9/AA6
+  Formula: straight trailing-edge minus leading-edge extrapolation at the aircraft centerline
+  Uncertainty: root/tip/MAC +/-0.15 m; area +/-1.91 m2; sweep +/-1 deg
+  Notes: Sister-type value from the 737-400 drawing; see horizontal_tail.area.
+END FIELD
+
+FIELD horizontal_tail.tip_chord
+  Value: 1.123464
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: boeing_737_400_cad_3view
+  Page or section: CAD handles LE AA7; TE AA8; tip AA9/AA6
+  Formula: straight trailing-edge minus leading-edge extrapolation at the published semispan
+  Uncertainty: root/tip/MAC +/-0.15 m; area +/-1.91 m2; sweep +/-1 deg
+  Notes: Sister-type value from the 737-400 drawing; see horizontal_tail.area.
+END FIELD
+
+FIELD horizontal_tail.taper_ratio
+  Value: 0.293178
+  Unit: nondimensional
+  Status: inferred-with-uncertainty
+  Source: boeing_737_400_cad_3view
+  Formula: tip_chord / root_chord
+  Inputs: tip_chord=1.123464 m; root_chord=3.832015 m
+  Notes: Sister-type value from the 737-400 drawing; see horizontal_tail.area.
+END FIELD
+
+FIELD horizontal_tail.sweep
+  Value: 30.000001
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: boeing_737_400_cad_3view
+  Page or section: CAD handles LE AA7; TE AA8; tip AA9/AA6
+  Formula: atan2(quarter_chord_tip - quarter_chord_root, span / 2)
+  Uncertainty: sweep +/-1 deg
+  Notes: Jenkinson Data A Table 2 gives 30 deg quarter-chord sweep for the 737-500.
+END FIELD
+
+FIELD horizontal_tail.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_30 | boeing_737_classic_acap_rev_e_2023_11 | jenkinson_simpkin_rhodes_1999_data_a
+END FIELD
+
+FIELD horizontal_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: Jenkinson gives a 14.00 m tail arm without a reference-point definition; not adopted, as in the B733 and B734 records.
+  Searched source: easa_ima120_issue_30 | boeing_737_classic_acap_rev_e_2023_11 | jenkinson_simpkin_rhodes_1999_data_a
+END FIELD
+
+FIELD horizontal_tail.elevator_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_30 | boeing_737_classic_acap_rev_e_2023_11 | jenkinson_simpkin_rhodes_1999_data_a
+END FIELD
+
+FIELD vertical_tail.area
+  Value: 23.13
+  Unit: m2
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-2/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 2, column 737-500
+  Inputs: Area (m2) 23.13
+  Applicability: 737-500 vertical tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent; sweep +/-2 deg
+  Notes: Replaces the class-scaled drag-model default; not a certified reference area. The source gives the same fin for the 737-300/-400/-500; the B733 and B734 records still leave the vertical tail null.
+END FIELD
+
+FIELD vertical_tail.height
+  Value: 6
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Page or section: Data A Table 2, column 737-500
+  Inputs: Height (m) 6.00
+END FIELD
+
+FIELD vertical_tail.mac
+  Value: 4.211499
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Page or section: Data A Table 2, column 737-500
+  Formula: (2/3) * root_chord * (1 + taper + taper^2) / (1 + taper)
+  Inputs: area=23.13 m2; height=6.00 m; taper=0.31
+END FIELD
+
+FIELD vertical_tail.root_chord
+  Value: 5.885496
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Page or section: Data A Table 2, column 737-500
+  Formula: 2 * area / (height * (1 + taper))
+  Inputs: area=23.13 m2; height=6.00 m; taper=0.31
+END FIELD
+
+FIELD vertical_tail.tip_chord
+  Value: 1.824504
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Page or section: Data A Table 2, column 737-500
+  Formula: root_chord * taper
+  Inputs: area=23.13 m2; height=6.00 m; taper=0.31
+END FIELD
+
+FIELD vertical_tail.taper_ratio
+  Value: 0.31
+  Unit: nondimensional
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Page or section: Data A Table 2, column 737-500
+  Inputs: Taper Ratio 0.310
+END FIELD
+
+FIELD vertical_tail.sweep
+  Value: 35
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Page or section: Data A Table 2, column 737-500
+  Inputs: 1/4 Chord Sweep (deg) 35.00
+END FIELD
+
+FIELD vertical_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: Jenkinson gives a 12.90 m tail arm without a reference-point definition; not adopted.
+  Searched source: easa_ima120_issue_30 | boeing_737_classic_acap_rev_e_2023_11 | jenkinson_simpkin_rhodes_1999_data_a
+END FIELD
+
+FIELD vertical_tail.rudder_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No exact-model public value has been adopted.
+  Searched source: easa_ima120_issue_30 | boeing_737_classic_acap_rev_e_2023_11 | jenkinson_simpkin_rhodes_1999_data_a
+END FIELD
+
+OTHER PARAMETERS
+  Format: field = value; status; source; page or section.
+  iata = 735; legacy-unverified; -; IATA code follows the 737 Classic pattern of the B733 ('733') and B734 ('734') records; no IATA list was retrieved.
+  icao_wtc = medium; inferred-with-uncertainty; eurocontrol_apd_b735_2026_11; take-off block, WTC M.
+  eu_wtc = lower medium; inferred-with-uncertainty; eurocontrol_apd_b735_2026_11; take-off block, RECAT-EU Lower Medium.
+  faa_wtc = medium; inferred-with-uncertainty; -; sister-type value of the B733 and B734 records (legacy-unverified); no FAA assignment was retrieved.
+  parking_area_m2 = null; unresolved; -; no published value, and the legacy field definition is not documented.
+  pax.max = 140; certified-published; easa_ima120_issue_30; section 1, III.21, p. 9 (I-III-I exits, 140 passengers).
+  pax.high = 122; manufacturer-published-planning; boeing_737_classic_acap_rev_e_2023_11; section 2.1.8, all-economy 122 at six abreast.
+  pax.low = 108; manufacturer-published-planning; boeing_737_classic_acap_rev_e_2023_11; section 2.1.8, two-class 8 first and 100 economy.
+  engine.type = turbofan; certified-published; easa_ima120_issue_30; section 1, III.5, p. 7.
+  engine.mount = wing; certified-published; easa_ima120_issue_30; section 1, III.2, p. 7 (engines on pylons beneath the wings).
+  engine.number = 2; certified-published; easa_ima120_issue_30; section 1, III.5, p. 7.
+  engine.default = CFM56-3-B1; manufacturer-published-planning; boeing_737_classic_acap_rev_e_2023_11; section 2.1.8, CFM56-3B1 at 18,500 and 20,000 lb SLST (name spelled as in engines.csv).
+  engine.options = [CFM56-3-B1, CFM56-3B-2, CFM56-3C-1]; certified-published; easa_ima120_issue_30; section 1, III.5, p. 7 (list common to the 737-300/-400/-500; AFM sets eligibility).
+  flaps.type = triple-slotted; inferred-with-uncertainty; jenkinson_simpkin_rhodes_1999_data_a; Data A Table 2, column 737-500, trailing-edge flap type S3.
+  flaps.bf/b = 0.72; inferred-with-uncertainty; jenkinson_simpkin_rhodes_1999_data_a; Data A Table 2, column 737-500, flap span/wing span 0.720.
+  flaps.area = 27; legacy-unverified; aerox_legacy_aircraft_database; sister-type value of the B734 record (shared wing).
+  flaps.lambda_f, flaps.cf/c, flaps.Sf/S = 0.9, 0.15, 0.15; legacy-unverified; aerox_legacy_aircraft_database; sister-type flap-model inputs of the B734 record, not measured 737-500 values.
+  kinematic (all fields); inferred-with-uncertainty; eurocontrol_apd_b735_2026_11; B735 performance table: V2 139 kt, take-off 1500 m; climb 165 kt/3000 ft/min to 5000 ft, 270 kt/2500 ft/min to FL150, 270 kt/1800 ft/min to FL240, M0.70/1000 ft/min; cruise M0.74, 430 kt TAS, 1600 NM; descent M0.74/1000 ft/min to FL240, 280 kt/3500 ft/min to FL100; approach 250 kt/1500 ft/min; landing Vat 128 kt, 1400 m.
+
+LEGACY PARAMETERS
+  This record was added after the original Aerox database and has no original Aerox values.
+  Values labelled legacy-unverified are sister-type values from the B733 or B734 records, as stated above.
+
+DRAG MODEL
+  Active Aerox physical drag model and reference-condition polar snapshot.
+  Scaled or substituted geometry fields: wing.root_chord, engine.nacelle_max_diameter, engine.nacelle_length
+
+FIELD drag.model
+  Value: aerox-geometry-drag-v2
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Inputs: configuration=clean; tier=A-observed-core-and-tails; confidence=medium; e_span=0.9399; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
+  Zero-lift terms at reference (drag counts): wing=52.11; fuselage=69.16; horizontal_tail=23.51; vertical_tail=16.16; nacelles=14.47; pylons=2.23; fuselage_upsweep=7.32; control_surface_gaps=1.32; nacelle_base=2.67; roughness_excrescence=17.00
+  Applicability: Active clean model; geometry-tier uncertainty applies.
+END FIELD
+FIELD drag.configuration
+  Value: clean
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.geometry_tier
+  Value: A-observed-core-and-tails
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.confidence
+  Value: medium
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.reference_altitude_ft
+  Value: 34047.8
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Representative clean reference condition.
+END FIELD
+FIELD drag.reference_mach
+  Value: 0.74
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Representative clean reference condition.
+END FIELD
+FIELD drag.reference_reynolds_per_m
+  Value: 6008374.5
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Inputs: altitude=34047.8 ft; Mach=0.740000; ISA temperature and density
+END FIELD
+FIELD drag.span_efficiency_factor
+  Value: 0.939937
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Physical model input; geometry-tier uncertainty applies.
+END FIELD
+FIELD drag.unresolved_fraction_of_resolved_drag
+  Value: null
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Physical model input; geometry-tier uncertainty applies.
+END FIELD
+FIELD drag.roughness_excrescence_fraction
+  Value: 0.09
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Physical model input; geometry-tier uncertainty applies.
+END FIELD
+FIELD drag.wave_drag_model
+  Value: aerox-korn-lock-wave-v1
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.wave_drag_source_tier
+  Value: D-class-scaled
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.wave_drag_confidence
+  Value: low
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.wave_drag_technology_factor
+  Value: 0.95
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Physical model input; geometry-tier uncertainty applies.
+END FIELD
+END DRAG MODEL

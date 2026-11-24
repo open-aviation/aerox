@@ -1,0 +1,129 @@
+aircraft: Airbus A310-300
+icao: A310
+iata: '310'
+subtypes:
+- A310-203: CF6-80A3
+- A310-221: JT9D-7R4D, -7R4D1
+- A310-222: JT9D-7R4E, -7R4E1
+- A310-204: CF6-80C2A2
+- A310-203C: CF6-80A3
+- A310-322: JT9D-7R4E, -7R4E1
+- A310-304: CF6-80C2A2
+- A310-324: PW4152
+- A310-308:
+  - CF6-80C2A8
+  - CF6-80C2A2
+- A310-325: PW4156
+certification:
+  model: A310-300 series
+  authority: EASA
+  type_certificate: EASA.A.172
+  issue: 08
+  issue_date: '2026-02-01'
+mtow: 164000
+mlw: 124000
+mzfw: 114000
+minimum_weight: null
+oew: 79207
+mfc: 61090
+vmo: 340
+mmo: 0.84
+ceiling: 41100
+icao_wtc: heavy
+eu_wtc: lower heavy
+faa_wtc: heavy
+parking_area_m2: null
+pax:
+  max: 280
+  high: 218
+  low: 187
+fuselage:
+  length: 45.89
+  height: 5.64
+  width: 5.64
+wing:
+  area: 219
+  span: 43.9
+  mac: 5.89
+  sweep: 28
+  t/c: 0.118
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  aspect_ratio: 8.800046
+  dihedral: 3.9638
+horizontal_tail:
+  area: 64.0
+  span: 16.26
+  mac: 4.158133
+  root_chord: 5.555454
+  tip_chord: 2.316624
+  taper_ratio: 0.417
+  sweep: 34
+  dihedral: 6
+  arm: 22.5
+  elevator_area_ratio: null
+vertical_tail:
+  area: 45.235
+  height: 8.3
+  mac: 5.787768
+  root_chord: 7.8
+  tip_chord: 3.1
+  taper_ratio: 0.397436
+  sweep: 40
+  arm: 20.2
+  rudder_area_ratio: null
+flaps:
+  type: null
+  area: 36.68
+  bf/b: 0.84
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: turbofan
+  mount: underwing
+  number: 2
+  default: CF6-80C2A2
+  options:
+  - CF6-80C2A2
+  - CF6-80C2A8
+  - PW4152
+  - PW4156
+drag:
+  model: aerox-geometry-drag-v2
+  configuration: clean
+  geometry_tier: A-observed-core-and-tails
+  confidence: medium
+  reference_altitude_ft: 34697.9
+  reference_mach: 0.79
+  reference_reynolds_per_m: 6268757.3
+  span_efficiency_factor: 0.940724
+  unresolved_fraction_of_resolved_drag: null
+  roughness_excrescence_fraction: 0.09
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
+kinematic:
+  takeoff_distance_m: 2290
+  takeoff_v2: 156
+  climb_to_fl50_ias: 190
+  climb_to_fl50_vs: 3000
+  climb_to_fl150_ias: 290
+  climb_to_fl150_vs: 3200
+  climb_to_fl240_ias: 290
+  climb_to_fl240_vs: 2500
+  mach_climb_mach: 0.78
+  mach_climb_vs: 800
+  cruise_mach: 0.79
+  cruise_range_nm: 4300
+  cruise_tas: 470
+  descent_to_fl240_mach: 0.78
+  descent_to_fl240_vs: 1000
+  descent_to_fl100_ias: 290
+  descent_to_fl100_vs: 2000
+  approach_ias: 240
+  approach_vs: 1500
+  landing_distance_m: 1490
+  landing_ias: 139

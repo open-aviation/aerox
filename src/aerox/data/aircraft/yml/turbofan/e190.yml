@@ -8,8 +8,8 @@ certification:
   type_certificate: CT2005T13
   issue: null
   issue_date: null
-mtow: 45995
-mlw: 43000
+mtow: 51800
+mlw: 44000
 mzfw: null
 minimum_weight: null
 oew: 27837
@@ -80,9 +80,9 @@ drag:
   configuration: clean
   geometry_tier: B-observed-core-scaled-tails
   confidence: medium-low
-  reference_altitude_ft: 42694.1
+  reference_altitude_ft: 40221.1
   reference_mach: 0.78
-  reference_reynolds_per_m: 4287975.3
+  reference_reynolds_per_m: 4829163.7
   span_efficiency_factor: 0.950599
   unresolved_fraction_of_resolved_drag: null
   roughness_excrescence_fraction: 0.09

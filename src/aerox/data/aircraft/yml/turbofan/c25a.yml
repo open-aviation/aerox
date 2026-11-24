@@ -9,14 +9,14 @@ certification:
   issue: EASA Issue 19 at review
   issue_date: null
 mtow: 5670
-mlw: 5200
+mlw: 5228
 mzfw: null
 minimum_weight: null
 oew: 3600
 mfc: 2230
-vmo: 262
-mmo: 0.74
-ceiling: 41000
+vmo: 278
+mmo: 0.737
+ceiling: 45000
 icao_wtc: light
 eu_wtc: light
 faa_wtc: light

@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Bombardier BD-700 Global Express
 ICAO: GLEX
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,22 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 45100
+  Value: 45132
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima009_issue_14
+  Page or section: Issue 14, Section 2, Part III item 1.5, p. 9
+  Applicability: BD-700-1A10
+  Notes: See the AFM for configuration-specific limits.
 END FIELD
 
 FIELD mlw
-  Value: 35700
+  Value: 35652
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima009_issue_14
+  Page or section: Issue 14, Section 2, Part III item 1.5, p. 9
+  Applicability: BD-700-1A10
 END FIELD
 
 FIELD mzfw
@@ -94,8 +99,11 @@ END FIELD
 FIELD ceiling
   Value: 51000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima009_issue_14
+  Page or section: Issue 14, Section 2, item 5.4, p. 17
+  Applicability: BD-700-1A10 and BD-700-1A11
+  Notes: 15,545 m (51,000 ft).
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -387,7 +395,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9568; roughness_excrescence/computed=0.0900; nacelle_tier=C-estimated-fan-diameter
-  Zero-lift terms at reference (drag counts): wing=57.95; fuselage=40.73; horizontal_tail=18.45; vertical_tail=11.75; nacelles=11.64; pylons=1.55; fuselage_upsweep=2.32; control_surface_gaps=0.94; nacelle_base=2.09; roughness_excrescence=13.27
+  Zero-lift terms at reference (drag counts): wing=57.95; fuselage=40.72; horizontal_tail=18.45; vertical_tail=11.75; nacelles=11.64; pylons=1.55; fuselage_upsweep=2.32; control_surface_gaps=0.94; nacelle_base=2.09; roughness_excrescence=13.27
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -409,7 +417,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 47234.0
+  Value: 47219.2
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -421,10 +429,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 3756739.2
+  Value: 3759404.8
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=47234.0 ft; Mach=0.850000; ISA temperature and density
+  Inputs: altitude=47219.2 ft; Mach=0.850000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.956791

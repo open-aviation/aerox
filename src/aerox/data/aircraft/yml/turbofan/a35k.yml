@@ -10,14 +10,14 @@ certification:
   issue: '33'
   issue_date: '2026-07-01'
 mtow: 322000
-mlw: 233000
+mlw: 236000
 mzfw: null
 minimum_weight: null
 oew: 155000
 mfc: null
 vmo: 340
 mmo: 0.89
-ceiling: 42000
+ceiling: 41450
 icao_wtc: heavy
 eu_wtc: upper heavy
 faa_wtc: heavy

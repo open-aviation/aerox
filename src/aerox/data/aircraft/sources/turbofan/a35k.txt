@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Airbus A350-1000 XWB
 ICAO: A35K
-Last reviewed: 2026-08-06
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -50,15 +50,19 @@ END FIELD
 FIELD mtow
   Value: 322000
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a151_issue_33
+  Page or section: Issue 33, Section 2 (A350-1000), item 1.7, p. 27
+  Applicability: A350-1041
 END FIELD
 
 FIELD mlw
-  Value: 233000
+  Value: 236000
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a151_issue_33
+  Page or section: Issue 33, Section 2 (A350-1000), item 1.7, p. 27
+  Applicability: A350-1041
 END FIELD
 
 FIELD mzfw
@@ -92,10 +96,12 @@ FIELD mmo
 END FIELD
 
 FIELD ceiling
-  Value: 42000
+  Value: 41450
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a151_issue_33
+  Page or section: Issue 33, Section 2 (A350-1000), item 2.7, p. 29
+  Applicability: A350-1041
 END FIELD
 
 WING AND TAIL GEOMETRY

@@ -1,0 +1,114 @@
+aircraft: Antonov An-124-100 Ruslan
+icao: A124
+iata: null
+subtypes: null
+certification:
+  model: An-124-100
+  authority: Interstate Aviation Committee Aviation Register (IAC AR)
+  type_certificate: null
+  issue: null
+  issue_date: null
+mtow: 392000
+mlw: 330000
+mzfw: 300000
+minimum_weight: null
+oew: 180000
+mfc: 265438
+vmo: 286
+mmo: 0.77
+ceiling: 38058
+icao_wtc: heavy
+eu_wtc: super heavy
+faa_wtc: heavy
+parking_area_m2: null
+pax:
+  max: 88
+  high: null
+  low: null
+fuselage:
+  length: 69.1
+  height: 7.68
+  width: 7.68
+wing:
+  area: 628
+  span: 73.3
+  mac: 9.9
+  sweep: 27.5
+  t/c: 0.1135
+  root_chord: 13.807865
+  tip_chord: 3.327196
+  taper_ratio: 0.240964
+  aspect_ratio: 8.555557
+  dihedral: -5
+horizontal_tail:
+  area: 166.7
+  span: 25.983
+  mac: null
+  root_chord: null
+  tip_chord: null
+  taper_ratio: null
+  sweep: 32
+  dihedral: null
+  arm: null
+  elevator_area_ratio: 0.29844
+vertical_tail:
+  area: 95
+  height: 11.113
+  mac: 9.267985
+  root_chord: 12.844021
+  tip_chord: 4.252987
+  taper_ratio: 0.331126
+  sweep: 40
+  arm: null
+  rudder_area_ratio: 0.252632
+flaps:
+  type: single-slotted
+  area: null
+  bf/b: null
+  lambda_f: 0.9
+  cf/c: 0.2
+  Sf/S: 0.15
+engine:
+  type: turbofan
+  mount: wing
+  number: 4
+  default: D-18T
+  options:
+  - D-18T
+drag:
+  model: aerox-geometry-drag-v2
+  configuration: clean
+  geometry_tier: B-observed-core-scaled-tails
+  confidence: medium-low
+  reference_altitude_ft: 33430.0
+  reference_mach: 0.7
+  reference_reynolds_per_m: 5808304.2
+  span_efficiency_factor: 0.950611
+  unresolved_fraction_of_resolved_drag: null
+  roughness_excrescence_fraction: 0.09
+  wave_drag_model: aerox-korn-lock-wave-v1
+  wave_drag_source_tier: D-class-scaled
+  wave_drag_confidence: low
+  wave_drag_technology_factor: 0.95
+kinematic:
+  takeoff_distance_m: 3000
+  takeoff_v2: 167
+  climb_to_fl50_ias: 232
+  climb_to_fl50_vs: 1500
+  climb_to_fl150_ias: 265
+  climb_to_fl150_vs: 1500
+  climb_to_fl240_ias: 265
+  climb_to_fl240_vs: 1500
+  mach_climb_mach: 0.71
+  mach_climb_vs: 1500
+  cruise_mach: 0.7
+  cruise_range_nm: 2430
+  cruise_tas: 405
+  descent_to_fl240_mach: 0.75
+  descent_to_fl240_vs: 1000
+  descent_to_fl100_ias: 281
+  descent_to_fl100_vs: 3000
+  approach_ias: 243
+  approach_vs: 1500
+  landing_distance_m: 2130
+  landing_ias: 162

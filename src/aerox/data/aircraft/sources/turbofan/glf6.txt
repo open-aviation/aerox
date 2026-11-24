@@ -138,12 +138,12 @@ FIELD oew
 END FIELD
 
 FIELD mfc
-  Value: 20048
-  Unit: kg
+  Value: 24972
+  Unit: L
   Status: certified-published
   Source: easa_gulfstream_gvi_a169
   Page or section: Issue 17, section 1, III.9, p. 14
-  Notes: G650 total fuel 44,200 lb (24,972 L) at 0.8028 kg/L; the G650ER (ASC 014) 21,863 kg is not adopted. Unit follows the documented Aerox field unit (kg).
+  Notes: G650 total fuel 44,200 lb = 24,972 L (TCDS); 20,048 kg. The G650ER (ASC 014) 21,863 kg is not adopted. Aerox stores mfc in litres.
 END FIELD
 
 FUSELAGE GEOMETRY

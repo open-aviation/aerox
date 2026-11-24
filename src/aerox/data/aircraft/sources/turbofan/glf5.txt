@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Gulfstream V
 ICAO: GLF5
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,22 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 41136
+  Value: 41050
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima070_issue_13
+  Page or section: Issue 13, Section 7 (GV), item 11, p. 56
+  Applicability: GV S/N 541 and subsequent
+  Notes: The GV-SP (G500/G550, Section 8) is excluded.
 END FIELD
 
 FIELD mlw
-  Value: 34200
+  Value: 34155
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima070_issue_13
+  Page or section: Issue 13, Section 7 (GV), item 11, p. 56
+  Applicability: GV S/N 541 and subsequent
 END FIELD
 
 FIELD mzfw
@@ -94,8 +99,11 @@ END FIELD
 FIELD ceiling
   Value: 51000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima070_issue_13
+  Page or section: Issue 13, Section 7 (GV), item 10, p. 56
+  Applicability: GV
+  Notes: 15,545 m (51,000 ft).
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -396,7 +404,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9594; roughness_excrescence/computed=0.0900; nacelle_tier=C-estimated-fan-diameter
-  Zero-lift terms at reference (drag counts): wing=57.83; fuselage=35.01; horizontal_tail=18.48; vertical_tail=11.76; nacelles=9.97; pylons=1.33; fuselage_upsweep=1.89; control_surface_gaps=1.11; nacelle_base=1.80; roughness_excrescence=12.53
+  Zero-lift terms at reference (drag counts): wing=57.83; fuselage=35.01; horizontal_tail=18.48; vertical_tail=11.76; nacelles=9.95; pylons=1.33; fuselage_upsweep=1.89; control_surface_gaps=1.11; nacelle_base=1.80; roughness_excrescence=12.52
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration

@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Cessna Citation CJ2
 ICAO: C25A
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -50,15 +50,21 @@ END FIELD
 FIELD mtow
   Value: 5670
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_c525_a078
+  Page or section: Issue 19, Section B (525A), item 13, p. 26
+  Applicability: 525A S/N 525A0300 and on (CJ2+)
+  Notes: S/N 525A0001-0299: 5,613 kg.
 END FIELD
 
 FIELD mlw
-  Value: 5200
+  Value: 5228
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_c525_a078
+  Page or section: Issue 19, Section B (525A), item 13, p. 26
+  Applicability: 525A S/N 525A0300 and on (CJ2+)
+  Notes: S/N 525A0001-0299: 5,216 kg.
 END FIELD
 
 FIELD mzfw
@@ -78,24 +84,33 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 262
+  Value: 278
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_c525_a078
+  Page or section: Issue 19, Section B (525A), item 10, p. 24
+  Applicability: 525A S/N 525A0300 and on
+  Notes: For S/N 525A0300 and on: VMO 278 KIAS (277-275 KCAS) from 8,000 ft to 29,124 ft; MMO 0.737 indicated (0.722 Mach calibrated). S/N 525A0001-0299: 275 KIAS and MMO 0.72 indicated. Indicated values are stored.
 END FIELD
 
 FIELD mmo
-  Value: 0.74
+  Value: 0.737
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_c525_a078
+  Page or section: Issue 19, Section B (525A), item 10, p. 24
+  Applicability: 525A S/N 525A0300 and on
+  Notes: For S/N 525A0300 and on: VMO 278 KIAS (277-275 KCAS) from 8,000 ft to 29,124 ft; MMO 0.737 indicated (0.722 Mach calibrated). S/N 525A0001-0299: 275 KIAS and MMO 0.72 indicated. Indicated values are stored.
 END FIELD
 
 FIELD ceiling
-  Value: 41000
+  Value: 45000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_c525_a078
+  Page or section: Issue 19, Section B (525A), item 11, p. 25
+  Applicability: All model 525A
+  Notes: 13,716 m (45,000 ft). The previous 41,000 ft value has no basis in the TCDS.
 END FIELD
 
 WING AND TAIL GEOMETRY

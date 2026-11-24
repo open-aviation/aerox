@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Airbus A220-300
 ICAO: BCS3
-Last reviewed: 2026-08-06
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -80,24 +80,33 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 340
+  Value: 330
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_im_a570_issue_25
+  Page or section: Issue 25, Section 2 (BD-500-1A11), item 10, p. 22
+  Applicability: BD-500-1A11
+  Notes: VMO 300 KIAS from sea level to 8,000 ft and 330 KIAS from 10,000 ft to 27,500 ft; MMO 0.82 above 27,500 ft. The record stores the highest VMO.
 END FIELD
 
 FIELD mmo
   Value: 0.82
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_im_a570_issue_25
+  Page or section: Issue 25, Section 2 (BD-500-1A11), item 10, p. 22
+  Applicability: BD-500-1A11
+  Notes: VMO 300 KIAS from sea level to 8,000 ft and 330 KIAS from 10,000 ft to 27,500 ft; MMO 0.82 above 27,500 ft. The record stores the highest VMO.
 END FIELD
 
 FIELD ceiling
   Value: 41000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_im_a570_issue_25
+  Page or section: Issue 25, Section 2 (BD-500-1A11), item 11, p. 22
+  Applicability: BD-500-1A11
+  Notes: En-route maximum operating altitude 41,000 ft (12,497 m).
 END FIELD
 
 WING AND TAIL GEOMETRY

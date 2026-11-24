@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Cessna Citation CJ4
 ICAO: C25C
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,21 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 7761
+  Value: 7760
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_c525_a078
+  Page or section: Issue 19, Section D (525C), item 13, p. 45
+  Applicability: 525C S/N 525C0001 and on
 END FIELD
 
 FIELD mlw
-  Value: 7100
+  Value: 7103
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_c525_a078
+  Page or section: Issue 19, Section D (525C), item 13, p. 45
+  Applicability: 525C S/N 525C0001 and on
 END FIELD
 
 FIELD mzfw
@@ -80,22 +84,30 @@ END FIELD
 FIELD vmo
   Value: 305
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_c525_a078
+  Page or section: Issue 19, Section D (525C), item 10, p. 44
+  Applicability: All model 525C
+  Notes: VMO 305 KIAS (306 KCAS) from 8,000 ft to 28,000 ft; MMO 0.77 indicated (0.774 Mach calibrated) above 28,000 ft. Indicated values are stored.
 END FIELD
 
 FIELD mmo
   Value: 0.77
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_c525_a078
+  Page or section: Issue 19, Section D (525C), item 10, p. 44
+  Applicability: All model 525C
+  Notes: VMO 305 KIAS (306 KCAS) from 8,000 ft to 28,000 ft; MMO 0.77 indicated (0.774 Mach calibrated) above 28,000 ft. Indicated values are stored.
 END FIELD
 
 FIELD ceiling
   Value: 45000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_c525_a078
+  Page or section: Issue 19, Section D (525C), item 11, p. 45
+  Applicability: All model 525C
 END FIELD
 
 WING AND TAIL GEOMETRY

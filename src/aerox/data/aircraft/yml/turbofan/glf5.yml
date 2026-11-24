@@ -8,8 +8,8 @@ certification:
   type_certificate: EASA.IM.A.070; FAA identifier per model TCDS
   issue: EASA Issue 12 at review
   issue_date: '2026-03-30'
-mtow: 41136
-mlw: 34200
+mtow: 41050
+mlw: 34155
 mzfw: null
 minimum_weight: null
 oew: 20956

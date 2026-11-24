@@ -1,0 +1,583 @@
+AEROX AIRCRAFT SOURCE NOTES
+Aircraft: Antonov An-124-100 Ruslan
+ICAO: A124
+Last reviewed: 2026-11-23
+Source ledger: sources/sources.yml
+
+CERTIFICATION SCOPE
+  Model or family: An-124-100 (civil version of the An-124)
+  Authority: Interstate Aviation Committee Aviation Register (IAC AR)
+  Type certificate: not retrieved; the type certificate was issued in 1992 according to the operator booklet
+  Applicability: An-124-100 at 392 t MTOW with D-18T series 3 engines. The military An-124 (405 t), the An-124-100M, the An-124-100-150 and the An-124-111VD upgrades (402 t MTOW) are excluded. No type-certificate data sheet for the An-124-100 was found in public; the geometry and limits come from a 2005 civil-aviation flight-school textbook of the An-124-100 and from operator publications.
+
+TYPE-CERTIFICATE AND LIMIT PARAMETERS
+
+FIELD certification.model
+  Value: An-124-100
+  Status: manufacturer-published
+  Source: volga_dnepr_an124_100_booklet
+  Page or section: p. 2, introduction and characteristics table
+  Notes: Operator states that the civil modification An-124-100 received its airworthiness certificate from the Interstate Aviation Committee in 1992.
+END FIELD
+
+FIELD certification.authority
+  Value: Interstate Aviation Committee Aviation Register (IAC AR)
+  Status: manufacturer-published
+  Source: volga_dnepr_an124_100_booklet
+  Page or section: p. 2, introduction
+END FIELD
+
+FIELD certification.type_certificate
+  Value: null
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public IAC AR (or Ukrainian) type-certificate data sheet for the An-124-100 was found; the certificate number was not verified.
+END FIELD
+
+FIELD certification.issue
+  Value: null
+  Status: unresolved
+  Source: -
+  Reason unavailable: No type-certificate data sheet was retrieved.
+END FIELD
+
+FIELD certification.issue_date
+  Value: null
+  Status: unresolved
+  Source: -
+  Reason unavailable: Only the year (1992) is published by the operator; secondary sources give 1992-12-30, which was not verified against an authority document.
+END FIELD
+
+FIELD mtow
+  Value: 392000
+  Unit: kg
+  Status: inferred-with-uncertainty
+  Source: behtir_an124_100_practical_aerodynamics_2005 | volga_dnepr_an124_100_booklet | volga_dnepr_an124_100_technical_specification_web
+  Page or section: Behtir et al., section 4.1 Limitations, p. 40; Volga-Dnepr booklet p. 2; Volga-Dnepr technical specification page
+  Applicability: An-124-100. The 402 t value of the An-124-100-150 / An-124-111VD (STC) and the 405 t value of the military An-124 are not adopted.
+  Uncertainty: No authority document; three independent operator and training sources agree on 392 t.
+  Notes: Behtir et al. also give a maximum taxi mass of 398 t and a normal take-off mass of 365 t.
+END FIELD
+
+FIELD mlw
+  Value: 330000
+  Unit: kg
+  Status: inferred-with-uncertainty
+  Source: behtir_an124_100_practical_aerodynamics_2005 | volga_dnepr_an124_100_booklet | volga_dnepr_an124_100_technical_specification_web
+  Page or section: Behtir et al., section 4.1, p. 40; Volga-Dnepr booklet p. 2
+  Applicability: An-124-100; the An-124-150 value (360 t) is not adopted.
+  Uncertainty: No authority document; sources agree.
+END FIELD
+
+FIELD mzfw
+  Value: 300000
+  Unit: kg
+  Status: manufacturer-published
+  Source: volga_dnepr_an124_100_booklet
+  Page or section: p. 2, Maximum Weight Without Fuel
+  Applicability: An-124-100 as operated by Volga-Dnepr
+  Uncertainty: Operator data. The current Volga-Dnepr web page gives 306,000 kg; the booklet value is adopted because it is consistent with its OEW (180 t) plus maximum payload (120 t).
+END FIELD
+
+FIELD minimum_weight
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No published minimum flight mass was found.
+END FIELD
+
+FIELD vmo
+  Value: 286
+  Unit: kt
+  Status: inferred-with-uncertainty
+  Source: behtir_an124_100_practical_aerodynamics_2005
+  Page or section: section 4.1 Limitations, speed limits, p. 40; chapter 3, p. 31
+  Inputs: maximum permissible indicated airspeed 530 km/h = 286.2 kt
+  Uncertainty: Training textbook that reproduces the flight-manual limits; not an authority document.
+  Notes: The textbook states the 530 km/h IAS limit applies from 0 to 9000 m, above which M 0.77 applies.
+END FIELD
+
+FIELD mmo
+  Value: 0.77
+  Unit: Mach
+  Status: inferred-with-uncertainty
+  Source: behtir_an124_100_practical_aerodynamics_2005
+  Page or section: section 4.1 Limitations, speed limits, p. 40
+  Uncertainty: Training textbook; not an authority document.
+  Notes: Maximum permissible Mach number 0.77 (limited by stability and control).
+END FIELD
+
+FIELD ceiling
+  Value: 38058
+  Unit: ft
+  Status: inferred-with-uncertainty
+  Source: behtir_an124_100_practical_aerodynamics_2005 | redstar_an124_100_specifications
+  Page or section: Behtir et al., section 5.2, table 12 (maximum flight levels), p. 57; Red Star An-124-100 table, Service ceiling
+  Inputs: 11,600 m = 38,058 ft
+  Uncertainty: Mass-dependent maximum flight level, not a certified maximum operating altitude. Secondary sources also give 12,000 m (39,370 ft) as a maximum certified altitude; not verified.
+  Notes: Table 12 gives 9,100 m at 380 t, 11,100 m at 300 t and 11,600 m at 280 t or less. Red Star gives a service ceiling of 11,600 m.
+END FIELD
+
+OPERATING AND CAPACITY PARAMETERS
+
+FIELD oew
+  Value: 180000
+  Unit: kg
+  Status: manufacturer-published
+  Source: volga_dnepr_an124_100_booklet
+  Page or section: p. 2, Operational Empty Weight
+  Applicability: An-124-100 as operated by Volga-Dnepr
+  Uncertainty: Operator-dependent. Behtir et al. give 172 t equipped empty mass (p. 40); the current Volga-Dnepr web page gives 192,215 kg operating empty weight; Red Star gives 173,000 kg empty.
+  Notes: Operator data, not manufacturer data; the status label is the closest available.
+END FIELD
+
+FIELD mfc
+  Value: 265438
+  Unit: L
+  Status: calculated-from-published-inputs
+  Source: volga_dnepr_an124_100_booklet | redstar_an124_100_specifications
+  Page or section: Volga-Dnepr booklet p. 2, Maximum Fuel Uplift; Red Star table, Internal fuel
+  Formula: fuel mass / assumed fuel density
+  Inputs: 212,350 kg; density 0.800 kg/L (assumed, TS-1 / Jet A-1 typical)
+  Uncertainty: +/-3 percent from the assumed density. Behtir et al. give a maximum fuelling of 213.74 t (p. 40), the value usually quoted for the military An-124.
+  Notes: Stored in litres like the existing records.
+END FIELD
+
+FUSELAGE GEOMETRY
+
+FIELD fuselage.length
+  Value: 69.1
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: behtir_an124_100_practical_aerodynamics_2005 | volga_dnepr_an124_100_booklet
+  Page or section: Behtir et al., section 1.2, Fuselage, p. 9; Volga-Dnepr booklet p. 2, aircraft dimensions drawing
+  Uncertainty: Secondary source; overall length and fuselage length are both 69.1 m in the textbook.
+END FIELD
+
+FIELD fuselage.height
+  Value: 7.68
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: behtir_an124_100_practical_aerodynamics_2005
+  Page or section: section 1.2, Fuselage, p. 9
+  Uncertainty: The textbook gives only the equivalent midsection diameter (7.68 m) and midsection area (46.35 m2). The real section is not circular; width and height are both set to the equivalent diameter so that the frontal area is preserved.
+END FIELD
+
+FIELD fuselage.width
+  Value: 7.68
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: behtir_an124_100_practical_aerodynamics_2005
+  Page or section: section 1.2, Fuselage, p. 9
+  Uncertainty: Equivalent midsection diameter; see fuselage.height. The cargo hold is 6.4 m wide (6.68 m per the textbook) and 4.4 m high.
+END FIELD
+
+WING AND TAIL GEOMETRY
+
+FIELD wing.area
+  Value: 628
+  Unit: m2
+  Status: inferred-with-uncertainty
+  Source: behtir_an124_100_practical_aerodynamics_2005 | redstar_an124_100_specifications
+  Page or section: Behtir et al., section 1.2, Wing, p. 9
+  Uncertainty: Secondary source; Red Star gives 628.5 m2.
+END FIELD
+
+FIELD wing.span
+  Value: 73.3
+  Unit: m
+  Status: manufacturer-published
+  Source: volga_dnepr_an124_100_booklet | behtir_an124_100_practical_aerodynamics_2005
+  Page or section: Volga-Dnepr booklet p. 2, aircraft dimensions drawing; Behtir et al., section 1.2, p. 9
+  Notes: Operator data; all sources agree on 73.3 m.
+END FIELD
+
+FIELD wing.mac
+  Value: 9.9
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: behtir_an124_100_practical_aerodynamics_2005
+  Page or section: section 1.2, Wing, p. 9
+  Uncertainty: Secondary source, rounded to 0.1 m.
+END FIELD
+
+FIELD wing.sweep
+  Value: 27.5
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: behtir_an124_100_practical_aerodynamics_2005
+  Page or section: section 1.2, Wing, p. 9
+  Uncertainty: Secondary source. The table gives 27 deg 30 min quarter-chord sweep; the text on p. 12 rounds it to 27 deg.
+END FIELD
+
+FIELD wing.t/c
+  Value: 0.1135
+  Unit: nondimensional
+  Status: calculated-from-published-inputs
+  Source: behtir_an124_100_practical_aerodynamics_2005
+  Page or section: section 1.2, Wing, p. 9
+  Formula: (root t/c + tip t/c) / 2
+  Inputs: 13.7 percent at the fuselage side; 9 percent at the tip
+  Uncertainty: Simple mean of two stations; the span-weighted mean depends on the unpublished thickness distribution.
+END FIELD
+
+FIELD wing.root_chord
+  Value: 13.807865
+  Unit: m
+  Status: calculated-from-published-inputs
+  Source: behtir_an124_100_practical_aerodynamics_2005
+  Page or section: section 1.2, Wing, pp. 9-10
+  Formula: 2 * area / (span * (1 + taper))
+  Inputs: area=628 m2; span=73.3 m; taper=0.240964
+  Uncertainty: Equivalent-trapezoid chord at the aircraft centreline; the real wing is cranked, so the true root chord differs. The equivalent trapezoid gives a MAC of 9.64 m against the published 9.9 m.
+END FIELD
+
+FIELD wing.tip_chord
+  Value: 3.327196
+  Unit: m
+  Status: calculated-from-published-inputs
+  Source: behtir_an124_100_practical_aerodynamics_2005
+  Formula: root_chord * taper
+  Inputs: root_chord=13.807865 m; taper=0.240964
+  Uncertainty: Equivalent-trapezoid value; see wing.root_chord.
+END FIELD
+
+FIELD wing.taper_ratio
+  Value: 0.240964
+  Unit: nondimensional
+  Status: calculated-from-published-inputs
+  Source: behtir_an124_100_practical_aerodynamics_2005
+  Page or section: section 1.2, Wing, p. 10
+  Formula: 1 / published Russian-convention taper (root chord / tip chord)
+  Inputs: сужение = 4.15
+END FIELD
+
+FIELD wing.aspect_ratio
+  Value: 8.555557
+  Unit: nondimensional
+  Status: calculated-from-published-inputs
+  Source: behtir_an124_100_practical_aerodynamics_2005
+  Formula: span^2 / area
+  Inputs: span=73.3 m; area=628 m2
+  Notes: The textbook table gives an aspect ratio of 8.34, which implies a different reference area or span; span^2/area is kept for consistency with the other records.
+END FIELD
+
+FIELD wing.dihedral
+  Value: -5
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: behtir_an124_100_practical_aerodynamics_2005
+  Page or section: section 1.2, Wing, p. 10
+  Uncertainty: The textbook gives -6 deg for the root part and -5 deg for the outer panels; the outer-panel value is adopted because it covers most of the span.
+END FIELD
+
+FIELD horizontal_tail.area
+  Value: 166.7
+  Unit: m2
+  Status: inferred-with-uncertainty
+  Source: behtir_an124_100_practical_aerodynamics_2005
+  Page or section: section 1.2, Horizontal tail, p. 10
+  Uncertainty: Secondary source.
+END FIELD
+
+FIELD horizontal_tail.span
+  Value: 25.983
+  Unit: m
+  Status: calculated-from-published-inputs
+  Source: behtir_an124_100_practical_aerodynamics_2005
+  Page or section: section 1.2, Horizontal tail, p. 10
+  Formula: sqrt(aspect ratio * area)
+  Inputs: aspect ratio=4.05; area=166.7 m2
+  Uncertainty: Depends on the reference area used for the published aspect ratio.
+END FIELD
+
+FIELD horizontal_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public value was found; the horizontal-tail taper ratio is not published.
+  Searched source: behtir_an124_100_practical_aerodynamics_2005
+END FIELD
+
+FIELD horizontal_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public value was found.
+  Searched source: behtir_an124_100_practical_aerodynamics_2005
+END FIELD
+
+FIELD horizontal_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public value was found.
+  Searched source: behtir_an124_100_practical_aerodynamics_2005
+END FIELD
+
+FIELD horizontal_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: The textbook gives taper for the wing and the fin, but not for the horizontal tail.
+  Searched source: behtir_an124_100_practical_aerodynamics_2005
+END FIELD
+
+FIELD horizontal_tail.sweep
+  Value: 32
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: behtir_an124_100_practical_aerodynamics_2005
+  Page or section: section 1.2, Horizontal tail, p. 10; text p. 14
+  Uncertainty: Secondary source; quarter-chord sweep.
+END FIELD
+
+FIELD horizontal_tail.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public value was found.
+  Searched source: behtir_an124_100_practical_aerodynamics_2005
+END FIELD
+
+FIELD horizontal_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public value was found. The textbook gives a horizontal-tail volume coefficient (A_ho) of 0.87, but not the arm.
+  Searched source: behtir_an124_100_practical_aerodynamics_2005
+END FIELD
+
+FIELD horizontal_tail.elevator_area_ratio
+  Value: 0.29844
+  Unit: nondimensional
+  Status: calculated-from-published-inputs
+  Source: behtir_an124_100_practical_aerodynamics_2005
+  Page or section: section 1.2, Horizontal tail, p. 10
+  Formula: elevator area / horizontal-tail area
+  Inputs: 49.75 m2 / 166.7 m2
+END FIELD
+
+FIELD vertical_tail.area
+  Value: 95
+  Unit: m2
+  Status: inferred-with-uncertainty
+  Source: behtir_an124_100_practical_aerodynamics_2005
+  Page or section: section 1.2, Vertical tail, p. 10
+  Uncertainty: Secondary source.
+END FIELD
+
+FIELD vertical_tail.height
+  Value: 11.113
+  Unit: m
+  Status: calculated-from-published-inputs
+  Source: behtir_an124_100_practical_aerodynamics_2005
+  Page or section: section 1.2, Vertical tail, p. 10
+  Formula: sqrt(aspect ratio * area)
+  Inputs: aspect ratio=1.3; area=95 m2
+  Uncertainty: Depends on the reference area used for the published aspect ratio.
+END FIELD
+
+FIELD vertical_tail.mac
+  Value: 9.267985
+  Unit: m
+  Status: calculated-from-published-inputs
+  Source: behtir_an124_100_practical_aerodynamics_2005
+  Formula: 2/3 * root_chord * (1 + taper + taper^2) / (1 + taper)
+  Inputs: root_chord=12.844021 m; taper=0.331126
+  Notes: Trapezoid assumption.
+END FIELD
+
+FIELD vertical_tail.root_chord
+  Value: 12.844021
+  Unit: m
+  Status: calculated-from-published-inputs
+  Source: behtir_an124_100_practical_aerodynamics_2005
+  Formula: 2 * area / (height * (1 + taper))
+  Inputs: area=95 m2; height=11.113 m; taper=0.331126
+  Notes: Trapezoid assumption.
+END FIELD
+
+FIELD vertical_tail.tip_chord
+  Value: 4.252987
+  Unit: m
+  Status: calculated-from-published-inputs
+  Source: behtir_an124_100_practical_aerodynamics_2005
+  Formula: root_chord * taper
+  Inputs: root_chord=12.844021 m; taper=0.331126
+  Notes: Trapezoid assumption.
+END FIELD
+
+FIELD vertical_tail.taper_ratio
+  Value: 0.331126
+  Unit: nondimensional
+  Status: calculated-from-published-inputs
+  Source: behtir_an124_100_practical_aerodynamics_2005
+  Page or section: section 1.2, Vertical tail, p. 10
+  Formula: 1 / published Russian-convention taper (root chord / tip chord)
+  Inputs: сужение = 3.02
+END FIELD
+
+FIELD vertical_tail.sweep
+  Value: 40
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: behtir_an124_100_practical_aerodynamics_2005
+  Page or section: section 1.2, Vertical tail, p. 10; text p. 14
+  Uncertainty: Secondary source; quarter-chord sweep.
+END FIELD
+
+FIELD vertical_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public value was found.
+  Searched source: behtir_an124_100_practical_aerodynamics_2005
+END FIELD
+
+FIELD vertical_tail.rudder_area_ratio
+  Value: 0.252632
+  Unit: nondimensional
+  Status: calculated-from-published-inputs
+  Source: behtir_an124_100_practical_aerodynamics_2005
+  Page or section: section 1.2, Vertical tail, p. 10
+  Formula: rudder area / vertical-tail area
+  Inputs: 24 m2 / 95 m2
+END FIELD
+
+OTHER PARAMETERS
+  Format: field = value; status; source; page or section.
+  iata = null; unresolved; -; no IATA type code was verified in a retrieved source.
+  icao_wtc = heavy; certified-published; easa_recat_eu_assignment_2021_12; p. 4, A124 row, ICAO legacy WTC H.
+  eu_wtc = super heavy; certified-published; easa_recat_eu_assignment_2021_12; p. 4, A124 row, RECAT-EU CAT-A.
+  faa_wtc = heavy; certified-published; faa_jo_7360_1j_2024_04; Appendix A, PDF p. 11, A124 row (weight class Heavy, CWT category D).
+  parking_area_m2 = null; unresolved; -; no published value, and the legacy field definition is not documented.
+  pax.max = 88; inferred-with-uncertainty; redstar_an124_100_specifications; An-124-100 table, passengers 88 (upper-deck seats for persons who accompany the cargo).
+  pax.high, pax.low = null; unresolved; -; cargo aircraft, no passenger cabin layouts.
+  engine.type = turbofan; manufacturer-published; volga_dnepr_an124_100_booklet; p. 2, Engines D-18T series 3.
+  engine.mount = wing; inferred-with-uncertainty; behtir_an124_100_practical_aerodynamics_2005; section 1.1, p. 4, four D-18T under the wing on pylons; section 1.2 nacelle positions 9.9 m and 17.7 m from the plane of symmetry.
+  engine.number = 4; manufacturer-published; volga_dnepr_an124_100_booklet; p. 2, thrust 4 x 23,400 kgf.
+  engine.default = D-18T; manufacturer-published; volga_dnepr_an124_100_booklet; p. 2, D-18T series 3. The name matches src/aerox/data/engines/engine_cruise_performance.csv; the D-18T has no entry in the ICAO engine emissions databank table engines.csv.
+  engine.options = [D-18T]; manufacturer-published; volga_dnepr_an124_100_booklet; p. 2.
+  flaps.type = single-slotted; inferred-with-uncertainty; behtir_an124_100_practical_aerodynamics_2005; section 1.2 and 1.4, single-slotted extending flaps (three sections per side) and slats (six sections per side); take-off 30 deg, landing 40 (30) deg.
+  flaps.lambda_f = 0.9; inferred-with-uncertainty; aerox_legacy_aircraft_database; copied from the B744 template record, not an An-124 value.
+  flaps.cf/c = 0.2; inferred-with-uncertainty; aerox_legacy_aircraft_database; copied from the B744 template record, not an An-124 value.
+  flaps.Sf/S = 0.15; inferred-with-uncertainty; aerox_legacy_aircraft_database; copied from the B744 template record, not an An-124 value.
+  flaps.area, flaps.bf/b = null; unresolved; -; no public value was found.
+  kinematic.takeoff_distance_m = 3000; manufacturer-published; volga_dnepr_an124_100_booklet; p. 2, Required Runway Distance 3,000 m.
+  kinematic.takeoff_v2 = 167; inferred-with-uncertainty; behtir_an124_100_practical_aerodynamics_2005; section 4.2, p. 42, V2 = 310 km/h.
+  kinematic.climb_to_fl50_ias = 232; inferred-with-uncertainty; behtir_an124_100_practical_aerodynamics_2005; section 4.2, p. 42, flap retraction speeds 420-440 km/h (mid value 430 km/h).
+  kinematic.climb_to_fl150_ias, climb_to_fl240_ias = 265; inferred-with-uncertainty; behtir_an124_100_practical_aerodynamics_2005; section 5.2, p. 57, climb at 490 km/h IAS up to the M 0.71 crossover.
+  kinematic.mach_climb_mach = 0.71; inferred-with-uncertainty; behtir_an124_100_practical_aerodynamics_2005; section 5.2, p. 57, climb continued at M 0.71.
+  kinematic.cruise_mach = 0.7; calculated-from-published-inputs; volga_dnepr_an124_100_technical_specification_web; 750 km/h cruise speed at FL330 ISA (cruising altitude 31,000-35,000 ft); the textbook gives cruise L/D 17.8 at M 0.7.
+  kinematic.cruise_tas = 405; manufacturer-published; volga_dnepr_an124_100_technical_specification_web; cruising speed 750 km/h.
+  kinematic.cruise_range_nm = 2430; manufacturer-published; volga_dnepr_an124_100_booklet; p. 2, 4,500 km with maximum payload (120 t). Maximum range is 14,000 km.
+  kinematic.descent_to_fl240_mach = 0.75; inferred-with-uncertainty; behtir_an124_100_practical_aerodynamics_2005; chapter 5, p. 61, descent at M 0.75.
+  kinematic.descent_to_fl100_ias = 281; inferred-with-uncertainty; behtir_an124_100_practical_aerodynamics_2005; chapter 5, p. 61, descent at 520 km/h IAS.
+  kinematic.approach_ias = 243; inferred-with-uncertainty; behtir_an124_100_practical_aerodynamics_2005; chapter 6, table 13, p. 69, circuit speed 450 km/h.
+  kinematic.landing_ias = 162; inferred-with-uncertainty; behtir_an124_100_practical_aerodynamics_2005; chapter 6, table 13, p. 69, glide-path speed 300 km/h at 330 t.
+  kinematic.climb_*_vs, mach_climb_vs, descent_*_vs, approach_vs, landing_distance_m = B744 values; legacy-unverified; aerox_legacy_aircraft_database; copied from the B744 template record because no An-124 data were found. The textbook gives a maximum climb rate of 10 m/s at 392 t.
+
+LEGACY PARAMETERS
+  This record was added after the original Aerox database and has no original Aerox values.
+  Values labelled as copied from the B744 template record come from the Aerox B744 record.
+
+DRAG MODEL
+  Active Aerox physical drag model and reference-condition polar snapshot.
+  Scaled or substituted geometry fields: horizontal_tail.mac, engine.fan_diameter, engine.nacelle_max_diameter, engine.nacelle_length
+
+FIELD drag.model
+  Value: aerox-geometry-drag-v2
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9506; roughness_excrescence/computed=0.0900; nacelle_tier=C-estimated-fan-diameter
+  Zero-lift terms at reference (drag counts): wing=46.95; fuselage=42.38; horizontal_tail=16.04; vertical_tail=8.65; nacelles=11.28; pylons=1.74; fuselage_upsweep=4.43; control_surface_gaps=1.01; nacelle_base=1.32; roughness_excrescence=12.04
+  Applicability: Active clean model; geometry-tier uncertainty applies.
+END FIELD
+FIELD drag.configuration
+  Value: clean
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.geometry_tier
+  Value: B-observed-core-scaled-tails
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.confidence
+  Value: medium-low
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.reference_altitude_ft
+  Value: 33430.0
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Representative clean reference condition.
+END FIELD
+FIELD drag.reference_mach
+  Value: 0.7
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Representative clean reference condition.
+END FIELD
+FIELD drag.reference_reynolds_per_m
+  Value: 5808304.2
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Inputs: altitude=33430.0 ft; Mach=0.700000; ISA temperature and density
+END FIELD
+FIELD drag.span_efficiency_factor
+  Value: 0.950611
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Physical model input; geometry-tier uncertainty applies.
+END FIELD
+FIELD drag.unresolved_fraction_of_resolved_drag
+  Value: null
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Physical model input; geometry-tier uncertainty applies.
+END FIELD
+FIELD drag.roughness_excrescence_fraction
+  Value: 0.09
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Physical model input; geometry-tier uncertainty applies.
+END FIELD
+FIELD drag.wave_drag_model
+  Value: aerox-korn-lock-wave-v1
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.wave_drag_source_tier
+  Value: D-class-scaled
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.wave_drag_confidence
+  Value: low
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.wave_drag_technology_factor
+  Value: 0.95
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Physical model input; geometry-tier uncertainty applies.
+END FIELD
+END DRAG MODEL

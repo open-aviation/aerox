@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Boeing 747-8
 ICAO: B748
-Last reviewed: 2026-08-06
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,22 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 447700
+  Value: 447696
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima196_issue_19
+  Page or section: Issue 19, Section 7 (747-8), item 12, p. 61
+  Applicability: 747-8 passenger model (987,000 lb)
+  Notes: The 747-8F (Section 6) is excluded.
 END FIELD
 
 FIELD mlw
-  Value: 312100
+  Value: 312072
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima196_issue_19
+  Page or section: Issue 19, Section 7 (747-8), item 12, p. 61
+  Applicability: 747-8 (688,000 lb)
 END FIELD
 
 FIELD mzfw
@@ -78,24 +83,32 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 375
+  Value: 365
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima196_issue_19
+  Page or section: Issue 19, Section 7 (747-8), item 9, p. 61
+  Applicability: 747-8
+  Notes: VMO/MMO 365 KCAS / 0.90.
 END FIELD
 
 FIELD mmo
-  Value: 0.92
+  Value: 0.9
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima196_issue_19
+  Page or section: Issue 19, Section 7 (747-8), item 9, p. 61
+  Applicability: 747-8
 END FIELD
 
 FIELD ceiling
-  Value: 43000
+  Value: 43100
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima196_issue_19
+  Page or section: Issue 19, Section 7 (747-8), item 10, p. 61
+  Applicability: 747-8
+  Notes: 13,137 m (43,100 ft).
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -441,7 +454,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 36652.9
+  Value: 36653.1
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -453,10 +466,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 6320597.4
+  Value: 6320540.9
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=36652.9 ft; Mach=0.860000; ISA temperature and density
+  Inputs: altitude=36653.1 ft; Mach=0.860000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.954143

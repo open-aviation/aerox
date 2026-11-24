@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Embraer ERJ 135/140/Legacy
 ICAO: E135
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -50,15 +50,20 @@ END FIELD
 FIELD mtow
   Value: 19990
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima032_issue_13
+  Page or section: Issue 13, Section 3, item 1.6, p. 16
+  Applicability: EMB-135LR
+  Notes: EMB-135ER: 18,990 kg. The EMB-135BJ (Legacy) is excluded.
 END FIELD
 
 FIELD mlw
-  Value: 18700
+  Value: 18500
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima032_issue_13
+  Page or section: Issue 13, Section 3, item 1.6, p. 16
+  Applicability: EMB-135ER and EMB-135LR
 END FIELD
 
 FIELD mzfw

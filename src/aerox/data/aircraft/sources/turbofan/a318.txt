@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Airbus A318
 ICAO: A318
-Last reviewed: 2026-08-06
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,22 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 59000
+  Value: 64500
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Issue 63, Section 4 (A318), item 13, p. 174
+  Applicability: A318-111/-112/-121/-122 (all A318 models share one maximum)
+  Notes: Individual aircraft are limited by the AFM weight variant.
 END FIELD
 
 FIELD mlw
   Value: 57500
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Issue 63, Section 4 (A318), item 13, p. 174
+  Applicability: A318-111/-112/-121/-122
 END FIELD
 
 FIELD mzfw
@@ -80,22 +85,29 @@ END FIELD
 FIELD vmo
   Value: 350
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Issue 63, Section 4 (A318), item 10, p. 172
+  Applicability: All A318 models
 END FIELD
 
 FIELD mmo
   Value: 0.82
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Issue 63, Section 4 (A318), item 10, p. 172
+  Applicability: All A318 models
 END FIELD
 
 FIELD ceiling
-  Value: 39000
+  Value: 39800
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Issue 63, Section 4 (A318), item 11, p. 173
+  Applicability: Basic A318 envelope
+  Notes: 41,100 ft if modification 39195 is embodied (A318-111/-112 only).
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -430,7 +442,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9462; roughness_excrescence/computed=0.0900; nacelle_tier=A-measured-nacelle
-  Zero-lift terms at reference (drag counts): wing=54.51; fuselage=60.81; horizontal_tail=18.17; vertical_tail=11.40; nacelles=14.04; pylons=2.16; fuselage_upsweep=6.32; control_surface_gaps=1.13; nacelle_base=2.27; roughness_excrescence=15.37
+  Zero-lift terms at reference (drag counts): wing=53.76; fuselage=60.06; horizontal_tail=17.91; vertical_tail=11.24; nacelles=13.84; pylons=2.13; fuselage_upsweep=6.32; control_surface_gaps=1.13; nacelle_base=2.27; roughness_excrescence=15.18
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -452,7 +464,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 43802.7
+  Value: 41948.3
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -464,10 +476,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 4117587.6
+  Value: 4501434.5
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=43802.7 ft; Mach=0.790000; ISA temperature and density
+  Inputs: altitude=41948.3 ft; Mach=0.790000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.946221

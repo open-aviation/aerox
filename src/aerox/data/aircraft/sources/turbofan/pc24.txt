@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Pilatus PC-24
 ICAO: PC24
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,23 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 8300
+  Value: 8500
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_pc24_a594
+  Page or section: Issue 08, item 11, p. 8
+  Applicability: PC-24 MSN 501 and up (design weight increase)
+  Notes: MSN 131-500 and MSN 101-130 post SB 42-002: 8,300 kg.
 END FIELD
 
 FIELD mlw
-  Value: 7700
+  Value: 7865
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_pc24_a594
+  Page or section: Issue 08, item 11, p. 8
+  Applicability: PC-24 MSN 501 and up
+  Notes: MSN 131-500: 7,665 kg.
 END FIELD
 
 FIELD mzfw
@@ -80,22 +86,30 @@ END FIELD
 FIELD vmo
   Value: 290
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_pc24_a594
+  Page or section: Issue 08, item 8, p. 8
+  Applicability: PC-24
+  Notes: VMO 290 KEAS.
 END FIELD
 
 FIELD mmo
   Value: 0.74
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_pc24_a594
+  Page or section: Issue 08, item 8, p. 8
+  Applicability: PC-24
 END FIELD
 
 FIELD ceiling
   Value: 45000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_pc24_a594
+  Page or section: Issue 08, item 9, p. 8
+  Applicability: PC-24
+  Notes: 13,716 m (45,000 ft).
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -425,7 +439,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9528; roughness_excrescence/computed=0.0900; nacelle_tier=C-estimated-fan-diameter
-  Zero-lift terms at reference (drag counts): wing=69.51; fuselage=58.62; horizontal_tail=21.80; vertical_tail=13.84; nacelles=8.13; pylons=1.08; fuselage_upsweep=3.89; control_surface_gaps=1.30; nacelle_base=2.75; roughness_excrescence=16.28
+  Zero-lift terms at reference (drag counts): wing=69.51; fuselage=58.62; horizontal_tail=21.80; vertical_tail=13.84; nacelles=8.31; pylons=1.11; fuselage_upsweep=3.89; control_surface_gaps=1.30; nacelle_base=2.78; roughness_excrescence=16.31
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration

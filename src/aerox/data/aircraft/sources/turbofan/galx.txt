@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: IAI 1126 Galaxy/Gulfstream G200
 ICAO: GALX
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,22 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 16200
+  Value: 16171
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_gulfstream_g200_a013
+  Page or section: Issue 05, Section 1 (Galaxy), item 13, p. 12
+  Applicability: Galaxy / Gulfstream 200 with MOD 7166 and MOD G2-10082
+  Notes: With MOD 7166 only: 16,080 kg.
 END FIELD
 
 FIELD mlw
-  Value: 13600
+  Value: 13608
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_gulfstream_g200_a013
+  Page or section: Issue 05, Section 1 (Galaxy), item 13, p. 12
+  Applicability: Galaxy / Gulfstream 200
 END FIELD
 
 FIELD mzfw
@@ -94,8 +99,11 @@ END FIELD
 FIELD ceiling
   Value: 45000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_gulfstream_g200_a013
+  Page or section: Issue 05, Section 1 (Galaxy), item 1 (description), p. 10
+  Applicability: Galaxy / Gulfstream 200
+  Notes: Item 11 (flight envelope) refers to the AFM; the TCDS description states a 45,000 ft maximum operating altitude.
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -398,7 +406,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9436; roughness_excrescence/computed=0.0900; nacelle_tier=C-estimated-fan-diameter
-  Zero-lift terms at reference (drag counts): wing=60.30; fuselage=64.95; horizontal_tail=20.08; vertical_tail=12.77; nacelles=11.80; pylons=1.57; fuselage_upsweep=5.17; control_surface_gaps=1.15; nacelle_base=3.21; roughness_excrescence=16.29
+  Zero-lift terms at reference (drag counts): wing=60.32; fuselage=64.97; horizontal_tail=20.08; vertical_tail=12.77; nacelles=11.79; pylons=1.57; fuselage_upsweep=5.17; control_surface_gaps=1.15; nacelle_base=3.21; roughness_excrescence=16.29
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -420,7 +428,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 46911.6
+  Value: 46948.9
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -432,10 +440,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 3635845.1
+  Value: 3629336.5
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=46911.6 ft; Mach=0.810000; ISA temperature and density
+  Inputs: altitude=46948.9 ft; Mach=0.810000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.943618

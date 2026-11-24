@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Airbus A330-900
 ICAO: A339
-Last reviewed: 2026-08-06
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -50,15 +50,19 @@ END FIELD
 FIELD mtow
   Value: 251000
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a004_issue_70
+  Page or section: Issue 70, Section 5 (A330-900), item 12, p. 92
+  Applicability: A330-941
 END FIELD
 
 FIELD mlw
   Value: 191000
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a004_issue_70
+  Page or section: Issue 70, Section 5 (A330-900), item 12, p. 92
+  Applicability: A330-941
 END FIELD
 
 FIELD mzfw
@@ -92,10 +96,13 @@ FIELD mmo
 END FIELD
 
 FIELD ceiling
-  Value: 41000
+  Value: 41450
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a004_issue_70
+  Page or section: Issue 70, Section 5 (A330-900), item 10.1, p. 91
+  Applicability: A330-941
+  Notes: Maximum flight level 41,450 ft (12,634 m).
 END FIELD
 
 WING AND TAIL GEOMETRY

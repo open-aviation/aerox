@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Boeing 787-9 Dreamliner
 ICAO: B789
-Last reviewed: 2026-08-06
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,21 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 254000
+  Value: 254692
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima115_issue_30
+  Page or section: Issue 30, Section 2 (787-9), item 13, p. 37
+  Applicability: 787-9 (561,500 lb, type design increase with EASA approval 10084536 for Trent 1000 TEN J3 or GEnx-1B PIP2 ratings)
 END FIELD
 
 FIELD mlw
-  Value: 193000
+  Value: 192776
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima115_issue_30
+  Page or section: Issue 30, Section 2 (787-9), item 13, p. 37
+  Applicability: 787-9 (425,000 lb)
 END FIELD
 
 FIELD mzfw
@@ -80,22 +84,29 @@ END FIELD
 FIELD vmo
   Value: 350
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima115_issue_30
+  Page or section: Issue 30, Section 2 (787-9), item 10, p. 36
+  Applicability: 787-9
+  Notes: VMO/MMO = 350 KEAS / 0.90.
 END FIELD
 
 FIELD mmo
-  Value: 0.89
+  Value: 0.9
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima115_issue_30
+  Page or section: Issue 30, Section 2 (787-9), item 10, p. 36
+  Applicability: 787-9
 END FIELD
 
 FIELD ceiling
-  Value: 43000
+  Value: 43100
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima115_issue_30
+  Page or section: Issue 30, Section 2 (787-9), item 11, p. 36
+  Applicability: 787-9
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -521,7 +532,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=A-observed-core-and-tails; confidence=medium; e_span=0.9538; roughness_excrescence/computed=0.0900; nacelle_tier=A-sister-measured-nacelle
-  Zero-lift terms at reference (drag counts): wing=46.60; fuselage=51.08; horizontal_tail=13.48; vertical_tail=7.94; nacelles=12.59; pylons=1.94; fuselage_upsweep=4.49; control_surface_gaps=0.85; nacelle_base=1.26; roughness_excrescence=12.62
+  Zero-lift terms at reference (drag counts): wing=46.58; fuselage=51.06; horizontal_tail=13.47; vertical_tail=7.93; nacelles=12.59; pylons=1.94; fuselage_upsweep=4.49; control_surface_gaps=0.85; nacelle_base=1.26; roughness_excrescence=12.62
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -543,7 +554,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 38990.2
+  Value: 38933.6
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -555,10 +566,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 5583301.1
+  Value: 5598512.5
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=38990.2 ft; Mach=0.850000; ISA temperature and density
+  Inputs: altitude=38933.6 ft; Mach=0.850000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.953814

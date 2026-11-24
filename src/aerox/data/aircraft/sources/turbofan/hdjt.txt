@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: HONDA HA-420 HondaJet
 ICAO: HDJT
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,23 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 4519
+  Value: 5034
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_honda_ha420_a352_issue_10
+  Page or section: Issue 10, item 10, p. 6
+  Applicability: HA-420 S/N 42000235 and up (HondaJet Elite II)
+  Notes: Earlier serial numbers: 4,808 to 4,944 kg.
 END FIELD
 
 FIELD mlw
-  Value: 4500
+  Value: 4699
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_honda_ha420_a352_issue_10
+  Page or section: Issue 10, item 10, p. 6
+  Applicability: HA-420 S/N 42000235 and up (HondaJet Elite II)
+  Notes: Earlier serial numbers: 4,472 to 4,608 kg.
 END FIELD
 
 FIELD mzfw
@@ -78,24 +84,33 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 320
+  Value: 270
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_honda_ha420_a352_issue_10
+  Page or section: Issue 10, item 7, p. 6
+  Applicability: HA-420
+  Notes: VMO 270 KIAS, MMO 0.72 (see AFM).
 END FIELD
 
 FIELD mmo
   Value: 0.72
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_honda_ha420_a352_issue_10
+  Page or section: Issue 10, item 7, p. 6
+  Applicability: HA-420
+  Notes: VMO 270 KIAS, MMO 0.72 (see AFM).
 END FIELD
 
 FIELD ceiling
   Value: 43000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_honda_ha420_a352_issue_10
+  Page or section: Issue 10, item 8, p. 6
+  Applicability: HA-420
+  Notes: 13,106 m (43,000 ft) MSL.
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -423,7 +438,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9421; roughness_excrescence/computed=0.0900; nacelle_tier=C-estimated-fan-diameter
-  Zero-lift terms at reference (drag counts): wing=69.43; fuselage=82.08; horizontal_tail=23.02; vertical_tail=14.61; nacelles=7.68; pylons=1.18; fuselage_upsweep=6.42; control_surface_gaps=1.30; nacelle_base=3.83; roughness_excrescence=18.86
+  Zero-lift terms at reference (drag counts): wing=68.48; fuselage=81.09; horizontal_tail=22.70; vertical_tail=14.40; nacelles=8.35; pylons=1.29; fuselage_upsweep=6.42; control_surface_gaps=1.30; nacelle_base=4.04; roughness_excrescence=18.73
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -445,7 +460,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 51098.2
+  Value: 49399.9
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -457,10 +472,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 2642795.6
+  Value: 2867566.2
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=51098.2 ft; Mach=0.720000; ISA temperature and density
+  Inputs: altitude=49399.9 ft; Mach=0.720000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.942102

@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Airbus A320 Neo
 ICAO: A20N
-Last reviewed: 2026-08-06
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -50,15 +50,21 @@ END FIELD
 FIELD mtow
   Value: 79000
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Issue 63, Section 1 (A320), item 13, pp. 47-48
+  Applicability: A320-251N/-252N/-253N/-271N/-272N/-273N
+  Notes: Individual aircraft are limited by the AFM weight variant.
 END FIELD
 
 FIELD mlw
-  Value: 67400
+  Value: 68400
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Issue 63, Section 1 (A320), item 13, pp. 47-48
+  Applicability: A320-251N/-252N/-253N/-271N/-272N/-273N
+  Notes: The previous value 67,400 kg is the ACJ320neo limit.
 END FIELD
 
 FIELD mzfw
@@ -80,22 +86,29 @@ END FIELD
 FIELD vmo
   Value: 350
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Issue 63, Section 1 (A320), item 10, p. 45
+  Applicability: All A320 models
 END FIELD
 
 FIELD mmo
   Value: 0.82
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Issue 63, Section 1 (A320), item 10, p. 45
+  Applicability: All A320 models
 END FIELD
 
 FIELD ceiling
-  Value: 39000
+  Value: 39800
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Issue 63, Section 1 (A320), item 11, p. 46
+  Applicability: A320 envelope, 39,800 ft with modification 30748, which most aircraft in service have
+  Notes: Basic envelope: 39,100 ft. 41,000 ft with modification 162744, not adopted.
 END FIELD
 
 WING AND TAIL GEOMETRY

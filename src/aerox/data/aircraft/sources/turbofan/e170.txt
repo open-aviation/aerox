@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Embraer 170
 ICAO: E170
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -50,15 +50,21 @@ END FIELD
 FIELD mtow
   Value: 38600
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima001_issue_13
+  Page or section: Issue 13, Section 1 (ERJ 170-100), item 14, p. 9
+  Applicability: ERJ 170-100 LR or STD post-mod SB 170-00-0016
+  Notes: Basic ERJ 170-100 LR: 37,200 kg.
 END FIELD
 
 FIELD mlw
   Value: 33300
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima001_issue_13
+  Page or section: Issue 13, Section 1 (ERJ 170-100), item 14, p. 9
+  Applicability: ERJ 170-100 post-mod SB 170-00-0003 or SB 170-00-0016
+  Notes: Basic: 32,800 kg.
 END FIELD
 
 FIELD mzfw
@@ -94,8 +100,10 @@ END FIELD
 FIELD ceiling
   Value: 41000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima001_issue_13
+  Page or section: Issue 13, Section 1 (ERJ 170-100), item 12, p. 8
+  Applicability: ERJ 170-100
 END FIELD
 
 WING AND TAIL GEOMETRY

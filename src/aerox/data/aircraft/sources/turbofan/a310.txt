@@ -1,0 +1,649 @@
+AEROX AIRCRAFT SOURCE NOTES
+Aircraft: Airbus A310-300
+ICAO: A310
+Last reviewed: 2026-11-23
+Source ledger: sources/sources.yml
+
+CERTIFICATION SCOPE
+  Model or family: A310-300 series
+  Authority: EASA
+  Type certificate: EASA.A.172
+  Applicability: The record represents the A310-300 series (A310-322, -304, -324, -308, -325), the most common A310 variant. Masses use the highest A310-300 weight variants (WV 08, MTOW 164,000 kg). A310-200 and A310-203C values in the same TCDS are listed under subtypes only.
+
+TYPE-CERTIFICATE AND LIMIT PARAMETERS
+
+FIELD certification.model
+  Value: A310-300 series
+  Status: certified-published
+  Source: easa_a172_issue_08
+  Page or section: Issue 08, section 13.1, p. 38
+  Notes: Certified models A310-322, A310-304, A310-324, A310-308, A310-325.
+END FIELD
+
+FIELD certification.authority
+  Value: EASA
+  Status: certified-published
+  Source: easa_a172_issue_08
+  Page or section: Issue 08, cover
+END FIELD
+
+FIELD certification.type_certificate
+  Value: EASA.A.172
+  Status: certified-published
+  Source: easa_a172_issue_08
+  Page or section: Issue 08, cover
+END FIELD
+
+FIELD certification.issue
+  Value: 08
+  Status: certified-published
+  Source: easa_a172_issue_08
+  Page or section: Issue 08, page header
+END FIELD
+
+FIELD certification.issue_date
+  Value: 2026-02-01
+  Status: certified-published
+  Source: easa_a172_issue_08
+  Page or section: Issue 08, page header
+END FIELD
+
+FIELD mtow
+  Value: 164000
+  Unit: kg
+  Status: certified-published
+  Source: easa_a172_issue_08
+  Source URL: https://www.easa.europa.eu/en/downloads/17110/en
+  Document title: EASA Type Certificate Data Sheet EASA.A.172: Airbus A300, A310, A300-600
+  Revision date: 2026-02-01
+  Page or section: Issue 08, section 13.3, pp. 38-39
+  Applicability: A310-308 WV 08 and WV 13, A310-325 WV 08 (highest A310-300 weight variants)
+  Notes: Basic A310-300 (WV 00) is 150,000 kg; other weight variants range from 134,000 kg to 161,000 kg. The Airbus planning document (Chapter 2.1.1, pp. 3-4) gives the same values.
+END FIELD
+
+FIELD mlw
+  Value: 124000
+  Unit: kg
+  Status: certified-published
+  Source: easa_a172_issue_08
+  Source URL: https://www.easa.europa.eu/en/downloads/17110/en
+  Document title: EASA Type Certificate Data Sheet EASA.A.172: Airbus A300, A310, A300-600
+  Revision date: 2026-02-01
+  Page or section: Issue 08, section 13.3, pp. 38-39
+  Applicability: A310-300 WV 03, 05, 07, 08, 09, 12, 13
+  Notes: WV 00, 01, 04, 06 are limited to 123,000 kg.
+END FIELD
+
+FIELD mzfw
+  Value: 114000
+  Unit: kg
+  Status: certified-published
+  Source: easa_a172_issue_08
+  Source URL: https://www.easa.europa.eu/en/downloads/17110/en
+  Document title: EASA Type Certificate Data Sheet EASA.A.172: Airbus A300, A310, A300-600
+  Revision date: 2026-02-01
+  Page or section: Issue 08, section 13.3, pp. 38-39
+  Applicability: A310-300 WV 08 (the weight variant used for mtow)
+  Notes: WV 13 (A310-308) has 116,500 kg; the basic model has 113,000 kg.
+END FIELD
+
+FIELD minimum_weight
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: EASA.A.172 Issue 08 does not publish a minimum certified mass for the A310; it refers to the AFM.
+END FIELD
+
+FIELD vmo
+  Value: 340
+  Unit: kt
+  Status: certified-published
+  Source: easa_a172_issue_08
+  Page or section: Issue 08, section 13.5, p. 39
+  Applicability: A310-300 WV 01, 03, 05, 08, 09, 12, 13 (includes WV 08 used for mtow)
+  Notes: Basic model and WV 04, 06, 07 have VMO 360 KIAS (340 KIAS with less than 2 t in one outer tank).
+END FIELD
+
+FIELD mmo
+  Value: 0.84
+  Unit: Mach
+  Status: certified-published
+  Source: easa_a172_issue_08
+  Page or section: Issue 08, section 13.5, p. 39
+  Notes: Same MMO for all A310-300 weight variants.
+END FIELD
+
+FIELD ceiling
+  Value: 41100
+  Unit: ft
+  Status: certified-published
+  Source: easa_a172_issue_08
+  Page or section: Issue 08, section 14.9, p. 44
+  Notes: Maximum authorized altitude 41,100 ft (12,530 m), all A310 series.
+END FIELD
+
+OPERATING AND CAPACITY PARAMETERS
+
+FIELD oew
+  Value: 79207
+  Unit: kg
+  Status: manufacturer-published-planning
+  Source: airbus_a310_ac_rev21_2009_12
+  Page or section: Chapter 2.1.1, pp. 3-4, A310-300, estimated OEW with GE CF6-80 engines
+  Applicability: A310-300 with GE CF6-80 engines (default engine CF6-80C2A2)
+  Uncertainty: Estimated planning value; actual OEW depends on cabin outfitting.
+  Notes: PW JT9D 77,397 kg; PW4000 79,166 kg. Jenkinson et al. (1999) give 79,666 kg.
+END FIELD
+
+FIELD mfc
+  Value: 61090
+  Unit: L
+  Status: certified-published
+  Source: easa_a172_issue_08
+  Page or section: Issue 08, section 13.6, p. 39
+  Applicability: A310-300 without auxiliary centre tank (ACT)
+  Notes: Usable fuel 61,090 L (48,872 kg at 0.8 kg/L) in outer, inner, centre and trim tanks. Stored in litres, as in the other Aerox records. The Airbus planning document gives 61,070 L; Jenkinson et al. (1999) give 68,300 L as an optional (ACT) capacity, which is not adopted.
+END FIELD
+
+FUSELAGE GEOMETRY
+
+FIELD fuselage.length
+  Value: 45.89
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: airbus_a310_ac_rev21_2009_12
+  Source URL: https://web.archive.org/web/2024/https://aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus-Commercial-Aircraft-AC-A310-Dec-2009.pdf
+  Document title: A310 Airplane Characteristics for Airport Planning, Revision 21
+  Revision date: 2009-12-01
+  Page or section: Chapter 2.2.0, pages 1 and 2 (45.89 m, 45.8902 m)
+  Applicability: All A310 models; nose to fuselage tail-cone end
+  Uncertainty: Drawing dimension; planning publication
+  Notes: Overall length is 46.66 m. Jenkinson et al. (1999) give a fuselage length of 45.13 m; it is not adopted. The A300-600 record (53.3 m against 54.08 m overall) has the same overall-minus-fuselage difference.
+END FIELD
+
+FIELD fuselage.height
+  Value: 5.64
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: airbus_a310_ac_rev21_2009_12
+  Page or section: Chapter 2.2.0, pages 1 and 2 (5.64 m diameter)
+  Applicability: All A310 models; circular fuselage section
+  Notes: Jenkinson et al. (1999) give the same value.
+END FIELD
+
+FIELD fuselage.width
+  Value: 5.64
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: airbus_a310_ac_rev21_2009_12
+  Page or section: Chapter 2.2.0, pages 1 and 2 (5.64 m diameter)
+  Applicability: All A310 models; circular fuselage section
+  Notes: Jenkinson et al. (1999) give the same value.
+END FIELD
+
+WING AND TAIL GEOMETRY
+
+FIELD wing.area
+  Value: 219
+  Unit: m2
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-1/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 1, column A310-300
+  Inputs: Area (m2) 219.00
+  Applicability: A310 wing (all models share the wing)
+  Uncertainty: Secondary textbook compilation of manufacturer data; reference-area definition not stated.
+  Notes: The Airbus planning document and EASA.A.172 do not give a wing area.
+END FIELD
+
+FIELD wing.span
+  Value: 43.9
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: airbus_a310_ac_rev21_2009_12
+  Source URL: https://web.archive.org/web/2024/https://aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus-Commercial-Aircraft-AC-A310-Dec-2009.pdf
+  Document title: A310 Airplane Characteristics for Airport Planning, Revision 21
+  Revision date: 2009-12-01
+  Page or section: Chapter 2.2.0, page 1 (144 ft 0.3 in, 43.90 m)
+  Applicability: All A310 models (with wingtip fences)
+  Uncertainty: Drawing dimension; planning publication
+  Notes: Jenkinson et al. (1999) give 43.89 m.
+END FIELD
+
+FIELD wing.mac
+  Value: 5.89
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Page or section: Data A Table 1, column A310-300
+  Inputs: M.A.C. (m) 5.89
+  Uncertainty: Secondary textbook compilation; +/-0.1 m
+END FIELD
+
+FIELD wing.sweep
+  Value: 28
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Page or section: Data A Table 1, column A310-300
+  Inputs: 1/4 Chord Sweep (deg) 28.00
+  Uncertainty: Secondary textbook compilation; +/-1 deg
+  Notes: Quarter-chord sweep.
+END FIELD
+
+FIELD wing.t/c
+  Value: 0.118
+  Unit: nondimensional
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Page or section: Data A Table 1, column A310-300
+  Inputs: Average (t/c) % 11.80
+  Uncertainty: Secondary textbook compilation; spanwise averaging method not stated
+  Notes: The same table gives 10.5 percent for the A300-600R (A306 record value).
+END FIELD
+
+FIELD wing.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found. Jenkinson et al. give a taper ratio of 0.283, but the A310 wing has a trailing-edge kink, and an equivalent trapezoid from area, span and taper (MAC 5.51 m) does not match the published MAC (5.89 m). The value is not adopted.
+  Searched source: easa_a172_issue_08 | airbus_a310_ac_rev21_2009_12 | jenkinson_simpkin_rhodes_1999_data_a
+END FIELD
+
+FIELD wing.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_a172_issue_08 | airbus_a310_ac_rev21_2009_12 | jenkinson_simpkin_rhodes_1999_data_a
+END FIELD
+
+FIELD wing.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: Root and tip chords are unresolved. Jenkinson et al. give 0.283 (A310-300) for reference only.
+  Searched source: easa_a172_issue_08 | airbus_a310_ac_rev21_2009_12 | jenkinson_simpkin_rhodes_1999_data_a
+END FIELD
+
+FIELD wing.aspect_ratio
+  Value: 8.800046
+  Unit: nondimensional
+  Status: inferred-with-uncertainty
+  Source: airbus_a310_ac_rev21_2009_12 | jenkinson_simpkin_rhodes_1999_data_a
+  Formula: span^2 / area
+  Inputs: span=43.9 m; area=219 m2
+  Notes: Status follows the weaker input (wing area). Jenkinson et al. give 8.80.
+END FIELD
+
+FIELD wing.dihedral
+  Value: 3.9638
+  Unit: deg
+  Status: manufacturer-published-planning
+  Source: airbus_a310_ac_rev21_2009_12
+  Page or section: Chapter 2.2.0, page 2, front view (3.9638 deg)
+  Applicability: All A310 models
+  Uncertainty: Angle of the outer-wing reference line in the planning drawing; the inner wing is not separately dimensioned.
+END FIELD
+
+FIELD horizontal_tail.area
+  Value: 64.0
+  Unit: m2
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Source URL: https://booksite.elsevier.com/9780340741528/appendices/data%2Da/table-1/table.htm
+  Document title: Jenkinson, Simpkin and Rhodes, Civil Jet Aircraft Design (1999), Data A: Aircraft Data File
+  Page or section: Data A Table 1, column A310-300
+  Inputs: Area (m2) 64.00
+  Applicability: A310 horizontal tail; area definition (gross or exposed) not stated by the source
+  Uncertainty: Secondary textbook compilation; area +/-5 percent
+  Notes: The A306 record measures 64.0 m2 from the A300-600 CAD drawing; the A300-600 uses the A310 tailplane.
+END FIELD
+
+FIELD horizontal_tail.span
+  Value: 16.26
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: airbus_a310_ac_rev21_2009_12
+  Page or section: Chapter 2.2.0, page 1 (53 ft 4.2 in, 16.26 m)
+  Applicability: All A310 models
+  Notes: Jenkinson et al. (1999) give the same value.
+END FIELD
+
+FIELD horizontal_tail.mac
+  Value: 4.158133
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a | airbus_a310_ac_rev21_2009_12
+  Formula: (2/3)*root*(1+taper+taper^2)/(1+taper)
+  Inputs: root=5.555454 m; taper=0.417
+  Applicability: Equivalent trapezoid of the A310 horizontal tail
+  Uncertainty: +/-0.15 m
+  Notes: Equivalent trapezoid MAC; not certified.
+END FIELD
+
+FIELD horizontal_tail.root_chord
+  Value: 5.555454
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a | airbus_a310_ac_rev21_2009_12
+  Formula: 2 * area / (span * (1 + taper))
+  Inputs: area=64.0 m2; span=16.26 m; taper=0.417
+  Applicability: Equivalent trapezoid of the A310 horizontal tail, extended to the centreline
+  Uncertainty: +/-0.2 m
+END FIELD
+
+FIELD horizontal_tail.tip_chord
+  Value: 2.316624
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a | airbus_a310_ac_rev21_2009_12
+  Formula: taper * root_chord
+  Inputs: taper=0.417; root_chord=5.555454 m
+  Uncertainty: +/-0.15 m
+END FIELD
+
+FIELD horizontal_tail.taper_ratio
+  Value: 0.417
+  Unit: nondimensional
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Page or section: Data A Table 1, column A310-300
+  Inputs: Taper Ratio 0.417
+  Uncertainty: Secondary textbook compilation
+END FIELD
+
+FIELD horizontal_tail.sweep
+  Value: 34
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Page or section: Data A Table 1, column A310-300
+  Inputs: 1/4 Chord Sweep (deg) 34.00
+  Uncertainty: Secondary textbook compilation; +/-2 deg
+END FIELD
+
+FIELD horizontal_tail.dihedral
+  Value: 6
+  Unit: deg
+  Status: manufacturer-published-planning
+  Source: airbus_a310_ac_rev21_2009_12
+  Page or section: Chapter 2.2.0, page 2, front view (6 deg)
+  Applicability: All A310 models
+  Uncertainty: Drawing annotation; rounded to 1 deg
+END FIELD
+
+FIELD horizontal_tail.arm
+  Value: 22.5
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Page or section: Data A Table 1, column A310-300
+  Inputs: Tail Arm (m) 22.50
+  Uncertainty: Secondary textbook compilation; arm reference points not stated (probably wing to tail quarter-chord MAC); +/-1 m
+END FIELD
+
+FIELD horizontal_tail.elevator_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_a172_issue_08 | airbus_a310_ac_rev21_2009_12 | jenkinson_simpkin_rhodes_1999_data_a
+END FIELD
+
+FIELD vertical_tail.area
+  Value: 45.235
+  Unit: m2
+  Status: inferred-with-uncertainty
+  Source: airbus_a310_ac_rev21_2009_12
+  Source URL: https://web.archive.org/web/2024/https://aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus-Commercial-Aircraft-AC-A310-Dec-2009.pdf
+  Document title: A310 Airplane Characteristics for Airport Planning, Revision 21
+  Revision date: 2009-12-01
+  Page or section: Chapter 2.2.0, page 2, side view
+  Formula: height*(root+tip)/2
+  Inputs: height=8.3 m; root=7.8 m; tip=3.1 m
+  Applicability: A310 vertical tail trapezoid above the fuselage reference line
+  Uncertainty: +/-5 percent
+  Notes: Jenkinson et al. (1999) give 45.20 m2 for the A310-300.
+END FIELD
+
+FIELD vertical_tail.height
+  Value: 8.3
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: airbus_a310_ac_rev21_2009_12
+  Page or section: Chapter 2.2.0, page 2, side view (27 ft 2.77 in, 8.300 m)
+  Applicability: All A310 models; fin root line to fin tip
+  Uncertainty: Drawing dimension
+  Notes: Jenkinson et al. (1999) give 8.10 m.
+END FIELD
+
+FIELD vertical_tail.mac
+  Value: 5.787768
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: airbus_a310_ac_rev21_2009_12
+  Formula: (2/3) * root_chord * (1 + taper + taper^2) / (1 + taper)
+  Inputs: root_chord=7.8 m; taper=0.397436
+  Uncertainty: +/-0.15 m
+  Notes: The spanwise MAC station from these inputs (3.554 m) agrees with the 3.553 m MAC station in the drawing.
+END FIELD
+
+FIELD vertical_tail.root_chord
+  Value: 7.8
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: airbus_a310_ac_rev21_2009_12
+  Page or section: Chapter 2.2.0, page 2, side view (25 ft 7.09 in, 7.800 m)
+  Applicability: All A310 models
+  Uncertainty: Drawing dimension
+END FIELD
+
+FIELD vertical_tail.tip_chord
+  Value: 3.1
+  Unit: m
+  Status: manufacturer-published-planning
+  Source: airbus_a310_ac_rev21_2009_12
+  Page or section: Chapter 2.2.0, page 2, side view (10 ft 2.05 in, 3.100 m)
+  Applicability: All A310 models
+  Uncertainty: Drawing dimension
+END FIELD
+
+FIELD vertical_tail.taper_ratio
+  Value: 0.397436
+  Unit: nondimensional
+  Status: calculated-from-published-inputs
+  Source: airbus_a310_ac_rev21_2009_12
+  Formula: tip_chord / root_chord
+  Inputs: tip_chord=3.1 m; root_chord=7.8 m
+  Notes: Jenkinson et al. (1999) give 0.395.
+END FIELD
+
+FIELD vertical_tail.sweep
+  Value: 40
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Page or section: Data A Table 1, column A310-300
+  Inputs: 1/4 Chord Sweep (deg) 40.00
+  Uncertainty: Secondary textbook compilation; +/-2 deg
+END FIELD
+
+FIELD vertical_tail.arm
+  Value: 20.2
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a
+  Page or section: Data A Table 1, column A310-300
+  Inputs: Tail Arm (m) 20.20
+  Uncertainty: Secondary textbook compilation; arm reference points not stated; +/-1 m
+END FIELD
+
+FIELD vertical_tail.rudder_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found.
+  Searched source: easa_a172_issue_08 | airbus_a310_ac_rev21_2009_12 | jenkinson_simpkin_rhodes_1999_data_a
+END FIELD
+
+OTHER PARAMETERS
+  Format: field = value; status; source; page or section.
+  iata = 310; inferred-with-uncertainty; flugzeuginfo_iata_aircraft_codes; generic A310 code (312 = A310-200, 313 = A310-300); IATA SSIM Appendix A not retrieved.
+  icao_wtc = heavy; certified-published; easa_recat_eu_assignment_2021_12; p. 4, A310 row, ICAO legacy WTC H.
+  eu_wtc = lower heavy; certified-published; easa_recat_eu_assignment_2021_12; p. 4, A310 row, RECAT-EU CAT-C.
+  faa_wtc = heavy; certified-published; faa_jo_7360_1j_2024_04; Appendix A, A310 row (weight class Heavy, CWT C), PDF p. 12.
+  parking_area_m2 = null; unresolved; -; the legacy field definition is not documented.
+  pax.max = 280; certified-published; easa_a172_issue_08; section 14.7, p. 43, 280 passengers with A-I-A exits (section 14.8 gives 275 seats for the basic exit arrangement).
+  pax.high = 218; inferred-with-uncertainty; jenkinson_simpkin_rhodes_1999_data_a; Table 1, A310-300, two-class seating.
+  pax.low = 187; inferred-with-uncertainty; jenkinson_simpkin_rhodes_1999_data_a; Table 1, A310-300, three-class seating.
+  engine.type = turbofan; certified-published; easa_a172_issue_08; section 13.2, p. 38.
+  engine.mount = underwing; manufacturer-published-planning; airbus_a310_ac_rev21_2009_12; Chapter 2.2.0, page 1.
+  engine.number = 2; certified-published; easa_a172_issue_08; section 13.2, p. 38.
+  engine.default = CF6-80C2A2; certified-published; easa_a172_issue_08; section 13.2, p. 38, A310-304 (and A310-308 option). Chosen because the A310-304 is the most common A310-300 model; frequency is not stated in the TCDS.
+  engine.options = [CF6-80C2A2, CF6-80C2A8, PW4152, PW4156]; certified-published; easa_a172_issue_08 | icao_eedb_issue_32; section 13.2 and 14.2, pp. 38 and 42. The A310-322 JT9D-7R4E1 is listed in subtypes only. PW4156 is the ICAO EEDB entry for the certified PW4156A (both 249.1 kN).
+  flaps.area = 36.68; inferred-with-uncertainty; jenkinson_simpkin_rhodes_1999_data_a; Table 1, A310-300, trailing-edge flap area (m2).
+  flaps.bf/b = 0.84; inferred-with-uncertainty; jenkinson_simpkin_rhodes_1999_data_a; Table 1, A310-300, flap span/wing span.
+  flaps.type, flaps.lambda_f, flaps.cf/c, flaps.Sf/S = null; unresolved; -; no public value adopted (Jenkinson type code F1 is not mapped to an Aerox flap type).
+  kinematic.takeoff_distance_m = 2290; inferred-with-uncertainty; jenkinson_simpkin_rhodes_1999_data_a; Table 1, A310-300, take-off ISA sea level.
+  kinematic.takeoff_v2 = 156; inferred-with-uncertainty; jenkinson_simpkin_rhodes_1999_data_a; Table 1, A310-300, V2.
+  kinematic.landing_distance_m = 1490; inferred-with-uncertainty; jenkinson_simpkin_rhodes_1999_data_a; Table 1, A310-300, landing ISA sea level.
+  kinematic.cruise_range_nm = 4300; inferred-with-uncertainty; jenkinson_simpkin_rhodes_1999_data_a; Table 1, A310-300, design range.
+  Other kinematic fields = A306 values; inferred-with-uncertainty; sister type A300-600 (Aerox A306 record); no WRAP or EUROCONTROL-derived profile for the A310 was available. The A310 and A300-600 share the cockpit, systems, and cruise speed range.
+
+DRAG MODEL
+  Active Aerox physical drag model and reference-condition polar snapshot.
+  Scaled or substituted geometry fields: wing.root_chord, engine.nacelle_max_diameter, engine.nacelle_length
+
+FIELD drag.model
+  Value: aerox-geometry-drag-v2
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Inputs: configuration=clean; tier=A-observed-core-and-tails; confidence=medium; e_span=0.9407; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
+  Zero-lift terms at reference (drag counts): wing=47.09; fuselage=61.59; horizontal_tail=18.39; vertical_tail=12.37; nacelles=13.34; pylons=2.05; fuselage_upsweep=6.84; control_surface_gaps=1.09; nacelle_base=1.72; roughness_excrescence=14.80
+  Applicability: Active clean model; geometry-tier uncertainty applies.
+END FIELD
+FIELD drag.configuration
+  Value: clean
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.geometry_tier
+  Value: A-observed-core-and-tails
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.confidence
+  Value: medium
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.reference_altitude_ft
+  Value: 34697.9
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Representative clean reference condition.
+END FIELD
+FIELD drag.reference_mach
+  Value: 0.79
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Representative clean reference condition.
+END FIELD
+FIELD drag.reference_reynolds_per_m
+  Value: 6268757.3
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Inputs: altitude=34697.9 ft; Mach=0.790000; ISA temperature and density
+END FIELD
+FIELD drag.span_efficiency_factor
+  Value: 0.940724
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Physical model input; geometry-tier uncertainty applies.
+END FIELD
+FIELD drag.unresolved_fraction_of_resolved_drag
+  Value: null
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Physical model input; geometry-tier uncertainty applies.
+END FIELD
+FIELD drag.roughness_excrescence_fraction
+  Value: 0.09
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Physical model input; geometry-tier uncertainty applies.
+END FIELD
+FIELD drag.wave_drag_model
+  Value: aerox-korn-lock-wave-v1
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.wave_drag_source_tier
+  Value: D-class-scaled
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.wave_drag_confidence
+  Value: low
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.wave_drag_technology_factor
+  Value: 0.95
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Physical model input; geometry-tier uncertainty applies.
+END FIELD
+END DRAG MODEL
+
+SUBTYPE AND ENGINE DATABANK APPLICABILITY
+
+FIELD subtypes
+  Value: 10 unique certified subtype mapping(s)
+  Status: certified-published
+  Source: easa_a172_issue_08 | icao_eedb_issue_32
+  Page or section: Section 11.2, p. 34 | Section 12.2, p. 36 | Section 13.2, p. 38 | Section 14.2, p. 42
+  Applicability: Certified subtype applicability with query identifiers normalized to ICAO EEDB Issue 32.
+  Engine table: src/aerox/data/engines/engines.csv
+  Notes: The EEDB names the JT9D-7R4D1 and JT9D-7R4E1 rows "JT9D-7R4D, -7R4D1" and "JT9D-7R4E, -7R4E1". The certified PW4156A (A310-325) maps to the EEDB row PW4156 (249.1 kN, equal to the TCDS take-off thrust of 24,908 daN).
+  Mappings:
+    A310-203:
+      - CF6-80A3
+    A310-221:
+      - JT9D-7R4D, -7R4D1
+    A310-222:
+      - JT9D-7R4E, -7R4E1
+    A310-204:
+      - CF6-80C2A2
+    A310-203C:
+      - CF6-80A3
+    A310-322:
+      - JT9D-7R4E, -7R4E1
+    A310-304:
+      - CF6-80C2A2
+    A310-324:
+      - PW4152
+    A310-308:
+      - CF6-80C2A8
+      - CF6-80C2A2
+    A310-325:
+      - PW4156
+END FIELD
+
+LEGACY PARAMETERS
+  This record was added after the original Aerox database and has no original Aerox values.
+  The kinematic values without a named source above are copied from the A306 record.

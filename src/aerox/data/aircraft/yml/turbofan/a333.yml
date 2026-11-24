@@ -30,14 +30,14 @@ certification:
   issue: '69'
   issue_date: '2025-12-19'
 mtow: 242000
-mlw: 188000
+mlw: 187000
 mzfw: null
 minimum_weight: null
 oew: 122780
 mfc: 139000
 vmo: 330
 mmo: 0.86
-ceiling: 41000
+ceiling: 41450
 icao_wtc: heavy
 eu_wtc: upper heavy
 faa_wtc: heavy

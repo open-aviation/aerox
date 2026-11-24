@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Boeing 757-300
 ICAO: B753
-Last reviewed: 2026-08-06
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,21 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 123600
+  Value: 123830
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima205_issue_06
+  Page or section: Issue 06, Section 3 (757-300), item 13, p. 24
+  Applicability: 757-300 (273,000 lb)
 END FIELD
 
 FIELD mlw
-  Value: 101600
+  Value: 101605
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima205_issue_06
+  Page or section: Issue 06, Section 3 (757-300), item 13, p. 24
+  Applicability: 757-300 (224,000 lb)
 END FIELD
 
 FIELD mzfw
@@ -92,10 +96,13 @@ FIELD mmo
 END FIELD
 
 FIELD ceiling
-  Value: 41000
+  Value: 42000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima205_issue_06
+  Page or section: Issue 06, Section 3 (757-300), item 11, p. 23
+  Applicability: 757-300
+  Notes: 12,800 m (42,000 ft) pressure altitude.
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -412,7 +419,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=C-partially-scaled; confidence=low; e_span=0.9528; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
-  Zero-lift terms at reference (drag counts): wing=50.31; fuselage=60.09; horizontal_tail=14.06; vertical_tail=10.37; nacelles=11.72; pylons=1.80; fuselage_upsweep=3.93; control_surface_gaps=1.08; nacelle_base=1.72; roughness_excrescence=13.96
+  Zero-lift terms at reference (drag counts): wing=50.29; fuselage=60.07; horizontal_tail=14.06; vertical_tail=10.37; nacelles=11.72; pylons=1.80; fuselage_upsweep=3.93; control_surface_gaps=1.08; nacelle_base=1.72; roughness_excrescence=13.95
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -434,7 +441,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 37602.1
+  Value: 37563.5
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -446,10 +453,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 5617405.9
+  Value: 5627859.1
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=37602.1 ft; Mach=0.800000; ISA temperature and density
+  Inputs: altitude=37563.5 ft; Mach=0.800000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.952808

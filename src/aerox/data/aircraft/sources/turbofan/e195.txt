@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Embraer E195 (LR)
 ICAO: E195
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -96,8 +96,10 @@ END FIELD
 FIELD ceiling
   Value: 41000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_embraer_erj190_a071_i29
+  Page or section: Issue 29, Section 3 (ERJ 190-200), item 11, p. 25
+  Applicability: ERJ 190-200
 END FIELD
 
 WING AND TAIL GEOMETRY

@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Boeing 767-300
 ICAO: B763
-Last reviewed: 2026-08-06
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -50,15 +50,21 @@ END FIELD
 FIELD mtow
   Value: 186880
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima035_issue_11
+  Page or section: Issue 11, Section 2 (767-300), item 23, p. 24
+  Applicability: 767-300 increased weights certified post TC (412,000 lb)
+  Notes: Freighter and BCF models are excluded.
 END FIELD
 
 FIELD mlw
-  Value: 145100
+  Value: 145149
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima035_issue_11
+  Page or section: Issue 11, Section 2 (767-300), item 23, p. 24
+  Applicability: 767-300 (320,000 lb)
+  Notes: 767-300F is 147,871 kg (excluded).
 END FIELD
 
 FIELD mzfw
@@ -92,10 +98,13 @@ FIELD mmo
 END FIELD
 
 FIELD ceiling
-  Value: 45000
+  Value: 43100
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima035_issue_11
+  Page or section: Issue 11, Section 2 (767-300), p. 23
+  Applicability: 767-300
+  Notes: 13,140 m (43,100 ft) pressure altitude.
 END FIELD
 
 FUSELAGE GEOMETRY

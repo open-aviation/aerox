@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Gulfstream G280
 ICAO: G280
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -50,15 +50,19 @@ END FIELD
 FIELD mtow
   Value: 17962
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima348_issue_06
+  Page or section: Issue 06, Section 1, item 13, p. 10
+  Applicability: Gulfstream G280
 END FIELD
 
 FIELD mlw
-  Value: 14800
+  Value: 14832
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima348_issue_06
+  Page or section: Issue 06, Section 1, item 13, p. 10
+  Applicability: Gulfstream G280
 END FIELD
 
 FIELD mzfw
@@ -78,24 +82,32 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 320
+  Value: 340
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima348_issue_06
+  Page or section: Issue 06, Section 1, item 10, p. 9
+  Applicability: Gulfstream G280
+  Notes: VMO 300 KIAS to 10,000 ft, 300-330 KIAS from 10,000 to 20,000 ft, 340 KIAS from 20,000 to 28,000 ft; MMO 0.85 from 28,000 to 45,000 ft.
 END FIELD
 
 FIELD mmo
   Value: 0.85
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima348_issue_06
+  Page or section: Issue 06, Section 1, item 10, p. 9
+  Applicability: Gulfstream G280
+  Notes: VMO 300 KIAS to 10,000 ft, 300-330 KIAS from 10,000 to 20,000 ft, 340 KIAS from 20,000 to 28,000 ft; MMO 0.85 from 28,000 to 45,000 ft.
 END FIELD
 
 FIELD ceiling
   Value: 45000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima348_issue_06
+  Page or section: Issue 06, Section 1, item 11, p. 9
+  Applicability: Gulfstream G280
 END FIELD
 
 WING AND TAIL GEOMETRY

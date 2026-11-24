@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Cessna Citation M2
 ICAO: C25M
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -50,15 +50,20 @@ END FIELD
 FIELD mtow
   Value: 4853
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_c525_a078
+  Page or section: Issue 19, Section A (525), item 13, pp. 12-13
+  Applicability: 525 S/N 525-0685 and 525-0800 and on (M2)
+  Notes: Earlier model 525 serial numbers have 4,717 to 4,853 kg.
 END FIELD
 
 FIELD mlw
-  Value: 4500
+  Value: 4491
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_c525_a078
+  Page or section: Issue 19, Section A (525), item 13, pp. 12-13
+  Applicability: 525 S/N 525-0685 and 525-0800 and on (M2)
 END FIELD
 
 FIELD mzfw
@@ -78,24 +83,32 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 260
+  Value: 263
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_c525_a078
+  Page or section: Issue 19, Section A (525), item 10, p. 11
+  Applicability: All model 525 serial numbers
+  Notes: VMO 263 KIAS (260 KCAS) from sea level to 30,500 ft; MMO 0.71 indicated (0.70 Mach calibrated) above 30,500 ft. Indicated values are stored.
 END FIELD
 
 FIELD mmo
   Value: 0.71
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_c525_a078
+  Page or section: Issue 19, Section A (525), item 10, p. 11
+  Applicability: All model 525 serial numbers
+  Notes: VMO 263 KIAS (260 KCAS) from sea level to 30,500 ft; MMO 0.71 indicated (0.70 Mach calibrated) above 30,500 ft. Indicated values are stored.
 END FIELD
 
 FIELD ceiling
   Value: 41000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_c525_a078
+  Page or section: Issue 19, Section A (525), item 11, p. 12
+  Applicability: All model 525 serial numbers
 END FIELD
 
 WING AND TAIL GEOMETRY

@@ -9,14 +9,14 @@ certification:
   issue: '11'
   issue_date: '2025-02-04'
 mtow: 186880
-mlw: 145100
+mlw: 145149
 mzfw: null
 minimum_weight: null
 oew: 87100
 mfc: 49630
 vmo: 360
 mmo: 0.86
-ceiling: 45000
+ceiling: 43100
 icao_wtc: heavy
 eu_wtc: lower heavy
 faa_wtc: heavy

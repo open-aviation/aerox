@@ -8,15 +8,15 @@ certification:
   type_certificate: A22CE / EASA.IM.A.207
   issue: EASA Issue 10 at review
   issue_date: null
-mtow: 6850
-mlw: 6804
+mtow: 6713
+mlw: 6123
 mzfw: null
 minimum_weight: null
 oew: 3655
 mfc: 2204
-vmo: 270
+vmo: 275
 mmo: 0.7
-ceiling: 43000
+ceiling: 45000
 icao_wtc: light
 eu_wtc: light
 faa_wtc: light
@@ -80,9 +80,9 @@ drag:
   configuration: clean
   geometry_tier: B-observed-core-scaled-tails
   confidence: medium-low
-  reference_altitude_ft: 49999.5
+  reference_altitude_ft: 50419.8
   reference_mach: 0.63
-  reference_reynolds_per_m: 2437840.2
+  reference_reynolds_per_m: 2389082.9
   span_efficiency_factor: 0.955235
   unresolved_fraction_of_resolved_drag: null
   roughness_excrescence_fraction: 0.09

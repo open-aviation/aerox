@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Airbus A330-300
 ICAO: A333
-Last reviewed: 2026-08-06
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -50,15 +50,21 @@ END FIELD
 FIELD mtow
   Value: 242000
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a004_issue_70
+  Page or section: Issue 70, Section 2 (A330-300), item 12, p. 42
+  Applicability: A330-302/-303/-323/-342/-343
+  Notes: A330-301/-321 are 217 t; A330-322/-341 are 218 t.
 END FIELD
 
 FIELD mlw
-  Value: 188000
+  Value: 187000
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a004_issue_70
+  Page or section: Issue 70, Section 2 (A330-300), item 12, p. 42
+  Applicability: A330-302/-303/-323/-342/-343 (the models with the 242 t MTOW)
+  Notes: A330-301/-321 are 179 t; A330-322/-341 are 182 t.
 END FIELD
 
 FIELD mzfw
@@ -92,10 +98,13 @@ FIELD mmo
 END FIELD
 
 FIELD ceiling
-  Value: 41000
+  Value: 41450
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a004_issue_70
+  Page or section: Issue 70, Section 2 (A330-300), item 10.1, p. 41
+  Applicability: All A330-300 models
+  Notes: Maximum flight level 41,450 ft (12,634 m).
 END FIELD
 
 WING AND TAIL GEOMETRY

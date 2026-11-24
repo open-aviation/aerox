@@ -8,8 +8,8 @@ certification:
   type_certificate: null
   issue: null
   issue_date: null
-mtow: 80000
-mlw: 60000
+mtow: 80285
+mlw: 66043
 mzfw: null
 minimum_weight: null
 oew: 45000
@@ -80,9 +80,9 @@ drag:
   configuration: clean
   geometry_tier: A-observed-core-and-tails
   confidence: medium
-  reference_altitude_ft: 38303.3
+  reference_altitude_ft: 38229.3
   reference_mach: 0.79
-  reference_reynolds_per_m: 5363373.9
+  reference_reynolds_per_m: 5382481.2
   span_efficiency_factor: 0.950962
   unresolved_fraction_of_resolved_drag: null
   roughness_excrescence_fraction: 0.09

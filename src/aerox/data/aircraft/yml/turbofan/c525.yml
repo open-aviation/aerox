@@ -8,13 +8,13 @@ certification:
   type_certificate: A1WI / EASA.IM.A.078
   issue: EASA Issue 19 at review
   issue_date: null
-mtow: 4900
-mlw: 4500
+mtow: 4853
+mlw: 4491
 mzfw: null
 minimum_weight: null
 oew: 3171
 mfc: 1862
-vmo: 260
+vmo: 263
 mmo: 0.71
 ceiling: 41000
 icao_wtc: light
@@ -80,9 +80,9 @@ drag:
   configuration: clean
   geometry_tier: B-observed-core-scaled-tails
   confidence: medium-low
-  reference_altitude_ft: 50798.5
+  reference_altitude_ft: 50999.0
   reference_mach: 0.63
-  reference_reynolds_per_m: 2345994.4
+  reference_reynolds_per_m: 2323491.7
   span_efficiency_factor: 0.951083
   unresolved_fraction_of_resolved_drag: null
   roughness_excrescence_fraction: 0.09

@@ -8,14 +8,14 @@ certification:
   type_certificate: EMB-505 certificate; exact current ANAC identifier not resolved in this batch
   issue: null
   issue_date: null
-mtow: 7951
-mlw: 7600
+mtow: 8340
+mlw: 7730
 mzfw: null
 minimum_weight: null
 oew: 5350
 mfc: 3035
-vmo: 300
-mmo: 0.8
+vmo: 320
+mmo: 0.78
 ceiling: 45000
 icao_wtc: medium
 eu_wtc: light

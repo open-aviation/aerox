@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Boeing 737-700
 ICAO: B737
-Last reviewed: 2026-08-06
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,23 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 70100
+  Value: 70080
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima120_issue_30
+  Page or section: Issue 30, Section 3 (737-700), item 13, p. 23
+  Applicability: 737-700 increased design weight (154,500 lb)
+  Notes: The 737-700 IGW (BBJ and 737-700C basis, 77,564 kg) is excluded, as the record notes require.
 END FIELD
 
 FIELD mlw
-  Value: 66000
+  Value: 58604
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima120_issue_30
+  Page or section: Issue 30, Section 3 (737-700), item 13, p. 23
+  Applicability: 737-700 increased design weight (129,200 lb)
+  Notes: 737-700 IGW is 60,781 kg (excluded). The previous value 66,000 kg has no basis in the TCDS.
 END FIELD
 
 FIELD mzfw
@@ -94,8 +100,10 @@ END FIELD
 FIELD ceiling
   Value: 41000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima120_issue_30
+  Page or section: Issue 30, Section 3 (737-700), item 11, p. 23
+  Applicability: All 737 NG models (Section 2, item 11)
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -390,7 +398,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=C-partially-scaled; confidence=low; e_span=0.9491; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
-  Zero-lift terms at reference (drag counts): wing=53.16; fuselage=54.35; horizontal_tail=17.47; vertical_tail=11.14; nacelles=11.20; pylons=1.72; fuselage_upsweep=5.26; control_surface_gaps=1.15; nacelle_base=1.98; roughness_excrescence=14.17
+  Zero-lift terms at reference (drag counts): wing=53.17; fuselage=54.35; horizontal_tail=17.47; vertical_tail=11.14; nacelles=11.20; pylons=1.72; fuselage_upsweep=5.26; control_surface_gaps=1.15; nacelle_base=1.98; roughness_excrescence=14.17
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -412,7 +420,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 40124.7
+  Value: 40130.7
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -424,10 +432,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 4851587.8
+  Value: 4850203.6
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=40124.7 ft; Mach=0.780000; ISA temperature and density
+  Inputs: altitude=40130.7 ft; Mach=0.780000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.949105

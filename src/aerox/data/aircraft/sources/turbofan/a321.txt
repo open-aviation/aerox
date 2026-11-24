@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Airbus A321
 ICAO: A321
-Last reviewed: 2026-08-06
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -50,15 +50,21 @@ END FIELD
 FIELD mtow
   Value: 93500
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Issue 63, Section 2 (A321), item 13, p. 102
+  Applicability: A321-211/-212/-213/-231/-232 (highest A321ceo value)
+  Notes: A321-111/-112/-131 are limited to 89,000 kg.
 END FIELD
 
 FIELD mlw
   Value: 77800
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Issue 63, Section 2 (A321), item 13, p. 102
+  Applicability: A321-211/-212/-213/-231/-232
+  Notes: A321-111/-112/-131 are limited to 75,500 kg.
 END FIELD
 
 FIELD mzfw
@@ -80,22 +86,29 @@ END FIELD
 FIELD vmo
   Value: 350
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Issue 63, Section 2 (A321), item 10, p. 99
+  Applicability: All A321 models
 END FIELD
 
 FIELD mmo
   Value: 0.82
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Issue 63, Section 2 (A321), item 10, p. 99
+  Applicability: All A321 models
 END FIELD
 
 FIELD ceiling
-  Value: 41000
+  Value: 39800
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Issue 63, Section 2 (A321), item 11, p. 101
+  Applicability: A321 envelope, 39,800 ft with modification 30748, which most aircraft in service have
+  Notes: Basic envelope: 39,100 ft. The earlier 41,000 ft value has no basis in the TCDS.
 END FIELD
 
 WING AND TAIL GEOMETRY

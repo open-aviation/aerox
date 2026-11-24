@@ -13,8 +13,8 @@ certification:
   type_certificate: EASA.A.110
   issue: '17'
   issue_date: '2026-08-05'
-mtow: 560000
-mlw: 386000
+mtow: 575000
+mlw: 395000
 mzfw: null
 minimum_weight: null
 oew: 277000
@@ -87,9 +87,9 @@ drag:
   configuration: clean
   geometry_tier: A-observed-core-and-tails
   confidence: medium
-  reference_altitude_ft: 40293.3
+  reference_altitude_ft: 39743.3
   reference_mach: 0.85
-  reference_reynolds_per_m: 5244340.5
+  reference_reynolds_per_m: 5384815.3
   span_efficiency_factor: 0.955994
   unresolved_fraction_of_resolved_drag: null
   roughness_excrescence_fraction: 0.09

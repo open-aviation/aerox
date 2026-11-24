@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Boeing 717-200
 ICAO: B712
-Last reviewed: 2026-08-06
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,21 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 52000
+  Value: 54885
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima211_issue_03
+  Page or section: Issue 3.0, Section 3 (717-200), item 7, p. 18
+  Applicability: 717-200 type specification (121,000 lb)
 END FIELD
 
 FIELD mlw
-  Value: 46000
+  Value: 49895
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima211_issue_03
+  Page or section: Issue 3.0, Section 3 (717-200), item 7, p. 18
+  Applicability: 717-200 type specification (110,000 lb)
 END FIELD
 
 FIELD mzfw
@@ -432,7 +436,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9415; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
-  Zero-lift terms at reference (drag counts): wing=52.06; fuselage=80.54; horizontal_tail=19.80; vertical_tail=11.26; nacelles=23.35; pylons=3.11; fuselage_upsweep=6.57; control_surface_gaps=1.14; nacelle_base=2.63; roughness_excrescence=18.04
+  Zero-lift terms at reference (drag counts): wing=51.63; fuselage=79.95; horizontal_tail=19.63; vertical_tail=11.16; nacelles=23.16; pylons=3.09; fuselage_upsweep=6.57; control_surface_gaps=1.14; nacelle_base=2.63; roughness_excrescence=17.91
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -454,7 +458,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 39165.5
+  Value: 38042.1
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -466,10 +470,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 4950233.0
+  Value: 5224878.6
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=39165.5 ft; Mach=0.760000; ISA temperature and density
+  Inputs: altitude=38042.1 ft; Mach=0.760000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.941499

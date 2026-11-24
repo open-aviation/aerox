@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Cessna Citation V/Ultra/Encore
 ICAO: C560
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,22 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 7400
+  Value: 7634
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_citation_500_560_a207
+  Page or section: Issue 10, Section 4 (560), item 13, p. 40
+  Applicability: Citation Encore+ (highest model 560 value)
+  Notes: Citation V: 7,212 kg; Ultra: 7,394 kg; Encore: 7,543 kg.
 END FIELD
 
 FIELD mlw
-  Value: 6900
+  Value: 6895
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_citation_500_560_a207
+  Page or section: Issue 10, Section 4 (560), item 13, p. 40
+  Applicability: All model 560 variants
 END FIELD
 
 FIELD mzfw
@@ -78,24 +83,32 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 270
+  Value: 292
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_citation_500_560_a207
+  Page or section: Issue 10, Section 4 (560), item 10, p. 39
+  Applicability: Citation V, Ultra, Encore, Encore+
+  Notes: VMO 292 KIAS (290 KCAS) from 8,000 ft to 28,907 ft; MMO 0.755 indicated (0.75 Mach) above 28,907 ft. Indicated values are stored.
 END FIELD
 
 FIELD mmo
-  Value: 0.75
+  Value: 0.755
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_citation_500_560_a207
+  Page or section: Issue 10, Section 4 (560), item 10, p. 39
+  Applicability: Citation V, Ultra, Encore, Encore+
+  Notes: VMO 292 KIAS (290 KCAS) from 8,000 ft to 28,907 ft; MMO 0.755 indicated (0.75 Mach) above 28,907 ft. Indicated values are stored.
 END FIELD
 
 FIELD ceiling
   Value: 45000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_citation_500_560_a207
+  Page or section: Issue 10, Section 4 (560), item 11, p. 40
+  Applicability: All model 560 variants
 END FIELD
 
 WING AND TAIL GEOMETRY

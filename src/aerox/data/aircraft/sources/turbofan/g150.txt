@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Gulfstream G150
 ICAO: G150
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,21 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 11800
+  Value: 11839
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima228_issue_03
+  Page or section: Issue 03, Section 1, item 13, p. 10
+  Applicability: Gulfstream G150
 END FIELD
 
 FIELD mlw
-  Value: 9800
+  Value: 9843
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima228_issue_03
+  Page or section: Issue 03, Section 1, item 13, p. 10
+  Applicability: Gulfstream G150
 END FIELD
 
 FIELD mzfw
@@ -94,8 +98,10 @@ END FIELD
 FIELD ceiling
   Value: 45000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima228_issue_03
+  Page or section: Issue 03, Section 1, item 11, p. 9
+  Applicability: Gulfstream G150
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -387,7 +393,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9512; roughness_excrescence/computed=0.0900; nacelle_tier=C-estimated-fan-diameter
-  Zero-lift terms at reference (drag counts): wing=64.78; fuselage=67.10; horizontal_tail=20.97; vertical_tail=13.33; nacelles=11.39; pylons=1.52; fuselage_upsweep=4.98; control_surface_gaps=1.09; nacelle_base=3.50; roughness_excrescence=16.98
+  Zero-lift terms at reference (drag counts): wing=64.75; fuselage=67.07; horizontal_tail=20.96; vertical_tail=13.32; nacelles=11.42; pylons=1.52; fuselage_upsweep=4.98; control_surface_gaps=1.09; nacelle_base=3.50; roughness_excrescence=16.97
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -409,7 +415,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 47919.6
+  Value: 47850.9
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -421,10 +427,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 3421140.6
+  Value: 3432447.8
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=47919.6 ft; Mach=0.800000; ISA temperature and density
+  Inputs: altitude=47850.9 ft; Mach=0.800000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.951186

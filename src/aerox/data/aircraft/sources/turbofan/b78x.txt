@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Boeing 787-10 Dreamliner
 ICAO: B78X
-Last reviewed: 2026-08-06
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -50,15 +50,19 @@ END FIELD
 FIELD mtow
   Value: 254011
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima115_issue_30
+  Page or section: Issue 30, Section 3 (787-10), item 13, pp. 53-54
+  Applicability: 787-10 (560,000 lb)
 END FIELD
 
 FIELD mlw
-  Value: 201800
+  Value: 201848
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima115_issue_30
+  Page or section: Issue 30, Section 3 (787-10), item 13, pp. 53-54
+  Applicability: 787-10 (445,000 lb)
 END FIELD
 
 FIELD mzfw
@@ -80,22 +84,29 @@ END FIELD
 FIELD vmo
   Value: 350
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima115_issue_30
+  Page or section: Issue 30, Section 3 (787-10), item 10, p. 52
+  Applicability: 787-10
+  Notes: VMO/MMO = 350 KEAS / 0.90.
 END FIELD
 
 FIELD mmo
-  Value: 0.89
+  Value: 0.9
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima115_issue_30
+  Page or section: Issue 30, Section 3 (787-10), item 10, p. 52
+  Applicability: 787-10
 END FIELD
 
 FIELD ceiling
-  Value: 41000
+  Value: 41100
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima115_issue_30
+  Page or section: Issue 30, Section 3 (787-10), item 11, p. 53
+  Applicability: 787-10
 END FIELD
 
 WING AND TAIL GEOMETRY

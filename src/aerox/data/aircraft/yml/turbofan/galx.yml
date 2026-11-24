@@ -8,8 +8,8 @@ certification:
   type_certificate: A6IL / EASA.IM.A.013
   issue: EASA Issue 05
   issue_date: '2025-05-26'
-mtow: 16200
-mlw: 13600
+mtow: 16171
+mlw: 13608
 mzfw: null
 minimum_weight: null
 oew: 9100
@@ -80,9 +80,9 @@ drag:
   configuration: clean
   geometry_tier: B-observed-core-scaled-tails
   confidence: medium-low
-  reference_altitude_ft: 46911.6
+  reference_altitude_ft: 46948.9
   reference_mach: 0.81
-  reference_reynolds_per_m: 3635845.1
+  reference_reynolds_per_m: 3629336.5
   span_efficiency_factor: 0.943618
   unresolved_fraction_of_resolved_drag: null
   roughness_excrescence_fraction: 0.09

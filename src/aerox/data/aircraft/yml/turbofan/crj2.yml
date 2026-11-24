@@ -8,8 +8,8 @@ certification:
   type_certificate: A-276
   issue: Issue 7 referenced by the operational evaluation
   issue_date: '2022-12-22'
-mtow: 21523
-mlw: 20300
+mtow: 23995
+mlw: 21205
 mzfw: null
 minimum_weight: null
 oew: 13835
@@ -80,9 +80,9 @@ drag:
   configuration: clean
   geometry_tier: B-observed-core-scaled-tails
   confidence: medium-low
-  reference_altitude_ft: 42654.9
+  reference_altitude_ft: 40392.8
   reference_mach: 0.74
-  reference_reynolds_per_m: 4075752.9
+  reference_reynolds_per_m: 4543873.8
   span_efficiency_factor: 0.941522
   unresolved_fraction_of_resolved_drag: null
   roughness_excrescence_fraction: 0.09

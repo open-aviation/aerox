@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Embraer Phenom 300
 ICAO: E55P
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,23 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 7951
+  Value: 8340
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima158_issue_11
+  Page or section: Issue 11, item 9, p. 10
+  Applicability: EMB-505 with PW535E engines, post-mod SB 505-00-0008 (note 8)
+  Notes: Basic: 8,150 kg. With PW535E1 engines (note 12, Phenom 300E): 8,415 kg, excluded because the record engine is the PW535E.
 END FIELD
 
 FIELD mlw
-  Value: 7600
+  Value: 7730
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima158_issue_11
+  Page or section: Issue 11, item 9, p. 10
+  Applicability: EMB-505 post-mod SB 505-00-0008 (note 8)
+  Notes: Basic: 7,650 kg; PW535E1 (note 12): 7,835 kg.
 END FIELD
 
 FIELD mzfw
@@ -78,24 +84,33 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 300
+  Value: 320
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima158_issue_11
+  Page or section: Issue 11, item 6, p. 9
+  Applicability: EMB-505
+  Notes: VMO 320 KIAS; MMO 0.78, or 0.80 with PW535E1 engines (note 12).
 END FIELD
 
 FIELD mmo
-  Value: 0.8
+  Value: 0.78
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima158_issue_11
+  Page or section: Issue 11, item 6, p. 9
+  Applicability: EMB-505 with PW535E engines
+  Notes: MMO 0.80 with PW535E1 engines (note 12).
 END FIELD
 
 FIELD ceiling
   Value: 45000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima158_issue_11
+  Page or section: Issue 11, item 7, p. 9
+  Applicability: EMB-505
+  Notes: 13,716 m (45,000 ft).
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -392,7 +407,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9528; roughness_excrescence/computed=0.0900; nacelle_tier=C-estimated-fan-diameter
-  Zero-lift terms at reference (drag counts): wing=67.87; fuselage=59.07; horizontal_tail=21.76; vertical_tail=13.81; nacelles=8.53; pylons=1.14; fuselage_upsweep=4.04; control_surface_gaps=1.26; nacelle_base=2.97; roughness_excrescence=16.24
+  Zero-lift terms at reference (drag counts): wing=67.87; fuselage=59.07; horizontal_tail=21.76; vertical_tail=13.81; nacelles=8.91; pylons=1.19; fuselage_upsweep=4.04; control_surface_gaps=1.26; nacelle_base=3.04; roughness_excrescence=16.29
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration

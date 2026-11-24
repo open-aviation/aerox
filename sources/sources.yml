@@ -2791,3 +2791,625 @@ sources:
   organization: Embraer
   url: https://www.embraer.com/media/2q1d040a/erj-emb-145_apm_140.pdf
   evidence_type: manufacturer-published-planning
+- id: behtir_an124_100_practical_aerodynamics_2005
+  title: Prakticheskaya aerodinamika samoleta An-124-100 (Practical aerodynamics of the An-124-100
+    aircraft), training textbook
+  authors:
+  - V. P. Behtir
+  - V. M. Rzhevsky
+  - E. N. Kovrizhnykh
+  - V. Kh. Kopysov
+  organization: Ulyanovsk Higher Civil Aviation School (Institute), Ministry of Transport of the
+    Russian Federation
+  url: https://lib.ulstu.ru/venec/disk/2014/Behtir_6.pdf
+  document_number: ISBN 5-7514-0145-X
+  issue_revision: 2005 edition (electronic copy footer dated 2009)
+  publication_date: 2005
+  access_date: 2026-11-23
+  applicable_aircraft: An-124-100
+  applicable_engine: D-18T
+  evidence_type: textbook-secondary-compilation
+  licensing_redistribution: UVAU GA copyright; link only.
+  relevant_pages: section 1.2 geometry (fuselage, wing, tails), pp. 9-10; section 1.1 and 1.4 layout
+    and high-lift devices, pp. 4 and 18; chapter 3 speed limits, p. 31; section 4.1 limitations
+    (masses, VMO, MMO, fuel), p. 40; section 4.2 take-off speeds, p. 42; section 5.2 climb and table
+    12 maximum flight levels, p. 57; descent, p. 61; table 13 approach speeds, p. 69
+  limitations: Russian-language training textbook for flight crews; it reproduces flight-manual
+    limits and design geometry but is not an authority or manufacturer document. Some table
+    values (for example aspect ratio 8.34) are not consistent with span and area.
+- id: volga_dnepr_an124_100_booklet
+  title: AN-124-100 Ruslan, Volga-Dnepr Airlines product booklet
+  organization: Volga-Dnepr Group
+  url: https://www.volga-dnepr.com/files/booklet/an-124e_final.pdf
+  publication_date: null
+  capture_date: 2017-01-09
+  access_date: 2026-11-23
+  applicable_aircraft: An-124-100 (Volga-Dnepr fleet)
+  applicable_engine: D-18T series 3
+  evidence_type: operator-published
+  licensing_redistribution: Volga-Dnepr copyright; link only.
+  relevant_pages: p. 2, aircraft dimensions drawing (span 73.3 m, length 69.1 m, height 21.08 m)
+    and Characteristics An-124-100 table (masses, fuel uplift, payload, range, runway distance)
+  limitations: Operator marketing document; the date is the PDF modification date (2017-01-09),
+    not a stated revision. Masses depend on operator configuration.
+- id: volga_dnepr_an124_100_technical_specification_web
+  title: An 124-100 Technical Specification
+  organization: Volga-Dnepr Group
+  url: https://www.volga-dnepr.com/en/fleet/an-124/ts/
+  publication_date: null
+  access_date: 2026-11-23
+  applicable_aircraft: An-124-100 and An-124-150 (Volga-Dnepr fleet)
+  applicable_engine: Lotarev D-18T
+  evidence_type: operator-published
+  licensing_redistribution: Volga-Dnepr copyright; link only.
+  relevant_pages: specification table (MTOW 392,000 kg; OEW 192,215 kg; MLW 330,000 kg; MZFW
+    306,000 kg; cruising speed 750 km/h; cruising altitude 31,000-35,000 ft; range 4,500 km)
+  limitations: Undated operator web page; its OEW and MZFW differ from the operator booklet.
+- id: redstar_an124_100_specifications
+  title: An-124-100 commercial cargo aircraft
+  organization: Red Star (redstar.gr)
+  url: https://www.redstar.gr/en/russian-aerial-means/aircraft/antonov/an-124-100-commercial-cargo-aircraft.html
+  publication_date: null
+  access_date: 2026-11-23
+  applicable_aircraft: An-124-100
+  evidence_type: trade-press-secondary
+  licensing_redistribution: Site copyright; link only.
+  relevant_pages: specification table (wing area 628.50 m2, internal fuel 212,350 kg, service
+    ceiling 11,600 m, passengers 88)
+  limitations: Enthusiast reference site; sources of the values are not stated.
+- id: airbus_a310_ac_rev21_2009_12
+  title: A310 Airplane Characteristics for Airport Planning
+  organization: Airbus
+  url: https://aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus-Commercial-Aircraft-AC-A310-Dec-2009.pdf
+  archived_url: https://web.archive.org/web/2024/https://aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus-Commercial-Aircraft-AC-A310-Dec-2009.pdf
+  document_number: AC-A310
+  issue_revision: '21'
+  publication_date: 2009-12-01
+  access_date: 2026-11-23
+  applicable_aircraft: A310-200, A310-200C, A310-300
+  applicable_engine: GE CF6-80, PW JT9D, PW4000 planning configurations
+  evidence_type: manufacturer-published-planning
+  licensing_redistribution: Airbus copyright; link rather than redistribute
+  relevant_pages: Chapter 2.1.1 pp. 1-4 (weights, OEW, fuel), Chapter 2.2.0 pp. 1-2 (general dimensions,
+    tail chords, dihedral)
+  limitations: Planning data; not customized or contractual. The Airbus URL returned HTTP 404 at access;
+    the document was read from the Internet Archive copy (313 pages). Chapter 2.2.0 drawings are dated
+    1986 and 1994.
+- id: faa_jo_7360_1j_2024_04
+  title: FAA Order JO 7360.1J, Aircraft Type Designators
+  organization: Federal Aviation Administration
+  url: https://www.faa.gov/documentLibrary/media/Order/2024-04-29_FAA_Order_JO_7360.1J_Aircraft_Type_Designators--post.pdf
+  document_number: JO 7360.1J
+  issue_revision: J
+  publication_date: 2024-04-29
+  access_date: 2026-11-23
+  applicable_aircraft: ICAO type designators used in US air traffic services
+  evidence_type: authority-wake-category-datasheet
+  licensing_redistribution: US Government work
+  relevant_pages: Appendix A, A306 and A310 rows (PDF p. 12)
+  limitations: JO 7360.1K (2025-04-10) supersedes this issue; the A310 row was not checked in 7360.1K.
+- id: flugzeuginfo_iata_aircraft_codes
+  title: IATA Aircraft Codes (Equipment Code)
+  organization: flugzeuginfo.net
+  url: https://www.flugzeuginfo.net/table_accodes_iata_en.php
+  access_date: 2026-11-23
+  applicable_aircraft: IATA aircraft type codes, including 310, 312, and 313 (Airbus A310)
+  evidence_type: secondary-compilation
+  licensing_redistribution: website terms apply; link only
+  limitations: Unofficial compilation of IATA SSIM Appendix A codes; confirm against the current SSIM.
+- id: atr_72_600_factsheet_2020
+  title: ATR 72-600 (factsheet extract of the ATR family brochure booklet)
+  organization: ATR
+  url: https://www.atr-aircraft.com/wp-content/uploads/2020/07/Factsheets_-_ATR_72-600.pdf
+  document_number: 19T0916 brochure booklet ATR family, printed pp. 22-23
+  issue_revision: null
+  publication_date: 2020-07-29
+  access_date: 2026-11-23
+  applicable_aircraft: ATR 72-600 (ATR 72-212A with MOD 5948), 72-seat standard configuration
+  applicable_engine: PW127M/N
+  evidence_type: manufacturer-published-planning
+  licensing_redistribution: ATR copyright; link only, no document redistribution intended.
+  relevant_pages: general arrangement (length, span, wing area), standard configuration (engines,
+    weights, airfield and en-route performance)
+  limitations: Marketing/planning sheet; publication date is the PDF creation date. Basic and
+    optional weights are distinct.
+- id: selig_incomplete_guide_airfoil_usage
+  title: The Incomplete Guide to Airfoil Usage
+  authors:
+  - David Lednicer
+  organization: UIUC Applied Aerodynamics Group (M. Selig)
+  url: https://m-selig.ae.illinois.edu/ads/aircraft.html
+  publication_date: null
+  access_date: 2026-11-23
+  applicable_aircraft: ATR-42 and ATR-72 rows
+  evidence_type: secondary-compilation
+  licensing_redistribution: Link only.
+  relevant_pages: Avions Transport Regional ATR-72 row (root RA 1843 / NACA 43018 mod, tip RA 1343
+    / NACA 43013 mod)
+  limitations: Compiled list without per-entry primary citation; gives section names, not the
+    spanwise thickness distribution.
+- id: nita_atr72_design_studies_2008
+  title: Aircraft Design Studies Based on the ATR 72
+  authors:
+  - Mihaela Florentina Nita
+  organization: Hamburg University of Applied Sciences (HAW Hamburg), Department of Automotive and
+    Aeronautical Engineering
+  url: https://www.fzt.haw-hamburg.de/pers/Scholz/arbeiten/TextNita.pdf
+  document_number: project report (examiner D. Scholz)
+  publication_date: 2008-06-13
+  access_date: 2026-11-23
+  applicable_aircraft: ATR 72-500 as reference aircraft
+  evidence_type: academic-secondary
+  licensing_redistribution: Author copyright; link only.
+  relevant_pages: Table 3.1 (PDF p. 23), Table 13.1 original ATR 72 column (PDF p. 159; horizontal
+    tail 11.73 m2, vertical tail 12.48 m2, cabin width 2.57 m)
+  limitations: Original-aircraft tail areas are given without a primary citation (references
+    include Jane's All the World's Aircraft 2007-08).
+- id: seeckt_presto_atr72_redesign_2011
+  title: 'Application of PreSTo: Aircraft Preliminary Sizing and Data Export to CEASIOM'
+  authors:
+  - Kolja Seeckt
+  organization: KTH Royal Institute of Technology, Department of Aeronautics
+  url: https://www.fzt.haw-hamburg.de/pers/Scholz/PreSTo/SEECKT-RE-KTH_Re-Design_ATR72_11-02-16.pdf
+  publication_date: 2011-02-16
+  access_date: 2026-11-23
+  applicable_aircraft: ATR 72 as reference aircraft for a redesign
+  evidence_type: academic-secondary
+  licensing_redistribution: Author copyright; link only.
+  relevant_pages: section 3.3 wing (PDF pp. 37-39; sweep 0/1 deg, taper 0.419, kink 0.39, dihedral
+    0), section 3.4 tailplane Tables 3.11 and 3.12 (PDF pp. 42-43)
+  limitations: Redesign inputs stated as based on the real ATR 72; no primary citation for the
+    planform values and integer-rounded aspect ratios.
+- id: learn_atc_atr72_600
+  title: 'ATR 72-600: specs, V-speeds and licence'
+  organization: Learn ATC
+  url: https://www.learn-atc.com/tools/aircraft/atr-72-600
+  publication_date: null
+  access_date: 2026-11-23
+  applicable_aircraft: ATR 72-600
+  evidence_type: training-secondary
+  licensing_redistribution: Link only.
+  relevant_pages: scale drawing (fuselage width 2.87 m), performance (VMO 250 kt, service ceiling
+    25,000 ft)
+  limitations: Learning website; states values are typical published values for learning only. No
+    primary citation.
+- id: brainscape_atr72_600_limitations
+  title: ATR72-600 Limitations (flashcard set)
+  organization: Brainscape (user-contributed)
+  url: https://www.brainscape.com/flashcards/atr72-600-limitations-4622991/packs/6835170
+  publication_date: null
+  access_date: 2026-11-23
+  applicable_aircraft: ATR 72-600
+  evidence_type: training-secondary
+  licensing_redistribution: Link only.
+  relevant_pages: cards 2 (maximum operating altitude 25,000 ft), 13 (VMO 250 kt), 14 (MMO 0.55)
+  limitations: User-contributed AFM-limitation study cards; not an approved document. Mass cards
+    match EASA.A.084 MOD 6219 values.
+- id: easa_ima120_issue_30
+  title: 'EASA Type Certificate Data Sheet IM.A.120: Boeing 737'
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaima120-boeing-737
+  direct_document_url: https://www.easa.europa.eu/en/downloads/7297/en
+  document_number: EASA.IM.A.120
+  issue_revision: '30'
+  publication_date: 2026-10-28
+  access_date: 2026-11-23
+  applicable_aircraft: 737-100, -200, -200C, -300, -400, -500 (section 1); 737 NG and MAX in later
+    sections; FAA TCDS A16WE
+  applicable_engine: CFM56-3-B1, CFM56-3B-2, CFM56-3C-1 for the 737-300/-400/-500
+  evidence_type: certified-published-validation
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: section 1, III.4 dimensions, III.5 engines, III.13 masses, III.21 exits (pp. 7-9)
+  limitations: Airspeed limits, maximum operating altitude, fuel capacity and MAC refer to the AFM
+    or Boeing D6-15066; listed masses are increased design weights.
+- id: eurocontrol_apd_b735_2026_11
+  title: Aircraft Performance Database, B735 (Boeing 737-500)
+  organization: EUROCONTROL
+  url: https://contentzone.eurocontrol.int/aircraftperformance/details.aspx?ICAO=B735
+  publication_date: null
+  access_date: 2026-11-23
+  applicable_aircraft: Boeing 737-500 (ICAO B735)
+  evidence_type: authority-performance-database
+  licensing_redistribution: EUROCONTROL copyright; link only.
+  relevant_pages: performance table (take-off to landing), WTC and RECAT-EU, cruise ceiling FL 370
+  limitations: Nominal performance values for a typical flight, given as round numbers; not certified
+    limits. The page has no revision date.
+- id: easa_embraer_erj190_a071_i29
+  title: EASA.IM.A.071 - Embraer ERJ-190
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/downloads/7382/en
+  document_number: EASA.IM.A.071
+  issue_revision: Issue 29
+  publication_date: 2026-11-05
+  access_date: 2026-11-23
+  applicable_aircraft: ERJ 190-100, ERJ 190-200, ERJ 190-300 (E190-E2), ERJ 190-400 (E195-E2);
+    ANAC TCDS EA-2005T13
+  applicable_engine: PW1919G, PW1922G, PW1919G-RC for the ERJ 190-300
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: section 4 (ERJ 190-300), III.3-5 description, dimensions and engines (p. 32),
+    III.11 altitude and III.13 masses (p. 33), III.16 MAC and III.19 seating (p. 34), note 1 (p. 36)
+  limitations: Airspeeds and fuel capacity are referred to the AFM and approved manuals; MTOW
+    options from 49,990 kg to 56,400 kg depend on service bulletins.
+- id: embraer_ejets_e2_apm_5824_r25
+  title: E-Jets E2 Airport Planning Manual
+  organization: Embraer
+  url: https://www.embraer.com/media/vmsjxvk5/e-jets-e2_apm_e-jetse2.pdf
+  document_number: APM 5824
+  issue_revision: Revision 25
+  publication_date: 2024-11-29
+  access_date: 2026-11-23
+  applicable_aircraft: EMBRAER 175-E2, 190-E2 and 195-E2 STD
+  applicable_engine: PW1700G and PW1900G series (PW1919G standard on the 190-E2)
+  evidence_type: manufacturer-airport-planning-manual
+  licensing_redistribution: Embraer copyright; link only, no document redistribution intended.
+  relevant_pages: Section 2 (pages last revised Rev 21, 2022-08-05), 2.1 characteristics and
+    table 2.1 (pp. 1-2 of 44), 2.2 dimensions, wing, fuselage and tails (pp. 3-5 of 44), figure
+    2.19 cabin cross-section (p. 42 of 44)
+  limitations: Horizontal- and vertical-tail imperial span values contain typing errors; the
+    metric values agree with the published aspect ratios. The wing reference aspect ratio (9.4)
+    uses a different span definition from span^2 / area.
+- id: embraer_e190e2_spec_2025
+  title: E190-E2 specification sheet (Profit Hunter)
+  organization: Embraer
+  url: https://www.embraer.com/media/e5whgknk/e190-e2_spec.pdf
+  publication_date: 2025-04-15
+  access_date: 2026-11-23
+  applicable_aircraft: E190-E2
+  evidence_type: manufacturer-published
+  licensing_redistribution: Embraer copyright; link only, no document redistribution intended.
+  relevant_pages: Weights (MTOW, MLW, maximum payload, maximum usable fuel), performance (maximum
+    cruise speed, field lengths, service ceiling, range), seating configurations
+  limitations: Publication date taken from the PDF creation date. Maximum usable fuel (13,690 kg)
+    differs from the APM (13,500 kg) and equals the E195-E2 APM value. No operating empty weight
+    is published.
+- id: easa_rrj95_a176_issue04
+  title: EASA.IM.A.176 - RRJ-95
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/downloads/7268/en
+  download_url: https://www.easa.europa.eu/en/downloads/7268/en
+  document_number: EASA.IM.A.176
+  issue_revision: Issue 04
+  publication_date: 2021-02-09
+  access_date: 2026-11-23
+  applicable_aircraft: RRJ-95B (SSJ100/95B) and RRJ-95LR-100 (SSJ100/95LR, major change 10060566);
+    Rosaviatsia TC FATA-01020A
+  applicable_engine: PowerJet SaM146-1S17 and SaM146-1S18 (EASA.E.034)
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: section 1, III.4 dimensions (p. 10), III.5 engines (pp. 10-11), III.9 fuel, III.10
+    airspeed (p. 12), III.11 envelope, III.13 masses (p. 13), III.16 MAC, III.20 seating (p. 14)
+  limitations: Cover and change record give 09 February 2021, other page headers 15 February 2021.
+    EASA suspended the type certificate in March 2022; no later issue was found. An Issue 03 copy
+    (2017-03-07) hosted by the UK CAA has the same dimensions, speeds, and masses.
+- id: superjet_international_ssj100_datasheet_2011
+  title: SSJ100 Datasheet (SSJ100/95)
+  organization: SuperJet International S.p.A.
+  url: https://web.archive.org/web/20131112145216/http://www.superjetinternational.com/wp-content/uploads/SSJ100_Datasheet.pdf
+  original_url: http://www.superjetinternational.com/wp-content/uploads/SSJ100_Datasheet.pdf
+  publication_date: 2011
+  capture_date: 2013-11-12
+  access_date: 2026-11-23
+  applicable_aircraft: SSJ100/95B and SSJ100/95LR
+  evidence_type: manufacturer-published
+  licensing_redistribution: SuperJet International copyright; link only, no document redistribution
+    intended.
+  relevant_pages: 'p. 2: capacity, engines, range, speed, airfield performance, ceiling, configurations,
+    external and internal dimensions, weights, fuel capacity'
+  limitations: Internet Archive capture; values are approximate per the document disclaimer. No empty
+    weight or wing geometry beyond span.
+- id: superjet_international_ssj100_brochure_2015
+  title: SSJ100 product brochure
+  organization: SuperJet International S.p.A.
+  url: https://web.archive.org/web/20150830070902/http://www.superjetinternational.com/download/SSJ100_product_brochure.pdf
+  original_url: http://www.superjetinternational.com/download/SSJ100_product_brochure.pdf
+  publication_date: 2015-05-29
+  capture_date: 2015-08-30
+  access_date: 2026-11-23
+  applicable_aircraft: SSJ100/95B and SSJ100/95LR
+  evidence_type: manufacturer-published
+  licensing_redistribution: SuperJet International copyright; link only, no document redistribution
+    intended.
+  relevant_pages: pp. 5 and 12 (supercritical wing profile), pp. 9-10 (dimensions and weights)
+  limitations: Marketing brochure; publication date taken from the PDF creation date. Weights repeat
+    the 2011 datasheet.
+- id: flightglobal_talent_pull_ssj100_2007_02
+  title: 'Talent pull: The Sukhoi Superjet'
+  authors:
+  - Max Kingsley-Jones
+  organization: FlightGlobal (Flight International)
+  url: https://www.flightglobal.com/talent-pull-the-sukhoi-superjet/71803.article
+  publication_date: 2007-02-06
+  access_date: 2026-11-23
+  applicable_aircraft: SSJ100-95 and SSJ100-75 at design stage
+  evidence_type: trade-press-secondary
+  licensing_redistribution: FlightGlobal copyright; link only.
+  relevant_pages: wing description (25 deg sweep, 27.8 m span, 84 m2 area, Mach 0.78-0.79 cruise)
+  limitations: Pre-certification design description; the sweep reference line is not stated.
+- id: wikipedia_yakovlev_sj100_oldid_1387061139
+  title: Yakovlev SJ-100 (formerly Sukhoi Superjet 100), Specifications table
+  organization: Wikipedia
+  url: https://en.wikipedia.org/w/index.php?title=Yakovlev_SJ-100&oldid=1387061139
+  access_date: 2026-11-23
+  applicable_aircraft: SSJ100/95B, SSJ100/95LR, and SJ-100
+  evidence_type: encyclopedia-secondary
+  licensing_redistribution: CC BY-SA 4.0; values cited with attribution.
+  relevant_pages: Specifications table, Fuselage row (3.46 m diameter, citing Jane's All the World's
+    Aircraft 2005, p. 451) and OEW row (25,100 kg, 95LR and SJ-100 columns)
+  limitations: Secondary source. The OEW cell for the 95B is blank and the OEW definition is not stated.
+    The fuselage diameter is a 2005 design-stage value.
+- id: easa_faq_russian_tc_suspension_2022
+  title: EASA FAQ on the suspension of Russian type certificates (Sukhoi Superjet TC suspended)
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/faq/136175
+  publication_date: 2022-03-15
+  access_date: 2026-11-23
+  applicable_aircraft: RRJ-95 (Sukhoi Superjet 100) and other Russian-designed types
+  evidence_type: authority-statement
+  licensing_redistribution: EASA copyright; link only.
+  relevant_pages: FAQ answer on type certificates
+  limitations: Read through search-result summaries only; used for the certification status note,
+    not for numeric values.
+- id: easa_a064_issue_63
+  title: EASA.A.064 - Airbus A318, A319, A320, A321 Single Aisle
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/downloads/16507/en
+  document_number: EASA.A.064
+  issue_revision: Issue 63
+  publication_date: 2026-11-24
+  access_date: 2026-11-24
+  applicable_aircraft: A318, A319, A320 and A321 series, ceo and neo models
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: Section 1 (A320) items 10, 11, 13 (pp. 45-48); Section 2 (A321) pp. 99-102; Section
+    3 (A319) pp. 149-152; Section 4 (A318) pp. 172-174
+  limitations: Individual aircraft masses are limited by the AFM weight variant; altitude extensions depend
+    on modifications.
+- id: easa_a004_issue_70
+  title: EASA.A.004 - Airbus A330
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/downloads/7518/en
+  document_number: EASA.A.004
+  issue_revision: Issue 70
+  publication_date: 2026-10-30
+  access_date: 2026-11-24
+  applicable_aircraft: A330-200, -200F, -300, -700L, -800 and -900 series
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: Item 10.1 altitude and item 12 maximum mass per section (pp. 22-23, 41-42, 91-92)
+  limitations: Airspeed limits are referred to the AFM; weight variants are in the AFM.
+- id: easa_im_a570_issue_25
+  title: EASA.IM.A.570 - Airbus Canada BD-500 (A220)
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/downloads/20964/en
+  document_number: EASA.IM.A.570
+  issue_revision: Issue 25
+  publication_date: 2026-08-21
+  access_date: 2026-11-24
+  applicable_aircraft: BD-500-1A10 (A220-100) and BD-500-1A11 (A220-300)
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: Items 10 (airspeed limits) and 11 (flight envelope), pp. 11 and 22
+  limitations: Additional weight variants are in the AFM.
+- id: easa_ima673_issue_3
+  title: EASA.IM.A.673 - CL-600 Regional Jet series
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/downloads/111186/en
+  document_number: EASA.IM.A.673
+  issue_revision: Issue 3.0
+  publication_date: 2023-09-18
+  access_date: 2026-11-24
+  applicable_aircraft: CL-600-2B19, -2C10, -2D15, -2D24, -2E25
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: Item 3 description (maximum altitude) and item 7 maximum certified weights per section
+  limitations: VMO and MMO above 8,000 ft are referred to the AFM.
+- id: easa_ima032_issue_13
+  title: EASA.IM.A.032 - Embraer EMB-145 and EMB-135
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/downloads/7461/en
+  document_number: EASA.IM.A.032
+  issue_revision: Issue 13
+  publication_date: 2022-11-30
+  access_date: 2026-11-24
+  applicable_aircraft: EMB-145, -145ER, -145EU, -145EP, -145LR, -145LU, -145MP, -145MK, EMB-135ER, -135LR,
+    -135BJ
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: Section 2 item 1.6 (p. 8) and Section 3 item 1.6 (p. 16)
+  limitations: Limit speeds and flight envelope are referred to the AFM.
+- id: easa_ima001_issue_13
+  title: EASA.IM.A.001 - Embraer ERJ-170
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/downloads/7525/en
+  document_number: EASA.IM.A.001
+  issue_revision: Issue 13
+  publication_date: 2022-01-31
+  access_date: 2026-11-24
+  applicable_aircraft: ERJ 170-100 STD/LR and ERJ 170-200 STD/LR
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: Items 12 and 14 of Section 1 (pp. 8-9) and Section 2 (pp. 16-17)
+  limitations: Airspeed limits are referred to the AFM; masses depend on service bulletins.
+- id: easa_ima009_issue_14
+  title: EASA.IM.A.009 - Bombardier BD-700
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/downloads/7508/en
+  document_number: EASA.IM.A.009
+  issue_revision: Issue 14
+  publication_date: 2026-01-23
+  access_date: 2026-11-24
+  applicable_aircraft: BD-700-1A10, BD-700-1A11, BD-700-2A12
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: Section 2 items 1.5 (p. 9), 2.5 (p. 12) and 5.4 (p. 17)
+  limitations: Configuration-specific weights are in the AFM; airspeed limits are not tabulated.
+- id: easa_ima080_issue_11
+  title: EASA.IM.A.080 - Bombardier BD-100-1A10 (Challenger 300/350)
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/downloads/7364/en
+  document_number: EASA.IM.A.080
+  issue_revision: Issue 11
+  publication_date: 2025-02-14
+  access_date: 2026-11-24
+  applicable_aircraft: BD-100-1A10 (Challenger 300 up to S/N 20500, Challenger 350 from S/N 20501)
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: Items 5 (airspeeds) and 6 (altitude), p. 7; item 8 (weights), p. 8
+  limitations: The cover date is 14 February 2025 and the inner pages show 13 February 2025.
+- id: easa_ima070_issue_13
+  title: EASA.IM.A.070 - Gulfstream G-1159, G-1159A, G-1159B, G-IV, GIV-X, GV and GV-SP
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/downloads/7384/en
+  document_number: EASA.IM.A.070
+  issue_revision: Issue 13
+  publication_date: 2026-08-06
+  access_date: 2026-11-24
+  applicable_aircraft: G-II, G-IIB, G-III, G-IV (GIV-SP, G300, G400), GIV-X, GV, GV-SP
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: Section 5 items 9-10 (pp. 36-37); Section 7 items 10-11 (p. 56)
+  limitations: VMO/MMO are referred to the AFM envelope.
+- id: easa_ima228_issue_03
+  title: EASA.IM.A.228 - Gulfstream G150
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/downloads/7228/en
+  document_number: EASA.IM.A.228
+  issue_revision: Issue 03
+  publication_date: 2025-05-26
+  access_date: 2026-11-24
+  applicable_aircraft: Gulfstream G150
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: Items 11 (p. 9) and 13 (p. 10)
+  limitations: Airspeed limits are referred to the AFM.
+- id: easa_ima348_issue_06
+  title: EASA.IM.A.348 - Gulfstream G280
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/downloads/7184/en
+  document_number: EASA.IM.A.348
+  issue_revision: Issue 06
+  publication_date: 2025-05-26
+  access_date: 2026-11-24
+  applicable_aircraft: Gulfstream G280
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: Items 10 and 11 (p. 9) and 13 (p. 10)
+  limitations: Weight limits may be lower as limited by CG and fuel loading (AFM).
+- id: easa_ima033_issue_09
+  title: EASA.IM.A.033 - Cessna 680 (Sovereign)
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/downloads/7459/en
+  document_number: EASA.IM.A.033
+  issue_revision: Issue 09
+  publication_date: 2026-03-25
+  access_date: 2026-11-24
+  applicable_aircraft: Cessna 680 (Sovereign, Sovereign+) and 680A
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: Section 1 items 11 (p. 13) and 13 (p. 14)
+  limitations: Airspeed limits are referred to the AFM.
+- id: easa_ima020_learjet45_i18
+  title: EASA.IM.A.020 - Learjet Model 45
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/downloads/7485/en
+  document_number: EASA.IM.A.020
+  issue_revision: Issue 18
+  publication_date: 2026-08-07
+  access_date: 2026-11-24
+  applicable_aircraft: Learjet Model 45 (Learjet 40, 45, 70, 75)
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: Items 10 (p. 17), 12 and 13 (pp. 19-20)
+  limitations: Maximum weights vary with serial numbers and modifications (AFM).
+- id: easa_falcon_2000_a008_issue_13
+  title: EASA.A.008 - Dassault Falcon 2000
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/downloads/7510/en
+  document_number: EASA.A.008
+  issue_revision: Issue 13
+  publication_date: 2026-09-15
+  access_date: 2026-11-24
+  applicable_aircraft: Falcon 2000 and Falcon 2000EX families
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: Section 2 items 2.5.8, 2.5.9 (p. 15) and 2.5.11 (p. 16)
+  limitations: Weights depend on modifications.
+- id: easa_falcon_50_900_a062_issue_10
+  title: EASA.A.062 - Dassault Mystère-Falcon 50, Mystère-Falcon 900, Falcon 900EX
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/downloads/7401/en
+  document_number: EASA.A.062
+  issue_revision: Issue 10
+  publication_date: 2026-09-15
+  access_date: 2026-11-24
+  applicable_aircraft: Mystère-Falcon 50, Mystère-Falcon 900, Falcon 900EX families
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: Section 2 items 2.5.8-2.5.11 (pp. 14-15); Section 3 items 3.5.8-3.5.11 (pp. 31-32)
+  limitations: Weights and altitude depend on modifications.
+- id: easa_ima085_issue_05
+  title: EASA.IM.A.085 - Hawker Series
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/downloads/7356/en
+  document_number: EASA.IM.A.085
+  issue_revision: Issue 05
+  publication_date: 2018-09-27
+  access_date: 2026-11-24
+  applicable_aircraft: DH/HS/BH/BAe.125 series and Hawker 800, 800XP, 850XP, 900XP, 1000
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: Part XVIII (Hawker 800XP), airspeed limits p. 48 and maximum weights p. 49
+  limitations: Maximum operating altitude is referred to the AFM.
+- id: easa_ima073_issue_02
+  title: EASA.IM.A.073 - Beechcraft 390 (Premier I and IA)
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/sites/default/files/dfu/TCDS%20EASA.IM_.A.073%20Issue%2002.pdf
+  document_number: EASA.IM.A.073
+  issue_revision: Issue 02
+  publication_date: 2018-03-13
+  access_date: 2026-11-24
+  applicable_aircraft: Beechcraft 390 (Premier I, Premier IA)
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: Items 10, 11 (p. 6) and 13 (p. 7)
+  limitations: Airspeed limits are in KCAS.
+- id: easa_honda_ha420_a352_issue_10
+  title: EASA.IM.A.352 - Honda HA-420
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/downloads/20876/en
+  document_number: EASA.IM.A.352
+  issue_revision: Issue 10
+  publication_date: 2026-09-30
+  access_date: 2026-11-24
+  applicable_aircraft: HA-420 (HondaJet, Elite, Elite S, Elite II)
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: Items 7, 8 and 10, p. 6
+  limitations: Maximum weights depend on serial number and service bulletins.
+- id: easa_ima157_issue_09
+  title: EASA.IM.A.157 - Embraer EMB-500
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/downloads/7286/en
+  document_number: EASA.IM.A.157
+  issue_revision: Issue 09
+  publication_date: 2026-06-19
+  access_date: 2026-11-24
+  applicable_aircraft: EMB-500 (Phenom 100 family)
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: Items 6, 7 (p. 8) and 9 (p. 9)
+  limitations: Weights depend on service bulletins and factory modifications (notes 9 and 14).
+- id: easa_ima158_issue_11
+  title: EASA.IM.A.158 - Embraer EMB-505
+  organization: European Union Aviation Safety Agency
+  url: https://www.easa.europa.eu/en/downloads/7282/en
+  document_number: EASA.IM.A.158
+  issue_revision: Issue 11
+  publication_date: 2024-08-29
+  access_date: 2026-11-24
+  applicable_aircraft: EMB-505 (Phenom 300 family)
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: EASA copyright; link rather than redistribute
+  relevant_pages: Items 6, 7 (p. 9) and 9 (p. 10)
+  limitations: MMO and weights depend on engine model and service bulletins (notes 8 and 12).

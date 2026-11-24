@@ -8,14 +8,14 @@ certification:
   type_certificate: A22CE / EASA.IM.A.207
   issue: EASA Issue 10 at review
   issue_date: null
-mtow: 7400
-mlw: 6900
+mtow: 7634
+mlw: 6895
 mzfw: null
 minimum_weight: null
 oew: 4502
 mfc: 3260
-vmo: 270
-mmo: 0.75
+vmo: 292
+mmo: 0.755
 ceiling: 45000
 icao_wtc: medium
 eu_wtc: light

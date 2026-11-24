@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Cessna Citation X
 ICAO: C750
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,22 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 16193
+  Value: 16375
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_c750_a097
+  Page or section: Issue 03, item 13, p. 9
+  Applicability: 750 S/N 750-0173 and on, or earlier S/N with SB 750-71-10 or SB 750-32-50
+  Notes: Other S/N 750-0001 to -0172: 16,193 kg.
 END FIELD
 
 FIELD mlw
-  Value: 14400
+  Value: 14424
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_c750_a097
+  Page or section: Issue 03, item 13, p. 9
+  Applicability: All model 750
 END FIELD
 
 FIELD mzfw
@@ -94,8 +99,11 @@ END FIELD
 FIELD ceiling
   Value: 51000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_c750_a097
+  Page or section: Issue 03, item 11, p. 9
+  Applicability: Model 750
+  Notes: 15,545 m (51,000 ft).
 END FIELD
 
 WING AND TAIL GEOMETRY

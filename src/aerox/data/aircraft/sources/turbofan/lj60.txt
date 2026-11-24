@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Bombardier Learjet 60
 ICAO: LJ60
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -50,15 +50,20 @@ END FIELD
 FIELD mtow
   Value: 10659
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima212_learjet60_i4_2024
+  Page or section: Issue 04, items 5.1 and 6, p. 13
+  Applicability: Model 60 with Expanded C.G. envelope (ECR 3845), optional takeoff gross weight 23,500 lb
+  Notes: Standard: 22,750 lb (10,319 kg); optional 23,100 lb (10,478 kg).
 END FIELD
 
 FIELD mlw
-  Value: 8800
+  Value: 8845
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima212_learjet60_i4_2024
+  Page or section: Issue 04, item 6, p. 13
+  Applicability: Model 60 (19,500 lb)
 END FIELD
 
 FIELD mzfw

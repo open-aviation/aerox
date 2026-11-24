@@ -1,0 +1,614 @@
+AEROX AIRCRAFT SOURCE NOTES
+Aircraft: Sukhoi Superjet 100
+ICAO: SU95
+Last reviewed: 2026-11-23
+Source ledger: sources/sources.yml
+
+CERTIFICATION SCOPE
+  Model or family: RRJ-95B
+  Authority: Rosaviatsia validated by EASA
+  Type certificate: EASA.IM.A.176; FATA-01020A
+  Applicability: SSJ100/95B is the commercial name of the RRJ-95B model. The SSJ100/95LR (RRJ-95LR-100, SaM146-1S18, EASA major change 10060566) shares the airframe and dimensions but has a 49,450 kg MTOW; the record uses RRJ-95B values unless a field states otherwise. The SJ-100 import-substituted variant (PD-8 engines, new winglets) is excluded. EASA suspended this type certificate in March 2022; the Issue 04 data sheet remains the latest published certified data.
+
+TYPE-CERTIFICATE AND LIMIT PARAMETERS
+
+FIELD certification.model
+  Value: RRJ-95B
+  Status: certified-published
+  Source: easa_rrj95_a176_issue04
+  Page or section: Issue 04, cover and section 1, I.1, pp. 1 and 5
+END FIELD
+
+FIELD certification.authority
+  Value: Rosaviatsia validated by EASA
+  Status: certified-published
+  Source: easa_rrj95_a176_issue04
+  Page or section: Issue 04, section 1, I.3 and I.8, pp. 5-6
+  Notes: State of design responsibility moved from IAC-AR to the Federal Air Transport Agency (Rosaviatsia, FATA) on 2015-11-28. EASA suspended the type certificate in March 2022 (easa_faq_russian_tc_suspension_2022).
+END FIELD
+
+FIELD certification.type_certificate
+  Value: EASA.IM.A.176; FATA-01020A
+  Status: certified-published
+  Source: easa_rrj95_a176_issue04
+  Page or section: Issue 04, section 1, I.7 and I.8, p. 6
+  Notes: Original IAC-AR certificate CT 322-RRJ-95 (2011-01-28).
+END FIELD
+
+FIELD certification.issue
+  Value: EASA Issue 04
+  Status: certified-published
+  Source: easa_rrj95_a176_issue04
+  Page or section: Issue 04, page header
+END FIELD
+
+FIELD certification.issue_date
+  Value: 2021-02-09
+  Status: certified-published
+  Source: easa_rrj95_a176_issue04
+  Page or section: Issue 04, cover header and change record, pp. 1 and 18
+  Notes: Pages 3-18 carry the header date 15 February 2021; the cover and the change record give 09 February 2021.
+END FIELD
+
+FIELD mtow
+  Value: 45880
+  Unit: kg
+  Status: certified-published
+  Source: easa_rrj95_a176_issue04
+  Source URL: https://www.easa.europa.eu/en/downloads/7268/en
+  Document title: EASA.IM.A.176 RRJ-95 Type-Certificate Data Sheet
+  Revision date: 2021-02-09
+  Page or section: Issue 04, section 1, III.13, p. 13
+  Applicability: RRJ-95B (SSJ100/95B) and RRJ-95LR-100 (SSJ100/95LR, major change 10060566); dimensions are common to both.
+  Notes: RRJ-95B basic and major change 10061094. The RRJ-95LR-100 (major change 10060566) MTOW of 49,450 kg is not adopted. Maximum ramp weight 46,055 kg.
+END FIELD
+
+FIELD mlw
+  Value: 41000
+  Unit: kg
+  Status: certified-published
+  Source: easa_rrj95_a176_issue04
+  Source URL: https://www.easa.europa.eu/en/downloads/7268/en
+  Document title: EASA.IM.A.176 RRJ-95 Type-Certificate Data Sheet
+  Revision date: 2021-02-09
+  Page or section: Issue 04, section 1, III.13, p. 13
+  Applicability: RRJ-95B (SSJ100/95B) and RRJ-95LR-100 (SSJ100/95LR, major change 10060566); dimensions are common to both.
+END FIELD
+
+FIELD mzfw
+  Value: 40000
+  Unit: kg
+  Status: certified-published
+  Source: easa_rrj95_a176_issue04
+  Source URL: https://www.easa.europa.eu/en/downloads/7268/en
+  Document title: EASA.IM.A.176 RRJ-95 Type-Certificate Data Sheet
+  Revision date: 2021-02-09
+  Page or section: Issue 04, section 1, III.13, p. 13
+  Applicability: RRJ-95B (SSJ100/95B) and RRJ-95LR-100 (SSJ100/95LR, major change 10060566); dimensions are common to both.
+END FIELD
+
+FIELD minimum_weight
+  Value: null
+  Unit: kg
+  Status: unresolved
+  Source: -
+  Reason unavailable: EASA.IM.A.176 Issue 04 does not publish a minimum certified mass; it refers to the AFM.
+END FIELD
+
+FIELD vmo
+  Value: 308
+  Unit: kt
+  Status: certified-published
+  Source: easa_rrj95_a176_issue04
+  Page or section: Issue 04, section 1, III.10, p. 12
+  Notes: VMO 308 kt IAS.
+END FIELD
+
+FIELD mmo
+  Value: 0.81
+  Unit: Mach
+  Status: certified-published
+  Source: easa_rrj95_a176_issue04
+  Page or section: Issue 04, section 1, III.10, p. 12
+END FIELD
+
+FIELD ceiling
+  Value: 40000
+  Unit: ft
+  Status: certified-published
+  Source: easa_rrj95_a176_issue04
+  Page or section: Issue 04, section 1, III.11, p. 13
+  Notes: Maximum operating altitude 12,200 m / 40,000 ft. Some secondary sources give 12,500 m (41,000 ft); not adopted.
+END FIELD
+
+OPERATING AND CAPACITY PARAMETERS
+
+FIELD oew
+  Value: 25100
+  Unit: kg
+  Status: inferred-with-uncertainty
+  Source: wikipedia_yakovlev_sj100_oldid_1387061139
+  Document title: Wikipedia, Yakovlev SJ-100, Specifications table
+  Page or section: Specifications, OEW row (95LR and SJ-100 columns)
+  Applicability: Published for the SSJ100/95LR and SJ-100; the 95B cell is blank.
+  Uncertainty: +/-1,000 kg; definition (manufacturer empty or airline operating empty) is not stated. A forum source gives 24,250 kg; MZFW 40,000 kg minus the 12,245 kg maximum payload in the same table gives 27,755 kg.
+  Notes: No manufacturer or certification source for the RRJ-95B OEW was retrievable. The SuperJet International 2011 datasheet and 2015 brochure omit empty weights. Secondary value, used as the best available estimate.
+END FIELD
+
+FIELD mfc
+  Value: 15805
+  Unit: L
+  Status: certified-published
+  Source: easa_rrj95_a176_issue04 | superjet_international_ssj100_datasheet_2011
+  Page or section: Issue 04, section 1, III.9.1, p. 12
+  Notes: Total usable fuel 15,805 L (12,327 kg at 0.78 kg/L). Stored in litres, following the existing Aerox turbofan records; the SuperJet International datasheet gives the same 15,805 L for the 95B and 95LR.
+END FIELD
+
+FUSELAGE GEOMETRY
+
+FIELD fuselage.length
+  Value: 29.94
+  Unit: m
+  Status: certified-published
+  Source: easa_rrj95_a176_issue04
+  Source URL: https://www.easa.europa.eu/en/downloads/7268/en
+  Document title: EASA.IM.A.176 RRJ-95 Type-Certificate Data Sheet
+  Revision date: 2021-02-09
+  Page or section: Issue 04, section 1, III.4, p. 10
+  Applicability: RRJ-95B (SSJ100/95B) and RRJ-95LR-100 (SSJ100/95LR, major change 10060566); dimensions are common to both.
+  Notes: Source label is Overall Length (29.940 m, 98.23 ft), the same definition as the E190 template record.
+END FIELD
+
+FIELD fuselage.height
+  Value: 3.46
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: wikipedia_yakovlev_sj100_oldid_1387061139
+  Document title: Wikipedia, Yakovlev SJ-100, Specifications table, citing Jane's All the World's Aircraft 2005, p. 451
+  Page or section: Specifications, Fuselage row
+  Uncertainty: +/-0.1 m; a single external diameter is published, so a circular section is assumed.
+  Notes: The 3.46 m value is a fuselage diameter. Height is set equal to width because no separate external height was found. The cabin is 3.24 m wide at centreline and 2.12 m high at the aisle (SuperJet International datasheet).
+END FIELD
+
+FIELD fuselage.width
+  Value: 3.46
+  Unit: m
+  Status: inferred-with-uncertainty
+  Source: wikipedia_yakovlev_sj100_oldid_1387061139
+  Document title: Wikipedia, Yakovlev SJ-100, Specifications table, citing Jane's All the World's Aircraft 2005, p. 451
+  Page or section: Specifications, Fuselage row
+  Uncertainty: +/-0.1 m; Jane's 2005 is a pre-certification design value.
+  Notes: Consistent with the 3.24 m cabin centreline width plus a typical wall thickness. Another secondary source gives 3.35 m.
+END FIELD
+
+WING AND TAIL GEOMETRY
+
+FIELD wing.area
+  Value: 83.8
+  Unit: m2
+  Status: certified-published
+  Source: easa_rrj95_a176_issue04
+  Source URL: https://www.easa.europa.eu/en/downloads/7268/en
+  Document title: EASA.IM.A.176 RRJ-95 Type-Certificate Data Sheet
+  Revision date: 2021-02-09
+  Page or section: Issue 04, section 1, III.4, p. 10
+  Applicability: RRJ-95B (SSJ100/95B) and RRJ-95LR-100 (SSJ100/95LR, major change 10060566); dimensions are common to both.
+  Uncertainty: Source rounded to 0.01 m2
+  Notes: Source label is Wing Area (83.80 m2, 902 ft2). FlightGlobal (2007) gives 84 m2. Some secondary sources give 77 m2; that value is not supported by the TCDS.
+END FIELD
+
+FIELD wing.span
+  Value: 27.8
+  Unit: m
+  Status: certified-published
+  Source: easa_rrj95_a176_issue04
+  Source URL: https://www.easa.europa.eu/en/downloads/7268/en
+  Document title: EASA.IM.A.176 RRJ-95 Type-Certificate Data Sheet
+  Revision date: 2021-02-09
+  Page or section: Issue 04, section 1, III.4, p. 10
+  Applicability: RRJ-95B (SSJ100/95B) and RRJ-95LR-100 (SSJ100/95LR, major change 10060566); dimensions are common to both.
+  Uncertainty: Source rounded to 0.01 m
+  Notes: Source label is Wing Span (27.80 m, 91.21 ft). The SJ-100 with new winglets (29.7 m) is excluded.
+END FIELD
+
+FIELD wing.mac
+  Value: 3.063
+  Unit: m
+  Status: certified-published
+  Source: easa_rrj95_a176_issue04
+  Source URL: https://www.easa.europa.eu/en/downloads/7268/en
+  Document title: EASA.IM.A.176 RRJ-95 Type-Certificate Data Sheet
+  Revision date: 2021-02-09
+  Page or section: Issue 04, section 1, III.16, p. 14
+  Applicability: RRJ-95B (SSJ100/95B) and RRJ-95LR-100 (SSJ100/95LR, major change 10060566); dimensions are common to both.
+  Notes: 3063 mm (120.6 in).
+END FIELD
+
+FIELD wing.sweep
+  Value: 25
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: flightglobal_talent_pull_ssj100_2007_02
+  Source URL: https://www.flightglobal.com/talent-pull-the-sukhoi-superjet/71803.article
+  Document title: FlightGlobal, Talent pull: The Sukhoi Superjet (M. Kingsley-Jones)
+  Revision date: 2007-02-06
+  Page or section: Wing description
+  Applicability: SSJ100-95 wing at design stage; the production wing kept the 27.8 m span and 84 m2 area given in the same article.
+  Uncertainty: +/-2 deg; trade-press value; the reference line is not stated and is assumed to be the quarter chord.
+  Notes: Source text: a wing with a 25 deg sweep, optimised for a Mach 0.78-0.79 cruise speed.
+END FIELD
+
+FIELD wing.t/c
+  Value: 0.11
+  Unit: nondimensional
+  Status: inferred-with-uncertainty
+  Source: aerox_legacy_aircraft_database
+  Document title: Aerox E190 record (src/aerox/data/aircraft/yml/turbofan/e190.yml), wing.t/c
+  Applicability: Similar-type estimate. The E190 is a regional jet of similar size, design Mach number and supercritical wing technology.
+  Uncertainty: +/-0.015; no public SSJ100 thickness ratio was found.
+  Notes: The SuperJet International 2015 brochure confirms a supercritical wing profile but gives no thickness ratio.
+END FIELD
+
+FIELD wing.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found. The drag tool scales this quantity from the class prior.
+  Searched source: easa_rrj95_a176_issue04 | superjet_international_ssj100_datasheet_2011 | flightglobal_talent_pull_ssj100_2007_02
+  Search record: reviewed EASA.IM.A.176 Issue 04, the SuperJet International 2011 datasheet and 2015 product brochure, and trade-press design articles; no Airport Planning Manual was publicly retrievable.
+END FIELD
+
+FIELD wing.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found. The drag tool scales this quantity from the class prior.
+  Searched source: easa_rrj95_a176_issue04 | superjet_international_ssj100_datasheet_2011 | flightglobal_talent_pull_ssj100_2007_02
+  Search record: reviewed EASA.IM.A.176 Issue 04, the SuperJet International 2011 datasheet and 2015 product brochure, and trade-press design articles; no Airport Planning Manual was publicly retrievable.
+END FIELD
+
+FIELD wing.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found. The drag tool scales this quantity from the class prior.
+  Searched source: easa_rrj95_a176_issue04 | superjet_international_ssj100_datasheet_2011 | flightglobal_talent_pull_ssj100_2007_02
+  Search record: reviewed EASA.IM.A.176 Issue 04, the SuperJet International 2011 datasheet and 2015 product brochure, and trade-press design articles; no Airport Planning Manual was publicly retrievable.
+END FIELD
+
+FIELD wing.aspect_ratio
+  Value: 9.222434
+  Unit: nondimensional
+  Status: calculated-from-published-inputs
+  Source: easa_rrj95_a176_issue04
+  Source URL: https://www.easa.europa.eu/en/downloads/7268/en
+  Document title: EASA.IM.A.176 RRJ-95 Type-Certificate Data Sheet
+  Revision date: 2021-02-09
+  Page or section: Derived from Issue 04, section 1, III.4, p. 10
+  Formula: span^2 / area
+  Inputs: span=27.80 m; area=83.80 m2
+  Applicability: RRJ-95B (SSJ100/95B) and RRJ-95LR-100 (SSJ100/95LR, major change 10060566); dimensions are common to both.
+  Uncertainty: Input rounding implies approximately +/-0.002
+END FIELD
+
+FIELD wing.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found. The drag tool scales this quantity from the class prior.
+  Searched source: easa_rrj95_a176_issue04 | superjet_international_ssj100_datasheet_2011 | flightglobal_talent_pull_ssj100_2007_02
+  Search record: reviewed EASA.IM.A.176 Issue 04, the SuperJet International 2011 datasheet and 2015 product brochure, and trade-press design articles; no Airport Planning Manual was publicly retrievable.
+END FIELD
+
+FIELD horizontal_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found. The drag tool scales this quantity from the class prior.
+  Searched source: easa_rrj95_a176_issue04 | superjet_international_ssj100_datasheet_2011 | flightglobal_talent_pull_ssj100_2007_02
+  Search record: reviewed EASA.IM.A.176 Issue 04, the SuperJet International 2011 datasheet and 2015 product brochure, and trade-press design articles; no Airport Planning Manual was publicly retrievable.
+END FIELD
+
+FIELD horizontal_tail.span
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found. The drag tool scales this quantity from the class prior.
+  Searched source: easa_rrj95_a176_issue04 | superjet_international_ssj100_datasheet_2011 | flightglobal_talent_pull_ssj100_2007_02
+  Search record: reviewed EASA.IM.A.176 Issue 04, the SuperJet International 2011 datasheet and 2015 product brochure, and trade-press design articles; no Airport Planning Manual was publicly retrievable.
+END FIELD
+
+FIELD horizontal_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found. The drag tool scales this quantity from the class prior.
+  Searched source: easa_rrj95_a176_issue04 | superjet_international_ssj100_datasheet_2011 | flightglobal_talent_pull_ssj100_2007_02
+  Search record: reviewed EASA.IM.A.176 Issue 04, the SuperJet International 2011 datasheet and 2015 product brochure, and trade-press design articles; no Airport Planning Manual was publicly retrievable.
+END FIELD
+
+FIELD horizontal_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found. The drag tool scales this quantity from the class prior.
+  Searched source: easa_rrj95_a176_issue04 | superjet_international_ssj100_datasheet_2011 | flightglobal_talent_pull_ssj100_2007_02
+  Search record: reviewed EASA.IM.A.176 Issue 04, the SuperJet International 2011 datasheet and 2015 product brochure, and trade-press design articles; no Airport Planning Manual was publicly retrievable.
+END FIELD
+
+FIELD horizontal_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found. The drag tool scales this quantity from the class prior.
+  Searched source: easa_rrj95_a176_issue04 | superjet_international_ssj100_datasheet_2011 | flightglobal_talent_pull_ssj100_2007_02
+  Search record: reviewed EASA.IM.A.176 Issue 04, the SuperJet International 2011 datasheet and 2015 product brochure, and trade-press design articles; no Airport Planning Manual was publicly retrievable.
+END FIELD
+
+FIELD horizontal_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found. The drag tool scales this quantity from the class prior.
+  Searched source: easa_rrj95_a176_issue04 | superjet_international_ssj100_datasheet_2011 | flightglobal_talent_pull_ssj100_2007_02
+  Search record: reviewed EASA.IM.A.176 Issue 04, the SuperJet International 2011 datasheet and 2015 product brochure, and trade-press design articles; no Airport Planning Manual was publicly retrievable.
+END FIELD
+
+FIELD horizontal_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found. The drag tool scales this quantity from the class prior.
+  Searched source: easa_rrj95_a176_issue04 | superjet_international_ssj100_datasheet_2011 | flightglobal_talent_pull_ssj100_2007_02
+  Search record: reviewed EASA.IM.A.176 Issue 04, the SuperJet International 2011 datasheet and 2015 product brochure, and trade-press design articles; no Airport Planning Manual was publicly retrievable.
+END FIELD
+
+FIELD horizontal_tail.dihedral
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found. The drag tool scales this quantity from the class prior.
+  Searched source: easa_rrj95_a176_issue04 | superjet_international_ssj100_datasheet_2011 | flightglobal_talent_pull_ssj100_2007_02
+  Search record: reviewed EASA.IM.A.176 Issue 04, the SuperJet International 2011 datasheet and 2015 product brochure, and trade-press design articles; no Airport Planning Manual was publicly retrievable.
+END FIELD
+
+FIELD horizontal_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found. The drag tool scales this quantity from the class prior.
+  Searched source: easa_rrj95_a176_issue04 | superjet_international_ssj100_datasheet_2011 | flightglobal_talent_pull_ssj100_2007_02
+  Search record: reviewed EASA.IM.A.176 Issue 04, the SuperJet International 2011 datasheet and 2015 product brochure, and trade-press design articles; no Airport Planning Manual was publicly retrievable.
+END FIELD
+
+FIELD horizontal_tail.elevator_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found. The drag tool scales this quantity from the class prior.
+  Searched source: easa_rrj95_a176_issue04 | superjet_international_ssj100_datasheet_2011 | flightglobal_talent_pull_ssj100_2007_02
+  Search record: reviewed EASA.IM.A.176 Issue 04, the SuperJet International 2011 datasheet and 2015 product brochure, and trade-press design articles; no Airport Planning Manual was publicly retrievable.
+END FIELD
+
+FIELD vertical_tail.area
+  Value: null
+  Unit: m2
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found. The drag tool scales this quantity from the class prior.
+  Searched source: easa_rrj95_a176_issue04 | superjet_international_ssj100_datasheet_2011 | flightglobal_talent_pull_ssj100_2007_02
+  Search record: reviewed EASA.IM.A.176 Issue 04, the SuperJet International 2011 datasheet and 2015 product brochure, and trade-press design articles; no Airport Planning Manual was publicly retrievable.
+END FIELD
+
+FIELD vertical_tail.height
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found. The drag tool scales this quantity from the class prior.
+  Searched source: easa_rrj95_a176_issue04 | superjet_international_ssj100_datasheet_2011 | flightglobal_talent_pull_ssj100_2007_02
+  Search record: reviewed EASA.IM.A.176 Issue 04, the SuperJet International 2011 datasheet and 2015 product brochure, and trade-press design articles; no Airport Planning Manual was publicly retrievable.
+END FIELD
+
+FIELD vertical_tail.mac
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found. The drag tool scales this quantity from the class prior.
+  Searched source: easa_rrj95_a176_issue04 | superjet_international_ssj100_datasheet_2011 | flightglobal_talent_pull_ssj100_2007_02
+  Search record: reviewed EASA.IM.A.176 Issue 04, the SuperJet International 2011 datasheet and 2015 product brochure, and trade-press design articles; no Airport Planning Manual was publicly retrievable.
+END FIELD
+
+FIELD vertical_tail.root_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found. The drag tool scales this quantity from the class prior.
+  Searched source: easa_rrj95_a176_issue04 | superjet_international_ssj100_datasheet_2011 | flightglobal_talent_pull_ssj100_2007_02
+  Search record: reviewed EASA.IM.A.176 Issue 04, the SuperJet International 2011 datasheet and 2015 product brochure, and trade-press design articles; no Airport Planning Manual was publicly retrievable.
+END FIELD
+
+FIELD vertical_tail.tip_chord
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found. The drag tool scales this quantity from the class prior.
+  Searched source: easa_rrj95_a176_issue04 | superjet_international_ssj100_datasheet_2011 | flightglobal_talent_pull_ssj100_2007_02
+  Search record: reviewed EASA.IM.A.176 Issue 04, the SuperJet International 2011 datasheet and 2015 product brochure, and trade-press design articles; no Airport Planning Manual was publicly retrievable.
+END FIELD
+
+FIELD vertical_tail.taper_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found. The drag tool scales this quantity from the class prior.
+  Searched source: easa_rrj95_a176_issue04 | superjet_international_ssj100_datasheet_2011 | flightglobal_talent_pull_ssj100_2007_02
+  Search record: reviewed EASA.IM.A.176 Issue 04, the SuperJet International 2011 datasheet and 2015 product brochure, and trade-press design articles; no Airport Planning Manual was publicly retrievable.
+END FIELD
+
+FIELD vertical_tail.sweep
+  Value: null
+  Unit: deg
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found. The drag tool scales this quantity from the class prior.
+  Searched source: easa_rrj95_a176_issue04 | superjet_international_ssj100_datasheet_2011 | flightglobal_talent_pull_ssj100_2007_02
+  Search record: reviewed EASA.IM.A.176 Issue 04, the SuperJet International 2011 datasheet and 2015 product brochure, and trade-press design articles; no Airport Planning Manual was publicly retrievable.
+END FIELD
+
+FIELD vertical_tail.arm
+  Value: null
+  Unit: m
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found. The drag tool scales this quantity from the class prior.
+  Searched source: easa_rrj95_a176_issue04 | superjet_international_ssj100_datasheet_2011 | flightglobal_talent_pull_ssj100_2007_02
+  Search record: reviewed EASA.IM.A.176 Issue 04, the SuperJet International 2011 datasheet and 2015 product brochure, and trade-press design articles; no Airport Planning Manual was publicly retrievable.
+END FIELD
+
+FIELD vertical_tail.rudder_area_ratio
+  Value: null
+  Unit: nondimensional
+  Status: unresolved
+  Source: -
+  Reason unavailable: No public exact-model value was found. The drag tool scales this quantity from the class prior.
+  Searched source: easa_rrj95_a176_issue04 | superjet_international_ssj100_datasheet_2011 | flightglobal_talent_pull_ssj100_2007_02
+  Search record: reviewed EASA.IM.A.176 Issue 04, the SuperJet International 2011 datasheet and 2015 product brochure, and trade-press design articles; no Airport Planning Manual was publicly retrievable.
+END FIELD
+
+OTHER PARAMETERS
+  Format: field = value; status; source; page or section.
+  iata = null; unresolved; -; no IATA type code adopted (several codes are in use for the Superjet).
+  icao_wtc = medium; certified-published; easa_recat_eu_assignment_2021_12; p. 51, SU95 row, ICAO legacy WTC M.
+  eu_wtc = lower medium; certified-published; easa_recat_eu_assignment_2021_12; p. 51, SU95 row, RECAT-EU CAT-E.
+  faa_wtc = null; unresolved; -; no FAA wake category assignment for SU95 was retrieved.
+  parking_area_m2 = null; unresolved; -; no published value, and the legacy field definition is not documented.
+  pax.max = 103; certified-published; easa_rrj95_a176_issue04; section 1, III.20, p. 14 (maximum approved for emergency evacuation). The datasheet gives up to 108 seats, which is above the EASA-approved maximum.
+  pax.high = 98; manufacturer-published; superjet_international_ssj100_datasheet_2011; standard single class, 98Y at 32 in pitch.
+  pax.low = 87; manufacturer-published; superjet_international_ssj100_datasheet_2011; standard dual class, 12C/75Y.
+  engine.type = turbofan; certified-published; easa_rrj95_a176_issue04; section 1, III.5, p. 10.
+  engine.mount = wing; inferred-with-uncertainty; wikipedia_yakovlev_sj100_oldid_1387061139; the three-view drawing in the Specifications section (Commons file SSJ100 Three views drawing (5476115362).jpg) shows two under-wing pylon-mounted nacelles; the TCDS does not state the mount.
+  engine.number = 2; certified-published; easa_rrj95_a176_issue04; section 1, III.5, p. 10.
+  engine.default = SaM146-1S17; certified-published; easa_rrj95_a176_issue04; section 1, III.5, p. 10 (engine TC EASA.E.034, take-off 7,684 daN).
+  engine.options = [SaM146-1S17, SaM146-1S18]; certified-published; easa_rrj95_a176_issue04; section 1, III.5, pp. 10-11 (SaM146-1S18, 7,900 daN, by major changes 10060566 and 10061094). Both names match ICAO EEDB entries.
+  flaps.type = null; unresolved; -; no source states the flap type (single- or double-slotted).
+  flaps.area, flaps.bf/b, flaps.lambda_f, flaps.cf/c, flaps.Sf/S = null; unresolved; -; no public value.
+  kinematic.takeoff_distance_m = 1731; manufacturer-published; superjet_international_ssj100_datasheet_2011; SSJ100/95B takeoff field length at MTOW.
+  kinematic.cruise_mach = 0.78; manufacturer-published; superjet_international_ssj100_datasheet_2011; typical cruise speed (maximum cruise Mach 0.81).
+  kinematic.cruise_range_nm = 1645; manufacturer-published; superjet_international_ssj100_datasheet_2011; SSJ100/95B range, 98 pax at 100 kg, LRC, ISA, typical reserves.
+  kinematic.landing_distance_m = 1630; manufacturer-published; superjet_international_ssj100_datasheet_2011; landing field length at MLW.
+  Other kinematic fields = E190 values; inferred-with-uncertainty; aerox_legacy_aircraft_database; copied from the Aerox E190 record (similar regional twin) because no SU95 kinematic profile was retrievable (EUROCONTROL APD and SkyBrary pages did not load).
+
+LEGACY PARAMETERS
+  This record was added after the original Aerox database and has no original Aerox values.
+  Values labelled with aerox_legacy_aircraft_database are copied from the E190 record as similar-type estimates.
+
+DRAG MODEL
+  Active Aerox physical drag model and reference-condition polar snapshot.
+  Scaled or substituted geometry fields: horizontal_tail.area, horizontal_tail.mac, vertical_tail.area, vertical_tail.mac, wing.root_chord, horizontal_tail.sweep, vertical_tail.sweep, engine.fan_diameter, engine.nacelle_max_diameter, engine.nacelle_length
+
+FIELD drag.model
+  Value: aerox-geometry-drag-v2
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9425; roughness_excrescence/computed=0.0900; nacelle_tier=C-estimated-fan-diameter
+  Zero-lift terms at reference (drag counts): wing=57.69; fuselage=70.69; horizontal_tail=18.43; vertical_tail=11.74; nacelles=11.31; pylons=1.74; fuselage_upsweep=6.73; control_surface_gaps=1.15; nacelle_base=2.39; roughness_excrescence=16.37
+  Applicability: Active clean model; geometry-tier uncertainty applies.
+END FIELD
+FIELD drag.configuration
+  Value: clean
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.geometry_tier
+  Value: B-observed-core-scaled-tails
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.confidence
+  Value: medium-low
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.reference_altitude_ft
+  Value: 40691.0
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Representative clean reference condition.
+END FIELD
+FIELD drag.reference_mach
+  Value: 0.78
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Representative clean reference condition.
+END FIELD
+FIELD drag.reference_reynolds_per_m
+  Value: 4721317.3
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Inputs: altitude=40691.0 ft; Mach=0.780000; ISA temperature and density
+END FIELD
+FIELD drag.span_efficiency_factor
+  Value: 0.942524
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Physical model input; geometry-tier uncertainty applies.
+END FIELD
+FIELD drag.unresolved_fraction_of_resolved_drag
+  Value: null
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Physical model input; geometry-tier uncertainty applies.
+END FIELD
+FIELD drag.roughness_excrescence_fraction
+  Value: 0.09
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Physical model input; geometry-tier uncertainty applies.
+END FIELD
+FIELD drag.wave_drag_model
+  Value: aerox-korn-lock-wave-v1
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.wave_drag_source_tier
+  Value: D-class-scaled
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.wave_drag_confidence
+  Value: low
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Model metadata; not a measured aircraft coefficient.
+END FIELD
+FIELD drag.wave_drag_technology_factor
+  Value: 0.95
+  Status: project-derived-active-model
+  Source: aerox_geometry_drag_model_2026_08_08
+  Applicability: Physical model input; geometry-tier uncertainty applies.
+END FIELD
+END DRAG MODEL

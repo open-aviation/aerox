@@ -75,6 +75,7 @@ engine:
   default: CF34-8C5
   options:
   - CF34-8C1
+  - CF34-8C5
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Cessna Excel/XLS
 ICAO: C56X
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,22 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 9200
+  Value: 9222
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_citation_500_560_a207
+  Page or section: Issue 10, Section 5 (560XL), item 13, p. 54
+  Applicability: 560XL S/N 560-6318 and 560-6322 and on (Citation XLS+)
+  Notes: Earlier 560XL serial numbers: 9,072 kg or 9,163 kg.
 END FIELD
 
 FIELD mlw
-  Value: 8500
+  Value: 8482
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_citation_500_560_a207
+  Page or section: Issue 10, Section 5 (560XL), item 13, pp. 53-54
+  Applicability: All model 560XL
 END FIELD
 
 FIELD mzfw
@@ -78,24 +83,32 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 300
+  Value: 305
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_citation_500_560_a207
+  Page or section: Issue 10, Section 5 (560XL), item 10, p. 52
+  Applicability: Excel, XLS, XLS+
+  Notes: VMO 305 KIAS (306 KCAS) from 8,000 ft to 26,515 ft; MMO 0.750 indicated (0.752 Mach) above 26,515 ft. Indicated values are stored.
 END FIELD
 
 FIELD mmo
-  Value: 0.77
+  Value: 0.75
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_citation_500_560_a207
+  Page or section: Issue 10, Section 5 (560XL), item 10, p. 52
+  Applicability: Excel, XLS, XLS+
+  Notes: VMO 305 KIAS (306 KCAS) from 8,000 ft to 26,515 ft; MMO 0.750 indicated (0.752 Mach) above 26,515 ft. Indicated values are stored.
 END FIELD
 
 FIELD ceiling
   Value: 45000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_citation_500_560_a207
+  Page or section: Issue 10, Section 5 (560XL), item 11, p. 53
+  Applicability: Excel, XLS, XLS+
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -425,7 +438,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9523; roughness_excrescence/computed=0.0900; nacelle_tier=C-estimated-fan-diameter
-  Zero-lift terms at reference (drag counts): wing=70.85; fuselage=53.19; horizontal_tail=21.71; vertical_tail=13.79; nacelles=8.05; pylons=1.07; fuselage_upsweep=3.96; control_surface_gaps=1.23; nacelle_base=2.60; roughness_excrescence=15.88
+  Zero-lift terms at reference (drag counts): wing=70.85; fuselage=53.19; horizontal_tail=21.71; vertical_tail=13.79; nacelles=8.07; pylons=1.08; fuselage_upsweep=3.96; control_surface_gaps=1.23; nacelle_base=2.61; roughness_excrescence=15.88
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration

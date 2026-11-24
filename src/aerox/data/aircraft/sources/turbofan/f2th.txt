@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Dassault Falcon 2000
 ICAO: F2TH
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,23 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 19200
+  Value: 16556
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_falcon_2000_a008_issue_13
+  Page or section: Issue 13, Section 2 (Falcon 2000), item 2.5.11, p. 16
+  Applicability: Falcon 2000 with modification M57 (with or without M1190)
+  Notes: Without M57: 16,238 kg. The Falcon 2000EX (Section 3, up to 19,414 kg) is excluded because the record engine (CFE738-1-1B) is the Falcon 2000 installation.
 END FIELD
 
 FIELD mlw
-  Value: 17800
+  Value: 15648
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_falcon_2000_a008_issue_13
+  Page or section: Issue 13, Section 2 (Falcon 2000), item 2.5.11, p. 16
+  Applicability: Falcon 2000 with modifications M57 and M1190
+  Notes: Otherwise 14,968 kg.
 END FIELD
 
 FIELD mzfw
@@ -78,24 +84,32 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 320
+  Value: 370
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_falcon_2000_a008_issue_13
+  Page or section: Issue 13, Section 2 (Falcon 2000), item 2.5.8, p. 15
+  Applicability: Falcon 2000
+  Notes: VMO variable 350/370 kt and MMO variable 0.87/0.85 (indicated). The record stores the highest values.
 END FIELD
 
 FIELD mmo
-  Value: 0.86
+  Value: 0.87
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_falcon_2000_a008_issue_13
+  Page or section: Issue 13, Section 2 (Falcon 2000), item 2.5.8, p. 15
+  Applicability: Falcon 2000
+  Notes: VMO variable 350/370 kt and MMO variable 0.87/0.85 (indicated). The record stores the highest values.
 END FIELD
 
 FIELD ceiling
   Value: 47000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_falcon_2000_a008_issue_13
+  Page or section: Issue 13, Section 2 (Falcon 2000), item 2.5.9, p. 15
+  Applicability: Falcon 2000
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -407,7 +421,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9438; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
-  Zero-lift terms at reference (drag counts): wing=57.29; fuselage=54.78; horizontal_tail=19.71; vertical_tail=12.53; nacelles=22.46; pylons=2.99; fuselage_upsweep=4.25; control_surface_gaps=1.05; nacelle_base=3.97; roughness_excrescence=16.11
+  Zero-lift terms at reference (drag counts): wing=57.90; fuselage=55.30; horizontal_tail=19.92; vertical_tail=12.67; nacelles=22.70; pylons=3.03; fuselage_upsweep=4.25; control_surface_gaps=1.05; nacelle_base=3.97; roughness_excrescence=16.27
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -429,7 +443,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 49731.7
+  Value: 51098.2
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -441,10 +455,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 3214162.4
+  Value: 3009850.6
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=49731.7 ft; Mach=0.820000; ISA temperature and density
+  Inputs: altitude=51098.2 ft; Mach=0.820000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.943761

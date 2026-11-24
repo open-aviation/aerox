@@ -1,0 +1,116 @@
+aircraft: ATR 72-600
+icao: AT76
+iata: null
+subtypes: null
+certification:
+  model: ATR 72-212A (MOD 5948, '600 version')
+  authority: EASA
+  type_certificate: EASA.A.084
+  issue: '14'
+  issue_date: '2026-02-23'
+mtow: 23000
+mlw: 22350
+mzfw: 21000
+minimum_weight: null
+oew: 13010
+mfc: 6360
+vmo: 250
+mmo: 0.55
+ceiling: 25000
+icao_wtc: medium
+eu_wtc: lower medium
+faa_wtc: null
+parking_area_m2: null
+pax:
+  max: 78
+  high: null
+  low: 72
+fuselage:
+  length: 27.166
+  height: null
+  width: 2.87
+wing:
+  area: 61.0
+  span: 27.05
+  mac: 2.379
+  sweep: 1
+  t/c: 0.16
+  root_chord: 2.740759
+  tip_chord: 1.148378
+  taper_ratio: 0.419
+  aspect_ratio: 11.995123
+  dihedral: 0
+horizontal_tail:
+  area: 11.73
+  span: 8.389279
+  mac: 1.487973
+  root_chord: 2.011817
+  tip_chord: 0.784609
+  taper_ratio: 0.39
+  sweep: 6
+  dihedral: 0
+  arm: null
+  elevator_area_ratio: null
+vertical_tail:
+  area: 12.48
+  height: 3.869884
+  mac: 3.292089
+  root_chord: 4.031129
+  tip_chord: 2.418677
+  taper_ratio: 0.6
+  sweep: 35
+  arm: null
+  rudder_area_ratio: null
+flaps:
+  type: double-slotted
+  area: null
+  bf/b: null
+  lambda_f: null
+  cf/c: null
+  Sf/S: null
+engine:
+  type: turboprop
+  mount: front wing leading mounted
+  number: 2
+  default: 2 x 2500 SHP PWC PW127M turboprops with 6 blade propellers
+  options:
+  - 2 x 2500 SHP PWC PW127M turboprops with 6 blade propellers
+  - 2 x PWC PW127N turboprops with 6 blade propellers
+  - 2 x PWC PW127XT-M turboprops with 6 blade propellers
+drag:
+  model: aerox-geometry-drag-v2
+  configuration: clean
+  geometry_tier: C-partially-scaled
+  confidence: low
+  reference_altitude_ft: 20000.0
+  reference_mach: 0.45579
+  reference_reynolds_per_m: 5906538.5
+  span_efficiency_factor: 0.95
+  unresolved_fraction_of_resolved_drag: 0.28
+  roughness_excrescence_fraction: null
+  wave_drag_model: null
+  wave_drag_source_tier: not-applicable
+  wave_drag_confidence: not-applicable
+  wave_drag_technology_factor: null
+kinematic:
+  takeoff_distance_m: 1367
+  takeoff_v2: 110
+  climb_to_fl50_ias: 140
+  climb_to_fl50_vs: 1350
+  climb_to_fl150_ias: 210
+  climb_to_fl150_vs: 1000
+  climb_to_fl240_ias: 210
+  climb_to_fl240_vs: 800
+  mach_climb_mach: null
+  mach_climb_vs: null
+  cruise_mach: null
+  cruise_range_nm: 825
+  cruise_tas: 280
+  descent_to_fl240_mach: null
+  descent_to_fl240_vs: null
+  descent_to_fl100_ias: 275
+  descent_to_fl100_vs: 1500
+  approach_ias: 200
+  approach_vs: 1500
+  landing_distance_m: 1100
+  landing_ias: 120

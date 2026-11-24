@@ -8,8 +8,8 @@ certification:
   type_certificate: EASA.IM.A.205
   issue: '06'
   issue_date: '2024-11-06'
-mtow: 115680
-mlw: 92200
+mtow: 115893
+mlw: 95254
 mzfw: null
 minimum_weight: null
 oew: 58400
@@ -83,9 +83,9 @@ drag:
   configuration: clean
   geometry_tier: C-partially-scaled
   confidence: low
-  reference_altitude_ft: 38980.0
+  reference_altitude_ft: 38941.7
   reference_mach: 0.8
-  reference_reynolds_per_m: 5257452.1
+  reference_reynolds_per_m: 5267132.7
   span_efficiency_factor: 0.949468
   unresolved_fraction_of_resolved_drag: null
   roughness_excrescence_fraction: 0.09

@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Boeing 737-900
 ICAO: B739
-Last reviewed: 2026-08-06
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -50,15 +50,20 @@ END FIELD
 FIELD mtow
   Value: 79015
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima120_issue_30
+  Page or section: Issue 30, Section 6 (737-900), item 13, p. 45
+  Applicability: 737-900 (174,200 lb); 737-900ER (85,139 kg, Section 7) is excluded
 END FIELD
 
 FIELD mlw
-  Value: 32400
+  Value: 66814
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima120_issue_30
+  Page or section: Issue 30, Section 6 (737-900), item 13, p. 45
+  Applicability: 737-900 (147,300 lb)
+  Notes: The previous value 32,400 kg was wrong. 737-900ER is 71,350 kg (Section 7, p. 55).
 END FIELD
 
 FIELD mzfw
@@ -94,8 +99,10 @@ END FIELD
 FIELD ceiling
   Value: 41000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima120_issue_30
+  Page or section: Issue 30, Section 6 (737-900), item 11, p. 45
+  Applicability: All 737 NG models
 END FIELD
 
 WING AND TAIL GEOMETRY

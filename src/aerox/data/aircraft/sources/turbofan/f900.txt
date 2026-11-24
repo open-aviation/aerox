@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Dassault Falcon 900
 ICAO: F900
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,22 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 22200
+  Value: 21092
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_falcon_50_900_a062_issue_10
+  Page or section: Issue 10, Section 3 (Mystère-Falcon 900), item 3.5.11, p. 32
+  Applicability: Falcon 900 with modification M1196
+  Notes: Without M1196: 20,639 kg. The Falcon 900EX (Section 4) is excluded.
 END FIELD
 
 FIELD mlw
-  Value: 20200
+  Value: 19051
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_falcon_50_900_a062_issue_10
+  Page or section: Issue 10, Section 3 (Mystère-Falcon 900), item 3.5.11, p. 32
+  Applicability: All Falcon 900
 END FIELD
 
 FIELD mzfw
@@ -78,24 +83,33 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 320
+  Value: 370
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_falcon_50_900_a062_issue_10
+  Page or section: Issue 10, Section 3 (Mystère-Falcon 900), item 3.5.8, p. 31
+  Applicability: Falcon 900
+  Notes: VMO 350 kt at sea level, 370 kt from 10,000 ft to 25,000 ft; MMO 0.87 from 25,000 ft, decreasing to 0.84 at high altitude (weight dependent).
 END FIELD
 
 FIELD mmo
   Value: 0.87
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_falcon_50_900_a062_issue_10
+  Page or section: Issue 10, Section 3 (Mystère-Falcon 900), item 3.5.8, p. 31
+  Applicability: Falcon 900
+  Notes: VMO 350 kt at sea level, 370 kt from 10,000 ft to 25,000 ft; MMO 0.87 from 25,000 ft, decreasing to 0.84 at high altitude (weight dependent).
 END FIELD
 
 FIELD ceiling
   Value: 51000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_falcon_50_900_a062_issue_10
+  Page or section: Issue 10, Section 3 (Mystère-Falcon 900), item 3.5.9, p. 32
+  Applicability: Falcon 900
+  Notes: FL 510.
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -396,7 +410,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9437; roughness_excrescence/computed=0.0900; nacelle_tier=C-estimated-fan-diameter
-  Zero-lift terms at reference (drag counts): wing=56.06; fuselage=53.70; horizontal_tail=19.27; vertical_tail=12.26; nacelles=12.26; pylons=1.64; fuselage_upsweep=4.25; control_surface_gaps=1.05; nacelle_base=3.48; roughness_excrescence=14.76
+  Zero-lift terms at reference (drag counts): wing=56.52; fuselage=54.10; horizontal_tail=19.43; vertical_tail=12.36; nacelles=11.80; pylons=1.57; fuselage_upsweep=4.25; control_surface_gaps=1.05; nacelle_base=3.39; roughness_excrescence=14.80
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -418,7 +432,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 48206.3
+  Value: 49271.5
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -430,10 +444,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 3585211.7
+  Value: 3406272.4
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=48206.3 ft; Mach=0.850000; ISA temperature and density
+  Inputs: altitude=49271.5 ft; Mach=0.850000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.943706

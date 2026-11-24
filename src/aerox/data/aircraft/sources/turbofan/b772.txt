@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Boeing 777-200
 ICAO: B772
-Last reviewed: 2026-08-06
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,23 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 297600
+  Value: 297556
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima003_issue_20
+  Page or section: Issue 20.0, Section 2 (-200), item 12.a, p. 9
+  Applicability: 777-200 IGW version (656,000 lb), the 777-200ER basis
+  Notes: Basic 777-200: 247,207 kg.
 END FIELD
 
 FIELD mlw
-  Value: 213200
+  Value: 213188
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima003_issue_20
+  Page or section: Issue 20.0, Section 2 (-200), item 12.a, p. 9
+  Applicability: 777-200 IGW version (470,000 lb)
+  Notes: Basic 777-200: 201,848 kg.
 END FIELD
 
 FIELD mzfw
@@ -92,10 +98,13 @@ FIELD mmo
 END FIELD
 
 FIELD ceiling
-  Value: 43000
+  Value: 43100
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima003_issue_20
+  Page or section: Issue 20.0, Section 2 (-200), item 10, p. 9
+  Applicability: 777-200
+  Notes: 13,140 m (43,100 ft) pressure altitude.
 END FIELD
 
 FUSELAGE GEOMETRY
@@ -484,7 +493,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 38752.9
+  Value: 38756.0
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -496,10 +505,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 5580904.3
+  Value: 5580079.2
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=38752.9 ft; Mach=0.840000; ISA temperature and density
+  Inputs: altitude=38756.0 ft; Mach=0.840000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.951739

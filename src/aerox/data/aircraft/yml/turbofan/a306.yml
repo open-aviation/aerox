@@ -23,15 +23,15 @@ certification:
   type_certificate: EASA.A.172
   issue: 08
   issue_date: '2026-02-01'
-mtow: 170500
-mlw: 138000
+mtow: 171700
+mlw: 140000
 mzfw: null
 minimum_weight: null
 oew: 88900
 mfc: 27100
 vmo: 335
 mmo: 0.82
-ceiling: 37000
+ceiling: 40000
 icao_wtc: heavy
 eu_wtc: lower heavy
 faa_wtc: heavy
@@ -98,9 +98,9 @@ drag:
   configuration: clean
   geometry_tier: A-observed-core-and-tails
   confidence: medium
-  reference_altitude_ft: 37466.6
+  reference_altitude_ft: 37320.6
   reference_mach: 0.79
-  reference_reynolds_per_m: 5583455.0
+  reference_reynolds_per_m: 5622752.5
   span_efficiency_factor: 0.941938
   unresolved_fraction_of_resolved_drag: null
   roughness_excrescence_fraction: 0.09

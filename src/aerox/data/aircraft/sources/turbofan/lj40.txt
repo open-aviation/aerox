@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Learjet 40
 ICAO: LJ40
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,22 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 9545
+  Value: 9525
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima020_learjet45_i18
+  Page or section: Issue 18, item 13, p. 19
+  Applicability: Learjet Model 45 (Learjet 40) modified by SB 40-11-1
+  Notes: Learjet 40 not modified: 9,231 kg.
 END FIELD
 
 FIELD mlw
-  Value: 8700
+  Value: 8709
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima020_learjet45_i18
+  Page or section: Issue 18, item 13, p. 19
+  Applicability: All Learjet Model 45 variants
 END FIELD
 
 FIELD mzfw
@@ -78,24 +83,32 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 300
+  Value: 330
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima020_learjet45_i18
+  Page or section: Issue 18, item 10, p. 17
+  Applicability: Learjet Model 45 (Learjet 45 and Learjet 40)
+  Notes: VMO 330 KIAS from sea level to 25,000 ft; MMO 0.785 indicated at 25,000 ft, increasing to 0.81 at 37,000 ft and 0.81 above. The record stores the highest MMO.
 END FIELD
 
 FIELD mmo
   Value: 0.81
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima020_learjet45_i18
+  Page or section: Issue 18, item 10, p. 17
+  Applicability: Learjet Model 45 (Learjet 45 and Learjet 40)
+  Notes: VMO 330 KIAS from sea level to 25,000 ft; MMO 0.785 indicated at 25,000 ft, increasing to 0.81 at 37,000 ft and 0.81 above. The record stores the highest MMO.
 END FIELD
 
 FIELD ceiling
   Value: 51000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima020_learjet45_i18
+  Page or section: Issue 18, item 12 (Other Limitations), p. 19
+  Applicability: Learjet Model 45
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -387,7 +400,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9494; roughness_excrescence/computed=0.0900; nacelle_tier=C-estimated-fan-diameter
-  Zero-lift terms at reference (drag counts): wing=62.73; fuselage=61.83; horizontal_tail=21.23; vertical_tail=13.49; nacelles=10.01; pylons=1.33; fuselage_upsweep=4.02; control_surface_gaps=1.33; nacelle_base=3.26; roughness_excrescence=16.13
+  Zero-lift terms at reference (drag counts): wing=62.74; fuselage=61.84; horizontal_tail=21.24; vertical_tail=13.49; nacelles=9.99; pylons=1.33; fuselage_upsweep=4.02; control_surface_gaps=1.33; nacelle_base=3.25; roughness_excrescence=16.13
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -409,7 +422,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 51078.6
+  Value: 51098.2
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -421,10 +434,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 2902465.4
+  Value: 2899734.1
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=51078.6 ft; Mach=0.790000; ISA temperature and density
+  Inputs: altitude=51098.2 ft; Mach=0.790000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.949438

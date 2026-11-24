@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Boeing 737 MAX 9
 ICAO: B39M
-Last reviewed: 2026-08-06
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,22 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 88300
+  Value: 88314
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: manufacturer-published-planning
+  Source: boeing_737_max_acap_rev_k_2025_07
+  Page or section: D6-38A004 Rev K, section 2.1.5 (General Characteristics, Model 737-9)
+  Applicability: 737-9 highest design weight option (194,700 lb)
+  Notes: EASA.IM.A.120 Issue 30, Section 8, item 13 refers to the AFM.
 END FIELD
 
 FIELD mlw
-  Value: 74300
+  Value: 74343
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: manufacturer-published-planning
+  Source: boeing_737_max_acap_rev_k_2025_07
+  Page or section: D6-38A004 Rev K, section 2.1.5 (General Characteristics, Model 737-9)
+  Applicability: 737-9 highest design weight option (163,900 lb)
 END FIELD
 
 FIELD mzfw
@@ -94,8 +99,10 @@ END FIELD
 FIELD ceiling
   Value: 41000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima120_issue_30
+  Page or section: Issue 30, Section 8 (737-8/-9/-8200), items 11 and 12.2, p. 69
+  Applicability: 737-8 and 737-9
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -495,7 +502,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 35753.4
+  Value: 35750.1
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -507,10 +514,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 6037716.7
+  Value: 6038430.6
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=35753.4 ft; Mach=0.790000; ISA temperature and density
+  Inputs: altitude=35750.1 ft; Mach=0.790000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.950962

@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Airbus A319 Neo
 ICAO: A19N
-Last reviewed: 2026-08-06
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -50,15 +50,20 @@ END FIELD
 FIELD mtow
   Value: 75500
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Issue 63, Section 3 (A319), item 13, p. 152
+  Applicability: A319-151N/-153N/-171N/-173N
+  Notes: ACJ319neo (78,200 kg) is excluded. Individual aircraft are limited by the AFM weight variant.
 END FIELD
 
 FIELD mlw
-  Value: 62500
+  Value: 63900
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Issue 63, Section 3 (A319), item 13, p. 152
+  Applicability: A319-151N/-153N/-171N/-173N
 END FIELD
 
 FIELD mzfw
@@ -80,22 +85,29 @@ END FIELD
 FIELD vmo
   Value: 350
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Issue 63, Section 3 (A319), item 10, p. 149
+  Applicability: All A319 models
 END FIELD
 
 FIELD mmo
   Value: 0.82
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Issue 63, Section 3 (A319), item 10, p. 149
+  Applicability: All A319 models
 END FIELD
 
 FIELD ceiling
-  Value: 39000
+  Value: 39800
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Issue 63, Section 3 (A319), item 11, p. 150
+  Applicability: A319 envelope, 39,800 ft with modification 30748, which most aircraft in service have
+  Notes: Basic envelope: 39,100 ft. 41,000 ft with modification 163216 (ACJ319neo only), not adopted.
 END FIELD
 
 WING AND TAIL GEOMETRY

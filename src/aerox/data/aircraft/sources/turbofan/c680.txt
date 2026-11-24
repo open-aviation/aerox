@@ -1,7 +1,7 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Cessna Citation Sovereign
 ICAO: C680
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
@@ -48,17 +48,23 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 13743
+  Value: 13959
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima033_issue_09
+  Page or section: Issue 09, Section 1 (680), item 13, p. 14
+  Applicability: 680 Sovereign+ (highest model 680 value)
+  Notes: Sovereign: 13,743 kg. The 680A Latitude is excluded.
 END FIELD
 
 FIELD mlw
-  Value: 12300
+  Value: 12508
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima033_issue_09
+  Page or section: Issue 09, Section 1 (680), item 13, p. 14
+  Applicability: 680 Sovereign+
+  Notes: Sovereign: 12,292 kg.
 END FIELD
 
 FIELD mzfw
@@ -94,8 +100,11 @@ END FIELD
 FIELD ceiling
   Value: 47000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: easa_ima033_issue_09
+  Page or section: Issue 09, Section 1 (680), item 11, p. 13
+  Applicability: Model 680
+  Notes: 14,325 m (47,000 ft).
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -387,7 +396,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9564; roughness_excrescence/computed=0.0900; nacelle_tier=C-estimated-fan-diameter
-  Zero-lift terms at reference (drag counts): wing=66.45; fuselage=44.60; horizontal_tail=20.36; vertical_tail=12.94; nacelles=8.15; pylons=1.09; fuselage_upsweep=2.84; control_surface_gaps=1.34; nacelle_base=2.28; roughness_excrescence=14.40
+  Zero-lift terms at reference (drag counts): wing=66.45; fuselage=44.60; horizontal_tail=20.36; vertical_tail=12.94; nacelles=8.27; pylons=1.10; fuselage_upsweep=2.84; control_surface_gaps=1.34; nacelle_base=2.30; roughness_excrescence=14.42
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration

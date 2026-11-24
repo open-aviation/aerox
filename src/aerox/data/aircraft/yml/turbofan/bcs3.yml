@@ -17,7 +17,7 @@ mzfw: 58060
 minimum_weight: 36287
 oew: 37200
 mfc: 21500
-vmo: 340
+vmo: 330
 mmo: 0.82
 ceiling: 41000
 icao_wtc: medium
@@ -75,9 +75,10 @@ engine:
   type: turbofan
   mount: underwing
   number: 2
-  default: PW1500G
+  default: PW1524G
   options:
-  - PW1500G
+  - PW1521G
+  - PW1524G
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

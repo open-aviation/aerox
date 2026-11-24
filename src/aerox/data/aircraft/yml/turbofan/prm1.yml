@@ -8,13 +8,13 @@ certification:
   type_certificate: A00010WI
   issue: current revision unresolved
   issue_date: null
-mtow: 5700
-mlw: 5300
+mtow: 5670
+mlw: 5262
 mzfw: null
 minimum_weight: null
 oew: 3150
 mfc: 2000
-vmo: 280
+vmo: 320
 mmo: 0.8
 ceiling: 41000
 icao_wtc: light
