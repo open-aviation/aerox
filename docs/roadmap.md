@@ -1,6 +1,17 @@
 # Roadmap
 
-Updated: 2026-11-23
+Updated: 2026-11-24
+
+## Release 0.3.0
+
+- **Aircraft data.** Six types are added: A124, A310, AT76, B735, E290, and
+  SU95.
+- **Verified limits.** MTOW, MLW, VMO, MMO, and ceiling of the turbofan
+  records are checked against type certificate data sheets. Where the
+  certificate gives options, the record uses the value common in service.
+- **Corrections.** The GLF6 fuel capacity is in litres, as in all other
+  records. BCS1, BCS3, B38M, and CRJ7 name engine variants that exist in the
+  engine table.
 
 ## Release 0.2.0
 
@@ -31,6 +42,11 @@ Updated: 2026-11-23
   modelled.
 - Some wing reference areas have no confirmed source: the 737 MAX family, the
   787-10, the 747-8, the A330-900, the A350-1000, and the CRJ200.
+- About 57 VMO and MMO values (mostly airliners) and 22 ceilings are not yet
+  verified. For these types, the EASA data sheet refers to the flight manual;
+  the FAA data sheets are the next source to check.
+- The A124 has no public type certificate, so most of its values are
+  inferred. The AT76 speed limits and ceiling come from training material.
 
 ## Planned work
 
