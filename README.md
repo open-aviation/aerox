@@ -1,15 +1,12 @@
 # Aerox
 
-Aerox is an open aircraft performance toolbox. It provides detailed aircraft
-data and performance models, such as drag models, for **150+ aircraft types**.
-The models are physical models built from open data.
+Aerox is an open aircraft performance toolbox. It provides detailed aircraft data and performance models, such as drag and kinematics, for **150+ aircraft types**. The models are physical models built from open data.
 
-Aerox is the successor to [OpenAP](https://github.com/junzis/openap). It covers
-more of each aircraft than OpenAP does, and it is more accurate.
+Aerox complements [OpenAP](https://github.com/junzis/openap). It covers more aircraft types, with more parameters for each type. For example, Aerox builds up the drag of each aircraft part from its geometry, instead of estimating the drag from flight data.
 
-A selection of the aircraft, each drawn from its record:
+A selection of the aircraft, drawn from the Aerox geometry data:
 
-![Twenty aircraft drawn in 3D from their records](docs/figures/gallery.png)
+![Aircraft drawn in 3D from their Aerox records](docs/figures/gallery.png)
 
 ## Install
 
@@ -23,8 +20,7 @@ Or, from a copy of the repository:
 pip install .
 ```
 
-Add the `plot` extra (`pip install "aerox[plot]"`) to draw aircraft with
-Matplotlib.
+Add the `plot` extra (`pip install "aerox[plot]"`) to draw aircraft with Matplotlib.
 
 ## Quick start
 
@@ -51,12 +47,7 @@ aerox view A320 B789       # only these aircraft
 aerox view --out a320.html A320   # write the page to a file instead
 ```
 
-The viewer shows each aircraft in 3D and as a 2D three-view, with dimensions
-and a scale. Click a part to see its dimensions and where each value comes
-from. The server runs on `http://127.0.0.1:8765` until you press Ctrl+C. Use
-`--port` to change the port and `--no-open` to keep the browser closed. The
-page loads three.js from a CDN, so it needs an internet connection.
-`python -m aerox view` does the same.
+The viewer shows each aircraft in 3D and as a 2D three-view, with dimensions and a scale. Click a part to see its dimensions and where each value comes from. The server runs on `http://127.0.0.1:8765` until you press Ctrl+C. Use `--port` to change the port and `--no-open` to keep the browser closed. The page loads three.js from a CDN, so it needs an internet connection. `python -m aerox view` does the same.
 
 The same drawings are available in Python, with the `plot` extra:
 
@@ -67,14 +58,11 @@ three_view(ac).savefig("a320-three-view.png")
 view_3d(ac)
 ```
 
-The drawings are outline models. The sizes come from the record. The positions
-of the wing, tails, and engines along the fuselage follow simple rules, so they
-are approximate.
+The drawings are outline models. The sizes come from the record. The positions of the wing, tails, and engines along the fuselage follow simple rules, so they are approximate.
 
 ### Drag model
 
-Aerox gives drag in two forms. Both have a `cd()` method (an alias of
-`drag_coefficient()`) that returns the drag coefficient at a flight condition.
+Aerox gives drag in two forms. Both have a `cd()` method (an alias of `drag_coefficient()`) that returns the drag coefficient at a flight condition.
 
 | | `build_drag_model(ac)` | `build_parabolic_polar(ac)` |
 | --- | --- | --- |
@@ -92,9 +80,7 @@ model = build_drag_model(ac)
 print(model.cd(cl=0.55, mach=0.78, h=11_000))   # altitude in m, ISA
 ```
 
-With the altitude `h`, the model computes the Reynolds number from the ISA
-atmosphere. Add `dT=` for a temperature offset from ISA, or pass
-`reynolds_per_m=` instead of `h` to give the Reynolds number yourself.
+With the altitude `h`, the model computes the Reynolds number from the ISA atmosphere. Add `dT=` for a temperature offset from ISA, or pass `reynolds_per_m=` instead of `h` to give the Reynolds number yourself.
 
 The parabolic polar, the same at every flight condition:
 
@@ -106,10 +92,7 @@ print(polar.cd0, polar.k)
 print(polar.cd(cl=0.55))
 ```
 
-Near the reference cruise condition of the record, and at cruise lift
-coefficients, the two agree within a few percent. Away from that condition, or
-at high lift coefficients where wave drag appears, use the full model. See
-[the drag docs](docs/drag.md) for details.
+Near the reference cruise condition of the record, and at cruise lift coefficients, the two agree within a few percent. Away from that condition, or at high lift coefficients where wave drag appears, use the full model. See [the drag docs](docs/drag.md) for details.
 
 <img src="docs/figures/drag-polar.png" alt="A320 drag polar at three Mach numbers, with the parabolic polar" width="575">
 
@@ -125,8 +108,7 @@ The maximum lift-to-drag ratio of every turbofan aircraft in the database:
 
 ### Kinematics
 
-Each record also has the typical speeds and vertical rates of each flight
-phase, from takeoff to landing:
+Each record also has the typical speeds and vertical rates of each flight phase, from takeoff to landing:
 
 ```python
 k = ac.kinematic
@@ -136,8 +118,7 @@ print(k.cruise_mach)          # 0.79
 print(k.cruise_range_nm)      # 2700 nm
 ```
 
-The A320 values, phase by phase (see [the kinematics docs](docs/kinematics.md)
-for all fields):
+The A320 values, phase by phase (see [the kinematics docs](docs/kinematics.md) for all fields):
 
 <img src="docs/figures/kinematics.png" alt="The A320 kinematic data, phase by phase from takeoff to landing, under a schematic flight profile" width="820">
 
@@ -154,55 +135,29 @@ cas = aero.mach2cas(mach=0.78, h=10_000)   # m/s
 
 ## What is included
 
-- **Aircraft data.** One YAML record per type with geometry, mass limits, and
-  engine data. Each geometry and mass value has a source note under
-  `src/aerox/data/aircraft/sources`.
-- **Drag.** A drag model computed from the aircraft geometry: skin friction
-  and form factors for the wing, fuselage, tails, nacelles, and pylons, plus
-  wave drag and induced drag, and drag increments for deployed flaps and
-  landing gear. No value is fitted to another performance model. The model is
-  also available as a closed-form expression for JAX and CasADi, for
-  optimization and automatic differentiation (see
-  [Math backends](docs/backends.md)).
-- **Drawings.** `aerox view` and `aerox.plot`, 2D and 3D outline drawings of
-  each aircraft.
-- **Kinematics.** Typical speeds and vertical rates of each flight phase, for
-  every aircraft.
-- **Atmosphere and speeds.** `aerox.aero`, ISA atmosphere and
-  CAS/TAS/EAS/Mach conversions.
-- **Flight management.** `aerox.fms`, route, altitude and speed intent, and
-  guidance primitives.
+- **Aircraft data.** One YAML record per type with geometry, mass limits, and engine data. Each geometry and mass value has a source note under `src/aerox/data/aircraft/sources`.
+- **Drag.** A drag model computed from the aircraft geometry: skin friction and form factors for the wing, fuselage, tails, nacelles, and pylons, plus wave drag and induced drag, and drag increments for deployed flaps and landing gear.
+- **Math backends.** The drag model is also available as a closed-form expression for JAX and CasADi, for optimization and automatic differentiation (see [Math backends](docs/backends.md)).
+- **Drawings.** `aerox view` and `aerox.plot`, 2D and 3D outline drawings of each aircraft.
+- **Kinematics.** Typical speeds and vertical rates of each flight phase, for every aircraft.
+- **Atmosphere and speeds.** `aerox.aero`, ISA atmosphere and CAS/TAS/EAS/Mach conversions.
+- **Flight management.** `aerox.fms`, route, altitude and speed intent, and guidance primitives (still under development).
 
 ## Current accuracy and limits
 
-- At cruise, the drag model agrees with a reference performance model within
-  5 % for most jet transports. At lower Mach numbers (about 0.6) it is 4 to
-  12 % too high.
-- Flap and landing gear drag come from simple handbook methods. Slats add no
-  drag, and spoiler drag is not modelled.
-- The modules for thrust, lift, flight dynamics, and simulation are
-  experimental. Their interfaces can change.
+- At cruise, the drag model agrees with a reference performance model within 5 % for most jet transports. At lower Mach numbers (about 0.6) it is 4 to 12 % too high.
+- Flap and landing gear drag come from simple handbook methods. Slats add no drag, and spoiler drag is not modelled.
+- The modules for thrust, lift, flight dynamics, and simulation are experimental. Their interfaces can change.
 
 ## Sources
 
-- **Aircraft data.** Type certificate data sheets (EASA, FAA, Transport
-  Canada, CAA New Zealand), manufacturer airport planning documents, and
-  manufacturer CAD drawings (Airbus, Boeing), from which the wing and tail
-  geometry is measured. Military types use NASA technical reports and USAF
-  fact sheets. Every geometry and mass value in a record has a source note
-  under `src/aerox/data/aircraft/sources`. The cited documents are listed in
-  `sources/sources.yml`, and the drawings and measurement tables are in
-  `sources/`. Values not yet traced to such a document are marked
-  `legacy-unverified`. The kinematic values have no source notes yet.
-- **Drag methods.** Component drag build-up after Raymer, Kroo, and Scholz,
-  nacelle and pylon terms after FLOPS and SUAVE, and wave drag from the Korn
-  equation with Lock's fourth-power law.
+- **Aircraft data.** Type certificate data sheets (EASA, FAA, Transport Canada, CAA New Zealand), manufacturer airport planning documents, and manufacturer CAD drawings (Airbus, Boeing), from which the wing and tail geometry is measured. Military types use NASA technical reports and USAF fact sheets. Every geometry and mass value in a record has a source note under `src/aerox/data/aircraft/sources`. The cited documents are listed in `sources/sources.yml`, and the drawings and measurement tables are in `sources/`. Values not yet traced to such a document are marked `legacy-unverified`. The kinematic values have no source notes yet.
+- **Drag methods.** Component drag build-up after Raymer, Kroo, and Scholz, nacelle and pylon terms after FLOPS and SUAVE, and wave drag from the Korn equation with Lock's fourth-power law.
 - **Atmosphere.** `aerox.aero` is ported from `openap.aero` (OpenAP 2.6.0).
 
 ## Documentation
 
-See [`docs/`](docs/README.md) for the aircraft data, the drag model, the
-kinematics, the atmosphere functions, and the roadmap.
+See [`docs/`](docs/README.md) for the aircraft data, the drag model, the kinematics, the atmosphere functions, and the roadmap.
 
 ## Development
 
