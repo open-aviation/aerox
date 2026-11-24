@@ -34,14 +34,14 @@ FIELD certification.type_certificate
 END FIELD
 
 FIELD certification.issue
-  Value: EASA Issue 12 at review
+  Value: EASA Issue 13 at review
   Status: certified-published
   Source: easa_gulfstream_gii_gv_a070
   Applicability: Repository explicitly combines GIV and G400 marketing/configuration scope; GIV-X and serial modifications need mapping.
 END FIELD
 
 FIELD certification.issue_date
-  Value: 2026-03-30
+  Value: 2026-08-06
   Status: certified-published
   Source: easa_gulfstream_gii_gv_a070
   Applicability: Repository explicitly combines GIV and G400 marketing/configuration scope; GIV-X and serial modifications need mapping.
@@ -142,8 +142,8 @@ FIELD wing.mac
   Source: easa_gulfstream_gii_gv_a070
   Source URL: https://www.easa.europa.eu/en/downloads/7384/en
   Document title: EASA.IM.A.070 Gulfstream GII, GIII, GIV, GV Type-Certificate Data Sheet
-  Revision date: 2026-07-22
-  Page or section: Issue 12, section 5 G-IV, III.8, p. 36
+  Revision date: 2026-08-06
+  Page or section: Issue 13, section 5 G-IV, III.8, p. 36
   Applicability: Certified G-IV section, including commercial configurations identified there
   Uncertainty: Source rounded to 0.1 m
   Previous value: 3.8 m
@@ -172,7 +172,7 @@ FIELD wing.root_chord
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_gulfstream_gii_gv_a070
-  Search record: reviewed EASA.IM.A.070 Issue 12; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
+  Search record: reviewed EASA.IM.A.070 Issue 13; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
 END FIELD
 
 FIELD wing.tip_chord
@@ -182,7 +182,7 @@ FIELD wing.tip_chord
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_gulfstream_gii_gv_a070
-  Search record: reviewed EASA.IM.A.070 Issue 12; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
+  Search record: reviewed EASA.IM.A.070 Issue 13; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
 END FIELD
 
 FIELD wing.taper_ratio
@@ -192,7 +192,7 @@ FIELD wing.taper_ratio
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_gulfstream_gii_gv_a070
-  Search record: reviewed EASA.IM.A.070 Issue 12; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
+  Search record: reviewed EASA.IM.A.070 Issue 13; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
 END FIELD
 
 FIELD wing.aspect_ratio
@@ -211,7 +211,7 @@ FIELD wing.dihedral
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_gulfstream_gii_gv_a070
-  Search record: reviewed EASA.IM.A.070 Issue 12; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
+  Search record: reviewed EASA.IM.A.070 Issue 13; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
 END FIELD
 
 FIELD horizontal_tail.area
@@ -221,7 +221,7 @@ FIELD horizontal_tail.area
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_gulfstream_gii_gv_a070
-  Search record: reviewed EASA.IM.A.070 Issue 12; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
+  Search record: reviewed EASA.IM.A.070 Issue 13; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
 END FIELD
 
 FIELD horizontal_tail.span
@@ -231,7 +231,7 @@ FIELD horizontal_tail.span
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_gulfstream_gii_gv_a070
-  Search record: reviewed EASA.IM.A.070 Issue 12; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
+  Search record: reviewed EASA.IM.A.070 Issue 13; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
 END FIELD
 
 FIELD horizontal_tail.mac
@@ -241,7 +241,7 @@ FIELD horizontal_tail.mac
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_gulfstream_gii_gv_a070
-  Search record: reviewed EASA.IM.A.070 Issue 12; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
+  Search record: reviewed EASA.IM.A.070 Issue 13; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
 END FIELD
 
 FIELD horizontal_tail.root_chord
@@ -251,7 +251,7 @@ FIELD horizontal_tail.root_chord
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_gulfstream_gii_gv_a070
-  Search record: reviewed EASA.IM.A.070 Issue 12; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
+  Search record: reviewed EASA.IM.A.070 Issue 13; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
 END FIELD
 
 FIELD horizontal_tail.tip_chord
@@ -261,7 +261,7 @@ FIELD horizontal_tail.tip_chord
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_gulfstream_gii_gv_a070
-  Search record: reviewed EASA.IM.A.070 Issue 12; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
+  Search record: reviewed EASA.IM.A.070 Issue 13; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
 END FIELD
 
 FIELD horizontal_tail.taper_ratio
@@ -271,7 +271,7 @@ FIELD horizontal_tail.taper_ratio
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_gulfstream_gii_gv_a070
-  Search record: reviewed EASA.IM.A.070 Issue 12; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
+  Search record: reviewed EASA.IM.A.070 Issue 13; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
 END FIELD
 
 FIELD horizontal_tail.sweep
@@ -281,7 +281,7 @@ FIELD horizontal_tail.sweep
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_gulfstream_gii_gv_a070
-  Search record: reviewed EASA.IM.A.070 Issue 12; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
+  Search record: reviewed EASA.IM.A.070 Issue 13; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
 END FIELD
 
 FIELD horizontal_tail.dihedral
@@ -291,7 +291,7 @@ FIELD horizontal_tail.dihedral
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_gulfstream_gii_gv_a070
-  Search record: reviewed EASA.IM.A.070 Issue 12; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
+  Search record: reviewed EASA.IM.A.070 Issue 13; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -301,7 +301,7 @@ FIELD horizontal_tail.arm
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_gulfstream_gii_gv_a070
-  Search record: reviewed EASA.IM.A.070 Issue 12; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
+  Search record: reviewed EASA.IM.A.070 Issue 13; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
@@ -311,7 +311,7 @@ FIELD horizontal_tail.elevator_area_ratio
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_gulfstream_gii_gv_a070
-  Search record: reviewed EASA.IM.A.070 Issue 12; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
+  Search record: reviewed EASA.IM.A.070 Issue 13; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
 END FIELD
 
 FIELD vertical_tail.area
@@ -321,7 +321,7 @@ FIELD vertical_tail.area
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_gulfstream_gii_gv_a070
-  Search record: reviewed EASA.IM.A.070 Issue 12; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
+  Search record: reviewed EASA.IM.A.070 Issue 13; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
 END FIELD
 
 FIELD vertical_tail.height
@@ -331,7 +331,7 @@ FIELD vertical_tail.height
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_gulfstream_gii_gv_a070
-  Search record: reviewed EASA.IM.A.070 Issue 12; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
+  Search record: reviewed EASA.IM.A.070 Issue 13; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
 END FIELD
 
 FIELD vertical_tail.mac
@@ -341,7 +341,7 @@ FIELD vertical_tail.mac
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_gulfstream_gii_gv_a070
-  Search record: reviewed EASA.IM.A.070 Issue 12; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
+  Search record: reviewed EASA.IM.A.070 Issue 13; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
 END FIELD
 
 FIELD vertical_tail.root_chord
@@ -351,7 +351,7 @@ FIELD vertical_tail.root_chord
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_gulfstream_gii_gv_a070
-  Search record: reviewed EASA.IM.A.070 Issue 12; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
+  Search record: reviewed EASA.IM.A.070 Issue 13; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
 END FIELD
 
 FIELD vertical_tail.tip_chord
@@ -361,7 +361,7 @@ FIELD vertical_tail.tip_chord
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_gulfstream_gii_gv_a070
-  Search record: reviewed EASA.IM.A.070 Issue 12; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
+  Search record: reviewed EASA.IM.A.070 Issue 13; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
 END FIELD
 
 FIELD vertical_tail.taper_ratio
@@ -371,7 +371,7 @@ FIELD vertical_tail.taper_ratio
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_gulfstream_gii_gv_a070
-  Search record: reviewed EASA.IM.A.070 Issue 12; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
+  Search record: reviewed EASA.IM.A.070 Issue 13; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
 END FIELD
 
 FIELD vertical_tail.sweep
@@ -381,7 +381,7 @@ FIELD vertical_tail.sweep
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_gulfstream_gii_gv_a070
-  Search record: reviewed EASA.IM.A.070 Issue 12; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
+  Search record: reviewed EASA.IM.A.070 Issue 13; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
 END FIELD
 
 FIELD vertical_tail.arm
@@ -391,7 +391,7 @@ FIELD vertical_tail.arm
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_gulfstream_gii_gv_a070
-  Search record: reviewed EASA.IM.A.070 Issue 12; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
+  Search record: reviewed EASA.IM.A.070 Issue 13; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
 END FIELD
 
 FIELD vertical_tail.rudder_area_ratio
@@ -401,7 +401,7 @@ FIELD vertical_tail.rudder_area_ratio
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_gulfstream_gii_gv_a070
-  Search record: reviewed EASA.IM.A.070 Issue 12; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
+  Search record: reviewed EASA.IM.A.070 Issue 13; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
 END FIELD
 
 LEGACY PARAMETERS

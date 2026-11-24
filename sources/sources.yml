@@ -18,13 +18,16 @@ sources:
   - This ID identifies original Aerox values, not a certification or manufacturer source.
   - Legacy values remain in the compact runtime records and are labelled legacy-unverified
     until qualified evidence establishes their definition and model or variant applicability.
-- id: easa_a064_issue_62
-  title: EASA Type Certificate Data Sheet EASA.A.064, Issue 62
+- id: easa_a064_issue_63
+  title: EASA Type Certificate Data Sheet EASA.A.064, Issue 63
   organization: European Union Aviation Safety Agency
   url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa064-airbus-a318-a319-a320-a321-single-aisle
-  issue: 62
-  issue_date: 2026-06-26
-  accessed: 2026-08-05
+  direct_document_url: https://www.easa.europa.eu/en/downloads/16507/en
+  issue: 63
+  issue_date: 2026-11-24
+  accessed: 2026-11-24
+  relevant_pages: Section 1 (A320) items 10, 11, 13 and 16 (pp. 45-48); Section 2 (A321) pp. 99-103;
+    Section 3 (A319) pp. 149-153; Section 4 (A318) pp. 172-175
   evidence_type: certified-published
   aircraft:
     model: Airbus A320-214
@@ -39,6 +42,7 @@ sources:
   - Maximum A320-214/-232/-233 masses are 78,000 kg takeoff, 66,000 kg landing, and 62,500
     kg zero fuel; minimum weight is 37,230 kg.
   - Configuration-specific mass limitations depend on the applicable AFM weight variant.
+  - Altitude extensions depend on modifications.
   - The CG range is not printed and is referred to the approved AFM.
   - It does not publish the tail/control planforms or inertia tensor needed by the proposed
     lateral-directional model.
@@ -2102,9 +2106,9 @@ sources:
   organization: European Union Aviation Safety Agency
   url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa008-dassault-falcon-2000
   document_number: EASA.A.008
-  issue_revision: Issue 12 at access
-  publication_date: null
-  access_date: 2026-08-05
+  issue_revision: Issue 13 at access
+  publication_date: 2026-09-15
+  access_date: 2026-11-24
   applicable_aircraft: Falcon 2000 and 2000EX derivative family
   applicable_engine: variant-specific
   evidence_type: type-certificate-data-sheet-page
@@ -2145,9 +2149,9 @@ sources:
   organization: European Union Aviation Safety Agency
   url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaima070-gulfstream-gii-giii-giv-gv
   document_number: EASA.IM.A.070
-  issue_revision: Issue 12 at access
-  publication_date: 2026-03-30
-  access_date: 2026-08-05
+  issue_revision: Issue 13 at access
+  publication_date: 2026-08-06
+  access_date: 2026-11-24
   applicable_aircraft: Gulfstream GII, GIII, GIV, and GV certified families
   applicable_engine: model and modification specific
   evidence_type: type-certificate-data-sheet-page
@@ -2593,15 +2597,15 @@ sources:
   evidence_type: manufacturer-published
   redistribution: link-only
   limitations: Current 182T configuration; historical 182 variants differ.
-- id: easa_im_a570_issue_24
-  title: EASA Type Certificate Data Sheet EASA.IM.A.570, BD-500, Issue 24
+- id: easa_im_a570_issue_25
+  title: EASA Type Certificate Data Sheet EASA.IM.A.570, BD-500, Issue 25
   organization: European Union Aviation Safety Agency
   url: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaima570-bd-500
   direct_document_url: https://www.easa.europa.eu/en/downloads/20964/en
   document_number: EASA.IM.A.570
-  issue_revision: '24'
-  publication_date: 2026-02-20
-  accessed: 2026-08-06
+  issue_revision: '25'
+  publication_date: 2026-08-21
+  accessed: 2026-11-24
   evidence_type: certified-published
   aircraft:
     holder: Airbus Canada Limited Partnership
@@ -2613,12 +2617,15 @@ sources:
     - A220-300
   relevant_sections:
   - Section 1 III.5, PDF page 10
-  - Section 2 III.5, PDF page 20
+  - Section 2 III.5, PDF page 21
+  - Section 1 items 10 and 11, PDF page 11
+  - Section 2 items 10 and 11, PDF page 22
   license: EASA-copyright
   redistribution: link-only
   limitations:
   - Printed or downloaded copies are uncontrolled; confirm the current revision on the EASA
     document page.
+  - Additional weight variants are in the AFM.
 - id: icao_eedb_issue_32
   title: ICAO Aircraft Engine Emissions Databank, Issue 32
   organization: International Civil Aviation Organization
@@ -3150,21 +3157,6 @@ sources:
   relevant_pages: FAQ answer on type certificates
   limitations: Read through search-result summaries only; used for the certification status note,
     not for numeric values.
-- id: easa_a064_issue_63
-  title: EASA.A.064 - Airbus A318, A319, A320, A321 Single Aisle
-  organization: European Union Aviation Safety Agency
-  url: https://www.easa.europa.eu/en/downloads/16507/en
-  document_number: EASA.A.064
-  issue_revision: Issue 63
-  publication_date: 2026-11-24
-  access_date: 2026-11-24
-  applicable_aircraft: A318, A319, A320 and A321 series, ceo and neo models
-  evidence_type: type-certificate-data-sheet
-  licensing_redistribution: EASA copyright; link rather than redistribute
-  relevant_pages: Section 1 (A320) items 10, 11, 13 (pp. 45-48); Section 2 (A321) pp. 99-102; Section
-    3 (A319) pp. 149-152; Section 4 (A318) pp. 172-174
-  limitations: Individual aircraft masses are limited by the AFM weight variant; altitude extensions depend
-    on modifications.
 - id: easa_a004_issue_70
   title: EASA.A.004 - Airbus A330
   organization: European Union Aviation Safety Agency
@@ -3178,19 +3170,6 @@ sources:
   licensing_redistribution: EASA copyright; link rather than redistribute
   relevant_pages: Item 10.1 altitude and item 12 maximum mass per section (pp. 22-23, 41-42, 91-92)
   limitations: Airspeed limits are referred to the AFM; weight variants are in the AFM.
-- id: easa_im_a570_issue_25
-  title: EASA.IM.A.570 - Airbus Canada BD-500 (A220)
-  organization: European Union Aviation Safety Agency
-  url: https://www.easa.europa.eu/en/downloads/20964/en
-  document_number: EASA.IM.A.570
-  issue_revision: Issue 25
-  publication_date: 2026-08-21
-  access_date: 2026-11-24
-  applicable_aircraft: BD-500-1A10 (A220-100) and BD-500-1A11 (A220-300)
-  evidence_type: type-certificate-data-sheet
-  licensing_redistribution: EASA copyright; link rather than redistribute
-  relevant_pages: Items 10 (airspeed limits) and 11 (flight envelope), pp. 11 and 22
-  limitations: Additional weight variants are in the AFM.
 - id: easa_ima673_issue_3
   title: EASA.IM.A.673 - CL-600 Regional Jet series
   organization: European Union Aviation Safety Agency

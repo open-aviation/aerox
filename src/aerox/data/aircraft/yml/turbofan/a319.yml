@@ -22,8 +22,8 @@ certification:
   model: null
   authority: EASA
   type_certificate: EASA.A.064
-  issue: '62'
-  issue_date: '2026-06-26'
+  issue: '63'
+  issue_date: '2026-11-24'
 mtow: 76500
 mlw: 62500
 mzfw: null

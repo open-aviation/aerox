@@ -117,7 +117,7 @@ def test_load_a320_certified_and_higher_order_data():
     assert isinstance(aircraft.certification, Certification)
     assert aircraft.certification.model == "A320-214"
     assert aircraft.certification.type_certificate == "EASA.A.064"
-    assert aircraft.certification.source_id == "easa_a064_issue_62"
+    assert aircraft.certification.source_id == "easa_a064_issue_63"
 
     assert isinstance(aircraft.certified_mass_limits, CertifiedMassLimits)
     assert aircraft.certified_mass_limits.mzfw == 62500
@@ -138,7 +138,7 @@ def test_load_a320_certified_and_higher_order_data():
     assert aircraft.engine.default == "CFM56-5B4"
     assert aircraft.drag.wave_drag_model == "aerox-korn-lock-wave-v1"
     assert aircraft.drag.wave_drag_technology_factor == pytest.approx(0.95)
-    assert aircraft.data_provenance["field_sources"]["mtow"] == ["easa_a064_issue_62"]
+    assert aircraft.data_provenance["field_sources"]["mtow"] == ["easa_a064_issue_63"]
 
 
 def test_load_aircraft_raises_for_unknown_icao():
@@ -182,7 +182,7 @@ certification:
   type_certificate: EASA.A.064
 data_provenance:
   field_sources:
-    wing.mac: [easa_a064_issue_62]
+    wing.mac: [easa_a064_issue_63]
 """
     )
     editable = {
@@ -198,7 +198,7 @@ data_provenance:
     saved = yaml.safe_load(target.read_text())
     assert saved["certification"]["type_certificate"] == "EASA.A.064"
     assert saved["data_provenance"]["field_sources"]["wing.mac"] == [
-        "easa_a064_issue_62"
+        "easa_a064_issue_63"
     ]
     assert saved["wing"]["mac"] == 4.1935
 

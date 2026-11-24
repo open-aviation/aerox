@@ -22,28 +22,28 @@ END FIELD
 FIELD certification.authority
   Value: EASA
   Status: certified-published
-  Source: easa_a064_issue_62
+  Source: easa_a064_issue_63
   Applicability: Standard neo, LR/NX, XLR/NY, engine, and weight-variant scope are unresolved.
 END FIELD
 
 FIELD certification.type_certificate
   Value: EASA.A.064
   Status: certified-published
-  Source: easa_a064_issue_62
+  Source: easa_a064_issue_63
   Applicability: Standard neo, LR/NX, XLR/NY, engine, and weight-variant scope are unresolved.
 END FIELD
 
 FIELD certification.issue
-  Value: 62
+  Value: 63
   Status: certified-published
-  Source: easa_a064_issue_62
+  Source: easa_a064_issue_63
   Applicability: Standard neo, LR/NX, XLR/NY, engine, and weight-variant scope are unresolved.
 END FIELD
 
 FIELD certification.issue_date
-  Value: 2026-06-26
+  Value: 2026-11-24
   Status: certified-published
-  Source: easa_a064_issue_62
+  Source: easa_a064_issue_63
   Applicability: Standard neo, LR/NX, XLR/NY, engine, and weight-variant scope are unresolved.
 END FIELD
 
@@ -147,10 +147,10 @@ FIELD wing.mac
   Value: 4.1935
   Unit: m
   Status: certified-published
-  Source: easa_a064_issue_62
+  Source: easa_a064_issue_63
   Source URL: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa064-airbus-a318-a319-a320-a321-single-aisle
-  Document title: EASA Type Certificate Data Sheet EASA.A.064, Issue 62
-  Revision date: 2026-06-26
+  Document title: EASA Type Certificate Data Sheet EASA.A.064, Issue 63
+  Revision date: 2026-11-24
   Page or section: A321 series, TCDS page 103
   Inputs: 4.1935 m published mean aerodynamic chord
   Applicability: A321neo certified models within the A321 series
@@ -180,7 +180,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_63 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD wing.tip_chord
@@ -189,7 +189,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_63 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD wing.taper_ratio
@@ -198,7 +198,7 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_63 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD wing.aspect_ratio
@@ -218,7 +218,7 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_63 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD horizontal_tail.area
@@ -306,7 +306,7 @@ FIELD horizontal_tail.taper_ratio
   Source: airbus_a321_autocad_sharklet_2014_07
   Formula: tip_chord / root_chord
   Inputs: tip_chord=1.227874 m; root_chord=3.726892 m
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_63 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD horizontal_tail.sweep
@@ -331,7 +331,7 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_63 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -340,7 +340,7 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_63 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
@@ -365,7 +365,7 @@ FIELD vertical_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_63 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD vertical_tail.height
@@ -374,7 +374,7 @@ FIELD vertical_tail.height
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_63 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD vertical_tail.mac
@@ -383,7 +383,7 @@ FIELD vertical_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_63 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD vertical_tail.root_chord
@@ -392,7 +392,7 @@ FIELD vertical_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_63 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD vertical_tail.tip_chord
@@ -401,7 +401,7 @@ FIELD vertical_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_63 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD vertical_tail.taper_ratio
@@ -410,7 +410,7 @@ FIELD vertical_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_63 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD vertical_tail.sweep
@@ -419,7 +419,7 @@ FIELD vertical_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_63 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD vertical_tail.arm
@@ -428,7 +428,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_63 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 FIELD vertical_tail.rudder_area_ratio
@@ -437,7 +437,7 @@ FIELD vertical_tail.rudder_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
+  Searched source: easa_a064_issue_63 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
 LEGACY PARAMETERS
@@ -541,8 +541,8 @@ SUBTYPE AND ENGINE DATABANK APPLICABILITY
 FIELD subtypes
   Value: 11 unique certified subtype mapping(s)
   Status: certified-published
-  Source: easa_a064_issue_62 | icao_eedb_issue_32
-  Page or section: Section 2 III.5; PDF p.93 | Section 2 III.5; PDF pp.93-95
+  Source: easa_a064_issue_63 | icao_eedb_issue_32
+  Page or section: Section 2 III.5; PDF p.92 | Section 2 III.5; PDF p.93 | Section 2 III.5; PDF pp.92-95 | Section 2 III.5; PDF pp.92-93 | Section 2 III.5; PDF pp.93-95
   Applicability: Certified subtype applicability with query identifiers normalized to ICAO EEDB Issue 32.
   Evidence inventory: sources/geometry/airbus-subtype-engine-mapping.tsv
   Engine table: src/aerox/data/engines/engines.csv

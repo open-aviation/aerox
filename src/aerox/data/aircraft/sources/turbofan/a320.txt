@@ -15,35 +15,35 @@ TYPE-CERTIFICATE AND LIMIT PARAMETERS
 FIELD certification.model
   Value: A320-214
   Status: certified-published
-  Source: easa_a064_issue_62
+  Source: easa_a064_issue_63
   Applicability: Weight variant and installed modifications remain aircraft-specific.
 END FIELD
 
 FIELD certification.authority
   Value: EASA
   Status: certified-published
-  Source: easa_a064_issue_62
+  Source: easa_a064_issue_63
   Applicability: Weight variant and installed modifications remain aircraft-specific.
 END FIELD
 
 FIELD certification.type_certificate
   Value: EASA.A.064
   Status: certified-published
-  Source: easa_a064_issue_62
+  Source: easa_a064_issue_63
   Applicability: Weight variant and installed modifications remain aircraft-specific.
 END FIELD
 
 FIELD certification.issue
-  Value: 62
+  Value: 63
   Status: certified-published
-  Source: easa_a064_issue_62
+  Source: easa_a064_issue_63
   Applicability: Weight variant and installed modifications remain aircraft-specific.
 END FIELD
 
 FIELD certification.issue_date
-  Value: 2026-06-26
+  Value: 2026-11-24
   Status: certified-published
-  Source: easa_a064_issue_62
+  Source: easa_a064_issue_63
   Applicability: Weight variant and installed modifications remain aircraft-specific.
 END FIELD
 
@@ -51,7 +51,7 @@ FIELD mtow
   Value: 78000
   Unit: kg
   Status: certified-published
-  Source: easa_a064_issue_62
+  Source: easa_a064_issue_63
   Applicability: A320-214/-232/-233 maximum listed value; AFM weight variant controls the individual aircraft
 END FIELD
 
@@ -59,7 +59,7 @@ FIELD mlw
   Value: 66000
   Unit: kg
   Status: certified-published
-  Source: easa_a064_issue_62
+  Source: easa_a064_issue_63
   Applicability: A320-214/-232/-233 maximum listed value; AFM weight variant controls the individual aircraft
 END FIELD
 
@@ -67,7 +67,7 @@ FIELD mzfw
   Value: 62500
   Unit: kg
   Status: certified-published
-  Source: easa_a064_issue_62
+  Source: easa_a064_issue_63
   Applicability: A320-214/-232/-233 maximum listed value; AFM weight variant controls the individual aircraft
 END FIELD
 
@@ -75,7 +75,7 @@ FIELD minimum_weight
   Value: 37230
   Unit: kg
   Status: certified-published
-  Source: easa_a064_issue_62
+  Source: easa_a064_issue_63
   Applicability: Airbus A320-214 unless the datum notes broader A320 applicability
 END FIELD
 
@@ -123,10 +123,10 @@ FIELD wing.span
   Value: 34.1
   Unit: m
   Status: certified-published
-  Source: easa_a064_issue_62
+  Source: easa_a064_issue_63
   Source URL: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa064-airbus-a318-a319-a320-a321-single-aisle
-  Document title: EASA Type Certificate Data Sheet EASA.A.064, Issue 62
-  Revision date: 2026-06-26
+  Document title: EASA Type Certificate Data Sheet EASA.A.064, Issue 63
+  Revision date: 2026-11-24
   Page or section: A320 principal dimensions
   Inputs: 34.10 m published span
   Applicability: A320-214 with wing-tip fences
@@ -138,10 +138,10 @@ FIELD wing.mac
   Value: 4.1935
   Unit: m
   Status: certified-published
-  Source: easa_a064_issue_62
+  Source: easa_a064_issue_63
   Source URL: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa064-airbus-a318-a319-a320-a321-single-aisle
-  Document title: EASA Type Certificate Data Sheet EASA.A.064, Issue 62
-  Revision date: 2026-06-26
+  Document title: EASA Type Certificate Data Sheet EASA.A.064, Issue 63
+  Revision date: 2026-11-24
   Page or section: A320 reference geometry
   Inputs: 4.1935 m published mean aerodynamic chord
   Applicability: A320-214 reference wing
@@ -168,7 +168,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a320_autocad_wtf_2012_05 | airbus_a320_acap_2026_07
+  Searched source: easa_a064_issue_63 | airbus_a320_autocad_wtf_2012_05 | airbus_a320_acap_2026_07
 END FIELD
 
 FIELD wing.tip_chord
@@ -177,7 +177,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a320_autocad_wtf_2012_05 | airbus_a320_acap_2026_07
+  Searched source: easa_a064_issue_63 | airbus_a320_autocad_wtf_2012_05 | airbus_a320_acap_2026_07
 END FIELD
 
 FIELD wing.taper_ratio
@@ -186,17 +186,17 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a064_issue_62 | airbus_a320_autocad_wtf_2012_05 | airbus_a320_acap_2026_07
+  Searched source: easa_a064_issue_63 | airbus_a320_autocad_wtf_2012_05 | airbus_a320_acap_2026_07
 END FIELD
 
 FIELD wing.aspect_ratio
   Value: 9.53123
   Unit: nondimensional
   Status: calculated-from-published-inputs
-  Source: easa_a064_issue_62
+  Source: easa_a064_issue_63
   Source URL: https://www.easa.europa.eu/en/document-library/type-certificates/aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaa064-airbus-a318-a319-a320-a321-single-aisle
-  Document title: EASA Type Certificate Data Sheet EASA.A.064, Issue 62
-  Revision date: 2026-06-26
+  Document title: EASA Type Certificate Data Sheet EASA.A.064, Issue 63
+  Revision date: 2026-11-24
   Page or section: A320 reference geometry
   Formula: span^2 / area
   Inputs: span=34.1 m; area=122.0 m2
@@ -623,7 +623,7 @@ SUBTYPE AND ENGINE DATABANK APPLICABILITY
 FIELD subtypes
   Value: 8 unique certified subtype mapping(s)
   Status: certified-published
-  Source: easa_a064_issue_62 | icao_eedb_issue_32
+  Source: easa_a064_issue_63 | icao_eedb_issue_32
   Page or section: Section 1 III.5; PDF pp.37-38 | Section 1 III.5; PDF p.37 | Section 1 III.5; PDF pp.37-40
   Applicability: Certified subtype applicability with query identifiers normalized to ICAO EEDB Issue 32.
   Evidence inventory: sources/geometry/airbus-subtype-engine-mapping.tsv

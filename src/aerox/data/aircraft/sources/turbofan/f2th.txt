@@ -34,17 +34,17 @@ FIELD certification.type_certificate
 END FIELD
 
 FIELD certification.issue
-  Value: Issue 12 at review
+  Value: Issue 13 at review
   Status: certified-published
   Source: easa_falcon_2000_a008
   Applicability: Repository ICAO does not establish 2000, EX, DX, LX, LXS, S, engine, or modification state.
 END FIELD
 
 FIELD certification.issue_date
-  Value: null
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+  Value: 2026-09-15
+  Status: certified-published
+  Source: easa_falcon_2000_a008
+  Applicability: Repository ICAO does not establish 2000, EX, DX, LX, LXS, S, engine, or modification state.
 END FIELD
 
 FIELD mtow
@@ -121,8 +121,8 @@ FIELD wing.area
   Source: easa_falcon_2000_a008
   Source URL: https://www.easa.europa.eu/en/downloads/7510/en
   Document title: EASA.A.008 Falcon 2000 Type-Certificate Data Sheet
-  Revision date: 2026-06-11
-  Page or section: Issue 12, sections 2.5.3 and 3.5.3
+  Revision date: 2026-09-15
+  Page or section: Issue 13, sections 2.5.3 and 3.5.3
   Applicability: Falcon 2000 and Falcon 2000EX derivative sections publishing the same value
   Uncertainty: Source rounded to 0.01 m2
   Previous value: 46 m2
@@ -144,8 +144,8 @@ FIELD wing.mac
   Source: easa_falcon_2000_a008
   Source URL: https://www.easa.europa.eu/en/downloads/7510/en
   Document title: EASA.A.008 Falcon 2000 Type-Certificate Data Sheet
-  Revision date: 2026-06-11
-  Page or section: Issue 12, sections 2.5.14 and 3.5.14
+  Revision date: 2026-09-15
+  Page or section: Issue 13, sections 2.5.14 and 3.5.14
   Applicability: Falcon 2000 and Falcon 2000EX derivative sections publishing the same value
   Uncertainty: Source rounded to 0.0001 m
   Previous value: 2.6 m
@@ -174,7 +174,7 @@ FIELD wing.root_chord
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_falcon_2000_a008
-  Search record: reviewed EASA.A.008 Issue 12, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
+  Search record: reviewed EASA.A.008 Issue 13, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
 END FIELD
 
 FIELD wing.tip_chord
@@ -184,7 +184,7 @@ FIELD wing.tip_chord
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_falcon_2000_a008
-  Search record: reviewed EASA.A.008 Issue 12, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
+  Search record: reviewed EASA.A.008 Issue 13, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
 END FIELD
 
 FIELD wing.taper_ratio
@@ -194,7 +194,7 @@ FIELD wing.taper_ratio
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_falcon_2000_a008
-  Search record: reviewed EASA.A.008 Issue 12, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
+  Search record: reviewed EASA.A.008 Issue 13, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
 END FIELD
 
 FIELD wing.aspect_ratio
@@ -215,7 +215,7 @@ FIELD wing.dihedral
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_falcon_2000_a008
-  Search record: reviewed EASA.A.008 Issue 12, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
+  Search record: reviewed EASA.A.008 Issue 13, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
 END FIELD
 
 FIELD horizontal_tail.area
@@ -225,7 +225,7 @@ FIELD horizontal_tail.area
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_falcon_2000_a008
-  Search record: reviewed EASA.A.008 Issue 12, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
+  Search record: reviewed EASA.A.008 Issue 13, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
 END FIELD
 
 FIELD horizontal_tail.span
@@ -235,7 +235,7 @@ FIELD horizontal_tail.span
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_falcon_2000_a008
-  Search record: reviewed EASA.A.008 Issue 12, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
+  Search record: reviewed EASA.A.008 Issue 13, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
 END FIELD
 
 FIELD horizontal_tail.mac
@@ -245,7 +245,7 @@ FIELD horizontal_tail.mac
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_falcon_2000_a008
-  Search record: reviewed EASA.A.008 Issue 12, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
+  Search record: reviewed EASA.A.008 Issue 13, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
 END FIELD
 
 FIELD horizontal_tail.root_chord
@@ -255,7 +255,7 @@ FIELD horizontal_tail.root_chord
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_falcon_2000_a008
-  Search record: reviewed EASA.A.008 Issue 12, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
+  Search record: reviewed EASA.A.008 Issue 13, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
 END FIELD
 
 FIELD horizontal_tail.tip_chord
@@ -265,7 +265,7 @@ FIELD horizontal_tail.tip_chord
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_falcon_2000_a008
-  Search record: reviewed EASA.A.008 Issue 12, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
+  Search record: reviewed EASA.A.008 Issue 13, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
 END FIELD
 
 FIELD horizontal_tail.taper_ratio
@@ -275,7 +275,7 @@ FIELD horizontal_tail.taper_ratio
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_falcon_2000_a008
-  Search record: reviewed EASA.A.008 Issue 12, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
+  Search record: reviewed EASA.A.008 Issue 13, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
 END FIELD
 
 FIELD horizontal_tail.sweep
@@ -285,7 +285,7 @@ FIELD horizontal_tail.sweep
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_falcon_2000_a008
-  Search record: reviewed EASA.A.008 Issue 12, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
+  Search record: reviewed EASA.A.008 Issue 13, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
 END FIELD
 
 FIELD horizontal_tail.dihedral
@@ -295,7 +295,7 @@ FIELD horizontal_tail.dihedral
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_falcon_2000_a008
-  Search record: reviewed EASA.A.008 Issue 12, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
+  Search record: reviewed EASA.A.008 Issue 13, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -305,7 +305,7 @@ FIELD horizontal_tail.arm
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_falcon_2000_a008
-  Search record: reviewed EASA.A.008 Issue 12, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
+  Search record: reviewed EASA.A.008 Issue 13, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
@@ -315,7 +315,7 @@ FIELD horizontal_tail.elevator_area_ratio
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_falcon_2000_a008
-  Search record: reviewed EASA.A.008 Issue 12, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
+  Search record: reviewed EASA.A.008 Issue 13, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
 END FIELD
 
 FIELD vertical_tail.area
@@ -325,7 +325,7 @@ FIELD vertical_tail.area
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_falcon_2000_a008
-  Search record: reviewed EASA.A.008 Issue 12, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
+  Search record: reviewed EASA.A.008 Issue 13, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
 END FIELD
 
 FIELD vertical_tail.height
@@ -335,7 +335,7 @@ FIELD vertical_tail.height
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_falcon_2000_a008
-  Search record: reviewed EASA.A.008 Issue 12, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
+  Search record: reviewed EASA.A.008 Issue 13, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
 END FIELD
 
 FIELD vertical_tail.mac
@@ -345,7 +345,7 @@ FIELD vertical_tail.mac
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_falcon_2000_a008
-  Search record: reviewed EASA.A.008 Issue 12, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
+  Search record: reviewed EASA.A.008 Issue 13, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
 END FIELD
 
 FIELD vertical_tail.root_chord
@@ -355,7 +355,7 @@ FIELD vertical_tail.root_chord
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_falcon_2000_a008
-  Search record: reviewed EASA.A.008 Issue 12, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
+  Search record: reviewed EASA.A.008 Issue 13, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
 END FIELD
 
 FIELD vertical_tail.tip_chord
@@ -365,7 +365,7 @@ FIELD vertical_tail.tip_chord
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_falcon_2000_a008
-  Search record: reviewed EASA.A.008 Issue 12, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
+  Search record: reviewed EASA.A.008 Issue 13, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
 END FIELD
 
 FIELD vertical_tail.taper_ratio
@@ -375,7 +375,7 @@ FIELD vertical_tail.taper_ratio
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_falcon_2000_a008
-  Search record: reviewed EASA.A.008 Issue 12, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
+  Search record: reviewed EASA.A.008 Issue 13, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
 END FIELD
 
 FIELD vertical_tail.sweep
@@ -385,7 +385,7 @@ FIELD vertical_tail.sweep
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_falcon_2000_a008
-  Search record: reviewed EASA.A.008 Issue 12, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
+  Search record: reviewed EASA.A.008 Issue 13, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
 END FIELD
 
 FIELD vertical_tail.arm
@@ -395,7 +395,7 @@ FIELD vertical_tail.arm
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_falcon_2000_a008
-  Search record: reviewed EASA.A.008 Issue 12, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
+  Search record: reviewed EASA.A.008 Issue 13, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
 END FIELD
 
 FIELD vertical_tail.rudder_area_ratio
@@ -405,7 +405,7 @@ FIELD vertical_tail.rudder_area_ratio
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_falcon_2000_a008
-  Search record: reviewed EASA.A.008 Issue 12, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
+  Search record: reviewed EASA.A.008 Issue 13, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
 END FIELD
 
 LEGACY PARAMETERS

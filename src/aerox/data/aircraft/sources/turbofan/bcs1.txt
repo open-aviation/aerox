@@ -504,7 +504,7 @@ SUBTYPE AND ENGINE DATABANK APPLICABILITY
 FIELD subtypes
   Value: 1 unique certified subtype mapping(s)
   Status: certified-published
-  Source: easa_im_a570_issue_24 | icao_eedb_issue_32
+  Source: easa_im_a570_issue_25 | icao_eedb_issue_32
   Page or section: Section 1 III.5; PDF p.10
   Applicability: Certified subtype applicability with query identifiers normalized to ICAO EEDB Issue 32.
   Evidence inventory: sources/geometry/airbus-subtype-engine-mapping.tsv

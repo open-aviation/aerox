@@ -6,8 +6,8 @@ certification:
   model: null
   authority: EASA
   type_certificate: EASA.A.008
-  issue: Issue 12 at review
-  issue_date: null
+  issue: Issue 13 at review
+  issue_date: '2026-09-15'
 mtow: 16556
 mlw: 15648
 mzfw: null

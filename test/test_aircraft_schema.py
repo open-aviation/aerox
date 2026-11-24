@@ -49,7 +49,7 @@ def test_loader_keeps_legacy_custom_provenance_folder_compatibility(tmp_path: Pa
     )
 
     aircraft = load_aircraft("A320", yaml_root)
-    assert aircraft.certification.source_id == "easa_a064_issue_62"
+    assert aircraft.certification.source_id == "easa_a064_issue_63"
 
 
 def test_all_aircraft_use_the_original_compact_parameter_layout(records):
@@ -401,12 +401,12 @@ def test_a320_keeps_tcds_values_and_plain_text_sources():
     assert aircraft.mzfw == 62500
     assert aircraft.minimum_weight == 37230
     assert aircraft.certification.type_certificate == "EASA.A.064"
-    assert aircraft.certification.source_id == "easa_a064_issue_62"
+    assert aircraft.certification.source_id == "easa_a064_issue_63"
 
     notes = parse_source_notes(
         (SOURCE_ROOT / "turbofan/a320.txt").read_text(encoding="utf-8")
     )
-    assert notes["fields"]["mtow"]["source"] == "easa_a064_issue_62"
+    assert notes["fields"]["mtow"]["source"] == "easa_a064_issue_63"
     assert notes["fields"]["mtow"]["status"] == "certified-published"
 
 
