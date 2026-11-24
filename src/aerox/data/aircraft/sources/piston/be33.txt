@@ -48,17 +48,29 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 1390
+  Value: 1383
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_3a15_rev_98
+  Source URL: https://web.archive.org/web/20210409165511/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/c3cb729491ecb94b86258051006e7667/$FILE/3A15_Rev98.pdf
+  Document title: FAA Type Certificate Data Sheet 3A15, Beech 33, 35 and 36 series (Bonanza, Debonair), Revision 98
+  Revision date: 2016-10-12
+  Page or section: Section X (Models 35-C33, E33, F33), Maximum Weight, p. 11
+  Applicability: Models 35-C33, E33 and F33, Continental IO-470-K (record engine IO-470-K)
+  Notes: 3050 lb. Section X lists the IO-470-K models 35-C33, E33 and F33. Alternatives: 35-B33 (IO-470-K) 3000 lb; F33A (IO-520-BA/BB) 3400 lb. Copy of FAA TCDS 3A15 Rev 98; later revisions may differ.
 END FIELD
 
 FIELD mlw
-  Value: 1500
+  Value: 1383
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_3a15_rev_98
+  Source URL: https://web.archive.org/web/20210409165511/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/c3cb729491ecb94b86258051006e7667/$FILE/3A15_Rev98.pdf
+  Document title: FAA Type Certificate Data Sheet 3A15, Beech 33, 35 and 36 series (Bonanza, Debonair), Revision 98
+  Revision date: 2016-10-12
+  Page or section: Section X (Models 35-C33, E33, F33), Maximum Weight, p. 11
+  Applicability: Models 35-C33, E33 and F33, Continental IO-470-K (record engine IO-470-K)
+  Notes: 3050 lb. No separate landing weight in the TCDS; landing at maximum weight is allowed. Copy of FAA TCDS 3A15 Rev 98; later revisions may differ.
 END FIELD
 
 FIELD mzfw

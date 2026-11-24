@@ -110,4 +110,6 @@ ENV/
 
 # CAD archives are the original downloads; the extracted drawings are tracked.
 /sources/cad/*/archives/
+# Local archive of the cited source documents; rebuilt by fetch_documents.py.
+/sources/documents/
 aircraft-viewer.html

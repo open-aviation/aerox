@@ -48,17 +48,29 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 2860
+  Value: 2858
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a7ce_rev_49
+  Source URL: https://web.archive.org/web/20161227191724/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/fa8ec669eacac99886257ed20073f9a0/$FILE/A7CE_Rev_49.pdf
+  Document title: FAA Type Certificate Data Sheet A7CE, Cessna 401, 402, 411, 414, 421 and 425 series, Revision 49
+  Revision date: 2015-07-29
+  Page or section: Section III (Models 402, 402A, 402B), Maximum Weight, p. 6
+  Applicability: Models 402, 402A and 402B, Continental TSIO-520-E or TSIO-520-EB (record engine TSIO-520-E)
+  Notes: 6300 lb takeoff (6335 lb ramp for 402B S/N 402B1301 and up). Model 401 (Section II, same engine) is also 6300 lb. 402C (TSIO-520-VB, Section IX) is 6850 lb. Copy of FAA TCDS A7CE Rev 49; later revisions may differ.
 END FIELD
 
 FIELD mlw
-  Value: 3100
+  Value: 2812
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a7ce_rev_49
+  Source URL: https://web.archive.org/web/20161227191724/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/fa8ec669eacac99886257ed20073f9a0/$FILE/A7CE_Rev_49.pdf
+  Document title: FAA Type Certificate Data Sheet A7CE, Cessna 401, 402, 411, 414, 421 and 425 series, Revision 49
+  Revision date: 2015-07-29
+  Page or section: Section III (Models 402, 402A, 402B), Maximum Weight, p. 6
+  Applicability: Models 402, 402A and 402B, Continental TSIO-520-E or TSIO-520-EB (record engine TSIO-520-E)
+  Notes: 6200 lb landing; same for Model 401. 402C takeoff and landing 6850 lb. Copy of FAA TCDS A7CE Rev 49; later revisions may differ.
 END FIELD
 
 FIELD mzfw

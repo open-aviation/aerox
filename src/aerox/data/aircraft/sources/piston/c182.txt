@@ -48,17 +48,29 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 1270
+  Value: 1406
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_3a13_rev_72
+  Source URL: https://web.archive.org/web/20210417105918/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/fae5dd92c6210c7286257ebd006029c5/$FILE/3A13_Rev_72.pdf
+  Document title: FAA Type Certificate Data Sheet 3A13, Cessna 182 series (Skylane), Revision 72
+  Revision date: 2015-09-11
+  Page or section: Section XIII (Models 182S, 182T), Maximum Weights, p. 33
+  Applicability: Models 182S and 182T, Lycoming IO-540-AB1A5 (record engine IO-540-AB1A5)
+  Notes: 3100 lb maximum takeoff (3110 lb ramp). 182R also 3100 lb takeoff; 182Q 2950 lb. T182T (TIO-540-AK1A) is in Section XIV. Copy of FAA TCDS 3A13 Rev 72; later revisions may differ.
 END FIELD
 
 FIELD mlw
-  Value: 1300
+  Value: 1338
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_3a13_rev_72
+  Source URL: https://web.archive.org/web/20210417105918/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/fae5dd92c6210c7286257ebd006029c5/$FILE/3A13_Rev_72.pdf
+  Document title: FAA Type Certificate Data Sheet 3A13, Cessna 182 series (Skylane), Revision 72
+  Revision date: 2015-09-11
+  Page or section: Section XIII (Models 182S, 182T), Maximum Weights, p. 33
+  Applicability: Models 182S and 182T, Lycoming IO-540-AB1A5 (record engine IO-540-AB1A5)
+  Notes: 2950 lb maximum landing. Copy of FAA TCDS 3A13 Rev 72; later revisions may differ.
 END FIELD
 
 FIELD mzfw

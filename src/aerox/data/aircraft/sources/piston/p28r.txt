@@ -48,17 +48,29 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 1130
+  Value: 1134
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_2a13_rev_62
+  Source URL: https://web.archive.org/web/20210414051023/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/5ef92b982a0811ad862586380047f882/$FILE/2A13_R62.pdf
+  Document title: FAA Type Certificate Data Sheet 2A13, Piper PA-28 series (Cherokee, Arrow), Revision 62
+  Revision date: 2020-11-16
+  Page or section: Section IX (Model PA-28R-180), Maximum Weight, p. 13
+  Applicability: Model PA-28R-180 Arrow, S/N 28R-30002 through 28R-31270 and 28R-7130001 through 28R-7130013, Lycoming IO-360-B1E (record engine IO-360-B1E)
+  Notes: 2500 lb. Alternatives: PA-28R-200 (Section X) 2600 lb; PA-28R-200 Arrow II (Section XI) 2650 lb. Copy of FAA TCDS 2A13 Rev 62; later revisions may differ.
 END FIELD
 
 FIELD mlw
-  Value: 1300
+  Value: 1134
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_2a13_rev_62
+  Source URL: https://web.archive.org/web/20210414051023/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/5ef92b982a0811ad862586380047f882/$FILE/2A13_R62.pdf
+  Document title: FAA Type Certificate Data Sheet 2A13, Piper PA-28 series (Cherokee, Arrow), Revision 62
+  Revision date: 2020-11-16
+  Page or section: Section IX (Model PA-28R-180), Maximum Weight, p. 13
+  Applicability: Model PA-28R-180 Arrow, S/N 28R-30002 through 28R-31270 and 28R-7130001 through 28R-7130013, Lycoming IO-360-B1E (record engine IO-360-B1E)
+  Notes: 2500 lb. No separate landing weight in the TCDS; landing at maximum weight is allowed. Copy of FAA TCDS 2A13 Rev 62; later revisions may differ.
 END FIELD
 
 FIELD mzfw

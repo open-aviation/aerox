@@ -3787,3 +3787,78 @@ sources:
   licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
   relevant_pages: Section I airspeed limitations (p. 2); maximum operating altitude (p. 4)
   limitations: Archived copy of Revision 13; later FAA revisions were not reachable. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_3a15_rev_98
+  title: FAA Type Certificate Data Sheet 3A15, Beech 33, 35 and 36 series (Bonanza, Debonair), Revision 98
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20210409165511/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/c3cb729491ecb94b86258051006e7667/$FILE/3A15_Rev98.pdf
+  original_url: https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/c3cb729491ecb94b86258051006e7667/$FILE/3A15_Rev98.pdf
+  document_number: 3A15
+  issue_revision: Revision 98
+  publication_date: 2016-10-12
+  capture_date: 2021-04-09
+  access_date: 2026-11-24
+  applicable_aircraft: Beech 33, 35 and 36 series, including E33, F33, A36 and G36
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Section X (35-C33, E33, F33, p. 11); Section XIII (36, A36, p. 16); Section XVIII (G36)
+  limitations: Archived copy of Revision 98; later FAA revisions were not reachable. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_3a13_rev_72
+  title: FAA Type Certificate Data Sheet 3A13, Cessna 182 series (Skylane), Revision 72
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20210417105918/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/fae5dd92c6210c7286257ebd006029c5/$FILE/3A13_Rev_72.pdf
+  original_url: https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/fae5dd92c6210c7286257ebd006029c5/$FILE/3A13_Rev_72.pdf
+  document_number: 3A13
+  issue_revision: Revision 72
+  publication_date: 2015-09-11
+  capture_date: 2021-04-17
+  access_date: 2026-11-24
+  applicable_aircraft: Cessna 182 series, including 182S and 182T
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Section XIII (182S, 182T), maximum weights (p. 33)
+  limitations: Archived copy of Revision 72; later FAA revisions were not reachable. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_3a10_rev_63
+  title: FAA Type Certificate Data Sheet 3A10, Cessna 310 series, Revision 63
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20210417105721/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/a40a3cc742cf6b6186257ed2006934e0/$FILE/3A10_Rev_63.pdf
+  original_url: https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/a40a3cc742cf6b6186257ed2006934e0/$FILE/3A10_Rev_63.pdf
+  document_number: 3A10
+  issue_revision: Revision 63
+  publication_date: 2015-07-29
+  capture_date: 2021-04-17
+  access_date: 2026-11-24
+  applicable_aircraft: Cessna 310 through 310R and T310P/Q/R
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Section XXII (310R), maximum weight (p. 30); earlier models in Sections I to XXI
+  limitations: Archived copy of Revision 63; later FAA revisions were not reachable. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_a7ce_rev_49
+  title: FAA Type Certificate Data Sheet A7CE, Cessna 401, 402, 411, 414, 421 and 425 series, Revision 49
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20161227191724/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/fa8ec669eacac99886257ed20073f9a0/$FILE/A7CE_Rev_49.pdf
+  original_url: http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/fa8ec669eacac99886257ed20073f9a0/$FILE/A7CE_Rev_49.pdf
+  document_number: A7CE
+  issue_revision: Revision 49
+  publication_date: 2015-07-29
+  capture_date: 2016-12-27
+  access_date: 2026-11-24
+  applicable_aircraft: Cessna 401, 402, 402A, 402B, 402C, 411, 414, 414A, 421, 421B, 421C, 425
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Section II (401, p. 4); Section III (402, 402A, 402B), maximum weight (p. 6); Section IX (402C)
+  limitations: Archived copy of Revision 49; later FAA revisions were not reachable. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_2a13_rev_62
+  title: FAA Type Certificate Data Sheet 2A13, Piper PA-28 series (Cherokee, Arrow), Revision 62
+  organization: Federal Aviation Administration
+  url: https://web.archive.org/web/20210414051023/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/5ef92b982a0811ad862586380047f882/$FILE/2A13_R62.pdf
+  original_url: https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/5ef92b982a0811ad862586380047f882/$FILE/2A13_R62.pdf
+  document_number: 2A13
+  issue_revision: Revision 62
+  publication_date: 2020-11-16
+  capture_date: 2021-04-14
+  access_date: 2026-11-24
+  applicable_aircraft: Piper PA-28 series, including PA-28R-180, PA-28R-200 and PA-28R-201
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
+  relevant_pages: Section IX (PA-28R-180), maximum weight (p. 13); Sections X, XI, XVII (later Arrow models)
+  limitations: Archived copy of Revision 62; later FAA revisions were not reachable. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).

@@ -48,17 +48,29 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 1650
+  Value: 1656
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_3a15_rev_98
+  Source URL: https://web.archive.org/web/20210409165511/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/c3cb729491ecb94b86258051006e7667/$FILE/3A15_Rev98.pdf
+  Document title: FAA Type Certificate Data Sheet 3A15, Beech 33, 35 and 36 series (Bonanza, Debonair), Revision 98
+  Revision date: 2016-10-12
+  Page or section: Section XIII (Models 36, A36), Maximum Weight, p. 16
+  Applicability: Model A36 S/N E-1946, E-2104, E-2111 through E-3635 (except E-3630), Continental IO-550-B (record engine IO-550-B)
+  Notes: 3650 lb. Alternatives: Model 36/A36 S/N E-1 through E-2110 (IO-520) 3600 lb; G36 (IO-550-B, Section XVIII) 3650 lb; A36TC 3650 lb and B36TC 3850 lb (turbocharged). Copy of FAA TCDS 3A15 Rev 98; later revisions may differ.
 END FIELD
 
 FIELD mlw
-  Value: 1700
+  Value: 1656
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_3a15_rev_98
+  Source URL: https://web.archive.org/web/20210409165511/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/c3cb729491ecb94b86258051006e7667/$FILE/3A15_Rev98.pdf
+  Document title: FAA Type Certificate Data Sheet 3A15, Beech 33, 35 and 36 series (Bonanza, Debonair), Revision 98
+  Revision date: 2016-10-12
+  Page or section: Section XIII (Models 36, A36), Maximum Weight, p. 16
+  Applicability: Model A36 S/N E-1946, E-2104, E-2111 through E-3635 (except E-3630), Continental IO-550-B (record engine IO-550-B)
+  Notes: 3650 lb. No separate landing weight in the TCDS; landing at maximum weight is allowed. Copy of FAA TCDS 3A15 Rev 98; later revisions may differ.
 END FIELD
 
 FIELD mzfw

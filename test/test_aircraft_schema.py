@@ -410,23 +410,15 @@ def test_a320_keeps_tcds_values_and_plain_text_sources():
     assert notes["fields"]["mtow"]["status"] == "certified-published"
 
 
-def test_basic_mass_relationships_are_reported_without_automatic_changes(records):
-    warnings = []
+def test_landing_and_zero_fuel_masses_do_not_exceed_takeoff_mass(records):
+    errors = []
     for path, document in records:
         mtow, mlw, mzfw = document["mtow"], document["mlw"], document["mzfw"]
         if mtow is not None and mlw is not None and mlw > mtow:
-            warnings.append((path.stem, "mlw"))
+            errors.append((path.stem, "mlw"))
         if mtow is not None and mzfw is not None and mzfw > mtow:
-            warnings.append((path.stem, "mzfw"))
-    # Known mixed-model/applicability conflicts remain data-review warnings.
-    assert {icao for icao, _ in warnings} == {
-        "be33",
-        "be36",
-        "c182",
-        "c310",
-        "c402",
-        "p28r",
-    }
+            errors.append((path.stem, "mzfw"))
+    assert errors == []
 
 
 def test_derived_geometry_matches_documented_formulas(records):

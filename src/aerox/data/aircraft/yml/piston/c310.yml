@@ -8,8 +8,8 @@ certification:
   type_certificate: 3A10
   issue: current revision unresolved
   issue_date: null
-mtow: 2494
-mlw: 2500
+mtow: 2495
+mlw: 2449
 mzfw: null
 minimum_weight: null
 oew: null
@@ -72,9 +72,8 @@ engine:
   type: piston
   mount: front wing leading mounted
   number: 2
-  default: IO-470-M
+  default: IO-520-M
   options:
-  - IO-470-M
   - IO-470-D
   - IO-520-M
   - TSIO-520-B

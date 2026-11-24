@@ -48,17 +48,29 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 2494
+  Value: 2495
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_3a10_rev_63
+  Source URL: https://web.archive.org/web/20210417105721/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/a40a3cc742cf6b6186257ed2006934e0/$FILE/3A10_Rev_63.pdf
+  Document title: FAA Type Certificate Data Sheet 3A10, Cessna 310 series, Revision 63
+  Revision date: 2015-07-29
+  Page or section: Section XXII (Model 310R), Maximum Weight, p. 30
+  Applicability: Model 310R, Continental IO-520-M or IO-520-MB
+  Notes: 5500 lb takeoff (5535 lb ramp for S/N 310R1201 and up). The record engine was IO-470-M, which TCDS 3A10 does not list; it is now IO-520-M, the 310R engine. 310R is the last and most common 310 model and matches the legacy value (2494 kg = 5500 lb). Alternatives: 310Q (IO-470-VO) 5300 lb; 310K to 310P (IO-470-V/VO) 5200 lb; T310R 5500 lb. Copy of FAA TCDS 3A10 Rev 63; later revisions may differ.
 END FIELD
 
 FIELD mlw
-  Value: 2500
+  Value: 2449
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_3a10_rev_63
+  Source URL: https://web.archive.org/web/20210417105721/https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/a40a3cc742cf6b6186257ed2006934e0/$FILE/3A10_Rev_63.pdf
+  Document title: FAA Type Certificate Data Sheet 3A10, Cessna 310 series, Revision 63
+  Revision date: 2015-07-29
+  Page or section: Section XXII (Model 310R), Maximum Weight, p. 30
+  Applicability: Model 310R, Continental IO-520-M or IO-520-MB
+  Notes: 5400 lb landing. Alternatives: 310Q 5300 lb; 310K to 310P 5200 lb. Copy of FAA TCDS 3A10 Rev 63; later revisions may differ.
 END FIELD
 
 FIELD mzfw
