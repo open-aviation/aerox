@@ -269,15 +269,65 @@ def _derived_metadata(
     }
 
 
+def _keep_stored(
+    path: str,
+    exact: float,
+    input_paths: tuple[str, ...],
+    document: Mapping[str, Any],
+    metadata: Mapping[str, Mapping[str, str]],
+    original_values: Mapping[str, Any],
+    original_metadata: Mapping[str, Mapping[str, str]] | None,
+    rel_tol: float,
+) -> bool:
+    """Return True when the note already documents a consistent derived value.
+
+    The stored value and its note block are kept when the value agrees with the
+    derivation and neither the field nor its inputs changed in this run.  This
+    keeps hand-written provenance, for example a published taper ratio from
+    which the chords were derived.
+    """
+    if original_metadata is None or path not in original_metadata:
+        return False
+    stored = original_values.get(path)
+    if stored is None:
+        return False
+    for field in (path, *input_paths):
+        if _get(document, field) != original_values.get(field) or metadata.get(
+            field
+        ) != original_metadata.get(field):
+            return False
+    return math.isclose(float(stored), exact, rel_tol=rel_tol)
+
+
 def derive_geometry(
     document: dict[str, Any],
     metadata: dict[str, dict[str, str]],
     original_values: Mapping[str, Any] | None = None,
+    original_metadata: Mapping[str, Mapping[str, str]] | None = None,
 ) -> None:
+    """Derive aspect and taper ratios from their inputs.
+
+    With ``original_metadata`` (the note blocks before this run), a stored
+    derived value that agrees with its inputs keeps its value and note block.
+    """
     original_values = original_values or {}
     wing = document["wing"]
-    if wing["span"] is not None and wing["area"] is not None:
-        derived = round(float(wing["span"]) ** 2 / float(wing["area"]), 6)
+    exact = (
+        float(wing["span"]) ** 2 / float(wing["area"])
+        if wing["span"] is not None and wing["area"] is not None
+        else None
+    )
+    if exact is not None and not _keep_stored(
+        "wing.aspect_ratio",
+        exact,
+        ("wing.span", "wing.area"),
+        document,
+        metadata,
+        original_values,
+        original_metadata,
+        2e-6,
+    ):
+        derived = round(exact, 6)
         wing["aspect_ratio"] = derived
         record = _derived_metadata(
             "span^2 / area",
@@ -317,11 +367,21 @@ def derive_geometry(
     for section_name in ("wing", "horizontal_tail", "vertical_tail"):
         section = document[section_name]
         if section["root_chord"] is not None and section["tip_chord"] is not None:
-            derived = round(
-                float(section["tip_chord"]) / float(section["root_chord"]), 6
-            )
-            section["taper_ratio"] = derived
             path = f"{section_name}.taper_ratio"
+            exact = float(section["tip_chord"]) / float(section["root_chord"])
+            if _keep_stored(
+                path,
+                exact,
+                (f"{section_name}.tip_chord", f"{section_name}.root_chord"),
+                document,
+                metadata,
+                original_values,
+                original_metadata,
+                3e-6,
+            ):
+                continue
+            derived = round(exact, 6)
+            section["taper_ratio"] = derived
             record = _derived_metadata(
                 "tip_chord / root_chord",
                 f"tip_chord={section['tip_chord']} m; root_chord={section['root_chord']} m",
@@ -425,10 +485,19 @@ def render_geometry_section(
             )
             record.setdefault("searched_source", searched_source)
 
+        value_text = "null" if value is None else str(value)
+        old_value_text = existing.get(path, {}).get("value")
+        if value is not None and old_value_text is not None:
+            try:
+                if float(old_value_text) == float(value):
+                    # Keep the hand-written number format, e.g. "1.434000".
+                    value_text = old_value_text
+            except ValueError:
+                pass
         lines.extend(
             [
                 f"FIELD {path}",
-                f"  Value: {value if value is not None else 'null'}",
+                f"  Value: {value_text}",
                 f"  Unit: {unit}",
             ]
         )
@@ -494,14 +563,17 @@ def main() -> int:
             for key, value in parse_old_provenance(old_sidecar)["fields"].items()
             if key in GEOMETRY_UNITS
         }
+        note_metadata = {key: dict(value) for key, value in metadata.items()}
 
         searched_sources: list[str] = []
         aircraft_search = " | ".join(search_records.get(path.stem.upper(), []))
-        certification_source = _certification_search_source(
-            parse_old_provenance(old_sidecar)["fields"]
+        certification_sources = _source_ids(
+            {
+                "source": _certification_search_source(
+                    parse_old_provenance(old_sidecar)["fields"]
+                )
+            }
         )
-        if certification_source != "-":
-            searched_sources.extend(_source_ids({"source": certification_source}))
         for (icao, _), row in research.items():
             if icao == path.stem.upper():
                 for source_id in row["source_id"].split("|"):
@@ -592,14 +664,18 @@ def main() -> int:
         for field in GEOMETRY_UNITS:
             if _get(document, field) is None and searched_sources:
                 record = metadata.setdefault(field, {})
-                combined = _source_ids({"source": record.get("searched_source", "")})
+                # An existing search list is kept; research sources are added.
+                # The certification source is only the default for a new list.
+                combined = _source_ids(
+                    {"source": record.get("searched_source", "")}
+                ) or list(certification_sources)
                 for source_id in searched_sources:
                     if source_id not in combined:
                         combined.append(source_id)
                 record["searched_source"] = " | ".join(combined)
             if _get(document, field) is None and aircraft_search:
                 metadata.setdefault(field, {})["search_record"] = aircraft_search
-        derive_geometry(document, metadata, original_values)
+        derive_geometry(document, metadata, original_values, note_metadata)
         for (icao, field), exclusion in exclusions.items():
             if icao != path.stem.upper() or (icao, field) not in research:
                 continue
