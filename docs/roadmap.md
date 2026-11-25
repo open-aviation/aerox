@@ -1,6 +1,19 @@
 # Roadmap
 
-Updated: 2026-11-24
+Updated: 2026-11-25
+
+## Release 0.5
+
+- **Drag reference altitude.** The reference altitude of the drag model
+  does not exceed the published ceiling. This changes the drag model of 42
+  records, mostly business jets.
+- **Verified limits.** The CL60, LJ31, LJ60, B37M, and B3XM limits are
+  checked against the FAA data sheets. The LJ31 record is the Learjet 31A
+  with TFE731-2-3B engines. The CL60 record is the Challenger 604 with
+  CF34-3B engines.
+- **Zero-fuel masses.** MZFW is added for the B37M, B3XM, C750, CL60, GLF4,
+  GLF5, and LJ31.
+- **Sources.** The 737 records cite FAA data sheet A16WE Revision 83.
 
 ## Release 0.4
 
