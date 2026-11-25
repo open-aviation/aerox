@@ -81,9 +81,9 @@ drag:
   configuration: clean
   geometry_tier: B-observed-core-scaled-tails
   confidence: medium-low
-  reference_altitude_ft: 40691.0
+  reference_altitude_ft: 40000.0
   reference_mach: 0.78
-  reference_reynolds_per_m: 4721317.3
+  reference_reynolds_per_m: 4880764.3
   span_efficiency_factor: 0.942524
   unresolved_fraction_of_resolved_drag: null
   roughness_excrescence_fraction: 0.09

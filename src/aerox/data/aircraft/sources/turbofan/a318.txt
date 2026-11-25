@@ -442,7 +442,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9462; roughness_excrescence/computed=0.0900; nacelle_tier=A-measured-nacelle
-  Zero-lift terms at reference (drag counts): wing=53.76; fuselage=60.06; horizontal_tail=17.91; vertical_tail=11.24; nacelles=13.84; pylons=2.13; fuselage_upsweep=6.32; control_surface_gaps=1.13; nacelle_base=2.27; roughness_excrescence=15.18
+  Zero-lift terms at reference (drag counts): wing=52.91; fuselage=59.22; horizontal_tail=17.62; vertical_tail=11.06; nacelles=13.62; pylons=2.10; fuselage_upsweep=6.32; control_surface_gaps=1.13; nacelle_base=2.27; roughness_excrescence=14.96
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -464,7 +464,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 41948.3
+  Value: 39800.0
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -476,10 +476,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 4501434.5
+  Value: 4991086.6
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=41948.3 ft; Mach=0.790000; ISA temperature and density
+  Inputs: altitude=39800.0 ft; Mach=0.790000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.946221

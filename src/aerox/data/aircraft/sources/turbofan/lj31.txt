@@ -5,39 +5,46 @@ Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
-  Model or family: -
+  Model or family: 31A
   Authority: Federal Aviation Administration
   Type certificate: A10CE
-  Applicability: Exact certified model and approved weight configuration unresolved.
+  Applicability: Model 31A (S/N 035 and on) with Honeywell TFE731-2-3B engines; Model 31 (S/N 001 to 034) shares the engines and the basic weights.
 
 TYPE-CERTIFICATE AND LIMIT PARAMETERS
 
 FIELD certification.model
-  Value: null
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+  Value: 31A
+  Status: certified-published
+  Source: faa_a10ce_rev_67
+  Source URL: https://web.archive.org/web/20161227210050/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/396c71dfcebb3fb186257df2004e83ee/$FILE/A10CE_Rev_67.pdf
+  Document title: FAA Type Certificate Data Sheet A10CE, Learjet 23 to 60 series, Revision 67
+  Revision date: 2015-02-19
+  Page or section: Section VII (Models 31, 31A), Engines, p. 19; Serial Nos. Eligible, p. 22
+  Applicability: Model 31A (S/N 035 and on)
+  Notes: ICAO LJ31 covers Models 31 and 31A. Model 31A is used because it has the highest certified weights. Engines for both models: two Honeywell TFE731-2-3B (P/N 3073610-1, -3 or -4). The record previously named the TFE731-2-2B, which is the Model 35/36 engine (Section IV). Copy of FAA TCDS A10CE Rev 67; Rev 68 (2024) gives the same values.
+  Previous value: null
+  Correction reason: Model and engine were not consistent; the engine is now the Model 31/31A engine from Section VII.
 END FIELD
 
 FIELD certification.authority
   Value: Federal Aviation Administration
   Status: certified-published
   Source: faa_a10ce_r68_2024_historical
-  Applicability: Exact certified model and approved weight configuration unresolved.
+  Applicability: Model 31A (S/N 035 and on) with Honeywell TFE731-2-3B engines; Model 31 (S/N 001 to 034) shares the engines and the basic weights.
 END FIELD
 
 FIELD certification.type_certificate
   Value: A10CE
   Status: certified-published
   Source: faa_a10ce_r68_2024_historical
-  Applicability: Exact certified model and approved weight configuration unresolved.
+  Applicability: Model 31A (S/N 035 and on) with Honeywell TFE731-2-3B engines; Model 31 (S/N 001 to 034) shares the engines and the basic weights.
 END FIELD
 
 FIELD certification.issue
   Value: Latest current revision not retrieved; Revision 68 found but marked historical
   Status: certified-published
   Source: faa_a10ce_r68_2024_historical
-  Applicability: Exact certified model and approved weight configuration unresolved.
+  Applicability: Model 31A (S/N 035 and on) with Honeywell TFE731-2-3B engines; Model 31 (S/N 001 to 034) shares the engines and the basic weights.
 END FIELD
 
 FIELD certification.issue_date
@@ -48,37 +55,48 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 7711
+  Value: 8029
   Unit: kg
   Status: certified-published
   Source: faa_a10ce_rev_67
   Source URL: https://web.archive.org/web/20161227210050/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/396c71dfcebb3fb186257df2004e83ee/$FILE/A10CE_Rev_67.pdf
   Document title: FAA Type Certificate Data Sheet A10CE, Learjet 23 to 60 series, Revision 67
   Revision date: 2015-02-19
-  Page or section: Section VII (Models 31, 31A), Maximum Weight, p. 22; Note 40, p. 36
-  Applicability: Model 31 with Learjet STC ST00583WI (17,000 lb takeoff)
-  Notes: Basic 15,500 lb (7,031 kg); 16,500 lb per Note 30. Model 31A: 16,500 (Note 33), 17,000 (Note 41) or 17,700 lb (Note 42, 8,029 kg). Copy of FAA TCDS A10CE Rev 67; later revisions may differ.
+  Page or section: Section VII (Models 31, 31A), Maximum Weight, p. 22; Note 42, p. 37
+  Applicability: Model 31A with Learjet ECR 4202 (17,700 lb takeoff)
+  Notes: Basic 15,500 lb (7,031 kg). Model 31A options: 16,500 lb (Note 33), 17,000 lb (Note 41). Model 31: 16,500 lb (Note 30) or 17,000 lb (Note 40). Copy of FAA TCDS A10CE Rev 67; Rev 68 (2024) gives the same values.
+  Previous value: 7711 kg
+  Correction reason: Model 31A highest certified takeoff weight replaces the Model 31 STC ST00583WI value.
 END FIELD
 
 FIELD mlw
-  Value: 6940
+  Value: 7257
   Unit: kg
   Status: certified-published
   Source: faa_a10ce_rev_67
   Source URL: https://web.archive.org/web/20161227210050/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/396c71dfcebb3fb186257df2004e83ee/$FILE/A10CE_Rev_67.pdf
   Document title: FAA Type Certificate Data Sheet A10CE, Learjet 23 to 60 series, Revision 67
   Revision date: 2015-02-19
-  Page or section: Section VII (Models 31, 31A), Maximum Weight, p. 22
-  Applicability: Model 31 (15,300 lb landing)
-  Notes: Model 31A: 16,000 lb (7,257 kg) with ECR 4214 (Note 43). Copy of FAA TCDS A10CE Rev 67; later revisions may differ.
+  Page or section: Section VII (Models 31, 31A), Maximum Weight, p. 22; Note 43, p. 37
+  Applicability: Model 31A with Learjet ECR 4214 (16,000 lb landing)
+  Notes: Basic 15,300 lb (6,940 kg) for Models 31 and 31A. Copy of FAA TCDS A10CE Rev 67; Rev 68 (2024) gives the same values.
+  Previous value: 6940 kg
+  Correction reason: Model 31A highest certified landing weight.
 END FIELD
 
 FIELD mzfw
-  Value: null
+  Value: 6124
   Unit: kg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+  Status: certified-published
+  Source: faa_a10ce_rev_67
+  Source URL: https://web.archive.org/web/20161227210050/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/396c71dfcebb3fb186257df2004e83ee/$FILE/A10CE_Rev_67.pdf
+  Document title: FAA Type Certificate Data Sheet A10CE, Learjet 23 to 60 series, Revision 67
+  Revision date: 2015-02-19
+  Page or section: Section VII (Models 31, 31A), Maximum Weight, p. 22; Note 41, p. 36
+  Applicability: Model 31A with Learjet STC ST00583WI or ECRs 3938 and 4152 (13,500 lb zero fuel)
+  Notes: Basic 13,000 lb (5,897 kg). Copy of FAA TCDS A10CE Rev 67; Rev 68 (2024) gives the same values.
+  Previous value: null
+  Correction reason: Added the published Model 31A optional zero-fuel weight.
 END FIELD
 
 FIELD minimum_weight
@@ -90,29 +108,33 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 300
+  Value: 325
   Unit: kt
   Status: certified-published
   Source: faa_a10ce_rev_67
   Source URL: https://web.archive.org/web/20161227210050/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/396c71dfcebb3fb186257df2004e83ee/$FILE/A10CE_Rev_67.pdf
   Document title: FAA Type Certificate Data Sheet A10CE, Learjet 23 to 60 series, Revision 67
   Revision date: 2015-02-19
-  Page or section: Section VII (Models 31, 31A), Airspeed/Mach limits chart (IAS), p. 20
-  Applicability: Model 31 basic weights
-  Notes: Read from the Model 31 chart: VMO 300 KIAS from sea level to about 29,000 ft. The Model 31A chart shows about 325 KIAS (unlabelled line). Optional weights refer to AFM FM-112/FM-121. Copy of FAA TCDS A10CE Rev 67; later revisions may differ.
+  Page or section: Section VII (Models 31, 31A), Airspeed/Mach limits chart, Model 31A (IAS), p. 20
+  Applicability: Model 31A basic weights
+  Notes: Read from the Model 31A chart: VMO 325 KIAS (on a 25 kt grid line) from sea level to about 26,000 ft, then MMO. Model 31 chart: 300 KIAS to about 29,000 ft. Model 31 and 31A with the optional takeoff weights (Notes 30, 33, 40, 41, 42) refer to AFM FM-112 or FM-121 for airspeed limits. Copy of FAA TCDS A10CE Rev 67; Rev 68 (2024) gives the same values.
+  Previous value: 300 kt
+  Correction reason: Model 31A value replaces the Model 31 value.
 END FIELD
 
 FIELD mmo
-  Value: 0.78
+  Value: 0.81
   Unit: Mach
   Status: certified-published
   Source: faa_a10ce_rev_67
   Source URL: https://web.archive.org/web/20161227210050/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/396c71dfcebb3fb186257df2004e83ee/$FILE/A10CE_Rev_67.pdf
   Document title: FAA Type Certificate Data Sheet A10CE, Learjet 23 to 60 series, Revision 67
   Revision date: 2015-02-19
-  Page or section: Section VII (Models 31, 31A), Airspeed/Mach limits chart (IAS), p. 20
-  Applicability: Model 31 basic weights
-  Notes: Model 31 chart label MMO (.78 MI). The Model 31A chart shows about 0.81 with autopilot or Mach trim and 0.78 MI with both inoperative. Copy of FAA TCDS A10CE Rev 67; later revisions may differ.
+  Page or section: Section VII (Models 31, 31A), Airspeed/Mach limits chart, Model 31A (IAS), p. 20
+  Applicability: Model 31A basic weights, autopilot or Mach trim operating
+  Notes: Read from the Model 31A chart (indicated Mach): 0.81 from about 26,000 to 43,000 ft, decreasing to about 0.79 above about 47,000 ft; 0.78 with autopilot and Mach trim inoperative or disengaged. Model 31 chart: 0.78. Optional takeoff weights refer to the AFM. Copy of FAA TCDS A10CE Rev 67; Rev 68 (2024) gives the same values.
+  Previous value: 0.78
+  Correction reason: Model 31A value replaces the Model 31 value.
 END FIELD
 
 FIELD ceiling
@@ -125,7 +147,7 @@ FIELD ceiling
   Revision date: 2015-02-19
   Page or section: Section VII (Models 31, 31A), Maximum Operating Altitude, p. 22
   Applicability: Models 31 and 31A
-  Notes: Copy of FAA TCDS A10CE Rev 67; later revisions may differ.
+  Notes: Copy of FAA TCDS A10CE Rev 67; Rev 68 (2024) gives the same values.
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -417,7 +439,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9469; roughness_excrescence/computed=0.0900; nacelle_tier=C-estimated-fan-diameter
-  Zero-lift terms at reference (drag counts): wing=62.66; fuselage=62.54; horizontal_tail=21.57; vertical_tail=13.70; nacelles=9.68; pylons=1.29; fuselage_upsweep=4.39; control_surface_gaps=1.33; nacelle_base=3.41; roughness_excrescence=16.25
+  Zero-lift terms at reference (drag counts): wing=62.31; fuselage=62.23; horizontal_tail=21.44; vertical_tail=13.62; nacelles=9.99; pylons=1.33; fuselage_upsweep=4.39; control_surface_gaps=1.33; nacelle_base=3.48; roughness_excrescence=16.21
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -439,7 +461,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 51098.2
+  Value: 50402.8
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -451,10 +473,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 2826323.1
+  Value: 2922374.5
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=51098.2 ft; Mach=0.770000; ISA temperature and density
+  Inputs: altitude=50402.8 ft; Mach=0.770000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.94686

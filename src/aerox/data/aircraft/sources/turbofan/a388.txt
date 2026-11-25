@@ -88,6 +88,8 @@ FIELD vmo
   Unit: kt
   Status: legacy-unverified
   Source: aerox_legacy_aircraft_database
+  Searched source: easa_a110_issue_17 | faa_a58nm_rev_11
+  Search record: EASA A.110 Issue 17, items 1.5 and 2.5, pp. 11 and 13, and FAA A58NM Rev 11, Airspeed Limits, p. 2, were searched; both refer the airspeed limits to the AFM. No published value; the legacy value is kept.
 END FIELD
 
 FIELD mmo
@@ -95,19 +97,21 @@ FIELD mmo
   Unit: Mach
   Status: legacy-unverified
   Source: aerox_legacy_aircraft_database
+  Searched source: easa_a110_issue_17 | faa_a58nm_rev_11
+  Search record: EASA A.110 Issue 17, items 1.5 and 2.5, pp. 11 and 13, and FAA A58NM Rev 11, Airspeed Limits, p. 2, were searched; both refer the airspeed limits to the AFM. No published value; the legacy value is kept.
 END FIELD
 
 FIELD ceiling
   Value: 43000
   Unit: ft
   Status: certified-published
-  Source: faa_a58nm_rev_6
-  Source URL: https://web.archive.org/web/20161112154218/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/083db0ec0506b38c86257ce500633f91/$FILE/A58NM_Rev_6.pdf
-  Document title: FAA Type Certificate Data Sheet A58NM, Airbus A380, Revision 6
-  Revision date: 2014-05-27
-  Page or section: Maximum Operating Altitude, p. 3
+  Source: faa_a58nm_rev_11
+  Source URL: https://drs.faa.gov
+  Document title: FAA Type Certificate Data Sheet A58NM, Airbus A380, Revision 11
+  Revision date: 2024-07-25
+  Page or section: Maximum Operating Altitude, p. 4
   Applicability: A380-841, -842, -861
-  Notes: Copy of FAA TCDS A58NM Rev 6; later revisions may differ.
+  Notes: Copy of FAA TCDS A58NM Rev 11 (FAA DRS, search TCDS A58NM); value unchanged from Rev 6 (p. 3).
 END FIELD
 
 WING AND TAIL GEOMETRY

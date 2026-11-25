@@ -7,7 +7,7 @@ Source ledger: sources/sources.yml
 CERTIFICATION SCOPE
   Model or family: 750
   Authority: FAA validated by EASA
-  Type certificate: T00009WI / EASA.IM.A.097
+  Type certificate: T00007WI / EASA.IM.A.097
   Applicability: Citation X/X+ and service-bulletin-defined configurations require explicit applicability.
 
 TYPE-CERTIFICATE AND LIMIT PARAMETERS
@@ -27,9 +27,12 @@ FIELD certification.authority
 END FIELD
 
 FIELD certification.type_certificate
-  Value: T00009WI / EASA.IM.A.097
+  Value: T00007WI / EASA.IM.A.097
   Status: certified-published
-  Source: easa_c750_a097
+  Source: easa_c750_a097 | faa_t00007wi_rev_16
+  Page or section: EASA Issue 03, Section 1, item 2, p. 4 (FAA TCDS No. T00007WI); FAA T00007WI Rev 16, p. 1
+  Previous value: T00009WI / EASA.IM.A.097
+  Correction reason: The FAA TCDS for the Cessna 750 is T00007WI, as named in EASA.IM.A.097 and on the FAA sheet; T00009WI was a wrong number.
   Applicability: Citation X/X+ and service-bulletin-defined configurations require explicit applicability.
 END FIELD
 
@@ -67,11 +70,15 @@ FIELD mlw
 END FIELD
 
 FIELD mzfw
-  Value: null
+  Value: 11068
   Unit: kg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+  Status: certified-published
+  Source: easa_c750_a097 | faa_t00007wi_rev_16
+  Page or section: EASA Issue 03, item 13, p. 9; FAA T00007WI Rev 16, Section I, Maximum Weight, p. 5
+  Applicability: Model 750 S/N 750-0001 to -0500 (24,400 lb)
+  Notes: S/N 750-0501 and on (FAA only): 24,978 lb (11,330 kg).
+  Previous value: null
+  Correction reason: Added the published zero-fuel weight.
 END FIELD
 
 FIELD minimum_weight
@@ -92,7 +99,7 @@ FIELD vmo
   Revision date: 2015-07-29
   Page or section: Section I (Model 750), Airspeed Limits, p. 3
   Applicability: Model 750, all S/N
-  Notes: VMO 270 KIAS below 8,000 ft; 350 KIAS (350 KCAS) from 8,000 ft to 30,650 ft (to 31,500 ft for S/N 750-0501 and on). The record certification line gives T00009WI; the Model 750 TCDS is T00007WI. Copy of FAA TCDS T00007WI Rev 16; later revisions may differ.
+  Notes: VMO 270 KIAS below 8,000 ft; 350 KIAS (350 KCAS) from 8,000 ft to 30,650 ft (to 31,500 ft for S/N 750-0501 and on). Copy of FAA TCDS T00007WI Rev 16; later revisions may differ.
 END FIELD
 
 FIELD mmo
@@ -443,7 +450,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9566; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
-  Zero-lift terms at reference (drag counts): wing=58.90; fuselage=47.42; horizontal_tail=19.26; vertical_tail=12.25; nacelles=18.47; pylons=2.46; fuselage_upsweep=2.78; control_surface_gaps=0.89; nacelle_base=3.60; roughness_excrescence=14.94
+  Zero-lift terms at reference (drag counts): wing=58.86; fuselage=47.39; horizontal_tail=19.24; vertical_tail=12.24; nacelles=18.45; pylons=2.46; fuselage_upsweep=2.78; control_surface_gaps=0.89; nacelle_base=3.60; roughness_excrescence=14.93
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -465,7 +472,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 51098.2
+  Value: 51000.0
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -477,10 +484,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 3303494.6
+  Value: 3319118.7
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=51098.2 ft; Mach=0.900000; ISA temperature and density
+  Inputs: altitude=51000.0 ft; Mach=0.900000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.956596

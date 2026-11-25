@@ -83,17 +83,31 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 300
+  Value: 340
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a10ce_rev_67
+  Source URL: https://web.archive.org/web/20161227210050/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/396c71dfcebb3fb186257df2004e83ee/$FILE/A10CE_Rev_67.pdf
+  Document title: FAA Type Certificate Data Sheet A10CE, Learjet 23 to 60 series, Revision 67
+  Revision date: 2015-02-19
+  Page or section: Section VIII (Model 60), Airspeed/Mach limits chart (IAS), p. 23
+  Applicability: Learjet Model 60
+  Notes: Read from the Model 60 chart (5 kt grid): VMO 300 KIAS from sea level to 8,000 ft; 340 KIAS from 8,000 ft to about 20,000 ft, then decreasing to the MMO line at about 27,000 ft. The stored value is the highest VMO. EASA.IM.A.212 Issue 04 item 4 (p. 10) shows the same chart. Copy of FAA TCDS A10CE Rev 67; later revisions may differ.
+  Previous value: 300 kt
+  Correction reason: Replaced the legacy value with the TCDS chart value.
 END FIELD
 
 FIELD mmo
   Value: 0.81
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a10ce_rev_67
+  Source URL: https://web.archive.org/web/20161227210050/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0a1b2711bce981d48525676200542f0f/396c71dfcebb3fb186257df2004e83ee/$FILE/A10CE_Rev_67.pdf
+  Document title: FAA Type Certificate Data Sheet A10CE, Learjet 23 to 60 series, Revision 67
+  Revision date: 2015-02-19
+  Page or section: Section VIII (Model 60), Airspeed/Mach limits chart (IAS), p. 23
+  Applicability: Learjet Model 60
+  Notes: Read from the Model 60 chart (indicated Mach, 0.005 grid): MMO 0.81 from about 27,000 to 37,000 ft, decreasing to 0.78 at about 43,500 ft and 0.78 up to 51,000 ft; 0.77 with Mach trim inoperative and autopilot disengaged. EASA.IM.A.212 Issue 04 item 4 (p. 10) shows the same chart. Copy of FAA TCDS A10CE Rev 67; later revisions may differ.
 END FIELD
 
 FIELD ceiling

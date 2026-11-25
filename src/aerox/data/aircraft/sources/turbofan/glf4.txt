@@ -68,11 +68,15 @@ FIELD mlw
 END FIELD
 
 FIELD mzfw
-  Value: null
+  Value: 22226
   Unit: kg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+  Status: certified-published
+  Source: faa_a12ea_rev_54
+  Page or section: Section V (Model G-IV), GIV (G400) Zero Fuel Gross Weight Envelope, p. 26
+  Applicability: G-IV S/N 1214 and on, S/N 1000 to 1213 with ASC 190, S/N 1500 and on with ASC 440 (49,000 lb)
+  Notes: S/N 1000 to 1213 without ASC 61, 190 or 261: 46,500 lb (21,092 kg), p. 23.
+  Previous value: null
+  Correction reason: Added the published zero-fuel weight.
 END FIELD
 
 FIELD minimum_weight
@@ -87,26 +91,26 @@ FIELD vmo
   Value: 340
   Unit: kt
   Status: certified-published
-  Source: faa_a12ea_rev_47
-  Source URL: https://web.archive.org/web/20170322205842/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/c4feacd6d313eb6e862580650058d836/$FILE/A12EA_Rev_47.pdf
-  Document title: FAA Type Certificate Data Sheet A12EA, Gulfstream G-1159 series, G-IV, GV, Revision 47
-  Revision date: 2016-11-02
+  Source: faa_a12ea_rev_54
+  Source URL: https://drs.faa.gov
+  Document title: FAA Type Certificate Data Sheet A12EA, Gulfstream G-1159 series, G-IV, GV, GV-SP, GIV-X, Revision 54
+  Revision date: 2026-04-21
   Page or section: Section V (Model G-IV), Airspeed Limits refer to the altitude/Mach flight envelope, p. 19 and chart p. 21
   Applicability: G-IV S/N 1000 and subsequent
-  Notes: Chart: Vc 340 KCAS to 28,000 ft. S/N 1000-1213 with ASC 61: 320 KCAS and Mmo 0.86 (chart p. 22). GIV-X (G350/G450) limits refer to the AFM. Copy of FAA TCDS A12EA Rev 47; later revisions may differ.
+  Notes: Chart: Vc 340 KCAS to 28,000 ft. S/N 1000-1213 with ASC 61: 320 KCAS and Mmo 0.86 (chart p. 22). GIV-X (G350/G450) limits refer to the AFM. Copy of FAA TCDS A12EA Rev 54 (FAA DRS, search TCDS A12EA); values and pages unchanged from Rev 47.
 END FIELD
 
 FIELD mmo
   Value: 0.88
   Unit: Mach
   Status: certified-published
-  Source: faa_a12ea_rev_47
-  Source URL: https://web.archive.org/web/20170322205842/http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/c4feacd6d313eb6e862580650058d836/$FILE/A12EA_Rev_47.pdf
-  Document title: FAA Type Certificate Data Sheet A12EA, Gulfstream G-1159 series, G-IV, GV, Revision 47
-  Revision date: 2016-11-02
+  Source: faa_a12ea_rev_54
+  Source URL: https://drs.faa.gov
+  Document title: FAA Type Certificate Data Sheet A12EA, Gulfstream G-1159 series, G-IV, GV, GV-SP, GIV-X, Revision 54
+  Revision date: 2026-04-21
   Page or section: Section V (Model G-IV), altitude/Mach flight envelope chart, p. 21
   Applicability: G-IV S/N 1000 and subsequent
-  Notes: Chart: Mmo (Mc) 0.85 at 28,000 ft, 0.88 from 34,000 to 43,500 ft, 0.874 at 45,000 ft. Copy of FAA TCDS A12EA Rev 47; later revisions may differ.
+  Notes: Chart: Mmo (Mc) 0.85 at 28,000 ft, 0.88 from 34,000 to 43,500 ft, 0.874 at 45,000 ft. Copy of FAA TCDS A12EA Rev 54 (FAA DRS, search TCDS A12EA); values and pages unchanged from Rev 47.
 END FIELD
 
 FIELD ceiling
@@ -417,7 +421,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9545; roughness_excrescence/computed=0.0900; nacelle_tier=C-estimated-fan-diameter
-  Zero-lift terms at reference (drag counts): wing=56.40; fuselage=39.03; horizontal_tail=18.50; vertical_tail=11.78; nacelles=10.15; pylons=1.35; fuselage_upsweep=2.27; control_surface_gaps=1.11; nacelle_base=2.00; roughness_excrescence=12.83
+  Zero-lift terms at reference (drag counts): wing=54.89; fuselage=38.09; horizontal_tail=17.99; vertical_tail=11.46; nacelles=9.87; pylons=1.32; fuselage_upsweep=2.27; control_surface_gaps=1.11; nacelle_base=2.00; roughness_excrescence=12.51
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -439,7 +443,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 48617.9
+  Value: 45000.0
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -451,10 +455,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 3308209.5
+  Value: 3936531.1
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=48617.9 ft; Mach=0.800000; ISA temperature and density
+  Inputs: altitude=45000.0 ft; Mach=0.800000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.954479

@@ -1,36 +1,43 @@
 AEROX AIRCRAFT SOURCE NOTES
 Aircraft: Canadair Challenger 600/601/604
 ICAO: CL60
-Last reviewed: 2026-08-05
+Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
-  Model or family: -
+  Model or family: CL-600-2B16 (604 Variant)
   Authority: Transport Canada Civil Aviation
   Type certificate: A-131
-  Applicability: Severe family-level incompatibility across engines, weights and commercial variants.
+  Applicability: CL-600-2B16 604 Variant (Challenger 604, S/N 5301 and on; FAA also lists the 605 and 650 under this variant) with CF34-3B engines.
 
 TYPE-CERTIFICATE AND LIMIT PARAMETERS
 
 FIELD certification.model
-  Value: null
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+  Value: CL-600-2B16 (604 Variant)
+  Status: certified-published
+  Source: faa_a21ea_rev_52
+  Source URL: https://drs.faa.gov
+  Document title: FAA Type Certificate Data Sheet A21EA, Bombardier CL-600 (Challenger), Revision 52
+  Revision date: 2026-07-29
+  Page or section: Cover page; Section III (CL-600-2B16), Engines, p. 6
+  Applicability: CL-600-2B16 604 Variant (Challenger 604, S/N 5301 and on; FAA also lists the 605 and 650 under this variant) with CF34-3B engines.
+  Notes: ICAO CL60 covers the CL-600-1A11 (600), CL-600-2A12 (601) and CL-600-2B16 (601-3A, 601-3R, 604 variants). The record name lists the 604 and the legacy masses matched the 604, so the 604 Variant is used; it also has the highest certified weights. Its engines are two GE CF34-3B; the record previously named the CF34-3A (601 and 601-3A engine). Copy of FAA TCDS A21EA Rev 52 (FAA DRS, search TCDS A21EA); values unchanged from Rev 47.
+  Previous value: null
+  Correction reason: Model resolved from the record name and masses; engine changed to the 604 Variant engine.
 END FIELD
 
 FIELD certification.authority
   Value: Transport Canada Civil Aviation
   Status: certified-published
   Source: tcca_a131_cl64_oe_r6_2026
-  Applicability: Severe family-level incompatibility across engines, weights and commercial variants.
+  Applicability: CL-600-2B16 604 Variant (Challenger 604, S/N 5301 and on; FAA also lists the 605 and 650 under this variant) with CF34-3B engines.
 END FIELD
 
 FIELD certification.type_certificate
   Value: A-131
   Status: certified-published
   Source: tcca_a131_cl64_oe_r6_2026
-  Applicability: Severe family-level incompatibility across engines, weights and commercial variants.
+  Applicability: CL-600-2B16 604 Variant (Challenger 604, S/N 5301 and on; FAA also lists the 605 and 650 under this variant) with CF34-3B engines.
 END FIELD
 
 FIELD certification.issue
@@ -48,25 +55,48 @@ FIELD certification.issue_date
 END FIELD
 
 FIELD mtow
-  Value: 21600
+  Value: 21591
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a21ea_rev_52
+  Source URL: https://drs.faa.gov
+  Document title: FAA Type Certificate Data Sheet A21EA, Bombardier CL-600 (Challenger), Revision 52
+  Revision date: 2026-07-29
+  Page or section: Section III (CL-600-2B16), 604 Variant, Maximum Weights, p. 9
+  Applicability: CL-600-2B16 604 Variant (47,600 lb takeoff)
+  Notes: Ramp 47,700 lb. 601-3A/3R variants: 43,100 lb; CL-600-2A12: 42,100 lb; CL-600-1A11: 36,000 lb. The TCDS says certain aircraft are eligible for other weights per the AFM. Copy of FAA TCDS A21EA Rev 52 (FAA DRS, search TCDS A21EA); values unchanged from Rev 47.
+  Previous value: 21600 kg
+  Correction reason: Replaced the legacy value with the TCDS value.
 END FIELD
 
 FIELD mlw
-  Value: 17200
+  Value: 17237
   Unit: kg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a21ea_rev_52
+  Source URL: https://drs.faa.gov
+  Document title: FAA Type Certificate Data Sheet A21EA, Bombardier CL-600 (Challenger), Revision 52
+  Revision date: 2026-07-29
+  Page or section: Section III (CL-600-2B16), 604 Variant, Maximum Weights, p. 9
+  Applicability: CL-600-2B16 604 Variant (38,000 lb landing)
+  Notes: 601-3A/3R variants and CL-600-2A12: 36,000 lb; CL-600-1A11: 30,500 lb. Copy of FAA TCDS A21EA Rev 52 (FAA DRS, search TCDS A21EA); values unchanged from Rev 47.
+  Previous value: 17200 kg
+  Correction reason: Replaced the legacy value with the TCDS value.
 END FIELD
 
 FIELD mzfw
-  Value: null
+  Value: 14515
   Unit: kg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+  Status: certified-published
+  Source: faa_a21ea_rev_52
+  Source URL: https://drs.faa.gov
+  Document title: FAA Type Certificate Data Sheet A21EA, Bombardier CL-600 (Challenger), Revision 52
+  Revision date: 2026-07-29
+  Page or section: Section III (CL-600-2B16), 604 Variant, Maximum Weights, p. 9
+  Applicability: CL-600-2B16 604 Variant (32,000 lb zero fuel)
+  Notes: 601-3A/3R variants and CL-600-2A12: 29,500 lb; CL-600-1A11: 25,800 lb. Copy of FAA TCDS A21EA Rev 52 (FAA DRS, search TCDS A21EA); values unchanged from Rev 47.
+  Previous value: null
+  Correction reason: Added the TCDS value.
 END FIELD
 
 FIELD minimum_weight
@@ -78,24 +108,46 @@ FIELD minimum_weight
 END FIELD
 
 FIELD vmo
-  Value: 320
+  Value: 348
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a21ea_rev_52
+  Source URL: https://drs.faa.gov
+  Document title: FAA Type Certificate Data Sheet A21EA, Bombardier CL-600 (Challenger), Revision 52
+  Revision date: 2026-07-29
+  Page or section: Section III (CL-600-2B16), 604 Variant, Airspeed Limits (CAS), p. 8
+  Applicability: CL-600-2B16 604 Variant
+  Notes: The TCDS gives CAS: VMO 300 KCAS from sea level to 8,000 ft, 348 KCAS from 8,000 to 22,160 ft, 318 KCAS from 26,570 to 30,997 ft; MMO 0.78 from 22,160 to 26,570 ft and 0.85 above 30,997 ft. The stored value is the highest VMO, in KCAS; the KIAS value is in the AFM. 601-3A/3R variants: 360 KCAS. Copy of FAA TCDS A21EA Rev 52 (FAA DRS, search TCDS A21EA); values unchanged from Rev 47.
+  Previous value: 320 kt
+  Correction reason: Replaced the legacy value with the TCDS value.
 END FIELD
 
 FIELD mmo
-  Value: 0.82
+  Value: 0.85
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a21ea_rev_52
+  Source URL: https://drs.faa.gov
+  Document title: FAA Type Certificate Data Sheet A21EA, Bombardier CL-600 (Challenger), Revision 52
+  Revision date: 2026-07-29
+  Page or section: Section III (CL-600-2B16), 604 Variant, Airspeed Limits (CAS), p. 8
+  Applicability: CL-600-2B16 604 Variant
+  Notes: MMO 0.85 above 30,997 ft; 0.78 from 22,160 to 26,570 ft. Listed under the CAS heading. 601-3A/3R variants: 0.835. Copy of FAA TCDS A21EA Rev 52 (FAA DRS, search TCDS A21EA); values unchanged from Rev 47.
+  Previous value: 0.82
+  Correction reason: Replaced the legacy value with the TCDS value.
 END FIELD
 
 FIELD ceiling
   Value: 41000
   Unit: ft
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a21ea_rev_52
+  Source URL: https://drs.faa.gov
+  Document title: FAA Type Certificate Data Sheet A21EA, Bombardier CL-600 (Challenger), Revision 52
+  Revision date: 2026-07-29
+  Page or section: Section III (CL-600-2B16), Maximum Operating Altitude, p. 10
+  Applicability: CL-600-2B16 (all variants)
+  Notes: En route 41,000 ft; takeoff and landing 10,000 ft. Copy of FAA TCDS A21EA Rev 52 (FAA DRS, search TCDS A21EA); values unchanged from Rev 47.
 END FIELD
 
 WING AND TAIL GEOMETRY
@@ -387,7 +439,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9414; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
-  Zero-lift terms at reference (drag counts): wing=58.13; fuselage=60.61; horizontal_tail=19.41; vertical_tail=12.35; nacelles=24.48; pylons=3.26; fuselage_upsweep=4.82; control_surface_gaps=1.15; nacelle_base=4.42; roughness_excrescence=16.98
+  Zero-lift terms at reference (drag counts): wing=57.78; fuselage=60.28; horizontal_tail=19.29; vertical_tail=12.28; nacelles=24.33; pylons=3.24; fuselage_upsweep=4.82; control_surface_gaps=1.15; nacelle_base=4.42; roughness_excrescence=16.88
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -409,7 +461,7 @@ FIELD drag.confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.reference_altitude_ft
-  Value: 41796.3
+  Value: 41000.0
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Representative clean reference condition.
@@ -421,10 +473,10 @@ FIELD drag.reference_mach
   Applicability: Representative clean reference condition.
 END FIELD
 FIELD drag.reference_reynolds_per_m
-  Value: 4304851.2
+  Value: 4472811.4
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: altitude=41796.3 ft; Mach=0.750000; ISA temperature and density
+  Inputs: altitude=41000.0 ft; Mach=0.750000; ISA temperature and density
 END FIELD
 FIELD drag.span_efficiency_factor
   Value: 0.941373

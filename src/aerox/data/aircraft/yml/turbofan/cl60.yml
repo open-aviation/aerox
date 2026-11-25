@@ -3,19 +3,19 @@ icao: CL60
 iata: null
 subtypes: null
 certification:
-  model: null
+  model: CL-600-2B16 (604 Variant)
   authority: Transport Canada Civil Aviation
   type_certificate: A-131
   issue: null
   issue_date: null
-mtow: 21600
-mlw: 17200
-mzfw: null
+mtow: 21591
+mlw: 17237
+mzfw: 14515
 minimum_weight: null
 oew: 12315
 mfc: 11340
-vmo: 320
-mmo: 0.82
+vmo: 348
+mmo: 0.85
 ceiling: 41000
 icao_wtc: medium
 eu_wtc: lower medium
@@ -72,17 +72,17 @@ engine:
   type: turbofan
   mount: rear fuselage
   number: 2
-  default: CF34-3A
+  default: CF34-3B
   options:
-  - CF34-3A
+  - CF34-3B
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean
   geometry_tier: B-observed-core-scaled-tails
   confidence: medium-low
-  reference_altitude_ft: 41796.3
+  reference_altitude_ft: 41000.0
   reference_mach: 0.75
-  reference_reynolds_per_m: 4304851.2
+  reference_reynolds_per_m: 4472811.4
   span_efficiency_factor: 0.941373
   unresolved_fraction_of_resolved_drag: null
   roughness_excrescence_fraction: 0.09

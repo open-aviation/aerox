@@ -10,7 +10,7 @@ certification:
   issue_date: '2026-08-06'
 mtow: 33838
 mlw: 29937
-mzfw: null
+mzfw: 22226
 minimum_weight: null
 oew: 16103
 mfc: 24210
@@ -80,9 +80,9 @@ drag:
   configuration: clean
   geometry_tier: B-observed-core-scaled-tails
   confidence: medium-low
-  reference_altitude_ft: 48617.9
+  reference_altitude_ft: 45000.0
   reference_mach: 0.8
-  reference_reynolds_per_m: 3308209.5
+  reference_reynolds_per_m: 3936531.1
   span_efficiency_factor: 0.954479
   unresolved_fraction_of_resolved_drag: null
   roughness_excrescence_fraction: 0.09

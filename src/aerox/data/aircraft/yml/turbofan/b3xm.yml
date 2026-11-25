@@ -3,14 +3,14 @@ icao: B3XM
 iata: 7MX
 subtypes: null
 certification:
-  model: null
-  authority: null
-  type_certificate: null
-  issue: null
-  issue_date: null
+  model: 737-10
+  authority: FAA
+  type_certificate: A16WE
+  issue: Revision 83
+  issue_date: '2026-11-13'
 mtow: 89765
 mlw: 75931
-mzfw: null
+mzfw: 72574
 minimum_weight: null
 oew: 45000
 mfc: 26000
@@ -72,9 +72,11 @@ engine:
   type: turbofan
   mount: wing
   number: 2
-  default: LEAP-1B
+  default: LEAP-1B27
   options:
-  - LEAP-1B
+  - LEAP-1B27
+  - LEAP-1B28
+  - LEAP-1B28B1
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

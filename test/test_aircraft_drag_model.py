@@ -150,6 +150,14 @@ def test_scaled_defaults_are_explicit_and_do_not_mutate_source_geometry():
     assert aircraft.wing.mac is None
     assert aircraft.fuselage.width is None
 
+    parameters = build_drag_report(aircraft)
+
+    assert parameters.geometry_tier == "D-class-scaled"
+    assert parameters.confidence == "low"
+    assert {"wing.mac", "wing.t/c", "fuselage.width"} <= set(parameters.imputed_fields)
+    assert aircraft.wing.mac is None
+    assert aircraft.fuselage.width is None
+
 
 def test_reference_condition_never_exceeds_published_mmo():
     for code in get_available_aircraft():
@@ -158,13 +166,13 @@ def test_reference_condition_never_exceeds_published_mmo():
         if aircraft.mmo is not None:
             assert parameters.reference_mach <= aircraft.mmo, code
 
-    parameters = build_drag_report(aircraft)
 
-    assert parameters.geometry_tier == "D-class-scaled"
-    assert parameters.confidence == "low"
-    assert {"wing.mac", "wing.t/c", "fuselage.width"} <= set(parameters.imputed_fields)
-    assert aircraft.wing.mac is None
-    assert aircraft.fuselage.width is None
+def test_reference_condition_never_exceeds_published_ceiling():
+    for code in get_available_aircraft():
+        aircraft = load_aircraft(code)
+        parameters = build_drag_report(aircraft)
+        if aircraft.ceiling is not None:
+            assert parameters.reference_altitude_ft <= aircraft.ceiling, code
 
 
 def test_special_aircraft_do_not_use_civil_transport_span_formulation():

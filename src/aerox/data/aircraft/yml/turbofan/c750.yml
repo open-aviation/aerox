@@ -5,12 +5,12 @@ subtypes: null
 certification:
   model: '750'
   authority: FAA validated by EASA
-  type_certificate: T00009WI / EASA.IM.A.097
+  type_certificate: T00007WI / EASA.IM.A.097
   issue: EASA Issue 03
   issue_date: '2016-01-07'
 mtow: 16375
 mlw: 14424
-mzfw: null
+mzfw: 11068
 minimum_weight: null
 oew: 10038
 mfc: 7370
@@ -80,9 +80,9 @@ drag:
   configuration: clean
   geometry_tier: B-observed-core-scaled-tails
   confidence: medium-low
-  reference_altitude_ft: 51098.2
+  reference_altitude_ft: 51000.0
   reference_mach: 0.9
-  reference_reynolds_per_m: 3303494.6
+  reference_reynolds_per_m: 3319118.7
   span_efficiency_factor: 0.956596
   unresolved_fraction_of_resolved_drag: null
   roughness_excrescence_fraction: 0.09

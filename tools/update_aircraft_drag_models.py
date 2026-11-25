@@ -370,7 +370,8 @@ planform branch once trustworthy taper ratios are available; none of the
 current YAML records has a published taper ratio.
 
 Civil-turbofan reference pressure is solved from clean lift at 0.8 MTOW,
-recorded cruise Mach, and `CL=0.556`. Piston and turboprop reference conditions
+recorded cruise Mach, and `CL=0.556`; the resulting altitude is capped at the
+published ceiling. Piston and turboprop reference conditions
 use recorded cruise TAS/Mach and a class-scaled fraction of ceiling. Every
 result stores altitude, Mach, and unit Reynolds number, so `CD0` has an explicit
 condition rather than an implicit common-altitude assumption. A sparse legacy

@@ -5,74 +5,110 @@ Last reviewed: 2026-11-24
 Source ledger: sources/sources.yml
 
 CERTIFICATION SCOPE
-  Model or family: -
-  Authority: -
-  Type certificate: -
-  Applicability: 737-10 appears in Boeing planning material but is absent from EASA IM.A.120 Issue 29; do not represent it as certified.
+  Model or family: 737-10
+  Authority: FAA
+  Type certificate: A16WE
+  Applicability: Boeing 737-10, FAA-approved October 20, 2026 (TCDS A16WE Revision 83, Section XI). Not in EASA.IM.A.120 Issue 30.
 
 TYPE-CERTIFICATE AND LIMIT PARAMETERS
 
 FIELD certification.model
-  Value: null
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+  Value: 737-10
+  Status: certified-published
+  Source: faa_a16we_rev_83
+  Source URL: https://drs.faa.gov
+  Document title: FAA Type Certificate Data Sheet A16WE, Boeing 737, Revision 83
+  Revision date: 2026-11-13
+  Page or section: Cover page; Section XI (737-8/-9/-8200/-7/-10), title and Engines, p. 67
+  Applicability: Boeing 737-10
+  Notes: The TCDS lists these engines for the 737-10: LEAP-1B28, -1B28B1 and -1B27. The engine default is LEAP-1B27 (previously the series name LEAP-1B, which is not a TCDS engine model). Copy of FAA TCDS A16WE Rev 83 (FAA DRS, search TCDS A16WE).
+  Previous value: null
+  Correction reason: The model is now in FAA TCDS A16WE (Revision 83, Section XI).
 END FIELD
 
 FIELD certification.authority
-  Value: null
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+  Value: FAA
+  Status: certified-published
+  Source: faa_a16we_rev_83
+  Page or section: Cover page
+  Applicability: Boeing 737-10
+  Previous value: null
+  Correction reason: The model is now in FAA TCDS A16WE (Revision 83, Section XI).
 END FIELD
 
 FIELD certification.type_certificate
-  Value: null
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+  Value: A16WE
+  Status: certified-published
+  Source: faa_a16we_rev_83
+  Page or section: Cover page
+  Applicability: Boeing 737-10
+  Previous value: null
+  Correction reason: The model is now in FAA TCDS A16WE (Revision 83, Section XI).
 END FIELD
 
 FIELD certification.issue
-  Value: null
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+  Value: Revision 83
+  Status: certified-published
+  Source: faa_a16we_rev_83
+  Page or section: Cover page
+  Applicability: Boeing 737-10
+  Previous value: null
+  Correction reason: The model is now in FAA TCDS A16WE (Revision 83, Section XI).
 END FIELD
 
 FIELD certification.issue_date
-  Value: null
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+  Value: 2026-11-13
+  Status: certified-published
+  Source: faa_a16we_rev_83
+  Page or section: Cover page
+  Applicability: Boeing 737-10
+  Previous value: null
+  Correction reason: The model is now in FAA TCDS A16WE (Revision 83, Section XI).
 END FIELD
 
 FIELD mtow
   Value: 89765
   Unit: kg
-  Status: manufacturer-published-planning
-  Source: boeing_737_max_acap_rev_k_2025_07
-  Page or section: D6-38A004 Rev K, section 2.1.7 (General Characteristics, Model 737-10)
-  Applicability: 737-10 highest design weight option (197,900 lb)
-  Notes: The document marks 737-10 information as preliminary. The 737-10 is not in EASA.IM.A.120 Issue 30.
+  Status: certified-published
+  Source: faa_a16we_rev_83
+  Source URL: https://drs.faa.gov
+  Document title: FAA Type Certificate Data Sheet A16WE, Boeing 737, Revision 83
+  Revision date: 2026-11-13
+  Page or section: Section XI (737-8/-9/-8200/-7/-10), Maximum Weights, p. 67
+  Applicability: Boeing 737-10 (197,900 lb takeoff)
+  Notes: Taxi 198,400 lb. Other Section XI models: 737-7: 177,000 lb; 737-8: 182,200 lb; 737-9: 194,700 lb. Copy of FAA TCDS A16WE Rev 83 (FAA DRS, search TCDS A16WE).
+  Previous value: 89765 kg (manufacturer-published-planning, boeing_737_max_acap_rev_k_2025_07, D6-38A004 Rev K, section 2.1.7)
+  Correction reason: Same value now published in the FAA TCDS; source and status changed.
 END FIELD
 
 FIELD mlw
   Value: 75931
   Unit: kg
-  Status: manufacturer-published-planning
-  Source: boeing_737_max_acap_rev_k_2025_07
-  Page or section: D6-38A004 Rev K, section 2.1.7 (General Characteristics, Model 737-10)
-  Applicability: 737-10 highest design weight option (167,400 lb)
-  Notes: Preliminary 737-10 information.
+  Status: certified-published
+  Source: faa_a16we_rev_83
+  Source URL: https://drs.faa.gov
+  Document title: FAA Type Certificate Data Sheet A16WE, Boeing 737, Revision 83
+  Revision date: 2026-11-13
+  Page or section: Section XI (737-8/-9/-8200/-7/-10), Maximum Weights, p. 67
+  Applicability: Boeing 737-10 (167,400 lb landing)
+  Notes: Copy of FAA TCDS A16WE Rev 83 (FAA DRS, search TCDS A16WE).
+  Previous value: 75931 kg (manufacturer-published-planning, boeing_737_max_acap_rev_k_2025_07, D6-38A004 Rev K, section 2.1.7)
+  Correction reason: Same value now published in the FAA TCDS; source and status changed.
 END FIELD
 
 FIELD mzfw
-  Value: null
+  Value: 72574
   Unit: kg
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-scope value was adopted from the reviewed qualified primary source; the document omits it, defers it, or the bundled model/variant remains ambiguous.
+  Status: certified-published
+  Source: faa_a16we_rev_83
+  Source URL: https://drs.faa.gov
+  Document title: FAA Type Certificate Data Sheet A16WE, Boeing 737, Revision 83
+  Revision date: 2026-11-13
+  Page or section: Section XI (737-8/-9/-8200/-7/-10), Maximum Weights, p. 67
+  Applicability: Boeing 737-10 (160,000 lb zero fuel)
+  Notes: Copy of FAA TCDS A16WE Rev 83 (FAA DRS, search TCDS A16WE).
+  Previous value: null
+  Correction reason: Added the TCDS value.
 END FIELD
 
 FIELD minimum_weight
@@ -86,26 +122,46 @@ END FIELD
 FIELD vmo
   Value: 340
   Unit: kt
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a16we_rev_83
+  Source URL: https://drs.faa.gov
+  Document title: FAA Type Certificate Data Sheet A16WE, Boeing 737, Revision 83
+  Revision date: 2026-11-13
+  Page or section: Section XI (737-8/-9/-8200/-7/-10), Airspeed Limits, p. 67
+  Applicability: Boeing 737-10
+  Notes: The TCDS gives VMO/MMO 340 KCAS/0.82M for all Section XI models. The stored value is in KCAS; the KIAS value is in the AFM. Copy of FAA TCDS A16WE Rev 83 (FAA DRS, search TCDS A16WE).
+  Previous value: 340 kt (legacy-unverified, aerox_legacy_aircraft_database)
+  Correction reason: Legacy value confirmed by the FAA TCDS.
 END FIELD
 
 FIELD mmo
   Value: 0.82
   Unit: Mach
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: certified-published
+  Source: faa_a16we_rev_83
+  Source URL: https://drs.faa.gov
+  Document title: FAA Type Certificate Data Sheet A16WE, Boeing 737, Revision 83
+  Revision date: 2026-11-13
+  Page or section: Section XI (737-8/-9/-8200/-7/-10), Airspeed Limits, p. 67
+  Applicability: Boeing 737-10
+  Notes: Copy of FAA TCDS A16WE Rev 83 (FAA DRS, search TCDS A16WE).
+  Previous value: 0.82 (legacy-unverified, aerox_legacy_aircraft_database)
+  Correction reason: Legacy value confirmed by the FAA TCDS.
 END FIELD
 
 FIELD ceiling
   Value: 41000
   Unit: ft
-  Status: inferred-with-uncertainty
-  Source: easa_ima120_issue_30
-  Page or section: Issue 30, Section 8 (737-8/-9/-8200), items 11 and 12.2, p. 69
-  Applicability: Sister models 737-8 and 737-9
-  Uncertainty: Sister-model value; not a certified limit for this model.
-  Notes: The TCDS gives 41,000 ft for the 737-8 and 737-9; this model is not in the TCDS. The same value is assumed because the MAX family shares the wing, systems and certification basis.
+  Status: certified-published
+  Source: faa_a16we_rev_83
+  Source URL: https://drs.faa.gov
+  Document title: FAA Type Certificate Data Sheet A16WE, Boeing 737, Revision 83
+  Revision date: 2026-11-13
+  Page or section: Section XI (737-8/-9/-8200/-7/-10), Maximum Operating Altitude, p. 68
+  Applicability: Boeing 737-10
+  Notes: 41,000 ft for all Section XI models. Copy of FAA TCDS A16WE Rev 83 (FAA DRS, search TCDS A16WE).
+  Previous value: 41000 ft (inferred-with-uncertainty, easa_ima120_issue_30, sister models 737-8 and 737-9)
+  Correction reason: The FAA TCDS now gives the limit for this model.
 END FIELD
 
 WING AND TAIL GEOMETRY

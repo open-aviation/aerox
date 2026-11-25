@@ -3,14 +3,14 @@ icao: B37M
 iata: 7M7
 subtypes: null
 certification:
-  model: null
-  authority: null
-  type_certificate: null
-  issue: null
-  issue_date: null
+  model: 737-7
+  authority: FAA
+  type_certificate: A16WE
+  issue: Revision 83
+  issue_date: '2026-11-13'
 mtow: 80285
 mlw: 66043
-mzfw: null
+mzfw: 62913
 minimum_weight: null
 oew: 45000
 mfc: 26000
@@ -72,9 +72,13 @@ engine:
   type: turbofan
   mount: wing
   number: 2
-  default: LEAP-1B
+  default: LEAP-1B27
   options:
-  - LEAP-1B
+  - LEAP-1B23
+  - LEAP-1B25
+  - LEAP-1B27
+  - LEAP-1B28B2C
+  - LEAP-1B28BBJ2
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean

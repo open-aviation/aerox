@@ -3,19 +3,19 @@ icao: LJ31
 iata: null
 subtypes: null
 certification:
-  model: null
+  model: 31A
   authority: Federal Aviation Administration
   type_certificate: A10CE
   issue: Latest current revision not retrieved; Revision 68 found but marked historical
   issue_date: null
-mtow: 7711
-mlw: 6940
-mzfw: null
+mtow: 8029
+mlw: 7257
+mzfw: 6124
 minimum_weight: null
 oew: 4471
 mfc: 1418
-vmo: 300
-mmo: 0.78
+vmo: 325
+mmo: 0.81
 ceiling: 51000
 icao_wtc: medium
 eu_wtc: light
@@ -72,17 +72,17 @@ engine:
   type: turbofan
   mount: both sides of rear fuselage
   number: 2
-  default: TFE731-2-2B
+  default: TFE731-2-3B
   options:
-  - TFE731-2-2B
+  - TFE731-2-3B
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean
   geometry_tier: B-observed-core-scaled-tails
   confidence: medium-low
-  reference_altitude_ft: 51098.2
+  reference_altitude_ft: 50402.8
   reference_mach: 0.77
-  reference_reynolds_per_m: 2826323.1
+  reference_reynolds_per_m: 2922374.5
   span_efficiency_factor: 0.94686
   unresolved_fraction_of_resolved_drag: null
   roughness_excrescence_fraction: 0.09

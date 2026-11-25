@@ -686,6 +686,11 @@ def derive_reference_drag_condition(
         )
         pressure_pa = float(np.clip(pressure_pa, 11_000.0, aero.p0))
         altitude_ft = float(aero.h_isa(pressure_pa) / aero.ft)
+        if ceiling is not None:
+            # Light wing loadings solve to a pressure below the 11 kPa floor
+            # (about 51,100 ft). Like the Mach cap, the reference condition
+            # stays inside the published operating envelope.
+            altitude_ft = min(altitude_ft, ceiling)
 
     altitude_m = altitude_ft * aero.ft
     atmosphere = isa_atmosphere(altitude_m)

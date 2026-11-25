@@ -3436,6 +3436,20 @@ sources:
   licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
   relevant_pages: Section V (G-IV) airspeed limits (p. 19) and altitude/Mach flight envelope charts (p. 21-22)
   limitations: Archived copy of Revision 47; later FAA revisions were not reachable. GV, GV-SP and GIV-X airspeed limits refer to the AFM. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_a12ea_rev_54
+  title: FAA Type Certificate Data Sheet A12EA, Gulfstream G-1159 series, G-IV, GV, GV-SP, GIV-X, Revision 54
+  organization: Federal Aviation Administration
+  url: https://drs.faa.gov
+  search_hint: TCDS A12EA
+  document_number: A12EA
+  issue_revision: Revision 54
+  publication_date: 2026-04-21
+  access_date: 2026-11-24
+  applicable_aircraft: G-1159, G-1159A, G-1159B, G-IV, GV, GV-SP, GIV-X
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; current FAA DRS copy
+  relevant_pages: Section V (G-IV) airspeed limits (p. 19), maximum operating altitude and maximum weights (p. 20), altitude/Mach flight envelope charts (p. 21-22); Section VI (GV) airspeed limits, maximum operating altitude and maximum weights (p. 30); Section VII (GV-SP) and VIII (GIV-X) airspeed limits (p. 37, 43)
+  limitations: Copy downloaded by the user from FAA DRS with a browser; DRS has no stable public document URL. GV, GV-SP and GIV-X airspeed limits refer to the AFM (Altitude/Mach Flight Operating Envelope).
 - id: faa_a16nm_rev_8
   title: FAA Type Certificate Data Sheet A16NM, IAI 1125 Astra, Gulfstream G100 and G150, Revision 8
   organization: Federal Aviation Administration
@@ -3481,6 +3495,20 @@ sources:
   licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
   relevant_pages: Sections IV-VI airspeed limits (p. 9, 13, 15); Data pertinent to 737-100 to -500, maximum operating altitude (p. 17); Section VII (p. 24), IX (p. 55), XI (p. 69) airspeed limits
   limitations: Archived copy of Revision 70; later FAA revisions (737-7 and 737-10) were not reachable. VMO is given in KCAS. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_a16we_rev_83
+  title: FAA Type Certificate Data Sheet A16WE, Boeing 737, Revision 83
+  organization: Federal Aviation Administration
+  url: https://drs.faa.gov
+  search_hint: TCDS A16WE
+  document_number: A16WE
+  issue_revision: Revision 83
+  publication_date: 2026-11-13
+  access_date: 2026-11-24
+  applicable_aircraft: Boeing 737-100 to -500, 737-600/-700/-700C/-800/-900/-900ER, 737-8, 737-9, 737-8200, 737-7, 737-10
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; current FAA DRS copy
+  relevant_pages: Sections IV-VI airspeed limits (p. 9, 12, 15); Data pertinent to 737-100 to -500, maximum operating altitude (p. 17); Section VII (p. 23), VIII (p. 45), IX (p. 53), X (p. 59) airspeed limits and maximum weights; Section XI (737-8/-9/-8200/-7/-10) engines, airspeed limits and maximum weights (p. 67) and maximum operating altitude (p. 68)
+  limitations: Copy downloaded by the user from FAA DRS with a browser; DRS has no stable public document URL. Section XI adds the 737-7 (approved August 3, 2026) and 737-10 (approved October 20, 2026). VMO is given in KCAS.
 - id: faa_a1nm_rev_35
   title: FAA Type Certificate Data Sheet A1NM, Boeing 767, Revision 35
   organization: Federal Aviation Administration
@@ -3509,8 +3537,22 @@ sources:
   applicable_aircraft: CL-600-1A11, -2A12, -2B16, -2B19, -2C10, -2C11, -2D15, -2D24, -2E25
   evidence_type: type-certificate-data-sheet
   licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
-  relevant_pages: Section IV (CL-600-2B19, p. 11), V (CL-600-2C10, p. 13), VIII (CL-600-2D24, p. 20) airspeed limits
+  relevant_pages: Section III (CL-600-2B16 604 Variant) airspeed limits (p. 8), maximum weights (p. 9) and maximum operating altitude (p. 10); Section IV (CL-600-2B19, p. 11), V (CL-600-2C10, p. 13), VIII (CL-600-2D24, p. 20) airspeed limits
   limitations: Archived copy of Revision 47. Revision 49 (2019-11-26) moved the CRJ models to TCDS A21EA-1; no copy of A21EA-1 was found. VMO is given in KCAS. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_a21ea_rev_52
+  title: FAA Type Certificate Data Sheet A21EA, Bombardier CL-600 (Challenger), Revision 52
+  organization: Federal Aviation Administration
+  url: https://drs.faa.gov
+  search_hint: TCDS A21EA
+  document_number: A21EA
+  issue_revision: Revision 52
+  publication_date: 2026-07-29
+  access_date: 2026-11-24
+  applicable_aircraft: CL-600-1A11 (600), CL-600-2A12 (601), CL-600-2B16 (601-3A, 601-3R, 604 Variants)
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; current FAA DRS copy
+  relevant_pages: Section I (CL-600-1A11) limits (p. 2-3); Section II (CL-600-2A12) limits (p. 4-6); Section III (CL-600-2B16) engines (p. 6), 601-3A/3R airspeed limits and weights (p. 7), 604 Variant airspeed limits (p. 8), maximum weights (p. 9) and maximum operating altitude (p. 10)
+  limitations: Copy downloaded by the user from FAA DRS with a browser; DRS has no stable public document URL. The CRJ models (CL-600-2B19 and later) were moved to TCDS A21EA-1 on 2019-11-26 and have no data in this sheet. VMO is given in KCAS.
 - id: faa_a22we_rev_13
   title: FAA Type Certificate Data Sheet A22WE, Boeing (McDonnell Douglas) DC-10, MD-10, MD-11, Revision 13
   organization: Federal Aviation Administration
@@ -3646,6 +3688,20 @@ sources:
   licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
   relevant_pages: Maximum operating altitude (p. 3); airspeed limits refer to the AFM (p. 2)
   limitations: Archived copy of Revision 6; later FAA revisions were not reachable. No VMO/MMO values in the TCDS. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: faa_a58nm_rev_11
+  title: FAA Type Certificate Data Sheet A58NM, Airbus A380, Revision 11
+  organization: Federal Aviation Administration
+  url: https://drs.faa.gov
+  search_hint: TCDS A58NM
+  document_number: A58NM
+  issue_revision: Revision 11
+  publication_date: 2024-07-25
+  access_date: 2026-11-24
+  applicable_aircraft: Airbus A380-841, A380-842, A380-861
+  evidence_type: type-certificate-data-sheet
+  licensing_redistribution: US government publication; current FAA DRS copy
+  relevant_pages: Airspeed limits refer to the AFM (p. 2); maximum weights by weight variant (p. 3); maximum operating altitude (p. 4)
+  limitations: Copy downloaded by the user from FAA DRS with a browser; DRS has no stable public document URL. No VMO/MMO values in the TCDS.
 - id: faa_a59nm_rev_2
   title: FAA Type Certificate Data Sheet A59NM, Dassault Falcon 7X, Revision 2
   organization: Federal Aviation Administration

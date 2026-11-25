@@ -60,8 +60,9 @@ Updated: 2026-11-24
   modelled.
 - Some wing reference areas have no confirmed source: the 737 MAX family, the
   787-10, the 747-8, the A330-900, the A350-1000, and the CRJ200.
-- The VMO and MMO of the A359, A35K, A388, B37M, B3XM, GLF5, and LJ60, the
-  CL60 limits, and the limits of the military types are not yet verified.
+- The VMO and MMO of the A359, A35K, A388, and GLF5 and the limits of the
+  military types are not yet verified. For the A388 and GLF5, the data
+  sheets refer to the flight manual.
 - The A124 has no public type certificate, so most of its values are
   inferred. The AT76 speed limits and ceiling come from training material.
 
