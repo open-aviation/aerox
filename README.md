@@ -1,12 +1,12 @@
-# Aerox
+# aerox
 
-Aerox is an open aircraft performance toolbox. It provides detailed aircraft data and performance models, such as drag and kinematics, for **150+ aircraft types**. The models are physical models built from open data.
+aerox is an open aircraft performance toolbox. It provides detailed aircraft data and performance models, such as drag and kinematics, for **150+ aircraft types**. The models are physical models built from open data.
 
-Aerox complements [OpenAP](https://github.com/junzis/openap). It covers more aircraft types, with more parameters for each type. For example, Aerox builds up the drag of each aircraft part from its geometry, instead of estimating the drag from flight data.
+aerox complements [OpenAP](https://github.com/junzis/openap). It covers more aircraft types, with more parameters for each type. For example, aerox builds up the drag of each aircraft part from its geometry, instead of estimating the drag from flight data.
 
-A selection of the aircraft, drawn from the Aerox geometry data:
+A selection of the aircraft, drawn from the aerox geometry data:
 
-![Aircraft drawn in 3D from their Aerox records](docs/figures/gallery.png)
+![Aircraft drawn in 3D from their aerox records](docs/figures/gallery.png)
 
 ## Install
 
@@ -62,7 +62,7 @@ The drawings are outline models. The sizes come from the record. The positions o
 
 ### Drag model
 
-Aerox gives drag in two forms. Both have a `cd()` method (an alias of `drag_coefficient()`) that returns the drag coefficient at a flight condition.
+aerox gives drag in two forms. Both have a `cd()` method (an alias of `drag_coefficient()`) that returns the drag coefficient at a flight condition.
 
 | | `build_drag_model(ac)` | `build_parabolic_polar(ac)` |
 | --- | --- | --- |

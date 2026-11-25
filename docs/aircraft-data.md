@@ -1,6 +1,6 @@
 # Aircraft data
 
-Aerox has one YAML record per aircraft type, 150+ in total, grouped into
+aerox has one YAML record per aircraft type, 150+ in total, grouped into
 turbofan, turboprop, and piston aircraft.
 
 ## Load an aircraft

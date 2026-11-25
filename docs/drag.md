@@ -225,7 +225,7 @@ See [Math backends](backends.md).
 
 `aerox.models.drag.reference` has published drag models for comparison, for
 example `PollSchumannDragModel` (Poll and Schumann, 2025). They take the same
-arguments as the Aerox model. The Poll-Schumann source uses the aircraft
+arguments as the aerox model. The Poll-Schumann source uses the aircraft
 Reynolds number, based on the square root of the wing area. To evaluate it at
 a known aircraft Reynolds number, convert it first:
 

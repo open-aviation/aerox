@@ -103,5 +103,5 @@ Another library works if it has `log`, `sqrt`, `exp`, `sin`, and `maximum` (or
   friction drops to zero, so the result is wrong without an error. Keep the
   Reynolds number above a small minimum, or use `model.cd()` when you need
   these checks.
-- Only the drag model has an expression. The other functions of Aerox, such
+- Only the drag model has an expression. The other functions of aerox, such
   as `aerox.aero`, use NumPy only.

@@ -65,7 +65,7 @@ temperature, or wind. For those, use the drag and thrust models.
 
 ## Sources and accuracy
 
-The kinematic values come from the original Aerox database. They are typical
+The kinematic values come from the original aerox database. They are typical
 values, given as round numbers, and are not yet traced to a document. Unlike
 the geometry and mass fields, they have no source notes yet, so treat them as
 nominal values for a typical flight.
