@@ -66,7 +66,7 @@ def _view(args: argparse.Namespace) -> int:
         return 0
     server = make_server(page, args.host, args.port)
     url = f"http://{args.host}:{server.server_address[1]}/"
-    print(f"Aerox aircraft viewer at {url}  (Ctrl+C to stop)")
+    print(f"aerox aircraft viewer at {url}  (Ctrl+C to stop)")
     if not args.no_open:
         webbrowser.open(url)
     try:
@@ -79,7 +79,7 @@ def _view(args: argparse.Namespace) -> int:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="aerox", description="Aerox aircraft tools.")
+    parser = argparse.ArgumentParser(prog="aerox", description="aerox aircraft tools.")
     commands = parser.add_subparsers(dest="command", required=True)
     view = commands.add_parser(
         "view",

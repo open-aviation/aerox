@@ -645,7 +645,7 @@ def main() -> int:
             ):
                 record["previous_value"] = f"{previous} {GEOMETRY_UNITS[field]}"
                 record["correction_reason"] = (
-                    "Replaced the legacy Aerox value with the cited exact-scope value."
+                    "Replaced the legacy aerox value with the cited exact-scope value."
                 )
             elif replacement is not None and record.get("previous_value"):
                 try:

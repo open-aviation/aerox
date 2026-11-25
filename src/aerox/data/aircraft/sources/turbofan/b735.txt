@@ -159,7 +159,7 @@ FIELD mfc
   Revision date: 2023-11-01
   Page or section: Section 2.1.8, page 2-9
   Applicability: Usable fuel with standard tanks, no auxiliary tank.
-  Notes: 5,311 US gal (16,141 kg). Value stored in litres as in the other Aerox records. With an optional aft-cargo auxiliary tank the usable fuel is 21,578 to 23,827 L.
+  Notes: 5,311 US gal (16,141 kg). Value stored in litres as in the other aerox records. With an optional aft-cargo auxiliary tank the usable fuel is 21,578 to 23,827 L.
 END FIELD
 
 FUSELAGE GEOMETRY
@@ -545,11 +545,11 @@ OTHER PARAMETERS
   kinematic (all fields); inferred-with-uncertainty; eurocontrol_apd_b735_2026_11; B735 performance table: V2 139 kt, take-off 1500 m; climb 165 kt/3000 ft/min to 5000 ft, 270 kt/2500 ft/min to FL150, 270 kt/1800 ft/min to FL240, M0.70/1000 ft/min; cruise M0.74, 430 kt TAS, 1600 NM; descent M0.74/1000 ft/min to FL240, 280 kt/3500 ft/min to FL100; approach 250 kt/1500 ft/min; landing Vat 128 kt, 1400 m.
 
 LEGACY PARAMETERS
-  This record was added after the original Aerox database and has no original Aerox values.
+  This record was added after the original aerox database and has no original aerox values.
   Values labelled legacy-unverified are sister-type values from the B733 or B734 records, as stated above.
 
 DRAG MODEL
-  Active Aerox physical drag model and reference-condition polar snapshot.
+  Active aerox physical drag model and reference-condition polar snapshot.
   Scaled or substituted geometry fields: wing.root_chord, engine.nacelle_max_diameter, engine.nacelle_length
 
 FIELD drag.model

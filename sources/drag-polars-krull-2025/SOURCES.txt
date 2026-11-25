@@ -19,9 +19,9 @@ Supporting report
 Upstream graphical data
   Obert, Ed (2009), Aerodynamic Design of Transport Aircraft, IOS Press,
   Chapter 24. The spreadsheet contains Krull's digitization and regression;
-  Aerox does not redistribute the original book figure.
+  aerox does not redistribute the original book figure.
 
-Aerox use
+aerox use
   The A320 worksheet serves as a cross-check of the transonic drag increase.
   It is not used to fit the drag model. Values derived from the workbook
   retain GPL-3.0 terms.

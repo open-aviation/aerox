@@ -126,7 +126,7 @@ FIELD wing.area
   Applicability: PC-24 certified model
   Uncertainty: Source rounded to 0.01 m2
   Previous value: 30 m2
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
   Notes: Source label is Total Wing Area.
 END FIELD
 
@@ -156,7 +156,7 @@ FIELD wing.mac
   Applicability: PC-24 certified model
   Uncertainty: Source rounded to 0.001 m
   Previous value: 2 m
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
   Notes: Directly published mean aerodynamic chord.
 END FIELD
 
@@ -218,7 +218,7 @@ FIELD wing.aspect_ratio
   Applicability: PC-24 certified model
   Uncertainty: Approximately 0.01 from rounded inputs
   Previous value: 9.633333 nondimensional
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
   Notes: Calculated from the TCDS total-area definition; not separately published.
 END FIELD
 
@@ -427,11 +427,11 @@ FIELD vertical_tail.rudder_area_ratio
 END FIELD
 
 LEGACY PARAMETERS
-  Parameters not listed above retain the original Aerox database values.
+  Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
 
 DRAG MODEL
-  Active Aerox physical drag model and reference-condition polar snapshot.
+  Active aerox physical drag model and reference-condition polar snapshot.
   Scaled or substituted geometry fields: horizontal_tail.area, horizontal_tail.mac, vertical_tail.area, vertical_tail.mac, wing.root_chord, horizontal_tail.sweep, vertical_tail.sweep, engine.fan_diameter, engine.nacelle_max_diameter, engine.nacelle_length
 
 FIELD drag.model

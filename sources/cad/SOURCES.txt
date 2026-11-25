@@ -1,4 +1,4 @@
-Aerox manufacturer CAD source collection
+aerox manufacturer CAD source collection
 ========================================
 
 Last checked and downloaded: 2026-08-06
@@ -7,7 +7,7 @@ Purpose
 -------
 This directory stores the original manufacturer ZIP archives and their
 extracted CAD drawings used to research wing, tail, control-surface, and
-overall-aircraft geometry for the bundled Aerox aircraft records.
+overall-aircraft geometry for the bundled aerox aircraft records.
 
 Directory layout
 ----------------
@@ -54,7 +54,7 @@ uncertainty. Do not label drawing-derived values as certified.
 The manufacturers' copyright and reuse terms apply to the archives and
 drawings in this directory.
 
-Airbus downloads and Aerox applicability
+Airbus downloads and aerox applicability
 -----------------------------------------
 Relative archive path | Bundled ICAO applicability | Direct official URL
 
@@ -82,7 +82,7 @@ They may support common outer-mould-line geometry only after comparison with
 the current A319neo/A320neo/A321neo Aircraft Characteristics publications.
 They must not be used as evidence for NEO engine or nacelle geometry.
 
-Boeing downloads and Aerox applicability
+Boeing downloads and aerox applicability
 -----------------------------------------
 All direct URLs below share this official base:
 https://www.boeing.com/content/dam/boeing/v2/airports/dwgs/
@@ -131,7 +131,7 @@ Other Airbus CAD archives visible on the official page
 -------------------------------------------------------
 The Airbus digital-asset base path is not a browsable directory. The current
 official AutoCAD page lists 24 downloadable packages. Eighteen are retained
-above because they map to bundled Aerox aircraft. The six currently published
+above because they map to bundled aerox aircraft. The six currently published
 packages without a bundled record are:
 
 A310-300 | https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus_A310-300-May-2012.zip

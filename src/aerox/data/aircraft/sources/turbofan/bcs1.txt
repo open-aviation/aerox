@@ -202,7 +202,7 @@ FIELD wing.aspect_ratio
   Applicability: A220-100 standard external planform
   Uncertainty: Approximately +/-0.07 from displayed input rounding
   Previous value: 10.970703 nondimensional
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
   Notes: Derived only from cited published inputs.
 END FIELD
 
@@ -404,11 +404,11 @@ FIELD vertical_tail.rudder_area_ratio
 END FIELD
 
 LEGACY PARAMETERS
-  Parameters not listed above retain the original Aerox database values.
+  Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
 
 DRAG MODEL
-  Active Aerox physical drag model and reference-condition polar snapshot.
+  Active aerox physical drag model and reference-condition polar snapshot.
   Scaled or substituted geometry fields: horizontal_tail.mac, vertical_tail.mac, wing.root_chord, horizontal_tail.sweep, vertical_tail.sweep, engine.nacelle_max_diameter, engine.nacelle_length
 
 FIELD drag.model

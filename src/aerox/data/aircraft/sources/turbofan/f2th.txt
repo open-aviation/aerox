@@ -126,7 +126,7 @@ FIELD wing.area
   Applicability: Falcon 2000 and Falcon 2000EX derivative sections publishing the same value
   Uncertainty: Source rounded to 0.01 m2
   Previous value: 46 m2
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
   Notes: The area is the same with and without the M2846 winglets.
 END FIELD
 
@@ -141,7 +141,7 @@ FIELD wing.span
   Page or section: Issue 13, sections 2.5.3 (p. 12) and 3.5.3 (p. 23)
   Applicability: Falcon 2000 and Falcon 2000EX without winglets
   Previous value: 19.32 m
-  Correction reason: Replaced the legacy Aerox value with the cited baseline value.
+  Correction reason: Replaced the legacy aerox value with the cited baseline value.
   Notes: With the M2846 winglet modification, the span is 21.38 m (Section 3, p. 46). The record keeps the baseline span, which matches the stored wing area.
 END FIELD
 
@@ -157,7 +157,7 @@ FIELD wing.mac
   Applicability: Falcon 2000 and Falcon 2000EX derivative sections publishing the same value
   Uncertainty: Source rounded to 0.0001 m
   Previous value: 2.6 m
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
   Notes: Zero-percent MAC station is also published; no family-specific span is selected.
 END FIELD
 
@@ -417,11 +417,11 @@ FIELD vertical_tail.rudder_area_ratio
 END FIELD
 
 LEGACY PARAMETERS
-  Parameters not listed above retain the original Aerox database values.
+  Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
 
 DRAG MODEL
-  Active Aerox physical drag model and reference-condition polar snapshot.
+  Active aerox physical drag model and reference-condition polar snapshot.
   Scaled or substituted geometry fields: horizontal_tail.area, horizontal_tail.mac, vertical_tail.area, vertical_tail.mac, wing.root_chord, horizontal_tail.sweep, vertical_tail.sweep, engine.nacelle_max_diameter, engine.nacelle_length
 
 FIELD drag.model

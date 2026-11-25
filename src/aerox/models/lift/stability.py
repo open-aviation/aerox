@@ -18,7 +18,7 @@ class StaticAerodynamicCoefficients:
 
     Drag is deliberately absent. A thin-surface stability prior must be paired
     with a separately sourced viscous drag model. These values have not yet
-    been transformed into Aerox's eventual 6-DOF body-axis force convention.
+    been transformed into aerox's eventual 6-DOF body-axis force convention.
     """
 
     lift: float
@@ -108,7 +108,7 @@ class TabulatedStaticStabilityPrior:
         alpha_bounds_deg: tuple[float, float] = (-1.0, 6.0),
         beta_bounds_deg: tuple[float, float] = (-3.0, 3.0),
     ) -> TabulatedStaticStabilityPrior:
-        """Load released static columns from an Aerox VSPAERO results table."""
+        """Load released static columns from an aerox VSPAERO results table."""
 
         with Path(path).open(newline="") as stream:
             rows = [row for row in csv.DictReader(stream) if row["mesh"] == mesh]
@@ -156,7 +156,7 @@ class TabulatedStaticStabilityPrior:
         """Evaluate the local-linear VSPAERO prior without a drag coefficient.
 
         ``sideslip_rad`` must follow VSPAERO's beta convention. This method does
-        not claim that convention as the future Aerox body-axis convention.
+        not claim that convention as the future aerox body-axis convention.
         """
 
         if not np.isfinite(angle_of_attack_rad) or not np.isfinite(sideslip_rad):

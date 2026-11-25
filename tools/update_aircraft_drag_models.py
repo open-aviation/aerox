@@ -100,7 +100,7 @@ def _source_section(parameters: DragBuildReport) -> str:
     imputed = ", ".join(parameters.imputed_fields) or "none"
     lines = [
         SECTION_START,
-        "  Active Aerox physical drag model and reference-condition polar snapshot.",
+        "  Active aerox physical drag model and reference-condition polar snapshot.",
         f"  Scaled or substituted geometry fields: {imputed}",
         "",
     ]
@@ -336,7 +336,7 @@ def _write_markdown(summary: dict[str, Any]) -> None:
     tier_lines = "\n".join(f"| {name} | {count} |" for name, count in tiers.items())
     text = f"""# Aircraft drag model coverage
 
-Aerox now carries one uniform active physical drag model for all
+aerox now carries one uniform active physical drag model for all
 {summary["aircraft_total"]} bundled aircraft. The former coefficient-only
 implementation and parallel `drag_prior` block have been removed. The active
 `drag` block contains only independent model parameters. Reference-condition
@@ -362,7 +362,7 @@ not stored. `span_efficiency_factor` remains because it is the physical input
 to the pure span-induced term.
 
 For civil turbofans, the span-only term uses the Poll–Schumann geometry branch
-`e_span = 1 / (1.03 + 2 (b_f / b)^2)`. Aerox then adds the separate
+`e_span = 1 / (1.03 + 2 (b_f / b)^2)`. aerox then adds the separate
 lift-profile contribution `0.80 (1 - 0.53 cos(sweep)) CD0`. This separation is
 intentional: using a conventional effective Oswald factor as `e_span` would
 double-count lift-dependent profile drag. Niţă–Scholz remains the preferred
@@ -547,7 +547,7 @@ def _write_figure(rows: list[dict[str, Any]]) -> None:
     axes[1, 1].legend(frameon=False)
 
     fig.suptitle(
-        "Aerox aircraft drag models — physical consistency and geometry coverage",
+        "aerox aircraft drag models — physical consistency and geometry coverage",
         fontsize=12,
         fontweight="bold",
     )

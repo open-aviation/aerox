@@ -127,7 +127,7 @@ FIELD wing.span
   Applicability: A350-900 external wing span
   Uncertainty: Drawing dimension; planning publication
   Previous value: 64.8 m
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
   Notes: Standard-2022 and ULR applicability should be retained if later planform differences are adopted.
 END FIELD
 
@@ -467,11 +467,11 @@ FIELD vertical_tail.rudder_area_ratio
 END FIELD
 
 LEGACY PARAMETERS
-  Parameters not listed above retain the original Aerox database values.
+  Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
 
 DRAG MODEL
-  Active Aerox physical drag model and reference-condition polar snapshot.
+  Active aerox physical drag model and reference-condition polar snapshot.
   Scaled or substituted geometry fields: wing.root_chord
 
 FIELD drag.model

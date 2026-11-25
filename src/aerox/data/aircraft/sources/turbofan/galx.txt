@@ -139,7 +139,7 @@ FIELD wing.span
   Applicability: Galaxy and Gulfstream 200 certified sections
   Uncertainty: Source rounded to 0.01 m
   Previous value: 17.7 m
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
   Notes: The same span is explicitly published in both certified-model sections.
 END FIELD
 
@@ -406,11 +406,11 @@ FIELD vertical_tail.rudder_area_ratio
 END FIELD
 
 LEGACY PARAMETERS
-  Parameters not listed above retain the original Aerox database values.
+  Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
 
 DRAG MODEL
-  Active Aerox physical drag model and reference-condition polar snapshot.
+  Active aerox physical drag model and reference-condition polar snapshot.
   Scaled or substituted geometry fields: horizontal_tail.area, horizontal_tail.mac, vertical_tail.area, vertical_tail.mac, wing.root_chord, horizontal_tail.sweep, vertical_tail.sweep, engine.fan_diameter, engine.nacelle_max_diameter, engine.nacelle_length
 
 FIELD drag.model

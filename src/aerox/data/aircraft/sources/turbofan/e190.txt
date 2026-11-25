@@ -212,7 +212,7 @@ FIELD wing.aspect_ratio
   Inputs: span=28.72 m; area=92.5 m2
   Applicability: External winglet-span ratio for ERJ 190-100 STD, LR and AR
   Uncertainty: Input rounding implies approximately +/-0.01
-  Notes: Canonical ratio follows the documented Aerox formula. Embraer's separately published aerodynamic reference aspect ratio is 8.1 and is retained here as definition-sensitive evidence, not substituted for the formula result.
+  Notes: Canonical ratio follows the documented aerox formula. Embraer's separately published aerodynamic reference aspect ratio is 8.1 and is retained here as definition-sensitive evidence, not substituted for the formula result.
 END FIELD
 
 FIELD wing.dihedral
@@ -428,11 +428,11 @@ FIELD vertical_tail.rudder_area_ratio
 END FIELD
 
 LEGACY PARAMETERS
-  Parameters not listed above retain the original Aerox database values.
+  Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
 
 DRAG MODEL
-  Active Aerox physical drag model and reference-condition polar snapshot.
+  Active aerox physical drag model and reference-condition polar snapshot.
   Scaled or substituted geometry fields: horizontal_tail.mac, vertical_tail.mac, wing.root_chord, horizontal_tail.sweep, vertical_tail.sweep, engine.fan_diameter, engine.nacelle_max_diameter, engine.nacelle_length
 
 FIELD drag.model

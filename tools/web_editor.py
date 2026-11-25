@@ -1362,7 +1362,7 @@ def save_aircraft_data(icao, data, engine_type=None):
                 record = {
                     "status": "legacy-unverified",
                     "source": "aerox_web_editor_manual_entry",
-                    "notes": "Value entered manually through the Aerox web editor; source qualification is required.",
+                    "notes": "Value entered manually through the aerox web editor; source qualification is required.",
                 }
                 if previous is not None:
                     record["previous_value"] = f"{previous} {unit}"

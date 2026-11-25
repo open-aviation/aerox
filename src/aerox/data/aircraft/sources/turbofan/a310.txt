@@ -143,7 +143,7 @@ FIELD mfc
   Source: easa_a172_issue_08
   Page or section: Issue 08, section 13.6, p. 39
   Applicability: A310-300 without auxiliary centre tank (ACT)
-  Notes: Usable fuel 61,090 L (48,872 kg at 0.8 kg/L) in outer, inner, centre and trim tanks. Stored in litres, as in the other Aerox records. The Airbus planning document gives 61,070 L; Jenkinson et al. (1999) give 68,300 L as an optional (ACT) capacity, which is not adopted.
+  Notes: Usable fuel 61,090 L (48,872 kg at 0.8 kg/L) in outer, inner, centre and trim tanks. Stored in litres, as in the other aerox records. The Airbus planning document gives 61,070 L; Jenkinson et al. (1999) give 68,300 L as an optional (ACT) capacity, which is not adopted.
 END FIELD
 
 FUSELAGE GEOMETRY
@@ -511,15 +511,15 @@ OTHER PARAMETERS
   engine.options = [CF6-80C2A2, CF6-80C2A8, PW4152, PW4156]; certified-published; easa_a172_issue_08 | icao_eedb_issue_32; section 13.2 and 14.2, pp. 38 and 42. The A310-322 JT9D-7R4E1 is listed in subtypes only. PW4156 is the ICAO EEDB entry for the certified PW4156A (both 249.1 kN).
   flaps.area = 36.68; inferred-with-uncertainty; jenkinson_simpkin_rhodes_1999_data_a; Table 1, A310-300, trailing-edge flap area (m2).
   flaps.bf/b = 0.84; inferred-with-uncertainty; jenkinson_simpkin_rhodes_1999_data_a; Table 1, A310-300, flap span/wing span.
-  flaps.type, flaps.lambda_f, flaps.cf/c, flaps.Sf/S = null; unresolved; -; no public value adopted (Jenkinson type code F1 is not mapped to an Aerox flap type).
+  flaps.type, flaps.lambda_f, flaps.cf/c, flaps.Sf/S = null; unresolved; -; no public value adopted (Jenkinson type code F1 is not mapped to an aerox flap type).
   kinematic.takeoff_distance_m = 2290; inferred-with-uncertainty; jenkinson_simpkin_rhodes_1999_data_a; Table 1, A310-300, take-off ISA sea level.
   kinematic.takeoff_v2 = 156; inferred-with-uncertainty; jenkinson_simpkin_rhodes_1999_data_a; Table 1, A310-300, V2.
   kinematic.landing_distance_m = 1490; inferred-with-uncertainty; jenkinson_simpkin_rhodes_1999_data_a; Table 1, A310-300, landing ISA sea level.
   kinematic.cruise_range_nm = 4300; inferred-with-uncertainty; jenkinson_simpkin_rhodes_1999_data_a; Table 1, A310-300, design range.
-  Other kinematic fields = A306 values; inferred-with-uncertainty; sister type A300-600 (Aerox A306 record); no WRAP or EUROCONTROL-derived profile for the A310 was available. The A310 and A300-600 share the cockpit, systems, and cruise speed range.
+  Other kinematic fields = A306 values; inferred-with-uncertainty; sister type A300-600 (aerox A306 record); no WRAP or EUROCONTROL-derived profile for the A310 was available. The A310 and A300-600 share the cockpit, systems, and cruise speed range.
 
 DRAG MODEL
-  Active Aerox physical drag model and reference-condition polar snapshot.
+  Active aerox physical drag model and reference-condition polar snapshot.
   Scaled or substituted geometry fields: wing.root_chord, engine.nacelle_max_diameter, engine.nacelle_length
 
 FIELD drag.model
@@ -645,5 +645,5 @@ FIELD subtypes
 END FIELD
 
 LEGACY PARAMETERS
-  This record was added after the original Aerox database and has no original Aerox values.
+  This record was added after the original aerox database and has no original aerox values.
   The kinematic values without a named source above are copied from the A306 record.

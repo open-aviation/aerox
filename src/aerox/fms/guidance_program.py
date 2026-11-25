@@ -901,7 +901,7 @@ class GuidanceProgramExecutor:
 
 @dataclass(frozen=True)
 class CompiledGuidanceProgram:
-    """A program lowered to timed Aerox guidance command channels."""
+    """A program lowered to timed aerox guidance command channels."""
 
     source: GuidanceProgram
     effective_time_s: np.ndarray
@@ -962,7 +962,7 @@ def _absolute_transition_time(transition: TransitionGuard) -> float:
 
 
 def compile_guidance_program(program: GuidanceProgram) -> CompiledGuidanceProgram:
-    """Lower a timed-target program into the current Aerox guidance interfaces.
+    """Lower a timed-target program into the current aerox guidance interfaces.
 
     The schema permits state guards and lateral modes that the timed adapter
     cannot represent. This compiler rejects them instead of changing their

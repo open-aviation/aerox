@@ -1,7 +1,7 @@
 """Aeronautical atmosphere and airspeed calculations.
 
 This NumPy implementation is ported from ``openap.aero`` at commit
-``472ab3e48d52ae62f9586d2e75e143ea4182a9e9`` (OpenAP 2.6.0).  Aerox keeps
+``472ab3e48d52ae62f9586d2e75e143ea4182a9e9`` (OpenAP 2.6.0).  aerox keeps
 the established OpenAP equations and public function names so air-data logic
 does not diverge between the two projects.  OpenAP's optional CasADi/JAX
 backend abstraction and legacy geographic re-exports are intentionally not

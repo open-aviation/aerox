@@ -149,7 +149,7 @@ class DragModel(Protocol):
 
     Every model is evaluated as ``drag_coefficient(cl, mach, reynolds_per_m)``,
     as ``drag_coefficient(cl, mach, h=..., dT=...)`` with the Reynolds number
-    from the ISA atmosphere, or with ``condition=DragCondition(...)``. The Aerox models also have the
+    from the ISA atmosphere, or with ``condition=DragCondition(...)``. The aerox models also have the
     shorthand ``cd(...)``. ``breakdown`` takes the same arguments and returns
     the drag parts. ``_drag_coefficient_scalar`` is a fast path
     for scalar conditions used inside integrators.

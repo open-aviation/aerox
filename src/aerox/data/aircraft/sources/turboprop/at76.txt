@@ -115,7 +115,7 @@ FIELD ceiling
   Source: brainscape_atr72_600_limitations | learn_atc_atr72_600 | aerox_legacy_aircraft_database
   Page or section: Brainscape card 2 (maximum operating altitude 25,000 ft); Learn ATC service ceiling 25,000 ft
   Uncertainty: Secondary sources; EASA.A.084 III.11 refers to the AFM.
-  Notes: Same value as the Aerox AT75 and AT72 legacy records.
+  Notes: Same value as the aerox AT75 and AT72 legacy records.
 END FIELD
 
 OPERATING AND CAPACITY PARAMETERS
@@ -137,7 +137,7 @@ FIELD mfc
   Source: easa_a084_issue_14
   Page or section: Issue 14, section 2, III.9 Fluid Capacities, p. 35
   Applicability: All ATR 72 models in section 2
-  Notes: Usable fuel when refuelled up to high-level indication: 5,050 kg / 6,360 L (5,000 kg with pre-selector; 30 kg unusable). Stored in litres, as the existing Aerox records do. ATR factsheet max fuel load is 5,000 kg.
+  Notes: Usable fuel when refuelled up to high-level indication: 5,050 kg / 6,360 L (5,000 kg with pre-selector; 30 kg unusable). Stored in litres, as the existing aerox records do. ATR factsheet max fuel load is 5,000 kg.
 END FIELD
 
 FUSELAGE GEOMETRY
@@ -467,14 +467,14 @@ OTHER PARAMETERS
   engine.number = 2; certified-published; easa_a084_issue_14; section 2, III.5.
   engine.default = PW127M, 2,500 SHP max continuous, 6-blade 568F propeller; manufacturer-published-planning; atr_72_600_factsheet_2020 | easa_a084_issue_14; factsheet standard configuration (PW127M/N; take-off 2,475 SHP, OEI 2,750 SHP); TCDS III.5 and III.7 d).
   engine.options = PW127M, PW127N (MOD 7079), PW127XT-M (MOD 10016 or 10302); certified-published; easa_a084_issue_14; section 2, III.5. No SHP is given for PW127N and PW127XT-M because no public rating was read.
-  kinematic.* = values copied from the Aerox AT75 record (legacy-unverified, aerox_legacy_aircraft_database); inferred-with-uncertainty; sister type ATR 72-500 with the same airframe and engine class. ATR 72-600 factsheet values for comparison: take-off distance 1,279 m basic / 1,304 m option at MTOW ISA SL; V2 min 116 KCAS; landing field length 915 m at basic MLW; max cruise 275 KTAS; range with max pax 758 NM. These were not substituted, to keep the kinematic set internally consistent.
+  kinematic.* = values copied from the aerox AT75 record (legacy-unverified, aerox_legacy_aircraft_database); inferred-with-uncertainty; sister type ATR 72-500 with the same airframe and engine class. ATR 72-600 factsheet values for comparison: take-off distance 1,279 m basic / 1,304 m option at MTOW ISA SL; V2 min 116 KCAS; landing field length 915 m at basic MLW; max cruise 275 KTAS; range with max pax 758 NM. These were not substituted, to keep the kinematic set internally consistent.
 
 LEGACY PARAMETERS
-  This record was added after the original Aerox database and has no original Aerox AT76 values.
+  This record was added after the original aerox database and has no original aerox AT76 values.
   Kinematic values are copied from the AT75 record as a sister-type placeholder.
 
 DRAG MODEL
-  Active Aerox physical drag model and reference-condition polar snapshot.
+  Active aerox physical drag model and reference-condition polar snapshot.
   Scaled or substituted geometry fields: fuselage.width, fuselage.height
 
 FIELD drag.model

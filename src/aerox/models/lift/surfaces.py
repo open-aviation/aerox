@@ -19,7 +19,7 @@ class TabulatedLiftSurface:
     """Bounded bilinear ``CL(alpha, Mach)`` surface from VSPAERO base solutions.
 
     This interface deliberately carries lift only. It does not imply that
-    VSPAERO's inviscid drag is suitable for Aerox, and it does not use the
+    VSPAERO's inviscid drag is suitable for aerox, and it does not use the
     numerically fragile local pitching-moment derivative at the edge of the
     sampled alpha/Mach envelope.
     """

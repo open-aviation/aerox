@@ -147,7 +147,7 @@ FIELD wing.span
   Applicability: 737-800 baseline wing without blended winglets
   Uncertainty: Published rounded conversion
   Previous value: 34.3 m
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
   Notes: The manual separately gives 35.79 m with blended winglets.
 END FIELD
 
@@ -467,11 +467,11 @@ FIELD vertical_tail.rudder_area_ratio
 END FIELD
 
 LEGACY PARAMETERS
-  Parameters not listed above retain the original Aerox database values.
+  Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
 
 DRAG MODEL
-  Active Aerox physical drag model and reference-condition polar snapshot.
+  Active aerox physical drag model and reference-condition polar snapshot.
   Scaled or substituted geometry fields: wing.t/c, wing.root_chord, engine.nacelle_max_diameter, engine.nacelle_length
 
 FIELD drag.model

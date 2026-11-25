@@ -586,7 +586,7 @@ def geometry_drag_model_from_aircraft(
     parasite_scale: float = 1.0,
     induced_scale: float = 1.0,
 ) -> GeometryDragModel:
-    """Build a transparent clean-aircraft model from available Aerox geometry.
+    """Build a transparent clean-aircraft model from available aerox geometry.
 
     This direct path uses the gross wing area and one lumped unresolved term
     for all components not represented here. The term is computed at the

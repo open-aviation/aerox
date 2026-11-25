@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate Aerox's queryable engine table from the official ICAO EEDB.
+"""Generate aerox's queryable engine table from the official ICAO EEDB.
 
 Adapted from OpenAP's ``scripts/gen_engine_data_v27.py``.  The source columns
 are addressed by their published Issue 32 names instead of spreadsheet column

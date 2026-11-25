@@ -2,8 +2,8 @@
 schema_version: 1
 sources:
 - id: aerox_legacy_aircraft_database
-  title: Aerox bundled aircraft database, original compact format
-  organization: Aerox project
+  title: aerox bundled aircraft database, original compact format
+  organization: aerox project
   location: src/aerox/data/aircraft/yml
   document_number: null
   issue: compact-legacy
@@ -15,7 +15,7 @@ sources:
   license: project-data
   redistribution: project-repository
   notes:
-  - This ID identifies original Aerox values, not a certification or manufacturer source.
+  - This ID identifies original aerox values, not a certification or manufacturer source.
   - Legacy values remain in the compact runtime records and are labelled legacy-unverified
     until qualified evidence establishes their definition and model or variant applicability.
 - id: easa_a064_issue_63
@@ -81,7 +81,7 @@ sources:
   notes:
   - Airbus states that the airport-planning three-view drawings are accurate to within 10
     cm.
-  - Aerox retains only a small table of measured vector endpoints and derived engineering
+  - aerox retains only a small table of measured vector endpoints and derived engineering
     priors; the source archive and DWG are external.
   - The wing-tip-fence configuration is used because the QAR aircraft were recorded in 2011,
     before the later A320 sharklet drawing revision.
@@ -2254,7 +2254,7 @@ sources:
   redistribution: values-cited-with-attribution
   notes:
   - Used only for values with no better public source; these values are labelled legacy-unverified.
-  - OpenAP has no WRAP kinematic file for GLF6. Its clean polar is cd0 0.012 and k 0.047; Aerox
+  - OpenAP has no WRAP kinematic file for GLF6. Its clean polar is cd0 0.012 and k 0.047; aerox
     does not use it.
 - id: easa_gulfstream_g200_a013
   title: EASA.IM.A.013 - Gulfstream 200
@@ -2676,7 +2676,7 @@ sources:
   redistribution: ported-equations-with-attribution
   notes:
   - OpenAP documents the option as experimental.
-  - Aerox ports the critical-Mach and Lock fourth-power increment into src/aerox/models/lift/core.py
+  - aerox ports the critical-Mach and Lock fourth-power increment into src/aerox/models/lift/core.py
     as an explicit opt-in component shared by the plant, profile planner, and ECON optimizer.
 - id: poll_schumann_transport_drag_model_2025
   title: Fuel-burn performance of civil transport aircraft - Part 3
@@ -2705,7 +2705,7 @@ sources:
   - The paper supplies an A320 parameter row with wing area 122.4 m2, span 34.1 m, fuselage
     width 3.95 m, sweep 25 degrees, design Mach 0.753, design CL 0.590, and design Reynolds
     number 5.59e7.
-  - This is Aerox's leading public A320 candidate because its stated lift support includes
+  - This is aerox's leading public A320 candidate because its stated lift support includes
     the representative QAR cruise envelope.
 - id: nasa_openvsp_parasite_drag_tool
   title: OpenVSP Parasite Drag Tool
@@ -2738,8 +2738,8 @@ sources:
   license: see-source
   redistribution: link-and-derived-summary
 - id: aerox_geometry_drag_model_2026_08_08
-  title: Aerox aircraft geometry drag model
-  organization: Aerox project
+  title: aerox aircraft geometry drag model
+  organization: aerox project
   publication_date: 2026-08-08
   accessed: 2026-08-08
   evidence_type: aircraft-geometry-build-up-with-explicit-scaled-defaults

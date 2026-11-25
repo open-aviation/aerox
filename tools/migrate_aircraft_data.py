@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Restore and validate Aerox's compact aircraft YAML format.
+"""Restore and validate aerox's compact aircraft YAML format.
 
 The aircraft files contain parameters only. Short field-level source notes
 live in matching plain-text files under ``sources``.
@@ -463,7 +463,7 @@ def render_source_notes(
         [
             "",
             "LEGACY PARAMETERS",
-            "  Parameters not listed above retain the original Aerox database values.",
+            "  Parameters not listed above retain the original aerox database values.",
             "  Unless a source is named above, those values remain legacy-unverified.",
             "",
         ]

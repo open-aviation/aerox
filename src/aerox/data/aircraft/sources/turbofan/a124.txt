@@ -487,11 +487,11 @@ OTHER PARAMETERS
   kinematic.climb_*_vs, mach_climb_vs, descent_*_vs, approach_vs, landing_distance_m = B744 values; legacy-unverified; aerox_legacy_aircraft_database; copied from the B744 template record because no An-124 data were found. The textbook gives a maximum climb rate of 10 m/s at 392 t.
 
 LEGACY PARAMETERS
-  This record was added after the original Aerox database and has no original Aerox values.
-  Values labelled as copied from the B744 template record come from the Aerox B744 record.
+  This record was added after the original aerox database and has no original aerox values.
+  Values labelled as copied from the B744 template record come from the aerox B744 record.
 
 DRAG MODEL
-  Active Aerox physical drag model and reference-condition polar snapshot.
+  Active aerox physical drag model and reference-condition polar snapshot.
   Scaled or substituted geometry fields: horizontal_tail.mac, engine.fan_diameter, engine.nacelle_max_diameter, engine.nacelle_length
 
 FIELD drag.model

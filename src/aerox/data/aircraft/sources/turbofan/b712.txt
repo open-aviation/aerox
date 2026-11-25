@@ -151,7 +151,7 @@ FIELD wing.span
   Applicability: 717-200 external wing span
   Uncertainty: Published rounded conversion
   Previous value: 28.5 m
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
   Notes: Candidate normalization from legacy 28.5 m.
 END FIELD
 
@@ -442,11 +442,11 @@ FIELD vertical_tail.rudder_area_ratio
 END FIELD
 
 LEGACY PARAMETERS
-  Parameters not listed above retain the original Aerox database values.
+  Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
 
 DRAG MODEL
-  Active Aerox physical drag model and reference-condition polar snapshot.
+  Active aerox physical drag model and reference-condition polar snapshot.
   Scaled or substituted geometry fields: vertical_tail.area, vertical_tail.mac, wing.root_chord, vertical_tail.sweep, engine.nacelle_max_diameter, engine.nacelle_length
 
 FIELD drag.model

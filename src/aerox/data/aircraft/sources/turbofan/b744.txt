@@ -133,7 +133,7 @@ FIELD wing.span
   Applicability: 747-400/-400ER jig-position span
   Uncertainty: Published rounded conversion; loaded span is 64.92 m at maximum gross weight with full fuel
   Previous value: 62.3 m
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
   Notes: Strong correction candidate for the compact record's 62.3 m value; do not use the load-dependent 64.92 m without its condition.
 END FIELD
 
@@ -449,11 +449,11 @@ FIELD vertical_tail.rudder_area_ratio
 END FIELD
 
 LEGACY PARAMETERS
-  Parameters not listed above retain the original Aerox database values.
+  Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
 
 DRAG MODEL
-  Active Aerox physical drag model and reference-condition polar snapshot.
+  Active aerox physical drag model and reference-condition polar snapshot.
   Scaled or substituted geometry fields: wing.root_chord, engine.nacelle_max_diameter, engine.nacelle_length
 
 FIELD drag.model

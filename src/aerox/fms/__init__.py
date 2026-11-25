@@ -1,4 +1,4 @@
-"""Aerox flight-management trajectory core."""
+"""aerox flight-management trajectory core."""
 
 from aerox.fms.planning.econ_cruise import (
     EconomyCruiseOptimizer,

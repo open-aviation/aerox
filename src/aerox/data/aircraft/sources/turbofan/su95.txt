@@ -141,7 +141,7 @@ FIELD mfc
   Status: certified-published
   Source: easa_rrj95_a176_issue04 | superjet_international_ssj100_datasheet_2011
   Page or section: Issue 04, section 1, III.9.1, p. 12
-  Notes: Total usable fuel 15,805 L (12,327 kg at 0.78 kg/L). Stored in litres, following the existing Aerox turbofan records; the SuperJet International datasheet gives the same 15,805 L for the 95B and 95LR.
+  Notes: Total usable fuel 15,805 L (12,327 kg at 0.78 kg/L). Stored in litres, following the existing aerox turbofan records; the SuperJet International datasheet gives the same 15,805 L for the 95B and 95LR.
 END FIELD
 
 FUSELAGE GEOMETRY
@@ -243,7 +243,7 @@ FIELD wing.t/c
   Unit: nondimensional
   Status: inferred-with-uncertainty
   Source: aerox_legacy_aircraft_database
-  Document title: Aerox E190 record (src/aerox/data/aircraft/yml/turbofan/e190.yml), wing.t/c
+  Document title: aerox E190 record (src/aerox/data/aircraft/yml/turbofan/e190.yml), wing.t/c
   Applicability: Similar-type estimate. The E190 is a regional jet of similar size, design Mach number and supercritical wing technology.
   Uncertainty: +/-0.015; no public SSJ100 thickness ratio was found.
   Notes: The SuperJet International 2015 brochure confirms a supercritical wing profile but gives no thickness ratio.
@@ -515,14 +515,14 @@ OTHER PARAMETERS
   kinematic.cruise_mach = 0.78; manufacturer-published; superjet_international_ssj100_datasheet_2011; typical cruise speed (maximum cruise Mach 0.81).
   kinematic.cruise_range_nm = 1645; manufacturer-published; superjet_international_ssj100_datasheet_2011; SSJ100/95B range, 98 pax at 100 kg, LRC, ISA, typical reserves.
   kinematic.landing_distance_m = 1630; manufacturer-published; superjet_international_ssj100_datasheet_2011; landing field length at MLW.
-  Other kinematic fields = E190 values; inferred-with-uncertainty; aerox_legacy_aircraft_database; copied from the Aerox E190 record (similar regional twin) because no SU95 kinematic profile was retrievable (EUROCONTROL APD and SkyBrary pages did not load).
+  Other kinematic fields = E190 values; inferred-with-uncertainty; aerox_legacy_aircraft_database; copied from the aerox E190 record (similar regional twin) because no SU95 kinematic profile was retrievable (EUROCONTROL APD and SkyBrary pages did not load).
 
 LEGACY PARAMETERS
-  This record was added after the original Aerox database and has no original Aerox values.
+  This record was added after the original aerox database and has no original aerox values.
   Values labelled with aerox_legacy_aircraft_database are copied from the E190 record as similar-type estimates.
 
 DRAG MODEL
-  Active Aerox physical drag model and reference-condition polar snapshot.
+  Active aerox physical drag model and reference-condition polar snapshot.
   Scaled or substituted geometry fields: horizontal_tail.area, horizontal_tail.mac, vertical_tail.area, vertical_tail.mac, wing.root_chord, horizontal_tail.sweep, vertical_tail.sweep, engine.fan_diameter, engine.nacelle_max_diameter, engine.nacelle_length
 
 FIELD drag.model

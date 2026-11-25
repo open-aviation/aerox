@@ -143,7 +143,7 @@ FIELD mfc
   Status: certified-published
   Source: easa_gulfstream_gvi_a169
   Page or section: Issue 17, section 1, III.9, p. 14
-  Notes: G650 total fuel 44,200 lb = 24,972 L (TCDS); 20,048 kg. The G650ER (ASC 014) 21,863 kg is not adopted. Aerox stores mfc in litres.
+  Notes: G650 total fuel 44,200 lb = 24,972 L (TCDS); 20,048 kg. The G650ER (ASC 014) 21,863 kg is not adopted. aerox stores mfc in litres.
 END FIELD
 
 FUSELAGE GEOMETRY
@@ -236,7 +236,7 @@ FIELD wing.sweep
   Revision date: 2008-03-14
   Page or section: Wing description at launch
   Formula: G550 quarter-chord sweep + published increase
-  Inputs: G550 sweep=27 deg (Aerox GLF5 record, legacy-unverified); increase=6 deg
+  Inputs: G550 sweep=27 deg (aerox GLF5 record, legacy-unverified); increase=6 deg
   Applicability: G650 wing quarter-chord sweep
   Uncertainty: +/-3 deg; several secondary sources give 36 deg without a reference line, and OpenAP uses 36 deg.
   Notes: FlightGlobal gives a 6 deg quarter-chord sweep increase; AOPA (2008-03-14) states that wing sweep was increased six degrees over the G450/G550.
@@ -494,11 +494,11 @@ OTHER PARAMETERS
   Other kinematic fields = null; unresolved; -; EUROCONTROL APD has no GLF6 entry and OpenAP has no GLF6 WRAP file.
 
 LEGACY PARAMETERS
-  This record was added after the original Aerox database and has no original Aerox values.
+  This record was added after the original aerox database and has no original aerox values.
   Values labelled legacy-unverified come from the OpenAP GLF6 record named above.
 
 DRAG MODEL
-  Active Aerox physical drag model and reference-condition polar snapshot.
+  Active aerox physical drag model and reference-condition polar snapshot.
   Scaled or substituted geometry fields: fuselage.width, fuselage.height, horizontal_tail.area, horizontal_tail.mac, vertical_tail.area, vertical_tail.mac, wing.root_chord, horizontal_tail.sweep, vertical_tail.sweep, engine.fan_diameter, engine.nacelle_max_diameter, engine.nacelle_length
 
 FIELD drag.model

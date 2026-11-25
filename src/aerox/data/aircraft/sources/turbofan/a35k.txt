@@ -126,7 +126,7 @@ FIELD wing.span
   Applicability: A350-1000 external wing span
   Uncertainty: Drawing dimension; planning publication
   Previous value: 64.8 m
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
   Notes: A350-1000F is not silently included.
 END FIELD
 
@@ -213,7 +213,7 @@ FIELD horizontal_tail.area
   Applicability: A350-900 and A350-1000 identical horizontal tail plane
   Uncertainty: manufacturer-rounded value
   Previous value: 85.707556 m2
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
   Notes: Replaces the 85.707556 m2 CAD centreline-extrapolated trapezoid with Airbus's published surface area.
 END FIELD
 
@@ -245,7 +245,7 @@ FIELD horizontal_tail.mac
   Applicability: A350-900/-1000 common HTP reference trapezoid
   Uncertainty: area is rounded; MAC engineering bound +/-0.20 m
   Previous value: 4.848982 m
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
   Notes: Corrects the prior 4.848982 m value after adopting Airbus's published 82 m2 surface area.
 END FIELD
 
@@ -263,7 +263,7 @@ FIELD horizontal_tail.root_chord
   Applicability: A350-900/-1000 common HTP reference trapezoid
   Uncertainty: area is rounded; chord engineering bound +/-0.20 m
   Previous value: 6.545304 m
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
   Notes: Corrects the prior 6.545304 m centreline extrapolation, which implied 85.71 m2 and conflicted with Airbus's published 82 m2 surface area.
 END FIELD
 
@@ -281,7 +281,7 @@ FIELD horizontal_tail.tip_chord
   Applicability: A350-900/-1000 common HTP reference trapezoid
   Uncertainty: area is rounded; chord engineering bound +/-0.20 m
   Previous value: 2.577372 m
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
   Notes: Corrects the prior 2.577372 m centreline-extrapolated equivalent tip chord.
 END FIELD
 
@@ -475,11 +475,11 @@ FIELD vertical_tail.rudder_area_ratio
 END FIELD
 
 LEGACY PARAMETERS
-  Parameters not listed above retain the original Aerox database values.
+  Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
 
 DRAG MODEL
-  Active Aerox physical drag model and reference-condition polar snapshot.
+  Active aerox physical drag model and reference-condition polar snapshot.
   Scaled or substituted geometry fields: wing.root_chord, vertical_tail.sweep
 
 FIELD drag.model

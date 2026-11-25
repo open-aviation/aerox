@@ -1,4 +1,4 @@
-"""Aerox aircraft data library."""
+"""aerox aircraft data library."""
 
 from . import aero, fms
 from .aircraft import (

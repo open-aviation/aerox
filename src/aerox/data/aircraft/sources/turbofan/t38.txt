@@ -122,7 +122,7 @@ FIELD wing.span
   Applicability: USAF T-38 family-level fact-sheet configuration
   Uncertainty: Exact unit conversion; source's metric value conflicts by 0.0962 m
   Previous value: 7.6 m
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
   Notes: Government-published, not civil certified or manufacturer-published. Retain the original imperial dimension as conversion authority.
 END FIELD
 
@@ -389,11 +389,11 @@ FIELD vertical_tail.rudder_area_ratio
 END FIELD
 
 LEGACY PARAMETERS
-  Parameters not listed above retain the original Aerox database values.
+  Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
 
 DRAG MODEL
-  Active Aerox physical drag model and reference-condition polar snapshot.
+  Active aerox physical drag model and reference-condition polar snapshot.
   Scaled or substituted geometry fields: fuselage.width, fuselage.height, horizontal_tail.area, horizontal_tail.mac, vertical_tail.area, vertical_tail.mac
 
 FIELD drag.model

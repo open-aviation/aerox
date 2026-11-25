@@ -101,7 +101,7 @@ FIELD vmo
   Unit: kt
   Status: inferred-with-uncertainty
   Source: aerox_legacy_aircraft_database
-  Applicability: Sister-type value from the Aerox E190 record (ERJ 190-100)
+  Applicability: Sister-type value from the aerox E190 record (ERJ 190-100)
   Uncertainty: Not confirmed for the ERJ 190-300; the TCDS refers airspeeds to the AFM, and the AFM is not public.
   Notes: Non-authoritative pilot study material repeats VMO 320 KIAS for the E2; it is not cited. The E195 record also uses 320 kt.
 END FIELD
@@ -111,7 +111,7 @@ FIELD mmo
   Unit: Mach
   Status: inferred-with-uncertainty
   Source: aerox_legacy_aircraft_database | embraer_e190e2_spec_2025
-  Applicability: Sister-type value from the Aerox E190 record (ERJ 190-100)
+  Applicability: Sister-type value from the aerox E190 record (ERJ 190-100)
   Uncertainty: Not confirmed for the ERJ 190-300; the TCDS refers airspeeds to the AFM.
   Notes: The Embraer E190-E2 specification sheet gives a maximum cruise speed of M 0.82, which agrees with this value.
 END FIELD
@@ -145,7 +145,7 @@ FIELD mfc
   Status: manufacturer-published-planning
   Source: embraer_ejets_e2_apm_5824_r25
   Page or section: Section 2, table 2.1, p. 2 of 44 (Rev 21 page, 2022-08-05)
-  Notes: Maximum usable fuel 16,800 L (13,500 kg at 0.803 kg/L). The field follows the litre convention of the other Aerox E-Jet records. The 2025 specification sheet gives 13,690 kg, which equals the E195-E2 APM value and is not adopted.
+  Notes: Maximum usable fuel 16,800 L (13,500 kg at 0.803 kg/L). The field follows the litre convention of the other aerox E-Jet records. The 2025 specification sheet gives 13,690 kg, which equals the E195-E2 APM value and is not adopted.
 END FIELD
 
 FUSELAGE GEOMETRY
@@ -159,7 +159,7 @@ FIELD fuselage.length
   Document title: EASA.IM.A.071 Embraer ERJ-190 Type-Certificate Data Sheet
   Revision date: 2026-11-05
   Page or section: Issue 29, section 4, III.4, p. 32; APM section 2, 2.2.1, p. 3 of 44
-  Notes: TCDS length 36.237 m; APM overall length 36.24 m and fuselage total length 36.2 m. The same value as the Aerox E190 record.
+  Notes: TCDS length 36.237 m; APM overall length 36.24 m and fuselage total length 36.2 m. The same value as the aerox E190 record.
 END FIELD
 
 FIELD fuselage.height
@@ -230,7 +230,7 @@ FIELD wing.sweep
   Unit: deg
   Status: inferred-with-uncertainty
   Source: aerox_legacy_aircraft_database
-  Applicability: Sister-type value from the Aerox E190 record (first-generation wing, legacy-unverified)
+  Applicability: Sister-type value from the aerox E190 record (first-generation wing, legacy-unverified)
   Uncertainty: +/-3 deg; the E2 wing is a new design and no public sweep value was found.
   Notes: No TCDS, APM, specification sheet or trade-press source gives the E2 wing sweep.
 END FIELD
@@ -240,7 +240,7 @@ FIELD wing.t/c
   Unit: nondimensional
   Status: inferred-with-uncertainty
   Source: aerox_legacy_aircraft_database
-  Applicability: Sister-type value from the Aerox E190 record (first-generation wing, legacy-unverified)
+  Applicability: Sister-type value from the aerox E190 record (first-generation wing, legacy-unverified)
   Uncertainty: +/-0.01; the E2 wing is a new design and no public thickness ratio was found.
 END FIELD
 
@@ -278,7 +278,7 @@ FIELD wing.aspect_ratio
   Source: easa_embraer_erj190_a071_i29 | embraer_ejets_e2_apm_5824_r25
   Formula: span^2 / area
   Inputs: span=33.72 m; area=103 m2
-  Notes: Canonical ratio follows the documented Aerox formula. The APM gives a reference aspect ratio of 9.4, which uses a different aerodynamic span definition; it is not substituted.
+  Notes: Canonical ratio follows the documented aerox formula. The APM gives a reference aspect ratio of 9.4, which uses a different aerodynamic span definition; it is not substituted.
 END FIELD
 
 FIELD wing.dihedral
@@ -498,11 +498,11 @@ OTHER PARAMETERS
   Other kinematic fields = E190 values; inferred-with-uncertainty; aerox_legacy_aircraft_database; no E290 WRAP or APD data were found, so the E190 record values are used.
 
 LEGACY PARAMETERS
-  This record was added after the original Aerox database and has no original Aerox values.
-  Values that cite aerox_legacy_aircraft_database are copied from the Aerox E190 record as sister-type values.
+  This record was added after the original aerox database and has no original aerox values.
+  Values that cite aerox_legacy_aircraft_database are copied from the aerox E190 record as sister-type values.
 
 DRAG MODEL
-  Active Aerox physical drag model and reference-condition polar snapshot.
+  Active aerox physical drag model and reference-condition polar snapshot.
   Scaled or substituted geometry fields: horizontal_tail.mac, vertical_tail.mac, wing.root_chord, horizontal_tail.sweep, vertical_tail.sweep, engine.fan_diameter, engine.nacelle_max_diameter, engine.nacelle_length
 
 FIELD drag.model

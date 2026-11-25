@@ -129,7 +129,7 @@ FIELD wing.area
   Applicability: CL-600-2C10 / CRJ700
   Uncertainty: Source rounded to 0.01 m2
   Previous value: 70 m2
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
   Notes: Source label is Total Wing Area, not explicitly aerodynamic reference area.
 END FIELD
 
@@ -145,7 +145,7 @@ FIELD wing.span
   Applicability: CL-600-2C10 / CRJ700
   Uncertainty: Source rounded to 0.01 m
   Previous value: 23.26 m
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
   Notes: Source label is Total Wing Span.
 END FIELD
 
@@ -214,7 +214,7 @@ FIELD wing.aspect_ratio
   Applicability: CL-600-2C10 / CRJ700
   Uncertainty: Definition-dependent; about 0.01 from rounded inputs
   Previous value: 7.728966 nondimensional
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
   Notes: Uses the APM's total-wing definitions and is not a separately published reference aspect ratio.
 END FIELD
 
@@ -431,11 +431,11 @@ FIELD vertical_tail.rudder_area_ratio
 END FIELD
 
 LEGACY PARAMETERS
-  Parameters not listed above retain the original Aerox database values.
+  Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
 
 DRAG MODEL
-  Active Aerox physical drag model and reference-condition polar snapshot.
+  Active aerox physical drag model and reference-condition polar snapshot.
   Scaled or substituted geometry fields: horizontal_tail.mac, vertical_tail.mac, wing.root_chord, horizontal_tail.sweep, vertical_tail.sweep, engine.fan_diameter, engine.nacelle_max_diameter, engine.nacelle_length
 
 FIELD drag.model

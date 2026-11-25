@@ -127,7 +127,7 @@ FIELD wing.area
   Applicability: HA-420 certified model
   Uncertainty: Source rounded to 0.01 m2
   Previous value: 12 m2
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
   Notes: Source label is Wing Area.
 END FIELD
 
@@ -143,7 +143,7 @@ FIELD wing.span
   Applicability: HA-420 certified model
   Uncertainty: Source rounded to 0.01 m
   Previous value: 12.15 m
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
   Notes: Commercial Base/Elite/Elite II weight distinctions do not change this published type-design dimension.
 END FIELD
 
@@ -159,7 +159,7 @@ FIELD wing.mac
   Applicability: HA-420 certified model
   Uncertainty: Source rounded to 0.01 m
   Previous value: 1.1 m
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
   Notes: Leading edge of MAC is also published 5.90 m aft of datum.
 END FIELD
 
@@ -221,7 +221,7 @@ FIELD wing.aspect_ratio
   Applicability: HA-420 certified model
   Uncertainty: Approximately 0.02 from rounded inputs
   Previous value: 12.301875 nondimensional
-  Correction reason: Replaced the legacy Aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
   Notes: Calculated from TCDS dimensions; not a separately certified published ratio.
 END FIELD
 
@@ -426,11 +426,11 @@ FIELD vertical_tail.rudder_area_ratio
 END FIELD
 
 LEGACY PARAMETERS
-  Parameters not listed above retain the original Aerox database values.
+  Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
 
 DRAG MODEL
-  Active Aerox physical drag model and reference-condition polar snapshot.
+  Active aerox physical drag model and reference-condition polar snapshot.
   Scaled or substituted geometry fields: horizontal_tail.area, horizontal_tail.mac, vertical_tail.area, vertical_tail.mac, wing.root_chord, horizontal_tail.sweep, vertical_tail.sweep, engine.fan_diameter, engine.nacelle_max_diameter, engine.nacelle_length
 
 FIELD drag.model
