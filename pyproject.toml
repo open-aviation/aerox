@@ -24,9 +24,6 @@ dependencies = [
 aerox = "aerox.cli:main"
 
 [project.optional-dependencies]
-editor = [
-    "flask>=3.1.2",
-]
 plot = [
     "matplotlib>=3.10.7",
 ]

@@ -32,7 +32,7 @@ jobs:
       - name: Sync dev environment
         # The research extra is left out: its fastmeteo dependency pulls in
         # numcodecs, which has no wheel for every Python version tested here.
-        run: uv sync --extra plot --extra editor --group dev
+        run: uv sync --extra plot --group dev
 
       - name: Run pytest
         run: uv run pytest -q

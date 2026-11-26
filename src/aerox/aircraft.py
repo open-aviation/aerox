@@ -524,8 +524,16 @@ def parse_source_notes(text: str) -> Dict[str, Any]:
 
     result: Dict[str, Any] = {"header": {}, "fields": {}}
     current: Optional[Dict[str, str]] = None
+    scope: Optional[Dict[str, str]] = None
     for line in text.splitlines():
-        if line.startswith("Aircraft: "):
+        if line == "CERTIFICATION SCOPE":
+            scope = result["header"].setdefault("certification_scope", {})
+        elif line and not line.startswith(" "):
+            scope = None
+        if scope is not None and line.startswith("  ") and ": " in line:
+            key, value = line.strip().split(": ", 1)
+            scope[key] = value
+        elif line.startswith("Aircraft: "):
             result["header"]["aircraft"] = line.removeprefix("Aircraft: ")
         elif line.startswith("ICAO: "):
             result["header"]["icao"] = line.removeprefix("ICAO: ")

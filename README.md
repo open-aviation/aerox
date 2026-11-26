@@ -47,7 +47,7 @@ aerox view A320 B789       # only these aircraft
 aerox view --out a320.html A320   # write the page to a file instead
 ```
 
-The viewer shows each aircraft in 3D and as a 2D three-view, with dimensions and a scale. Click a part to see its dimensions and where each value comes from. The server runs on `http://127.0.0.1:8765` until you press Ctrl+C. Use `--port` to change the port and `--no-open` to keep the browser closed. The page loads three.js from a CDN, so it needs an internet connection. `python -m aerox view` does the same.
+The viewer shows each aircraft in 3D and as a 2D three-view, with dimensions and a scale. Click a part to see its dimensions and where each value comes from. The **Data** view lists every field of the record with its status, source note, and source documents. The server runs on `http://127.0.0.1:8765` until you press Ctrl+C. Use `--port` to change the port and `--no-open` to keep the browser closed. The page loads three.js from a CDN, so the drawings need an internet connection. `python -m aerox view` does the same.
 
 The same drawings are available in Python, with the `plot` extra:
 
@@ -138,14 +138,14 @@ cas = aero.mach2cas(mach=0.78, h=10_000)   # m/s
 - **Aircraft data.** One YAML record per type with geometry, mass limits, and engine data. Each geometry and mass value has a source note under `src/aerox/data/aircraft/sources`.
 - **Drag.** A geometry model with skin friction and form drag, induced and wave drag, and terms for deployed flaps, slats and landing gear.
 - **Math backends.** The drag model is also available as a closed-form expression for JAX and CasADi, for optimization and automatic differentiation (see [Math backends](docs/backends.md)).
-- **Drawings.** `aerox view` and `aerox.plot`, 2D and 3D outline drawings of each aircraft.
+- **Viewer and drawings.** `aerox view` and `aerox.plot`, 2D and 3D outline drawings of each aircraft and a table of its record values.
 - **Kinematics.** Typical speeds and vertical rates of each flight phase, for every aircraft.
 - **Atmosphere and speeds.** `aerox.aero`, ISA atmosphere and CAS/TAS/EAS/Mach conversions.
 - **Flight management.** `aerox.fms`, route, altitude and speed intent, and guidance primitives (still under development).
 
 ## Current accuracy and limits
 
-- At cruise, the drag model agrees with a reference performance model within 5 % for most jet transports. At lower Mach numbers (about 0.6) it is 4 to 12 % too high.
+- At cruise, the drag model agrees with a reference performance model within 5 % for most jet transports. In climb and descent near Mach 0.6 it is 2 to 3 % above that model. Between the cruise Mach number and MMO it is too low, by about 10 % on average.
 - Flap and landing gear drag come from simple handbook methods. Slats add no drag, and spoiler drag is not modelled.
 - The modules for thrust, lift, flight dynamics, and simulation are experimental. Their interfaces can change.
 
@@ -164,7 +164,7 @@ See [`docs/`](docs/README.md) for the aircraft data, the drag model, the kinemat
 ```bash
 uv sync --all-extras   # the tests need every extra
 uv run pytest -q
-uv run --extra editor tools/web_editor.py   # local editor for aircraft records
+uv run aerox view   # aircraft drawings and record values with their sources
 uv run --extra research tools/make_readme_figures.py   # figures in docs/figures
 ```
 

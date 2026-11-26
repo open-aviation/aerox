@@ -916,8 +916,171 @@ def _summary(aircraft) -> list:
     ]
 
 
+def _flatten(value, path: str = "", empty: bool = True):
+    """Yield ``(path, value)`` for each leaf, with the YAML field names.
+
+    Empty leaves give ``None``, so that the data view can list what is
+    missing, except inside named entries such as the flap settings, whose
+    optional fields would only add noise.
+    """
+
+    from dataclasses import fields, is_dataclass
+
+    if is_dataclass(value):
+        value = {
+            item.metadata.get("yaml_key", item.name): getattr(value, item.name)
+            for item in fields(value)
+        }
+    elif isinstance(value, dict):
+        empty = False
+    if isinstance(value, dict) and value:
+        for key, child in value.items():
+            if child is not None or empty:
+                yield from _flatten(child, f"{path}.{key}" if path else str(key), empty)
+    elif isinstance(value, (list, tuple)) and value:
+        if all(hasattr(item, "subtype") for item in value):
+            for item in value:
+                yield f"{path}.{item.subtype}", ", ".join(item.engines)
+        else:
+            yield path, ", ".join(str(item) for item in value)
+    elif isinstance(value, (dict, list, tuple)):
+        yield path, None
+    else:
+        yield path, value
+
+
+# Source-note keys shown in their own columns, not in the row details.
+_NOTE_COLUMNS = ("value", "unit", "status", "source")
+
+
+def _record_rows(aircraft) -> list:
+    """Every record field with its source note, for the data view.
+
+    Each row is ``[path, value, unit, status, source, details]``. ``value``
+    is ``None`` for an empty field. ``details`` holds the other source-note
+    entries, such as ``page_or_section`` and ``notes``. Values without a
+    source note have empty strings and an empty dict in the last four places.
+    Paths with a note but no field in the record (such as a flap setting the
+    record does not have) are added as empty rows.
+    """
+
+    import typing
+    from dataclasses import fields, is_dataclass
+
+    notes = aircraft.data_provenance.get("sidecar", {}).get("fields", {})
+    hints = typing.get_type_hints(type(aircraft))
+    # These groups repeat other values or hold the notes themselves.
+    skip = {"data_provenance", "certified_mass_limits"}
+    leaves = []
+    for item in fields(aircraft):
+        if item.name in skip:
+            continue
+        value = getattr(aircraft, item.name)
+        if value is None:
+            cls = next(
+                (arg for arg in typing.get_args(hints[item.name]) if is_dataclass(arg)),
+                None,
+            )
+            value = cls() if cls else None
+        # A source id repeats the source of the note.
+        leaves.extend(
+            (path, value)
+            for path, value in _flatten(value, item.name)
+            if not path.endswith(".source_id")
+        )
+    paths = {path for path, _ in leaves}
+    for path in notes:
+        if path not in paths and not any(p.startswith(f"{path}.") for p in paths):
+            leaves.append((path, None))
+
+    rows = []
+    for path, value in leaves:
+        # A note can cover a whole group, such as the subtype list.
+        parts = path.split(".")
+        prefixes = (".".join(parts[:n]) for n in range(len(parts), 0, -1))
+        note = next((notes[p] for p in prefixes if p in notes), {})
+        if value is not None and not isinstance(value, (str, bool)):
+            value = _plain(value)
+        rows.append(
+            [
+                path,
+                value,
+                note.get("unit", ""),
+                note.get("status", ""),
+                "" if note.get("source", "-") == "-" else note["source"],
+                {k: v for k, v in note.items() if k not in _NOTE_COLUMNS and v},
+            ]
+        )
+    return rows
+
+
+def _record_header(aircraft) -> dict:
+    """The review date and certification scope of the source note."""
+
+    header = aircraft.data_provenance.get("sidecar", {}).get("header", {})
+    scope = header.get("certification_scope", {})
+    return {
+        "reviewed": header.get("last_reviewed", ""),
+        "scope": [[key, value] for key, value in scope.items() if value != "-"],
+    }
+
+
+def _source_documents(aircraft_list) -> dict:
+    """Title, date, and link of each cited source, keyed by source id.
+
+    Uses ``sources/sources.yml`` when it exists (in the repository only), and
+    the document entries of the source notes otherwise.
+    """
+
+    from pathlib import Path
+
+    import yaml
+
+    ledger = {}
+    path = Path(__file__).resolve().parents[2] / "sources" / "sources.yml"
+    if path.exists():
+        for item in yaml.safe_load(path.read_text(encoding="utf-8"))["sources"]:
+            date = next(
+                (
+                    item[key]
+                    for key in ("issue_date", "revision_date", "publication_date")
+                    if item.get(key)
+                ),
+                "",
+            )
+            issue = item.get("revision") or item.get("issue")
+            when = [f"issue {issue}"] if issue and issue != "compact-legacy" else []
+            when += [str(date)] if date else []
+            ledger[item["id"]] = [
+                item.get("title", ""),
+                ", ".join(when),
+                item.get("url") or "",
+            ]
+
+    documents = {}
+    for aircraft in aircraft_list:
+        notes = aircraft.data_provenance.get("sidecar", {}).get("fields", {})
+        for note in notes.values():
+            ids = [
+                s.strip()
+                for key in ("source", "searched_source")
+                for s in note.get(key, "").split(" | ")
+                if s.strip() not in ("", "-")
+            ]
+            for source in ids:
+                if source in ledger:
+                    documents[source] = ledger[source]
+                    continue
+                doc = documents.setdefault(source, ["", "", ""])
+                if note.get("source") == source:
+                    doc[0] = doc[0] or note.get("document_title", "")
+                    doc[1] = doc[1] or note.get("revision_date", "")
+                    doc[2] = doc[2] or note.get("source_url", "")
+    return documents
+
+
 def viewer_data(aircraft_list) -> dict:
-    """Coarse meshes of several aircraft, keyed by ICAO code, for the viewer."""
+    """Meshes and record values of several aircraft, keyed by ICAO code."""
 
     data = {}
     for aircraft in aircraft_list:
@@ -927,6 +1090,8 @@ def viewer_data(aircraft_list) -> dict:
             "span": aircraft.wing.span,
             "length": aircraft.fuselage.length,
             "summary": _summary(aircraft),
+            "record": _record_rows(aircraft),
+            "header": _record_header(aircraft),
             "details": {
                 name: {
                     "title": part["title"],
@@ -943,10 +1108,10 @@ def viewer_data(aircraft_list) -> dict:
 
 
 def write_viewer(path, aircraft=None) -> None:
-    """Write a self-contained HTML viewer with 2D and 3D views.
+    """Write a self-contained HTML viewer with 2D, 3D, and data views.
 
     ``aircraft`` is a list of aircraft; all aircraft when ``None``. The page
-    loads three.js from a CDN, so it needs an internet connection.
+    loads three.js from a CDN, so the drawings need an internet connection.
     """
 
     import json
@@ -957,7 +1122,25 @@ def write_viewer(path, aircraft=None) -> None:
         from .aircraft import get_available_aircraft, load_aircraft
 
         aircraft = [load_aircraft(code) for code in get_available_aircraft()]
-    payload = json.dumps(viewer_data(aircraft), separators=(",", ":"))
+    data = viewer_data(aircraft)
+    # The note details repeat much text: keep each string once, and give the
+    # details as a flat list of key and text indices.
+    text, index = [], {}
+
+    def ref(string):
+        if string not in index:
+            index[string] = len(text)
+            text.append(string)
+        return index[string]
+
+    for entry in data.values():
+        for row in entry["record"]:
+            row[5] = [ref(string) for item in row[5].items() for string in item]
+    payload = json.dumps(data, separators=(",", ":"))
+    extra = {
+        "__RECORD_TEXT__": json.dumps(text, separators=(",", ":")),
+        "__SOURCES__": json.dumps(_source_documents(aircraft), separators=(",", ":")),
+    }
     colors = json.dumps(
         {
             name: (
@@ -969,6 +1152,8 @@ def write_viewer(path, aircraft=None) -> None:
         }
     )
     template = files("aerox").joinpath("viewer.html").read_text(encoding="utf-8")
+    for key, value in extra.items():
+        template = template.replace(key, value)
     html = template.replace("__AIRCRAFT_DATA__", payload).replace(
         "__PART_COLORS__", colors
     )

@@ -8,6 +8,9 @@ Updated: 2026-11-25
   corrections and a Torenbeek slat term. Aircraft records include sourced
   surface geometry and settings where available. See
   [Drag](drag.md#flaps-slats-and-landing-gear).
+- **Data view.** `aerox view` lists every field of a record with its status,
+  source note, and source documents, and shows the empty fields. The web
+  editor and the `editor` extra are removed.
 
 ## Release 0.5
 
@@ -74,7 +77,11 @@ Updated: 2026-11-25
 ## Known limits
 
 - Drag agrees with a reference performance model within 5 % at cruise for most
-  jet transports. Near Mach 0.6 it is 4 to 12 % too high.
+  jet transports. In climb and descent near Mach 0.6, at the flown altitude,
+  it is 2 to 3 % above that model.
+- Between the cruise Mach number and MMO, drag is too low: about 10 % on
+  average and about 18 % at MMO, against published flight-test curves. The
+  wave drag starts too late and rises too slowly.
 - High-lift drag uses representative flap and slat angles. Chord, slat
   geometry and flap stations are sparse. The model has no separate terms
   for trim, slot-gap scheduling, ground effect or gear interference.
@@ -89,16 +96,18 @@ Updated: 2026-11-25
 
 ## Planned work
 
-1. **Drag increase with Mach below the drag rise.** Measured drag at a fixed
-   lift coefficient rises 8 to 12 % from Mach 0.6 to 0.8. This term will be
-   added together with a lower base drag, so that cruise drag stays correct
-   and drag at lower Mach numbers improves.
+1. **Drag rise above the cruise Mach number.** A wave drag method that
+   starts earlier and rises faster, and sourced wing thickness ratios and
+   sweep angles for the records that use default values. Two studies of
+   published methods found no replacement that improves the drag near MMO
+   and keeps the cruise drag. The two references used differ by about 5 %
+   at cruise, so the next check uses measured flight data.
 2. **Wing reference areas.** Confirmed sources for the open values listed
    above.
 3. **High-lift data.** Obtain flap chord, flap and slat stations, and actual
    deflections for more aircraft. Check the model against measured
    configuration polars over a range of lift coefficients.
 4. **One aircraft data schema.** One declarative schema for the aircraft
-   records, their validation, and the web editor.
+   records and their validation.
 5. **Batched performance evaluation.** Evaluation of the atmosphere and the
    forces for many flight states in one call.

@@ -30,9 +30,8 @@ Or, from a copy of the repository:
 pip install .
 ```
 
-The runtime needs NumPy, SciPy, and PyYAML. Three extras are available:
+The runtime needs NumPy, SciPy, and PyYAML. Two extras are available:
 
-- `aerox[editor]` adds Flask for the local editor of aircraft records.
 - `aerox[plot]` adds Matplotlib, to draw aircraft with `aerox.plot`.
 - `aerox[research]` adds pandas, PyArrow, and Matplotlib.
 

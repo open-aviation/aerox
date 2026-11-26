@@ -42,6 +42,62 @@ def test_write_viewer_embeds_the_selected_aircraft(tmp_path):
     path = tmp_path / "viewer.html"
     write_viewer(path, [load_aircraft("A320"), load_aircraft("AT72")])
     html = path.read_text(encoding="utf-8")
-    assert "__AIRCRAFT_DATA__" not in html and "__PART_COLORS__" not in html
+    for key in (
+        "__AIRCRAFT_DATA__",
+        "__PART_COLORS__",
+        "__RECORD_TEXT__",
+        "__SOURCES__",
+    ):
+        assert key not in html
     assert '"A320":' in html and '"AT72":' in html
     assert "three@0.160.0" in html
+
+
+def test_viewer_record_rows_carry_values_and_source_notes():
+    from aerox.plot import _record_rows
+
+    rows = {row[0]: row for row in _record_rows(load_aircraft("A320"))}
+    assert rows["mtow"][1:5] == [
+        78000,
+        "kg",
+        "certified-published",
+        "easa_a064_issue_63",
+    ]
+    assert rows["wing.t/c"][1] > 0
+    assert rows["flaps.settings.FULL.flap_angle_deg"][1] == 35
+    assert rows["subtypes.A320-214"][1] == "CFM56-5B4, CFM56-5B4/2"
+    assert rows["kinematic.cruise_mach"][3] == ""
+    assert not any(path.startswith("data_provenance") for path in rows)
+    assert not any(path.endswith(".source_id") for path in rows)
+    # Details of the source note, and empty fields with their search record
+    assert rows["wing.span"][5]["page_or_section"] == "A320 principal dimensions"
+    assert rows["wing.tip_chord"][1] is None
+    assert rows["wing.tip_chord"][3] == "unresolved"
+    assert "reason_unavailable" in rows["wing.tip_chord"][5]
+    assert rows["aileron.chord_ratio"][1:5] == [None, "", "", ""]
+
+
+def test_viewer_header_and_source_documents():
+    from aerox.plot import _record_header, _source_documents
+
+    aircraft = load_aircraft("A320")
+    header = _record_header(aircraft)
+    assert header["reviewed"] == "2026-11-24"
+    assert ["Type certificate", "EASA.A.064"] in header["scope"]
+    documents = _source_documents([aircraft])
+    title, _, url = documents["easa_a064_issue_63"]
+    assert "EASA.A.064" in title and url.startswith("https://")
+
+
+def test_write_viewer_keeps_each_note_text_once(tmp_path):
+    import json
+    import re
+
+    from aerox.plot import write_viewer
+
+    path = tmp_path / "viewer.html"
+    write_viewer(path, [load_aircraft("A320"), load_aircraft("A321")])
+    html = path.read_text(encoding="utf-8")
+    text = json.loads(re.search(r"const TEXT = (.*);", html).group(1))
+    assert len(text) == len(set(text))
+    assert "page_or_section" in text

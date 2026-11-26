@@ -83,10 +83,10 @@ def build_parser() -> argparse.ArgumentParser:
     commands = parser.add_subparsers(dest="command", required=True)
     view = commands.add_parser(
         "view",
-        help="view aircraft in 2D and 3D in the browser",
+        help="view aircraft drawings and record values in the browser",
         description=(
             "Serve the aircraft viewer on localhost and open it in the browser. "
-            "The page loads three.js from a CDN, so it needs an internet connection."
+            "The page loads three.js from a CDN, so the drawings need an internet connection."
         ),
     )
     view.add_argument(

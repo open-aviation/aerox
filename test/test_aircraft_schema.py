@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import copy
 import csv
 from pathlib import Path
 
@@ -282,33 +281,6 @@ def test_high_lift_named_settings_preserve_variant_and_missing_angles():
     assert flaps.settings["slats + flaps 20"].slats_extended is True
 
 
-def test_web_editor_updates_source_notes_for_edited_high_lift_fields(
-    monkeypatch, tmp_path
-):
-    from tools import web_editor
-
-    yaml_root = tmp_path / "yml"
-    record = yaml_root / "turbofan" / "a320.yml"
-    provenance = tmp_path / "sources" / "turbofan" / "a320.txt"
-    for path in (record, provenance):
-        path.parent.mkdir(parents=True, exist_ok=True)
-    record.write_text((ROOT / "turbofan/a320.yml").read_text())
-    provenance.write_text((SOURCE_ROOT / "turbofan/a320.txt").read_text())
-    monkeypatch.setattr(web_editor, "YAML_BASE_DIR", yaml_root)
-
-    settings = yaml.safe_load(record.read_text())["flaps"]["settings"]
-    settings["FULL"]["flap_angle_deg"] = 36
-    parsed = web_editor.safe_convert(yaml.safe_dump(settings), dict, "flaps.settings")
-    web_editor.save_aircraft_data("A320", {"flaps": {"settings": parsed}}, "turbofan")
-    edited = load_aircraft("A320", yaml_root).flaps
-    assert edited.settings["FULL"].flap_angle_deg == 36
-    notes = parse_source_notes(provenance.read_text())["fields"]
-    assert notes["flaps.settings.FULL.flap_angle_deg"]["source"] == (
-        "aerox_web_editor_manual_entry"
-    )
-    assert notes["flaps.settings.FULL.slat_angle_deg"]["source"] == "easa_a064_issue_63"
-
-
 @pytest.mark.parametrize(
     "changes",
     [
@@ -552,62 +524,6 @@ def test_derived_geometry_matches_documented_formulas(records):
                     / (1 + taper)
                 )
                 assert section["mac"] == pytest.approx(expected_mac, rel=5e-5), path
-
-
-def test_web_editor_preserves_compact_certification_fields(
-    records, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
-):
-    from tools import web_editor
-
-    source_path, document = next(item for item in records if item[0].stem == "a320")
-    target = tmp_path / "turbofan/a320.yml"
-    target.parent.mkdir(parents=True)
-    target.write_text(source_path.read_text(encoding="utf-8"), encoding="utf-8")
-    monkeypatch.setattr(web_editor, "YAML_BASE_DIR", tmp_path)
-
-    edited = copy.deepcopy(document)
-    edited["wing"]["mac"] = 4.1936
-    edited["horizontal_tail"]["area"] = 30.843429
-    web_editor.save_aircraft_data("A320", edited, "turbofan")
-    saved = yaml.safe_load(target.read_text(encoding="utf-8"))
-    assert saved["wing"]["mac"] == 4.1936
-    assert saved["horizontal_tail"]["area"] == 30.843429
-    assert saved["certification"] == document["certification"]
-    assert saved["mzfw"] == document["mzfw"]
-    assert saved["minimum_weight"] == document["minimum_weight"]
-
-
-def test_web_editor_updates_geometry_sources_and_derived_values(
-    records, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
-):
-    from tools import web_editor
-
-    source_path, document = next(item for item in records if item[0].stem == "a320")
-    yaml_root = tmp_path / "aircraft/yml"
-    target = yaml_root / "turbofan/a320.yml"
-    target.parent.mkdir(parents=True)
-    target.write_text(source_path.read_text(encoding="utf-8"), encoding="utf-8")
-    sidecar = tmp_path / "aircraft/sources/turbofan/a320.txt"
-    sidecar.parent.mkdir(parents=True)
-    sidecar.write_text(
-        (SOURCE_ROOT / "turbofan/a320.txt").read_text(encoding="utf-8"),
-        encoding="utf-8",
-    )
-    monkeypatch.setattr(web_editor, "YAML_BASE_DIR", yaml_root)
-
-    edited = copy.deepcopy(document)
-    edited["wing"]["span"] = 34.2
-    web_editor.save_aircraft_data("A320", edited, "turbofan")
-
-    saved = yaml.safe_load(target.read_text(encoding="utf-8"))
-    assert saved["wing"]["aspect_ratio"] == pytest.approx(34.2**2 / 122, rel=1e-6)
-    notes = parse_source_notes(sidecar.read_text(encoding="utf-8"))
-    assert notes["fields"]["wing.span"]["value"] == "34.2"
-    assert notes["fields"]["wing.span"]["source"] == "aerox_web_editor_manual_entry"
-    assert (
-        notes["fields"]["wing.aspect_ratio"]["inputs"] == "span=34.2 m; area=122.0 m2"
-    )
-    assert notes["fields"]["wing.aspect_ratio"]["status"] == "legacy-unverified"
 
 
 def test_geometry_render_keeps_the_sections_after_the_geometry_section():

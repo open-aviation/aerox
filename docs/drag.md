@@ -321,7 +321,13 @@ reynolds_per_m = aircraft_reynolds / sqrt(reference_area_m2)
 
 - At cruise, the model agrees with a reference performance model within 5 %
   for most jet transports.
-- Near Mach 0.6 it is 4 to 12 % too high. The model has no drag increase with
-  Mach below the drag rise yet. See the [roadmap](roadmap.md).
+- In climb and descent near Mach 0.6, at the flown altitude, it is 2 to 3 %
+  above the same reference model on average. Give the real altitude or
+  Reynolds number: at cruise altitude, a Mach number of 0.6 gives a Reynolds
+  number that is too low, and the drag is then about 10 % too high.
+- Between the cruise Mach number and MMO the model is too low, by about 10 %
+  on average and by about 18 % at MMO, against published flight-test curves
+  for ten transport types. The wave drag starts too late and rises too
+  slowly. See the [roadmap](roadmap.md).
 - The record field `drag.confidence` rates the geometry behind each model as
   medium, medium-low, or low.

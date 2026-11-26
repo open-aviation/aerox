@@ -16,6 +16,14 @@
     --tag-record: #1f6fd1;
     --tag-estimated: #a66a00;
     --tag-rule: #6b6a66;
+    /* Source status groups in the data view */
+    --st-published: #1f6fd1;
+    --st-derived: #0d8273;
+    --st-inferred: #a66a00;
+    --st-model: #7a4fc8;
+    --st-legacy: #c0462a;
+    --st-unresolved: #6b6a66;
+    --st-none: #b4b3ad;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -29,6 +37,13 @@
       --tag-record: #79aef0;
       --tag-estimated: #e5b24d;
       --tag-rule: #a9a89f;
+      --st-published: #79aef0;
+      --st-derived: #4cc0b0;
+      --st-inferred: #e5b24d;
+      --st-model: #b49cf2;
+      --st-legacy: #f08b6b;
+      --st-unresolved: #a9a89f;
+      --st-none: #67665f;
     }
   }
   :root[data-theme="dark"] {
@@ -42,6 +57,13 @@
     --tag-record: #79aef0;
     --tag-estimated: #e5b24d;
     --tag-rule: #a9a89f;
+    --st-published: #79aef0;
+    --st-derived: #4cc0b0;
+    --st-inferred: #e5b24d;
+    --st-model: #b49cf2;
+    --st-legacy: #f08b6b;
+    --st-unresolved: #a9a89f;
+    --st-none: #67665f;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; height: 100%; }
@@ -71,13 +93,16 @@
     padding: 5px 10px;
   }
   select { max-width: min(340px, 100%); }
-  .picker { display: inline-flex; gap: 4px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .picker { display: inline-flex; gap: 4px; min-width: 0; max-width: 100%; }
+  .picker select { min-width: 0; }
   .picker button { padding: 5px 9px; }
   button:disabled { opacity: 0.5; }
   .modes { display: inline-flex; }
   .modes button { border-radius: 0; }
   .modes button:first-child { border-radius: 6px 0 0 6px; }
-  .modes button:last-child { border-radius: 0 6px 6px 0; border-left: none; }
+  .modes button:last-child { border-radius: 0 6px 6px 0; }
+  .modes button + button { border-left: none; }
   .modes button[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
   label.toggle { display: inline-flex; gap: 6px; align-items: center; color: var(--text-2); }
   .legend { display: flex; flex-wrap: wrap; gap: 4px 12px; color: var(--text-2); margin-left: auto; }
@@ -107,6 +132,8 @@
     font-size: 12px;
     pointer-events: none;
   }
+  .nogl { position: absolute; inset: 0; display: grid; place-items: center; padding: 16px; color: var(--text-2); text-align: center; }
+  body.gl .nogl { display: none; }
   aside {
     width: 320px;
     flex: none;
@@ -122,20 +149,154 @@
   aside td.v { text-align: right; white-space: nowrap; padding-left: 8px; font-variant-numeric: tabular-nums; }
   aside td.v.text { white-space: normal; overflow-wrap: anywhere; }
   aside td.t { text-align: right; padding-left: 8px; width: 1%; white-space: nowrap; }
-  .tag { font-size: 11px; padding: 0 6px; border-radius: 8px; border: 1px solid currentColor; }
+  .tag { font-size: 11px; padding: 0 6px; border-radius: 8px; border: 1px solid currentColor; white-space: nowrap; }
   .tag.record { color: var(--tag-record); }
   .tag.estimated { color: var(--tag-estimated); }
   .tag.rule { color: var(--tag-rule); }
   aside .back { margin: 0 0 10px; padding: 3px 8px; font-size: 12px; }
   aside .key { margin-top: 14px; color: var(--text-2); font-size: 12px; display: grid; gap: 4px; }
   aside h3 { font-size: 13px; margin: 14px 0 4px; color: var(--text-2); font-weight: 600; }
+
+  /* Data view ------------------------------------------------------------ */
+  body.mode-data canvas, body.mode-data svg.overlay, body.mode-data .nogl,
+  body.mode-data aside, body.mode-data .legend, body.mode-data .drawing { display: none; }
+  .data { position: absolute; inset: 0; overflow: auto; padding: 14px 16px 40px; background: var(--surface); cursor: auto; }
+  .data[hidden] { display: none; }
+  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+  .muted { color: var(--text-2); }
+  .data a { color: var(--accent); text-decoration: none; }
+  .data a:hover { text-decoration: underline; }
+  .data button.link {
+    border: none; background: none; padding: 0; border-radius: 2px; color: inherit; font: inherit;
+    cursor: pointer; text-align: left;
+  }
+  .data button.link:hover { color: var(--accent); }
+  .summary { display: grid; gap: 6px; margin-bottom: 12px; max-width: 980px; }
+  .summary h2 { font-size: 17px; margin: 0; font-weight: 600; }
+  .summary h2 .mono { font-size: 13px; color: var(--text-2); font-weight: 400; margin-left: 8px; }
+  .summary .meta { color: var(--text-2); font-size: 13px; display: flex; flex-wrap: wrap; gap: 2px 16px; }
+  .summary .meta b { color: var(--text); font-weight: 500; }
+  .stbar { display: flex; height: 10px; gap: 2px; max-width: 720px; margin-top: 4px; }
+  .stbar span { background: var(--c); border-radius: 2px; min-width: 3px; }
+  .stbar span.empty { background: none; border: 1px solid var(--border); }
+  .stkey { display: flex; flex-wrap: wrap; gap: 2px 14px; font-size: 12px; color: var(--text-2); }
+  .stkey span { display: inline-flex; gap: 5px; align-items: center; }
+  .stkey span::before { content: ""; width: 9px; height: 9px; border-radius: 2px; background: var(--c); }
+  .stkey span.empty::before { background: none; border: 1px solid var(--text-2); }
+  .stkey b { color: var(--text); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .controls { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; margin-bottom: 10px; }
+  .controls input[type="search"] {
+    font: inherit; color: var(--text); background: var(--surface);
+    border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px; width: min(280px, 100%);
+  }
+  .controls select { max-width: min(300px, 100%); }
+  .count { color: var(--text-2); font-size: 12px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+  .chip { font-size: 12px; padding: 2px 8px; border-radius: 12px; display: inline-flex; gap: 6px; align-items: center; cursor: pointer; }
+  .chip::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: var(--c); }
+  .chip.none::before { background: none; border: 1px dashed var(--text-2); }
+  .chip .n { color: var(--text-2); font-variant-numeric: tabular-nums; }
+  .chip[aria-pressed="true"] { border-color: var(--c); box-shadow: inset 0 0 0 1px var(--c); }
+  .chip.none[aria-pressed="true"] { border-color: var(--text-2); box-shadow: inset 0 0 0 1px var(--text-2); }
+  details.key { font-size: 12px; color: var(--text-2); max-width: 980px; }
+  details.key summary { cursor: pointer; width: max-content; }
+  details.key dl { display: grid; grid-template-columns: max-content 1fr; gap: 3px 12px; margin: 6px 0 0; }
+  details.key dd { margin: 0; }
+  .tag.st { color: var(--c); }
+  .tag.st.none { color: var(--text-2); border-style: dashed; }
+  .record { display: flex; gap: 20px; align-items: flex-start; }
+  nav.index {
+    position: sticky; top: 0; flex: none; width: 190px; font-size: 13px;
+    display: grid; gap: 1px; padding-top: 2px;
+  }
+  nav.index button {
+    border: none; background: none; text-align: left; padding: 3px 6px; border-radius: 4px;
+    display: flex; justify-content: space-between; gap: 8px; color: var(--text);
+  }
+  nav.index button:hover { background: var(--panel); }
+  nav.index button .n { color: var(--text-2); font-size: 12px; font-variant-numeric: tabular-nums; }
+  nav.index button.off { color: var(--text-2); }
+  .tablewrap { flex: 1; min-width: 0; }
+  table.fields { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.fields th, table.fields td { padding: 4px 12px 4px 0; text-align: left; vertical-align: baseline; }
+  table.fields thead th {
+    position: sticky; top: -14px; z-index: 1; background: var(--surface);
+    font-weight: 600; color: var(--text-2); font-size: 12px; box-shadow: inset 0 -1px var(--border);
+  }
+  table.fields td { border-bottom: 1px solid var(--grid); }
+  table.fields .num { text-align: right; }
+  table.fields th.sec { padding: 16px 0 4px; border-bottom: 1px solid var(--border); }
+  table.fields th.sec button {
+    border: none; background: none; padding: 0; font-weight: 600; font-size: 13px;
+    display: inline-flex; gap: 6px; align-items: baseline;
+  }
+  table.fields th.sec button::before { content: "▾"; color: var(--text-2); font-size: 11px; width: 10px; }
+  table.fields th.sec button[aria-expanded="false"]::before { content: "▸"; }
+  table.fields th.sec .n { color: var(--text-2); font-weight: 400; font-size: 12px; margin-left: 8px; }
+  table.fields td.f { min-width: 170px; }
+  table.fields td.f button { display: inline-flex; gap: 6px; align-items: baseline; }
+  table.fields td.f button::before { content: "▸"; color: var(--text-2); font-size: 10px; width: 8px; }
+  table.fields td.f button[aria-expanded="true"]::before { content: "▾"; }
+  table.fields td.f .sub { color: var(--text-2); }
+  table.fields td.v { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  table.fields td.v.text { text-align: left; white-space: normal; min-width: 140px; max-width: 360px; }
+  table.fields td.v .empty { color: var(--text-2); font-style: italic; }
+  table.fields td.u { color: var(--text-2); white-space: nowrap; }
+  table.fields td.s { min-width: 150px; }
+  table.fields td.s button { white-space: nowrap; margin-right: 10px; }
+  table.fields td.p { color: var(--text-2); white-space: nowrap; }
+  table.fields tr.blank td.f { color: var(--text-2); }
+  table.fields tr.open td { border-bottom-color: transparent; background: var(--panel); }
+  table.fields tr.detail td { background: var(--panel); padding: 2px 12px 10px 22px; }
+  .notes { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 14px; font-size: 13px; margin: 0; max-width: 980px; }
+  .notes dt { color: var(--text-2); }
+  .notes dd { margin: 0; overflow-wrap: anywhere; white-space: pre-line; }
+  .notes .copy { font-size: 11px; padding: 0 6px; margin-left: 8px; }
+  .none-match { color: var(--text-2); }
+  .docs h3 { font-size: 13px; margin: 24px 0 6px; }
+  .docs table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .docs td { padding: 5px 12px 5px 0; border-bottom: 1px solid var(--grid); vertical-align: baseline; }
+  .docs td.id { white-space: nowrap; }
+  .docs td.n { text-align: right; color: var(--text-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .docs tr.on td { background: var(--panel); }
+  @media (max-width: 1180px) {
+    table.fields .p { display: none; }
+    nav.index { display: none; }
+  }
   @media (max-width: 760px) {
     /* Stack the page and let it scroll, the panel below the drawing. */
     html, body { height: auto; }
     body { min-height: 100vh; }
     .body { flex: none; flex-direction: column; }
     main { flex: none; height: 60vh; min-height: 320px; }
+    body.mode-data main { height: auto; min-height: 0; }
+    body.mode-data .data { position: static; overflow: visible; padding-bottom: 24px; }
     aside { width: auto; border-left: none; border-top: 1px solid var(--border); overflow: visible; }
+    /* The record table becomes one card per field. */
+    table.fields thead { display: none; }
+    table.fields, table.fields tbody { display: block; }
+    table.fields tr { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; column-gap: 6px; border-bottom: 1px solid var(--grid); padding: 4px 0; }
+    table.fields td { border: none; padding: 0; }
+    table.fields tr.sechead { display: block; border-bottom: 1px solid var(--border); padding: 0; }
+    table.fields th.sec { display: block; }
+    table.fields td.f { min-width: 0; grid-column: 1; }
+    table.fields td.v, table.fields td.v.text { grid-column: 2; min-width: 0; max-width: 55vw; text-align: right; white-space: normal; }
+    table.fields td.u { grid-column: 3; }
+    table.fields td.st { grid-column: 1 / -1; font-size: 12px; }
+    table.fields td.s { grid-column: 1 / -1; min-width: 0; font-size: 11px; white-space: normal; }
+    table.fields td.s button { white-space: normal; overflow-wrap: anywhere; }
+    .chips { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; }
+    .chip { flex: none; }
+    .controls input[type="search"] { width: 100%; }
+    table.fields tr.detail { display: block; }
+    table.fields tr.detail td { display: block; padding: 4px 0 10px; }
+    .notes { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    .notes dd { margin-bottom: 6px; }
+    .docs table, .docs tbody { display: block; }
+    .docs tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; border-bottom: 1px solid var(--grid); padding: 4px 0; }
+    .docs td { border: none; padding: 0; }
+    .docs td.t { grid-column: 1 / 3; }
+    .docs td.id { overflow-wrap: anywhere; white-space: normal; }
   }
 </style>
 </head>
@@ -150,19 +311,647 @@
   <div class="modes" role="group" aria-label="View">
     <button id="mode3d" aria-pressed="true" title="3D view (3)">3D</button>
     <button id="mode2d" aria-pressed="false" title="2D three-view (2)">2D three-view</button>
+    <button id="modedata" aria-pressed="false" title="Record values and sources (T)">Data</button>
   </div>
-  <button id="reset" title="Reset view (R)">Reset view</button>
-  <label class="toggle" title="Show dimensions (D)"><input type="checkbox" id="dims" checked> Dimensions</label>
+  <button id="reset" class="drawing" title="Reset view (R)">Reset view</button>
+  <label class="toggle drawing" title="Show dimensions (D)"><input type="checkbox" id="dims" checked> Dimensions</label>
   <div class="legend" id="legend"></div>
 </header>
 <div class="body">
   <main id="stage">
     <canvas id="canvas"></canvas>
     <svg class="overlay" id="overlay"></svg>
-    <div class="hint" id="hint">Click a part for its dimensions. Drag to rotate, scroll to zoom, right-drag to pan. ← → change aircraft.</div>
+    <div class="nogl" id="nogl">Loading the drawing.</div>
+    <div class="data" id="data" hidden>
+      <section class="summary" id="summary" aria-label="Record summary"></section>
+      <div class="controls">
+        <input type="search" id="filter" placeholder="Filter fields, values, notes  ( / )" aria-label="Filter fields">
+        <select id="source" aria-label="Filter by source"></select>
+        <label class="toggle"><input type="checkbox" id="empty"> Empty fields</label>
+        <span class="count" id="count" aria-live="polite"></span>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Filter by status"></div>
+      <details class="key" id="key"><summary>What the statuses mean</summary><dl id="keylist"></dl></details>
+      <div class="record">
+        <nav class="index" id="index" aria-label="Sections"></nav>
+        <div class="tablewrap">
+          <table class="fields" id="fields">
+            <thead><tr><th>Field</th><th class="num">Value</th><th>Unit</th><th>Status</th><th>Source</th><th class="p">Path</th></tr></thead>
+          </table>
+          <p class="none-match" id="nomatch" hidden>No field matches the filter.</p>
+          <section class="docs" id="docs"></section>
+        </div>
+      </div>
+    </div>
+    <div class="hint drawing" id="hint">Click a part for its dimensions. Drag to rotate, scroll to zoom, right-drag to pan. ← → change aircraft.</div>
   </main>
   <aside id="panel" aria-live="polite"></aside>
 </div>
+
+<script>
+// Aircraft picker, view modes, and the data view. This script does not need
+// three.js or WebGL, so the data view works when the drawing cannot load.
+const DATA = __AIRCRAFT_DATA__;
+const TEXT = __RECORD_TEXT__;
+const SOURCES = __SOURCES__;
+
+const select = document.getElementById("aircraft");
+const btn3d = document.getElementById("mode3d");
+const btn2d = document.getElementById("mode2d");
+const btnData = document.getElementById("modedata");
+const dataView = document.getElementById("data");
+const filterBox = document.getElementById("filter");
+const sourceBox = document.getElementById("source");
+const emptyBox = document.getElementById("empty");
+const MODES = ["3d", "2d", "data"];
+
+// The drawing script sets these when three.js and WebGL are available.
+const viewer = { onAircraft: null, onMode: null, onKey: null };
+let code = null;
+let mode = "3d";
+
+const store = {
+  get(key) { try { return localStorage.getItem(key); } catch (e) { return null; } },
+  set(key, value) { try { localStorage.setItem(key, value); } catch (e) {} },
+};
+
+const codes = Object.keys(DATA).sort();
+for (const c of codes) {
+  const option = document.createElement("option");
+  option.value = c;
+  option.textContent = `${c}  ${DATA[c].name}`;
+  select.appendChild(option);
+}
+
+// Deep links: #A320/data, #B738/3d, or #C172.
+function fromHash() {
+  const [c, m] = decodeURIComponent(location.hash.slice(1)).split("/");
+  return { code: codes.includes((c || "").toUpperCase()) ? c.toUpperCase() : null, mode: MODES.includes(m) ? m : null };
+}
+function toHash() {
+  history.replaceState(null, "", `#${code}/${mode}`);
+}
+
+function setAircraft(next) {
+  code = next;
+  select.value = code;
+  store.set("aerox-viewer-aircraft", code);
+  openRows.clear();
+  sourceFilter = "";
+  showRecord(true);
+  toHash();
+  viewer.onAircraft?.(code);
+}
+
+function setMode(next) {
+  mode = next;
+  btn3d.setAttribute("aria-pressed", String(mode === "3d"));
+  btn2d.setAttribute("aria-pressed", String(mode === "2d"));
+  btnData.setAttribute("aria-pressed", String(mode === "data"));
+  dataView.hidden = mode !== "data";
+  document.body.classList.toggle("mode-data", mode === "data");
+  store.set("aerox-viewer-mode", mode);
+  toHash();
+  viewer.onMode?.(mode);
+}
+
+function step(delta) {
+  const i = (codes.indexOf(code) + delta + codes.length) % codes.length;
+  setAircraft(codes[i]);
+}
+
+// Data view ------------------------------------------------------------------
+// Status groups, from the best sourced to no source; one colour each.
+const GROUPS = [
+  ["published", "Published", ["certified-published", "manufacturer-published", "manufacturer-published-planning"]],
+  ["derived", "Calculated or secondary", ["calculated-from-published-inputs", "research-report", "secondary-compilation"]],
+  ["inferred", "Inferred", ["inferred-with-uncertainty"]],
+  ["model", "Model setting", ["project-derived-active-model"]],
+  ["legacy", "Legacy", ["legacy-unverified"]],
+  ["unresolved", "Unresolved", ["unresolved"]],
+  ["none", "No source note", ["no note"]],
+];
+const STATUS_TEXT = {
+  "certified-published": "In a type-certificate data sheet or another certification document.",
+  "manufacturer-published": "Published by the manufacturer.",
+  "manufacturer-published-planning": "In the manufacturer's airport and maintenance planning document.",
+  "calculated-from-published-inputs": "Calculated from published values. The note gives the inputs or the formula.",
+  "research-report": "From a research or test report.",
+  "secondary-compilation": "From a secondary compilation of published data.",
+  "inferred-with-uncertainty": "Inferred, for example measured on a drawing or taken from a similar type. The note gives the uncertainty.",
+  "project-derived-active-model": "A setting of the aerox drag model, not an aircraft property.",
+  "legacy-unverified": "An original aerox value not yet checked against a source.",
+  "unresolved": "No value adopted. The note gives the sources searched.",
+  "no note": "The source note does not list this field. Values not listed keep the original aerox data.",
+};
+const GROUP_OF = {};
+for (const [key, , statuses] of GROUPS) for (const s of statuses) GROUP_OF[s] = key;
+const groupOf = (status) => GROUP_OF[status] || "derived";
+
+const SECTIONS = [
+  ["identification", "Identification"], ["subtypes", "Subtypes and engine identifiers"],
+  ["certification", "Certification"], ["mass", "Mass limits"], ["limits", "Speed and altitude limits"],
+  ["category", "Wake category and parking"], ["pax", "Passengers"], ["fuselage", "Fuselage"],
+  ["wing", "Wing"], ["horizontal_tail", "Horizontal tail"], ["vertical_tail", "Vertical tail"],
+  ["aileron", "Aileron"], ["rudder", "Rudder"], ["flaps", "High-lift devices"], ["engine", "Engines"],
+  ["geometry", "Reference dimensions"], ["mass_properties", "Mass properties"],
+  ["drag", "Drag model"], ["kinematic", "Kinematics"],
+];
+const TOP = {
+  aircraft: "identification", icao: "identification", iata: "identification",
+  mtow: "mass", mlw: "mass", mzfw: "mass", minimum_weight: "mass", oew: "mass", mfc: "mass",
+  vmo: "limits", mmo: "limits", ceiling: "limits",
+  icao_wtc: "category", eu_wtc: "category", faa_wtc: "category", parking_area_m2: "category",
+};
+const NAMES = {
+  aircraft: "Name", icao: "ICAO type code", iata: "IATA codes",
+  mtow: "Maximum take-off mass", mlw: "Maximum landing mass", mzfw: "Maximum zero-fuel mass",
+  minimum_weight: "Minimum mass", oew: "Operating empty mass", mfc: "Maximum fuel capacity",
+  vmo: "VMO", mmo: "MMO", ceiling: "Ceiling",
+  icao_wtc: "ICAO wake category", eu_wtc: "RECAT-EU category", faa_wtc: "FAA wake category",
+  parking_area_m2: "Parking area", mac: "Mean aerodynamic chord", "t/c": "Thickness-to-chord ratio",
+  arm: "Moment arm", eta_inboard: "Inboard flap station", eta_outboard: "Outboard flap station",
+  type_certificate: "Type certificate", reference_cg_mac: "Reference CG", cg_forward_mac: "Forward CG limit",
+  cg_aft_mac: "Aft CG limit", ixx: "Ixx", iyy: "Iyy", izz: "Izz", ixz: "Ixz", source_id: "Source id",
+  default: "Default engine", options: "Engine options", number: "Number of engines",
+};
+const WORDS = { ias: "IAS", tas: "TAS", vs: "vertical speed", v2: "V2", cg: "CG", mac: "MAC" };
+const UNIT_SUFFIX = { m: "m", nm: "NM", ft: "ft", deg: "°", ias: "kt", tas: "kt", v2: "kt", vs: "ft/min", m2: "m²" };
+const UNITS = {
+  mtow: "kg", mlw: "kg", mzfw: "kg", minimum_weight: "kg", oew: "kg", vmo: "kt", ceiling: "ft",
+  area: "m²", span: "m", mac: "m", root_chord: "m", tip_chord: "m", length: "m", height: "m",
+  width: "m", arm: "m", sweep: "°", dihedral: "°", reference_mass: "kg",
+};
+const UNIT_TEXT = { m2: "m²", deg: "°", nondimensional: "", "-": "" };
+
+function fieldName(path) {
+  const parts = path.split(".");
+  const key = parts[parts.length - 1];
+  if (path.startsWith("flaps.settings.") && parts.length > 3) {
+    return [parts.slice(2, -1).join("."), key === "slats_extended" ? "slats extended" : key.split("_")[0]];
+  }
+  if (path.startsWith("subtypes.")) return [parts.slice(1).join("."), ""];
+  if (NAMES[path] || NAMES[key]) return [NAMES[path] || NAMES[key], ""];
+  const words = key.split("_");
+  if (words.length > 1 && UNIT_SUFFIX[words[words.length - 1]] && !["ias", "tas", "vs", "v2"].includes(words[words.length - 1])) words.pop();
+  const text = words.map((w) => WORDS[w] || (/^fl\d+$/.test(w) ? w.toUpperCase() : w)).join(" ");
+  return [text.charAt(0).toUpperCase() + text.slice(1), ""];
+}
+
+function unitOf(path, unit) {
+  if (unit) return unit in UNIT_TEXT ? UNIT_TEXT[unit] : unit;
+  const key = path.split(".").pop();
+  if (UNITS[path] || UNITS[key]) return UNITS[path] || UNITS[key];
+  if (path.startsWith("subtypes.")) return "";
+  return UNIT_SUFFIX[key.split("_").pop()] || "";
+}
+
+function noteLabel(key) {
+  const text = key.replaceAll("_", " ").replace(/\burl\b/, "URL");
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
+const parsed = {};
+function records(c) {
+  if (parsed[c]) return parsed[c];
+  parsed[c] = DATA[c].record.map(([path, value, unit, status, source, flat]) => {
+    const notes = [];
+    for (let i = 0; i < flat.length; i += 2) notes.push([TEXT[flat[i]], TEXT[flat[i + 1]]]);
+    const [label, sub] = fieldName(path);
+    const top = path.split(".")[0];
+    const r = {
+      path, value, label, sub, notes,
+      unit: unitOf(path, unit),
+      status: status || "no note",
+      sources: source ? source.split(" | ").map((s) => s.trim()) : [],
+      section: TOP[path] || top,
+    };
+    r.text = [path, label, sub, value, r.unit, r.status, source, ...notes.flat()].join(" ").toLowerCase();
+    return r;
+  });
+  return parsed[c];
+}
+
+function formatValue(value) {
+  if (typeof value === "number") {
+    return Number.isInteger(value) ? value.toLocaleString("en") : value.toLocaleString("en", { maximumFractionDigits: 6 });
+  }
+  return String(value);
+}
+
+let statusFilter = new Set();
+let sourceFilter = "";
+const collapsed = new Set();
+const openRows = new Set();
+emptyBox.checked = store.get("aerox-viewer-empty") === "1";
+
+function el(tag, cls, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text != null) e.textContent = text;
+  return e;
+}
+
+function statusTag(status) {
+  const g = groupOf(status);
+  const tag = el("span", `tag st ${g}`, status);
+  tag.style.setProperty("--c", `var(--st-${g})`);
+  tag.title = STATUS_TEXT[status] || "";
+  return tag;
+}
+
+function sourceButton(id) {
+  const b = el("button", "link mono", id);
+  const doc = SOURCES[id];
+  b.title = doc && doc[0] ? `${doc[0]}${doc[1] ? `, ${doc[1]}` : ""}\nShow only the fields from this source` : "Show only the fields from this source";
+  b.addEventListener("click", (e) => { e.stopPropagation(); setSource(sourceFilter === id ? "" : id); });
+  return b;
+}
+
+function setSource(id) {
+  sourceFilter = id;
+  sourceBox.value = id;
+  showRecord();
+}
+
+async function copy(text, button) {
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch (e) {
+    const area = el("textarea");
+    area.value = text;
+    document.body.appendChild(area);
+    area.select();
+    document.execCommand("copy");
+    area.remove();
+  }
+  const old = button.textContent;
+  button.textContent = "Copied";
+  setTimeout(() => { button.textContent = old; }, 1200);
+}
+
+function showSummary(all) {
+  const box = document.getElementById("summary");
+  box.replaceChildren();
+  const d = DATA[code];
+  const h = el("h2", null, d.name);
+  h.appendChild(el("span", "mono", code));
+  box.appendChild(h);
+  const meta = el("div", "meta");
+  const item = (label, value) => {
+    const span = el("span", null, `${label} `);
+    span.appendChild(el("b", null, value));
+    meta.appendChild(span);
+  };
+  if (d.header.reviewed) item("Last reviewed", d.header.reviewed);
+  let applicability = "";
+  for (const [k, v] of d.header.scope) {
+    if (k === "Applicability") applicability = v;
+    else item(k, v);
+  }
+  box.appendChild(meta);
+  if (applicability) box.appendChild(el("div", "meta", `Applicability: ${applicability}`));
+
+  const filled = all.filter((r) => r.value !== null);
+  const empty = all.length - filled.length;
+  const bar = el("div", "stbar");
+  const parts = [];
+  for (const [g, label] of GROUPS) {
+    const n = filled.filter((r) => groupOf(r.status) === g).length;
+    if (!n) continue;
+    const s = el("span");
+    s.style.flexGrow = n;
+    s.style.setProperty("--c", `var(--st-${g})`);
+    s.title = `${label}: ${n}`;
+    bar.appendChild(s);
+    parts.push(`${label} ${n}`);
+  }
+  if (empty) {
+    const s = el("span", "empty");
+    s.style.flexGrow = empty;
+    s.title = `Empty: ${empty}`;
+    bar.appendChild(s);
+  }
+  bar.setAttribute("role", "img");
+  bar.setAttribute("aria-label", `Filled values by status: ${parts.join(", ")}. Empty fields: ${empty}.`);
+  box.appendChild(bar);
+  const key = el("div", "stkey");
+  const keyItem = (cls, label, n, colour) => {
+    const span = el("span", cls, `${label} `);
+    if (colour) span.style.setProperty("--c", colour);
+    span.appendChild(el("b", null, n));
+    key.appendChild(span);
+  };
+  for (const [g, label] of GROUPS) {
+    const n = filled.filter((r) => groupOf(r.status) === g).length;
+    if (n) keyItem(g, label, n, `var(--st-${g})`);
+  }
+  if (empty) keyItem("empty", "Empty", empty);
+  box.appendChild(key);
+  const ids = new Set(all.flatMap((r) => r.sources));
+  box.appendChild(el("div", "meta",
+    `${filled.length} values and ${empty} empty fields. ${ids.size} cited ${ids.size === 1 ? "source" : "sources"}.`));
+}
+
+function showChips(base) {
+  const box = document.getElementById("chips");
+  box.replaceChildren();
+  const counts = {};
+  for (const r of base) counts[r.status] = (counts[r.status] || 0) + 1;
+  for (const s of statusFilter) if (!(s in counts)) statusFilter.delete(s);
+  const order = GROUPS.flatMap(([, , statuses]) => statuses);
+  const statuses = Object.keys(counts).sort((a, b) => (order.indexOf(a) + 99 * (order.indexOf(a) < 0)) - (order.indexOf(b) + 99 * (order.indexOf(b) < 0)));
+  for (const s of statuses) {
+    const g = groupOf(s);
+    const b = el("button", `chip ${g}`, s);
+    b.style.setProperty("--c", `var(--st-${g})`);
+    b.appendChild(el("span", "n", counts[s]));
+    b.setAttribute("aria-pressed", String(statusFilter.has(s)));
+    b.title = STATUS_TEXT[s] || "";
+    b.addEventListener("click", () => {
+      if (statusFilter.has(s)) statusFilter.delete(s); else statusFilter.add(s);
+      showRecord();
+    });
+    box.appendChild(b);
+  }
+}
+
+function showSourceBox(all) {
+  const counts = {};
+  for (const r of all) for (const id of r.sources) counts[id] = (counts[id] || 0) + 1;
+  sourceBox.replaceChildren(new Option("All sources", ""));
+  for (const id of Object.keys(counts).sort()) sourceBox.appendChild(new Option(`${id} (${counts[id]})`, id));
+  sourceBox.value = sourceFilter;
+}
+
+function detailRow(r) {
+  const tr = el("tr", "detail");
+  const td = tr.insertCell();
+  td.colSpan = 6;
+  const dl = el("dl", "notes");
+  const add = (label, value, extra) => {
+    dl.appendChild(el("dt", null, label));
+    const dd = el("dd");
+    if (value instanceof Node) dd.appendChild(value); else dd.textContent = value;
+    if (extra) dd.appendChild(extra);
+    dl.appendChild(dd);
+  };
+  const copyButton = (text) => {
+    const b = el("button", "copy", "Copy");
+    b.addEventListener("click", () => copy(text, b));
+    return b;
+  };
+  add("Path", el("span", "mono", r.path), copyButton(r.path));
+  if (r.value !== null) add("Value", formatValue(r.value) + (r.unit ? ` ${r.unit}` : ""), copyButton(String(r.value)));
+  add("Status", `${r.status}. ${STATUS_TEXT[r.status] || ""}`);
+  for (const id of r.sources) {
+    const doc = SOURCES[id];
+    const span = el("span");
+    span.appendChild(el("span", "mono", id));
+    if (doc && doc[0]) span.appendChild(document.createTextNode(`  ${doc[0]}${doc[1] ? `, ${doc[1]}` : ""}`));
+    if (doc && /^https?:\/\//.test(doc[2])) {
+      span.appendChild(document.createTextNode("  "));
+      const a = el("a", null, "link");
+      a.href = doc[2]; a.target = "_blank"; a.rel = "noopener";
+      span.appendChild(a);
+    }
+    add("Source", span);
+  }
+  // The document title and link of a cited source are given above already.
+  const cited = r.sources.map((id) => SOURCES[id] || []);
+  for (const [k, v] of r.notes) {
+    if ((k === "document_title" && cited.some((d) => d[0] === v)) ||
+        (k === "source_url" && cited.some((d) => d[2] === v))) continue;
+    if (/^https?:\/\/\S+$/.test(v)) {
+      const a = el("a", null, v);
+      a.href = v; a.target = "_blank"; a.rel = "noopener";
+      add(noteLabel(k), a);
+    } else add(noteLabel(k), v);
+  }
+  if (!r.notes.length && r.status === "no note") add("Note", "No source note for this field.");
+  td.appendChild(dl);
+  return tr;
+}
+
+function fieldRow(r) {
+  const tr = el("tr", r.value === null ? "row blank" : "row");
+  const f = tr.insertCell();
+  f.className = "f";
+  const b = el("button", "link");
+  b.appendChild(el("span", null, r.label));
+  if (r.sub) b.appendChild(el("span", "sub", r.sub));
+  b.setAttribute("aria-expanded", String(openRows.has(r.path)));
+  b.title = r.path;
+  b.addEventListener("click", () => {
+    if (openRows.has(r.path)) openRows.delete(r.path); else openRows.add(r.path);
+    showRecord();
+    document.querySelector(`#fields td.f button[title="${CSS.escape(r.path)}"]`)?.focus();
+  });
+  f.appendChild(b);
+  const v = tr.insertCell();
+  if (r.value === null) {
+    v.className = "v";
+    v.appendChild(el("span", "empty", "empty"));
+  } else {
+    v.className = typeof r.value === "number" ? "v" : "v text";
+    v.textContent = formatValue(r.value);
+  }
+  tr.insertCell().className = "u";
+  tr.cells[2].textContent = r.unit;
+  const st = tr.insertCell();
+  st.className = "st";
+  st.appendChild(statusTag(r.status));
+  const s = tr.insertCell();
+  s.className = "s";
+  for (const id of r.sources) s.appendChild(sourceButton(id));
+  const p = tr.insertCell();
+  p.className = "p mono";
+  p.textContent = r.path;
+  if (openRows.has(r.path)) tr.classList.add("open");
+  return tr;
+}
+
+function showDocs(all) {
+  const box = document.getElementById("docs");
+  box.replaceChildren();
+  const counts = {};
+  for (const r of all) for (const id of r.sources) counts[id] = (counts[id] || 0) + 1;
+  const ids = Object.keys(counts).sort((a, b) => counts[b] - counts[a] || a.localeCompare(b));
+  box.id = "docs";
+  box.appendChild(el("h3", null, `Source documents (${ids.length})`));
+  if (!ids.length) {
+    box.appendChild(el("p", "muted", "No value of this record cites a source."));
+    return;
+  }
+  const t = el("table");
+  for (const id of ids) {
+    const [title, date, url] = SOURCES[id] || ["", "", ""];
+    const tr = t.insertRow();
+    if (id === sourceFilter) tr.classList.add("on");
+    const a = tr.insertCell();
+    a.className = "id";
+    a.appendChild(sourceButton(id));
+    const tt = tr.insertCell();
+    tt.className = "t";
+    tt.textContent = title || "No title in the source ledger";
+    if (!title) tt.classList.add("muted");
+    if (date) tt.appendChild(el("span", "muted", `  ${date}`));
+    if (/^https?:\/\//.test(url)) {
+      tt.appendChild(document.createTextNode("  "));
+      const link = el("a", null, "link");
+      link.href = url; link.target = "_blank"; link.rel = "noopener";
+      tt.appendChild(link);
+    }
+    const n = tr.insertCell();
+    n.className = "n";
+    n.textContent = `${counts[id]} ${counts[id] === 1 ? "field" : "fields"}`;
+  }
+  box.appendChild(t);
+}
+
+function showRecord(newAircraft = false) {
+  if (!code) return;
+  const all = records(code);
+  if (newAircraft) {
+    showSummary(all);
+    showSourceBox(all);
+    showDocs(all);
+  }
+  const base = emptyBox.checked ? all : all.filter((r) => r.value !== null);
+  showChips(base);
+  const words = filterBox.value.toLowerCase().split(/\s+/).filter(Boolean);
+  const rows = base.filter((r) =>
+    (!statusFilter.size || statusFilter.has(r.status)) &&
+    (!sourceFilter || r.sources.includes(sourceFilter)) &&
+    words.every((w) => r.text.includes(w)));
+  const filtering = words.length || statusFilter.size || sourceFilter;
+
+  const table = document.getElementById("fields");
+  table.querySelectorAll("tbody").forEach((b) => b.remove());
+  const nav = document.getElementById("index");
+  nav.replaceChildren();
+  const known = SECTIONS.map(([k]) => k);
+  const extra = [...new Set(rows.map((r) => r.section))].filter((k) => !known.includes(k));
+  const sections = [...SECTIONS, ...extra.map((k) => [k, k.replaceAll("_", " ")])];
+  for (const [key, title] of sections) {
+    const inSection = rows.filter((r) => r.section === key);
+    const total = all.filter((r) => r.section === key);
+    if (!inSection.length) continue;
+    const filled = total.filter((r) => r.value !== null).length;
+    const body = el("tbody");
+    body.id = `sec-${key}`;
+    const head = body.insertRow();
+    head.className = "sechead";
+    const th = el("th", "sec");
+    th.colSpan = 6;
+    const open = filtering || !collapsed.has(key);
+    const b = el("button", null, title);
+    b.setAttribute("aria-expanded", String(open));
+    b.addEventListener("click", () => {
+      if (collapsed.has(key)) collapsed.delete(key); else collapsed.add(key);
+      showRecord();
+      document.querySelector(`#sec-${key} th.sec button`)?.focus();
+    });
+    th.appendChild(b);
+    th.appendChild(el("span", "n", `${filled} of ${total.length} filled`));
+    head.appendChild(th);
+    if (open) {
+      for (const r of inSection) {
+        body.appendChild(fieldRow(r));
+        if (openRows.has(r.path)) body.appendChild(detailRow(r));
+      }
+    }
+    table.appendChild(body);
+
+    const link = el("button");
+    link.appendChild(el("span", null, title));
+    link.appendChild(el("span", "n", filtering ? String(inSection.length) : `${filled}/${total.length}`));
+    if (!open) link.classList.add("off");
+    link.addEventListener("click", () => {
+      collapsed.delete(key);
+      showRecord();
+      document.getElementById(`sec-${key}`).scrollIntoView({ block: "start" });
+    });
+    nav.appendChild(link);
+  }
+  const docLink = el("button");
+  docLink.appendChild(el("span", null, "Source documents"));
+  docLink.addEventListener("click", () => document.getElementById("docs").scrollIntoView({ block: "start" }));
+  nav.appendChild(docLink);
+  document.querySelectorAll("#docs tr").forEach((tr) => {
+    tr.classList.toggle("on", tr.querySelector(".id button")?.textContent === sourceFilter);
+  });
+
+  document.getElementById("nomatch").hidden = rows.length > 0;
+  const noun = emptyBox.checked ? "fields" : "values";
+  document.getElementById("count").textContent =
+    rows.length === base.length ? `${base.length} ${noun}` : `${rows.length} of ${base.length} ${noun}`;
+}
+
+const keyList = document.getElementById("keylist");
+for (const [g, label, statuses] of GROUPS) {
+  for (const s of statuses) {
+    const dt = el("dt");
+    dt.appendChild(statusTag(s));
+    keyList.appendChild(dt);
+    keyList.appendChild(el("dd", null, `${label}. ${STATUS_TEXT[s]}`));
+  }
+}
+
+filterBox.addEventListener("input", () => showRecord());
+filterBox.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && filterBox.value) { filterBox.value = ""; showRecord(); e.stopPropagation(); }
+});
+sourceBox.addEventListener("change", () => setSource(sourceBox.value));
+emptyBox.addEventListener("change", () => {
+  store.set("aerox-viewer-empty", emptyBox.checked ? "1" : "0");
+  showRecord();
+});
+
+// Picker, modes, and keys --------------------------------------------------
+select.addEventListener("change", () => setAircraft(select.value));
+document.getElementById("prev").addEventListener("click", () => step(-1));
+document.getElementById("next").addEventListener("click", () => step(1));
+btn3d.addEventListener("click", () => setMode("3d"));
+btn2d.addEventListener("click", () => setMode("2d"));
+btnData.addEventListener("click", () => setMode("data"));
+
+// Keyboard shortcuts, ignored while typing in a form field. In the data view
+// the up and down keys scroll the table.
+window.addEventListener("keydown", (e) => {
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  if (e.target.closest && e.target.closest("input, select, textarea")) return;
+  const key = e.key.toLowerCase();
+  const vertical = key === "arrowup" || key === "arrowdown";
+  if (vertical && mode === "data") return;
+  if (key === "arrowleft" || key === "arrowup" || key === "k") step(-1);
+  else if (key === "arrowright" || key === "arrowdown" || key === "j") step(1);
+  else if (key === "3") setMode("3d");
+  else if (key === "2") setMode("2d");
+  else if (key === "t") setMode("data");
+  else if (key === "/" && mode === "data") filterBox.focus();
+  else if (!(viewer.onKey && viewer.onKey(key))) return;
+  e.preventDefault();
+});
+window.addEventListener("hashchange", () => {
+  const h = fromHash();
+  if (h.code && h.code !== code) setAircraft(h.code);
+  if (h.mode && h.mode !== mode) setMode(h.mode);
+});
+window.addEventListener("load", () => {
+  if (!document.body.classList.contains("gl")) {
+    document.getElementById("nogl").textContent =
+      "The 3D and 2D views need WebGL and three.js from the internet. The Data view works without them.";
+  }
+});
+
+const linked = fromHash();
+const saved = store.get("aerox-viewer-aircraft");
+code = linked.code || (codes.includes(saved) ? saved : codes.includes("A320") ? "A320" : codes[0]);
+select.value = code;
+showRecord(true);
+setMode(linked.mode || (MODES.includes(store.get("aerox-viewer-mode")) ? store.get("aerox-viewer-mode") : "3d"));
+</script>
 
 <script type="importmap">
 { "imports": {
@@ -171,10 +960,10 @@
 } }
 </script>
 <script type="module">
+// The 3D view and the 2D three-view.
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
-const DATA = __AIRCRAFT_DATA__;
 const COLORS = __PART_COLORS__;
 const LABELS = {
   fuselage: "Fuselage", wing: "Wing", horizontal_tail: "Tails",
@@ -187,10 +976,7 @@ const canvas = document.getElementById("canvas");
 const stage = document.getElementById("stage");
 const overlay = document.getElementById("overlay");
 const panel = document.getElementById("panel");
-const select = document.getElementById("aircraft");
 const hint = document.getElementById("hint");
-const btn3d = document.getElementById("mode3d");
-const btn2d = document.getElementById("mode2d");
 const dimsBox = document.getElementById("dims");
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
@@ -205,8 +991,7 @@ const perspective = new THREE.PerspectiveCamera(35, 1, 0.1, 5000);
 const controls = new OrbitControls(perspective, canvas);
 controls.enableDamping = true;
 
-let mode = "3d";
-let code = null;
+let shown = null; // the aircraft drawn
 let group = null;
 let helpers = null; // grid and 3D dimension lines
 let selected = null;
@@ -223,23 +1008,11 @@ function niceStep(x) {
   return 10 * p;
 }
 
-// Aircraft list -------------------------------------------------------------
-const codes = Object.keys(DATA).sort();
-for (const c of codes) {
-  const option = document.createElement("option");
-  option.value = c;
-  option.textContent = `${c}  ${DATA[c].name}`;
-  select.appendChild(option);
-}
-let initial = "A320";
-try { initial = localStorage.getItem("aerox-viewer-aircraft") || initial; } catch (e) {}
-select.value = codes.includes(initial) ? initial : codes[0];
-
 const legend = document.getElementById("legend");
 function updateLegend() {
   legend.replaceChildren();
   for (const [part, label] of Object.entries(LABELS)) {
-    if (!(part in DATA[code].parts)) continue;
+    if (!(part in DATA[shown].parts)) continue;
     const span = document.createElement("span");
     span.textContent = label;
     span.style.setProperty("--swatch", COLORS[part]);
@@ -250,7 +1023,7 @@ function updateLegend() {
 // Geometry ------------------------------------------------------------------
 function buildGroup() {
   const g = new THREE.Group();
-  for (const [name, mesh] of Object.entries(DATA[code].parts)) {
+  for (const [name, mesh] of Object.entries(DATA[shown].parts)) {
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute(
       "position", new THREE.Float32BufferAttribute(mesh.v.map((x) => x / 100), 3));
@@ -328,7 +1101,7 @@ function makeHelpers() {
 }
 
 function load(next) {
-  code = next;
+  shown = next;
   selected = null;
   if (group) {
     scene.remove(group);
@@ -346,7 +1119,6 @@ function load(next) {
   resetCamera();
   updateLegend();
   showPanel();
-  try { localStorage.setItem("aerox-viewer-aircraft", code); } catch (e) {}
 }
 
 function overall() {
@@ -391,7 +1163,7 @@ function table(rows, withTags) {
 
 function showPanel() {
   panel.replaceChildren();
-  const d = DATA[code];
+  const d = DATA[shown];
   if (selected && d.details[selected]) {
     const back = document.createElement("button");
     back.className = "back";
@@ -622,6 +1394,7 @@ function drawOverlay(width, height) {
 // Rendering ----------------------------------------------------------------
 function resize() {
   const { clientWidth: w, clientHeight: h } = stage;
+  if (!w || !h) return;
   renderer.setSize(w, h, false);
   perspective.aspect = w / h;
   perspective.updateProjectionMatrix();
@@ -629,6 +1402,7 @@ function resize() {
 
 function render() {
   requestAnimationFrame(render);
+  if (mode === "data") return;
   const { clientWidth: w, clientHeight: h } = stage;
   renderer.setClearColor(new THREE.Color(css("--surface")), 1);
   renderer.setScissorTest(false);
@@ -678,44 +1452,24 @@ canvas.addEventListener("pointerup", (e) => {
   select_(hit ? hit.object.userData.part : null);
 });
 
-function setMode(next) {
-  mode = next;
-  btn3d.setAttribute("aria-pressed", String(mode === "3d"));
-  btn2d.setAttribute("aria-pressed", String(mode === "2d"));
+function applyMode() {
   controls.enabled = mode === "3d";
   hint.style.display = mode === "3d" ? "" : "none";
   document.getElementById("reset").disabled = mode !== "3d";
+  resize();
   applyMaterials();
-  try { localStorage.setItem("aerox-viewer-mode", mode); } catch (e) {}
 }
 
-select.addEventListener("change", () => load(select.value));
-
-function step(delta) {
-  const i = (codes.indexOf(select.value) + delta + codes.length) % codes.length;
-  select.value = codes[i];
-  load(select.value);
-}
-document.getElementById("prev").addEventListener("click", () => step(-1));
-document.getElementById("next").addEventListener("click", () => step(1));
-
-// Keyboard shortcuts, ignored while typing in a form field.
-window.addEventListener("keydown", (e) => {
-  if (e.ctrlKey || e.metaKey || e.altKey) return;
-  if (e.target.closest && e.target.closest("input, select, textarea")) return;
-  const key = e.key.toLowerCase();
-  if (key === "arrowleft" || key === "arrowup" || key === "k") step(-1);
-  else if (key === "arrowright" || key === "arrowdown" || key === "j") step(1);
-  else if (key === "3") setMode("3d");
-  else if (key === "2") setMode("2d");
-  else if (key === "r" && mode === "3d") resetCamera();
+viewer.onAircraft = load;
+viewer.onMode = applyMode;
+viewer.onKey = (key) => {
+  if (mode === "data") return false;
+  if (key === "r" && mode === "3d") resetCamera();
   else if (key === "d") dimsBox.checked = !dimsBox.checked;
   else if (key === "escape") select_(null);
-  else return;
-  e.preventDefault();
-});
-btn3d.addEventListener("click", () => setMode("3d"));
-btn2d.addEventListener("click", () => setMode("2d"));
+  else return false;
+  return true;
+};
 document.getElementById("reset").addEventListener("click", resetCamera);
 window.addEventListener("resize", resize);
 // The grid colours come from the CSS tokens: rebuild it when the theme changes.
@@ -725,11 +1479,10 @@ window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () 
   scene.add(helpers);
 });
 
+document.body.classList.add("gl");
 resize();
-load(select.value);
-let savedMode = "3d";
-try { savedMode = localStorage.getItem("aerox-viewer-mode") || "3d"; } catch (e) {}
-setMode(savedMode === "2d" ? "2d" : "3d");
+load(code);
+applyMode();
 render();
 </script>
 </body>

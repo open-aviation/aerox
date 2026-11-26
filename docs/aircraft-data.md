@@ -100,15 +100,28 @@ package.
 `src/aerox/data/aircraft/aircraft-parameter-availability.csv` shows which
 parameters each record contains.
 
-## Edit records
+## View and edit records
 
-A local web editor shows and edits the records:
+The viewer shows every value of a record with its status, source, and
+notes. Select **Data** in the page, or press `T`:
 
 ```bash
-uv run --extra editor tools/web_editor.py
+aerox view A320
 ```
 
-Run the tests after an edit:
+The Data view is read-only. It shows the review date and certification
+scope of the source note and a bar of the values by status. Filter the
+fields by text, status, or source document. Select **Empty fields** to also
+list the fields the record does not fill. Select a field to see its full
+source note and to copy its path or value. The cited documents are listed
+at the end with their titles, dates, and links. A link such as
+`#A320/data` at the end of the page address opens an aircraft in a view.
+The Data view also works without an internet connection or WebGL.
+
+To change a value, edit the record and its source note, then apply the
+tools in `tools/` (`update_aircraft_geometry.py`,
+`update_aircraft_drag_models.py`, and
+`generate_aircraft_availability_matrix.py`). Run the tests after an edit:
 
 ```bash
 uv run pytest -q
