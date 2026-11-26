@@ -146,17 +146,29 @@ FIELD wing.mac
 END FIELD
 
 FIELD wing.sweep
-  Value: 33
+  Value: 33.5
   Unit: deg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: research-report
+  Source: obert_2009_aerodynamic_design_of_transport_aircraft | janes_all_the_worlds_aircraft_2004_2005
+  Page or section: Obert p. 265; Jane's p. 231
+  Applicability: Airbus A380-800
+  Previous value: 33 deg
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
+  Notes: Quarter-chord sweep.
 END FIELD
 
 FIELD wing.t/c
-  Value: 0.08
+  Value: 0.098
   Unit: nondimensional
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: calculated-from-published-inputs
+  Source: obert_2009_aerodynamic_design_of_transport_aircraft
+  Page or section: p. 265, A380 characteristics
+  Formula: (root + 3 x outer) / 4, the average of the Jenkinson data tables
+  Inputs: root 0.132, outer wing 0.087
+  Applicability: Airbus A380-800
+  Uncertainty: Two stations; Fig. 24.136 shows the distribution
+  Previous value: 0.08 nondimensional
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
 END FIELD
 
 FIELD wing.root_chord
@@ -165,7 +177,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05
+  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05 | obert_2009_aerodynamic_design_of_transport_aircraft | janes_all_the_worlds_aircraft_2004_2005
   Search record: Reviewed the exact-model Airbus vector drawing against the 14.59 m tail-reference-plane height in the current A380 ACAP.
 END FIELD
 
@@ -175,7 +187,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05
+  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05 | obert_2009_aerodynamic_design_of_transport_aircraft | janes_all_the_worlds_aircraft_2004_2005
   Search record: Reviewed the exact-model Airbus vector drawing against the 14.59 m tail-reference-plane height in the current A380 ACAP.
 END FIELD
 
@@ -185,7 +197,7 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05
+  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05 | obert_2009_aerodynamic_design_of_transport_aircraft | janes_all_the_worlds_aircraft_2004_2005
   Search record: Reviewed the exact-model Airbus vector drawing against the 14.59 m tail-reference-plane height in the current A380 ACAP.
 END FIELD
 
@@ -204,7 +216,7 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05
+  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05 | obert_2009_aerodynamic_design_of_transport_aircraft | janes_all_the_worlds_aircraft_2004_2005
   Search record: Reviewed the exact-model Airbus vector drawing against the 14.59 m tail-reference-plane height in the current A380 ACAP.
 END FIELD
 
@@ -318,7 +330,7 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05
+  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05 | obert_2009_aerodynamic_design_of_transport_aircraft | janes_all_the_worlds_aircraft_2004_2005
   Search record: Reviewed the exact-model Airbus vector drawing against the 14.59 m tail-reference-plane height in the current A380 ACAP.
 END FIELD
 
@@ -328,7 +340,7 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05
+  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05 | obert_2009_aerodynamic_design_of_transport_aircraft | janes_all_the_worlds_aircraft_2004_2005
   Search record: Reviewed the exact-model Airbus vector drawing against the 14.59 m tail-reference-plane height in the current A380 ACAP.
 END FIELD
 
@@ -338,7 +350,7 @@ FIELD horizontal_tail.elevator_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05
+  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05 | obert_2009_aerodynamic_design_of_transport_aircraft | janes_all_the_worlds_aircraft_2004_2005
   Search record: Reviewed the exact-model Airbus vector drawing against the 14.59 m tail-reference-plane height in the current A380 ACAP.
 END FIELD
 
@@ -454,7 +466,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05
+  Searched source: easa_a110_issue_17 | airbus_a380_acap_2025_12 | airbus_a380_800_autocad_2012_05 | obert_2009_aerodynamic_design_of_transport_aircraft | janes_all_the_worlds_aircraft_2004_2005
   Search record: Reviewed the exact-model Airbus vector drawing against the 14.59 m tail-reference-plane height in the current A380 ACAP.
 END FIELD
 
@@ -487,7 +499,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=A-observed-core-and-tails; confidence=medium; e_span=0.9560; roughness_excrescence/computed=0.0900; nacelle_tier=C-estimated-fan-diameter
-  Zero-lift terms at reference (drag counts): wing=42.84; fuselage=32.85; horizontal_tail=14.27; vertical_tail=8.24; nacelles=11.85; pylons=1.82; fuselage_upsweep=3.35; control_surface_gaps=0.97; nacelle_base=1.18; roughness_excrescence=10.56
+  Zero-lift terms at reference (drag counts): wing=44.47; fuselage=32.85; horizontal_tail=14.27; vertical_tail=8.24; nacelles=11.85; pylons=1.82; fuselage_upsweep=3.35; control_surface_gaps=0.97; nacelle_base=1.18; roughness_excrescence=10.71
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration

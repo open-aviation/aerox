@@ -166,12 +166,16 @@ FIELD wing.sweep
 END FIELD
 
 FIELD wing.t/c
-  Value: null
+  Value: 0.112
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10
+  Status: inferred-with-uncertainty
+  Source: obert_2009_aerodynamic_design_of_transport_aircraft
+  Page or section: pp. 235 and 260, Fig. 24.59
+  Formula: (root + 3 x outer) / 4, the average of the Jenkinson data tables
+  Inputs: root 0.154 (737-100/-200 root, only slightly modified); outer wing 0.098 = 0.9 x A320 outer wing 0.109
+  Applicability: Boeing 737-800 wing
+  Uncertainty: Both stations are inferred from statements in the source, not published values.
+  Notes: Same wing as the B738 record; sister-subtype fill. The 737 MAX keeps the 737 Next Generation wing box and sections; this is an assumption for the MAX records.
 END FIELD
 
 FIELD wing.root_chord
@@ -180,7 +184,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10
+  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD wing.tip_chord
@@ -189,7 +193,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10
+  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD wing.taper_ratio
@@ -198,7 +202,7 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10
+  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD wing.aspect_ratio
@@ -218,7 +222,7 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10
+  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD horizontal_tail.area
@@ -227,7 +231,7 @@ FIELD horizontal_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10
+  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD horizontal_tail.span
@@ -250,7 +254,7 @@ FIELD horizontal_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10
+  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD horizontal_tail.root_chord
@@ -259,7 +263,7 @@ FIELD horizontal_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10
+  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD horizontal_tail.tip_chord
@@ -268,7 +272,7 @@ FIELD horizontal_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10
+  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD horizontal_tail.taper_ratio
@@ -277,7 +281,7 @@ FIELD horizontal_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10
+  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD horizontal_tail.sweep
@@ -286,7 +290,7 @@ FIELD horizontal_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10
+  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD horizontal_tail.dihedral
@@ -295,7 +299,7 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10
+  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -304,7 +308,7 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10
+  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
@@ -313,7 +317,7 @@ FIELD horizontal_tail.elevator_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10
+  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.area
@@ -322,7 +326,7 @@ FIELD vertical_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10
+  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.height
@@ -331,7 +335,7 @@ FIELD vertical_tail.height
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10
+  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.mac
@@ -340,7 +344,7 @@ FIELD vertical_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10
+  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.root_chord
@@ -349,7 +353,7 @@ FIELD vertical_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10
+  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.tip_chord
@@ -358,7 +362,7 @@ FIELD vertical_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10
+  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.taper_ratio
@@ -367,7 +371,7 @@ FIELD vertical_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10
+  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.sweep
@@ -376,7 +380,7 @@ FIELD vertical_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10
+  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.arm
@@ -385,7 +389,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10
+  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.rudder_area_ratio
@@ -394,7 +398,7 @@ FIELD vertical_tail.rudder_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10
+  Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 HIGH-LIFT DEVICES
@@ -423,14 +427,14 @@ LEGACY PARAMETERS
 
 DRAG MODEL
   Active aerox physical drag model and reference-condition polar snapshot.
-  Scaled or substituted geometry fields: wing.t/c, horizontal_tail.area, horizontal_tail.mac, vertical_tail.area, vertical_tail.mac, wing.root_chord, horizontal_tail.sweep, vertical_tail.sweep, engine.nacelle_max_diameter, engine.nacelle_length
+  Scaled or substituted geometry fields: horizontal_tail.area, horizontal_tail.mac, vertical_tail.area, vertical_tail.mac, wing.root_chord, horizontal_tail.sweep, vertical_tail.sweep, engine.nacelle_max_diameter, engine.nacelle_length
 
 FIELD drag.model
   Value: aerox-geometry-drag-v2
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: configuration=clean; tier=C-partially-scaled; confidence=low; e_span=0.9491; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
-  Zero-lift terms at reference (drag counts): wing=53.17; fuselage=54.35; horizontal_tail=17.47; vertical_tail=11.14; nacelles=11.20; pylons=1.72; fuselage_upsweep=5.26; control_surface_gaps=1.15; nacelle_base=1.98; roughness_excrescence=14.17
+  Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9491; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
+  Zero-lift terms at reference (drag counts): wing=53.39; fuselage=54.35; horizontal_tail=17.47; vertical_tail=11.14; nacelles=11.20; pylons=1.72; fuselage_upsweep=5.26; control_surface_gaps=1.15; nacelle_base=1.98; roughness_excrescence=14.19
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -440,13 +444,13 @@ FIELD drag.configuration
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.geometry_tier
-  Value: C-partially-scaled
+  Value: B-observed-core-scaled-tails
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.confidence
-  Value: low
+  Value: medium-low
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Model metadata; not a measured aircraft coefficient.

@@ -149,17 +149,30 @@ FIELD wing.mac
 END FIELD
 
 FIELD wing.sweep
-  Value: 31
+  Value: 31.6
   Unit: deg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: research-report
+  Source: obert_2009_aerodynamic_design_of_transport_aircraft
+  Page or section: p. 250
+  Applicability: Boeing 777-200 wing
+  Previous value: 31 deg
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
+  Notes: Same wing as the B772 record; sister-subtype fill. Quarter-chord sweep. Jane's 2004-05 p. 612 gives 31.5 deg.
 END FIELD
 
 FIELD wing.t/c
-  Value: 0.1
+  Value: 0.114
   Unit: nondimensional
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: inferred-with-uncertainty
+  Source: obert_2009_aerodynamic_design_of_transport_aircraft
+  Page or section: p. 250
+  Formula: (root + 3 x outer) / 4, the average of the Jenkinson data tables
+  Inputs: root about 0.145; outer wing taken as the 767 tip value 0.103
+  Applicability: Boeing 777-200 wing
+  Uncertainty: The source says the outer wing is not much thinner than on the 767. The outer value is a lower estimate.
+  Previous value: 0.1 nondimensional
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
+  Notes: Same wing as the B772 record; sister-subtype fill. The 777-200LR and 777-300ER have raked tips on the same wing.
 END FIELD
 
 FIELD wing.root_chord
@@ -168,7 +181,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD wing.tip_chord
@@ -177,7 +190,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD wing.taper_ratio
@@ -186,7 +199,7 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD wing.aspect_ratio
@@ -204,7 +217,7 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD horizontal_tail.area
@@ -317,7 +330,7 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -326,7 +339,7 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
@@ -350,7 +363,7 @@ FIELD vertical_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.height
@@ -359,7 +372,7 @@ FIELD vertical_tail.height
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.mac
@@ -368,7 +381,7 @@ FIELD vertical_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.root_chord
@@ -377,7 +390,7 @@ FIELD vertical_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.tip_chord
@@ -386,7 +399,7 @@ FIELD vertical_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.taper_ratio
@@ -395,7 +408,7 @@ FIELD vertical_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.sweep
@@ -404,7 +417,7 @@ FIELD vertical_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.arm
@@ -413,7 +426,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.rudder_area_ratio
@@ -422,7 +435,7 @@ FIELD vertical_tail.rudder_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view
+  Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_300er_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 HIGH-LIFT DEVICES
@@ -458,7 +471,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9539; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
-  Zero-lift terms at reference (drag counts): wing=43.80; fuselage=51.73; horizontal_tail=14.17; vertical_tail=9.45; nacelles=12.20; pylons=1.88; fuselage_upsweep=4.24; control_surface_gaps=0.98; nacelle_base=1.22; roughness_excrescence=12.57
+  Zero-lift terms at reference (drag counts): wing=45.12; fuselage=51.73; horizontal_tail=14.17; vertical_tail=9.45; nacelles=12.20; pylons=1.88; fuselage_upsweep=4.24; control_surface_gaps=0.97; nacelle_base=1.22; roughness_excrescence=12.69
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration

@@ -153,17 +153,24 @@ END FIELD
 FIELD wing.sweep
   Value: 25
   Unit: deg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: research-report
+  Source: obert_2009_aerodynamic_design_of_transport_aircraft
+  Page or section: p. 247
+  Applicability: Boeing 757-200 wing
+  Notes: Same wing as the B752 record; sister-subtype fill. Quarter-chord sweep.
 END FIELD
 
 FIELD wing.t/c
-  Value: null
+  Value: 0.105
   Unit: nondimensional
-  Status: unresolved
-  Source: -
-  Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Status: calculated-from-published-inputs
+  Source: obert_2009_aerodynamic_design_of_transport_aircraft
+  Page or section: Fig. 24.87, p. 246; text p. 247
+  Formula: (root + 3 x outer) / 4, the average of the Jenkinson data tables
+  Inputs: root 0.130, tip 0.097
+  Applicability: Boeing 757-200 wing
+  Uncertainty: Two stations only
+  Notes: Same wing as the B752 record; sister-subtype fill.
 END FIELD
 
 FIELD wing.root_chord
@@ -172,7 +179,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD wing.tip_chord
@@ -181,7 +188,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD wing.taper_ratio
@@ -190,7 +197,7 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD wing.aspect_ratio
@@ -208,7 +215,7 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD horizontal_tail.area
@@ -316,7 +323,7 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -325,7 +332,7 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
@@ -334,7 +341,7 @@ FIELD horizontal_tail.elevator_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.area
@@ -343,7 +350,7 @@ FIELD vertical_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.height
@@ -352,7 +359,7 @@ FIELD vertical_tail.height
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.mac
@@ -361,7 +368,7 @@ FIELD vertical_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.root_chord
@@ -370,7 +377,7 @@ FIELD vertical_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.tip_chord
@@ -379,7 +386,7 @@ FIELD vertical_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.taper_ratio
@@ -388,7 +395,7 @@ FIELD vertical_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.sweep
@@ -397,7 +404,7 @@ FIELD vertical_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.arm
@@ -406,7 +413,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.rudder_area_ratio
@@ -415,7 +422,7 @@ FIELD vertical_tail.rudder_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view
+  Searched source: easa_ima205_issue_06 | boeing_757_acap_rev_h_2024_12 | boeing_757_300_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 HIGH-LIFT DEVICES
@@ -453,14 +460,14 @@ LEGACY PARAMETERS
 
 DRAG MODEL
   Active aerox physical drag model and reference-condition polar snapshot.
-  Scaled or substituted geometry fields: wing.t/c, vertical_tail.area, vertical_tail.mac, wing.root_chord, vertical_tail.sweep, engine.nacelle_max_diameter, engine.nacelle_length
+  Scaled or substituted geometry fields: vertical_tail.area, vertical_tail.mac, wing.root_chord, vertical_tail.sweep, engine.nacelle_max_diameter, engine.nacelle_length
 
 FIELD drag.model
   Value: aerox-geometry-drag-v2
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
-  Inputs: configuration=clean; tier=C-partially-scaled; confidence=low; e_span=0.9528; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
-  Zero-lift terms at reference (drag counts): wing=50.29; fuselage=60.07; horizontal_tail=14.06; vertical_tail=10.37; nacelles=11.72; pylons=1.80; fuselage_upsweep=3.93; control_surface_gaps=1.08; nacelle_base=1.72; roughness_excrescence=13.95
+  Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9528; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
+  Zero-lift terms at reference (drag counts): wing=49.76; fuselage=60.07; horizontal_tail=14.06; vertical_tail=10.37; nacelles=11.72; pylons=1.80; fuselage_upsweep=3.93; control_surface_gaps=1.08; nacelle_base=1.72; roughness_excrescence=13.91
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -470,13 +477,13 @@ FIELD drag.configuration
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.geometry_tier
-  Value: C-partially-scaled
+  Value: B-observed-core-scaled-tails
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.confidence
-  Value: low
+  Value: medium-low
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Model metadata; not a measured aircraft coefficient.

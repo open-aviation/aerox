@@ -301,6 +301,8 @@ def test_every_geometry_field_has_matching_plain_text_source_records(records):
         "manufacturer-published",
         "manufacturer-published-planning",
         "calculated-from-published-inputs",
+        "research-report",
+        "secondary-compilation",
         "inferred-with-uncertainty",
         "legacy-unverified",
         "unresolved",

@@ -38,8 +38,8 @@ wing:
   area: 845
   span: 79.75
   mac: 12.3
-  sweep: 33
-  t/c: 0.08
+  sweep: 33.5
+  t/c: 0.098
   root_chord: null
   tip_chord: null
   taper_ratio: null

@@ -8,6 +8,13 @@ Updated: 2026-11-25
   corrections and a Torenbeek slat term. Aircraft records include sourced
   surface geometry and settings where available. See
   [Drag](drag.md#flaps-slats-and-landing-gear).
+- **Wing thickness and sweep.** Sourced wing thickness ratios or sweep
+  angles for 19 records: the A380, the 777 and 757 families, the 737 Next
+  Generation and MAX families, the ERJ-135 and ERJ-145, the Citation III,
+  the Hawker 800, and the Falcon 20. The Citation III sweep changes from 35°
+  to 23° and the Hawker 800 sweep from 15° to 20°. The clean drag of these
+  records changes, by up to 7 % for the Citation III at its reference
+  condition and by less than 2 % for the airliners.
 - **Data view.** `aerox view` lists every field of a record with its status,
   source note, and source documents, and shows the empty fields. The web
   editor and the `editor` extra are removed.

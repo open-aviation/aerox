@@ -154,15 +154,25 @@ END FIELD
 FIELD wing.sweep
   Value: 30
   Unit: deg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: secondary-compilation
+  Source: torenbeek_1982_synthesis
+  Page or section: Table 7-1, p. 220
+  Applicability: Dassault Falcon 20F
+  Notes: Quarter-chord sweep.
 END FIELD
 
 FIELD wing.t/c
-  Value: 0.1
+  Value: 0.086
   Unit: nondimensional
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: calculated-from-published-inputs
+  Source: torenbeek_1982_synthesis
+  Page or section: Table 7-1, p. 220
+  Formula: (root + 3 x outer) / 4, the average of the Jenkinson data tables
+  Inputs: root 0.105, tip 0.080, streamwise
+  Applicability: Dassault Falcon 20F
+  Uncertainty: Two stations only
+  Previous value: 0.1 nondimensional
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
 END FIELD
 
 FIELD wing.root_chord
@@ -171,7 +181,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_legacy_falcon20_ad_index
+  Searched source: easa_legacy_falcon20_ad_index | torenbeek_1982_synthesis
   Search record: reviewed EASA legacy model/airworthiness records; no qualified public source with a requested field and exact Falcon 20 submodel applicability was located.
 END FIELD
 
@@ -181,7 +191,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_legacy_falcon20_ad_index
+  Searched source: easa_legacy_falcon20_ad_index | torenbeek_1982_synthesis
   Search record: reviewed EASA legacy model/airworthiness records; no qualified public source with a requested field and exact Falcon 20 submodel applicability was located.
 END FIELD
 
@@ -191,7 +201,7 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_legacy_falcon20_ad_index
+  Searched source: easa_legacy_falcon20_ad_index | torenbeek_1982_synthesis
   Search record: reviewed EASA legacy model/airworthiness records; no qualified public source with a requested field and exact Falcon 20 submodel applicability was located.
 END FIELD
 
@@ -210,7 +220,7 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_legacy_falcon20_ad_index
+  Searched source: easa_legacy_falcon20_ad_index | torenbeek_1982_synthesis
   Search record: reviewed EASA legacy model/airworthiness records; no qualified public source with a requested field and exact Falcon 20 submodel applicability was located.
 END FIELD
 
@@ -220,7 +230,7 @@ FIELD horizontal_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_legacy_falcon20_ad_index
+  Searched source: easa_legacy_falcon20_ad_index | torenbeek_1982_synthesis
   Search record: reviewed EASA legacy model/airworthiness records; no qualified public source with a requested field and exact Falcon 20 submodel applicability was located.
 END FIELD
 
@@ -230,7 +240,7 @@ FIELD horizontal_tail.span
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_legacy_falcon20_ad_index
+  Searched source: easa_legacy_falcon20_ad_index | torenbeek_1982_synthesis
   Search record: reviewed EASA legacy model/airworthiness records; no qualified public source with a requested field and exact Falcon 20 submodel applicability was located.
 END FIELD
 
@@ -240,7 +250,7 @@ FIELD horizontal_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_legacy_falcon20_ad_index
+  Searched source: easa_legacy_falcon20_ad_index | torenbeek_1982_synthesis
   Search record: reviewed EASA legacy model/airworthiness records; no qualified public source with a requested field and exact Falcon 20 submodel applicability was located.
 END FIELD
 
@@ -250,7 +260,7 @@ FIELD horizontal_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_legacy_falcon20_ad_index
+  Searched source: easa_legacy_falcon20_ad_index | torenbeek_1982_synthesis
   Search record: reviewed EASA legacy model/airworthiness records; no qualified public source with a requested field and exact Falcon 20 submodel applicability was located.
 END FIELD
 
@@ -260,7 +270,7 @@ FIELD horizontal_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_legacy_falcon20_ad_index
+  Searched source: easa_legacy_falcon20_ad_index | torenbeek_1982_synthesis
   Search record: reviewed EASA legacy model/airworthiness records; no qualified public source with a requested field and exact Falcon 20 submodel applicability was located.
 END FIELD
 
@@ -270,7 +280,7 @@ FIELD horizontal_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_legacy_falcon20_ad_index
+  Searched source: easa_legacy_falcon20_ad_index | torenbeek_1982_synthesis
   Search record: reviewed EASA legacy model/airworthiness records; no qualified public source with a requested field and exact Falcon 20 submodel applicability was located.
 END FIELD
 
@@ -280,7 +290,7 @@ FIELD horizontal_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_legacy_falcon20_ad_index
+  Searched source: easa_legacy_falcon20_ad_index | torenbeek_1982_synthesis
   Search record: reviewed EASA legacy model/airworthiness records; no qualified public source with a requested field and exact Falcon 20 submodel applicability was located.
 END FIELD
 
@@ -290,7 +300,7 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_legacy_falcon20_ad_index
+  Searched source: easa_legacy_falcon20_ad_index | torenbeek_1982_synthesis
   Search record: reviewed EASA legacy model/airworthiness records; no qualified public source with a requested field and exact Falcon 20 submodel applicability was located.
 END FIELD
 
@@ -300,7 +310,7 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_legacy_falcon20_ad_index
+  Searched source: easa_legacy_falcon20_ad_index | torenbeek_1982_synthesis
   Search record: reviewed EASA legacy model/airworthiness records; no qualified public source with a requested field and exact Falcon 20 submodel applicability was located.
 END FIELD
 
@@ -310,7 +320,7 @@ FIELD horizontal_tail.elevator_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_legacy_falcon20_ad_index
+  Searched source: easa_legacy_falcon20_ad_index | torenbeek_1982_synthesis
   Search record: reviewed EASA legacy model/airworthiness records; no qualified public source with a requested field and exact Falcon 20 submodel applicability was located.
 END FIELD
 
@@ -320,7 +330,7 @@ FIELD vertical_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_legacy_falcon20_ad_index
+  Searched source: easa_legacy_falcon20_ad_index | torenbeek_1982_synthesis
   Search record: reviewed EASA legacy model/airworthiness records; no qualified public source with a requested field and exact Falcon 20 submodel applicability was located.
 END FIELD
 
@@ -330,7 +340,7 @@ FIELD vertical_tail.height
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_legacy_falcon20_ad_index
+  Searched source: easa_legacy_falcon20_ad_index | torenbeek_1982_synthesis
   Search record: reviewed EASA legacy model/airworthiness records; no qualified public source with a requested field and exact Falcon 20 submodel applicability was located.
 END FIELD
 
@@ -340,7 +350,7 @@ FIELD vertical_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_legacy_falcon20_ad_index
+  Searched source: easa_legacy_falcon20_ad_index | torenbeek_1982_synthesis
   Search record: reviewed EASA legacy model/airworthiness records; no qualified public source with a requested field and exact Falcon 20 submodel applicability was located.
 END FIELD
 
@@ -350,7 +360,7 @@ FIELD vertical_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_legacy_falcon20_ad_index
+  Searched source: easa_legacy_falcon20_ad_index | torenbeek_1982_synthesis
   Search record: reviewed EASA legacy model/airworthiness records; no qualified public source with a requested field and exact Falcon 20 submodel applicability was located.
 END FIELD
 
@@ -360,7 +370,7 @@ FIELD vertical_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_legacy_falcon20_ad_index
+  Searched source: easa_legacy_falcon20_ad_index | torenbeek_1982_synthesis
   Search record: reviewed EASA legacy model/airworthiness records; no qualified public source with a requested field and exact Falcon 20 submodel applicability was located.
 END FIELD
 
@@ -370,7 +380,7 @@ FIELD vertical_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_legacy_falcon20_ad_index
+  Searched source: easa_legacy_falcon20_ad_index | torenbeek_1982_synthesis
   Search record: reviewed EASA legacy model/airworthiness records; no qualified public source with a requested field and exact Falcon 20 submodel applicability was located.
 END FIELD
 
@@ -380,7 +390,7 @@ FIELD vertical_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_legacy_falcon20_ad_index
+  Searched source: easa_legacy_falcon20_ad_index | torenbeek_1982_synthesis
   Search record: reviewed EASA legacy model/airworthiness records; no qualified public source with a requested field and exact Falcon 20 submodel applicability was located.
 END FIELD
 
@@ -390,7 +400,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_legacy_falcon20_ad_index
+  Searched source: easa_legacy_falcon20_ad_index | torenbeek_1982_synthesis
   Search record: reviewed EASA legacy model/airworthiness records; no qualified public source with a requested field and exact Falcon 20 submodel applicability was located.
 END FIELD
 
@@ -400,7 +410,7 @@ FIELD vertical_tail.rudder_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_legacy_falcon20_ad_index
+  Searched source: easa_legacy_falcon20_ad_index | torenbeek_1982_synthesis
   Search record: reviewed EASA legacy model/airworthiness records; no qualified public source with a requested field and exact Falcon 20 submodel applicability was located.
 END FIELD
 
@@ -417,7 +427,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9332; roughness_excrescence/computed=0.0900; nacelle_tier=C-estimated-fan-diameter
-  Zero-lift terms at reference (drag counts): wing=54.89; fuselage=53.43; horizontal_tail=19.14; vertical_tail=12.18; nacelles=8.52; pylons=1.14; fuselage_upsweep=4.73; control_surface_gaps=1.05; nacelle_base=2.60; roughness_excrescence=14.19
+  Zero-lift terms at reference (drag counts): wing=53.31; fuselage=53.43; horizontal_tail=19.14; vertical_tail=12.18; nacelles=8.52; pylons=1.14; fuselage_upsweep=4.73; control_surface_gaps=1.05; nacelle_base=2.60; roughness_excrescence=14.05
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration

@@ -139,17 +139,29 @@ FIELD wing.mac
 END FIELD
 
 FIELD wing.sweep
-  Value: 15
+  Value: 20.0
   Unit: deg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: secondary-compilation
+  Source: janes_all_the_worlds_aircraft_2004_2005
+  Page or section: p. 670, Hawker 800XP design features
+  Applicability: Hawker 800XP
+  Previous value: 15 deg
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
+  Notes: Quarter-chord sweep. The previous value of 15 deg has no source.
 END FIELD
 
 FIELD wing.t/c
-  Value: 0.12
+  Value: 0.098
   Unit: nondimensional
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: calculated-from-published-inputs
+  Source: janes_all_the_worlds_aircraft_2004_2005
+  Page or section: p. 670, Hawker 800XP design features
+  Formula: (root + 3 x outer) / 4, the average of the Jenkinson data tables
+  Inputs: root 0.140, tip 0.0835
+  Applicability: Hawker 800XP
+  Uncertainty: Two stations only
+  Previous value: 0.12 nondimensional
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
 END FIELD
 
 FIELD wing.root_chord
@@ -158,7 +170,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_type_designators_42140
+  Searched source: tcca_type_designators_42140 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed public Hawker/HS-125 certification indexes; no requested field with resolved 700/800-series applicability was located.
 END FIELD
 
@@ -168,7 +180,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_type_designators_42140
+  Searched source: tcca_type_designators_42140 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed public Hawker/HS-125 certification indexes; no requested field with resolved 700/800-series applicability was located.
 END FIELD
 
@@ -178,7 +190,7 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_type_designators_42140
+  Searched source: tcca_type_designators_42140 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed public Hawker/HS-125 certification indexes; no requested field with resolved 700/800-series applicability was located.
 END FIELD
 
@@ -197,7 +209,7 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_type_designators_42140
+  Searched source: tcca_type_designators_42140 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed public Hawker/HS-125 certification indexes; no requested field with resolved 700/800-series applicability was located.
 END FIELD
 
@@ -207,7 +219,7 @@ FIELD horizontal_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_type_designators_42140
+  Searched source: tcca_type_designators_42140 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed public Hawker/HS-125 certification indexes; no requested field with resolved 700/800-series applicability was located.
 END FIELD
 
@@ -217,7 +229,7 @@ FIELD horizontal_tail.span
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_type_designators_42140
+  Searched source: tcca_type_designators_42140 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed public Hawker/HS-125 certification indexes; no requested field with resolved 700/800-series applicability was located.
 END FIELD
 
@@ -227,7 +239,7 @@ FIELD horizontal_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_type_designators_42140
+  Searched source: tcca_type_designators_42140 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed public Hawker/HS-125 certification indexes; no requested field with resolved 700/800-series applicability was located.
 END FIELD
 
@@ -237,7 +249,7 @@ FIELD horizontal_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_type_designators_42140
+  Searched source: tcca_type_designators_42140 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed public Hawker/HS-125 certification indexes; no requested field with resolved 700/800-series applicability was located.
 END FIELD
 
@@ -247,7 +259,7 @@ FIELD horizontal_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_type_designators_42140
+  Searched source: tcca_type_designators_42140 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed public Hawker/HS-125 certification indexes; no requested field with resolved 700/800-series applicability was located.
 END FIELD
 
@@ -257,7 +269,7 @@ FIELD horizontal_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_type_designators_42140
+  Searched source: tcca_type_designators_42140 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed public Hawker/HS-125 certification indexes; no requested field with resolved 700/800-series applicability was located.
 END FIELD
 
@@ -267,7 +279,7 @@ FIELD horizontal_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_type_designators_42140
+  Searched source: tcca_type_designators_42140 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed public Hawker/HS-125 certification indexes; no requested field with resolved 700/800-series applicability was located.
 END FIELD
 
@@ -277,7 +289,7 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_type_designators_42140
+  Searched source: tcca_type_designators_42140 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed public Hawker/HS-125 certification indexes; no requested field with resolved 700/800-series applicability was located.
 END FIELD
 
@@ -287,7 +299,7 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_type_designators_42140
+  Searched source: tcca_type_designators_42140 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed public Hawker/HS-125 certification indexes; no requested field with resolved 700/800-series applicability was located.
 END FIELD
 
@@ -297,7 +309,7 @@ FIELD horizontal_tail.elevator_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_type_designators_42140
+  Searched source: tcca_type_designators_42140 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed public Hawker/HS-125 certification indexes; no requested field with resolved 700/800-series applicability was located.
 END FIELD
 
@@ -307,7 +319,7 @@ FIELD vertical_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_type_designators_42140
+  Searched source: tcca_type_designators_42140 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed public Hawker/HS-125 certification indexes; no requested field with resolved 700/800-series applicability was located.
 END FIELD
 
@@ -317,7 +329,7 @@ FIELD vertical_tail.height
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_type_designators_42140
+  Searched source: tcca_type_designators_42140 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed public Hawker/HS-125 certification indexes; no requested field with resolved 700/800-series applicability was located.
 END FIELD
 
@@ -327,7 +339,7 @@ FIELD vertical_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_type_designators_42140
+  Searched source: tcca_type_designators_42140 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed public Hawker/HS-125 certification indexes; no requested field with resolved 700/800-series applicability was located.
 END FIELD
 
@@ -337,7 +349,7 @@ FIELD vertical_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_type_designators_42140
+  Searched source: tcca_type_designators_42140 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed public Hawker/HS-125 certification indexes; no requested field with resolved 700/800-series applicability was located.
 END FIELD
 
@@ -347,7 +359,7 @@ FIELD vertical_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_type_designators_42140
+  Searched source: tcca_type_designators_42140 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed public Hawker/HS-125 certification indexes; no requested field with resolved 700/800-series applicability was located.
 END FIELD
 
@@ -357,7 +369,7 @@ FIELD vertical_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_type_designators_42140
+  Searched source: tcca_type_designators_42140 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed public Hawker/HS-125 certification indexes; no requested field with resolved 700/800-series applicability was located.
 END FIELD
 
@@ -367,7 +379,7 @@ FIELD vertical_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_type_designators_42140
+  Searched source: tcca_type_designators_42140 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed public Hawker/HS-125 certification indexes; no requested field with resolved 700/800-series applicability was located.
 END FIELD
 
@@ -377,7 +389,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_type_designators_42140
+  Searched source: tcca_type_designators_42140 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed public Hawker/HS-125 certification indexes; no requested field with resolved 700/800-series applicability was located.
 END FIELD
 
@@ -387,7 +399,7 @@ FIELD vertical_tail.rudder_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: tcca_type_designators_42140
+  Searched source: tcca_type_designators_42140 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed public Hawker/HS-125 certification indexes; no requested field with resolved 700/800-series applicability was located.
 END FIELD
 
@@ -404,7 +416,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9458; roughness_excrescence/computed=0.0900; nacelle_tier=C-estimated-fan-diameter
-  Zero-lift terms at reference (drag counts): wing=59.49; fuselage=51.37; horizontal_tail=19.22; vertical_tail=12.23; nacelles=9.90; pylons=1.32; fuselage_upsweep=4.41; control_surface_gaps=1.30; nacelle_base=3.09; roughness_excrescence=14.61
+  Zero-lift terms at reference (drag counts): wing=56.76; fuselage=51.37; horizontal_tail=19.22; vertical_tail=12.23; nacelles=9.90; pylons=1.32; fuselage_upsweep=4.41; control_surface_gaps=1.23; nacelle_base=3.09; roughness_excrescence=14.36
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration

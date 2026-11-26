@@ -4163,6 +4163,17 @@ sources:
   redistribution: no-public-file
   notes:
   - Section 4.6, equations 4.70 through 4.75 and Figures 4.44 through 4.53.
+- id: ciornei_2005_haw_wing_relative_thickness
+  title: Mach number, relative thickness, sweep and lift coefficient of the wing - An empirical investigation of parameters and equations
+  organization: S. Ciornei / HAW Hamburg
+  url: https://www.fzt.haw-hamburg.de/pers/Scholz/arbeiten/TextCiornei.pdf
+  issue: '2005'
+  accessed: '2026-11-26'
+  evidence_type: secondary-compilation
+  license: open access project report
+  redistribution: link-only
+  notes:
+  - Appendix B and D give root and tip thickness ratio, sweep and airfoil class for 29 aircraft.
 - id: torenbeek_1982_synthesis
   title: Synthesis of Subsonic Airplane Design
   organization: E. Torenbeek / Delft University Press

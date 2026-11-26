@@ -33,7 +33,7 @@ wing:
   area: 51.18
   span: 20.04
   mac: 3.19
-  sweep: 22
+  sweep: 22.73
   t/c: 0.11
   root_chord: null
   tip_chord: null

@@ -198,7 +198,9 @@ def test_spoilers_and_large_surface_angles_are_rejected():
 
 
 def test_clean_drag_matches_the_baseline_for_every_bundled_aircraft():
-    baseline = Path(__file__).with_name("data") / "clean_drag_before_high_lift.tsv"
+    # The baseline holds the clean drag of each record at the conditions
+    # below. Rebuild the rows of a record when its geometry data changes.
+    baseline = Path(__file__).with_name("data") / "clean_drag_baseline.tsv"
     rows = [line.split("\t") for line in baseline.read_text().splitlines()[1:]]
     assert [code for code, *_ in rows] == sorted(get_available_aircraft())
     for code, *expected in rows:

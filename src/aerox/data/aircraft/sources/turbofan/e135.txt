@@ -164,17 +164,28 @@ FIELD wing.mac
 END FIELD
 
 FIELD wing.sweep
-  Value: 22
+  Value: 22.73
   Unit: deg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: secondary-compilation
+  Source: janes_all_the_worlds_aircraft_2004_2005
+  Page or section: p. 24, ERJ-145 design features (22 deg 43 min 48 s)
+  Applicability: ERJ-145 wing
+  Previous value: 22 deg
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
+  Notes: Same wing as the E145 record; sister-subtype fill. Quarter-chord sweep.
 END FIELD
 
 FIELD wing.t/c
-  Value: 0.14
+  Value: 0.11
   Unit: nondimensional
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: secondary-compilation
+  Source: jenkinson_simpkin_rhodes_1999_data_a_table_8
+  Page or section: Table 8, EMB-145, average (t/c)
+  Applicability: EMB-145 wing
+  Uncertainty: Compilation value
+  Previous value: 0.14 nondimensional
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
+  Notes: Same wing as the E145 record; sister-subtype fill.
 END FIELD
 
 FIELD wing.root_chord
@@ -183,7 +194,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: anac_ct_transfer_portaria_7380_2022
+  Searched source: anac_ct_transfer_portaria_7380_2022 | jenkinson_simpkin_rhodes_1999_data_a_table_8 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed Embraer ERJ product pages and legacy APM locations. The previously indexed ERJ145 APM URL now returns 404, so no row from that unvalidated URL is adopted; the ERJ135 APM was likewise not retrievable at its historical direct URL.
 END FIELD
 
@@ -193,7 +204,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: anac_ct_transfer_portaria_7380_2022
+  Searched source: anac_ct_transfer_portaria_7380_2022 | jenkinson_simpkin_rhodes_1999_data_a_table_8 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed Embraer ERJ product pages and legacy APM locations. The previously indexed ERJ145 APM URL now returns 404, so no row from that unvalidated URL is adopted; the ERJ135 APM was likewise not retrievable at its historical direct URL.
 END FIELD
 
@@ -203,7 +214,7 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: anac_ct_transfer_portaria_7380_2022
+  Searched source: anac_ct_transfer_portaria_7380_2022 | jenkinson_simpkin_rhodes_1999_data_a_table_8 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed Embraer ERJ product pages and legacy APM locations. The previously indexed ERJ145 APM URL now returns 404, so no row from that unvalidated URL is adopted; the ERJ135 APM was likewise not retrievable at its historical direct URL.
 END FIELD
 
@@ -224,7 +235,7 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: anac_ct_transfer_portaria_7380_2022
+  Searched source: anac_ct_transfer_portaria_7380_2022 | jenkinson_simpkin_rhodes_1999_data_a_table_8 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed Embraer ERJ product pages and legacy APM locations. The previously indexed ERJ145 APM URL now returns 404, so no row from that unvalidated URL is adopted; the ERJ135 APM was likewise not retrievable at its historical direct URL.
 END FIELD
 
@@ -234,7 +245,7 @@ FIELD horizontal_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: anac_ct_transfer_portaria_7380_2022
+  Searched source: anac_ct_transfer_portaria_7380_2022 | jenkinson_simpkin_rhodes_1999_data_a_table_8 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed Embraer ERJ product pages and legacy APM locations. The previously indexed ERJ145 APM URL now returns 404, so no row from that unvalidated URL is adopted; the ERJ135 APM was likewise not retrievable at its historical direct URL.
 END FIELD
 
@@ -244,7 +255,7 @@ FIELD horizontal_tail.span
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: anac_ct_transfer_portaria_7380_2022
+  Searched source: anac_ct_transfer_portaria_7380_2022 | jenkinson_simpkin_rhodes_1999_data_a_table_8 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed Embraer ERJ product pages and legacy APM locations. The previously indexed ERJ145 APM URL now returns 404, so no row from that unvalidated URL is adopted; the ERJ135 APM was likewise not retrievable at its historical direct URL.
 END FIELD
 
@@ -254,7 +265,7 @@ FIELD horizontal_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: anac_ct_transfer_portaria_7380_2022
+  Searched source: anac_ct_transfer_portaria_7380_2022 | jenkinson_simpkin_rhodes_1999_data_a_table_8 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed Embraer ERJ product pages and legacy APM locations. The previously indexed ERJ145 APM URL now returns 404, so no row from that unvalidated URL is adopted; the ERJ135 APM was likewise not retrievable at its historical direct URL.
 END FIELD
 
@@ -264,7 +275,7 @@ FIELD horizontal_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: anac_ct_transfer_portaria_7380_2022
+  Searched source: anac_ct_transfer_portaria_7380_2022 | jenkinson_simpkin_rhodes_1999_data_a_table_8 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed Embraer ERJ product pages and legacy APM locations. The previously indexed ERJ145 APM URL now returns 404, so no row from that unvalidated URL is adopted; the ERJ135 APM was likewise not retrievable at its historical direct URL.
 END FIELD
 
@@ -274,7 +285,7 @@ FIELD horizontal_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: anac_ct_transfer_portaria_7380_2022
+  Searched source: anac_ct_transfer_portaria_7380_2022 | jenkinson_simpkin_rhodes_1999_data_a_table_8 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed Embraer ERJ product pages and legacy APM locations. The previously indexed ERJ145 APM URL now returns 404, so no row from that unvalidated URL is adopted; the ERJ135 APM was likewise not retrievable at its historical direct URL.
 END FIELD
 
@@ -284,7 +295,7 @@ FIELD horizontal_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: anac_ct_transfer_portaria_7380_2022
+  Searched source: anac_ct_transfer_portaria_7380_2022 | jenkinson_simpkin_rhodes_1999_data_a_table_8 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed Embraer ERJ product pages and legacy APM locations. The previously indexed ERJ145 APM URL now returns 404, so no row from that unvalidated URL is adopted; the ERJ135 APM was likewise not retrievable at its historical direct URL.
 END FIELD
 
@@ -294,7 +305,7 @@ FIELD horizontal_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: anac_ct_transfer_portaria_7380_2022
+  Searched source: anac_ct_transfer_portaria_7380_2022 | jenkinson_simpkin_rhodes_1999_data_a_table_8 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed Embraer ERJ product pages and legacy APM locations. The previously indexed ERJ145 APM URL now returns 404, so no row from that unvalidated URL is adopted; the ERJ135 APM was likewise not retrievable at its historical direct URL.
 END FIELD
 
@@ -304,7 +315,7 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: anac_ct_transfer_portaria_7380_2022
+  Searched source: anac_ct_transfer_portaria_7380_2022 | jenkinson_simpkin_rhodes_1999_data_a_table_8 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed Embraer ERJ product pages and legacy APM locations. The previously indexed ERJ145 APM URL now returns 404, so no row from that unvalidated URL is adopted; the ERJ135 APM was likewise not retrievable at its historical direct URL.
 END FIELD
 
@@ -314,7 +325,7 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: anac_ct_transfer_portaria_7380_2022
+  Searched source: anac_ct_transfer_portaria_7380_2022 | jenkinson_simpkin_rhodes_1999_data_a_table_8 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed Embraer ERJ product pages and legacy APM locations. The previously indexed ERJ145 APM URL now returns 404, so no row from that unvalidated URL is adopted; the ERJ135 APM was likewise not retrievable at its historical direct URL.
 END FIELD
 
@@ -324,7 +335,7 @@ FIELD horizontal_tail.elevator_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: anac_ct_transfer_portaria_7380_2022
+  Searched source: anac_ct_transfer_portaria_7380_2022 | jenkinson_simpkin_rhodes_1999_data_a_table_8 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed Embraer ERJ product pages and legacy APM locations. The previously indexed ERJ145 APM URL now returns 404, so no row from that unvalidated URL is adopted; the ERJ135 APM was likewise not retrievable at its historical direct URL.
 END FIELD
 
@@ -334,7 +345,7 @@ FIELD vertical_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: anac_ct_transfer_portaria_7380_2022
+  Searched source: anac_ct_transfer_portaria_7380_2022 | jenkinson_simpkin_rhodes_1999_data_a_table_8 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed Embraer ERJ product pages and legacy APM locations. The previously indexed ERJ145 APM URL now returns 404, so no row from that unvalidated URL is adopted; the ERJ135 APM was likewise not retrievable at its historical direct URL.
 END FIELD
 
@@ -344,7 +355,7 @@ FIELD vertical_tail.height
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: anac_ct_transfer_portaria_7380_2022
+  Searched source: anac_ct_transfer_portaria_7380_2022 | jenkinson_simpkin_rhodes_1999_data_a_table_8 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed Embraer ERJ product pages and legacy APM locations. The previously indexed ERJ145 APM URL now returns 404, so no row from that unvalidated URL is adopted; the ERJ135 APM was likewise not retrievable at its historical direct URL.
 END FIELD
 
@@ -354,7 +365,7 @@ FIELD vertical_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: anac_ct_transfer_portaria_7380_2022
+  Searched source: anac_ct_transfer_portaria_7380_2022 | jenkinson_simpkin_rhodes_1999_data_a_table_8 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed Embraer ERJ product pages and legacy APM locations. The previously indexed ERJ145 APM URL now returns 404, so no row from that unvalidated URL is adopted; the ERJ135 APM was likewise not retrievable at its historical direct URL.
 END FIELD
 
@@ -364,7 +375,7 @@ FIELD vertical_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: anac_ct_transfer_portaria_7380_2022
+  Searched source: anac_ct_transfer_portaria_7380_2022 | jenkinson_simpkin_rhodes_1999_data_a_table_8 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed Embraer ERJ product pages and legacy APM locations. The previously indexed ERJ145 APM URL now returns 404, so no row from that unvalidated URL is adopted; the ERJ135 APM was likewise not retrievable at its historical direct URL.
 END FIELD
 
@@ -374,7 +385,7 @@ FIELD vertical_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: anac_ct_transfer_portaria_7380_2022
+  Searched source: anac_ct_transfer_portaria_7380_2022 | jenkinson_simpkin_rhodes_1999_data_a_table_8 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed Embraer ERJ product pages and legacy APM locations. The previously indexed ERJ145 APM URL now returns 404, so no row from that unvalidated URL is adopted; the ERJ135 APM was likewise not retrievable at its historical direct URL.
 END FIELD
 
@@ -384,7 +395,7 @@ FIELD vertical_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: anac_ct_transfer_portaria_7380_2022
+  Searched source: anac_ct_transfer_portaria_7380_2022 | jenkinson_simpkin_rhodes_1999_data_a_table_8 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed Embraer ERJ product pages and legacy APM locations. The previously indexed ERJ145 APM URL now returns 404, so no row from that unvalidated URL is adopted; the ERJ135 APM was likewise not retrievable at its historical direct URL.
 END FIELD
 
@@ -394,7 +405,7 @@ FIELD vertical_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: anac_ct_transfer_portaria_7380_2022
+  Searched source: anac_ct_transfer_portaria_7380_2022 | jenkinson_simpkin_rhodes_1999_data_a_table_8 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed Embraer ERJ product pages and legacy APM locations. The previously indexed ERJ145 APM URL now returns 404, so no row from that unvalidated URL is adopted; the ERJ135 APM was likewise not retrievable at its historical direct URL.
 END FIELD
 
@@ -404,7 +415,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: anac_ct_transfer_portaria_7380_2022
+  Searched source: anac_ct_transfer_portaria_7380_2022 | jenkinson_simpkin_rhodes_1999_data_a_table_8 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed Embraer ERJ product pages and legacy APM locations. The previously indexed ERJ145 APM URL now returns 404, so no row from that unvalidated URL is adopted; the ERJ135 APM was likewise not retrievable at its historical direct URL.
 END FIELD
 
@@ -414,7 +425,7 @@ FIELD vertical_tail.rudder_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: anac_ct_transfer_portaria_7380_2022
+  Searched source: anac_ct_transfer_portaria_7380_2022 | jenkinson_simpkin_rhodes_1999_data_a_table_8 | janes_all_the_worlds_aircraft_2004_2005
   Search record: reviewed Embraer ERJ product pages and legacy APM locations. The previously indexed ERJ145 APM URL now returns 404, so no row from that unvalidated URL is adopted; the ERJ135 APM was likewise not retrievable at its historical direct URL.
 END FIELD
 
@@ -500,7 +511,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9469; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
-  Zero-lift terms at reference (drag counts): wing=60.98; fuselage=67.26; horizontal_tail=18.41; vertical_tail=11.72; nacelles=16.60; pylons=2.21; fuselage_upsweep=4.83; control_surface_gaps=1.20; nacelle_base=3.45; roughness_excrescence=16.80
+  Zero-lift terms at reference (drag counts): wing=57.09; fuselage=67.26; horizontal_tail=18.41; vertical_tail=11.72; nacelles=16.60; pylons=2.21; fuselage_upsweep=4.83; control_surface_gaps=1.19; nacelle_base=3.45; roughness_excrescence=16.45
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration

@@ -157,10 +157,18 @@ FIELD wing.sweep
 END FIELD
 
 FIELD wing.t/c
-  Value: 0.12
+  Value: 0.112
   Unit: nondimensional
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: inferred-with-uncertainty
+  Source: obert_2009_aerodynamic_design_of_transport_aircraft
+  Page or section: pp. 235 and 260, Fig. 24.59
+  Formula: (root + 3 x outer) / 4, the average of the Jenkinson data tables
+  Inputs: root 0.154 (737-100/-200 root, only slightly modified); outer wing 0.098 = 0.9 x A320 outer wing 0.109
+  Applicability: Boeing 737-800 wing
+  Uncertainty: Both stations are inferred from statements in the source, not published values.
+  Previous value: 0.12 nondimensional
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
+  Notes: Same wing as the B738 record; sister-subtype fill. The 737 MAX keeps the 737 Next Generation wing box and sections; this is an assumption for the MAX records.
 END FIELD
 
 FIELD wing.root_chord
@@ -169,7 +177,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
+  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
   Search record: Reviewed all four exact-model Boeing 737 MAX CAD drawings; the visible crown-to-tip fin is common, while no unambiguous rudder hinge was identified.
 END FIELD
 
@@ -179,7 +187,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
+  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
   Search record: Reviewed all four exact-model Boeing 737 MAX CAD drawings; the visible crown-to-tip fin is common, while no unambiguous rudder hinge was identified.
 END FIELD
 
@@ -189,7 +197,7 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
+  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
   Search record: Reviewed all four exact-model Boeing 737 MAX CAD drawings; the visible crown-to-tip fin is common, while no unambiguous rudder hinge was identified.
 END FIELD
 
@@ -208,7 +216,7 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
+  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
   Search record: Reviewed all four exact-model Boeing 737 MAX CAD drawings; the visible crown-to-tip fin is common, while no unambiguous rudder hinge was identified.
 END FIELD
 
@@ -338,7 +346,7 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
+  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
   Search record: Reviewed all four exact-model Boeing 737 MAX CAD drawings; the visible crown-to-tip fin is common, while no unambiguous rudder hinge was identified.
 END FIELD
 
@@ -348,7 +356,7 @@ FIELD horizontal_tail.elevator_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
+  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
   Search record: Reviewed all four exact-model Boeing 737 MAX CAD drawings; the visible crown-to-tip fin is common, while no unambiguous rudder hinge was identified.
 END FIELD
 
@@ -465,7 +473,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
+  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
   Search record: Reviewed all four exact-model Boeing 737 MAX CAD drawings; the visible crown-to-tip fin is common, while no unambiguous rudder hinge was identified.
 END FIELD
 
@@ -475,7 +483,7 @@ FIELD vertical_tail.rudder_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view
+  Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max9_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
   Search record: Reviewed all four exact-model Boeing 737 MAX CAD drawings; the visible crown-to-tip fin is common, while no unambiguous rudder hinge was identified.
 END FIELD
 
@@ -492,7 +500,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=A-observed-core-and-tails; confidence=medium; e_span=0.9510; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
-  Zero-lift terms at reference (drag counts): wing=52.21; fuselage=66.83; horizontal_tail=18.01; vertical_tail=13.76; nacelles=13.65; pylons=2.10; fuselage_upsweep=5.29; control_surface_gaps=1.15; nacelle_base=2.26; roughness_excrescence=15.77
+  Zero-lift terms at reference (drag counts): wing=51.32; fuselage=66.83; horizontal_tail=18.01; vertical_tail=13.76; nacelles=13.65; pylons=2.10; fuselage_upsweep=5.29; control_surface_gaps=1.15; nacelle_base=2.26; roughness_excrescence=15.69
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration

@@ -34,7 +34,7 @@ wing:
   span: 34.32
   mac: 4.17
   sweep: 25
-  t/c: null
+  t/c: 0.112
   root_chord: null
   tip_chord: null
   taper_ratio: null
@@ -82,8 +82,8 @@ engine:
 drag:
   model: aerox-geometry-drag-v2
   configuration: clean
-  geometry_tier: C-partially-scaled
-  confidence: low
+  geometry_tier: B-observed-core-scaled-tails
+  confidence: medium-low
   reference_altitude_ft: 37634.0
   reference_mach: 0.78
   reference_reynolds_per_m: 5468597.3
