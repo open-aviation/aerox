@@ -431,6 +431,26 @@ FIELD vertical_tail.rudder_area_ratio
   Searched source: easa_ima120_issue_29 | boeing_737_classic_acap_rev_e_2023_11 | boeing_737_400_cad_3view
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.type
+  Value: triple-slotted
+  Unit: -
+  Status: research-report
+  Source: rudolph_1996_nasa_cr_4746
+  Page or section: sect. 2.1.3; Table 2.2
+  Notes: trailing-edge flap type Reported configuration: triple-slotted.
+END FIELD
+
+FIELD flaps.eta_outboard
+  Value: 0.72
+  Unit: -
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a_table_2_xls
+  Page or section: Data A Table 2B, column 737-400, rows "Trailing Edge Flaps Type", "Flap Span/Wing Span", "Area (m2)"
+  Notes: Jenkinson "Flap Span/Wing Span"; CAD checks (A320, 737-800) show it equals the outboard flap station / semi-span from the centreline, not the net flapped span Outboard station interpretation checked on A320 and B738 drawings.
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

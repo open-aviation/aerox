@@ -518,6 +518,35 @@ OTHER PARAMETERS
   kinematic.cruise_range_nm = 4300; inferred-with-uncertainty; jenkinson_simpkin_rhodes_1999_data_a; Table 1, A310-300, design range.
   Other kinematic fields = A306 values; inferred-with-uncertainty; sister type A300-600 (aerox A306 record); no WRAP or EUROCONTROL-derived profile for the A310 was available. The A310 and A300-600 share the cockpit, systems, and cruise speed range.
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.type
+  Value: mixed-single-double-slotted
+  Unit: -
+  Status: research-report
+  Source: rudolph_1996_nasa_cr_4746
+  Page or section: sect. 2.4.2 p.68; Table 2.2
+  Notes: trailing-edge flap type Reported configuration: vane/main double-slotted inboard; single-slotted outboard.
+END FIELD
+
+FIELD flaps.area
+  Value: 36.68
+  Unit: m2
+  Status: secondary-compilation
+  Source: janes_all_the_worlds_aircraft_2004_2005
+  Page or section: djvu page 256, AIRBUS A310 AREAS
+  Notes: Jane's "Trailing-edge flaps (total)" area, both wings; stowed/extended not stated same as Jenkinson
+END FIELD
+
+FIELD flaps.eta_outboard
+  Value: 0.84
+  Unit: -
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a_table_1_xls
+  Page or section: Data A Table 1B, column A310-300, rows "Trailing Edge Flaps Type", "Flap Span/Wing Span", "Area (m2)"
+  Notes: Jenkinson "Flap Span/Wing Span"; CAD checks (A320, 737-800) show it equals the outboard flap station / semi-span from the centreline, not the net flapped span Rudolph 1996 (sect. 2.4.2): articulating vane/main double-slotted inboard, single-slotted outboard Outboard station interpretation checked on A320 and B738 drawings.
+END FIELD
+
 DRAG MODEL
   Active aerox physical drag model and reference-condition polar snapshot.
   Scaled or substituted geometry fields: wing.root_chord, engine.nacelle_max_diameter, engine.nacelle_length

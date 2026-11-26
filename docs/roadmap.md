@@ -2,6 +2,13 @@
 
 Updated: 2026-11-25
 
+## Next release
+
+- **High-lift drag.** Geometry models use GASP flap profile and lift
+  corrections and a Torenbeek slat term. Aircraft records include sourced
+  surface geometry and settings where available. See
+  [Drag](drag.md#flaps-slats-and-landing-gear).
+
 ## Release 0.5
 
 - **Drag reference altitude.** The reference altitude of the drag model
@@ -47,7 +54,7 @@ Updated: 2026-11-25
 ## Release 0.2.0
 
 - **Flaps and landing gear.** Drag increments for deployed flaps and landing
-  gear. See [Drag](drag.md#flaps-and-landing-gear).
+  gear. See [Drag](drag.md#flaps-slats-and-landing-gear).
 - **JAX and CasADi.** The full drag model as a closed-form expression for
   optimization and automatic differentiation. See
   [Math backends](backends.md).
@@ -68,9 +75,10 @@ Updated: 2026-11-25
 
 - Drag agrees with a reference performance model within 5 % at cruise for most
   jet transports. Near Mach 0.6 it is 4 to 12 % too high.
-- Flap and landing gear drag use simple handbook methods, checked only against
-  A320 gear drag from flight data. Slats add no drag, and spoiler drag is not
-  modelled.
+- High-lift drag uses representative flap and slat angles. Chord, slat
+  geometry and flap stations are sparse. The model has no separate terms
+  for trim, slot-gap scheduling, ground effect or gear interference.
+  Spoiler drag is outside the model.
 - Some wing reference areas have no confirmed source: the 737 MAX family, the
   787-10, the 747-8, the A330-900, the A350-1000, and the CRJ200.
 - The VMO and MMO of the A359, A35K, A388, and GLF5 and the limits of the
@@ -87,8 +95,9 @@ Updated: 2026-11-25
    and drag at lower Mach numbers improves.
 2. **Wing reference areas.** Confirmed sources for the open values listed
    above.
-3. **Flap data.** Sourced flap chord and span ratios for the records that
-   use the default values, and a check of flap drag against flight data.
+3. **High-lift data.** Obtain flap chord, flap and slat stations, and actual
+   deflections for more aircraft. Check the model against measured
+   configuration polars over a range of lift coefficients.
 4. **One aircraft data schema.** One declarative schema for the aircraft
    records, their validation, and the web editor.
 5. **Batched performance evaluation.** Evaluation of the atmosphere and the

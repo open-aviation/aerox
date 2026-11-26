@@ -63,11 +63,25 @@ vertical_tail:
   rudder_area_ratio: null
 flaps:
   type: double-slotted
-  area: null
-  bf/b: null
-  lambda_f: null
-  cf/c: null
-  Sf/S: null
+  area: 10.6
+  eta_inboard: null
+  eta_outboard: 0.66
+  flapped_area_ratio: null
+  chord_ratio: null
+  slatted_area_ratio: null
+  settings:
+    flaps 8:
+      flap_angle_deg: 8.0
+      slat_angle_deg: null
+    flaps 20:
+      flap_angle_deg: 20.0
+      slat_angle_deg: null
+    flaps 30:
+      flap_angle_deg: 30.0
+      slat_angle_deg: null
+    flaps 45:
+      flap_angle_deg: 45.0
+      slat_angle_deg: null
 engine:
   type: turbofan
   mount: rear fuselage

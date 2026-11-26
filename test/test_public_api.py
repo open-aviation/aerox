@@ -151,6 +151,7 @@ def test_scalar_and_array_paths_reject_invalid_conditions(name, condition):
     [
         {"gear_extension_fraction": 1.0},
         {"flap_angle_rad": 0.3},
+        {"slat_angle_rad": 0.4},
         {"spoiler_deflection_rad": 0.1},
     ],
 )
@@ -158,7 +159,7 @@ def test_clean_models_reject_a_deployed_configuration(name, deployed):
     model = _all_models()[name]
     condition = DragCondition(0.7, **deployed)
     if name.startswith("geometry") and "spoiler_deflection_rad" not in deployed:
-        # The geometry models built from a record have flap and gear drag.
+        # Geometry models built from a record support flaps, slats and gear.
         assert model._drag_coefficient_scalar(0.4, condition) > (
             model._drag_coefficient_scalar(0.4, DragCondition(0.7))
         )

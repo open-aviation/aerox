@@ -171,8 +171,8 @@ class TransonicCompressibilityDragModel(CdShorthand):
         condition: DragCondition | None = None,
     ) -> DragBreakdown:
         condition = resolve_condition(mach, reynolds_per_m, condition, h=h, dT=dT)
-        lift, mach_array, _, flap, gear, spoiler = condition.broadcast_with(cl)
-        require_clean(flap, gear, spoiler)
+        lift, mach_array, _, flap, gear, spoiler, slat = condition.broadcast_with(cl)
+        require_clean(flap, gear, spoiler, slat)
         critical_mach = self.wave_drag.critical_mach(lift)
         parasite = np.full_like(lift, self.cd0)
         induced = self.induced_drag.drag_coefficient(lift, mach_array)
@@ -386,10 +386,10 @@ class PollSchumannDragModel(CdShorthand):
         """
 
         condition = resolve_condition(mach, reynolds_per_m, condition, h=h, dT=dT)
-        lift, mach_array, unit_reynolds, flap, gear, spoiler = condition.broadcast_with(
-            cl
+        lift, mach_array, unit_reynolds, flap, gear, spoiler, slat = (
+            condition.broadcast_with(cl)
         )
-        require_clean(flap, gear, spoiler)
+        require_clean(flap, gear, spoiler, slat)
         if condition.reynolds_per_m is None:
             reynolds = np.full_like(lift, self.reference_reynolds_number)
         else:

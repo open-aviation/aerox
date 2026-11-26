@@ -430,6 +430,58 @@ FIELD vertical_tail.rudder_area_ratio
   Search record: reviewed Bombardier CSP A-020 R8, B-020 R15 and C-020 R11. CRJ900 span is withheld because the APM publishes 23.24 m and 24.85 m for different serial configurations and the bundled record does not resolve that effectivity.
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.settings.flaps 1.flap_angle_deg
+  Value: 1.0
+  Unit: deg
+  Status: certified-published
+  Source: faa_a21ea_rev_47
+  Page or section: Section V, Vfe table, p.13
+  Applicability: CL-600-2C10 (CRJ700)
+  Notes: setting label is the flap angle in degrees
+END FIELD
+
+FIELD flaps.settings.flaps 8.flap_angle_deg
+  Value: 8.0
+  Unit: deg
+  Status: certified-published
+  Source: faa_a21ea_rev_47
+  Page or section: Section V, Vfe table, p.13
+  Applicability: CL-600-2C10 (CRJ700)
+  Notes: setting label is the flap angle in degrees
+END FIELD
+
+FIELD flaps.settings.flaps 20.flap_angle_deg
+  Value: 20.0
+  Unit: deg
+  Status: certified-published
+  Source: faa_a21ea_rev_47
+  Page or section: Section V, Vfe table, p.13
+  Applicability: CL-600-2C10 (CRJ700)
+  Notes: setting label is the flap angle in degrees
+END FIELD
+
+FIELD flaps.settings.flaps 30.flap_angle_deg
+  Value: 30.0
+  Unit: deg
+  Status: certified-published
+  Source: faa_a21ea_rev_47
+  Page or section: Section V, Vfe table, p.13
+  Applicability: CL-600-2C10 (CRJ700)
+  Notes: setting label is the flap angle in degrees
+END FIELD
+
+FIELD flaps.settings.flaps 45.flap_angle_deg
+  Value: 45.0
+  Unit: deg
+  Status: certified-published
+  Source: faa_a21ea_rev_47
+  Page or section: Section V, Vfe table, p.13
+  Applicability: CL-600-2C10 (CRJ700)
+  Notes: setting label is the flap angle in degrees
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

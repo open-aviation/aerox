@@ -22,6 +22,7 @@ try:
         AIRCRAFT_ROOT,
         SOURCES_ROOT,
         dump_document,
+        high_lift_fields,
         normalize_bundle,
         parse_old_provenance,
         validate_simple,
@@ -31,6 +32,7 @@ except ModuleNotFoundError:  # package-style import used by tests
         AIRCRAFT_ROOT,
         SOURCES_ROOT,
         dump_document,
+        high_lift_fields,
         normalize_bundle,
         parse_old_provenance,
         validate_simple,
@@ -446,25 +448,25 @@ def _certification_search_source(fields: Mapping[str, Mapping[str, str]]) -> str
     return fields.get("certification.type_certificate", {}).get("source", "-")
 
 
+def _split_source_section(text: str, title: str) -> tuple[str, str]:
+    marker = title + "\n"
+    legacy_marker = "LEGACY PARAMETERS\n"
+    if marker in text:
+        prefix, body = text.split(marker, 1)
+        header = _SECTION_HEADER.search(body)
+        return prefix, body[header.start() :] if header else ""
+    if legacy_marker in text:
+        prefix, suffix_body = text.split(legacy_marker, 1)
+        return prefix, legacy_marker + suffix_body
+    return text, ""
+
+
 def render_geometry_section(
     document: Mapping[str, Any],
     old_text: str,
     metadata: Mapping[str, Mapping[str, str]],
 ) -> str:
-    marker = "WING AND TAIL GEOMETRY\n"
-    legacy_marker = "LEGACY PARAMETERS\n"
-    if marker in old_text:
-        # Replace only the geometry section: it ends at the next section
-        # header, so the sections after it are kept.
-        prefix, body = old_text.split(marker, 1)
-        header = _SECTION_HEADER.search(body)
-        suffix = body[header.start() :] if header else ""
-    elif legacy_marker in old_text:
-        prefix, suffix_body = old_text.split(legacy_marker, 1)
-        suffix = legacy_marker + suffix_body
-    else:
-        prefix, suffix = old_text, ""
-
+    prefix, suffix = _split_source_section(old_text, "WING AND TAIL GEOMETRY")
     existing = parse_old_provenance(old_text)["fields"]
     searched_source = _certification_search_source(existing)
     lines = ["WING AND TAIL GEOMETRY", ""]
@@ -505,6 +507,37 @@ def render_geometry_section(
             if record.get(key):
                 lines.append(f"  {label}: {record[key]}")
         lines.extend(["END FIELD", ""])
+    return f"{prefix.rstrip()}\n\n{'\n'.join(lines)}\n{suffix.lstrip()}"
+
+
+def render_high_lift_section(
+    document: Mapping[str, Any],
+    old_text: str,
+    metadata: Mapping[str, Mapping[str, str]],
+) -> str:
+    """Render the high-lift source notes and preserve the other sections."""
+
+    title = "HIGH-LIFT DEVICES"
+    fields = high_lift_fields(document["flaps"])
+    if title + "\n" in old_text:
+        prefix, suffix = _split_source_section(old_text, title)
+        old_text = f"{prefix.rstrip()}\n\n{suffix}"
+    if not fields:
+        return old_text
+    next_section = re.search(
+        r"^(LEGACY PARAMETERS|DRAG MODEL|SUBTYPE AND ENGINE DATABANK APPLICABILITY)\n",
+        old_text,
+        re.MULTILINE,
+    )
+    offset = next_section.start() if next_section else len(old_text)
+    prefix, suffix = old_text[:offset], old_text[offset:]
+    lines = [title, ""]
+    for path, value in fields.items():
+        lines.extend((f"FIELD {path}", f"  Value: {value}"))
+        for label, text in metadata[path].items():
+            if text:
+                lines.append(f"  {label}: {str(text).strip()}")
+        lines.extend(("END FIELD", ""))
     return f"{prefix.rstrip()}\n\n{'\n'.join(lines)}\n{suffix.lstrip()}"
 
 

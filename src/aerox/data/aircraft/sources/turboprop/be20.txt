@@ -392,6 +392,25 @@ FIELD vertical_tail.rudder_area_ratio
   Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.type
+  Value: single-slotted
+  Status: secondary-compilation
+  Source: janes_all_the_worlds_aircraft_2004_2005
+  Page or section: Local scan page 609, Flying controls
+  Applicability: Beech King Air B200 within the King Air 200 family
+END FIELD
+
+FIELD flaps.area
+  Value: 4.17
+  Unit: m2
+  Status: secondary-compilation
+  Source: janes_all_the_worlds_aircraft_2004_2005
+  Page or section: djvu page 609, BEECH KING AIR B200 AREAS (wings gross 28.15 m2)
+  Notes: Jane's "Trailing-edge flaps (total)" area, both wings; stowed/extended not stated
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

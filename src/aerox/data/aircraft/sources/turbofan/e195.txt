@@ -390,6 +390,137 @@ FIELD vertical_tail.rudder_area_ratio
   Search record: reviewed current Embraer product pages and historical APM locations. No current direct authoritative document with requested geometry and exact bundled configuration was validated; E75L long-wing modification effectivity remains unresolved.
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.type
+  Value: mixed-single-double-slotted
+  Unit: -
+  Status: inferred-with-uncertainty
+  Source: faa_a57nm_rev_15
+  Page or section: same table
+  Notes: trailing-edge flap type E190/E195 table lists main/aft for inboard flap and a single angle for the outboard flap Reported configuration: double-slotted (main/aft flap elements listed for each detent).
+END FIELD
+
+FIELD flaps.settings.1.flap_angle_deg
+  Value: 7.07
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: faa_a57nm_rev_15
+  Page or section: Control surface movements, flap and slat detent table, p.4
+  Applicability: ERJ 190-100/-200
+  Notes: deflections in streamwise planes; aft relative to main Selected the inboard main element from inboard main/aft 7.07/15.36; outboard 7.04.
+END FIELD
+
+FIELD flaps.settings.1.slat_angle_deg
+  Value: 15.0
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: faa_a57nm_rev_15
+  Page or section: Control surface movements, flap and slat detent table, p.4
+  Applicability: ERJ 190-100/-200
+  Notes: deflections in streamwise planes; aft relative to main Selected the outboard slat angle from 12/15 (slat 1 / slats 2-4).
+END FIELD
+
+FIELD flaps.settings.2.flap_angle_deg
+  Value: 10.11
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: faa_a57nm_rev_15
+  Page or section: Control surface movements, flap and slat detent table, p.4
+  Applicability: ERJ 190-100/-200
+  Notes: deflections in streamwise planes; aft relative to main Selected the inboard main element from inboard main/aft 10.11/16.62; outboard 10.06.
+END FIELD
+
+FIELD flaps.settings.2.slat_angle_deg
+  Value: 15.0
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: faa_a57nm_rev_15
+  Page or section: Control surface movements, flap and slat detent table, p.4
+  Applicability: ERJ 190-100/-200
+  Notes: deflections in streamwise planes; aft relative to main Selected the outboard slat angle from 12/15 (slat 1 / slats 2-4).
+END FIELD
+
+FIELD flaps.settings.3.flap_angle_deg
+  Value: 20.2
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: faa_a57nm_rev_15
+  Page or section: Control surface movements, flap and slat detent table, p.4
+  Applicability: ERJ 190-100/-200
+  Notes: deflections in streamwise planes; aft relative to main Selected the inboard main element from inboard main/aft 20.20/19.18; outboard 19.99.
+END FIELD
+
+FIELD flaps.settings.3.slat_angle_deg
+  Value: 15.0
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: faa_a57nm_rev_15
+  Page or section: Control surface movements, flap and slat detent table, p.4
+  Applicability: ERJ 190-100/-200
+  Notes: deflections in streamwise planes; aft relative to main Selected the outboard slat angle from 12/15 (slat 1 / slats 2-4).
+END FIELD
+
+FIELD flaps.settings.4.flap_angle_deg
+  Value: 20.2
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: faa_a57nm_rev_15
+  Page or section: Control surface movements, flap and slat detent table, p.4
+  Applicability: ERJ 190-100/-200
+  Notes: deflections in streamwise planes; aft relative to main Selected the inboard main element from inboard main/aft 20.20/19.18; outboard 19.99.
+END FIELD
+
+FIELD flaps.settings.4.slat_angle_deg
+  Value: 25.0
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: faa_a57nm_rev_15
+  Page or section: Control surface movements, flap and slat detent table, p.4
+  Applicability: ERJ 190-100/-200
+  Notes: deflections in streamwise planes; aft relative to main Selected the outboard slat angle from 20/25 (slat 1 / slats 2-4).
+END FIELD
+
+FIELD flaps.settings.5.flap_angle_deg
+  Value: 20.2
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: faa_a57nm_rev_15
+  Page or section: Control surface movements, flap and slat detent table, p.4
+  Applicability: ERJ 190-100/-200
+  Notes: deflections in streamwise planes; aft relative to main Selected the inboard main element from inboard main/aft 20.20/19.18; outboard 19.99.
+END FIELD
+
+FIELD flaps.settings.5.slat_angle_deg
+  Value: 25.0
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: faa_a57nm_rev_15
+  Page or section: Control surface movements, flap and slat detent table, p.4
+  Applicability: ERJ 190-100/-200
+  Notes: deflections in streamwise planes; aft relative to main Selected the outboard slat angle from 20/25 (slat 1 / slats 2-4).
+END FIELD
+
+FIELD flaps.settings.FULL.flap_angle_deg
+  Value: 37.07
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: faa_a57nm_rev_15
+  Page or section: Control surface movements, flap and slat detent table, p.4
+  Applicability: ERJ 190-100/-200
+  Notes: deflections in streamwise planes; aft relative to main Selected the inboard main element from inboard main/aft 37.07/22.01; outboard 36.49.
+END FIELD
+
+FIELD flaps.settings.FULL.slat_angle_deg
+  Value: 25.0
+  Unit: deg
+  Status: inferred-with-uncertainty
+  Source: faa_a57nm_rev_15
+  Page or section: Control surface movements, flap and slat detent table, p.4
+  Applicability: ERJ 190-100/-200
+  Notes: deflections in streamwise planes; aft relative to main Selected the outboard slat angle from 20/25 (slat 1 / slats 2-4).
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

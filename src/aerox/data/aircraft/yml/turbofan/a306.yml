@@ -77,12 +77,14 @@ vertical_tail:
   arm: null
   rudder_area_ratio: null
 flaps:
-  type: null
+  type: single-slotted
   area: 47.3
-  bf/b: 0.8
-  lambda_f: null
-  cf/c: null
-  Sf/S: null
+  eta_inboard: null
+  eta_outboard: 0.8
+  flapped_area_ratio: null
+  chord_ratio: null
+  slatted_area_ratio: null
+  settings: null
 engine:
   type: turbofan
   mount: underwing

@@ -3897,3 +3897,430 @@ sources:
   licensing_redistribution: US government publication; Internet Archive capture of the former FAA RGL copy
   relevant_pages: Section IX (PA-28R-180), maximum weight (p. 13); Sections X, XI, XVII (later Arrow models)
   limitations: Archived copy of Revision 62; later FAA revisions were not reachable. The FAA DRS copy could not be fetched (HTTP 403 to automated requests).
+- id: jenkinson_simpkin_rhodes_1999_data_a_table_2
+  title: 'Civil Jet Aircraft Design, Data A: Aircraft Data File, Table 2 (HTML)'
+  organization: L. R. Jenkinson, P. Simpkin, D. Rhodes / Butterworth-Heinemann (Elsevier)
+  url: https://booksite.elsevier.com/9780340741528/appendices/data-a/table-2/table.htm
+  issue: 1999 (site 2001)
+  accessed: '2026-11-25'
+  evidence_type: secondary-compilation
+  license: open web page; publisher copyright
+  notes:
+  - HTML table merges empty cells; use the xls for column alignment
+- id: jenkinson_simpkin_rhodes_1999_data_a_table_3
+  title: 'Civil Jet Aircraft Design, Data A: Aircraft Data File, Table 3 (HTML)'
+  organization: L. R. Jenkinson, P. Simpkin, D. Rhodes / Butterworth-Heinemann (Elsevier)
+  url: https://booksite.elsevier.com/9780340741528/appendices/data-a/table-3/table.htm
+  issue: 1999 (site 2001)
+  accessed: '2026-11-25'
+  evidence_type: secondary-compilation
+  license: open web page; publisher copyright
+  notes:
+  - HTML table merges empty cells; use the xls for column alignment
+- id: jenkinson_simpkin_rhodes_1999_data_a_table_4
+  title: 'Civil Jet Aircraft Design, Data A: Aircraft Data File, Table 4 (HTML)'
+  organization: L. R. Jenkinson, P. Simpkin, D. Rhodes / Butterworth-Heinemann (Elsevier)
+  url: https://booksite.elsevier.com/9780340741528/appendices/data-a/table-4/table.htm
+  issue: 1999 (site 2001)
+  accessed: '2026-11-25'
+  evidence_type: secondary-compilation
+  license: open web page; publisher copyright
+  notes:
+  - HTML table merges empty cells; use the xls for column alignment
+- id: jenkinson_simpkin_rhodes_1999_data_a_table_5
+  title: 'Civil Jet Aircraft Design, Data A: Aircraft Data File, Table 5 (HTML)'
+  organization: L. R. Jenkinson, P. Simpkin, D. Rhodes / Butterworth-Heinemann (Elsevier)
+  url: https://booksite.elsevier.com/9780340741528/appendices/data-a/table-5/table.htm
+  issue: 1999 (site 2001)
+  accessed: '2026-11-25'
+  evidence_type: secondary-compilation
+  license: open web page; publisher copyright
+  notes:
+  - HTML table merges empty cells; use the xls for column alignment
+- id: jenkinson_simpkin_rhodes_1999_data_a_table_6
+  title: 'Civil Jet Aircraft Design, Data A: Aircraft Data File, Table 6 (HTML)'
+  organization: L. R. Jenkinson, P. Simpkin, D. Rhodes / Butterworth-Heinemann (Elsevier)
+  url: https://booksite.elsevier.com/9780340741528/appendices/data-a/table-6/table.htm
+  issue: 1999 (site 2001)
+  accessed: '2026-11-25'
+  evidence_type: secondary-compilation
+  license: open web page; publisher copyright
+  notes:
+  - HTML table merges empty cells; use the xls for column alignment
+- id: jenkinson_simpkin_rhodes_1999_data_a_table_7
+  title: 'Civil Jet Aircraft Design, Data A: Aircraft Data File, Table 7 (HTML)'
+  organization: L. R. Jenkinson, P. Simpkin, D. Rhodes / Butterworth-Heinemann (Elsevier)
+  url: https://booksite.elsevier.com/9780340741528/appendices/data-a/table-7/table.htm
+  issue: 1999 (site 2001)
+  accessed: '2026-11-25'
+  evidence_type: secondary-compilation
+  license: open web page; publisher copyright
+  notes:
+  - HTML table merges empty cells; use the xls for column alignment
+- id: jenkinson_simpkin_rhodes_1999_data_a_table_8
+  title: 'Civil Jet Aircraft Design, Data A: Aircraft Data File, Table 8 (HTML)'
+  organization: L. R. Jenkinson, P. Simpkin, D. Rhodes / Butterworth-Heinemann (Elsevier)
+  url: https://booksite.elsevier.com/9780340741528/appendices/data-a/table-8/table.htm
+  issue: 1999 (site 2001)
+  accessed: '2026-11-25'
+  evidence_type: secondary-compilation
+  license: open web page; publisher copyright
+  notes:
+  - HTML table merges empty cells; use the xls for column alignment
+- id: jenkinson_simpkin_rhodes_1999_data_a_table_1_xls
+  title: 'Civil Jet Aircraft Design, Data A: Aircraft Data File, Table 1 (Excel)'
+  organization: L. R. Jenkinson, P. Simpkin, D. Rhodes / Butterworth-Heinemann (Elsevier)
+  url: https://booksite.elsevier.com/9780340741528/appendices/data-a/table-1/atable1.xls
+  issue: '1999'
+  accessed: '2026-11-25'
+  evidence_type: secondary-compilation
+  license: open download; publisher copyright
+  notes:
+  - sheet 1B holds high-lift devices
+- id: jenkinson_simpkin_rhodes_1999_data_a_table_2_xls
+  title: 'Civil Jet Aircraft Design, Data A: Aircraft Data File, Table 2 (Excel)'
+  organization: L. R. Jenkinson, P. Simpkin, D. Rhodes / Butterworth-Heinemann (Elsevier)
+  url: https://booksite.elsevier.com/9780340741528/appendices/data-a/table-2/atable2.xls
+  issue: '1999'
+  accessed: '2026-11-25'
+  evidence_type: secondary-compilation
+  license: open download; publisher copyright
+  notes:
+  - sheet 2B holds high-lift devices
+- id: jenkinson_simpkin_rhodes_1999_data_a_table_3_xls
+  title: 'Civil Jet Aircraft Design, Data A: Aircraft Data File, Table 3 (Excel)'
+  organization: L. R. Jenkinson, P. Simpkin, D. Rhodes / Butterworth-Heinemann (Elsevier)
+  url: https://booksite.elsevier.com/9780340741528/appendices/data-a/table-3/atable3.xls
+  issue: '1999'
+  accessed: '2026-11-25'
+  evidence_type: secondary-compilation
+  license: open download; publisher copyright
+  notes:
+  - sheet 3B holds high-lift devices
+- id: jenkinson_simpkin_rhodes_1999_data_a_table_4_xls
+  title: 'Civil Jet Aircraft Design, Data A: Aircraft Data File, Table 4 (Excel)'
+  organization: L. R. Jenkinson, P. Simpkin, D. Rhodes / Butterworth-Heinemann (Elsevier)
+  url: https://booksite.elsevier.com/9780340741528/appendices/data-a/table-4/atable4.xls
+  issue: '1999'
+  accessed: '2026-11-25'
+  evidence_type: secondary-compilation
+  license: open download; publisher copyright
+  notes:
+  - sheet 4B holds high-lift devices; Table 4 777 flap span ratio cells 200X1/200X2/300 have fill errors (1.758, 2.758)
+- id: jenkinson_simpkin_rhodes_1999_data_a_table_5_xls
+  title: 'Civil Jet Aircraft Design, Data A: Aircraft Data File, Table 5 (Excel)'
+  organization: L. R. Jenkinson, P. Simpkin, D. Rhodes / Butterworth-Heinemann (Elsevier)
+  url: https://booksite.elsevier.com/9780340741528/appendices/data-a/table-5/atable5.xls
+  issue: '1999'
+  accessed: '2026-11-25'
+  evidence_type: secondary-compilation
+  license: open download; publisher copyright
+  notes:
+  - sheet 5B holds high-lift devices
+- id: jenkinson_simpkin_rhodes_1999_data_a_table_6_xls
+  title: 'Civil Jet Aircraft Design, Data A: Aircraft Data File, Table 6 (Excel)'
+  organization: L. R. Jenkinson, P. Simpkin, D. Rhodes / Butterworth-Heinemann (Elsevier)
+  url: https://booksite.elsevier.com/9780340741528/appendices/data-a/table-6/atable6.xls
+  issue: '1999'
+  accessed: '2026-11-25'
+  evidence_type: secondary-compilation
+  license: open download; publisher copyright
+  notes:
+  - sheet 6B holds high-lift devices
+- id: jenkinson_simpkin_rhodes_1999_data_a_table_7_xls
+  title: 'Civil Jet Aircraft Design, Data A: Aircraft Data File, Table 7 (Excel)'
+  organization: L. R. Jenkinson, P. Simpkin, D. Rhodes / Butterworth-Heinemann (Elsevier)
+  url: https://booksite.elsevier.com/9780340741528/appendices/data-a/table-7/atable7.xls
+  issue: '1999'
+  accessed: '2026-11-25'
+  evidence_type: secondary-compilation
+  license: open download; publisher copyright
+  notes:
+  - sheet 7B holds high-lift devices
+- id: jenkinson_simpkin_rhodes_1999_data_a_table_8_xls
+  title: 'Civil Jet Aircraft Design, Data A: Aircraft Data File, Table 8 (Excel)'
+  organization: L. R. Jenkinson, P. Simpkin, D. Rhodes / Butterworth-Heinemann (Elsevier)
+  url: https://booksite.elsevier.com/9780340741528/appendices/data-a/table-8/atable8.xls
+  issue: '1999'
+  accessed: '2026-11-25'
+  evidence_type: secondary-compilation
+  license: open download; publisher copyright
+  notes:
+  - sheet 8B holds high-lift devices
+- id: rudolph_1996_nasa_cr_4746
+  title: High-Lift Systems on Commercial Subsonic Airliners, NASA CR-4746
+  organization: P. K. C. Rudolph / NASA Ames
+  url: https://ntrs.nasa.gov/citations/19960052267
+  direct_document_url: https://ntrs.nasa.gov/api/citations/19960052267/downloads/19960052267.pdf
+  issue: 1996-09
+  accessed: '2026-11-25'
+  evidence_type: published-reference
+  license: 'public (NTRS: GOV_PUBLIC_USE_PERMITTED)'
+  notes:
+  - flap types, maximum angles, Table 2.2
+- id: deiler_fezans_2025_a320_gear_drag
+  title: Modeling of the A320 Landing Gear Drag During Their Extension and Retraction, AIAA 2025-1250
+  organization: C. Deiler, N. Fezans / DLR
+  url: https://doi.org/10.2514/6.2025-1250
+  direct_document_url: https://elib.dlr.de/214681/1/deiler-fezans-2025-modeling-of-the-a320-landing-gear-drag-during-their-extension-and-retraction.pdf
+  issue: 2025-01
+  accessed: '2026-11-25'
+  evidence_type: published-reference
+  license: open access author copy (DLR elib)
+  notes:
+  - Table 5a gear drag 0.0296/0.0291/0.0311 for FLAP 2/3/FULL; no flap drag numbers (axes withheld)
+- id: deiler_2023_ceas_a320neo_aero_model_adjustment
+  title: Aerodynamic model adjustment for an accurate flight performance representation using a large operational flight data base, CEAS Aeronaut J
+  organization: C. Deiler / DLR
+  url: https://doi.org/10.1007/s13272-023-00659-w
+  direct_document_url: https://elib.dlr.de/194762/1/s13272-023-00659-w.pdf
+  issue: '2023'
+  accessed: '2026-11-25'
+  evidence_type: published-reference
+  license: open access (CC BY)
+  notes:
+  - relative parameter changes only; no absolute flap drag
+- id: easa_anp_database_v2_3
+  title: 'ANP Archive tables, Version 2.3 (Aerodynamic coefficients table: B, C, D, R per flap setting)'
+  organization: EASA / EUROCONTROL (manufacturer-supplied data)
+  url: https://www.easa.europa.eu/en/domains/environment/policy-support-and-research/aircraft-noise-and-performance-anp-data
+  direct_document_url: https://www.easa.europa.eu/en/downloads/138164/en
+  issue: v2.3 (zip dated 2023-06-26)
+  accessed: '2026-11-25'
+  evidence_type: published-reference
+  license: open download (EASA)
+  notes:
+  - R = drag-to-lift ratio; D = landing approach speed coefficient kt/sqrt(lbf)
+- id: easa_anp_release_note_v2_3
+  title: ANP Release note - Version 2.3
+  organization: EASA
+  url: https://www.easa.europa.eu/en/domains/environment/policy-support-and-research/aircraft-noise-and-performance-anp-data
+  direct_document_url: https://www.easa.europa.eu/en/downloads/138159/en
+  issue: v2.3
+  accessed: '2026-11-25'
+  evidence_type: published-reference
+  license: open download (EASA)
+- id: eu_directive_2015_996_annex_appendix_b11
+  title: Commission Directive (EU) 2015/996, Annex, Appendix B, B11 Landing approach
+  organization: European Commission (UK legislation.gov.uk copy)
+  url: https://legislation.gov.uk/eudr/2015/996/annex/appendix/B/division/B11
+  direct_document_url: https://legislation.gov.uk/eudr/2015/996/annex/appendix/B/division/B11?view=plain
+  issue: '2015'
+  accessed: '2026-11-25'
+  evidence_type: published-reference
+  license: open (Open Government Licence copy)
+  notes:
+  - defines D and R used in the ANP tables
+- id: obert_2009_aerodynamic_design_of_transport_aircraft
+  title: Aerodynamic Design of Transport Aircraft
+  organization: E. Obert / IOS Press
+  url: https://doi.org/10.3233/978-1-58603-970-7-i
+  issue: '2009'
+  accessed: '2026-11-25'
+  evidence_type: published-reference
+  license: paywalled book; local copy; do not share
+  redistribution: no-public-file
+  notes:
+  - 'Ch. 27: Fig. 27.35 777-200 low-speed polars, Figs. 27.36-27.39 Oswald factor vs flap angle, slat drag 0.0040-0.0080'
+- id: raymer_1992_aircraft_design_2nd_edition
+  title: 'Aircraft Design: A Conceptual Approach, 2nd edition (2nd printing)'
+  organization: D. P. Raymer / AIAA
+  url: https://arc.aiaa.org/doi/book/10.2514/4.869112
+  issue: '1992'
+  accessed: '2026-11-25'
+  evidence_type: published-reference
+  license: paywalled book; local copy; do not share
+  redistribution: no-public-file
+  notes:
+  - eq. 12.37 flap drag; p.99 rough flap/gear CD0 increments
+- id: janes_all_the_worlds_aircraft_2004_2005
+  title: Jane's All the World's Aircraft 2004-2005
+  organization: P. Jackson (ed.) / Jane's Information Group
+  issue: '2004'
+  accessed: '2026-11-25'
+  evidence_type: secondary-compilation
+  license: paywalled; local copy; do not share
+  redistribution: no-public-file
+  notes:
+  - AREAS sections give "Trailing-edge flaps (total)"; djvu OCR merges table columns
+- id: scholz_aircraft_design_8_high_lift
+  title: Aircraft Design lecture notes, Chapter 8 High Lift
+  organization: D. Scholz / HAW Hamburg
+  url: https://www.fzt.haw-hamburg.de/pers/Scholz/HOOU/AircraftDesign_8_HighLift.pdf
+  issue: n.d.
+  accessed: '2026-11-25'
+  evidence_type: published-reference
+  license: open web PDF
+  notes:
+  - 'checked: method only, no per-type flap geometry; no values used'
+- id: roskam_airplane_design_part_vi
+  title: Airplane Design Part VI
+  organization: J. Roskam / DARcorporation
+  url: https://darcorp.com
+  accessed: '2026-11-25'
+  evidence_type: published-reference
+  license: paywalled book
+  redistribution: no-public-file
+  notes:
+  - Section 4.6, equations 4.70 through 4.75 and Figures 4.44 through 4.53.
+- id: torenbeek_1982_synthesis
+  title: Synthesis of Subsonic Airplane Design
+  organization: E. Torenbeek / Delft University Press
+  issue: '1982'
+  accessed: '2026-11-25'
+  evidence_type: published-reference
+  license: paywalled book
+  redistribution: no-public-file
+  notes:
+  - Appendix G covers flap profile and vortex effects, slat drag and landing gear drag.
+- id: jenkinson_book_chapter_legend
+  title: Civil Jet Aircraft Design book text (flap type code legend)
+  organization: Jenkinson et al.
+  url: https://booksite.elsevier.com/9780340741528/appendices/data-a/word-of-caution.htm
+  issue: '1999'
+  accessed: '2026-11-25'
+  evidence_type: secondary-compilation
+  license: paywalled book (not opened)
+  redistribution: no-public-file
+  notes:
+  - legend for the F1/F2/S2/S3 codes is not on the companion site pages read (index, table notes, word of caution); the Table 3 notes URL returned 404
+- id: hague_1978_nasa_cr_152303_aerodynamics
+  title: GASP Volume III Aerodynamics
+  organization: D. Hague / NASA
+  url: https://ntrs.nasa.gov/api/citations/19810010564/downloads/19810010564.pdf
+  issue: '1978'
+  accessed: '2026-11-25'
+  evidence_type: published-reference
+  license: Public use permitted
+  notes:
+  - Eq. III.1.58 and section III.1.4.1
+- id: aviary_gasp_flap_constants
+  title: Aviary GASP Fortran converter
+  organization: OpenMDAO / NASA
+  url: https://raw.githubusercontent.com/OpenMDAO/Aviary/03bf83e7937f16c65e6667991949f3a68c97e23e/aviary/utils/fortran_to_aviary.py
+  issue: 03bf83e7937f16c65e6667991949f3a68c97e23e
+  accessed: '2026-11-25'
+  evidence_type: published-software
+  license: Apache-2.0
+  notes:
+  - GASP flap type constants
+- id: aviary_gasp_flap_tables
+  title: Aviary GASP flap interpolation tables
+  organization: OpenMDAO / NASA
+  url: https://raw.githubusercontent.com/OpenMDAO/Aviary/03bf83e7937f16c65e6667991949f3a68c97e23e/aviary/subsystems/aerodynamics/gasp_based/flaps_model/meta_model.py
+  issue: 03bf83e7937f16c65e6667991949f3a68c97e23e
+  accessed: '2026-11-25'
+  evidence_type: published-software
+  license: Apache-2.0
+  notes:
+  - VDEL1 and VDEL2 and VLAM3 through VLAM7
+- id: aviary_gasp_low_speed_drag
+  title: Aviary GASP low-speed drag
+  organization: OpenMDAO / NASA
+  url: https://raw.githubusercontent.com/OpenMDAO/Aviary/03bf83e7937f16c65e6667991949f3a68c97e23e/aviary/subsystems/aerodynamics/gasp_based/gaspaero.py
+  issue: 03bf83e7937f16c65e6667991949f3a68c97e23e
+  accessed: '2026-11-25'
+  evidence_type: published-software
+  license: Apache-2.0
+  notes:
+  - ADEL6 and ASIGMA from GASP DRAG
+- id: aviary_gasp_variable_metadata
+  title: Aviary variable metadata
+  organization: OpenMDAO / NASA
+  url: https://raw.githubusercontent.com/OpenMDAO/Aviary/03bf83e7937f16c65e6667991949f3a68c97e23e/aviary/variable_info/variable_meta_data.py
+  issue: 03bf83e7937f16c65e6667991949f3a68c97e23e
+  accessed: '2026-11-25'
+  evidence_type: published-software
+  license: Apache-2.0
+  notes:
+  - Optimum slat deflection of 20 degrees
+- id: usaf_datcom_methods_summary
+  title: USAF Stability and Control DATCOM, Section 1
+  organization: US Air Force / McDonnell Douglas
+  url: https://holycows.net/datcom/Downloads/Section_1_Datcom.pdf
+  issue: '1978'
+  accessed: '2026-11-25'
+  evidence_type: published-reference
+  license: Public scan
+  notes:
+  - Methods summary for Section 6.1.7
+- id: esdu_controls_and_flaps
+  title: ESDU Controls and Flaps index
+  organization: ESDU
+  url: https://www.esdu.com/cgi-bin/ps.pl?p=seg_controlsandflaps&t=col
+  issue: n.d.
+  accessed: '2026-11-25'
+  evidence_type: published-reference
+  license: Public index
+  notes:
+  - Method scopes only
+- id: fastoad_ga_high_lift
+  title: FAST-(OAD)-GA high-lift aerodynamics source
+  organization: FAST-OAD project
+  url: https://fast-ga.readthedocs.io/en/stable/_modules/fastga/models/aerodynamics/components/high_lift_aero.html
+  issue: stable
+  accessed: '2026-11-25'
+  evidence_type: published-reference
+  license: Public documentation
+  notes:
+  - Roskam lift tables and Young drag curves via Gudmundsson.
+- id: suave_fidelity_zero_drag
+  title: SUAVE low-fidelity drag documentation
+  organization: SUAVE project
+  url: https://suave.stanford.edu/doxygen/group__Methods-Aerodynamics-Common-Fidelity__Zero-Drag.html
+  issue: n.d.
+  accessed: '2026-11-25'
+  evidence_type: published-reference
+  license: Public documentation
+  notes:
+  - Induced drag options and available profile drag methods
+- id: rcaide_flap_lift
+  title: RCAIDE flap lift source
+  organization: RCAIDE project
+  url: https://www.docs.rcaide.leadsresearchgroup.com/_modules/RCAIDE/Library/Methods/Aerodynamics/Common/Lift/compute_flap_lift.html
+  issue: n.d.
+  accessed: '2026-11-25'
+  evidence_type: published-reference
+  license: Public documentation
+  notes:
+  - Flap influence on maximum lift
+- id: nasa_openvsp_parasite_drag
+  title: OpenVSP parasite drag tool
+  organization: NASA
+  url: https://www.nasa.gov/reference/openvsp-parasite-drag-tool/
+  issue: n.d.
+  accessed: '2026-11-25'
+  evidence_type: published-reference
+  license: Public documentation
+  notes:
+  - Friction and form drag for model components
+- id: nasa_tm_2020_220558_leaps
+  title: LEAPS methodology
+  organization: NASA
+  url: https://ntrs.nasa.gov/api/citations/20200001143/downloads/20200001143.pdf
+  issue: '2020'
+  accessed: '2026-11-25'
+  evidence_type: published-reference
+  license: Public use permitted
+  notes:
+  - Section 2.1 FLOPS EDET aerodynamics
+- id: eu_directive_2015_996_appendix_b
+  title: Directive (EU) 2015/996
+  organization: European Commission
+  url: https://www.legislation.gov.uk/eudr/2015/996/pdfs/eudr_20150996_adopted_en.pdf
+  issue: '2015'
+  accessed: '2026-11-25'
+  evidence_type: published-reference
+  license: Open Government Licence
+  notes:
+  - Appendix B B5 through B11
+- id: mccormick_1995_flight_mechanics
+  title: Aerodynamics, Aeronautics, and Flight Mechanics, 2nd edition
+  organization: B. W. McCormick / John Wiley & Sons
+  issue: '1995'
+  accessed: '2026-11-25'
+  evidence_type: published-reference
+  license: paywalled book
+  redistribution: no-public-file
+  notes:
+  - Chapter 3 covers the flap correlation used by the prior aerox model.

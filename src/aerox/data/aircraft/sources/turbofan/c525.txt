@@ -425,6 +425,28 @@ FIELD vertical_tail.rudder_area_ratio
   Search record: reviewed EASA.IM.A.078 Issue 19 and current Textron product pages; EASA serial/model geometry is inventoried below, while differing current Gen3 spans remain modification-specific comparisons only.
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.settings.flaps 15.flap_angle_deg
+  Value: 15.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_c525_a078
+  Page or section: VFE tables, PDF p.11, 35, 45
+  Applicability: Citation 525 family
+  Notes: take-off and approach
+END FIELD
+
+FIELD flaps.settings.flaps 35.flap_angle_deg
+  Value: 35.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_c525_a078
+  Page or section: VFE tables, PDF p.11, 35, 45
+  Applicability: Citation 525 family
+  Notes: landing
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

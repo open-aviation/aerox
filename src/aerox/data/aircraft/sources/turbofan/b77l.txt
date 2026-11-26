@@ -427,6 +427,26 @@ FIELD vertical_tail.rudder_area_ratio
   Searched source: easa_ima003_issue_20 | boeing_777_lr_er_f_acap_rev_g_2024_12 | boeing_777_200lr_cad_3view | boeing_777_freighter_cad_3view
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.type
+  Value: mixed-single-double-slotted
+  Unit: -
+  Status: inferred-with-uncertainty
+  Source: rudolph_1996_nasa_cr_4746
+  Page or section: Table 2.2 p.83 (family entry)
+  Notes: trailing-edge flap type Reported configuration: main/aft double-slotted inboard; single-slotted outboard.
+END FIELD
+
+FIELD flaps.eta_outboard
+  Value: 0.713
+  Unit: -
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a_table_4_xls | boeing_777_classic_acap_rev_e_2024_12 | boeing_777_lr_er_f_acap_rev_g_2024_12
+  Page or section: Data A Table 4B, column 777-200
+  Notes: Jenkinson "Flap Span/Wing Span"; CAD checks (A320, 737-800) show it equals the outboard flap station / semi-span from the centreline, not the net flapped span 777-200LR has raked tips (larger span): rescale before use Rescaled the B772 station by the ratio of the bundled wingspans.
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

@@ -64,10 +64,24 @@ vertical_tail:
 flaps:
   type: null
   area: null
-  bf/b: null
-  lambda_f: null
-  cf/c: null
-  Sf/S: null
+  eta_inboard: null
+  eta_outboard: null
+  flapped_area_ratio: null
+  chord_ratio: null
+  slatted_area_ratio: null
+  settings:
+    flap 5:
+      flap_angle_deg: 5.0
+      slat_angle_deg: null
+    flap 10:
+      flap_angle_deg: 10.0
+      slat_angle_deg: null
+    flap 15:
+      flap_angle_deg: 15.0
+      slat_angle_deg: null
+    flap 35:
+      flap_angle_deg: 35.0
+      slat_angle_deg: null
 engine:
   type: turboprop
   mount: front wing leading mounted

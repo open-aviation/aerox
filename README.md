@@ -136,7 +136,7 @@ cas = aero.mach2cas(mach=0.78, h=10_000)   # m/s
 ## What is included
 
 - **Aircraft data.** One YAML record per type with geometry, mass limits, and engine data. Each geometry and mass value has a source note under `src/aerox/data/aircraft/sources`.
-- **Drag.** A drag model computed from the aircraft geometry: skin friction and form factors for the wing, fuselage, tails, nacelles, and pylons, plus wave drag and induced drag, and drag increments for deployed flaps and landing gear.
+- **Drag.** A geometry model with skin friction and form drag, induced and wave drag, and terms for deployed flaps, slats and landing gear.
 - **Math backends.** The drag model is also available as a closed-form expression for JAX and CasADi, for optimization and automatic differentiation (see [Math backends](docs/backends.md)).
 - **Drawings.** `aerox view` and `aerox.plot`, 2D and 3D outline drawings of each aircraft.
 - **Kinematics.** Typical speeds and vertical rates of each flight phase, for every aircraft.

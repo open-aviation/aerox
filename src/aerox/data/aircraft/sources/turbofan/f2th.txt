@@ -416,6 +416,59 @@ FIELD vertical_tail.rudder_area_ratio
   Search record: reviewed EASA.A.008 Issue 13, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.settings.slats + flaps 10.flap_angle_deg
+  Value: 10.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_falcon_2000_a008_issue_13
+  Page or section: Section 2 (PDF p.15) and Section 3 (PDF p.28), VFE
+  Applicability: Falcon 2000 / 2000EX
+END FIELD
+
+FIELD flaps.settings.slats + flaps 10.slats_extended
+  Value: True
+  Status: certified-published
+  Source: easa_falcon_2000_a008_issue_13
+  Page or section: Section 2 (PDF p.15) and Section 3 (PDF p.28), VFE
+  Applicability: Falcon 2000 / 2000EX
+END FIELD
+
+FIELD flaps.settings.slats + flaps 20.flap_angle_deg
+  Value: 20.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_falcon_2000_a008_issue_13
+  Page or section: Section 2 (PDF p.15) and Section 3 (PDF p.28), VFE
+  Applicability: Falcon 2000 / 2000EX
+END FIELD
+
+FIELD flaps.settings.slats + flaps 20.slats_extended
+  Value: True
+  Status: certified-published
+  Source: easa_falcon_2000_a008_issue_13
+  Page or section: Section 2 (PDF p.15) and Section 3 (PDF p.28), VFE
+  Applicability: Falcon 2000 / 2000EX
+END FIELD
+
+FIELD flaps.settings.slats + flaps 40.flap_angle_deg
+  Value: 40.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_falcon_2000_a008_issue_13
+  Page or section: Section 2 (PDF p.15) and Section 3 (PDF p.28), VFE
+  Applicability: Falcon 2000 / 2000EX
+END FIELD
+
+FIELD flaps.settings.slats + flaps 40.slats_extended
+  Value: True
+  Status: certified-published
+  Source: easa_falcon_2000_a008_issue_13
+  Page or section: Section 2 (PDF p.15) and Section 3 (PDF p.28), VFE
+  Applicability: Falcon 2000 / 2000EX
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

@@ -410,6 +410,16 @@ FIELD vertical_tail.rudder_area_ratio
   Search record: FAA TCDS 3A12/3A13 and current Textron Aviation product pages searched; product-page spans and reference wing areas are adopted only for the current production configurations.
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.type
+  Value: single-slotted
+  Status: secondary-compilation
+  Source: janes_all_the_worlds_aircraft_2004_2005
+  Page or section: Local scan page 666, Flying controls
+  Applicability: Cessna 172S within the Cessna 172 family
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

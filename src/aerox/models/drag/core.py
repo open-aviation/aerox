@@ -28,6 +28,7 @@ class DragCondition:
     flap_angle_rad: ArrayLike = 0.0
     gear_extension_fraction: ArrayLike = 0.0
     spoiler_deflection_rad: ArrayLike = 0.0
+    slat_angle_rad: ArrayLike = 0.0
 
     def with_default_reynolds(self, reynolds_per_m: float) -> DragCondition:
         """Return this condition with a Reynolds number filled in if missing."""
@@ -38,20 +39,29 @@ class DragCondition:
 
     def broadcast_with(
         self, lift_coefficient: ArrayLike
-    ) -> tuple[FloatArray, FloatArray, FloatArray, FloatArray, FloatArray, FloatArray]:
+    ) -> tuple[
+        FloatArray,
+        FloatArray,
+        FloatArray,
+        FloatArray,
+        FloatArray,
+        FloatArray,
+        FloatArray,
+    ]:
         """Validate and broadcast the condition with a lift coefficient.
 
         A missing Reynolds number is returned as NaN.
         """
 
         reynolds_given = self.reynolds_per_m is not None
-        lift, mach, reynolds, flap, gear, spoiler = np.broadcast_arrays(
+        lift, mach, reynolds, flap, gear, spoiler, slat = np.broadcast_arrays(
             np.asarray(lift_coefficient, dtype=float),
             np.asarray(self.mach, dtype=float),
             np.asarray(self.reynolds_per_m if reynolds_given else np.nan, dtype=float),
             np.asarray(self.flap_angle_rad, dtype=float),
             np.asarray(self.gear_extension_fraction, dtype=float),
             np.asarray(self.spoiler_deflection_rad, dtype=float),
+            np.asarray(self.slat_angle_rad, dtype=float),
         )
         if np.any(~np.isfinite(lift)):
             raise ValueError("lift coefficient (cl) must be finite")
@@ -67,16 +77,20 @@ class DragCondition:
             raise ValueError("gear_extension_fraction must lie between zero and one")
         if np.any(~np.isfinite(spoiler)) or np.any(spoiler < 0.0):
             raise ValueError("spoiler_deflection_rad must be finite and non-negative")
-        return lift, mach, reynolds, flap, gear, spoiler
+        if np.any(~np.isfinite(slat)) or np.any(slat < 0.0):
+            raise ValueError("slat_angle_rad must be finite and non-negative")
+        return lift, mach, reynolds, flap, gear, spoiler, slat
 
 
-def require_clean(flap: FloatArray, gear: FloatArray, spoiler: FloatArray) -> None:
+def require_clean(
+    flap: FloatArray, gear: FloatArray, spoiler: FloatArray, slat: FloatArray
+) -> None:
     """Reject a deployed configuration in a clean-configuration model."""
 
-    if np.any(flap > 0.0) or np.any(gear > 0.0) or np.any(spoiler > 0.0):
+    if any(np.any(value > 0.0) for value in (flap, gear, spoiler, slat)):
         raise ValueError(
             "this drag model is supported only when clean: "
-            "flaps, landing gear, and spoilers must be retracted"
+            "flaps, slats, landing gear, and spoilers must be retracted"
         )
 
 

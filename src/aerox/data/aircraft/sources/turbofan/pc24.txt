@@ -426,6 +426,38 @@ FIELD vertical_tail.rudder_area_ratio
   Search record: reviewed EASA.A.594 Issue 08, Pilatus Ground Servicing Guide 02484 Issue 002 Revision 04, and current Pilatus product material; certified wing geometry and the manufacturer-published horizontal-tail span are inventoried below.
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.settings.flaps 8.flap_angle_deg
+  Value: 8.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_pc24_a594
+  Page or section: VFE, PDF p.8
+  Applicability: PC-24
+  Notes: take-off
+END FIELD
+
+FIELD flaps.settings.flaps 15.flap_angle_deg
+  Value: 15.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_pc24_a594
+  Page or section: VFE, PDF p.8
+  Applicability: PC-24
+  Notes: approach
+END FIELD
+
+FIELD flaps.settings.flaps 33.flap_angle_deg
+  Value: 33.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_pc24_a594
+  Page or section: VFE, PDF p.8
+  Applicability: PC-24
+  Notes: landing
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

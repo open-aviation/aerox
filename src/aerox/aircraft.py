@@ -20,6 +20,7 @@ Usage:
     print(aircraft.kinematic.cruise_mach)  # 0.79
 """
 
+import math
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -152,16 +153,125 @@ class MassProperties:
     source_id: Optional[str] = None
 
 
-@dataclass
+FLAP_TYPES = (
+    "plain",
+    "split",
+    "single-slotted",
+    "double-slotted",
+    "triple-slotted",
+    "fowler",
+    "double-slotted-fowler",
+    "mixed-single-double-slotted",
+)
+
+
+#: Flap fields of records before the high-lift schema. Their definitions
+#: differ from the new fields, so they are not translated.
+LEGACY_FLAP_KEYS = frozenset({"bf/b", "lambda_f", "cf/c", "Sf/S"})
+
+
+@dataclass(frozen=True)
+class FlapSetting:
+    """Representative surface angles, in degrees, at a named setting."""
+
+    flap_angle_deg: float
+    slat_angle_deg: float | None = None
+    slats_extended: bool | None = None
+
+    def __post_init__(self) -> None:
+        for name, angle in (
+            ("flap_angle_deg", self.flap_angle_deg),
+            ("slat_angle_deg", self.slat_angle_deg),
+        ):
+            if name == "slat_angle_deg" and angle is None:
+                continue
+            if isinstance(angle, bool) or not isinstance(angle, (int, float)):
+                raise ValueError(f"{name} must be a number")
+            if not 0 <= angle <= 60:
+                raise ValueError(f"{name} must lie between 0 and 60 degrees")
+        if self.slats_extended is not None:
+            if not isinstance(self.slats_extended, bool):
+                raise ValueError("slats_extended must be a boolean")
+            if self.slat_angle_deg is not None:
+                raise ValueError("give slats_extended only when the angle is unknown")
+
+
+@dataclass(kw_only=True)
 class Flaps:
-    """Flap configuration."""
+    """High-lift geometry and documented operating settings."""
 
     type: Optional[str] = None
     area: Optional[float] = None
-    bf_b: Optional[float] = field(default=None, metadata={"yaml_key": "bf/b"})
-    lambda_f: Optional[float] = None
-    cf_c: Optional[float] = field(default=None, metadata={"yaml_key": "cf/c"})
-    Sf_S: Optional[float] = field(default=None, metadata={"yaml_key": "Sf/S"})
+    eta_inboard: Optional[float] = None
+    eta_outboard: Optional[float] = None
+    flapped_area_ratio: Optional[float] = None
+    chord_ratio: Optional[float] = None
+    slatted_area_ratio: Optional[float] = None
+    settings: Optional[Dict[str, FlapSetting]] = None
+
+    def __post_init__(self) -> None:
+        if self.type is not None and self.type not in FLAP_TYPES:
+            raise ValueError(f"unsupported flap type: {self.type!r}")
+        for name in (
+            "area",
+            "eta_inboard",
+            "eta_outboard",
+            "flapped_area_ratio",
+            "chord_ratio",
+            "slatted_area_ratio",
+        ):
+            value = getattr(self, name)
+            if value is None:
+                continue
+            if isinstance(value, bool) or not isinstance(value, (int, float)):
+                raise ValueError(f"{name} must be a number")
+            if not math.isfinite(value) or value < 0 or (name != "area" and value > 1):
+                raise ValueError(f"{name} is outside its physical bounds")
+        if (
+            self.eta_inboard is not None
+            and self.eta_outboard is not None
+            and self.eta_inboard >= self.eta_outboard
+        ):
+            raise ValueError("eta_inboard must be smaller than eta_outboard")
+
+    def angles_rad(self, setting: str) -> tuple[float, float | None]:
+        """Return flap and slat angles for a named setting, in radians.
+
+        The slat angle is None when the record gives no angle. Setting names
+        are case sensitive. An unknown setting raises KeyError.
+        """
+
+        entry = (self.settings or {})[setting]
+        slat = entry.slat_angle_deg
+        return math.radians(entry.flap_angle_deg), (
+            None if slat is None else math.radians(slat)
+        )
+
+
+def _load_flaps(data: Optional[Dict[str, Any]]) -> Flaps | None:
+    if data is None:
+        return None
+    values = dict(data)
+    legacy = sorted(LEGACY_FLAP_KEYS & values.keys())
+    if legacy:
+        raise ValueError(
+            f"flaps has fields of the old schema: {', '.join(legacy)}. "
+            "Use eta_inboard, eta_outboard, flapped_area_ratio and chord_ratio "
+            "(see docs/aircraft-data.md)"
+        )
+    settings = values.pop("settings", None)
+    if settings is None:
+        return Flaps(**values)
+    if not isinstance(settings, dict) or not settings:
+        raise ValueError("settings must be a non-empty mapping")
+    entries = {}
+    for name, setting in settings.items():
+        if not isinstance(name, str) or not name.strip() or "." in name:
+            raise ValueError("setting names must be non-empty strings without dots")
+        if not isinstance(setting, dict):
+            raise ValueError(f"setting {name!r} must be a mapping")
+        entries[name] = FlapSetting(**setting)
+    return Flaps(**values, settings=entries)
 
 
 @dataclass
@@ -526,7 +636,7 @@ def load_aircraft_from_dict(
     mass_properties = _load_nested_dataclass(
         data.get("mass_properties"), MassProperties
     )
-    flaps = _load_nested_dataclass(data.get("flaps"), Flaps)
+    flaps = _load_flaps(data.get("flaps"))
     engine = _load_nested_dataclass(data.get("engine"), Engine)
     drag = _load_nested_dataclass(data.get("drag"), DragModelConfig)
     kinematic = _load_kinematic_parameters(data.get("kinematic"))

@@ -972,7 +972,14 @@ def _build_subcritical_drag_model(aircraft: Aircraft) -> GeometryDragModel:
         span_efficiency_factor=float(drag.span_efficiency_factor),
         allowance_fraction=float(allowance),
     )
-    deployed = deployed_drag_from_aircraft(aircraft, model.reference_area_m2)
+    deployed = deployed_drag_from_aircraft(
+        aircraft,
+        model.reference_area_m2,
+        geometry.wing_span_m,
+        geometry.wing_thickness_to_chord_ratio,
+        geometry.wing_sweep_deg,
+        geometry.fuselage_width_m,
+    )
     return replace(model, deployed=deployed)
 
 
@@ -983,7 +990,7 @@ def build_drag_model(
 
     The zero-lift drag changes with the Mach and Reynolds number, and aircraft
     with a wave drag model also have wave drag above the critical Mach number.
-    Flap and landing gear drag apply when the condition has them deployed
+    Flap, slat and landing gear drag apply when the condition has them deployed
     (see :mod:`aerox.models.drag.deployed`).
     For a constant ``CD = cd0 + k CL²``, use :func:`build_parabolic_polar`.
     """

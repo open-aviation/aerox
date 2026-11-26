@@ -522,6 +522,171 @@ FIELD vertical_tail.rudder_area_ratio
   Notes: Physical surface ratio only; does not encode yaw-control law.
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.type
+  Value: single-slotted
+  Unit: -
+  Status: research-report
+  Source: rudolph_1996_nasa_cr_4746
+  Page or section: sect. 2.4.3 p.68-72; Table 2.2
+  Notes: trailing-edge flap type Reported configuration: single-slotted.
+END FIELD
+
+FIELD flaps.area
+  Value: 21.1
+  Unit: m2
+  Status: secondary-compilation
+  Source: janes_all_the_worlds_aircraft_2004_2005
+  Page or section: djvu page 258, AIRBUS A320 AREAS (wings gross 122.40 m2)
+  Notes: Jane's "Trailing-edge flaps (total)" area, both wings; stowed/extended not stated same as Jenkinson; printed unit "m3" is an OCR/print error for m2
+END FIELD
+
+FIELD flaps.eta_inboard
+  Value: 0.116
+  Unit: -
+  Status: inferred-with-uncertainty
+  Source: airbus_a320_autocad_wtf_2012_05
+  Page or section: Airbus_A320_WTF.dxf top view: fuselage side x=48950, centreline x=46974.6 (mm)
+  Notes: inboard flap end (fuselage side, y=1.976 m) / semi-span 17.05 m +/-0.1 m per Airbus drawing accuracy; flap root assumed at fuselage side (wing TE strip starts there)
+END FIELD
+
+FIELD flaps.eta_outboard
+  Value: 0.784
+  Unit: -
+  Status: inferred-with-uncertainty
+  Source: airbus_a320_autocad_wtf_2012_05
+  Page or section: Airbus_A320_WTF.dxf entity 4CFD
+  Notes: outboard flap end (aileron inboard edge, entity 4CFD, x=60338 mm, y=13.364 m) / semi-span 17.05 m agrees with Jenkinson 0.78 -> Jenkinson ratio is an outboard station
+END FIELD
+
+FIELD flaps.flapped_area_ratio
+  Value: 0.69
+  Unit: -
+  Status: inferred-with-uncertainty
+  Source: airbus_a320_autocad_wtf_2012_05
+  Page or section: LE entities 6599/65A1, TE entities 5CEE/5CE1 (sources/geometry/a320-cad-geometry-measurements.csv)
+  Notes: wing area (both sides) between flap stations 1.976 and 13.364 m, using straight LE and kinked TE from CAD, divided by S_ref 122.0 m2 S_wf = 84.5 m2; +/-0.02; trapezoid formula with Jenkinson taper 0.24 gives 0.71
+END FIELD
+
+FIELD flaps.settings.1.flap_angle_deg
+  Value: 0.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 1 A320 series, VFE table, PDF p.44-45
+  Applicability: A320 ceo/neo
+  Notes: intermediate approach
+END FIELD
+
+FIELD flaps.settings.1.slat_angle_deg
+  Value: 18.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 1 A320 series, VFE table, PDF p.44-45
+  Applicability: A320 ceo/neo
+  Notes: intermediate approach
+END FIELD
+
+FIELD flaps.settings.1+F.flap_angle_deg
+  Value: 10.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 1 A320 series, VFE table, PDF p.44-45
+  Applicability: A320 ceo/neo
+  Notes: take-off
+END FIELD
+
+FIELD flaps.settings.1+F.slat_angle_deg
+  Value: 18.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 1 A320 series, VFE table, PDF p.44-45
+  Applicability: A320 ceo/neo
+  Notes: take-off
+END FIELD
+
+FIELD flaps.settings.2.flap_angle_deg
+  Value: 15.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 1 A320 series, VFE table, PDF p.44-45
+  Applicability: A320 ceo/neo
+  Notes: take-off and approach
+END FIELD
+
+FIELD flaps.settings.2.slat_angle_deg
+  Value: 22.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 1 A320 series, VFE table, PDF p.44-45
+  Applicability: A320 ceo/neo
+  Notes: take-off and approach
+END FIELD
+
+FIELD flaps.settings.3.flap_angle_deg
+  Value: 20.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 1 A320 series, VFE table, PDF p.44-45
+  Applicability: A320 ceo/neo
+  Notes: take-off, approach, landing
+END FIELD
+
+FIELD flaps.settings.3.slat_angle_deg
+  Value: 22.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 1 A320 series, VFE table, PDF p.44-45
+  Applicability: A320 ceo/neo
+  Notes: take-off, approach, landing
+END FIELD
+
+FIELD flaps.settings.FULL.flap_angle_deg
+  Value: 35.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 1, VFE table, PDF p.46
+  Applicability: A320 with CFM56
+  Notes: landing; footnote ** gives 27/40 for IAE or CFM LEAP-1A engines
+END FIELD
+
+FIELD flaps.settings.FULL.slat_angle_deg
+  Value: 27.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 1, VFE table, PDF p.46
+  Applicability: A320 with CFM56
+  Notes: landing; footnote ** gives 27/40 for IAE or CFM LEAP-1A engines
+END FIELD
+
+FIELD flaps.settings.FULL-V2500.flap_angle_deg
+  Value: 40.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 1, VFE table footnote **, PDF p.46
+  Applicability: A320 with IAE V2500
+END FIELD
+
+FIELD flaps.settings.FULL-V2500.slat_angle_deg
+  Value: 27.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 1, VFE table footnote **, PDF p.46
+  Applicability: A320 with IAE V2500
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

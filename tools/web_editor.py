@@ -18,6 +18,7 @@ from pathlib import Path
 
 import yaml
 from flask import Flask, redirect, render_template_string, request, url_for
+from aerox.aircraft import FLAP_TYPES
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 SRC_ROOT = PROJECT_ROOT / "src"
@@ -25,6 +26,10 @@ if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
 app = Flask(__name__)
+app.add_template_filter(
+    lambda value: yaml.safe_dump(value, sort_keys=False) if value else "",
+    "settings_yaml",
+)
 YAML_BASE_DIR = (
     Path(__file__).resolve().parents[1] / "src" / "aerox" / "data" / "aircraft" / "yml"
 )
@@ -158,14 +163,25 @@ FIELD_SCHEMA = {
             },
         },
         "flaps": {
-            "fields": ["type", "area", "bf/b", "lambda_f", "cf/c", "Sf/S"],
+            "fields": [
+                "type",
+                "area",
+                "eta_inboard",
+                "eta_outboard",
+                "flapped_area_ratio",
+                "chord_ratio",
+                "slatted_area_ratio",
+                "settings",
+            ],
             "types": {
                 "type": str,
                 "area": float,
-                "bf/b": float,
-                "lambda_f": float,
-                "cf/c": float,
-                "Sf/S": float,
+                "eta_inboard": float,
+                "eta_outboard": float,
+                "flapped_area_ratio": float,
+                "chord_ratio": float,
+                "slatted_area_ratio": float,
+                "settings": dict,
             },
         },
         "engine": {
@@ -791,7 +807,7 @@ HTML_TEMPLATE = """
                     </div>
                     
                     <div class="form-section">
-                        <h3><i class="fa-solid fa-sliders"></i> Flaps</h3>
+                        <h3><i class="fa-solid fa-sliders"></i> Flaps and slats</h3>
                         <div class="field">
                             <label>Type</label>
                             <select name="flaps__type">
@@ -802,27 +818,27 @@ HTML_TEMPLATE = """
                             </select>
                         </div>
                         <div class="field">
-                            <label>Area</label>
+                            <label>Total flap surface area</label>
                             <div class="input-group">
-                                <input type="number" step="0.01" name="flaps__area" value="{{ data.flaps.area if data.flaps and data.flaps.area else '' }}">
+                                <input type="number" step="any" name="flaps__area" value="{{ data.flaps.area if data.flaps and data.flaps.area is not none else '' }}">
                                 <span class="input-append">m²</span>
                             </div>
                         </div>
+                        {% for key, label in [
+                            ('eta_inboard', 'Inboard flap station / semi-span'),
+                            ('eta_outboard', 'Outboard flap station / semi-span'),
+                            ('flapped_area_ratio', 'Flapped wing area / wing area'),
+                            ('chord_ratio', 'Flap chord / local wing chord'),
+                            ('slatted_area_ratio', 'Slatted wing area / wing area')
+                        ] %}
                         <div class="field">
-                            <label>bf/b</label>
-                            <input type="number" step="0.01" name="flaps__bf/b" value="{{ data.flaps['bf/b'] if data.flaps and 'bf/b' in data.flaps and data.flaps['bf/b'] else '' }}">
+                            <label>{{ label }}</label>
+                            <input type="number" step="any" min="0" max="1" name="flaps__{{ key }}" value="{{ data.flaps[key] if data.flaps and data.flaps[key] is not none else '' }}">
                         </div>
+                        {% endfor %}
                         <div class="field">
-                            <label>lambda_f</label>
-                            <input type="number" step="0.01" name="flaps__lambda_f" value="{{ data.flaps.lambda_f if data.flaps and data.flaps.lambda_f else '' }}">
-                        </div>
-                        <div class="field">
-                            <label>cf/c</label>
-                            <input type="number" step="0.01" name="flaps__cf/c" value="{{ data.flaps['cf/c'] if data.flaps and 'cf/c' in data.flaps and data.flaps['cf/c'] else '' }}">
-                        </div>
-                        <div class="field">
-                            <label>Sf/S</label>
-                            <input type="number" step="0.01" name="flaps__Sf/S" value="{{ data.flaps['Sf/S'] if data.flaps and 'Sf/S' in data.flaps and data.flaps['Sf/S'] else '' }}">
+                            <label for="flap-settings">Named settings (YAML, angles in degrees)</label>
+                            <textarea id="flap-settings" name="flaps__settings" rows="6">{{ data.flaps.settings | settings_yaml if data.flaps else '' }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -1216,8 +1232,10 @@ def safe_convert(value, target_type, field_name=None):
             if isinstance(value, list):
                 return value
             return [line.strip() for line in str(value).split("\n") if line.strip()]
+        if target_type is dict:
+            return yaml.safe_load(value)
         return target_type(value)
-    except (ValueError, TypeError) as e:
+    except (ValueError, TypeError, yaml.YAMLError) as e:
         raise ValueError(f"Invalid value for {field_name}: {value}") from e
 
 
@@ -1270,9 +1288,6 @@ def format_value(value, field_name=None):
             return round(value, 5)
         # For Mach numbers
         elif field_name and "mach" in field_name.lower():
-            return round(value, 2)
-        # For flaps ratios
-        elif field_name in ["bf/b", "lambda_f", "cf/c", "Sf/S"]:
             return round(value, 2)
         # For dimensions (length, height, width, span, mac)
         else:
@@ -1331,15 +1346,22 @@ def save_aircraft_data(icao, data, engine_type=None):
                 GEOMETRY_UNITS,
                 derive_geometry,
                 render_geometry_section,
+                render_high_lift_section,
             )
-            from migrate_aircraft_data import parse_old_provenance, validate_simple
+            from migrate_aircraft_data import (
+                high_lift_fields,
+                parse_old_provenance,
+                validate_simple,
+            )
         except ModuleNotFoundError:  # package-style import used by tests
             from tools.update_aircraft_geometry import (
                 GEOMETRY_UNITS,
                 derive_geometry,
                 render_geometry_section,
+                render_high_lift_section,
             )
             from tools.migrate_aircraft_data import (
+                high_lift_fields,
                 parse_old_provenance,
                 validate_simple,
             )
@@ -1374,6 +1396,35 @@ def save_aircraft_data(icao, data, engine_type=None):
             raise ValueError("Invalid aircraft data: " + "; ".join(issues))
         if old_sidecar:
             rendered_sidecar = render_geometry_section(merged, old_sidecar, metadata)
+            previous_lift = high_lift_fields(existing_data.get("flaps") or {})
+            new_lift = high_lift_fields(merged.get("flaps") or {})
+            if new_lift != previous_lift:
+                previous_notes = parse_old_provenance(old_sidecar)["fields"]
+                keys = (
+                    "Unit",
+                    "Status",
+                    "Source",
+                    "Page or section",
+                    "Applicability",
+                    "Notes",
+                )
+                lift_metadata = {}
+                for path, value in new_lift.items():
+                    note = previous_notes.get(path)
+                    if note and previous_lift.get(path) == value:
+                        lift_metadata[path] = {
+                            label: note.get(label.lower().replace(" ", "_"))
+                            for label in keys
+                        }
+                    else:
+                        lift_metadata[path] = {
+                            "Status": "legacy-unverified",
+                            "Source": "aerox_web_editor_manual_entry",
+                            "Notes": "Manual entry. Source qualification is required.",
+                        }
+                rendered_sidecar = render_high_lift_section(
+                    merged, rendered_sidecar, lift_metadata
+                )
 
     yaml_file.parent.mkdir(parents=True, exist_ok=True)
     with open(yaml_file, "w", encoding="utf-8") as f:
@@ -1421,7 +1472,7 @@ def get_unique_field_values():
         "icao_wtc": set(),
         "eu_wtc": set(),
         "faa_wtc": set(),
-        "flaps_type": set(),
+        "flaps_type": FLAP_TYPES,
         "engine_type": set(),
     }
 
@@ -1444,8 +1495,6 @@ def get_unique_field_values():
                         unique_values["faa_wtc"].add(data["faa_wtc"])
 
                     # Nested fields
-                    if data.get("flaps") and data["flaps"].get("type"):
-                        unique_values["flaps_type"].add(data["flaps"]["type"])
                     if data.get("engine") and data["engine"].get("type"):
                         unique_values["engine_type"].add(data["engine"]["type"])
             except Exception:

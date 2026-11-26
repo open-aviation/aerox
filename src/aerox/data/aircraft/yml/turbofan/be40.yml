@@ -64,10 +64,18 @@ vertical_tail:
 flaps:
   type: null
   area: null
-  bf/b: null
-  lambda_f: null
-  cf/c: null
-  Sf/S: null
+  eta_inboard: null
+  eta_outboard: null
+  flapped_area_ratio: null
+  chord_ratio: null
+  slatted_area_ratio: null
+  settings:
+    flaps 10:
+      flap_angle_deg: 10.0
+      slat_angle_deg: null
+    flaps 30:
+      flap_angle_deg: 30.0
+      slat_angle_deg: null
 engine:
   type: turbofan
   mount: both sides of rear fuselage

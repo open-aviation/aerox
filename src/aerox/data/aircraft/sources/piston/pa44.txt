@@ -398,6 +398,17 @@ FIELD vertical_tail.rudder_area_ratio
   Search record: applicable FAA TCDS and Piper public product/publications material searched. Current Archer and PA-44-180 spans are configuration-specific; Arrow, Saratoga/Cherokee Six, Navajo, Malibu/Mirage, and Meridian values were omitted where exact bundled scope was not established.
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.area
+  Value: 1.36
+  Unit: m2
+  Status: secondary-compilation
+  Source: janes_all_the_worlds_aircraft_2004_2005
+  Page or section: djvu page 780, PIPER PA-44-180 SEMINOLE AREAS (wings gross 17.08 m2)
+  Notes: Jane's "Trailing-edge flaps (total)" area, both wings; stowed/extended not stated
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

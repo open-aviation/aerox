@@ -408,6 +408,35 @@ FIELD vertical_tail.rudder_area_ratio
   Search record: reviewed EASA.IM.A.070 Issue 13; certified-model MAC values are inventoried below, without transferring later GIV-X/GV-SP marketing configurations.
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.settings.flaps 10.flap_angle_deg
+  Value: 10.0
+  Unit: deg
+  Status: certified-published
+  Source: faa_a12ea_rev_54
+  Page or section: Sections V and VIII, Vfe
+  Applicability: G-IV / G-IV-X
+END FIELD
+
+FIELD flaps.settings.flaps 20.flap_angle_deg
+  Value: 20.0
+  Unit: deg
+  Status: certified-published
+  Source: faa_a12ea_rev_54
+  Page or section: Sections V and VIII, Vfe
+  Applicability: G-IV / G-IV-X
+END FIELD
+
+FIELD flaps.settings.flaps 39.flap_angle_deg
+  Value: 39.0
+  Unit: deg
+  Status: certified-published
+  Source: faa_a12ea_rev_54
+  Page or section: Sections V and VIII, Vfe
+  Applicability: G-IV / G-IV-X
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

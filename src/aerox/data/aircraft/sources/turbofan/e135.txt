@@ -418,6 +418,75 @@ FIELD vertical_tail.rudder_area_ratio
   Search record: reviewed Embraer ERJ product pages and legacy APM locations. The previously indexed ERJ145 APM URL now returns 404, so no row from that unvalidated URL is adopted; the ERJ135 APM was likewise not retrievable at its historical direct URL.
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.type
+  Value: double-slotted
+  Unit: -
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a_table_8_xls
+  Page or section: Data A Table 8B, column EMB-145
+  Notes: Jenkinson code: letter F/S, digit = number of slots (legend not printed on the companion site; reading F=Fowler, S=slotted is an inference) ERJ-135 shares the ERJ-145 wing (inference) Interpreted source type code: S2.
+END FIELD
+
+FIELD flaps.area
+  Value: 8.36
+  Unit: m2
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a_table_8_xls
+  Page or section: Data A Table 8B, column EMB-145
+  Notes: Jenkinson "High Lift Devices: Area (m2)" for trailing-edge flaps, both wings; planform definition (stowed or extended) not stated ERJ-135 shares the ERJ-145 wing (inference)
+END FIELD
+
+FIELD flaps.eta_outboard
+  Value: 0.72
+  Unit: -
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a_table_8_xls
+  Page or section: Data A Table 8B, column EMB-145
+  Notes: Jenkinson "Flap Span/Wing Span"; CAD checks (A320, 737-800) show it equals the outboard flap station / semi-span from the centreline, not the net flapped span ERJ-135 shares the ERJ-145 wing (inference) Outboard station interpretation checked on A320 and B738 drawings.
+END FIELD
+
+FIELD flaps.settings.flaps 9.flap_angle_deg
+  Value: 9.0
+  Unit: deg
+  Status: certified-published
+  Source: faa_t00011at_rev_38
+  Page or section: Sections 1-3, VFE list, p.2-7
+  Applicability: EMB-135 (sister of EMB-145)
+  Notes: take-off/approach certified; sister-subtype-fill
+END FIELD
+
+FIELD flaps.settings.flaps 18.flap_angle_deg
+  Value: 18.0
+  Unit: deg
+  Status: certified-published
+  Source: faa_t00011at_rev_38
+  Page or section: Sections 1-3, VFE list, p.2-7
+  Applicability: EMB-135 (sister of EMB-145)
+  Notes: take-off (note 15) certified; sister-subtype-fill
+END FIELD
+
+FIELD flaps.settings.flaps 22.flap_angle_deg
+  Value: 22.0
+  Unit: deg
+  Status: certified-published
+  Source: faa_t00011at_rev_38
+  Page or section: Sections 1-3, VFE list, p.2-7
+  Applicability: EMB-135 (sister of EMB-145)
+  Notes: certified; sister-subtype-fill
+END FIELD
+
+FIELD flaps.settings.flaps 45.flap_angle_deg
+  Value: 45.0
+  Unit: deg
+  Status: certified-published
+  Source: faa_t00011at_rev_38
+  Page or section: Sections 1-3, VFE list, p.2-7
+  Applicability: EMB-135 (sister of EMB-145)
+  Notes: landing certified; sister-subtype-fill
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

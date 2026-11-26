@@ -425,6 +425,18 @@ FIELD vertical_tail.rudder_area_ratio
   Search record: reviewed EASA.IM.A.207 Issue 10; common or exact-model values are inventoried below. C560 span/area were withheld because Citation V/Ultra and Encore configurations differ.
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.settings.landing.flap_angle_deg
+  Value: 40.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_citation_500_560_a207
+  Page or section: Technical characteristics, VFE, PDF p.7 and 17
+  Applicability: Citation II/Bravo (550 family)
+  Notes: later sections list 35 deg landing; check model applicability
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

@@ -416,6 +416,44 @@ FIELD vertical_tail.rudder_area_ratio
   Search record: Transport Canada model scope and EASA TCDS EASA.IM.A.191 searched; certified dimensions and MAC are adopted for Series 100 and Series 400 only.
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.settings.flap 5.flap_angle_deg
+  Value: 5.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_ima191_dhc8_issue16_2023_02_03
+  Page or section: Section 5, VFE, PDF p.31
+  Applicability: DHC-8 Series 400
+END FIELD
+
+FIELD flaps.settings.flap 10.flap_angle_deg
+  Value: 10.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_ima191_dhc8_issue16_2023_02_03
+  Page or section: Section 5, VFE, PDF p.31
+  Applicability: DHC-8 Series 400
+END FIELD
+
+FIELD flaps.settings.flap 15.flap_angle_deg
+  Value: 15.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_ima191_dhc8_issue16_2023_02_03
+  Page or section: Section 5, VFE, PDF p.31
+  Applicability: DHC-8 Series 400
+END FIELD
+
+FIELD flaps.settings.flap 35.flap_angle_deg
+  Value: 35.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_ima191_dhc8_issue16_2023_02_03
+  Page or section: Section 5, VFE, PDF p.31
+  Applicability: DHC-8 Series 400
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

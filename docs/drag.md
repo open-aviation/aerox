@@ -1,7 +1,7 @@
 # Drag
 
 The drag model computes the drag coefficient of an aircraft from its geometry,
-clean or with flaps and landing gear deployed. No value is fitted to another
+clean or with flaps, slats and landing gear deployed. No value is fitted to another
 performance model.
 
 ## Two ways to get drag
@@ -99,44 +99,128 @@ cd = model.cd(cl=0.55, condition=condition)
 
 A negative Mach number or Reynolds number raises `ValueError`.
 
-## Flaps and landing gear
+## Flaps, slats and landing gear
 
-Give the flap angle in radians and the landing gear extension, from 0
-(retracted) to 1 (down), in a `DragCondition`:
+Give the flap and slat angles in radians. Gear extension runs from 0
+(retracted) to 1 (down). Each input defaults to zero.
 
 ```python
-import numpy as np
+flap, slat = ac.flaps.angles_rad("FULL")  # A320-214
 
 condition = DragCondition(
     mach=0.2,
     reynolds_per_m=aero.reynolds_per_m(mach=0.2, h=0),
-    flap_angle_rad=np.deg2rad(30),
+    flap_angle_rad=flap,
+    slat_angle_rad=slat,
     gear_extension_fraction=1.0,
 )
 cd = model.cd(cl=1.5, condition=condition)
 ```
 
-Three terms change:
+`angles_rad` returns `None` for the slat angle when the record does not give
+it, for example for the CRJ200. `None` means unknown, not retracted. Leave
+`slat_angle_rad` out in that case; the result then has no slat drag.
 
-- **Flap profile drag** (McCormick, 1995):
-  `ΔCD0 = λf (cf/c)^1.38 (S_wf/S) sin²δ`. The flap effectiveness `λf`, the
-  flap chord ratio `cf/c`, and the flapped span ratio `bf/b` (used as
-  `S_wf/S`) come from the `flaps` group of the record. When the record has no
-  value: `λf` is 0.9 for slotted flaps and 1.7 for plain or split flaps,
-  `cf/c` is 0.30 or 0.25, and `S_wf/S` is 0.45 for piston aircraft and 0.65
-  for the others.
-- **Induced drag.** The span efficiency factor falls by 0.0025 per degree of
-  flap, so by 0.05 at 20° and 0.10 at 40° (Roskam, Part I).
-- **Landing gear** (Torenbeek, as given by Anderson, 1999):
-  `ΔCD0 = g (MTOW g0 / S) 5.81e-5 MTOW^-0.215`, with the extension fraction
-  `g` and MTOW in kg. For the A320 it gives 0.0322; the value identified from
-  A320 flight data is 0.0299 (Deiler and Fezans, 2025).
+Here `CL = L / (q S)` is the total aircraft lift coefficient in the selected
+configuration. `S` is the clean wing reference area. Use the same reference
+area at all settings.
 
-The breakdown has the two increments as `b.flap` and `b.gear`. Slats add no
-drag, flap and gear drag do not interact, and flap angles above 60° raise
-`ValueError`. Spoiler drag is not modelled: a condition with deployed spoilers
-raises `ValueError`. The parabolic polar and the comparison models cover the
-clean configuration only.
+The flap model adapts GASP Volume III, equation III.1.58 and section III.1.4.1.
+It uses the published GASP tables reproduced in Aviary.
+[GASP aerodynamic method](https://ntrs.nasa.gov/citations/19810010564),
+[Aviary flap tables](https://github.com/OpenMDAO/Aviary/blob/03bf83e7937f16c65e6667991949f3a68c97e23e/aviary/subsystems/aerodynamics/gasp_based/flaps_model/meta_model.py),
+[Aviary flap type constants](https://github.com/OpenMDAO/Aviary/blob/03bf83e7937f16c65e6667991949f3a68c97e23e/aviary/utils/fortran_to_aviary.py),
+[Aviary induced drag tables](https://github.com/OpenMDAO/Aviary/blob/03bf83e7937f16c65e6667991949f3a68c97e23e/aviary/subsystems/aerodynamics/gasp_based/gaspaero.py).
+
+```text
+ΔCD_flap = DCDOTE × VDEL1(cf/c) × VDEL2(δf / δopt) × f × cos(Λ)
+ΔCL_flap = DCLMTE × VLAM3(AR) × VLAM4(t/c) × VLAM5(cf/c)
+                 × VLAM6(δf) × f × cos³(Λ)
+CD_span  = k_span × (CL − SIGMA(δf) × ΔCL_flap)² / VDEL6(δf)
+```
+
+`f = S_wf/S` is the fraction of the wing served by the flaps. It represents
+the GASP span and fuselage factors for drag and the span factor for lift.
+`Λ` is the wing quarter-chord sweep. It represents flap hinge sweep in the
+profile term. The model uses shape-preserving cubic interpolation for
+angle-dependent tables. The clean wing span coefficient `k_span` multiplies
+the shifted square. This shift captures the effect of flap lift on the
+polar at fixed total lift. The net change in span-induced drag can have
+either sign. The model uses the clean profile and wave terms at total `CL`.
+
+| Flap type | `δopt` (°) | `DCDOTE` | `DCLMTE` |
+| --- | ---: | ---: | ---: |
+| Plain | 60 | 0.12 | 0.90 |
+| Split | 60 | 0.23 | 0.80 |
+| Single-slotted | 40 | 0.13 | 1.18 |
+| Double-slotted | 55 | 0.23 | 1.40 |
+| Triple-slotted | 55 | 0.23 | 1.60 |
+| Fowler | 30 | 0.10 | 1.67 |
+| Double-slotted Fowler | 30 | 0.15 | 2.25 |
+
+The two slotted groups with the same drag constants differ in lift correction.
+Mixed single- and double-slotted flaps use equal affected area for each type.
+When the record gives no flap type, piston aircraft use plain flaps,
+turboprops use single-slotted flaps and jets use double-slotted flaps.
+The default chord ratio is 0.25 for plain and split flaps and 0.30 for the
+other types. Without a stored `f`, the model integrates a trapezoidal wing
+between the flap stations. It uses the fuselage side as the inboard station
+if needed and a taper ratio of 0.60 for piston aircraft or 0.33 for the
+others when taper is missing. If the outboard station is also unknown,
+`f` defaults to 0.45 for piston aircraft and 0.65 for the others.
+
+Slat drag uses Torenbeek equation G-62 and Figure G-24. The wing component's
+zero-lift drag `CD0_wing` supplies the clean section profile proxy. The
+factor `1 + CL²` follows the quadratic section approximation in equation
+G-42 with coefficient 1 and zero offset. The assumed slat chord ratio is
+0.17. The slatted wing area ratio `S_ws/S` defaults to 0.65. The sine ratio
+ramps the drag from zero to the G-62 estimate at the 20° reference angle
+used by Aviary. Torenbeek's estimate applies near the lift range where the
+slat position is optimum. Actual drag depends on slot gap and incidence.
+
+These parts are aerox assumptions and do not come from the cited sources:
+the default slatted area ratio of 0.65, the default taper ratios of 0.60 and
+0.33, the equal area split for mixed flaps, the use of `f` for the GASP span
+and fuselage factors, and the sine scaling of slat drag with the slat angle.
+
+```text
+ΔCD_slat = CD0_wing × (1 + CL²) × (S_ws/S) × 0.17 × cos(Λ)
+                    × sin(δs) / sin(20°)
+ΔCD_gear = g × (MTOW × g0 / S) × 5.81e−5 × MTOW^(−0.215)
+```
+
+Gear drag uses Torenbeek's weight-based correlation as given by Anderson
+(1999). MTOW is in kg. It gives 0.0323 for the A320. Deiler and Fezans
+report 0.0291 to 0.0311 for the configurations in their flight-data study.
+[Deiler and Fezans, Table 5](https://doi.org/10.2514/6.2025-1250).
+
+The breakdown reports the increments as `b.flap`, `b.slat` and `b.gear`.
+The lift correction is included in `b.span_induced`. The high-lift terms
+apply in low-speed flight, below stall and outside ground effect. Surface
+angles outside 0 to 60° and deployed spoilers raise `ValueError`. The gear
+term is independent of flap and slat deployment. The parabolic polar and
+the comparison models cover the clean configuration only.
+
+### High-lift validation
+
+Against ANP 2.3, the root-mean-square error in total `CD` falls from 0.0182
+to 0.0140 for 43 high-lift points with published deflections. Across 174
+points, including cases that use detent labels as angle proxies, it falls
+from 0.0252 to 0.0230. ANP gives effective drag-to-lift ratios for noise
+procedures. The comparison uses the procedure gear state and the speed
+coefficient to estimate lift. When the slat angle is unknown, the score
+uses zero slat angle.
+Slat angles are known for 25 of the 174 points, so the slat term has no
+independent validation.
+[ANP 2.3 database](https://www.easa.europa.eu/en/domains/environment/policy-support-and-research/aircraft-noise-and-performance-anp-data),
+[Directive (EU) 2015/996, Appendix B](https://www.legislation.gov.uk/eudr/2015/996/annex/appendix/B).
+
+For 17 points digitised from Obert Figure 27.35, the 777-200 error falls
+from 0.0173 to 0.0117. The score treats detent labels as angles.
+For the six A320 ANP points, the model overestimates `CD` by 0.0132 to
+0.0266. Obert's linearised efficiencies describe the local slope of the
+total polar near 1.2 to 1.4 times stall speed. They serve as a slope
+check. [Obert, Chapter 27](https://doi.org/10.3233/978-1-58603-970-7-i).
 
 ## Drag breakdown
 

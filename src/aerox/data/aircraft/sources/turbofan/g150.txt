@@ -392,6 +392,64 @@ FIELD vertical_tail.rudder_area_ratio
   Search record: reviewed EASA Gulfstream LP index entries and the G150 TCDS; G150 quantitative rows are withheld because its exact TCDS source ID is not yet present in the shared source ledger, and the G280 aircraft TCDS direct document could not be validated from the current index.
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.settings.flaps 12.flap_angle_deg
+  Value: 12.0
+  Unit: deg
+  Status: certified-published
+  Source: faa_a16nm_rev_8
+  Page or section: Section IV, Vfe and control surface movements
+  Applicability: Gulfstream G150
+END FIELD
+
+FIELD flaps.settings.flaps 12.slat_angle_deg
+  Value: 25.0
+  Unit: deg
+  Status: certified-published
+  Source: faa_a16nm_rev_8
+  Page or section: Section IV, Vfe and control surface movements
+  Applicability: Gulfstream G150
+END FIELD
+
+FIELD flaps.settings.flaps 20.flap_angle_deg
+  Value: 20.0
+  Unit: deg
+  Status: certified-published
+  Source: faa_a16nm_rev_8
+  Page or section: Section IV, Vfe and control surface movements
+  Applicability: Gulfstream G150
+END FIELD
+
+FIELD flaps.settings.flaps 20.slat_angle_deg
+  Value: 25.0
+  Unit: deg
+  Status: certified-published
+  Source: faa_a16nm_rev_8
+  Page or section: Section IV, Vfe and control surface movements
+  Applicability: Gulfstream G150
+END FIELD
+
+FIELD flaps.settings.flaps 40.flap_angle_deg
+  Value: 40.0
+  Unit: deg
+  Status: certified-published
+  Source: faa_a16nm_rev_8
+  Page or section: Section IV, Vfe and control surface movements
+  Applicability: Gulfstream G150
+  Notes: landing
+END FIELD
+
+FIELD flaps.settings.flaps 40.slat_angle_deg
+  Value: 25.0
+  Unit: deg
+  Status: certified-published
+  Source: faa_a16nm_rev_8
+  Page or section: Section IV, Vfe and control surface movements
+  Applicability: Gulfstream G150
+  Notes: landing
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

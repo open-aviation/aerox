@@ -37,6 +37,7 @@ the aircraft that have it.
 | `dT` | K | ISA temperature offset, default 0; used with `h` only |
 | `reynolds_per_m` | 1/m | Reynolds number per metre; give `h` or `reynolds_per_m` |
 | `flap_angle_rad` | rad | flap angle, default clean |
+| `slat_angle_rad` | rad | slat angle, default clean |
 | `gear_extension_fraction` | | 0 retracted, 1 extended, default retracted |
 | `xp` | | math library, default NumPy |
 
@@ -51,13 +52,16 @@ re = isa_reynolds_per_m(mach=0.78, h=11_000, dT=0, xp=jnp)
 expr.cd(cl=0.55, mach=0.78, reynolds_per_m=re, xp=jnp)
 ```
 
-Flaps and landing gear, for a landing configuration:
+Flaps, slats and gear in a landing configuration:
 
 ```python
-expr.cd(cl=1.5, mach=0.2, h=0, flap_angle_rad=0.52, gear_extension_fraction=1)
+expr.cd(
+    cl=1.5, mach=0.2, h=0, flap_angle_rad=0.52, slat_angle_rad=0.47,
+    gear_extension_fraction=1,
+)
 ```
 
-See [Drag](drag.md#flaps-and-landing-gear) for the flap and gear model.
+See [Drag](drag.md#flaps-slats-and-landing-gear) for the configuration model.
 
 ## JAX
 
@@ -94,7 +98,9 @@ gradient-based solvers that need smooth functions, pass an object whose
 ## Other math libraries
 
 Another library works if it has `log`, `sqrt`, `exp`, `sin`, and `maximum` (or
-`fmax`). `xp` can also be an object with these functions as attributes.
+`fmax`). `xp` can also be an object with these functions as attributes. A flap
+angle also needs `where` (or `if_else`), because the flap curves are piecewise
+cubics.
 
 ## Limits
 
@@ -103,5 +109,9 @@ Another library works if it has `log`, `sqrt`, `exp`, `sin`, and `maximum` (or
   friction drops to zero, so the result is wrong without an error. Keep the
   Reynolds number above a small minimum, or use `model.cd()` when you need
   these checks.
+- The flap curves cover 0 to 60°. The expression holds a flap angle outside
+  this range at the nearest limit, so the drag is constant there and its
+  gradient is zero. Bound the flap angle in an optimisation problem. The flap
+  curves have a continuous first derivative only.
 - Only the drag model has an expression. The other functions of aerox, such
   as `aerox.aero`, use NumPy only.

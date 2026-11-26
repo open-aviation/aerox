@@ -91,15 +91,28 @@ def test_expression_accepts_the_casadi_module():
     casadi = pytest.importorskip("casadi")
     model = build_drag_model(load_aircraft("A320"))
     cl, mach, h = casadi.SX.sym("cl"), casadi.SX.sym("mach"), casadi.SX.sym("h")
-    flap = casadi.SX.sym("flap")
+    flap, slat = casadi.SX.sym("flap"), casadi.SX.sym("slat")
     cd = model.expression().cd(
-        cl, mach, h=h, xp=casadi, flap_angle_rad=flap, gear_extension_fraction=1.0
+        cl,
+        mach,
+        h=h,
+        xp=casadi,
+        flap_angle_rad=flap,
+        slat_angle_rad=slat,
+        gear_extension_fraction=1.0,
     )
-    function = casadi.Function("cd", [cl, mach, h, flap], [cd])
+    function = casadi.Function("cd", [cl, mach, h, flap, slat], [cd])
     expected = model.expression().cd(
-        0.8, 0.3, h=500.0, flap_angle_rad=0.3, gear_extension_fraction=1.0
+        0.8,
+        0.3,
+        h=500.0,
+        flap_angle_rad=0.3,
+        slat_angle_rad=0.4,
+        gear_extension_fraction=1.0,
     )
-    assert float(function(0.8, 0.3, 500.0, 0.3)) == pytest.approx(expected, rel=1e-12)
+    assert float(function(0.8, 0.3, 500.0, 0.3, 0.4)) == pytest.approx(
+        expected, rel=1e-12
+    )
 
 
 def test_expression_runs_in_jax_jit_and_grad():
@@ -121,6 +134,21 @@ def test_expression_runs_in_jax_jit_and_grad():
         - expression.cd(0.5 - step, 0.78, h=11_000.0)
     ) / (2 * step)
     assert slope == pytest.approx(numeric, rel=1e-6)
+
+    @jax.jit
+    def deployed(flap, slat):
+        return expression.cd(
+            1.4, 0.23, h=0.0, xp=jnp, flap_angle_rad=flap, slat_angle_rad=slat
+        )
+
+    # Both derivatives agree at an interior table knot.
+    flap = math.radians(30)
+    slat = math.radians(22)
+    expected = expression.cd(1.4, 0.23, h=0.0, flap_angle_rad=flap, slat_angle_rad=slat)
+    assert float(deployed(flap, slat)) == pytest.approx(expected, rel=1e-12)
+    left = float(jax.grad(deployed)(flap - step, slat))
+    right = float(jax.grad(deployed)(flap + step, slat))
+    assert left == pytest.approx(right, abs=1e-6)
 
 
 def test_expression_is_exported():

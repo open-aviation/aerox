@@ -416,6 +416,35 @@ FIELD vertical_tail.rudder_area_ratio
   Searched source: easa_ima035_issue_11 | boeing_767_acap_rev_k_2024_12 | boeing_767_400_cad_3view
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.type
+  Value: mixed-single-double-slotted
+  Unit: -
+  Status: inferred-with-uncertainty
+  Source: rudolph_1996_nasa_cr_4746
+  Page or section: Table 2.2 p.83 (family entry)
+  Notes: trailing-edge flap type Reported configuration: main/aft double-slotted inboard; single-slotted outboard.
+END FIELD
+
+FIELD flaps.area
+  Value: 36.88
+  Unit: m2
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a_table_3_xls
+  Page or section: Data A Table 3B, column 767-300ER
+  Notes: Jenkinson "High Lift Devices: Area (m2)" for trailing-edge flaps, both wings; planform definition (stowed or extended) not stated 767-400ER has raked wing tips and a larger span; rescale the station ratio before use
+END FIELD
+
+FIELD flaps.eta_outboard
+  Value: 0.687
+  Unit: -
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a_table_3_xls | boeing_767_acap_rev_k_2024_12 | boeing_767_acap_rev_k_2024_12
+  Page or section: Data A Table 3B, column 767-300ER
+  Notes: Jenkinson "Flap Span/Wing Span"; CAD checks (A320, 737-800) show it equals the outboard flap station / semi-span from the centreline, not the net flapped span 767-400ER has raked wing tips and a larger span; rescale the station ratio before use Rescaled the B763 station by the ratio of the bundled wingspans.
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

@@ -440,6 +440,252 @@ FIELD vertical_tail.rudder_area_ratio
   Searched source: easa_a064_issue_63 | airbus_a321_acap_2026_07 | airbus_a321_autocad_sharklet_2014_07
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.type
+  Value: double-slotted
+  Unit: -
+  Status: inferred-with-uncertainty
+  Source: rudolph_1996_nasa_cr_4746
+  Page or section: Table 2.2 p.83 (family entry)
+  Notes: trailing-edge flap type Reported configuration: main/aft double-slotted.
+END FIELD
+
+FIELD flaps.eta_outboard
+  Value: 0.78
+  Unit: -
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a_table_1_xls
+  Page or section: Data A Table 1B, column A321-200
+  Notes: Jenkinson "Flap Span/Wing Span"; CAD checks (A320, 737-800) show it equals the outboard flap station / semi-span from the centreline, not the net flapped span A321neo keeps the A321 wing and flaps (inference) Outboard station interpretation checked on A320 and B738 drawings.
+END FIELD
+
+FIELD flaps.settings.1.flap_angle_deg
+  Value: 0.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 2 A321 series, second VFE table, PDF p.98-99
+  Applicability: A321-271N/-272N/-251N/-252N/-253N and NX
+END FIELD
+
+FIELD flaps.settings.1.slat_angle_deg
+  Value: 18.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 2 A321 series, second VFE table, PDF p.98-99
+  Applicability: A321-271N/-272N/-251N/-252N/-253N and NX
+END FIELD
+
+FIELD flaps.settings.1+F.flap_angle_deg
+  Value: 10.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 2 A321 series, second VFE table, PDF p.98-99
+  Applicability: A321-271N/-272N/-251N/-252N/-253N and NX
+  Notes: take-off
+END FIELD
+
+FIELD flaps.settings.1+F.slat_angle_deg
+  Value: 18.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 2 A321 series, second VFE table, PDF p.98-99
+  Applicability: A321-271N/-272N/-251N/-252N/-253N and NX
+  Notes: take-off
+END FIELD
+
+FIELD flaps.settings.2.flap_angle_deg
+  Value: 14.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 2 A321 series, second VFE table, PDF p.98-99
+  Applicability: A321-271N/-272N/-251N/-252N/-253N and NX
+END FIELD
+
+FIELD flaps.settings.2.slat_angle_deg
+  Value: 22.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 2 A321 series, second VFE table, PDF p.98-99
+  Applicability: A321-271N/-272N/-251N/-252N/-253N and NX
+END FIELD
+
+FIELD flaps.settings.3.flap_angle_deg
+  Value: 21.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 2 A321 series, second VFE table, PDF p.98-99
+  Applicability: A321-271N/-272N/-251N/-252N/-253N and NX
+END FIELD
+
+FIELD flaps.settings.3.slat_angle_deg
+  Value: 22.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 2 A321 series, second VFE table, PDF p.98-99
+  Applicability: A321-271N/-272N/-251N/-252N/-253N and NX
+END FIELD
+
+FIELD flaps.settings.FULL.flap_angle_deg
+  Value: 34.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 2 A321 series, second VFE table, PDF p.98-99
+  Applicability: A321-271N/-272N/-251N/-252N/-253N and NX
+  Notes: landing
+END FIELD
+
+FIELD flaps.settings.FULL.slat_angle_deg
+  Value: 27.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 2 A321 series, second VFE table, PDF p.98-99
+  Applicability: A321-271N/-272N/-251N/-252N/-253N and NX
+  Notes: landing
+END FIELD
+
+FIELD flaps.settings.2 XLR take-off.flap_angle_deg
+  Value: 16.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 2, A321-253NY/-271NY VFE table
+  Applicability: A321-253NY/-271NY (XLR)
+  Notes: additional take-off settings
+END FIELD
+
+FIELD flaps.settings.2 XLR take-off.slat_angle_deg
+  Value: 22.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 2, A321-253NY/-271NY VFE table
+  Applicability: A321-253NY/-271NY (XLR)
+  Notes: additional take-off settings
+END FIELD
+
+FIELD flaps.settings.3 (take-off) XLR.flap_angle_deg
+  Value: 23.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 2, A321-253NY/-271NY VFE table
+  Applicability: A321-253NY/-271NY (XLR)
+  Notes: additional take-off settings
+END FIELD
+
+FIELD flaps.settings.3 (take-off) XLR.slat_angle_deg
+  Value: 22.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 2, A321-253NY/-271NY VFE table
+  Applicability: A321-253NY/-271NY (XLR)
+  Notes: additional take-off settings
+END FIELD
+
+FIELD flaps.settings.3 XLR.flap_angle_deg
+  Value: 26.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 2, A321-253NY/-271NY VFE table
+  Applicability: A321-253NY/-271NY (XLR)
+  Notes: additional take-off settings
+END FIELD
+
+FIELD flaps.settings.3 XLR.slat_angle_deg
+  Value: 22.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 2, A321-253NY/-271NY VFE table
+  Applicability: A321-253NY/-271NY (XLR)
+  Notes: additional take-off settings
+END FIELD
+
+FIELD flaps.settings.FULL XLR.flap_angle_deg
+  Value: 34.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 2, A321-253NY/-271NY VFE table
+  Applicability: A321-253NY/-271NY (XLR)
+END FIELD
+
+FIELD flaps.settings.FULL XLR.slat_angle_deg
+  Value: 27.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 2, A321-253NY/-271NY VFE table
+  Applicability: A321-253NY/-271NY (XLR)
+END FIELD
+
+FIELD flaps.settings.1 XLR.flap_angle_deg
+  Value: 0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 2, A321-253NY/-271NY VFE table, p. 100
+  Applicability: A321-253NY/-271NY (XLR)
+END FIELD
+
+FIELD flaps.settings.1 XLR.slat_angle_deg
+  Value: 18
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 2, A321-253NY/-271NY VFE table, p. 100
+  Applicability: A321-253NY/-271NY (XLR)
+END FIELD
+
+FIELD flaps.settings.1+F XLR.flap_angle_deg
+  Value: 10
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 2, A321-253NY/-271NY VFE table, p. 100
+  Applicability: A321-253NY/-271NY (XLR)
+END FIELD
+
+FIELD flaps.settings.1+F XLR.slat_angle_deg
+  Value: 18
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 2, A321-253NY/-271NY VFE table, p. 100
+  Applicability: A321-253NY/-271NY (XLR)
+END FIELD
+
+FIELD flaps.settings.2 XLR.flap_angle_deg
+  Value: 14
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 2, A321-253NY/-271NY VFE table, p. 100
+  Applicability: A321-253NY/-271NY (XLR)
+END FIELD
+
+FIELD flaps.settings.2 XLR.slat_angle_deg
+  Value: 22
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 2, A321-253NY/-271NY VFE table, p. 100
+  Applicability: A321-253NY/-271NY (XLR)
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

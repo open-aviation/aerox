@@ -63,11 +63,13 @@ vertical_tail:
   rudder_area_ratio: null
 flaps:
   type: double-slotted
-  area: 37
-  bf/b: 0.6
-  lambda_f: 0.9
-  cf/c: 0.15
-  Sf/S: 0.15
+  area: null
+  eta_inboard: null
+  eta_outboard: 0.599
+  flapped_area_ratio: null
+  chord_ratio: null
+  slatted_area_ratio: null
+  settings: null
 engine:
   type: turbofan
   mount: wing

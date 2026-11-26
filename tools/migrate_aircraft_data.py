@@ -15,7 +15,13 @@ from typing import Any, Mapping
 
 import yaml
 
-from aerox.aircraft import upgrade_legacy_keys, upgrade_legacy_source_notes
+from aerox.aircraft import (
+    FLAP_TYPES,
+    LEGACY_FLAP_KEYS,
+    _load_flaps,
+    upgrade_legacy_keys,
+    upgrade_legacy_source_notes,
+)
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 AIRCRAFT_ROOT = PROJECT_ROOT / "src/aerox/data/aircraft/yml"
@@ -86,10 +92,12 @@ SIMPLE_TEMPLATE: dict[str, Any] = {
     "flaps": {
         "type": None,
         "area": None,
-        "bf/b": None,
-        "lambda_f": None,
-        "cf/c": None,
-        "Sf/S": None,
+        "eta_inboard": None,
+        "eta_outboard": None,
+        "flapped_area_ratio": None,
+        "chord_ratio": None,
+        "slatted_area_ratio": None,
+        "settings": None,
     },
     "engine": {
         "type": None,
@@ -330,14 +338,12 @@ def simple_from_canonical(data: Mapping[str, Any]) -> dict[str, Any]:
         "rudder_area_ratio": _get(data, "flight_controls.rudder.area_ratio"),
     }
     flap = _get(data, "flight_controls.flaps") or {}
-    result["flaps"] = {
-        "type": flap.get("type"),
-        "area": flap.get("area"),
-        "bf/b": flap.get("span_ratio"),
-        "lambda_f": flap.get("taper_ratio"),
-        "cf/c": flap.get("chord_ratio"),
-        "Sf/S": flap.get("area_ratio"),
-    }
+    result["flaps"] = _ordered_like_template(flap, SIMPLE_TEMPLATE["flaps"])
+    if result["flaps"]["type"] not in FLAP_TYPES:
+        result["flaps"]["type"] = None
+    result["flaps"]["chord_ratio"] = (
+        None  # Older canonical records lack this definition.
+    )
     result["engine"] = {
         "type": _get(data, "propulsion.propulsion_type"),
         "mount": _get(data, "propulsion.installation_position"),
@@ -499,10 +505,15 @@ def validate_simple(document: Any) -> list[str]:
             for key, child in template.items():
                 if key in value:
                     walk(value[key], child, f"{path}.{key}" if path else key)
-        elif isinstance(value, (Mapping, tuple, set)):
+        elif path != "flaps.settings" and isinstance(value, (Mapping, tuple, set)):
             issues.append(f"{path}: expected scalar, list, or null")
 
     walk(document, SIMPLE_TEMPLATE, "")
+    if isinstance(document.get("flaps"), Mapping):
+        try:
+            _load_flaps(dict(document["flaps"]))
+        except (TypeError, ValueError) as error:
+            issues.append(f"flaps: {error}")
     if document.get("icao") in {None, "", "unknown"}:
         issues.append("icao: missing ICAO code")
     certification = document.get("certification", {})
@@ -718,10 +729,37 @@ def validate_simple(document: Any) -> list[str]:
     return issues
 
 
+def high_lift_fields(flaps: Mapping[str, Any]) -> dict[str, Any]:
+    """Return populated high-lift leaf fields and their values."""
+
+    fields = {
+        f"flaps.{key}": value
+        for key, value in flaps.items()
+        if key != "settings" and value is not None
+    }
+    for name, setting in (flaps.get("settings") or {}).items():
+        fields.update(
+            (f"flaps.settings.{name}.{key}", value)
+            for key, value in setting.items()
+            if value is not None
+        )
+    return fields
+
+
 def normalize_bundle(
     document: Mapping[str, Any], sidecar_text: str
 ) -> tuple[dict[str, Any], str]:
     document = upgrade_legacy_keys(dict(document))
+    flaps = document.get("flaps")
+    if isinstance(flaps, Mapping):
+        legacy = {key: flaps[key] for key in LEGACY_FLAP_KEYS & flaps.keys()}
+        if any(value is not None for value in legacy.values()):
+            # The old span ratio was an outboard station in some records and
+            # the chord ratio was derived, so no automatic translation exists.
+            raise ValueError(
+                f"{document.get('icao')}: flaps has values in fields of the old "
+                f"schema ({legacy}). Move them to the new fields by hand."
+            )
     sidecar_text = upgrade_legacy_source_notes(sidecar_text)
     if document.get("schema_version") == "2.0.0":
         simple = simple_from_canonical(document)

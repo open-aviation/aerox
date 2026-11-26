@@ -63,11 +63,13 @@ vertical_tail:
   rudder_area_ratio: null
 flaps:
   type: null
-  area: null
-  bf/b: null
-  lambda_f: null
-  cf/c: null
-  Sf/S: null
+  area: 1.36
+  eta_inboard: null
+  eta_outboard: null
+  flapped_area_ratio: null
+  chord_ratio: null
+  slatted_area_ratio: null
+  settings: null
 engine:
   type: piston
   mount: front wing leading mounted

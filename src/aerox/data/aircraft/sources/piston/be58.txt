@@ -399,6 +399,25 @@ FIELD vertical_tail.rudder_area_ratio
   Search record: FAA TCDS 3A16 and the direct Textron Beechcraft Baron product card searched; only the current-product span is adopted.
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.type
+  Value: single-slotted
+  Status: secondary-compilation
+  Source: janes_all_the_worlds_aircraft_2004_2005
+  Page or section: Local scan page 607, Flying controls
+  Applicability: Beech Baron 58
+END FIELD
+
+FIELD flaps.area
+  Value: 1.98
+  Unit: m2
+  Status: secondary-compilation
+  Source: janes_all_the_worlds_aircraft_2004_2005
+  Page or section: djvu page 607, BEECH BARON 58 AREAS (wings gross 18.51 m2)
+  Notes: Jane's "Trailing-edge flaps (total)" area, both wings; stowed/extended not stated
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

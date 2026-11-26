@@ -7,15 +7,20 @@ from pathlib import Path
 import pytest
 import yaml
 
-from aerox import load_aircraft
-from aerox.aircraft import parse_source_notes
+from aerox import Flaps, load_aircraft
+from aerox.aircraft import _load_flaps, parse_source_notes
 from tools.migrate_aircraft_data import (
     SIMPLE_TEMPLATE,
     dump_document,
+    high_lift_fields,
     normalize_bundle,
     validate_simple,
 )
-from tools.update_aircraft_geometry import GEOMETRY_UNITS, render_geometry_section
+from tools.update_aircraft_geometry import (
+    GEOMETRY_UNITS,
+    render_geometry_section,
+    render_high_lift_section,
+)
 
 ROOT = Path("src/aerox/data/aircraft/yml")
 SOURCE_ROOT = Path("src/aerox/data/aircraft/sources")
@@ -239,7 +244,83 @@ def test_every_aircraft_has_one_short_plain_text_source_note(records):
         text = path.read_text(encoding="utf-8")
         assert text.startswith("AEROX AIRCRAFT SOURCE NOTES\n")
         assert '{"' not in text
-        assert len(text.splitlines()) < 650
+        original_sections = render_high_lift_section({"flaps": {}}, text, {})
+        assert len(original_sections.splitlines()) < 650
+
+
+def test_high_lift_fields_have_source_notes_and_registered_documents(records):
+    ledger = yaml.safe_load(Path("sources/sources.yml").read_text())["sources"]
+    source_ids = {record["id"] for record in ledger}
+    setting_count = 0
+    for path, document in records:
+        sidecar = SOURCE_ROOT / path.parent.name / f"{path.stem}.txt"
+        note = parse_source_notes(sidecar.read_text())["fields"]
+        fields = high_lift_fields(document["flaps"])
+        assert {key for key in note if key.startswith("flaps.")} == fields.keys()
+        for key, value in fields.items():
+            assert note[key]["value"] == str(value), (path, key)
+            assert note[key]["status"] in {
+                "certified-published",
+                "research-report",
+                "secondary-compilation",
+                "inferred-with-uncertainty",
+            }
+            assert set(note[key]["source"].split(" | ")) <= source_ids
+        setting_count += len(document["flaps"]["settings"] or {})
+    assert setting_count > 100
+
+
+def test_high_lift_named_settings_preserve_variant_and_missing_angles():
+    flaps = load_aircraft("A320").flaps
+    assert flaps.type == "single-slotted"
+    assert flaps.angles_rad("FULL") == pytest.approx((0.6108652382, 0.4712388980))
+    assert flaps.angles_rad("FULL-V2500")[0] == pytest.approx(0.6981317008)
+    with pytest.raises(KeyError):
+        flaps.angles_rad("unknown")
+    flaps = load_aircraft("F2TH").flaps
+    assert flaps.angles_rad("slats + flaps 20")[1] is None
+    assert flaps.settings["slats + flaps 20"].slats_extended is True
+
+
+def test_web_editor_updates_source_notes_for_edited_high_lift_fields(
+    monkeypatch, tmp_path
+):
+    from tools import web_editor
+
+    yaml_root = tmp_path / "yml"
+    record = yaml_root / "turbofan" / "a320.yml"
+    provenance = tmp_path / "sources" / "turbofan" / "a320.txt"
+    for path in (record, provenance):
+        path.parent.mkdir(parents=True, exist_ok=True)
+    record.write_text((ROOT / "turbofan/a320.yml").read_text())
+    provenance.write_text((SOURCE_ROOT / "turbofan/a320.txt").read_text())
+    monkeypatch.setattr(web_editor, "YAML_BASE_DIR", yaml_root)
+
+    settings = yaml.safe_load(record.read_text())["flaps"]["settings"]
+    settings["FULL"]["flap_angle_deg"] = 36
+    parsed = web_editor.safe_convert(yaml.safe_dump(settings), dict, "flaps.settings")
+    web_editor.save_aircraft_data("A320", {"flaps": {"settings": parsed}}, "turbofan")
+    edited = load_aircraft("A320", yaml_root).flaps
+    assert edited.settings["FULL"].flap_angle_deg == 36
+    notes = parse_source_notes(provenance.read_text())["fields"]
+    assert notes["flaps.settings.FULL.flap_angle_deg"]["source"] == (
+        "aerox_web_editor_manual_entry"
+    )
+    assert notes["flaps.settings.FULL.slat_angle_deg"]["source"] == "easa_a064_issue_63"
+
+
+@pytest.mark.parametrize(
+    "changes",
+    [
+        {"type": "multi"},
+        {"eta_inboard": 0.5, "eta_outboard": 0.4},
+        {"flapped_area_ratio": 1.01},
+        {"chord_ratio": True},
+    ],
+)
+def test_flaps_reject_invalid_geometry(changes):
+    with pytest.raises(ValueError):
+        Flaps(**changes)
 
 
 def test_every_geometry_field_has_matching_plain_text_source_records(records):
@@ -542,3 +623,10 @@ def test_geometry_render_keeps_the_sections_after_the_geometry_section():
         "LEGACY PARAMETERS",
     ):
         assert f"\n{header}\n" in rendered
+
+
+def test_flap_fields_of_the_old_schema_are_rejected_with_a_clear_message():
+    with pytest.raises(ValueError, match="old schema: bf/b, cf/c"):
+        _load_flaps({"type": "single-slotted", "bf/b": 0.6, "cf/c": 0.15})
+    with pytest.raises(TypeError):
+        Flaps("single-slotted", 21.1)

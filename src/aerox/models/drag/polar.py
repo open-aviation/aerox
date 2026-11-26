@@ -46,8 +46,8 @@ class ParabolicDragPolar(CdShorthand):
         if condition is None and mach is None and h is None:
             mach = 0.0
         condition = resolve_condition(mach, reynolds_per_m, condition, h=h, dT=dT)
-        lift, mach_array, _, flap, gear, spoiler = condition.broadcast_with(cl)
-        require_clean(flap, gear, spoiler)
+        lift, mach_array, _, flap, gear, spoiler, slat = condition.broadcast_with(cl)
+        require_clean(flap, gear, spoiler, slat)
         parasite = np.full_like(lift, self.cd0)
         induced = self.k * lift**2
         return DragBreakdown(
@@ -73,10 +73,10 @@ class ParabolicDragPolar(CdShorthand):
         ).total
 
     def _drag_coefficient_scalar(self, cl: float, condition: DragCondition) -> float:
-        lift, _, _, flap, gear, spoiler = condition.broadcast_with(cl)
+        lift, _, _, flap, gear, spoiler, slat = condition.broadcast_with(cl)
         if lift.ndim != 0:
             raise ValueError("scalar drag evaluation requires scalar condition values")
-        require_clean(flap, gear, spoiler)
+        require_clean(flap, gear, spoiler, slat)
         return float(self.cd0 + self.k * float(cl) ** 2)
 
 
@@ -98,8 +98,8 @@ class ParabolicWaveDragModel(CdShorthand):
         condition: DragCondition | None = None,
     ) -> DragBreakdown:
         condition = resolve_condition(mach, reynolds_per_m, condition, h=h, dT=dT)
-        lift, mach_array, _, flap, gear, spoiler = condition.broadcast_with(cl)
-        require_clean(flap, gear, spoiler)
+        lift, mach_array, _, flap, gear, spoiler, slat = condition.broadcast_with(cl)
+        require_clean(flap, gear, spoiler, slat)
         parasite = np.full_like(lift, self.base_polar.cd0)
         induced = self.base_polar.k * lift**2
         wave, critical = self.wave_drag.evaluate(mach_array, lift)

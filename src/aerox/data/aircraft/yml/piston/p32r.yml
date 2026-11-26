@@ -64,10 +64,12 @@ vertical_tail:
 flaps:
   type: null
   area: null
-  bf/b: null
-  lambda_f: null
-  cf/c: null
-  Sf/S: null
+  eta_inboard: null
+  eta_outboard: null
+  flapped_area_ratio: null
+  chord_ratio: null
+  slatted_area_ratio: null
+  settings: null
 engine:
   type: piston
   mount: nose mounted

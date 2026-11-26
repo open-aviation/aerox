@@ -426,6 +426,38 @@ FIELD vertical_tail.rudder_area_ratio
   Search record: reviewed Transport Canada operational-evaluation records and Bombardier public technical/SmartPubs entry points; numerical planform geometry was not exposed in reusable text with exact commercial-configuration effectivity.
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.settings.flaps 20.flap_angle_deg
+  Value: 20.0
+  Unit: deg
+  Status: certified-published
+  Source: faa_a21ea_rev_47
+  Page or section: Section III, Vfe table, p.7
+  Applicability: CL-600-2B16 (Challenger 601-3A/604 family)
+  Notes: setting label is the flap angle in degrees
+END FIELD
+
+FIELD flaps.settings.flaps 30.flap_angle_deg
+  Value: 30.0
+  Unit: deg
+  Status: certified-published
+  Source: faa_a21ea_rev_47
+  Page or section: Section III, Vfe table, p.7
+  Applicability: CL-600-2B16 (Challenger 601-3A/604 family)
+  Notes: setting label is the flap angle in degrees
+END FIELD
+
+FIELD flaps.settings.flaps 45.flap_angle_deg
+  Value: 45.0
+  Unit: deg
+  Status: certified-published
+  Source: faa_a21ea_rev_47
+  Page or section: Section III, Vfe table, p.7
+  Applicability: CL-600-2B16 (Challenger 601-3A/604 family)
+  Notes: setting label is the flap angle in degrees
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

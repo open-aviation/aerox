@@ -387,6 +387,38 @@ FIELD vertical_tail.rudder_area_ratio
   Search record: reviewed Bombardier/Learjet certification and public-document entry points; no authoritative requested geometry values with exact certified-model and commercial-configuration applicability were validated.
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.settings.flaps 8.flap_angle_deg
+  Value: 8.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_ima020_learjet45_i18
+  Page or section: Learjet 45 family (Learjet 40 sister), VFE
+  Applicability: Learjet
+  Notes: certified; sister-subtype-fill (Learjet 45 family TCDS)
+END FIELD
+
+FIELD flaps.settings.flaps 20.flap_angle_deg
+  Value: 20.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_ima020_learjet45_i18
+  Page or section: Learjet 45 family (Learjet 40 sister), VFE
+  Applicability: Learjet
+  Notes: certified; sister-subtype-fill (Learjet 45 family TCDS)
+END FIELD
+
+FIELD flaps.settings.flaps 40.flap_angle_deg
+  Value: 40.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_ima020_learjet45_i18
+  Page or section: Learjet 45 family (Learjet 40 sister), VFE
+  Applicability: Learjet
+  Notes: certified; sister-subtype-fill (Learjet 45 family TCDS)
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

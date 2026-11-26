@@ -455,6 +455,26 @@ FIELD vertical_tail.rudder_area_ratio
   Search record: Reviewed both official Airbus A330-200 VTP88 and VTP93 vector drawings; their vertical-tail configurations differ, so no single compact value is adopted for the model-ambiguous bundled record.
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.type
+  Value: single-slotted
+  Unit: -
+  Status: research-report
+  Source: rudolph_1996_nasa_cr_4746
+  Page or section: sect. 2.4.5 p.74; Table 2.2
+  Notes: trailing-edge flap type A330/340 wings aerodynamically identical Reported configuration: single-slotted.
+END FIELD
+
+FIELD flaps.eta_outboard
+  Value: 0.665
+  Unit: -
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a_table_1_xls
+  Page or section: Data A Table 1B, column A330-200, rows "Trailing Edge Flaps Type", "Flap Span/Wing Span", "Area (m2)"
+  Notes: Jenkinson "Flap Span/Wing Span"; CAD checks (A320, 737-800) show it equals the outboard flap station / semi-span from the centreline, not the net flapped span Rudolph 1996 Table 2.2 and sect. 2.4.5: A330/A340 flaps are single-slotted; Jenkinson S2 conflicts Outboard station interpretation checked on A320 and B738 drawings.
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

@@ -410,6 +410,75 @@ FIELD vertical_tail.rudder_area_ratio
   Search record: reviewed Bombardier CSP A-020 R8, B-020 R15 and C-020 R11. CRJ900 span is withheld because the APM publishes 23.24 m and 24.85 m for different serial configurations and the bundled record does not resolve that effectivity.
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.type
+  Value: double-slotted
+  Unit: -
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a_table_8_xls
+  Page or section: Data A Table 8B, column CRJ 100/100ER, rows "Trailing Edge Flaps Type", "Flap Span/Wing Span", "Area (m2)"
+  Notes: Jenkinson code: letter F/S, digit = number of slots (legend not printed on the companion site; reading F=Fowler, S=slotted is an inference) CRJ200 is a re-engined CRJ100 with the same wing (inference); exact column is "Reg. Jet 100" Interpreted source type code: S2.
+END FIELD
+
+FIELD flaps.area
+  Value: 10.6
+  Unit: m2
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a_table_8_xls
+  Page or section: Data A Table 8B, column CRJ 100/100ER, rows "Trailing Edge Flaps Type", "Flap Span/Wing Span", "Area (m2)"
+  Notes: Jenkinson "High Lift Devices: Area (m2)" for trailing-edge flaps, both wings; planform definition (stowed or extended) not stated CRJ200 is a re-engined CRJ100 with the same wing (inference); exact column is "Reg. Jet 100"
+END FIELD
+
+FIELD flaps.eta_outboard
+  Value: 0.66
+  Unit: -
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a_table_8_xls
+  Page or section: Data A Table 8B, column CRJ 100/100ER, rows "Trailing Edge Flaps Type", "Flap Span/Wing Span", "Area (m2)"
+  Notes: Jenkinson "Flap Span/Wing Span"; CAD checks (A320, 737-800) show it equals the outboard flap station / semi-span from the centreline, not the net flapped span CRJ200 is a re-engined CRJ100 with the same wing (inference); exact column is "Reg. Jet 100" Outboard station interpretation checked on A320 and B738 drawings.
+END FIELD
+
+FIELD flaps.settings.flaps 8.flap_angle_deg
+  Value: 8.0
+  Unit: deg
+  Status: certified-published
+  Source: faa_a21ea_rev_47
+  Page or section: Section IV, Vfe table
+  Applicability: CL-600-2B19 (CRJ100/200/440)
+  Notes: setting label is the flap angle in degrees
+END FIELD
+
+FIELD flaps.settings.flaps 20.flap_angle_deg
+  Value: 20.0
+  Unit: deg
+  Status: certified-published
+  Source: faa_a21ea_rev_47
+  Page or section: Section IV, Vfe table
+  Applicability: CL-600-2B19 (CRJ100/200/440)
+  Notes: setting label is the flap angle in degrees
+END FIELD
+
+FIELD flaps.settings.flaps 30.flap_angle_deg
+  Value: 30.0
+  Unit: deg
+  Status: certified-published
+  Source: faa_a21ea_rev_47
+  Page or section: Section IV, Vfe table
+  Applicability: CL-600-2B19 (CRJ100/200/440)
+  Notes: setting label is the flap angle in degrees
+END FIELD
+
+FIELD flaps.settings.flaps 45.flap_angle_deg
+  Value: 45.0
+  Unit: deg
+  Status: certified-published
+  Source: faa_a21ea_rev_47
+  Page or section: Section IV, Vfe table
+  Applicability: CL-600-2B19 (CRJ100/200/440)
+  Notes: setting label is the flap angle in degrees
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

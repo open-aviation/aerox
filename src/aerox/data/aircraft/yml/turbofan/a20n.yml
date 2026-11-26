@@ -70,10 +70,30 @@ vertical_tail:
 flaps:
   type: single-slotted
   area: 21.1
-  bf/b: 0.78
-  lambda_f: 0.9
-  cf/c: 0.18
-  Sf/S: 0.17
+  eta_inboard: null
+  eta_outboard: 0.78
+  flapped_area_ratio: null
+  chord_ratio: null
+  slatted_area_ratio: null
+  settings:
+    '1':
+      flap_angle_deg: 0.0
+      slat_angle_deg: 18.0
+    1+F:
+      flap_angle_deg: 10.0
+      slat_angle_deg: 18.0
+    '2':
+      flap_angle_deg: 15.0
+      slat_angle_deg: 22.0
+    '3':
+      flap_angle_deg: 20.0
+      slat_angle_deg: 22.0
+    FULL:
+      flap_angle_deg: 35.0
+      slat_angle_deg: 27.0
+    FULL-LEAP:
+      flap_angle_deg: 40.0
+      slat_angle_deg: 27.0
 engine:
   type: turbofan
   mount: wing

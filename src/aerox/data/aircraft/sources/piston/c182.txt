@@ -424,6 +424,25 @@ FIELD vertical_tail.rudder_area_ratio
   Search record: FAA TCDS 3A12/3A13 and current Textron Aviation product pages searched; product-page spans and reference wing areas are adopted only for the current production configurations.
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.type
+  Value: single-slotted
+  Status: secondary-compilation
+  Source: janes_all_the_worlds_aircraft_2004_2005
+  Page or section: Local scan page 667, Flying controls
+  Applicability: Cessna 182T within the Cessna 182 family
+END FIELD
+
+FIELD flaps.area
+  Value: 1.97
+  Unit: m2
+  Status: secondary-compilation
+  Source: janes_all_the_worlds_aircraft_2004_2005
+  Page or section: djvu page 668, CESSNA 182 SKYLANE AREAS (wings gross 16.30 m2)
+  Notes: Jane's "Trailing-edge flaps (total)" area, both wings; stowed/extended not stated
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

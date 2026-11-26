@@ -62,12 +62,22 @@ vertical_tail:
   arm: null
   rudder_area_ratio: null
 flaps:
-  type: single-slotted
+  type: null
   area: null
-  bf/b: null
-  lambda_f: null
-  cf/c: null
-  Sf/S: null
+  eta_inboard: null
+  eta_outboard: null
+  flapped_area_ratio: null
+  chord_ratio: null
+  slatted_area_ratio: null
+  settings:
+    slats + flaps 20:
+      flap_angle_deg: 20.0
+      slat_angle_deg: null
+      slats_extended: true
+    slats + flaps 48:
+      flap_angle_deg: 48.0
+      slat_angle_deg: null
+      slats_extended: true
 engine:
   type: turbofan
   mount: both sides of rear fuselage and fin-integrated

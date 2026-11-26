@@ -23,7 +23,7 @@ from .core import (
     require_clean,
     resolve_condition,
 )
-from .deployed import MAXIMUM_FLAP_ANGLE_RAD, DeployedDrag
+from .deployed import MAXIMUM_FLAP_ANGLE_RAD, MAXIMUM_SLAT_ANGLE_RAD, DeployedDrag
 from .expression import DragExpression
 from .wave import KornLockWaveDrag
 
@@ -43,15 +43,9 @@ class GeometryDragBreakdown:
     span_induced: FloatArray
     lift_dependent_profile: FloatArray
     flap: FloatArray
+    slat: FloatArray
     gear: FloatArray
     total: FloatArray
-
-
-def _check_spoilers_and_flaps(spoiler: FloatArray, flap: FloatArray) -> None:
-    if np.any(spoiler > 0.0):
-        raise ValueError("spoiler drag is not modelled: spoilers must be retracted")
-    if np.any(flap > MAXIMUM_FLAP_ANGLE_RAD):
-        raise ValueError("flap angle is outside model support (60 degrees)")
 
 
 @dataclass(frozen=True)
@@ -61,7 +55,7 @@ class GeometryDragModel(CdShorthand):
     ``components`` vary with Reynolds and Mach number. ``parasite_increments``
     are named constant zero-lift coefficients (for example upsweep, gaps, or
     a published allowance) that are fixed at the reference condition.
-    ``deployed`` holds the flap and landing gear drag; without it, the model
+    ``deployed`` holds the flap, slat and landing gear drag; without it, the model
     accepts the clean configuration only.
     """
 
@@ -124,35 +118,47 @@ class GeometryDragModel(CdShorthand):
         )
 
     def _check_configuration(
-        self, flap: FloatArray, gear: FloatArray, spoiler: FloatArray
+        self, flap: FloatArray, gear: FloatArray, spoiler: FloatArray, slat: FloatArray
     ) -> None:
         if self.deployed is None:
-            require_clean(flap, gear, spoiler)
-        else:
-            _check_spoilers_and_flaps(spoiler, flap)
+            require_clean(flap, gear, spoiler, slat)
+            return
+        if np.any(spoiler > 0.0):
+            raise ValueError("spoiler drag is not modelled: spoilers must be retracted")
+        if np.any(flap > MAXIMUM_FLAP_ANGLE_RAD):
+            raise ValueError("flap angle is outside model support (60 degrees)")
+        if np.any(slat > MAXIMUM_SLAT_ANGLE_RAD):
+            raise ValueError("slat angle is outside model support (60 degrees)")
 
     def _deployed_terms(
-        self, lift: FloatArray, flap: FloatArray, gear: FloatArray
-    ) -> tuple[FloatArray, FloatArray, FloatArray]:
+        self,
+        lift: FloatArray,
+        flap: FloatArray,
+        gear: FloatArray,
+        slat: FloatArray,
+        wing_parasite: FloatArray | float,
+    ) -> tuple[FloatArray, FloatArray, FloatArray, FloatArray]:
         """Span-induced, flap, and gear drag coefficients."""
 
+        span_induced = self.span_induced_drag_factor * lift**2
+        zero = np.zeros_like(lift)
         if self.deployed is None:
-            zero = np.zeros_like(lift * flap)
-            return self.span_induced_drag_factor * lift**2, zero, zero
-        efficiency = self.span_efficiency_factor - (
-            self.deployed.span_efficiency_loss(flap)
-        )
-        span_induced = (
-            self.induced_scale / (np.pi * self.aspect_ratio * efficiency) * lift**2
-        )
-        flap_drag = self.deployed.flap_parasite(flap)
+            return span_induced, zero, zero, zero
+        flap_drag = zero
+        if np.any(flap):
+            span_induced = self.deployed.span_induced(
+                lift, self.span_induced_drag_factor, flap
+            )
+            flap_drag = self.deployed.flap_parasite(flap)
+        slat_drag = zero
+        if np.any(slat):
+            slat_drag = self.deployed.slat_profile(lift, wing_parasite, slat)
         gear_drag = self.deployed.gear_parasite * gear
-        return span_induced, flap_drag, gear_drag
+        return span_induced, flap_drag, slat_drag, gear_drag
 
     def expression(self) -> DragExpression:
         """The model as a closed-form expression for any math backend."""
 
-        deployed = self.deployed
         return DragExpression(
             lengths_m=tuple(float(c.characteristic_length_m) for c in self.components),
             weights=tuple(
@@ -173,15 +179,15 @@ class GeometryDragModel(CdShorthand):
             profile_factor=float(
                 self.induced_scale * self.profile_lift_drag_multiplier
             ),
-            flap_parasite_factor=(
-                0.0 if deployed is None else deployed.flap_parasite_factor
+            deployed=self.deployed,
+            wing_index=next(
+                (
+                    i
+                    for i, component in enumerate(self.components)
+                    if component.name == "wing"
+                ),
+                None,
             ),
-            flap_efficiency_ratio=(
-                0.0
-                if deployed is None
-                else deployed.span_efficiency_loss_per_rad / self.span_efficiency_factor
-            ),
-            gear_parasite=0.0 if deployed is None else deployed.gear_parasite,
         )
 
     def breakdown(
@@ -197,8 +203,10 @@ class GeometryDragModel(CdShorthand):
         condition = resolve_condition(
             mach, reynolds_per_m, condition, h=h, dT=dT
         ).with_default_reynolds(self.reference_reynolds_per_m)
-        lift, mach, unit_reynolds, flap, gear, spoiler = condition.broadcast_with(cl)
-        self._check_configuration(flap, gear, spoiler)
+        lift, mach, unit_reynolds, flap, gear, spoiler, slat = condition.broadcast_with(
+            cl
+        )
+        self._check_configuration(flap, gear, spoiler, slat)
         component_parasite = {
             component.name: self.parasite_scale
             * component.drag_coefficient(
@@ -217,11 +225,13 @@ class GeometryDragModel(CdShorthand):
             resolved, self.parasite_scale * self.parasite_increment_coefficient
         )
         parasite = resolved + increment
-        span_induced, flap_drag, gear_drag = self._deployed_terms(lift, flap, gear)
+        span_induced, flap_drag, slat_drag, gear_drag = self._deployed_terms(
+            lift, flap, gear, slat, component_parasite.get("wing", 0.0)
+        )
         profile = (
             self.induced_scale * self.profile_lift_drag_multiplier * parasite * lift**2
         )
-        total = parasite + span_induced + profile + flap_drag + gear_drag
+        total = parasite + span_induced + profile + flap_drag + slat_drag + gear_drag
         return GeometryDragBreakdown(
             component_parasite=component_parasite,
             parasite_increments=parasite_increments,
@@ -231,6 +241,7 @@ class GeometryDragModel(CdShorthand):
             span_induced=span_induced,
             lift_dependent_profile=profile,
             flap=flap_drag,
+            slat=slat_drag,
             gear=gear_drag,
             total=total,
         )
@@ -258,10 +269,11 @@ class GeometryDragModel(CdShorthand):
             condition.flap_angle_rad,
             condition.gear_extension_fraction,
             condition.spoiler_deflection_rad,
+            condition.slat_angle_rad,
         )
         if any(np.ndim(value) != 0 for value in values):
             raise ValueError("scalar drag evaluation requires scalar condition values")
-        lift, mach, unit_reynolds, flap, gear, spoiler = (
+        lift, mach, unit_reynolds, flap, gear, spoiler, slat = (
             float(value) for value in values
         )
         if not np.isfinite(lift):
@@ -270,32 +282,42 @@ class GeometryDragModel(CdShorthand):
             raise ValueError("mach must be finite and non-negative")
         if not np.isfinite(unit_reynolds) or unit_reynolds <= 0.0:
             raise ValueError("reynolds_per_m must be finite and positive")
-        if any(not np.isfinite(value) for value in (flap, gear, spoiler)):
+        if any(not np.isfinite(value) for value in (flap, gear, spoiler, slat)):
             raise ValueError("configuration values must be finite")
-        if flap < 0.0 or not 0.0 <= gear <= 1.0 or spoiler < 0.0:
+        if min(flap, spoiler, slat) < 0.0 or not 0.0 <= gear <= 1.0:
             raise ValueError("configuration values are outside physical bounds")
-        if any(value > 0.0 for value in (flap, gear, spoiler)):
+        if any(value > 0.0 for value in (flap, gear, spoiler, slat)):
             self._check_configuration(
-                np.asarray(flap), np.asarray(gear), np.asarray(spoiler)
+                np.asarray(flap),
+                np.asarray(gear),
+                np.asarray(spoiler),
+                np.asarray(slat),
             )
+        resolved = 0.0
+        wing_parasite = 0.0
+        for component in self.components:
+            component_drag = component.drag_coefficient_scalar(
+                unit_reynolds, mach, self.reference_area_m2
+            )
+            resolved += component_drag
+            if component.name == "wing":
+                wing_parasite = self.parasite_scale * component_drag
         parasite = self.parasite_scale * (
-            self.parasite_increment_coefficient
-            + sum(
-                component.drag_coefficient_scalar(
-                    unit_reynolds,
-                    mach,
-                    self.reference_area_m2,
-                )
-                for component in self.components
-            )
+            self.parasite_increment_coefficient + resolved
         )
-        span_induced, flap_drag, gear_drag = self._deployed_terms(
-            np.asarray(lift), np.asarray(flap), np.asarray(gear)
+        span_induced, flap_drag, slat_drag, gear_drag = self._deployed_terms(
+            np.asarray(lift),
+            np.asarray(flap),
+            np.asarray(gear),
+            np.asarray(slat),
+            wing_parasite,
         )
         profile = (
             self.induced_scale * self.profile_lift_drag_multiplier * parasite * lift**2
         )
-        return float(parasite + span_induced + profile + flap_drag + gear_drag)
+        return float(
+            parasite + span_induced + profile + flap_drag + slat_drag + gear_drag
+        )
 
 
 @dataclass(frozen=True)
@@ -310,6 +332,7 @@ class TransonicGeometryDragBreakdown:
     span_induced: FloatArray
     lift_dependent_profile: FloatArray
     flap: FloatArray
+    slat: FloatArray
     gear: FloatArray
     wave: FloatArray
     critical_mach: FloatArray
@@ -397,6 +420,7 @@ class TransonicGeometryDragModel(CdShorthand):
             span_induced=base.span_induced,
             lift_dependent_profile=base.lift_dependent_profile,
             flap=base.flap,
+            slat=base.slat,
             gear=base.gear,
             wave=wave,
             critical_mach=critical,

@@ -431,6 +431,135 @@ FIELD vertical_tail.rudder_area_ratio
   Searched source: easa_a064_issue_63 | airbus_a319_acap_2026_07 | airbus_a319_autocad_wtf_2012_05
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.type
+  Value: single-slotted
+  Unit: -
+  Status: inferred-with-uncertainty
+  Source: rudolph_1996_nasa_cr_4746
+  Page or section: Table 2.2 p.83 (family entry)
+  Notes: trailing-edge flap type Reported configuration: single-slotted.
+END FIELD
+
+FIELD flaps.area
+  Value: 21.1
+  Unit: m2
+  Status: secondary-compilation
+  Source: jenkinson_simpkin_rhodes_1999_data_a_table_1_xls
+  Page or section: Data A Table 1B, column A319-100, rows "Trailing Edge Flaps Type", "Flap Span/Wing Span", "Area (m2)"
+  Notes: Jenkinson "High Lift Devices: Area (m2)" for trailing-edge flaps, both wings; planform definition (stowed or extended) not stated
+END FIELD
+
+FIELD flaps.eta_outboard
+  Value: 0.78
+  Unit: -
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a_table_1_xls
+  Page or section: Data A Table 1B, column A319-100, rows "Trailing Edge Flaps Type", "Flap Span/Wing Span", "Area (m2)"
+  Notes: Jenkinson "Flap Span/Wing Span"; CAD checks (A320, 737-800) show it equals the outboard flap station / semi-span from the centreline, not the net flapped span Outboard station interpretation checked on A320 and B738 drawings.
+END FIELD
+
+FIELD flaps.settings.1.flap_angle_deg
+  Value: 0.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 3 A319 series, PDF p.149
+  Applicability: A319 / A319neo
+  Notes: intermediate approach
+END FIELD
+
+FIELD flaps.settings.1.slat_angle_deg
+  Value: 18.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 3 A319 series, PDF p.149
+  Applicability: A319 / A319neo
+  Notes: intermediate approach
+END FIELD
+
+FIELD flaps.settings.1+F.flap_angle_deg
+  Value: 10.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 3 A319 series, PDF p.149
+  Applicability: A319 / A319neo
+  Notes: take-off
+END FIELD
+
+FIELD flaps.settings.1+F.slat_angle_deg
+  Value: 18.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 3 A319 series, PDF p.149
+  Applicability: A319 / A319neo
+  Notes: take-off
+END FIELD
+
+FIELD flaps.settings.2.flap_angle_deg
+  Value: 15.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 3 A319 series, PDF p.149
+  Applicability: A319 / A319neo
+  Notes: take-off and approach
+END FIELD
+
+FIELD flaps.settings.2.slat_angle_deg
+  Value: 22.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 3 A319 series, PDF p.149
+  Applicability: A319 / A319neo
+  Notes: take-off and approach
+END FIELD
+
+FIELD flaps.settings.3.flap_angle_deg
+  Value: 20.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 3 A319 series, PDF p.149
+  Applicability: A319 / A319neo
+  Notes: take-off, approach, landing
+END FIELD
+
+FIELD flaps.settings.3.slat_angle_deg
+  Value: 22.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 3 A319 series, PDF p.149
+  Applicability: A319 / A319neo
+  Notes: take-off, approach, landing
+END FIELD
+
+FIELD flaps.settings.FULL.flap_angle_deg
+  Value: 40.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 3 A319 series, PDF p.149
+  Applicability: A319 / A319neo
+  Notes: landing
+END FIELD
+
+FIELD flaps.settings.FULL.slat_angle_deg
+  Value: 27.0
+  Unit: deg
+  Status: certified-published
+  Source: easa_a064_issue_63
+  Page or section: Section 3 A319 series, PDF p.149
+  Applicability: A319 / A319neo
+  Notes: landing
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.

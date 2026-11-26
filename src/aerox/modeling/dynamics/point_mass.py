@@ -205,6 +205,7 @@ class PointMassModel:
         flap_angle_rad: float = 0.0,
         gear_extension_fraction: float = 0.0,
         spoiler_deflection_rad: float = 0.0,
+        slat_angle_rad: float = 0.0,
     ) -> float:
         """Evaluate drag at the complete local aerodynamic condition."""
 
@@ -216,6 +217,7 @@ class PointMassModel:
                 flap_angle_rad=flap_angle_rad,
                 gear_extension_fraction=gear_extension_fraction,
                 spoiler_deflection_rad=spoiler_deflection_rad,
+                slat_angle_rad=slat_angle_rad,
             ),
         )
 

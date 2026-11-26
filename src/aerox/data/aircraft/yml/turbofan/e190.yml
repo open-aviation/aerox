@@ -62,12 +62,32 @@ vertical_tail:
   arm: null
   rudder_area_ratio: null
 flaps:
-  type: double-slotted
+  type: mixed-single-double-slotted
   area: null
-  bf/b: null
-  lambda_f: null
-  cf/c: null
-  Sf/S: null
+  eta_inboard: null
+  eta_outboard: null
+  flapped_area_ratio: null
+  chord_ratio: null
+  slatted_area_ratio: null
+  settings:
+    '1':
+      flap_angle_deg: 7.07
+      slat_angle_deg: 15.0
+    '2':
+      flap_angle_deg: 10.11
+      slat_angle_deg: 15.0
+    '3':
+      flap_angle_deg: 20.2
+      slat_angle_deg: 15.0
+    '4':
+      flap_angle_deg: 20.2
+      slat_angle_deg: 25.0
+    '5':
+      flap_angle_deg: 20.2
+      slat_angle_deg: 25.0
+    FULL:
+      flap_angle_deg: 37.07
+      slat_angle_deg: 25.0
 engine:
   type: turbofan
   mount: wing

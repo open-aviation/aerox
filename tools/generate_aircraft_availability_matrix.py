@@ -5,6 +5,7 @@ The CSV contains one row per aircraft and one binary column per compact YAML
 parameter. A cell is ``1`` when the parameter has a non-null, non-empty value
 and ``0`` otherwise. The aircraft name and ICAO code identify each row and are
 therefore not repeated as availability columns.
+The named high-lift settings table counts as one parameter.
 """
 
 from __future__ import annotations

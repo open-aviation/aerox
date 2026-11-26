@@ -466,6 +466,44 @@ FIELD vertical_tail.rudder_area_ratio
   Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | boeing_737_800_cad_3view | nasa_tm_2011_217264_b738_reference_geometry
 END FIELD
 
+HIGH-LIFT DEVICES
+
+FIELD flaps.type
+  Value: double-slotted
+  Unit: -
+  Status: inferred-with-uncertainty
+  Source: jenkinson_simpkin_rhodes_1999_data_a_table_2_xls
+  Page or section: Data A Table 2B, column 737-800, rows "Trailing Edge Flaps Type", "Flap Span/Wing Span", "Area (m2)"
+  Notes: Jenkinson code: letter F/S, digit = number of slots (legend not printed on the companion site; reading F=Fowler, S=slotted is an inference) Interpreted source type code: S2.
+END FIELD
+
+FIELD flaps.eta_inboard
+  Value: 0.11
+  Unit: -
+  Status: inferred-with-uncertainty
+  Source: boeing_737_800_cad_3view
+  Page or section: 737-800.dxf top view, fuselage side lines y=-399.3/-251.3 raw, scale 0.025414 m/unit
+  Notes: inboard flap end at fuselage side (y=1.88 m) / semi-span 17.15 m +/-0.15 m
+END FIELD
+
+FIELD flaps.eta_outboard
+  Value: 0.609
+  Unit: -
+  Status: inferred-with-uncertainty
+  Source: boeing_737_800_cad_3view
+  Page or section: 737-800.dxf entities 3F43/3F53/3EF9 (boundary at -736.5 to -737.6 raw)
+  Notes: outboard flap end (chordwise boundary at y=-736.5 raw, 10.45 m from centreline) / semi-span 17.15 m agrees with Jenkinson 0.599 -> outboard station
+END FIELD
+
+FIELD flaps.flapped_area_ratio
+  Value: 0.58
+  Unit: -
+  Status: inferred-with-uncertainty
+  Source: boeing_737_800_cad_3view | jenkinson_simpkin_rhodes_1999_data_a_table_2_xls
+  Page or section: formula
+  Notes: trapezoid formula (eta2-eta1)(2-(1-lambda)(eta1+eta2))/(1+lambda) with eta 0.110/0.609 and Jenkinson taper 0.278 ignores the 737 inboard trailing-edge extension (Yehudi); CAD integration not done
+END FIELD
+
 LEGACY PARAMETERS
   Parameters not listed above retain the original aerox database values.
   Unless a source is named above, those values remain legacy-unverified.
