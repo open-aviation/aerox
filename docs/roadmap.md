@@ -1,8 +1,8 @@
 # Roadmap
 
-Updated: 2026-11-25
+Updated: 2026-11-27
 
-## Next release
+## Release 0.6
 
 - **High-lift drag.** Geometry models use GASP flap profile and lift
   corrections and a Torenbeek slat term. Aircraft records include sourced
