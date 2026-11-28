@@ -2,7 +2,7 @@
 
 Updated: 2026-11-28
 
-## Next release
+## Release 0.7
 
 - **Airfoil classes.** The record field `wing.airfoil_class` (conventional,
   peaky, early supercritical, supercritical) sets the Korn technology factor
