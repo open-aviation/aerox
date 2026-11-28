@@ -2,6 +2,14 @@
 
 Updated: 2026-11-28
 
+## Release 0.7.1
+
+- **Wing geometry.** The A350-900 and A350-1000 thickness ratio changes from
+  0.114 to 0.096. Release 0.7 gave 0.114 from an arithmetic error; the
+  stated inputs (root 0.130, tip 0.085) give 0.096 by the aerox rule. The
+  787-8, 787-9 and 787-10 thickness ratio changes from 0.094, which had no
+  source, to 0.100, from the Lissys Piano model of the 787-8.
+
 ## Release 0.7
 
 - **Airfoil classes.** The record field `wing.airfoil_class` (conventional,

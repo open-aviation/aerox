@@ -146,7 +146,7 @@ FIELD wing.sweep
 END FIELD
 
 FIELD wing.t/c
-  Value: 0.114
+  Value: 0.096
   Unit: nondimensional
   Status: inferred-with-uncertainty
   Source: claeys_2018_flying_v_reference_aircraft | dezoeten_varriale_vos_2023_flying_v_performance
@@ -155,9 +155,9 @@ FIELD wing.t/c
   Inputs: root 0.130, tip 0.085 (kink 0.1175 at eta 0.3)
   Applicability: Airbus A350-900 and A350-1000 wing
   Uncertainty: The kink value as outer gives 0.121; a linear spanwise mean gives about 0.108; de Zoeten et al. give an average of 0.1036 for their A350-1000 model with no source and no definition of the average
-  Previous value: 0.123 nondimensional
+  Previous value: 0.114 nondimensional
   Correction reason: Replaced the legacy aerox value with a value inferred from the cited sources; the note gives the scope and the uncertainty.
-  Notes: Values from an A350-like reference aircraft, not a published A350 value. The previous 0.123 matched only a web page with no source. Claeys also gives 32 deg quarter-chord sweep, the same as the record.
+  Notes: Values from an A350-like reference aircraft, not a published A350 value. The previous 0.123 matched only a web page with no source. aerox 0.7 gave 0.114, an arithmetic error; the stated inputs give 0.096. Claeys also gives 32 deg quarter-chord sweep, the same as the record.
 END FIELD
 
 FIELD wing.root_chord
@@ -496,7 +496,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=A-observed-core-and-tails; confidence=medium; e_span=0.9552; roughness_excrescence/computed=0.0900; nacelle_tier=A-measured-nacelle
-  Zero-lift terms at reference (drag counts): wing=53.58; fuselage=45.37; horizontal_tail=11.76; vertical_tail=7.09; nacelles=11.86; pylons=1.82; fuselage_upsweep=3.79; control_surface_gaps=0.81; nacelle_base=1.08; roughness_excrescence=12.34
+  Zero-lift terms at reference (drag counts): wing=51.58; fuselage=45.37; horizontal_tail=11.76; vertical_tail=7.09; nacelles=11.86; pylons=1.82; fuselage_upsweep=3.79; control_surface_gaps=0.81; nacelle_base=1.08; roughness_excrescence=12.16
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration

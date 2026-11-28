@@ -4394,3 +4394,70 @@ sources:
   redistribution: no-public-file
   notes:
   - Chapter 3 covers the flap correlation used by the prior aerox model.
+- id: lissys_2005_b787_8_piano_sample
+  title: Boeing 787-8 (Dreamliner) sample analysis (2005)
+  organization: Lissys Ltd (Piano)
+  url: https://www.lissys.uk/samp1/index.html
+  issue: '2005, update notes to 2011'
+  accessed: '2026-11-28'
+  evidence_type: secondary-compilation
+  license: company web page; Lissys copyright
+  redistribution: link-only
+  notes:
+  - Independent Piano model of the 787-8 built from public data of autumn 2005, not a Boeing value.
+  - 'Geometry table: t/c 0.134 at root (side of body), 0.094 at the thickness break (0.333 of exposed semispan), 0.088 at tip; quarter-chord sweep 32.2 deg.'
+- id: lissys_2005_b787_8_piano_plane_file
+  title: Boeing 787-8 Piano file
+  organization: Lissys Ltd (Piano)
+  url: https://www.lissys.uk/samp1/b787.html
+  issue: '2005'
+  accessed: '2026-11-28'
+  evidence_type: secondary-compilation
+  license: company web page; Lissys copyright
+  redistribution: link-only
+  notes:
+  - Plane file of the 2005 sample analysis; t/c-root 0.134, t/c-break/root 0.7, t/c-tip/root 0.655, thickness-break-fraction 0.333, sweep-deg 32.2.
+- id: lissys_piano_user_guide_ch03
+  title: 'Piano User''s Guide, Chapter 03: Geometric Specifications'
+  organization: Lissys Ltd (Piano)
+  url: https://www.lissys.uk/pug/c03.html
+  accessed: '2026-11-28'
+  evidence_type: official-software-method-documentation
+  license: company web page; Lissys copyright
+  redistribution: link-only
+  notes:
+  - Section 03.04 defines t/c-root at the wing-fuselage junction (side of body), not at the centreline, and the break and tip t/c as fractions of it.
+- id: yang_2026_superwing_transonic_wing_dataset
+  title: 'SuperWing: a comprehensive transonic wing dataset for data-driven aerodynamic design'
+  authors:
+  - Y. Yang
+  - W. Tang
+  - M. Liu
+  - N. Thuerey
+  - Y. Zhang
+  - H. Chen
+  organization: arXiv 2512.14397v2
+  url: https://arxiv.org/abs/2512.14397
+  issue: '2026-05-07 (v2)'
+  accessed: '2026-11-28'
+  evidence_type: research-report
+  license: arXiv preprint; author copyright
+  redistribution: link-only
+  notes:
+  - Table 2, p. 5 gives B787 wing parameters taken from the Lissys Piano sample (centerline t/c 0.1449, kink/centerline 0.6472, tip/centerline 0.6056); not independent of the Lissys values. The same table gives the NASA CRM values.
+- id: vassberg_2008_nasa_common_research_model
+  title: Development of a Common Research Model for Applied CFD Validation Studies
+  authors:
+  - J. C. Vassberg
+  - M. A. DeHaan
+  - S. M. Rivers
+  - R. A. Wahls
+  organization: AIAA Paper 2008-6919 (NASA NTRS 20080034653)
+  url: https://ntrs.nasa.gov/citations/20080034653
+  issue: '2008'
+  accessed: '2026-11-28'
+  evidence_type: government-research-report
+  license: NTRS public copy
+  redistribution: link-only
+  notes:
+  - Table 2, p. 5 gives the CRM wing t/c at 21 stations (0.1542 at eta 0, 0.1380 at side of body eta 0.10, 0.1052 at the yehudi break eta 0.37, 0.0950 at tip); p. 4 gives an exposed-wing average of about 10.8 %. The CRM is a 777-class research wing (35 deg sweep), not a 787.
