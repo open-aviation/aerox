@@ -232,6 +232,15 @@ FIELD wing.dihedral
   Search record: reviewed EASA.IM.A.078 Issue 19 and current Textron product pages; EASA serial/model geometry is inventoried below, while differing current Gen3 spans remain modification-specific comparisons only.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: easa_c525_a078
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

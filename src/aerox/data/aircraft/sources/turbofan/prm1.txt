@@ -197,6 +197,15 @@ FIELD wing.dihedral
   Search record: reviewed Premier 1/Model 390 certification indexes; no direct authoritative requested geometry source was validated.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: faa_drs_tcds_model_search
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

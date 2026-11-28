@@ -199,6 +199,15 @@ FIELD wing.dihedral
   Search record: applicable FAA TCDS families and Textron/Cessna public material searched; no exact-model public primary planform or tail geometry adopted.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: nz_caa_type_acceptance_index
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

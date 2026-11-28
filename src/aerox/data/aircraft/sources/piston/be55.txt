@@ -199,6 +199,15 @@ FIELD wing.dihedral
   Search record: FAA TCDS 3A16 and current Textron Beechcraft material searched; no variant-safe Model 55 planform geometry adopted.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: nz_caa_beech_95_55_56_58_r2
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

@@ -272,6 +272,15 @@ FIELD wing.dihedral
   Uncertainty: The textbook gives -6 deg for the root part and -5 deg for the outer panels; the outer-panel value is adopted because it covers most of the span.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: -
+END FIELD
+
 FIELD horizontal_tail.area
   Value: 166.7
   Unit: m2

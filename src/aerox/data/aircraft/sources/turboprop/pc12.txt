@@ -205,6 +205,15 @@ FIELD wing.dihedral
   Search record: EASA TCDS EASA.A.089 and Pilatus PC-12 NGX brochure searched; brochure wing and horizontal-tail dimensions apply only to the NGX configuration.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: easa_pc12_a089
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

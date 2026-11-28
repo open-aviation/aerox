@@ -199,6 +199,15 @@ FIELD wing.dihedral
   Search record: NZ CAA Type Acceptance Report 0/21B/16 Rev.1 and current De Havilland Sherpa material searched; Sherpa geometry was not transferred to the Shorts 360.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: easa_ima665_sd3_i1_2019
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

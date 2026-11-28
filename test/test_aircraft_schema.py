@@ -118,6 +118,7 @@ def test_only_compact_certification_and_geometry_extensions_were_added(records):
             "taper_ratio",
             "aspect_ratio",
             "dihedral",
+            "airfoil_class",
         ]
         assert list(document["horizontal_tail"]) == [
             "area",
@@ -244,7 +245,7 @@ def test_every_aircraft_has_one_short_plain_text_source_note(records):
         assert text.startswith("AEROX AIRCRAFT SOURCE NOTES\n")
         assert '{"' not in text
         original_sections = render_high_lift_section({"flaps": {}}, text, {})
-        assert len(original_sections.splitlines()) < 650
+        assert len(original_sections.splitlines()) < 670
 
 
 def test_high_lift_fields_have_source_notes_and_registered_documents(records):
@@ -322,6 +323,8 @@ def test_every_geometry_field_has_matching_plain_text_source_records(records):
             if value is None:
                 assert record["value"] == "null", (path, field)
                 assert record["reason_unavailable"], (path, field)
+            elif unit == "class":
+                assert record["value"] == value, (path, field)
             else:
                 assert float(record["value"]) == pytest.approx(value), (path, field)
                 sources = [item.strip() for item in record["source"].split("|")]

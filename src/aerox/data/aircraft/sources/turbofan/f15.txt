@@ -236,6 +236,15 @@ FIELD wing.dihedral
   Applicability: F-15A planform as measured on NASA F-15 airplane number 8; used for the unresolved F15 record as the same-family planform (wing, stabilator and fins are common to F-15A to E)
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: usaf_f15_fact_sheet
+END FIELD
+
 FIELD horizontal_tail.area
   Value: 11.15
   Unit: m2

@@ -49,6 +49,11 @@ class Fuselage:
     width: Optional[float] = None
 
 
+#: Airfoil generations of the wing sections. The class sets the Korn
+#: technology factor of the wave drag model.
+AIRFOIL_CLASSES = ("conventional", "peaky", "early-supercritical", "supercritical")
+
+
 @dataclass
 class Wing:
     """Wing configuration."""
@@ -63,6 +68,11 @@ class Wing:
     taper_ratio: Optional[float] = None
     aspect_ratio: Optional[float] = None
     dihedral: Optional[float] = None
+    airfoil_class: Optional[str] = None
+
+    def __post_init__(self) -> None:
+        if self.airfoil_class is not None and self.airfoil_class not in AIRFOIL_CLASSES:
+            raise ValueError(f"unsupported airfoil class: {self.airfoil_class!r}")
 
 
 @dataclass

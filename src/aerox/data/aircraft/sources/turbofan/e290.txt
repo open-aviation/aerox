@@ -290,6 +290,15 @@ FIELD wing.dihedral
   Searched source: easa_embraer_erj190_a071_i29 | embraer_ejets_e2_apm_5824_r25
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: easa_embraer_erj190_a071_i29
+END FIELD
+
 FIELD horizontal_tail.area
   Value: 23.25
   Unit: m2

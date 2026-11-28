@@ -33,13 +33,14 @@ wing:
   area: 554
   span: 68.4
   mac: 9.68
-  sweep: 37
+  sweep: 37.5
   t/c: 0.094
   root_chord: null
   tip_chord: null
   taper_ratio: null
   aspect_ratio: 8.445054
   dihedral: null
+  airfoil_class: supercritical
 horizontal_tail:
   area: 135.331039
   span: 21.99
@@ -89,7 +90,7 @@ drag:
   unresolved_fraction_of_resolved_drag: null
   roughness_excrescence_fraction: 0.09
   wave_drag_model: aerox-korn-lock-wave-v1
-  wave_drag_source_tier: D-class-scaled
+  wave_drag_source_tier: C-airfoil-class
   wave_drag_confidence: low
   wave_drag_technology_factor: 0.95
 kinematic:

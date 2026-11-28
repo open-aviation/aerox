@@ -202,6 +202,15 @@ FIELD wing.dihedral
   Search record: reviewed EASA Gulfstream LP index entries and the G150 TCDS; G150 quantitative rows are withheld because its exact TCDS source ID is not yet present in the shared source ledger, and the G280 aircraft TCDS direct document could not be validated from the current index.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: easa_gulfstream_lp_index
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

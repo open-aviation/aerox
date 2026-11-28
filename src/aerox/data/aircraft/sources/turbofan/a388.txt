@@ -220,6 +220,15 @@ FIELD wing.dihedral
   Search record: Reviewed the exact-model Airbus vector drawing against the 14.59 m tail-reference-plane height in the current A380 ACAP.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: easa_a110_issue_17 | obert_2009_aerodynamic_design_of_transport_aircraft | janes_all_the_worlds_aircraft_2004_2005
+END FIELD
+
 FIELD horizontal_tail.area
   Value: 205.07289
   Unit: m2

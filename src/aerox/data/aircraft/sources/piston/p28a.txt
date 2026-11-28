@@ -209,6 +209,15 @@ FIELD wing.dihedral
   Search record: applicable FAA TCDS and Piper public product/publications material searched. Current Archer and PA-44-180 spans are configuration-specific; Arrow, Saratoga/Cherokee Six, Navajo, Malibu/Mirage, and Meridian values were omitted where exact bundled scope was not established.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: nz_caa_piper_pa28_r2
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

@@ -38,12 +38,13 @@ wing:
   span: 64.75
   mac: 6.83
   sweep: 32
-  t/c: 0.123
+  t/c: 0.114
   root_chord: null
   tip_chord: null
   taper_ratio: null
   aspect_ratio: 9.485436
   dihedral: null
+  airfoil_class: null
 horizontal_tail:
   area: 82.0
   span: 18.79

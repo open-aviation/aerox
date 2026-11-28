@@ -143,17 +143,28 @@ FIELD wing.mac
 END FIELD
 
 FIELD wing.sweep
-  Value: 37
+  Value: 37.5
   Unit: deg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: inferred-with-uncertainty
+  Source: janes_all_the_worlds_aircraft_2004_2005 | jenkinson_simpkin_rhodes_1999_data_a_table_3
+  Page or section: Jane's p. 603, Boeing 747-400 design features (37 deg 30 min); Jenkinson Table 3, 747-400 wing 1/4 chord sweep
+  Applicability: Boeing 747-100/-200/-400 wing
+  Previous value: 37 deg
+  Correction reason: Replaced the legacy aerox value with a value inferred from the cited sources; the note gives the scope and the uncertainty.
+  Notes: The 747-8 has a revised wing with a supercritical outer section (Obert pp. 243-244); no 747-8 sweep is published in these sources; sister-subtype fill from the B744 record. Quarter-chord sweep.
 END FIELD
 
 FIELD wing.t/c
   Value: 0.094
   Unit: nondimensional
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: inferred-with-uncertainty
+  Source: janes_all_the_worlds_aircraft_2004_2005 | jenkinson_simpkin_rhodes_1999_data_a_table_3 | obert_2009_aerodynamic_design_of_transport_aircraft
+  Page or section: Jane's p. 603, Boeing 747-400 design features; Jenkinson Table 3, 747-400 average (t/c) 9.40 %; Obert Fig. 24.82, p. 243
+  Formula: (root + 3 x outer) / 4, the average of the Jenkinson data tables
+  Inputs: root 0.1344, outboard 0.080 (Jane's; mid-span 0.078)
+  Applicability: Boeing 747-100/-200/-400 wing
+  Uncertainty: Obert Fig. 24.82 gives 0.135, 0.104, 0.089, 0.080, 0.080 at 2y/b 0.109 to 0.500
+  Notes: The 747-8 has a revised wing with a supercritical outer section (Obert pp. 243-244); its thickness is not published; sister-subtype fill from the B744 record. Matches the Jenkinson average.
 END FIELD
 
 FIELD wing.root_chord
@@ -162,7 +173,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view | janes_all_the_worlds_aircraft_2004_2005 | jenkinson_simpkin_rhodes_1999_data_a_table_3 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD wing.tip_chord
@@ -171,7 +182,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view | janes_all_the_worlds_aircraft_2004_2005 | jenkinson_simpkin_rhodes_1999_data_a_table_3 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD wing.taper_ratio
@@ -180,7 +191,7 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view | janes_all_the_worlds_aircraft_2004_2005 | jenkinson_simpkin_rhodes_1999_data_a_table_3 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD wing.aspect_ratio
@@ -198,7 +209,17 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view | janes_all_the_worlds_aircraft_2004_2005 | jenkinson_simpkin_rhodes_1999_data_a_table_3 | obert_2009_aerodynamic_design_of_transport_aircraft
+END FIELD
+
+FIELD wing.airfoil_class
+  Value: supercritical
+  Unit: class
+  Status: inferred-with-uncertainty
+  Source: obert_2009_aerodynamic_design_of_transport_aircraft
+  Page or section: Obert pp. 243-244 (747-8 development wing, true supercritical outer section)
+  Applicability: Boeing 747-8
+  Notes: Obert shows the 1996-2001 development status, not the final wing.
 END FIELD
 
 FIELD horizontal_tail.area
@@ -311,7 +332,7 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view | janes_all_the_worlds_aircraft_2004_2005 | jenkinson_simpkin_rhodes_1999_data_a_table_3 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD horizontal_tail.arm
@@ -320,7 +341,7 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view | janes_all_the_worlds_aircraft_2004_2005 | jenkinson_simpkin_rhodes_1999_data_a_table_3 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD horizontal_tail.elevator_area_ratio
@@ -344,7 +365,7 @@ FIELD vertical_tail.area
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view | janes_all_the_worlds_aircraft_2004_2005 | jenkinson_simpkin_rhodes_1999_data_a_table_3 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.height
@@ -353,7 +374,7 @@ FIELD vertical_tail.height
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view | janes_all_the_worlds_aircraft_2004_2005 | jenkinson_simpkin_rhodes_1999_data_a_table_3 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.mac
@@ -362,7 +383,7 @@ FIELD vertical_tail.mac
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view | janes_all_the_worlds_aircraft_2004_2005 | jenkinson_simpkin_rhodes_1999_data_a_table_3 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.root_chord
@@ -371,7 +392,7 @@ FIELD vertical_tail.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view | janes_all_the_worlds_aircraft_2004_2005 | jenkinson_simpkin_rhodes_1999_data_a_table_3 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.tip_chord
@@ -380,7 +401,7 @@ FIELD vertical_tail.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view | janes_all_the_worlds_aircraft_2004_2005 | jenkinson_simpkin_rhodes_1999_data_a_table_3 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.taper_ratio
@@ -389,7 +410,7 @@ FIELD vertical_tail.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view | janes_all_the_worlds_aircraft_2004_2005 | jenkinson_simpkin_rhodes_1999_data_a_table_3 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.sweep
@@ -398,7 +419,7 @@ FIELD vertical_tail.sweep
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view | janes_all_the_worlds_aircraft_2004_2005 | jenkinson_simpkin_rhodes_1999_data_a_table_3 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.arm
@@ -407,7 +428,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view | janes_all_the_worlds_aircraft_2004_2005 | jenkinson_simpkin_rhodes_1999_data_a_table_3 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD vertical_tail.rudder_area_ratio
@@ -416,7 +437,7 @@ FIELD vertical_tail.rudder_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view
+  Searched source: easa_ima196_issue_19 | boeing_747_8_acap_rev_e_2026_01 | boeing_747_8_passenger_cad_3view | boeing_747_8_freighter_cad_3view | janes_all_the_worlds_aircraft_2004_2005 | jenkinson_simpkin_rhodes_1999_data_a_table_3 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 LEGACY PARAMETERS
@@ -432,7 +453,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=B-observed-core-scaled-tails; confidence=medium-low; e_span=0.9541; roughness_excrescence/computed=0.0900; nacelle_tier=B-fan-diameter-ratio
-  Zero-lift terms at reference (drag counts): wing=43.78; fuselage=44.88; horizontal_tail=14.10; vertical_tail=9.33; nacelles=12.98; pylons=2.00; fuselage_upsweep=3.93; control_surface_gaps=0.88; nacelle_base=1.53; roughness_excrescence=12.01
+  Zero-lift terms at reference (drag counts): wing=43.78; fuselage=44.88; horizontal_tail=14.10; vertical_tail=9.33; nacelles=12.98; pylons=2.00; fuselage_upsweep=3.93; control_surface_gaps=0.87; nacelle_base=1.53; roughness_excrescence=12.01
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -496,7 +517,7 @@ FIELD drag.wave_drag_model
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.wave_drag_source_tier
-  Value: D-class-scaled
+  Value: C-airfoil-class
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Model metadata; not a measured aircraft coefficient.
@@ -512,5 +533,6 @@ FIELD drag.wave_drag_technology_factor
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Physical model input; geometry-tier uncertainty applies.
+  Inputs: wing.airfoil_class=supercritical; Korn factor 0.95 of the class from mason_2019_configuration_aerodynamics_drag (eq. 7-3) | torenbeek_2013_advanced_aircraft_design (section 10.6.4) | gur_mason_schetz_full_configuration_drag_2010
 END FIELD
 END DRAG MODEL

@@ -253,6 +253,15 @@ FIELD wing.dihedral
   Searched source: easa_ima115_issue_30 | boeing_787_acap_rev_q_2025_10 | boeing_787_8_cad_3view
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: easa_ima115_issue_30
+END FIELD
+
 FIELD horizontal_tail.area
   Value: 77.00167
   Unit: m2

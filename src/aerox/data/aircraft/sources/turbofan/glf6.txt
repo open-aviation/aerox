@@ -297,6 +297,15 @@ FIELD wing.dihedral
   Searched source: easa_gulfstream_gvi_a169 | gulfstream_g650er_g650_specifications_web_2020
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: easa_gulfstream_gvi_a169
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

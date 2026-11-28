@@ -40,6 +40,7 @@ wing:
   taper_ratio: null
   aspect_ratio: 7.99613
   dihedral: null
+  airfoil_class: early-supercritical
 horizontal_tail:
   area: 77.045269
   span: 18.62
@@ -90,9 +91,9 @@ drag:
   unresolved_fraction_of_resolved_drag: null
   roughness_excrescence_fraction: 0.09
   wave_drag_model: aerox-korn-lock-wave-v1
-  wave_drag_source_tier: D-class-scaled
+  wave_drag_source_tier: C-airfoil-class
   wave_drag_confidence: low
-  wave_drag_technology_factor: 0.95
+  wave_drag_technology_factor: 0.93
 kinematic:
   takeoff_distance_m: 2700
   takeoff_v2: 160

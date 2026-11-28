@@ -25,7 +25,10 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 from aerox.aircraft import load_aircraft_from_dict  # noqa: E402
 from aerox.models.drag import DragBuildReport, build_drag_report  # noqa: E402
-from aerox.models.drag.builder import resolve_drag_geometry  # noqa: E402
+from aerox.models.drag.builder import (  # noqa: E402
+    AIRFOIL_TECHNOLOGY_FACTORS,
+    resolve_drag_geometry,
+)
 from tools.migrate_aircraft_data import (  # noqa: E402
     AIRCRAFT_ROOT,
     SOURCES_ROOT,
@@ -45,6 +48,22 @@ SECTION_START = "DRAG MODEL"
 SECTION_END = "END DRAG MODEL"
 SUBTYPE_SECTION = "SUBTYPE AND ENGINE DATABANK APPLICABILITY\n"
 SOURCE_ID = "aerox_geometry_drag_model_2026_08_08"
+# References of the Korn technology factor of each airfoil class.
+AIRFOIL_CLASS_REFERENCES = {
+    "conventional": "mason_2019_configuration_aerodynamics_drag (eq. 7-3)",
+    "peaky": (
+        "ciornei_2005_haw_wing_relative_thickness (eq. 3.20 after Shevell; Table 3.1)"
+    ),
+    "early-supercritical": (
+        "ciornei_2005_haw_wing_relative_thickness (Table 3.1) | "
+        "kroo_aa241_compressibility_drag"
+    ),
+    "supercritical": (
+        "mason_2019_configuration_aerodynamics_drag (eq. 7-3) | "
+        "torenbeek_2013_advanced_aircraft_design (section 10.6.4) | "
+        "gur_mason_schetz_full_configuration_drag_2010"
+    ),
+}
 
 SOURCE_FIELDS = (
     "model",
@@ -95,7 +114,9 @@ def _optional_round(value: float | None, digits: int) -> float | None:
     return None if value is None else round(value, digits)
 
 
-def _source_section(parameters: DragBuildReport) -> str:
+def _source_section(
+    parameters: DragBuildReport, airfoil_class: str | None = None
+) -> str:
     values = _rounded_parameters(parameters)
     imputed = ", ".join(parameters.imputed_fields) or "none"
     lines = [
@@ -170,6 +191,12 @@ def _source_section(parameters: DragBuildReport) -> str:
                 "  Applicability: Physical model input; geometry-tier "
                 "uncertainty applies."
             )
+            if field == "wave_drag_technology_factor" and airfoil_class is not None:
+                lines.append(
+                    f"  Inputs: wing.airfoil_class={airfoil_class}; Korn factor "
+                    f"{AIRFOIL_TECHNOLOGY_FACTORS[airfoil_class]} of the class from "
+                    f"{AIRFOIL_CLASS_REFERENCES[airfoil_class]}"
+                )
         lines.append("END FIELD")
     lines.extend([SECTION_END, ""])
     return "\n".join(lines)
@@ -610,7 +637,14 @@ def main() -> int:
         if issues:
             raise ValueError(f"{path}: " + "; ".join(issues))
         rendered = dump_document(normalized)
-        sidecar = _replace_source_section(old_sidecar, _source_section(parameters))
+        airfoil_class = aircraft.wing.airfoil_class if aircraft.wing else None
+        sidecar = _replace_source_section(
+            old_sidecar,
+            _source_section(
+                parameters,
+                airfoil_class if parameters.wave_drag_model is not None else None,
+            ),
+        )
         if rendered != original or sidecar != old_sidecar:
             changes.append((path, rendered, sidecar_path, sidecar))
         rows.append(

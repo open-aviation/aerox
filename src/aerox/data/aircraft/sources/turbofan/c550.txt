@@ -235,6 +235,15 @@ FIELD wing.dihedral
   Search record: reviewed EASA.IM.A.207 Issue 10; common or exact-model values are inventoried below. C560 span/area were withheld because Citation V/Ultra and Encore configurations differ.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: easa_citation_500_560_a207
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

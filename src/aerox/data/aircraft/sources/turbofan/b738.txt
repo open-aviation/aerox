@@ -225,6 +225,15 @@ FIELD wing.dihedral
   Searched source: easa_ima120_issue_29 | boeing_737_ng_acap_rev_c_2025_10 | boeing_737_800_cad_3view | nasa_tm_2011_217264_b738_reference_geometry | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: supercritical
+  Unit: class
+  Status: research-report
+  Source: obert_2009_aerodynamic_design_of_transport_aircraft
+  Page or section: Obert p. 235 (new supercritical outer-wing section on the 737-600 to -900)
+  Applicability: Boeing 737 Next Generation wing
+END FIELD
+
 FIELD horizontal_tail.area
   Value: 32.915303
   Unit: m2
@@ -585,7 +594,7 @@ FIELD drag.wave_drag_model
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.wave_drag_source_tier
-  Value: D-class-scaled
+  Value: C-airfoil-class
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Model metadata; not a measured aircraft coefficient.
@@ -601,5 +610,6 @@ FIELD drag.wave_drag_technology_factor
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Physical model input; geometry-tier uncertainty applies.
+  Inputs: wing.airfoil_class=supercritical; Korn factor 0.95 of the class from mason_2019_configuration_aerodynamics_drag (eq. 7-3) | torenbeek_2013_advanced_aircraft_design (section 10.6.4) | gur_mason_schetz_full_configuration_drag_2010
 END FIELD
 END DRAG MODEL

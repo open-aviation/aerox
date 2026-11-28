@@ -223,6 +223,15 @@ FIELD wing.dihedral
   Search record: reviewed EASA.IM.A.615 Issue 06 and the current Cirrus G3 brochure. The TCDS values are recorded as certified type-design evidence; the G3 brochure's 11.8 m span is retained as an applicability conflict in notes rather than silently replacing 11.67 m.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: easa_sf50_a615
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

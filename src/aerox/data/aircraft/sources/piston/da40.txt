@@ -202,6 +202,15 @@ FIELD wing.dihedral
   Search record: EASA TCDS EASA.A.022 and Diamond's 2025 DA40 Series product folder searched; the folder publishes distinct NG and XLT spans, retained separately.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: easa_da40_ima022
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

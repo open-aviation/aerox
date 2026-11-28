@@ -10,7 +10,10 @@ from aerox.models.drag import (
     build_drag_report,
     build_parabolic_polar,
 )
+from aerox.aircraft import AIRFOIL_CLASSES, Wing
 from aerox.models.drag.builder import (
+    AIRFOIL_CLASS_WAVE_TIER,
+    AIRFOIL_TECHNOLOGY_FACTORS,
     GEOMETRY_DRAG_MODEL_ID,
     KORN_LOCK_WAVE_DRAG_MODEL_ID,
 )
@@ -59,11 +62,44 @@ def test_wave_model_is_explicitly_scoped_to_subsonic_civil_turbofans():
             enabled.append(code)
             assert drag.wave_drag_model == KORN_LOCK_WAVE_DRAG_MODEL_ID
             assert drag.wave_drag_confidence == "low"
-            assert drag.wave_drag_technology_factor == pytest.approx(0.95)
+            airfoil_class = load_aircraft(code).wing.airfoil_class
+            expected = AIRFOIL_TECHNOLOGY_FACTORS.get(airfoil_class, 0.95)
+            assert drag.wave_drag_technology_factor == pytest.approx(expected), code
 
     assert len(enabled) > 90
     assert {"A320", "B738", "RJ85"} & set(enabled) == {"A320", "B738"}
     assert {"C172", "AT72", "F15", "T38", "C17", "K35R"} <= set(disabled)
+
+
+def test_airfoil_class_sets_the_korn_technology_factor():
+    assert set(AIRFOIL_TECHNOLOGY_FACTORS) == set(AIRFOIL_CLASSES)
+    assert AIRFOIL_TECHNOLOGY_FACTORS == {
+        "conventional": 0.87,
+        "peaky": 0.89,
+        "early-supercritical": 0.93,
+        "supercritical": 0.95,
+    }
+    aircraft = load_aircraft("B744")
+    assert aircraft.wing.airfoil_class == "peaky"
+    report = build_drag_report(aircraft)
+    assert report.wave_drag_source_tier == AIRFOIL_CLASS_WAVE_TIER
+    assert report.wave_drag_technology_factor == pytest.approx(0.89)
+
+    # A record without a class keeps the default factor and its tier.
+    aircraft = load_aircraft("B733")
+    assert aircraft.wing.airfoil_class is None
+    report = build_drag_report(aircraft)
+    assert report.wave_drag_source_tier == "D-class-scaled"
+    assert report.wave_drag_technology_factor == pytest.approx(0.95)
+    aircraft.wing.airfoil_class = "conventional"
+    report = build_drag_report(aircraft)
+    assert report.wave_drag_source_tier == AIRFOIL_CLASS_WAVE_TIER
+    assert report.wave_drag_technology_factor == pytest.approx(0.87)
+
+
+def test_unknown_airfoil_class_is_rejected():
+    with pytest.raises(ValueError, match="airfoil class"):
+        Wing(airfoil_class="laminar")
 
 
 def test_stored_parameters_match_deterministic_generator():

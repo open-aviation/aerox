@@ -285,6 +285,26 @@ class DragBuildReport:
     nacelle_geometry_tier: str | None
 
 
+# Korn technology factor for each airfoil generation (``wing.airfoil_class``),
+# in the form Mdd = kappa/cos(sweep) - (t/c)/cos^2(sweep) - CL/(10 cos^3(sweep)).
+# - conventional 0.87: Mason, Configuration Aerodynamics (2019), eq. 7-3
+#   (NACA 6-series sections).
+# - peaky 0.89: Shevell, supercritical sections 0.06 above conventional
+#   (Ciornei 2005, eq. 3.20), and Ciornei Table 3.1.
+# - early-supercritical 0.93: Ciornei Table 3.1 (0.04 above peaky); Kroo AA241
+#   (supercritical sections typically 0.03 to 0.04 above peaky).
+# - supercritical 0.95: Mason eq. 7-3; Torenbeek, Advanced Aircraft Design
+#   (2013), section 10.6.4; Gur, Mason and Schetz (2010).
+# A record without a class uses 0.95 with its previous source tier.
+AIRFOIL_TECHNOLOGY_FACTORS = {
+    "conventional": 0.87,
+    "peaky": 0.89,
+    "early-supercritical": 0.93,
+    "supercritical": 0.95,
+}
+AIRFOIL_CLASS_WAVE_TIER = "C-airfoil-class"
+
+
 def _wave_drag_config(
     aircraft: Aircraft,
 ) -> tuple[str | None, str, str, float | None]:
@@ -293,6 +313,8 @@ def _wave_drag_config(
     The compact Korn/Lock branch is applicable to subsonic civil turbofans.
     Low-speed propeller aircraft and special military/transport layouts retain
     an explicit not-applicable marker rather than a fabricated coefficient.
+    The technology factor comes from the airfoil class of the wing when the
+    record gives one.
     """
 
     icao = str(aircraft.icao or "").upper()
@@ -301,12 +323,20 @@ def _wave_drag_config(
         return None, "not-applicable", "not-applicable", None
     if aircraft.mmo is not None and float(aircraft.mmo) >= 1.0:
         return None, "not-applicable", "not-applicable", None
+    airfoil_class = aircraft.wing.airfoil_class if aircraft.wing else None
     if icao == "A320":
         return (
             KORN_LOCK_WAVE_DRAG_MODEL_ID,
             "C-public-increment-cross-check",
             "low",
-            0.95,
+            AIRFOIL_TECHNOLOGY_FACTORS.get(airfoil_class, 0.95),
+        )
+    if airfoil_class is not None:
+        return (
+            KORN_LOCK_WAVE_DRAG_MODEL_ID,
+            AIRFOIL_CLASS_WAVE_TIER,
+            "low",
+            AIRFOIL_TECHNOLOGY_FACTORS[airfoil_class],
         )
     return KORN_LOCK_WAVE_DRAG_MODEL_ID, "D-class-scaled", "low", 0.95
 

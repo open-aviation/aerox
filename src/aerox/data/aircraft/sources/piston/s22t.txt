@@ -209,6 +209,15 @@ FIELD wing.dihedral
   Search record: current Cirrus SR Series product page searched; common current-product span is retained per named current model, with generation ambiguity explicit.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: easa_cirrus_a007
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

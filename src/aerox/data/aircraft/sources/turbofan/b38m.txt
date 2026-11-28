@@ -167,7 +167,7 @@ FIELD wing.t/c
   Applicability: Boeing 737-800 wing
   Uncertainty: Both stations are inferred from statements in the source, not published values.
   Previous value: 0.12 nondimensional
-  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with a value inferred from the cited sources; the note gives the scope and the uncertainty.
   Notes: Same wing as the B738 record; sister-subtype fill. The 737 MAX keeps the 737 Next Generation wing box and sections; this is an assumption for the MAX records.
 END FIELD
 
@@ -218,6 +218,16 @@ FIELD wing.dihedral
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_ima120_issue_29 | boeing_737_max_acap_rev_k_2025_07 | boeing_737_max8_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
   Search record: Reviewed all four exact-model Boeing 737 MAX CAD drawings; the visible crown-to-tip fin is common, while no unambiguous rudder hinge was identified.
+END FIELD
+
+FIELD wing.airfoil_class
+  Value: supercritical
+  Unit: class
+  Status: inferred-with-uncertainty
+  Source: obert_2009_aerodynamic_design_of_transport_aircraft
+  Page or section: Obert p. 235 (new supercritical outer-wing section on the 737-600 to -900)
+  Applicability: Boeing 737 Next Generation wing
+  Notes: The MAX keeps the Next Generation wing; sister-subtype fill.
 END FIELD
 
 FIELD horizontal_tail.area
@@ -564,7 +574,7 @@ FIELD drag.wave_drag_model
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.wave_drag_source_tier
-  Value: D-class-scaled
+  Value: C-airfoil-class
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Model metadata; not a measured aircraft coefficient.
@@ -580,5 +590,6 @@ FIELD drag.wave_drag_technology_factor
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Physical model input; geometry-tier uncertainty applies.
+  Inputs: wing.airfoil_class=supercritical; Korn factor 0.95 of the class from mason_2019_configuration_aerodynamics_drag (eq. 7-3) | torenbeek_2013_advanced_aircraft_design (section 10.6.4) | gur_mason_schetz_full_configuration_drag_2010
 END FIELD
 END DRAG MODEL

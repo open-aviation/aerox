@@ -215,6 +215,15 @@ FIELD wing.dihedral
   Searched source: tcca_a236_bd500_oe_r3_2024 | airbus_a220_100_app_i032_2023
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: tcca_a236_bd500_oe_r3_2024
+END FIELD
+
 FIELD horizontal_tail.area
   Value: 36.6
   Unit: m2

@@ -277,6 +277,15 @@ FIELD wing.dihedral
   Notes: Report sets 0 deg "as for the original ATR 72".
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: easa_a084_issue_14
+END FIELD
+
 FIELD horizontal_tail.area
   Value: 11.73
   Unit: m2

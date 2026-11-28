@@ -226,6 +226,15 @@ FIELD wing.dihedral
   Search record: reviewed certification/model-scope records, including the New Zealand CAA Cessna 680 acceptance report; no requested geometry field was found in a qualified document with the needed exact bundled applicability.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: early-supercritical
+  Unit: class
+  Status: secondary-compilation
+  Source: ciornei_2005_haw_wing_relative_thickness
+  Page or section: Ciornei Table B.18, p. 125, and Table C.3
+  Applicability: Cessna 650 Citation VI
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2
@@ -493,7 +502,7 @@ FIELD drag.wave_drag_model
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.wave_drag_source_tier
-  Value: D-class-scaled
+  Value: C-airfoil-class
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Model metadata; not a measured aircraft coefficient.
@@ -505,9 +514,10 @@ FIELD drag.wave_drag_confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.wave_drag_technology_factor
-  Value: 0.95
+  Value: 0.93
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Physical model input; geometry-tier uncertainty applies.
+  Inputs: wing.airfoil_class=early-supercritical; Korn factor 0.93 of the class from ciornei_2005_haw_wing_relative_thickness (Table 3.1) | kroo_aa241_compressibility_drag
 END FIELD
 END DRAG MODEL

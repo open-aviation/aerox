@@ -247,6 +247,15 @@ FIELD wing.dihedral
   Search record: reviewed EASA.IM.A.097 Issue 03; exact certified-model wing geometry is inventoried below.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: easa_c750_a097 | faa_t00007wi_rev_16
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

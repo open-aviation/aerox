@@ -200,6 +200,15 @@ FIELD wing.dihedral
   Search record: reviewed current Embraer product pages and historical APM locations. No current direct authoritative document with requested geometry and exact bundled configuration was validated; E75L long-wing modification effectivity remains unresolved.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: anac_ct_transfer_portaria_7380_2022
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

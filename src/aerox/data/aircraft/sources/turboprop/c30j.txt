@@ -210,6 +210,15 @@ FIELD wing.dihedral
   Search record: official USAF C-130 fact sheet searched; common E/H/J/J-30 wingspan retained, with the fact sheet's inconsistent metric conversion corrected from its original imperial dimension.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: usaf_c130_fact_sheet
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

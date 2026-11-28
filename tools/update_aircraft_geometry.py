@@ -17,6 +17,8 @@ from typing import Any, Mapping
 
 import yaml
 
+from aerox.aircraft import AIRFOIL_CLASSES
+
 try:
     from migrate_aircraft_data import (
         AIRCRAFT_ROOT,
@@ -55,6 +57,7 @@ GEOMETRY_UNITS = {
     "wing.taper_ratio": "nondimensional",
     "wing.aspect_ratio": "nondimensional",
     "wing.dihedral": "deg",
+    "wing.airfoil_class": "class",
     "horizontal_tail.area": "m2",
     "horizontal_tail.span": "m",
     "horizontal_tail.mac": "m",
@@ -138,6 +141,24 @@ def _parse_number(text: str) -> float | None:
     return value
 
 
+def _parse_value(field: str, text: str) -> float | str | None:
+    """Parse a research value; ``wing.airfoil_class`` holds a class name."""
+    if GEOMETRY_UNITS.get(field) != "class":
+        return _parse_number(text)
+    stripped = text.strip()
+    if not stripped or stripped.lower() == "null":
+        return None
+    if stripped not in AIRFOIL_CLASSES:
+        raise ValueError(f"unsupported airfoil class: {text}")
+    return stripped
+
+
+def _same_value(first: Any, second: Any, rel_tol: float, abs_tol: float) -> bool:
+    if isinstance(first, str) or isinstance(second, str):
+        return first == second
+    return math.isclose(float(first), float(second), rel_tol=rel_tol, abs_tol=abs_tol)
+
+
 def load_research(paths: list[Path]) -> dict[tuple[str, str], dict[str, str]]:
     records: dict[tuple[str, str], dict[str, str]] = {}
     for path in paths:
@@ -156,6 +177,7 @@ def load_research(paths: list[Path]) -> dict[tuple[str, str], dict[str, str]]:
                     raise ValueError(
                         f"{path}:{line_number}: {field} uses {unit!r}, expected {GEOMETRY_UNITS[field]!r}"
                     )
+                _parse_value(field, row["value"])
                 key = (icao, field)
                 if key in records:
                     raise ValueError(
@@ -424,6 +446,20 @@ def derive_geometry(
             metadata[path] = record
 
 
+CORRECTION_REASONS = {
+    "exact": "Replaced the legacy aerox value with the cited exact-scope value.",
+    "inferred": (
+        "Replaced the legacy aerox value with a value inferred from the cited "
+        "sources; the note gives the scope and the uncertainty."
+    ),
+}
+
+
+def _correction_reason(status: str) -> str:
+    key = "inferred" if status == "inferred-with-uncertainty" else "exact"
+    return CORRECTION_REASONS[key]
+
+
 def _metadata_from_row(row: Mapping[str, str]) -> dict[str, str]:
     return {
         key: value
@@ -483,7 +519,10 @@ def render_geometry_section(
             record.setdefault("source", "-")
             record.setdefault(
                 "reason_unavailable",
-                "No exact-model public value has been adopted.",
+                "No source gives the airfoil generation; the wave drag model "
+                "uses the default technology factor."
+                if unit == "class"
+                else "No exact-model public value has been adopted.",
             )
             record.setdefault("searched_source", searched_source)
 
@@ -607,8 +646,9 @@ def main() -> int:
                 )
             }
         )
-        for (icao, _), row in research.items():
-            if icao == path.stem.upper():
+        for (icao, field), row in research.items():
+            # An airfoil-class source is not a search for planform values.
+            if icao == path.stem.upper() and GEOMETRY_UNITS[field] != "class":
                 for source_id in row["source_id"].split("|"):
                     source_id = source_id.strip()
                     if source_id and source_id not in searched_sources:
@@ -647,7 +687,7 @@ def main() -> int:
             if (icao, field) in exclusions:
                 continue
             previous = _get(document, field)
-            replacement = _parse_number(row["value"])
+            replacement = _parse_value(field, row["value"])
             prior_record = metadata.get(field, {})
             shared_sources = set(_source_ids(prior_record)) & {
                 source_id.strip()
@@ -658,9 +698,7 @@ def main() -> int:
                 previous is not None
                 and replacement is not None
                 and shared_sources
-                and math.isclose(
-                    float(previous), float(replacement), rel_tol=1e-5, abs_tol=1e-4
-                )
+                and _same_value(previous, replacement, rel_tol=1e-5, abs_tol=1e-4)
             ):
                 # Retain a more precise value already derived from the same evidence.
                 replacement = previous
@@ -669,18 +707,21 @@ def main() -> int:
             for key in ("previous_value", "correction_reason"):
                 if prior_record.get(key):
                     record[key] = prior_record[key]
+            reason = _correction_reason(record.get("status", ""))
+            if record.get("correction_reason") in CORRECTION_REASONS.values():
+                record["correction_reason"] = reason
             if (
                 previous is not None
                 and replacement is not None
-                and not math.isclose(
-                    float(previous), float(replacement), rel_tol=1e-12, abs_tol=1e-12
-                )
+                and not _same_value(previous, replacement, rel_tol=1e-12, abs_tol=1e-12)
             ):
                 record["previous_value"] = f"{previous} {GEOMETRY_UNITS[field]}"
-                record["correction_reason"] = (
-                    "Replaced the legacy aerox value with the cited exact-scope value."
-                )
-            elif replacement is not None and record.get("previous_value"):
+                record["correction_reason"] = reason
+            elif (
+                replacement is not None
+                and not isinstance(replacement, str)
+                and record.get("previous_value")
+            ):
                 try:
                     recorded_previous = float(record["previous_value"].split()[0])
                 except ValueError:

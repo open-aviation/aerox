@@ -40,6 +40,7 @@ wing:
   taper_ratio: 0.2275
   aspect_ratio: 3.0
   dihedral: 0.0
+  airfoil_class: null
 horizontal_tail:
   area: 5.915601
   span: null

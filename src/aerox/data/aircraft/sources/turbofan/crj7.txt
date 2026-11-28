@@ -228,6 +228,15 @@ FIELD wing.dihedral
   Search record: reviewed Bombardier CSP A-020 R8, B-020 R15 and C-020 R11. CRJ900 span is withheld because the APM publishes 23.24 m and 24.85 m for different serial configurations and the bundled record does not resolve that effectivity.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: tcca_a276_crj_oe_r5_2024
+END FIELD
+
 FIELD horizontal_tail.area
   Value: 15.91
   Unit: m2

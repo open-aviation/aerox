@@ -16,6 +16,7 @@ from typing import Any, Mapping
 import yaml
 
 from aerox.aircraft import (
+    AIRFOIL_CLASSES,
     FLAP_TYPES,
     LEGACY_FLAP_KEYS,
     _load_flaps,
@@ -65,6 +66,7 @@ SIMPLE_TEMPLATE: dict[str, Any] = {
         "taper_ratio": None,
         "aspect_ratio": None,
         "dihedral": None,
+        "airfoil_class": None,
     },
     "horizontal_tail": {
         "area": None,
@@ -311,6 +313,7 @@ def simple_from_canonical(data: Mapping[str, Any]) -> dict[str, Any]:
         "taper_ratio": _get(data, "wing.taper_ratio"),
         "aspect_ratio": _get(data, "wing.aspect_ratio"),
         "dihedral": _get(data, "wing.dihedral"),
+        "airfoil_class": _get(data, "wing.airfoil_class"),
     }
     result["horizontal_tail"] = {
         "area": _get(data, "horizontal_tail.area"),
@@ -514,6 +517,11 @@ def validate_simple(document: Any) -> list[str]:
             _load_flaps(dict(document["flaps"]))
         except (TypeError, ValueError) as error:
             issues.append(f"flaps: {error}")
+    wing = document.get("wing")
+    if isinstance(wing, Mapping):
+        airfoil_class = wing.get("airfoil_class")
+        if airfoil_class is not None and airfoil_class not in AIRFOIL_CLASSES:
+            issues.append(f"wing.airfoil_class: unsupported class {airfoil_class!r}")
     if document.get("icao") in {None, "", "unknown"}:
         issues.append("icao: missing ICAO code")
     certification = document.get("certification", {})
@@ -575,6 +583,8 @@ def validate_simple(document: Any) -> list[str]:
         if not isinstance(section, Mapping):
             continue
         for field_name in fields:
+            if (section_name, field_name) == ("wing", "airfoil_class"):
+                continue  # a class name, checked above
             value = section.get(field_name)
             path = f"{section_name}.{field_name}"
             if value is not None and (

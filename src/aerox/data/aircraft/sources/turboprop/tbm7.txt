@@ -220,6 +220,15 @@ FIELD wing.dihedral
   Search record: EASA TCDS EASA.A.010 Issue 07 searched; the common certified TBM700 A/B/C1/C2/N span and area are adopted.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: easa_tbm700_a010_i7
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

@@ -225,6 +225,15 @@ FIELD wing.dihedral
   Search record: ANAC/FAA model scope and EASA TCDS EASA.IM.A.188 searched; certified span, area, and MAC are adopted.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: anac_ct_transfer_portaria_7380_2022
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

@@ -221,6 +221,16 @@ FIELD wing.dihedral
   Notes: Airbus states the planning drawing is accurate within 0.10 m; value is an engineering prior, not certified geometry.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: supercritical
+  Unit: class
+  Status: inferred-with-uncertainty
+  Source: ciornei_2005_haw_wing_relative_thickness
+  Page or section: Ciornei Table B.28, p. 135, and Table C.4 (A321-200)
+  Applicability: Airbus A320 family wing
+  Notes: Same basic wing as the A321; sister-subtype fill.
+END FIELD
+
 FIELD horizontal_tail.area
   Value: 30.843428
   Unit: m2
@@ -780,6 +790,7 @@ FIELD drag.wave_drag_technology_factor
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Physical model input; geometry-tier uncertainty applies.
+  Inputs: wing.airfoil_class=supercritical; Korn factor 0.95 of the class from mason_2019_configuration_aerodynamics_drag (eq. 7-3) | torenbeek_2013_advanced_aircraft_design (section 10.6.4) | gur_mason_schetz_full_configuration_drag_2010
 END FIELD
 END DRAG MODEL
 

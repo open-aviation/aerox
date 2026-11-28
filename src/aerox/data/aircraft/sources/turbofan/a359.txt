@@ -146,10 +146,18 @@ FIELD wing.sweep
 END FIELD
 
 FIELD wing.t/c
-  Value: 0.123
+  Value: 0.114
   Unit: nondimensional
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: inferred-with-uncertainty
+  Source: claeys_2018_flying_v_reference_aircraft | dezoeten_varriale_vos_2023_flying_v_performance
+  Page or section: Claeys Table 4.2, p. 16 and p. 17 (airfoils supplied by Airbus); cross-check de Zoeten, Varriale and Vos Table 2, p. 5
+  Formula: (root + 3 x outer) / 4, the average of the Jenkinson data tables
+  Inputs: root 0.130, tip 0.085 (kink 0.1175 at eta 0.3)
+  Applicability: Airbus A350-900 and A350-1000 wing
+  Uncertainty: The kink value as outer gives 0.121; a linear spanwise mean gives about 0.108; de Zoeten et al. give an average of 0.1036 for their A350-1000 model with no source and no definition of the average
+  Previous value: 0.123 nondimensional
+  Correction reason: Replaced the legacy aerox value with a value inferred from the cited sources; the note gives the scope and the uncertainty.
+  Notes: Values from an A350-like reference aircraft, not a published A350 value. The previous 0.123 matched only a web page with no source. Claeys also gives 32 deg quarter-chord sweep, the same as the record.
 END FIELD
 
 FIELD wing.root_chord
@@ -158,7 +166,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04 | airbus_a350_900_autocad_2012_05
+  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04 | airbus_a350_900_autocad_2012_05 | claeys_2018_flying_v_reference_aircraft | dezoeten_varriale_vos_2023_flying_v_performance
   Search record: Reviewed exact-model Airbus vector drawings against the 9.42 m tail-reference-plane height in the current A350 ACAP; the A350-1000 fin remains piecewise in the evidence inventory.
 END FIELD
 
@@ -168,7 +176,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04 | airbus_a350_900_autocad_2012_05
+  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04 | airbus_a350_900_autocad_2012_05 | claeys_2018_flying_v_reference_aircraft | dezoeten_varriale_vos_2023_flying_v_performance
   Search record: Reviewed exact-model Airbus vector drawings against the 9.42 m tail-reference-plane height in the current A350 ACAP; the A350-1000 fin remains piecewise in the evidence inventory.
 END FIELD
 
@@ -178,7 +186,7 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04 | airbus_a350_900_autocad_2012_05
+  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04 | airbus_a350_900_autocad_2012_05 | claeys_2018_flying_v_reference_aircraft | dezoeten_varriale_vos_2023_flying_v_performance
   Search record: Reviewed exact-model Airbus vector drawings against the 9.42 m tail-reference-plane height in the current A350 ACAP; the A350-1000 fin remains piecewise in the evidence inventory.
 END FIELD
 
@@ -197,8 +205,17 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04 | airbus_a350_900_autocad_2012_05
+  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04 | airbus_a350_900_autocad_2012_05 | claeys_2018_flying_v_reference_aircraft | dezoeten_varriale_vos_2023_flying_v_performance
   Search record: Reviewed exact-model Airbus vector drawings against the 9.42 m tail-reference-plane height in the current A350 ACAP; the A350-1000 fin remains piecewise in the evidence inventory.
+END FIELD
+
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: easa_a151_issue_33 | claeys_2018_flying_v_reference_aircraft | dezoeten_varriale_vos_2023_flying_v_performance
 END FIELD
 
 FIELD horizontal_tail.area
@@ -310,7 +327,7 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04 | airbus_a350_900_autocad_2012_05
+  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04 | airbus_a350_900_autocad_2012_05 | claeys_2018_flying_v_reference_aircraft | dezoeten_varriale_vos_2023_flying_v_performance
   Search record: Reviewed exact-model Airbus vector drawings against the 9.42 m tail-reference-plane height in the current A350 ACAP; the A350-1000 fin remains piecewise in the evidence inventory.
 END FIELD
 
@@ -320,7 +337,7 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04 | airbus_a350_900_autocad_2012_05
+  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04 | airbus_a350_900_autocad_2012_05 | claeys_2018_flying_v_reference_aircraft | dezoeten_varriale_vos_2023_flying_v_performance
   Search record: Reviewed exact-model Airbus vector drawings against the 9.42 m tail-reference-plane height in the current A350 ACAP; the A350-1000 fin remains piecewise in the evidence inventory.
 END FIELD
 
@@ -330,7 +347,7 @@ FIELD horizontal_tail.elevator_area_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04 | airbus_a350_900_autocad_2012_05
+  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04 | airbus_a350_900_autocad_2012_05 | claeys_2018_flying_v_reference_aircraft | dezoeten_varriale_vos_2023_flying_v_performance
   Search record: Reviewed exact-model Airbus vector drawings against the 9.42 m tail-reference-plane height in the current A350 ACAP; the A350-1000 fin remains piecewise in the evidence inventory.
 END FIELD
 
@@ -446,7 +463,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04 | airbus_a350_900_autocad_2012_05
+  Searched source: easa_a151_issue_33 | airbus_a350_acap_2026_07 | airbus_a350_common_htp_2016_02 | airbus_a350_1000_autocad_2016_04 | airbus_a350_900_autocad_2012_05 | claeys_2018_flying_v_reference_aircraft | dezoeten_varriale_vos_2023_flying_v_performance
   Search record: Reviewed exact-model Airbus vector drawings against the 9.42 m tail-reference-plane height in the current A350 ACAP; the A350-1000 fin remains piecewise in the evidence inventory.
 END FIELD
 
@@ -479,7 +496,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=A-observed-core-and-tails; confidence=medium; e_span=0.9552; roughness_excrescence/computed=0.0900; nacelle_tier=A-measured-nacelle
-  Zero-lift terms at reference (drag counts): wing=54.64; fuselage=45.37; horizontal_tail=11.76; vertical_tail=7.09; nacelles=11.86; pylons=1.82; fuselage_upsweep=3.79; control_surface_gaps=0.81; nacelle_base=1.08; roughness_excrescence=12.44
+  Zero-lift terms at reference (drag counts): wing=53.58; fuselage=45.37; horizontal_tail=11.76; vertical_tail=7.09; nacelles=11.86; pylons=1.82; fuselage_upsweep=3.79; control_surface_gaps=0.81; nacelle_base=1.08; roughness_excrescence=12.34
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration

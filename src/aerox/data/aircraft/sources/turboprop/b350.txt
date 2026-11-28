@@ -197,6 +197,15 @@ FIELD wing.dihedral
   Search record: FAA TCDS and current Textron Beechcraft product material searched. Only current King Air 260 and 360 configuration geometry is retained; no transfer to historical family members.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: nz_caa_type_acceptance_index
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

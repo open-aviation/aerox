@@ -197,6 +197,15 @@ FIELD wing.dihedral
   Search record: reviewed Bombardier/Learjet certification and public-document entry points; no authoritative requested geometry values with exact certified-model and commercial-configuration applicability were validated.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: easa_ima020_learjet45_i17
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

@@ -37,7 +37,7 @@ The main groups of a record, with their units:
 | Wake category | `icao_wtc`, `eu_wtc`, `faa_wtc` | |
 | Passengers | `pax`: `max`, `high`, `low` | seats |
 | Fuselage | `fuselage`: `length`, `height`, `width` | m |
-| Wing | `wing`: `area`, `span`, `mac`, `sweep`, `t/c`, chords, `taper_ratio`, `aspect_ratio`, `dihedral` | m², m, deg |
+| Wing | `wing`: `area`, `span`, `mac`, `sweep`, `t/c`, chords, `taper_ratio`, `aspect_ratio`, `dihedral`, `airfoil_class` | m², m, deg; class name |
 | Tails | `horizontal_tail`, `vertical_tail`: area, span or height, chords, sweep, arm, control-surface area ratio | m², m, deg |
 | Flaps and slats | `flaps`: type, area, stations, area and chord ratios, named settings | m², deg |
 | Engines | `engine`: `type`, `mount`, `number`, `default`, `options` | |

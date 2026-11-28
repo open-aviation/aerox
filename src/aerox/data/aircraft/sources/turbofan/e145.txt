@@ -236,6 +236,15 @@ FIELD wing.dihedral
   Search record: reviewed Embraer ERJ product pages and legacy APM locations. The previously indexed ERJ145 APM URL now returns 404, so no row from that unvalidated URL is adopted; the ERJ135 APM was likewise not retrievable at its historical direct URL.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: supercritical
+  Unit: class
+  Status: secondary-compilation
+  Source: ciornei_2005_haw_wing_relative_thickness
+  Page or section: Ciornei Table B.27, p. 134, and Table C.4
+  Applicability: Embraer ERJ-145 wing
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2
@@ -570,7 +579,7 @@ FIELD drag.wave_drag_model
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.wave_drag_source_tier
-  Value: D-class-scaled
+  Value: C-airfoil-class
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Model metadata; not a measured aircraft coefficient.
@@ -586,5 +595,6 @@ FIELD drag.wave_drag_technology_factor
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Physical model input; geometry-tier uncertainty applies.
+  Inputs: wing.airfoil_class=supercritical; Korn factor 0.95 of the class from mason_2019_configuration_aerodynamics_drag (eq. 7-3) | torenbeek_2013_advanced_aircraft_design (section 10.6.4) | gur_mason_schetz_full_configuration_drag_2010
 END FIELD
 END DRAG MODEL

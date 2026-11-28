@@ -204,6 +204,15 @@ FIELD wing.dihedral
   Search record: reviewed current official Phenom 100EX and Phenom 300E brochures. Rows are restricted to those commercial generations and are not back-applied to every EMB-500/EMB-505.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: anac_ct_transfer_portaria_7380_2022
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

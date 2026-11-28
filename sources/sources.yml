@@ -4174,6 +4174,65 @@ sources:
   redistribution: link-only
   notes:
   - Appendix B and D give root and tip thickness ratio, sweep and airfoil class for 29 aircraft.
+- id: claeys_2018_flying_v_reference_aircraft
+  title: Flying V and Reference Aircraft Structural Analysis and Mass Comparison
+  organization: M. B. P. Claeys / Delft University of Technology (MSc thesis)
+  url: https://repository.tudelft.nl/record/uuid:ee7f2ecb-cdb6-46de-8b57-d55b89f8c7e6
+  issue: '2018'
+  accessed: '2026-11-28'
+  evidence_type: research-report
+  license: university repository thesis; author copyright
+  redistribution: link-only
+  notes:
+  - Table 4.2, p. 16 gives an A350-like reference aircraft (sweep 32 deg, t/c 13, 11.75 and 8.5 % at eta 0, 0.3 and 1); p. 17 states that its airfoils are supplied by Airbus and are confidential.
+- id: dezoeten_varriale_vos_2023_flying_v_performance
+  title: Flight Performance Evaluation of the Flying-V
+  authors:
+  - G. J. de Zoeten
+  - C. Varriale
+  - R. Vos
+  organization: AIAA AVIATION 2023 Forum, AIAA 2023-3484
+  url: https://doi.org/10.2514/6.2023-3484
+  issue: '2023'
+  accessed: '2026-11-28'
+  evidence_type: research-report
+  license: TU Delft green open access copy; publisher copyright
+  redistribution: link-only
+  notes:
+  - Table 2, p. 5 gives average quarter-chord sweep 29.6 deg and average t/c 0.1036 for its A350-1000 model built on A350-900 geometry, with no source and no definition of the average; Table 3b, p. 6 gives a Delta Method Mdd of 0.867.
+- id: mason_2019_configuration_aerodynamics_drag
+  title: Configuration Aerodynamics, Chapter 3, Drag - An Introduction
+  organization: W. H. Mason / Virginia Tech (course notes)
+  url: https://archive.aoe.vt.edu/mason/Mason_f/ConfigAero.html
+  issue: 2019-01-31
+  accessed: '2026-11-28'
+  evidence_type: published-reference
+  license: university course notes; author copyright
+  redistribution: link-only
+  notes:
+  - Section 3.5.5, Korn equation (7-3), p. 3-43; Fig. 7-9a, p. 3-44. Airfoil technology factor 0.87 for NACA 6-series and 0.95 for supercritical sections.
+- id: torenbeek_2013_advanced_aircraft_design
+  title: 'Advanced Aircraft Design: Conceptual Design, Analysis and Optimization of Subsonic Civil Airplanes'
+  organization: E. Torenbeek / Wiley
+  url: https://doi.org/10.1002/9781118568101
+  issue: '2013'
+  accessed: '2026-11-28'
+  evidence_type: published-reference
+  license: paywalled book; local copy; do not share
+  redistribution: no-public-file
+  notes:
+  - Section 10.6.4, eqs. 10.46 and 10.47, p. 301. Technology factor about 0.95 for supercritical sections; 1960s long-range airliners used peaky airfoils.
+- id: kroo_aa241_compressibility_drag
+  title: 'Aircraft Design: Synthesis and Analysis, Compressibility Drag: MDiv'
+  organization: I. Kroo / Stanford University (AA241 course notes)
+  url: http://adg.stanford.edu/aa241/drag/mdiv.html
+  issue: n.d.
+  accessed: '2026-11-28'
+  evidence_type: published-reference
+  license: open web page; author copyright
+  redistribution: link-only
+  notes:
+  - Crest-critical Mach fit for peaky sections; supercritical sections add 0.03 to 0.04 to the drag-divergence Mach number, up to 0.06 for an aggressive section.
 - id: torenbeek_1982_synthesis
   title: Synthesis of Subsonic Airplane Design
   organization: E. Torenbeek / Delft University Press

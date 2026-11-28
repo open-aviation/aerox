@@ -1,6 +1,22 @@
 # Roadmap
 
-Updated: 2026-11-27
+Updated: 2026-11-28
+
+## Next release
+
+- **Airfoil classes.** The record field `wing.airfoil_class` (conventional,
+  peaky, early supercritical, supercritical) sets the Korn technology factor
+  of the wave drag model. The factor changes for 14 records: the B744,
+  MD11, and B712 (peaky, 0.89), the FA20 (conventional, 0.87), and the A306,
+  A310, 767, 757, Hawker 800, Beechjet 400, and Citation III (early
+  supercritical, 0.93). Records without a class keep 0.95. See
+  [Drag](drag.md#model).
+- **Wing geometry.** The A350-900 and A350-1000 thickness ratio changes from
+  0.123 to 0.114. The A330 and A340-300 sweep changes to 29.7° and their
+  thickness ratio to 0.118. The 747-400 and 747-8 sweep changes from 37° to
+  37.5°.
+- **Source notes.** The geometry tool gives a separate correction reason
+  for inferred values.
 
 ## Release 0.6
 

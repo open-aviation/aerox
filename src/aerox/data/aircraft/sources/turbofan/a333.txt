@@ -162,17 +162,31 @@ FIELD wing.mac
 END FIELD
 
 FIELD wing.sweep
-  Value: 29
+  Value: 29.7
   Unit: deg
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: secondary-compilation
+  Source: jenkinson_simpkin_rhodes_1999_data_a | ciornei_2005_haw_wing_relative_thickness
+  Page or section: Jenkinson Table 1, A330-200/-300 and A340-200/-300 wing 1/4 chord sweep; Ciornei Table B.29 (A340-300, p. 136) (Airbus DBD 29.735 deg)
+  Applicability: Airbus A330/A340-200/-300 wing
+  Uncertainty: Jane's p. 225 gives 30 deg (rounded)
+  Previous value: 29 deg
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
+  Notes: Quarter-chord sweep.
 END FIELD
 
 FIELD wing.t/c
-  Value: 0.11
+  Value: 0.118
   Unit: nondimensional
-  Status: legacy-unverified
-  Source: aerox_legacy_aircraft_database
+  Status: calculated-from-published-inputs
+  Source: janes_all_the_worlds_aircraft_2004_2005 | ciornei_2005_haw_wing_relative_thickness
+  Page or section: Jane's p. 225, Airbus A340 design features (A330/A340 common wing); Ciornei Table B.29, p. 136 (A340-300, A330-300 and A330-200 columns)
+  Formula: (root + 3 x outer) / 4, the average of the Jenkinson data tables
+  Inputs: root 0.1525 (Jane's) / 0.1530 (Airbus DBD via Ciornei), tip 0.1060
+  Applicability: Airbus A330/A340-200/-300 wing
+  Uncertainty: Root and tip only; Jane's also gives 0.1127 at the inner kink and 0.0986 at the outer kink, so the mid-wing is thinner than the tip
+  Previous value: 0.11 nondimensional
+  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
+  Notes: Ciornei gives the same 11.8 % average.
 END FIELD
 
 FIELD wing.root_chord
@@ -181,7 +195,7 @@ FIELD wing.root_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_300_autocad_2012_05
+  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_300_autocad_2012_05 | janes_all_the_worlds_aircraft_2004_2005 | ciornei_2005_haw_wing_relative_thickness | jenkinson_simpkin_rhodes_1999_data_a
   Search record: Reviewed exact-model Airbus vector drawings against the 8.3 m tail-reference-plane height in the current A330 ACAP.
 END FIELD
 
@@ -191,7 +205,7 @@ FIELD wing.tip_chord
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_300_autocad_2012_05
+  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_300_autocad_2012_05 | janes_all_the_worlds_aircraft_2004_2005 | ciornei_2005_haw_wing_relative_thickness | jenkinson_simpkin_rhodes_1999_data_a
   Search record: Reviewed exact-model Airbus vector drawings against the 8.3 m tail-reference-plane height in the current A330 ACAP.
 END FIELD
 
@@ -201,7 +215,7 @@ FIELD wing.taper_ratio
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_300_autocad_2012_05
+  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_300_autocad_2012_05 | janes_all_the_worlds_aircraft_2004_2005 | ciornei_2005_haw_wing_relative_thickness | jenkinson_simpkin_rhodes_1999_data_a
   Search record: Reviewed exact-model Airbus vector drawings against the 8.3 m tail-reference-plane height in the current A330 ACAP.
 END FIELD
 
@@ -220,8 +234,18 @@ FIELD wing.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_300_autocad_2012_05
+  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_300_autocad_2012_05 | janes_all_the_worlds_aircraft_2004_2005 | ciornei_2005_haw_wing_relative_thickness | jenkinson_simpkin_rhodes_1999_data_a
   Search record: Reviewed exact-model Airbus vector drawings against the 8.3 m tail-reference-plane height in the current A330 ACAP.
+END FIELD
+
+FIELD wing.airfoil_class
+  Value: supercritical
+  Unit: class
+  Status: inferred-with-uncertainty
+  Source: ciornei_2005_haw_wing_relative_thickness
+  Page or section: Ciornei Table B.29, p. 136, and Table C.4 (A340-300)
+  Applicability: Airbus A330/A340-200/-300 wing
+  Notes: Common A330/A340 wing; sister-subtype fill.
 END FIELD
 
 FIELD horizontal_tail.area
@@ -334,7 +358,7 @@ FIELD horizontal_tail.dihedral
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_300_autocad_2012_05
+  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_300_autocad_2012_05 | janes_all_the_worlds_aircraft_2004_2005 | ciornei_2005_haw_wing_relative_thickness | jenkinson_simpkin_rhodes_1999_data_a
   Search record: Reviewed exact-model Airbus vector drawings against the 8.3 m tail-reference-plane height in the current A330 ACAP.
 END FIELD
 
@@ -344,7 +368,7 @@ FIELD horizontal_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_300_autocad_2012_05
+  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_300_autocad_2012_05 | janes_all_the_worlds_aircraft_2004_2005 | ciornei_2005_haw_wing_relative_thickness | jenkinson_simpkin_rhodes_1999_data_a
   Search record: Reviewed exact-model Airbus vector drawings against the 8.3 m tail-reference-plane height in the current A330 ACAP.
 END FIELD
 
@@ -476,7 +500,7 @@ FIELD vertical_tail.arm
   Status: unresolved
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
-  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_300_autocad_2012_05
+  Searched source: easa_a004_issue_69 | airbus_a330_acap_2025_12 | airbus_a330_300_autocad_2012_05 | janes_all_the_worlds_aircraft_2004_2005 | ciornei_2005_haw_wing_relative_thickness | jenkinson_simpkin_rhodes_1999_data_a
   Search record: Reviewed exact-model Airbus vector drawings against the 8.3 m tail-reference-plane height in the current A330 ACAP.
 END FIELD
 
@@ -529,7 +553,7 @@ FIELD drag.model
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Inputs: configuration=clean; tier=A-observed-core-and-tails; confidence=medium; e_span=0.9547; roughness_excrescence/computed=0.0900; nacelle_tier=A-measured-nacelle
-  Zero-lift terms at reference (drag counts): wing=48.49; fuselage=48.94; horizontal_tail=12.73; vertical_tail=7.57; nacelles=11.85; pylons=1.82; fuselage_upsweep=4.13; control_surface_gaps=0.89; nacelle_base=1.09; roughness_excrescence=12.38
+  Zero-lift terms at reference (drag counts): wing=49.33; fuselage=48.94; horizontal_tail=12.73; vertical_tail=7.57; nacelles=11.85; pylons=1.82; fuselage_upsweep=4.13; control_surface_gaps=0.88; nacelle_base=1.09; roughness_excrescence=12.45
   Applicability: Active clean model; geometry-tier uncertainty applies.
 END FIELD
 FIELD drag.configuration
@@ -593,7 +617,7 @@ FIELD drag.wave_drag_model
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.wave_drag_source_tier
-  Value: D-class-scaled
+  Value: C-airfoil-class
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Model metadata; not a measured aircraft coefficient.
@@ -609,6 +633,7 @@ FIELD drag.wave_drag_technology_factor
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Physical model input; geometry-tier uncertainty applies.
+  Inputs: wing.airfoil_class=supercritical; Korn factor 0.95 of the class from mason_2019_configuration_aerodynamics_drag (eq. 7-3) | torenbeek_2013_advanced_aircraft_design (section 10.6.4) | gur_mason_schetz_full_configuration_drag_2010
 END FIELD
 END DRAG MODEL
 

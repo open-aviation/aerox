@@ -223,6 +223,15 @@ FIELD wing.dihedral
   Searched source: easa_ima211_issue_03 | boeing_717_acap_rev_b_2014_11 | boeing_717_cad_3view
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: peaky
+  Unit: class
+  Status: secondary-compilation
+  Source: janes_all_the_worlds_aircraft_2004_2005 | obert_2009_aerodynamic_design_of_transport_aircraft | ciornei_2005_haw_wing_relative_thickness
+  Page or section: Jane's p. 616 (wing from the DC-9-34); Obert p. 205 (DC-9 peaky sections); Ciornei Table B.10 and Table C.2 (DC-9-30 peaky)
+  Applicability: DC-9-30 wing
+END FIELD
+
 FIELD horizontal_tail.area
   Value: 25.950887
   Unit: m2
@@ -538,7 +547,7 @@ FIELD drag.wave_drag_model
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.wave_drag_source_tier
-  Value: D-class-scaled
+  Value: C-airfoil-class
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Model metadata; not a measured aircraft coefficient.
@@ -550,9 +559,10 @@ FIELD drag.wave_drag_confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.wave_drag_technology_factor
-  Value: 0.95
+  Value: 0.89
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Physical model input; geometry-tier uncertainty applies.
+  Inputs: wing.airfoil_class=peaky; Korn factor 0.89 of the class from ciornei_2005_haw_wing_relative_thickness (eq. 3.20 after Shevell; Table 3.1)
 END FIELD
 END DRAG MODEL

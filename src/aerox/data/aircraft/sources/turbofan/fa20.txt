@@ -224,6 +224,15 @@ FIELD wing.dihedral
   Search record: reviewed EASA legacy model/airworthiness records; no qualified public source with a requested field and exact Falcon 20 submodel applicability was located.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: conventional
+  Unit: class
+  Status: secondary-compilation
+  Source: ciornei_2005_haw_wing_relative_thickness
+  Page or section: Ciornei Table B.8, p. 115, and Table C.1
+  Applicability: Dassault Falcon 20
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2
@@ -491,7 +500,7 @@ FIELD drag.wave_drag_model
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.wave_drag_source_tier
-  Value: D-class-scaled
+  Value: C-airfoil-class
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Model metadata; not a measured aircraft coefficient.
@@ -503,9 +512,10 @@ FIELD drag.wave_drag_confidence
   Applicability: Model metadata; not a measured aircraft coefficient.
 END FIELD
 FIELD drag.wave_drag_technology_factor
-  Value: 0.95
+  Value: 0.87
   Status: project-derived-active-model
   Source: aerox_geometry_drag_model_2026_08_08
   Applicability: Physical model input; geometry-tier uncertainty applies.
+  Inputs: wing.airfoil_class=conventional; Korn factor 0.87 of the class from mason_2019_configuration_aerodynamics_drag (eq. 7-3)
 END FIELD
 END DRAG MODEL

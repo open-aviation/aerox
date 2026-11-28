@@ -36,7 +36,23 @@ CD = CD0(Re, M) + CDi(CL) + CDp(CL) + CDw(CL, M)
   stored in the aircraft record.
 - **Lift-dependent profile drag, `CDp`.** Grows with `CD0` and `CL²`.
 - **Wave drag, `CDw`.** The Korn equation with Lock's fourth-power law. It is
-  zero below the critical Mach number.
+  zero below the critical Mach number. The drag-divergence Mach number is
+  `κ / cos Λ − (t/c) / cos² Λ − CL / (10 cos³ Λ)`, with the quarter-chord
+  sweep `Λ`, and the critical Mach number is 0.108 lower. The technology
+  factor `κ` comes from the airfoil generation in the record field
+  `wing.airfoil_class`:
+
+  | `wing.airfoil_class` | `κ` | Reference |
+  | --- | --- | --- |
+  | `conventional` | 0.87 | Mason, *Configuration Aerodynamics*, eq. 7-3 (NACA 6-series sections) |
+  | `peaky` | 0.89 | Shevell, 0.06 below supercritical sections, and Ciornei (2005), Table 3.1 |
+  | `early-supercritical` | 0.93 | Ciornei (2005), Table 3.1; Kroo, AA241 notes |
+  | `supercritical` | 0.95 | Mason, eq. 7-3; Torenbeek (2013), section 10.6.4; Gur, Mason and Schetz (2010) |
+
+  A record without an airfoil class uses 0.95. The record field
+  `drag.wave_drag_technology_factor` holds the value in use, and
+  `drag.wave_drag_source_tier` is `C-airfoil-class` when it comes from the
+  class.
 
 The model is identified as `aerox-geometry-drag-v2` and the wave drag as
 `aerox-korn-lock-wave-v1` in the `drag` group of each record.
@@ -327,7 +343,8 @@ reynolds_per_m = aircraft_reynolds / sqrt(reference_area_m2)
   number that is too low, and the drag is then about 10 % too high.
 - Between the cruise Mach number and MMO the model is too low, by about 10 %
   on average and by about 18 % at MMO, against published flight-test curves
-  for ten transport types. The wave drag starts too late and rises too
-  slowly. See the [roadmap](roadmap.md).
+  for ten transport types, with the supercritical technology factor 0.95 for
+  every type. The wave drag starts too late and rises too slowly. See the
+  [roadmap](roadmap.md).
 - The record field `drag.confidence` rates the geometry behind each model as
   medium, medium-low, or low.

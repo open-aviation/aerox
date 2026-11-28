@@ -189,7 +189,7 @@ FIELD wing.t/c
   Applicability: Boeing 777-200 wing
   Uncertainty: The source says the outer wing is not much thinner than on the 767. The outer value is a lower estimate.
   Previous value: 0.1 nondimensional
-  Correction reason: Replaced the legacy aerox value with the cited exact-scope value.
+  Correction reason: Replaced the legacy aerox value with a value inferred from the cited sources; the note gives the scope and the uncertainty.
   Notes: The 777-200LR and 777-300ER have raked tips on the same wing.
 END FIELD
 
@@ -236,6 +236,15 @@ FIELD wing.dihedral
   Source: -
   Reason unavailable: No exact-model public value has been adopted.
   Searched source: easa_ima003_issue_20 | boeing_777_classic_acap_rev_e_2024_12 | boeing_777_200_cad_3view | obert_2009_aerodynamic_design_of_transport_aircraft
+END FIELD
+
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: easa_ima003_issue_20 | obert_2009_aerodynamic_design_of_transport_aircraft
 END FIELD
 
 FIELD horizontal_tail.area

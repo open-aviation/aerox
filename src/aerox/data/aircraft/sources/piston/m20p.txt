@@ -199,6 +199,15 @@ FIELD wing.dihedral
   Search record: FAA TCDS 2A3 and current Mooney public material searched; the ICAO model scope is too broad for a current-variant transfer.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: nz_caa_mooney_m20_r3
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

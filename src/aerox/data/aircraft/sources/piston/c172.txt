@@ -220,6 +220,15 @@ FIELD wing.dihedral
   Search record: FAA TCDS 3A12/3A13 and current Textron Aviation product pages searched; product-page spans and reference wing areas are adopted only for the current production configurations.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: nz_caa_cessna_172_r3
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

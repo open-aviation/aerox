@@ -199,6 +199,15 @@ FIELD wing.dihedral
   Search record: FAA official designator material and NZ CAA type-acceptance index searched; no SA-227AT Merlin 4-specific primary planform geometry adopted.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: faa_sa227_aging_airplane_rule_table
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

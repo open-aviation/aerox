@@ -236,6 +236,15 @@ FIELD wing.dihedral
   Search record: reviewed Transport Canada operational-evaluation records and Bombardier public technical/SmartPubs entry points; numerical planform geometry was not exposed in reusable text with exact commercial-configuration effectivity.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: tcca_a131_cl64_oe_r6_2026
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

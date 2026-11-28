@@ -232,6 +232,15 @@ FIELD wing.dihedral
   Search record: reviewed EASA.A.594 Issue 08, Pilatus Ground Servicing Guide 02484 Issue 002 Revision 04, and current Pilatus product material; certified wing geometry and the manufacturer-published horizontal-tail span are inventoried below.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: easa_pc24_a594
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

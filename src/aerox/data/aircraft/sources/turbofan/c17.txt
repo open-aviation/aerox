@@ -198,6 +198,15 @@ FIELD wing.dihedral
   Search record: official USAF/USN fact sheets searched. NASA TM-72861 additionally supports detailed F-15 early-prototype/production-planform geometry. No detailed tail planform was inferred for the other military types.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: usaf_c17_fact_sheet
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2

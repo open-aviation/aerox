@@ -207,6 +207,15 @@ FIELD wing.dihedral
   Search record: reviewed EASA.A.008 Issue 13, EASA.A.062 Issue 09 and EASA.A.155 Issue 17. Only values common to an unresolved family scope or exact to the bundled certified model are included.
 END FIELD
 
+FIELD wing.airfoil_class
+  Value: null
+  Unit: class
+  Status: unresolved
+  Source: -
+  Reason unavailable: No source gives the airfoil generation; the wave drag model uses the default technology factor.
+  Searched source: easa_falcon_50_900_a062
+END FIELD
+
 FIELD horizontal_tail.area
   Value: null
   Unit: m2
